@@ -99,3 +99,11 @@ debug command mycmd()
 
 ***Backwards compatibility***
 - a_commands also have backwards compatibility, incase you are upgrading from iZCMD/ZCMD, the ``CMD:`` keyword will still work as nothing changed. But, we still recommend creating your future commands using ``command`` and ``alias`` keywords.
+
+***Compatibility mode***
+- a_commands have compatibility mode! Enable it using:
+
+```pawn
+#define A_CMDS_COMPATIBILITY_MODE
+#include <a_commands>
+```
