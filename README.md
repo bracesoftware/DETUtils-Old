@@ -35,6 +35,22 @@ alias command mycmd(playerid, params[]) = mycommand;
 
 ```
 
+### Command debugging
+
+There is also a way to debug commands!
+
+Advanced debugging can be done using ``debug`` keyword.
+
+Example:
+
+```pawn
+debug command mycmd()
+{
+  print("Command %s successfully called.", GetDebuggedCommandName());
+  return 1;
+}
+```
+
 ## API ( programming interface )
 
 ### Functions
@@ -43,7 +59,7 @@ alias command mycmd(playerid, params[]) = mycommand;
 
 **CallLocalCommand**
 
-- This command does nothing besides returning command function call.
+- This function does nothing besides returning command function call.
 
 Parameters:
 
@@ -56,6 +72,21 @@ Example:
 
 ```pawn
 CallLocalCommand("mycommand", "is", playerid, inputtext);
+```
+**GetDebuggedCommandName**
+
+- This function gets the name of debugged command.
+
+Parameters: noone
+
+Example:
+
+```pawn
+debug command mycmd()
+{
+  print("Command %s successfully called.", GetDebuggedCommandName());
+  return 1;
+}
 ```
 
 ## Messages from creator
