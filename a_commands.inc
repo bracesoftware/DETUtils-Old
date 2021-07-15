@@ -143,7 +143,9 @@ stock CallLocalCommand(const command[], const specifiers[], integner, const stri
 static
         bool:is_opcr_valid = false,
         bool:is_opcp_valid = false;
- 
+
+#if !defined FILTERSCRIPT
+
 public OnGameModeInit()
 {
     is_opcr_valid = funcidx("OnPlayerCommandReceived") != -1;
@@ -155,6 +157,22 @@ public OnGameModeInit()
     }      
     return 1;
 }
+
+#else
+
+public OnFilterScriptInit()
+{
+    is_opcr_valid = funcidx("OnPlayerCommandReceived") != -1;
+    is_opcp_valid = funcidx("OnPlayerCommandPerformed") != -1;
+
+    if (funcidx("a_cmd_OnFilterScriptInit") != -1)
+    {
+        return CallLocalFunction("a_cmd_OnFilterScriptInit", "");
+    }
+    return 1;
+}
+
+#endif
  
 public OnPlayerCommandText(playerid, cmdtext[])
 {
@@ -238,6 +256,8 @@ public OnPlayerCommandText(playerid, cmdtext[])
 
 forward a_OnPlayerCommandText(playerid, cmdtext[]);
 
+#if !defined FILTERSCRIPT
+
 #if defined _ALS_OnGameModeInit
     #undef OnGameModeInit
 #else
@@ -247,3 +267,17 @@ forward a_OnPlayerCommandText(playerid, cmdtext[]);
 #define OnGameModeInit a_cmd_processor_OnGameModeInit
 
 forward a_cmd_processor_OnGameModeInit();
+
+#else
+
+#if defined _ALS_OnFilterScriptInit
+    #undef OnFilterScriptInit
+#else
+    #define _ALS_OnFilterScriptInit
+#endif
+
+#define OnFilterScriptInit a_cmd_OnFilterScriptInit
+
+forward a_cmd_OnFilterScriptInit();
+
+#endif
