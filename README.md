@@ -55,3 +55,11 @@ Example:
 ```pawn
 CallLocalCommand("mycommand", "is", playerid, inputtext);
 ```
+
+## Messages from creator
+
+### Warnings
+
+1. Make sure that whenever you create commands using the ``command`` keyword, the command name does not contain capital letters. Otherwise, unfortunately - server will recognize the command as unknown.
+
+### Notes
