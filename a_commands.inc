@@ -37,6 +37,8 @@
  
 #define MAX_FUNC_NAME (32)
 
+#if !defined A_CMDS_COMPATIBILITY_MODE
+
 #define command%0(%1) \
     forward%0@cmd(%1);public%0@cmd(%1)
 
@@ -51,8 +53,30 @@
 #define CMD:%0(%1) \
     forward %0@cmd(%1); public %0@cmd(%1)
 
-#if !defined isnull
-        #define isnull(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
+#if !defined IsValidString
+        #define IsValidString(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
+#endif
+
+#else
+
+#define COMMAND__%0(%1) \
+    forward%0@cmd(%1);public%0@cmd(%1)
+
+#define ALIAS__COMMAND__%0(%1[%3]%4)%5=%2; \
+    forward%0@cmd(%1[]);%3public%0@cmd(%1[]){return %2@cmd(%1)%4;%5}
+
+#define DEBUG__COMMAND__%0(%1) \
+    forward%0@dbg(debugged_cmdtext[]);%1public%0@dbg(debugged_cmdtext[])
+
+#define GETDBGCMD__%0(%1) %0debugged_cmdtext%1
+
+#define CMD__:%0(%1) \
+    forward %0@cmd(%1); public %0@cmd(%1)
+
+#if !defined IsValidString
+        #define IsValidString(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
+#endif
+
 #endif
 
 /*
@@ -90,8 +114,17 @@ stock CallLocalCommand(const command[], const specifiers[], integner, const stri
         ;
 }
 
-forward OnPlayerCommandReceived(playerid, cmdtext[]);
-forward OnPlayerCommandPerformed(playerid, cmdtext[], success);
+#if !defined OnPlayerCommandReceived
+
+    forward OnPlayerCommandReceived(playerid, cmdtext[]);
+
+#endif
+
+#if !defined OnPlayerCommandPerformed
+
+    forward OnPlayerCommandPerformed(playerid, cmdtext[], success);
+
+#endif
 
 /*
                                          
@@ -115,6 +148,7 @@ public OnGameModeInit()
 {
     is_opcr_valid = funcidx("OnPlayerCommandReceived") != -1;
     is_opcp_valid = funcidx("OnPlayerCommandPerformed") != -1;
+
     if (funcidx("a_cmd_processor_OnGameModeInit") != -1)
     {
         return CallLocalFunction("a_cmd_processor_OnGameModeInit", "");
