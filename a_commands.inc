@@ -43,6 +43,11 @@
 #define alias%5command%0(%1[%3]%4)=%2; \
     forward%0@cmd(%1[]);%3public%0@cmd(%1[]){return %2@cmd(%1)%4;%5}
 
+#define debug%1command%0() \
+    forward%0@dbg(debugged_cmdtext[]);%1public%0@dbg(debugged_cmdtext[])
+
+#define GetDebuggedCommandName%0(%1) %0debugged_cmdtext%1
+
 #define CMD:%0(%1) \
     forward %0@cmd(%1); public %0@cmd(%1)
 
@@ -128,13 +133,20 @@ public OnPlayerCommandText(playerid, cmdtext[])
     }
     new
         position,
-        function_name[MAX_FUNC_NAME];
+        function_name[MAX_FUNC_NAME],
+        function_debug[MAX_FUNC_NAME];
 
     while (cmdtext[++position] > ' ')
     {
         function_name[position-1] = tolower(cmdtext[position]);
     }
+    format(function_debug, sizeof(function_debug), "%s@dbg", function_name);
     format(function_name, sizeof(function_name), "%s@cmd", function_name);
+
+    if(funcidx(function_debug) != -1)
+    {
+        CallLocalFunction(function_debug, "s", cmdtext);
+    }
 
     while (cmdtext[position] == ' ') position++;
     if (!cmdtext[position])
