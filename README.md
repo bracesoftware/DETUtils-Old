@@ -89,6 +89,10 @@ debug command mycmd()
 }
 ```
 
+**CallRemoteCommand**
+
+- Simply, *CallRemoteCommand* works same as *CallLocalCommand* (it has same parameters etc.) - but the command can be called from anywhere. Even, from another file.
+
 ## Messages from creator
 
 ### Warnings
