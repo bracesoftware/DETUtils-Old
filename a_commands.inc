@@ -38,10 +38,10 @@
 #define MAX_FUNC_NAME (32)
 
 #define command%0(%1) \
- 	forward%0@cmd(%1);public%0@cmd(%1)
+    forward%0@cmd(%1);public%0@cmd(%1)
 
 #define alias%5command%0(%1[%3]%4)=%2; \
- 	forward%0@cmd(%1[]);%3public%0@cmd(%1[]){return %2@cmd(%1)%4;%5}
+    forward%0@cmd(%1[]);%3public%0@cmd(%1[]){return %2@cmd(%1)%4;%5}
 
 #define CMD:%0(%1) \
     forward %0@cmd(%1); public %0@cmd(%1)
@@ -117,20 +117,12 @@ public OnGameModeInit()
     return 1;
 }
  
-#if defined _ALS_OnGameModeInit
-    #undef OnGameModeInit
-#else
-    #define _ALS_OnGameModeInit
-#endif
-#define OnGameModeInit a_cmd_processor_OnGameModeInit
-forward a_cmd_processor_OnGameModeInit();
- 
 public OnPlayerCommandText(playerid, cmdtext[])
 {
     if (is_opcr_valid && !CallLocalFunction("OnPlayerCommandReceived", 
-    	"is", 
-    	playerid, 
-    	cmdtext))
+        "is", 
+        playerid, 
+        cmdtext))
     {
         return 1;
     }
@@ -150,20 +142,20 @@ public OnPlayerCommandText(playerid, cmdtext[])
         if (is_opcp_valid)
         {
                 return CallLocalFunction("OnPlayerCommandPerformed", 
-                	"isi", 
-                	playerid, 
-                	cmdtext, 
-                	CallLocalFunction(function_name, "is", playerid, "\1"));
+                    "isi", 
+                    playerid, 
+                    cmdtext, 
+                    CallLocalFunction(function_name, "is", playerid, "\1"));
         }
         return CallLocalFunction(function_name, "is", playerid, "\1");      
     }
     if (is_opcp_valid)
     {
             return CallLocalFunction("OnPlayerCommandPerformed", 
-            	"isi", 
-            	playerid, 
-            	cmdtext, 
-            	CallLocalFunction(function_name, "is", playerid, cmdtext[position]));
+                "isi", 
+                playerid, 
+                cmdtext, 
+                CallLocalFunction(function_name, "is", playerid, cmdtext[position]));
     }
 
     if (funcidx("a_OnPlayerCommandText") != -1)
@@ -175,11 +167,37 @@ public OnPlayerCommandText(playerid, cmdtext[])
     }
     return CallLocalFunction(function_name, "is", playerid, cmdtext[position]);
 }
+
+/*
+                                                              
+88        88                            88                    
+88        88                            88                    
+88        88                            88                    
+88aaaaaaaa88   ,adPPYba,    ,adPPYba,   88   ,d8   ,adPPYba,  
+88""""""""88  a8"     "8a  a8"     "8a  88 ,a8"    I8[    ""  
+88        88  8b       d8  8b       d8  8888[       `"Y8ba,   
+88        88  "8a,   ,a8"  "8a,   ,a8"  88`"Yba,   aa    ]8I  
+88        88   `"YbbdP"'    `"YbbdP"'   88   `Y8a  `"YbbdP"'  
+                                                              
+
+*/
  
 #if defined _ALS_OnPlayerCommandText
     #undef OnPlayerCommandText
 #else
     #define _ALS_OnPlayerCommandText
 #endif
+
 #define OnPlayerCommandText a_OnPlayerCommandText
+
 forward a_OnPlayerCommandText(playerid, cmdtext[]);
+
+#if defined _ALS_OnGameModeInit
+    #undef OnGameModeInit
+#else
+    #define _ALS_OnGameModeInit
+#endif
+
+#define OnGameModeInit a_cmd_processor_OnGameModeInit
+
+forward a_cmd_processor_OnGameModeInit();
