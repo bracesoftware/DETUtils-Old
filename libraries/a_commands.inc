@@ -47,6 +47,8 @@
 #define alias%5command%0(%1[%3]%4)=%2; \
     forward%0@cmd(%1[]);%3public%0@cmd(%1[]){return %2@cmd(%1)%4;%5}
 
+#define _public public
+
 #define debug%1command%0() \
     forward%0@dbg(debugged_cmdtext[]);%1public%0@dbg(debugged_cmdtext[])
 
@@ -107,6 +109,27 @@ stock CallLocalCommand(const command[], const specifiers[], integner, const stri
         )
     ;
     return CallLocalFunction
+                (
+                    command_name, 
+                    specifiers, 
+                    integner, 
+                    string
+                )
+        ;
+}
+
+stock CallRemoteCommand(const command[], const specifiers[], integner, const string[])
+{
+    new command_name[MAX_FUNC_NAME];
+    format
+        (
+            command_name, 
+            MAX_FUNC_NAME, 
+            "%s@cmd", 
+            command
+        )
+    ;
+    return CallRemoteFunction
                 (
                     command_name, 
                     specifiers, 
