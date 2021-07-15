@@ -45,10 +45,10 @@ alias command mycmd(playerid, params[]) = mycommand;
 
 Parameters:
 
-  command_name (string)
-  specifiers (string)
-  command_firstparam (integner)
-  command_secparam (string)
+   - command_name (string)
+   - specifiers (string)
+   - command_firstparam (integner)
+   - command_secparam (string)
   
 Example:
 
