@@ -32,3 +32,26 @@ You can do it using ``alias`` keyword, an example:
 alias command mycmd(playerid, params[]) = mycommand;
 
 ```
+
+## API ( programming interface )
+
+### Functions
+
+*a_commands.inc* also contains some handy functions, let's see.
+
+***CallLocalCommand***
+
+- This command does nothing besides returning command function call.
+
+Parameters:
+
+  command_name (string)
+  specifiers (string)
+  command_firstparam (integner)
+  command_secparam (string)
+  
+Example:
+
+```pawn
+CallLocalCommand("mycommand", "is", playerid, inputtext);
+```
