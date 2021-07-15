@@ -39,7 +39,7 @@ alias command mycmd(playerid, params[]) = mycommand;
 
 *a_commands.inc* also contains some handy functions, let's see.
 
-***CallLocalCommand***
+**CallLocalCommand**
 
 - This command does nothing besides returning command function call.
 
@@ -63,3 +63,6 @@ CallLocalCommand("mycommand", "is", playerid, inputtext);
 1. Make sure that whenever you create commands using the ``command`` keyword, the command name does not contain capital letters. Otherwise, unfortunately - server will recognize the command as unknown.
 
 ### Notes
+
+***Backwards compatibility***
+- a_commands also have backwards compatibility, incase you are upgrading from iZCMD/ZCMD, the ``CMD:`` keyword will still work as nothing changed. But, we still recomment creating your future commands using ``command`` and ``alias`` keywords.
