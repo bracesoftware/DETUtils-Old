@@ -107,3 +107,19 @@ debug command mycmd()
 #define A_CMDS_COMPATIBILITY_MODE
 #include <a_commands>
 ```
+It tehnically disables all of custom syntax and keywords, replacing them with upper-case, double-underscore-suffixed versions - so:
+
+```pawn
+debug command mycmd()
+{
+  return 1;
+}
+```
+... is now:
+
+```pawn
+DEBUG__COMMAND__ mycmd()
+{
+  return 1;
+}
+```
