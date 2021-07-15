@@ -1,5 +1,5 @@
-# SA:MP-STD Utilities | List of includes:
-List of *stdlibEx* includes.
+# SA:MP-STD Utilities | Information
+Hi! Welcome to *SA:MP-STD Utilities* "read me" file. Below, you can find information about each library:
 # a_commands
 SA:MP Commands - a "built-in" fast and easy way to create commands.
 
