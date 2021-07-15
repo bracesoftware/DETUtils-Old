@@ -1,9 +1,7 @@
 /*
- * SA-MP command processor
+ * SA:MP | DEntisT's Utilites 
+ * command processor
  *
- * - "Built-in" command processor
- *    for SA:MP stdlib with 
- *    actual PAWN syntax.
  *
  * Thanks to:
  *
