@@ -49,6 +49,9 @@ stock CallLocalCommand(const command[], const specifiers[], integner, const stri
         ;
 }
 
+#define CMD:%0(%1) \
+    forward %0@cmd(%1); public %0@cmd(%1)
+
 #if !defined isnull
         #define isnull(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
 #endif
