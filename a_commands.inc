@@ -15,6 +15,21 @@
 
 #include <a_samp>
 
+/*
+
+                                                                               
+88b           d88                                                              
+888b         d888                                                              
+88`8b       d8'88                                                              
+88 `8b     d8' 88  ,adPPYYba,   ,adPPYba,  8b,dPPYba,   ,adPPYba,   ,adPPYba,  
+88  `8b   d8'  88  ""     `Y8  a8"     ""  88P'   "Y8  a8"     "8a  I8[    ""  
+88   `8b d8'   88  ,adPPPPP88  8b          88          8b       d8   `"Y8ba,   
+88    `888'    88  88,    ,88  "8a,   ,aa  88          "8a,   ,a8"  aa    ]8I  
+88     `8'     88  `"8bbdP"Y8   `"Ybbd8"'  88           `"YbbdP"'   `"YbbdP"'  
+                                                                               
+                                                                               
+*/
+
 #if defined _a_cmd_processor_included
         #endinput
 #endif 
@@ -27,6 +42,27 @@
 
 #define alias%5command%0(%1[%3]%4)=%2; \
  	forward%0@cmd(%1[]);%3public%0@cmd(%1[]){return %2@cmd(%1)%4;%5}
+
+#define CMD:%0(%1) \
+    forward %0@cmd(%1); public %0@cmd(%1)
+
+#if !defined isnull
+        #define isnull(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
+#endif
+
+/*
+                                                                                      
+88b           d88              88                         db         88888888ba   88  
+888b         d888              ""                        d88b        88      "8b  88  
+88`8b       d8'88                                       d8'`8b       88      ,8P  88  
+88 `8b     d8' 88  ,adPPYYba,  88  8b,dPPYba,          d8'  `8b      88aaaaaa8P'  88  
+88  `8b   d8'  88  ""     `Y8  88  88P'   `"8a        d8YaaaaY8b     88""""""'    88  
+88   `8b d8'   88  ,adPPPPP88  88  88       88       d8""""""""8b    88           88  
+88    `888'    88  88,    ,88  88  88       88      d8'        `8b   88           88  
+88     `8'     88  `"8bbdP"Y8  88  88       88     d8'          `8b  88           88  
+                                                                                      
+                                                                                      
+*/
 
 stock CallLocalCommand(const command[], const specifiers[], integner, const string[])
 {
@@ -49,16 +85,23 @@ stock CallLocalCommand(const command[], const specifiers[], integner, const stri
         ;
 }
 
-#define CMD:%0(%1) \
-    forward %0@cmd(%1); public %0@cmd(%1)
-
-#if !defined isnull
-        #define isnull(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
-#endif
-
 forward OnPlayerCommandReceived(playerid, cmdtext[]);
 forward OnPlayerCommandPerformed(playerid, cmdtext[], success);
- 
+
+/*
+                                         
+88                                   88  
+""                                   88  
+                                     88  
+88  88,dPYba,,adPYba,   8b,dPPYba,   88  
+88  88P'   "88"    "8a  88P'    "8a  88  
+88  88      88      88  88       d8  88  
+88  88      88      88  88b,   ,a8"  88  
+88  88      88      88  88`YbbdP"'   88  
+                        88               
+                        88               
+*/
+
 static
         bool:is_opcr_valid = false,
         bool:is_opcp_valid = false;
