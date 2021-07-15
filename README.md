@@ -1,5 +1,7 @@
+# List of includes:
+List of *stdlibEx* includes.
 # a_commands
-A little update to SA:MP standard scripting library - a "built-in" fast  and easy way to create commands with actual Pawn syntax.
+SA:MP Commands - a "built-in" fast and easy way to create commands.
 
 ## How to start to use?
 
