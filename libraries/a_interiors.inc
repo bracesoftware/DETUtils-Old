@@ -55,6 +55,10 @@ new gDETUtils_InteriorData[MAX_INTERIORS][e_DETUtils_INTERIOR_DATA];
 
 new gDETUtils_Interiorid;
 
+#if !defined col_white
+    #define col_white "{ffffff}"
+#endif
+
 /*
 
                                                               
@@ -294,7 +298,7 @@ stock Create3DLabelAndPickup(
     return DETUtils_INTERIORS_TRUE;
 }
 
-stock CreateCustomInterior(
+stock CreateCustomInteriorEx(
         const DETUtils_InteriorName[], 
         Float:DETUtils_xEntrance, 
         Float:DETUtils_yEntrance, 
@@ -342,6 +346,51 @@ stock CreateCustomInterior(
     Create3DLabelAndPickup(DETUtils_EntranceLabelString, DETUtils_xEntrance,DETUtils_yEntrance,DETUtils_zEntrance, -1, -1, 19133, 2.0);
 
     Create3DLabelAndPickup("Exit here!", DETUtils_xExit,DETUtils_yExit,DETUtils_zExit, -1, -1, 19133, 2.0);
+    return DETUtils_INTERIORS_TRUE;
+}
+
+stock CreateCustomInterior(
+        const DETUtils_InteriorName[], 
+        Float:DETUtils_xEntrance, 
+        Float:DETUtils_yEntrance, 
+        Float:DETUtils_zEntrance, 
+        Float:DETUtils_xExit, 
+        Float:DETUtils_yExit, 
+        Float:DETUtils_zExit, 
+        DETUtils_eInteriorid, 
+        DETUtils_xInteriorid, 
+        DETUtils_eVirtualWorldid, 
+        DETUtils_xVirtualWorldid)
+{
+    printf("Interior '%s' successfully created, entrance is set to: %f, %f, %f.",
+            DETUtils_InteriorName,
+            Float:DETUtils_xEntrance, 
+            Float:DETUtils_yEntrance, 
+            Float:DETUtils_zEntrance);
+
+    gDETUtils_Interiorid++;
+
+    strmid(gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_NAME], 
+            DETUtils_InteriorName, 
+            0, 
+            strlen(DETUtils_InteriorName), 
+            255);
+
+    printf("Interior '%s' has an id %d.",DETUtils_InteriorName,gDETUtils_Interiorid);
+
+    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTENTRANCE_X] = DETUtils_xEntrance;
+    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTENTRANCE_Y] = DETUtils_yEntrance;
+    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTENTRANCE_Z] = DETUtils_zEntrance;
+
+    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTEXIT_X] = DETUtils_xExit;
+    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTEXIT_Y] = DETUtils_yExit;
+    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTEXIT_Z] = DETUtils_zExit;
+
+    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_INTID] = DETUtils_eInteriorid;
+    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_INTID_OUT] = DETUtils_xInteriorid;
+    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_VWID] = DETUtils_eVirtualWorldid;
+    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_VWID_OUT] = DETUtils_xVirtualWorldid;
+    
     return DETUtils_INTERIORS_TRUE;
 }
 
