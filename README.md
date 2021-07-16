@@ -15,6 +15,18 @@ Check out test files here:
 
 - [Go to tests...](https://github.com/DentisT-SAMP/samp-detutils/tree/master/tests)
 
+## Troubleshooting
+
+If you're facing problems like function failed to call, function is not valid, critical errors - make sure you enable automatic debugging.
+- Automatic debugging literally sends debug messages whenever it needs to.
+- With this feature you can easily track problems and report them on Discord or try to troubleshoot them yourself.
+
+To enable A.D. feature, use:
+
+```pawn
+#define detutils_debug
+```
+
 ### Thanks
 
 - Big thanks to *open.mp* community for helping me during library development.
