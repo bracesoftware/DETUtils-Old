@@ -158,7 +158,7 @@ Parameters:
 if(IsPlayerInCustomInterior(playerid)) return SendClientMessage(playerid, -1, "You're in interior.");
 ```
 
-***CreateCustomInteriorEx***
+**CreateCustomInteriorEx**
 
 - This is just a function successor, this function does the same thing *CreateCustomInterior* does. Only difference is that *CustomInteriorEx* creates 3D label and pickup on entrance and exit point.
 
