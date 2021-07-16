@@ -347,7 +347,7 @@ stock CreateCustomInterior(
 
 stock bool:IsPlayerInCustomInterior(playerid)
 {
-    if(gDETUtils_PlayersInterior[ playerid ] = -1) return false;
+    if(gDETUtils_PlayersInterior[ playerid ] == -1) return false;
     else return true;
 }
 
@@ -355,6 +355,11 @@ stock ClearPlayerInteriorData(playerid)
 {
     gDETUtils_PlayersInterior[playerid] = -1;
     return DETUtils_INTERIORS_TRUE;
+}
+
+stock GetLastInterioridUsed()
+{
+    return gDETUtils_Interiorid;
 }
 
 stock SetInteriorEntranceCustomAngles(
