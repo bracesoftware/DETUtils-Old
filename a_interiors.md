@@ -21,41 +21,44 @@ public OnGameModeInit()
 
 ```
 
-... and - that's it, interior entrance is created on coordinates *243.66,345.21,12.78*, and interior exit on coordinates 9.0, 4564.8, 12.8.
+... and - that's it, interior entrance is created on coordinates *243.66,345.21,12.78*, and interior exit on coordinates 9.0, 4564.8, 12.8. And whenever player press key which he use to enter a car near entrance coordinates given, he will be *teleported* on coordinates of interior exit.
 
-### Command aliasing
+**WARNING**: Note that these coordinates aren't really coordinates of police station in the game. This was just an example for parameters.
 
-There is also way to declare alias of a specific command.
+### Interior debugging
 
-You can do it using ``alias`` keyword, an example:
+- Whenever *CreateCustomInterior* is called, it automatically sends debug messages onto the console.
 
-```pawn
+### Interior functions
 
-alias command mycmd(playerid, params[]) = mycommand;
+- There is one really useful feature, in my opinion - literal interior functions.
 
-```
+- These literal interior functions are called whenever player enters/exits specific interior.
 
-### Command debugging
-
-There is also a way to debug commands!
-
-Advanced debugging can be done using ``debug`` keyword.
-
-Example:
+Little example:
 
 ```pawn
-debug command mycmd()
+
+interior PoliceStation(playerid)
 {
-  print("Command %s successfully called.", GetDebuggedCommandName());
+  if(IsInteriorActionPerformed(INTERIOR_ACTION_ENTER))
+  {
+    SendClientMessage(playerid, -1, "You entered police station.");
+  }
+  else if(IsInteriorActionPerformed(INTERIOR_ACTION_ENTER))
+  {
+    SendClientMessage(playerid, -1, "You exited police station.");
+  }
   return 1;
 }
+
 ```
 
 ## API ( programming interface )
 
 ### Functions
 
-*a_commands.inc* also contains some handy functions, let's see.
+*a_interiors.inc* also contains some handy functions, let's see.
 
 **CallLocalCommand**
 
@@ -97,37 +100,11 @@ debug command mycmd()
 
 ### Warnings
 
-1. Make sure that whenever you create commands using the ``command`` keyword, the command name does not contain capital letters. Otherwise, unfortunately - server will recognize the command as unknown.
+- No warnings - yet.
 
 ### Notes
 
-***Backwards compatibility***
-- a_commands also have backwards compatibility, incase you are upgrading from iZCMD/ZCMD, the ``CMD:`` keyword will still work as nothing changed. But, we still recommend creating your future commands using ``command`` and ``alias`` keywords.
-
-***Compatibility mode***
-- a_commands have compatibility mode! Enable it using:
-
-```pawn
-#define A_CMDS_COMPATIBILITY_MODE
-#include <a_commands>
-```
-It tehnically disables all of custom syntax and keywords, replacing them with upper-case, double-underscore-suffixed versions - so:
-
-```pawn
-debug command mycmd()
-{
-  return 1;
-}
-```
-... is now:
-
-```pawn
-DEBUG__COMMAND__ mycmd()
-{
-  return 1;
-}
-```
-***Making filterscript with a_commands?***
+***Making filterscript with a_interiors?***
 - Well, we have good news for you, because there is also new filterscript support feature. 
 
 - So, if you're making a filterscript - make sure you use:
@@ -135,4 +112,4 @@ DEBUG__COMMAND__ mycmd()
 ```pawn
 #define FILTERSCRIPT
 ```
-... before including *a_commands*.
+... before including *a_interiors*.
