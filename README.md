@@ -3,7 +3,7 @@ Hi! Welcome to *SA:MP-DET Utilities* "read me" file. In general, *samp-detutils*
 - Below, you can find information about each library.
 
 ## Docs
-Click on blue text to see all information about each include:
+Click on blue text to see all information about each include.
 
-[a_commands.inc](a_commands.md)
-[a_interiors.inc](a_interiors.md)
+- Learn more: [a_commands.inc](a_commands.md)
+- Learn more: [a_interiors.inc](a_interiors.md)
