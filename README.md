@@ -23,6 +23,8 @@ If you're facing problems like function failed to call, function is not valid, c
 
 To enable A.D. feature, use:
 
+To join Discord server, [click here...](https://discord.gg/samp)
+
 ```pawn
 #define detutils_debug
 ```
