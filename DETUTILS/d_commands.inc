@@ -49,6 +49,10 @@ Optional plugins:
 
 #tryinclude "d_extra\d_libtags.inc"
 
+#if !defined d_extra_included
+    #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+#endif
+
 /*
 
                                                                                
