@@ -60,41 +60,103 @@ interior PoliceStation(playerid)
 
 *a_interiors.inc* also contains some handy functions, let's see.
 
-**CallLocalCommand**
+**IsInteriorActionPerformed**
 
-- This function does nothing besides returning command function call.
+- This function does nothing besides checking which interior action was performed.
+
+**WARNING**: This function can be only used with *if* statements and in literal interior functions.
 
 Parameters:
 
-   - command_name (string)
-   - specifiers (string)
-   - command_firstparam (integner)
-   - command_secparam (string)
+   - interior_action (integner)
   
 Example:
 
 ```pawn
-CallLocalCommand("mycommand", "is", playerid, inputtext);
+interior Bank(playerid)
+{
+  if(IsInteriorActionPerformed( INTERIOR_ACTION_EXIT )) return SendClientMessage(playerid, -1, "See you again!");
+  return 1;
+}
 ```
-**GetDebuggedCommandName**
+**SetPlayerCustomInterior**
 
-- This function gets the name of debugged command.
+- This function sets player's interior. Interior id can be seen after certain interior is created - thanks to debug messages!
 
-Parameters: noone
+**WARNING**: Interior id will be always same unless it is not created on callback *OnGameModeInit* or you changed interior creating algorithm.
+
+Parameters:
+
+  - playerid (integner)
+  - custom_interiorid (integner) 
 
 Example:
 
 ```pawn
-debug command mycmd()
+static Your_Function(p,i)
 {
-  print("Command %s successfully called.", GetDebuggedCommandName());
+  SetPlayerCustomInterior(p, i);
   return 1;
 }
 ```
+**GetLastInterioridUsed**
 
-**CallRemoteCommand**
+- Gets last interior id which was used to assign interior data to.
 
-- Simply, *CallRemoteCommand* works same as *CallLocalCommand* (it has same parameters etc.) - but the command can be called from anywhere. Even, from another file.
+**WARNING**: Works best and properly after
+
+**SetInteriorEntranceCustomAngles**
+
+- This function sets interior entrance and exit position angles.
+
+Parameters:
+
+  - interiorid (integner)
+  - angle_a (float)
+  - angle_b (float)
+
+Example:
+
+```pawn
+public OnGameModeInit()
+{
+  CreateCustomInterior("PoliceStation", 243.66, 345.21, 12.78, 9.0, 4564.8, 12.8, 1, 0, 1, 0);
+  SetInteriorEntranceCustomAngles(GetLastInterioridUsed(), 234.453, 0.23);
+  return 1;
+}
+```
+**ClearPlayerInteriorData**
+
+- The thing this function does is really simple. Clears interior id data which is assigned to player's data.
+
+Parameters:
+ 
+ - playerid (integner)
+
+**NOTE**: This is called usually on callback *OnPlayerDisconnect*.
+
+Example:
+
+```pawn
+public OnPlayerDisconnect(playerid, reason)
+{
+  ClearPlayerInteriorData(playerid);
+  return 1;
+}
+```
+**IsPlayerInCustomInterior**
+
+- Also, one simple function - checks if is player in one of custom interiors declared.
+
+- If yes, returns *true*, else returns *false*.
+
+Parameters:
+
+  - playerid (integner)
+
+```pawn
+if(IsPlayerInCustomInterior(playerid)) return SendClientMessage(playerid, -1, "You're in interior.");
+```
 
 ## Messages from creator
 
