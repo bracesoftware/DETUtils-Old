@@ -166,6 +166,10 @@ if(IsPlayerInCustomInterior(playerid)) return SendClientMessage(playerid, -1, "Y
 
 ### Notes
 
+***Streamer***
+
+- Make sure you have *streamer.inc* include file.
+
 ***Making filterscript with a_interiors?***
 - Well, we have good news for you, because there is also new filterscript support feature. 
 
