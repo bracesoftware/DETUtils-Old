@@ -108,6 +108,9 @@ stock CallLocalCommand(const command[], const specifiers[], integner, const stri
             command
         )
     ;
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - CallLocalCommand called successfully.");
+    #endif
     return CallLocalFunction
                 (
                     command_name, 
@@ -129,6 +132,9 @@ stock CallRemoteCommand(const command[], const specifiers[], integner, const str
             command
         )
     ;
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - CallRemoteCommand called successfully.");
+    #endif
     return CallRemoteFunction
                 (
                     command_name, 
@@ -137,6 +143,7 @@ stock CallRemoteCommand(const command[], const specifiers[], integner, const str
                     string
                 )
         ;
+
 }
 
 #if !defined OnPlayerCommandReceived
@@ -186,6 +193,10 @@ public OnGameModeInit()
     is_opcr_valid = funcidx("OnPlayerCommandReceived") != -1;
     is_opcp_valid = funcidx("OnPlayerCommandPerformed") != -1;
 
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - ongminit :: Commands init...");
+    #endif
+
     if (funcidx("a_cmd_processor_OnGameModeInit") != -1)
     {
         return CallLocalFunction("a_cmd_processor_OnGameModeInit", "");
@@ -195,6 +206,9 @@ public OnGameModeInit()
 
 main()
 {
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - ongminit :: Commands loading finished.");
+    #endif
     AnnounceLibraryLoaded();
     a_cmd_main();
 }
@@ -203,6 +217,9 @@ main()
 
 public OnFilterScriptInit()
 {
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - onfsinit :: Commands loading finished.");
+    #endif
     AnnounceLibraryLoaded();
     is_opcr_valid = funcidx("OnPlayerCommandReceived") != -1;
     is_opcp_valid = funcidx("OnPlayerCommandPerformed") != -1;
@@ -223,6 +240,9 @@ public OnPlayerCommandText(playerid, cmdtext[])
         playerid, 
         cmdtext))
     {
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned 1.");
+        #endif
         return 1;
     }
     new
@@ -230,33 +250,60 @@ public OnPlayerCommandText(playerid, cmdtext[])
         function_name[MAX_FUNC_NAME],
         function_debug[MAX_FUNC_NAME];
 
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - opct :: Successfully declared variables.");
+    #endif
+
     while (cmdtext[++position] > ' ')
     {
         function_name[position-1] = tolower(cmdtext[position]);
     }
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - opct :: cmdtext[] validated.");
+    #endif
     format(function_debug, sizeof(function_debug), "%s@dbg", function_name);
     format(function_name, sizeof(function_name), "%s@cmd", function_name);
+
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - opct :: Formatted function strings successfully.");
+    #endif
 
     if(funcidx(function_debug) != -1)
     {
         CallLocalFunction(function_debug, "s", cmdtext);
     }
 
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - opct :: Called custom debug function : %s.", function_debug);
+    #endif
+
     while (cmdtext[position] == ' ') position++;
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - opct :: position variable validated.");
+    #endif
     if (!cmdtext[position])
     {
         if (is_opcp_valid)
         {
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 1");
+            #endif
                 return CallLocalFunction("OnPlayerCommandPerformed", 
                     "isi", 
                     playerid, 
                     cmdtext, 
                     CallLocalFunction(function_name, "is", playerid, "\1"));
         }
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 2");
+        #endif
         return CallLocalFunction(function_name, "is", playerid, "\1");      
     }
     if (is_opcp_valid)
     {
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 3");
+        #endif
             return CallLocalFunction("OnPlayerCommandPerformed", 
                 "isi", 
                 playerid, 
@@ -266,6 +313,9 @@ public OnPlayerCommandText(playerid, cmdtext[])
 
     if (funcidx("a_OnPlayerCommandText") != -1)
     {
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned its hook call.");
+        #endif
         CallLocalFunction("a_OnPlayerCommandText", 
             "is", 
             playerid, 
