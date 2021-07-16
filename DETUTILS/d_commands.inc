@@ -27,6 +27,7 @@ Contributors:
     DEntisT
 
 Thanks:
+    Zeex - ideas and ZCMD
     open.mp team - ideas, support, help during development
 
 Very special thanks to:
