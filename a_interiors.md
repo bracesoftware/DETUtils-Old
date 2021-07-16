@@ -21,7 +21,7 @@ public OnGameModeInit()
 
 ```
 
-... and - that's it, interior entrance is created on coordinates *243.66,345.21,12.78*.
+... and - that's it, interior entrance is created on coordinates *243.66,345.21,12.78*, and interior exit on coordinates 9.0, 4564.8, 12.8.
 
 ### Command aliasing
 
