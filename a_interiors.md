@@ -185,3 +185,27 @@ Parameters: same as on CreateCustomInterior
 #define FILTERSCRIPT
 ```
 ... before including *a_interiors*.
+
+***Compatibility mode***
+- a_commands have compatibility mode! Enable it using:
+
+```pawn
+#define A_INTS_COMPATIBILITY_MODE
+#include <a_commands>
+```
+It tehnically disables all of custom syntax and keywords, replacing them with upper-case, double-underscore-suffixed versions - so:
+
+```pawn
+interior MyInterior(playerid)
+{
+  return 1;
+}
+```
+... is now:
+
+```pawn
+INTERIOR__ MyInterior(playerid)
+{
+  return 1;
+}
+```
