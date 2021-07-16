@@ -187,11 +187,11 @@ Parameters: same as on CreateCustomInterior
 ... before including *a_interiors*.
 
 ***Compatibility mode***
-- a_commands have compatibility mode! Enable it using:
+- a_interiors have compatibility mode! Enable it using:
 
 ```pawn
 #define A_INTS_COMPATIBILITY_MODE
-#include <a_commands>
+#include <a_interiors>
 ```
 It tehnically disables all of custom syntax and keywords, replacing them with upper-case, double-underscore-suffixed versions - so:
 
