@@ -158,6 +158,12 @@ Parameters:
 if(IsPlayerInCustomInterior(playerid)) return SendClientMessage(playerid, -1, "You're in interior.");
 ```
 
+***CreateCustomInteriorEx***
+
+- This is just a function successor, this function does the same thing *CreateCustomInterior* does. Only difference is that *CustomInteriorEx* creates 3D label and pickup on entrance and exit point.
+
+Parameters: same as on CreateCustomInterior
+
 ## Messages from creator
 
 ### Warnings
@@ -168,7 +174,7 @@ if(IsPlayerInCustomInterior(playerid)) return SendClientMessage(playerid, -1, "Y
 
 ***Streamer***
 
-- Make sure you have *streamer.inc* include file.
+- Make sure you have *streamer.inc* include file for *CreateCustomInteriorEx*.
 
 ***Making filterscript with a_interiors?***
 - Well, we have good news for you, because there is also new filterscript support feature. 
