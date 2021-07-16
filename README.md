@@ -4,4 +4,5 @@ Hi! Welcome to *SA:MP-DET Utilities* "read me" file. In general, *samp-detutils*
 
 ## Docs
 Click on blue text to see all information about each include:
-- [a_commands](a_commands.md) 
+
+[a_commands](a_commands.md) 
