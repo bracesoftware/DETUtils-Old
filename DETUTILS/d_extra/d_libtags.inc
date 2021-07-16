@@ -5,9 +5,8 @@
  *
  * Thanks to:
  *
- * @Zeex - zCMD ideas
  *
- * @DEntisT (me) - upgrades and bug fixes 
+ * @DEntisT (me) - the include
  *
  */
 
