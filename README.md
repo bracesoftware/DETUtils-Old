@@ -65,7 +65,7 @@ Thanks:
 Very special thanks to:
 
 - Thiadmer - PAWN, whose limits continue to amaze me!
-- 
+
 - Kye/Kalcor - SA:MP
 
 - SA:MP Team past, present and future - SA:MP
