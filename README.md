@@ -36,7 +36,8 @@ To join Discord server, [click here...](https://discord.gg/samp)
 ### SA:MP DEntisT's Utilities
 
 Legal:
-    - Version: MPL 1.1
+
+- Version: MPL 1.1
     
     The contents of this file are subject to the Mozilla Public License Version 
     1.1 the "License"; you may not use this file except in compliance with 
@@ -55,16 +56,22 @@ Legal:
     the Initial Developer. All Rights Reserved.
 
 Contributors:
-    - DEntisT
+
+- DEntisT
 
 Thanks:
-    - open.mp team - ideas, support, help during development
+- open.mp team - ideas, support, help during development
 
 Very special thanks to:
-    - Thiadmer - PAWN, whose limits continue to amaze me!
-    - Kye/Kalcor - SA:MP
-    - SA:MP Team past, present and future - SA:MP
-    - open.mp team present and future - SA:MP
+
+- Thiadmer - PAWN, whose limits continue to amaze me!
+- 
+- Kye/Kalcor - SA:MP
+
+- SA:MP Team past, present and future - SA:MP
+
+- open.mp team present and future - SA:MP
 
 Optional plugins:
-    - Incognito - streamer
+
+- Incognito - streamer
