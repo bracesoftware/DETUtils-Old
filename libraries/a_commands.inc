@@ -165,6 +165,16 @@ stock CallRemoteCommand(const command[], const specifiers[], integner, const str
                         88               
 */
 
+static AnnounceLibraryLoaded()
+{
+    print("|======================================|");
+    print("             a_commands.inc             ");
+    print("          Successfully loaded!          ");
+    print("                                        ");
+    print("               By: DEntisT              ");
+    print("|======================================|");
+}
+
 static
         bool:is_opcr_valid = false,
         bool:is_opcp_valid = false;
@@ -183,10 +193,17 @@ public OnGameModeInit()
     return 1;
 }
 
+main()
+{
+    AnnounceLibraryLoaded();
+    a_cmd_main();
+}
+
 #else
 
 public OnFilterScriptInit()
 {
+    AnnounceLibraryLoaded();
     is_opcr_valid = funcidx("OnPlayerCommandReceived") != -1;
     is_opcp_valid = funcidx("OnPlayerCommandPerformed") != -1;
 
@@ -292,6 +309,14 @@ forward a_OnPlayerCommandText(playerid, cmdtext[]);
 #define OnGameModeInit a_cmd_processor_OnGameModeInit
 
 forward a_cmd_processor_OnGameModeInit();
+
+#if defined _ALS_main
+    #undef main
+#else
+    #define _ALS_main
+#endif
+
+#define main a_cmd_main
 
 #else
 
