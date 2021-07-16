@@ -390,7 +390,7 @@ stock CreateCustomInterior(
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_INTID_OUT] = DETUtils_xInteriorid;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_VWID] = DETUtils_eVirtualWorldid;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_VWID_OUT] = DETUtils_xVirtualWorldid;
-    
+
     return DETUtils_INTERIORS_TRUE;
 }
 
@@ -436,9 +436,19 @@ stock SetInteriorEntranceCustomAngles(
                                                                                                  
 */
 
+#if !defined A_INTS_COMPATIBILITY_MODE
+
 #define interior%0(%1) \
     forward%0@int(%1,DETUtils_Actionid); \
     public%0@int(%1,DETUtils_Actionid)
+
+#else
+
+#define INTERIOR__%0(%1) \
+    forward%0@int(%1,DETUtils_Actionid); \
+    public%0@int(%1,DETUtils_Actionid)
+
+#endif
 
 stock SetPlayerCustomInterior(DETUtils_p_Playerid, pDETUtils_Interiorid)
 {
