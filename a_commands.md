@@ -1,7 +1,7 @@
 # a_commands.inc
 SA:MP Commands - a "built-in" fast and easy way to create commands.
 
-[Go back to home page...](readme.md)
+[Go back to home page...](README.md)
 
 ## How to start to use?
 
