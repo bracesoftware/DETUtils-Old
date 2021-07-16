@@ -202,6 +202,7 @@ public OnGameModeInit()
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - ongminit :: Commands init...");
+    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loading...");
     #endif
 
     if (funcidx("a_cmd_processor_OnGameModeInit") != -1)
@@ -215,6 +216,7 @@ main()
 {
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - ongminit :: Commands loading finished.");
+    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     AnnounceLibraryLoaded();
     a_cmd_main();
@@ -226,6 +228,8 @@ public OnFilterScriptInit()
 {
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - onfsinit :: Commands loading finished.");
+    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     AnnounceLibraryLoaded();
     is_opcr_valid = funcidx("OnPlayerCommandReceived") != -1;

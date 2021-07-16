@@ -614,6 +614,10 @@ static AnnounceLibraryLoaded_int()
 
 main()
 {
+    #if defined detutils_debug
+    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_interiors.log", "[samp-detutils]: (debug) - Loaded.");
+    #endif
     AnnounceLibraryLoaded_int();
     a_int_main();
 }
