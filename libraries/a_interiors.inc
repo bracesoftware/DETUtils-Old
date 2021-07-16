@@ -150,7 +150,7 @@ public OnPlayerDisconnect(playerid, reason)
     {
         CallLocalFunction("aint_ALS_OnPlayerDisconnect", "ii", playerid, reason);
     }
-    return 1;
+    return DETUtils_INTERIORS_TRUE;
 }
 
 #if defined _ALS_OnPlayerDisconnect
@@ -182,7 +182,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
     {
         CallLocalFunction("aint_ALS_OnPlayerKeyStateChange", "iii", playerid, newkeys, oldkeys);
     }
-    return 1;
+    return DETUtils_INTERIORS_TRUE;
 }
 
 #if defined _ALS_OnPlayerKeyStateChange
@@ -214,7 +214,7 @@ public OnPlayerUpdate(playerid)
     {
         CallLocalFunction("aint_ALS_OnPlayerUpdate", "i", playerid);
     }
-    return 1;
+    return DETUtils_INTERIORS_TRUE;
 }
 
 #if defined _ALS_OnPlayerUpdate
@@ -290,6 +290,7 @@ stock Create3DLabelAndPickup(
                     DETUtils_zPosition, 
                     DETUtils_VirtualWorld, 
                     DETUtils_Interior);
+
     return DETUtils_INTERIORS_TRUE;
 }
 
@@ -428,7 +429,7 @@ main()
 public OnFilterScriptInit()
 {
     AnnounceLibraryLoaded_int();
-    return 1;
+    return DETUtils_INTERIORS_TRUE;
 }
 
 #if defined _ALS_OnFilterScriptInit
