@@ -83,6 +83,9 @@ new gDETUtils_Interiorid;
 
 gDETUtils_InteriorLoadingTime(const playerid)
 {
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - tpcll :: Player ( id : %i ) is now controlable.", playerid);
+    #endif
     TogglePlayerControllable(playerid,true);
 }
 
@@ -115,6 +118,10 @@ public DETUtils_OnPlayerNearEntrance(playerid)
             SetPlayerFacingAngle( playerid, gDETUtils_InteriorData[ i ][e_DETUtils_INTEXIT_A] );
             SetCameraBehindPlayer( playerid );
             
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - nearintcallback :: Player entered the interior with id : %i.", i);
+            #endif
+
             SetPlayerTime( playerid, 12, 0 );
             gDETUtils_InteriorLoadingTime(playerid);
             
@@ -135,6 +142,10 @@ public DETUtils_OnPlayerNearEntrance(playerid)
             SetCameraBehindPlayer( playerid );
             gDETUtils_InteriorLoadingTime(playerid);
 
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - nearintcallback :: Player exited the interior with id : %i.", i);
+            #endif
+
             DETUtils_InteriorActionid = 1;
             format(DETUtils_InteriorFunctionName,sizeof(DETUtils_InteriorFunctionName),
                 "%s@int",gDETUtils_InteriorData[ i ][e_DETUtils_INTERIOR_NAME]);
@@ -154,6 +165,9 @@ public OnPlayerDisconnect(playerid, reason)
     {
         CallLocalFunction("aint_ALS_OnPlayerDisconnect", "ii", playerid, reason);
     }
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - playerdiscc :: Player interior data cleared.");
+    #endif
     return DETUtils_INTERIORS_TRUE;
 }
 
@@ -174,6 +188,9 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
         if(GetPlayerState(playerid) == 1)
         {
             DETUtils_OnPlayerNearEntrance(playerid);
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - keystate :: OnPlayerNearEntrance called successfully.");
+            #endif
         }
 
         if( GetPlayerSpecialAction(playerid ) != SPECIAL_ACTION_NONE && \
@@ -212,6 +229,9 @@ public OnPlayerUpdate(playerid)
             format(DETUtils_InteriorName,sizeof(DETUtils_InteriorName),"Property: %s",gDETUtils_InteriorData[ i ][ e_DETUtils_INTERIOR_NAME ]);
             
             GameTextForPlayer(playerid, DETUtils_InteriorName, 5000, 2);
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - playerupdate :: Gametext shown.");
+            #endif
         }
     }
     if(funcidx("aint_ALS_OnPlayerUpdate") != -1)
@@ -260,17 +280,37 @@ stock Create3DLabelAndPickup(
     if(IsValidString(DETUtils_LabelString))
         return DETUtils_INTERIORS_FALSE;
 
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - c3dladp :: String checking finished.");
+    #endif
+
     if(DETUtils_Interior < 0)
         return DETUtils_INTERIORS_FALSE;
+
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - c3dladp :: Interiorid validity checked.");
+    #endif
 
     if(DETUtils_VirtualWorld < 0)
         return DETUtils_INTERIORS_FALSE;
 
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - c3dladp :: Virtual world validity checked.");
+    #endif
+
     if(DETUtils_LabelRadius <= 0)
         return DETUtils_INTERIORS_FALSE;
 
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - c3dladp :: Label visibility radius check finished.");
+    #endif
+
     if(DETUtils_Pickupid < 0)
         return DETUtils_INTERIORS_FALSE;
+
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - c3dladp :: Pickup id validity checked.");
+    #endif
 
     CreateDynamic3DTextLabel(
                             DETUtils_LabelString, 
@@ -286,6 +326,11 @@ stock Create3DLabelAndPickup(
                             DETUtils_Interior, 
                             -1, 
                             20.0);
+
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - c3dladp :: Created 3d label successfully.");
+    #endif
+
     CreateDynamicPickup(
                     DETUtils_Pickupid, 
                     1, 
@@ -294,6 +339,14 @@ stock Create3DLabelAndPickup(
                     DETUtils_zPosition, 
                     DETUtils_VirtualWorld, 
                     DETUtils_Interior);
+
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - c3dladp :: Created dynamic pickup successfully.");
+    #endif
+
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Operation completed successfully. Error code: ERRNULL");
+    #endif
 
     return DETUtils_INTERIORS_TRUE;
 }
@@ -316,8 +369,15 @@ stock CreateCustomInteriorEx(
             Float:DETUtils_xEntrance, 
             Float:DETUtils_yEntrance, 
             Float:DETUtils_zEntrance);
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Interior created.");
+    #endif
 
     gDETUtils_Interiorid++;
+
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Interior id assigned.");
+    #endif
 
     strmid(gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_NAME], 
             DETUtils_InteriorName, 
@@ -325,27 +385,56 @@ stock CreateCustomInteriorEx(
             strlen(DETUtils_InteriorName), 
             255);
 
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Saved interior name.");
+    #endif
+
     printf("Interior '%s' has an id %d.",DETUtils_InteriorName,gDETUtils_Interiorid);
 
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTENTRANCE_X] = DETUtils_xEntrance;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTENTRANCE_Y] = DETUtils_yEntrance;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTENTRANCE_Z] = DETUtils_zEntrance;
 
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Entrance coordinates assigned to interior data.");
+    #endif
+
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTEXIT_X] = DETUtils_xExit;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTEXIT_Y] = DETUtils_yExit;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTEXIT_Z] = DETUtils_zExit;
+
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Exit coordinates assigned to interior data.");
+    #endif
 
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_INTID] = DETUtils_eInteriorid;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_INTID_OUT] = DETUtils_xInteriorid;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_VWID] = DETUtils_eVirtualWorldid;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_VWID_OUT] = DETUtils_xVirtualWorldid;
 
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Virtual world and interiorids assigned to custom interior.");
+    #endif
+
     new DETUtils_EntranceLabelString[300];
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Empty string declared.");
+    #endif
     format(DETUtils_EntranceLabelString,sizeof(DETUtils_EntranceLabelString),"{ffffff}[ %s ]\n"col_white"Enter here!",DETUtils_InteriorName);
-
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Formatted the 3D label string successfully.");
+    #endif
     Create3DLabelAndPickup(DETUtils_EntranceLabelString, DETUtils_xEntrance,DETUtils_yEntrance,DETUtils_zEntrance, -1, -1, 19133, 2.0);
-
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Streamer :: Created 3D label and pickup on entrance.");
+    #endif
     Create3DLabelAndPickup("Exit here!", DETUtils_xExit,DETUtils_yExit,DETUtils_zExit, -1, -1, 19133, 2.0);
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Streamer :: Created 3D label and pickup on exit.");
+    #endif
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Internal interior data assigned.");
+    #endif
     return DETUtils_INTERIORS_TRUE;
 }
 
@@ -368,6 +457,10 @@ stock CreateCustomInterior(
             Float:DETUtils_yEntrance, 
             Float:DETUtils_zEntrance);
 
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Interior created.");
+    #endif
+
     gDETUtils_Interiorid++;
 
     strmid(gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_NAME], 
@@ -376,20 +469,42 @@ stock CreateCustomInterior(
             strlen(DETUtils_InteriorName), 
             255);
 
-    printf("Interior '%s' has an id %d.",DETUtils_InteriorName,gDETUtils_Interiorid);
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Saved interior name.");
+    #endif
 
+    printf("Interior '%s' has an id %d.",DETUtils_InteriorName,gDETUtils_Interiorid);
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Interior id assigned.");
+    #endif
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTENTRANCE_X] = DETUtils_xEntrance;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTENTRANCE_Y] = DETUtils_yEntrance;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTENTRANCE_Z] = DETUtils_zEntrance;
+
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Entrance coordinates assigned to interior data.");
+    #endif
 
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTEXIT_X] = DETUtils_xExit;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTEXIT_Y] = DETUtils_yExit;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTEXIT_Z] = DETUtils_zExit;
 
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Exit coordinates assigned to interior data.");
+    #endif
+
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_INTID] = DETUtils_eInteriorid;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_INTID_OUT] = DETUtils_xInteriorid;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_VWID] = DETUtils_eVirtualWorldid;
     gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_VWID_OUT] = DETUtils_xVirtualWorldid;
+
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Virtual world and interiorids assigned to custom interior.");
+    #endif
+
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Internal interior data assigned.");
+    #endif
 
     return DETUtils_INTERIORS_TRUE;
 }
@@ -402,12 +517,21 @@ stock bool:IsPlayerInCustomInterior(playerid)
 
 stock ClearPlayerInteriorData(playerid)
 {
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - ClearPlayerInteriorData called successfully.");
+    #endif
     gDETUtils_PlayersInterior[playerid] = -1;
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - ClearPlayerInteriorData action successfully performed.");
+    #endif
     return DETUtils_INTERIORS_TRUE;
 }
 
 stock GetLastInterioridUsed()
 {
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - GetLastInterioridUsed successfully called.");
+    #endif
     return gDETUtils_Interiorid;
 }
 
@@ -416,6 +540,10 @@ stock SetInteriorEntranceCustomAngles(
         Float:DETUtils_aAngle,
         Float:DETUtils_bAngle)
 {
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Successfully set interior (intid : %i) angles to %f-%f.", 
+        DETUtils_CustomInteriorid, DETUtils_aAngle, DETUtils_bAngle);
+    #endif
     gDETUtils_InteriorData[DETUtils_CustomInteriorid][e_DETUtils_INTENTRANCE_A] = DETUtils_aAngle;
     gDETUtils_InteriorData[DETUtils_CustomInteriorid][e_DETUtils_INTEXIT_A] = DETUtils_bAngle;
     return DETUtils_INTERIORS_TRUE;
@@ -454,6 +582,10 @@ stock SetPlayerCustomInterior(DETUtils_p_Playerid, pDETUtils_Interiorid)
 {
     if(pDETUtils_Interiorid < -1)
         return DETUtils_INTERIORS_FALSE;
+
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Successfully set players (id : %i) interior to %i.", DETUtils_p_Playerid, pDETUtils_Interiorid);
+    #endif
 
     gDETUtils_PlayersInterior[DETUtils_p_Playerid] = pDETUtils_Interiorid;
     return DETUtils_INTERIORS_TRUE;
