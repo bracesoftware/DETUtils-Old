@@ -64,6 +64,30 @@ Optional plugins:
 
 #define MAX_FUNC_NAME (32)
 
+#define Global:%0<%1> gDETUtils_%0
+#define Private:%0<%1> DETUtils_%0
+
+#define GlobalVarGet(%0) gDETUtils_%0
+
+#define DETUtilsFunc:%0(%1) @DETUtils_%0(%1); public @DETUtils_%0(%1)
+
+new PlayerText:gDETUtils_AnnouncementString[MAX_PLAYERS];
+new Text:gDETUtils_AnnouncementUsebox;
+
+stock Global:call_detutils_func<>(const func[], const spec[], id)
+{
+    new funcname[100];
+    format(funcname, 100, "@DETUtils_%s", func);
+    return CallLocalFunction(funcname, spec, id);
+}
+
+stock Global:set_detutils_timer<>(const func[], delay, bool:a, const spec[], id)
+{
+    new funcname[100];
+    format(funcname, 100, "@DETUtils_%s", func);
+    return SetTimerEx(funcname, delay, a, spec, id);
+}
+
 /*
                                                                       
 88888888888                                                           

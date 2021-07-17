@@ -95,6 +95,8 @@ new InteriorData:[e_DETUtils_INTERIOR_DATA];
 
 new gDETUtils_Interiorid;
 
+new Global:EntranceTitleShown<>[MAX_PLAYERS];
+
 #if !defined col_white
     #define col_white "{ffffff}"
 #endif
@@ -129,11 +131,136 @@ gDETUtils_InteriorLoadingTime(const playerid)
     TogglePlayerControllable(playerid,true);
 }
 
+static Global:HideAnnouncement<>[MAX_PLAYERS];
+
+static Private:Announcement<>(playerid, const Private:Message<>[])
+{
+    new cDETUtils_Message[300];
+
+    KillTimer(Global:HideAnnouncement<>[playerid]);
+
+    format(cDETUtils_Message,300,"%s",Private:Message<>);
+
+    TextDrawShowForPlayer(playerid, gDETUtils_AnnouncementUsebox);
+
+    PlayerTextDrawSetString( playerid, gDETUtils_AnnouncementString[ playerid ], cDETUtils_Message );
+
+    PlayerTextDrawShow(playerid,gDETUtils_AnnouncementString[ playerid ]);
+
+    Global:HideAnnouncement<>[playerid] = Global:set_detutils_timer<>("hideannouncement", 4000, false, "i", playerid);
+    return DETUtils_INTERIORS_TRUE;
+}
+
+DETUtilsFunc:hideannouncement(playerid)
+{
+    TextDrawHideForPlayer(playerid, gDETUtils_AnnouncementUsebox);
+    PlayerTextDrawHide(playerid, gDETUtils_AnnouncementString[playerid]);
+    KillTimer(Global:HideAnnouncement<>[playerid]);
+    return DETUtils_INTERIORS_TRUE;
+}
+
+static Global:CreateAnncTextdraws<>()
+{
+    gDETUtils_AnnouncementUsebox = TextDrawCreate(366.444427, 363.882232, "usebox");
+    TextDrawLetterSize(gDETUtils_AnnouncementUsebox, 0.000000, 1.840366);
+    TextDrawTextSize(gDETUtils_AnnouncementUsebox, 267.333312, 0.000000);
+    TextDrawAlignment(gDETUtils_AnnouncementUsebox, 1);
+    TextDrawColor(gDETUtils_AnnouncementUsebox, 0);
+    TextDrawUseBox(gDETUtils_AnnouncementUsebox, true);
+
+    TextDrawBoxColor(gDETUtils_AnnouncementUsebox, 102);
+    TextDrawSetShadow(gDETUtils_AnnouncementUsebox, 0);
+    TextDrawSetOutline(gDETUtils_AnnouncementUsebox, 0);
+    TextDrawFont(gDETUtils_AnnouncementUsebox, 0);
+    return DETUtils_INTERIORS_TRUE;
+}
+
+static Global:CreatePlayerTextdraws<>(playerid)
+{
+    gDETUtils_AnnouncementString[playerid] = CreatePlayerTextDraw(playerid, 315.111145, 364.373321, "string");
+    PlayerTextDrawLetterSize(playerid, gDETUtils_AnnouncementString[playerid], 0.201111, 1.346133);
+
+    PlayerTextDrawAlignment(playerid, gDETUtils_AnnouncementString[playerid], 2);
+    PlayerTextDrawColor(playerid, gDETUtils_AnnouncementString[playerid], -1);
+    PlayerTextDrawSetShadow(playerid, gDETUtils_AnnouncementString[playerid], 0);
+
+    PlayerTextDrawSetOutline(playerid, gDETUtils_AnnouncementString[playerid], 1);
+    PlayerTextDrawBackgroundColor(playerid, gDETUtils_AnnouncementString[playerid], 51);
+    PlayerTextDrawFont(playerid, gDETUtils_AnnouncementString[playerid], 2);
+    PlayerTextDrawSetProportional(playerid, gDETUtils_AnnouncementString[playerid], 1);
+    return DETUtils_INTERIORS_TRUE;
+}
+
+#if !defined FILTERSCRIPT
+
+public OnGameModeInit()
+{
+    Global:CreateAnncTextdraws<>();
+    if(funcidx("a_ints_OnGameModeInit") != -1)
+    {
+        CallLocalFunction("a_ints_OnGameModeInit", "");
+    }
+    return DETUtils_INTERIORS_TRUE;
+}
+
+#if defined _ALS_OnGameModeInit
+    #undef OnGameModeInit
+#else
+    #define _ALS_OnGameModeInit
+#endif
+
+#define OnGameModeInit a_ints_OnGameModeInit
+
+forward a_ints_OnGameModeInit();
+
+#endif
+
+public OnPlayerConnect(playerid)
+{
+    Global:CreatePlayerTextdraws<>(playerid);
+    if(funcidx("a_ints_OnPlayerConnect") != -1)
+    {
+        CallLocalFunction("a_ints_OnPlayerConnect", "i", playerid);
+    }
+    return DETUtils_INTERIORS_TRUE;
+}
+
+#if defined _ALS_OnPlayerConnect
+    #undef OnPlayerConnect
+#else
+    #define _ALS_OnPlayerConnect
+#endif
+
+#define OnPlayerConnect a_ints_OnPlayerConnect
+
+forward a_ints_OnPlayerConnect(playerid);
+
+public OnPlayerSpawn(playerid)
+{
+    TextDrawHideForPlayer(playerid, gDETUtils_AnnouncementUsebox);
+    PlayerTextDrawHide(playerid, gDETUtils_AnnouncementString[playerid]);
+    if(funcidx("a_ints_OnplayerSpawn") != -1)
+    {
+        CallLocalFunction("a_ints_OnplayerSpawn", "i", playerid);
+    }
+    return DETUtils_INTERIORS_TRUE;
+}
+
+#if defined _ALS_OnplayerSpawn
+    #undef OnplayerSpawn
+#else
+    #define _ALS_OnplayerSpawn
+#endif
+
+#define OnplayerSpawn a_ints_OnplayerSpawn
+
+forward a_ints_OnplayerSpawn(playerid);
+
 DETUtils_OnPlayerNearEntrance(playerid);
 public DETUtils_OnPlayerNearEntrance(playerid)
 {
-    new DETUtils_InteriorFunctionName[100];
-    new DETUtils_InteriorActionid;
+    new Private:InteriorFunctionName<>[100];
+    new Private:InteriorActionid<>;
     TogglePlayerControllable(playerid,false);
     for(new i; i < MAX_INTERIORS; i++)
     {
@@ -256,6 +383,16 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
 forward aint_ALS_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 
+DETUtilsFunc:reset_gmtext_boolean(playerid)
+{
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - keystate :: DETUtilsFunc 'reset_gmtext_boolean' called successfully.");
+    #endif
+
+    GlobalVarGet(EntranceTitleShown)[playerid] = 0;
+    return DETUtils_INTERIORS_TRUE;
+}
+
 public OnPlayerUpdate(playerid)
 {
     for(new i; i < MAX_INTERIORS; i++)
@@ -263,15 +400,17 @@ public OnPlayerUpdate(playerid)
         if( IsPlayerInRangeOfPoint( playerid, 1.5, gDETUtils_InteriorData[ i ][e_DETUtils_INTENTRANCE_X], \
         gDETUtils_InteriorData[ i ][e_DETUtils_INTENTRANCE_Y], gDETUtils_InteriorData[ i ][e_DETUtils_INTENTRANCE_Z]) \
         && GetPlayerVirtualWorld( playerid ) == gDETUtils_InteriorData[ i ][e_DETUtils_INTERIOR_VWID_OUT] \
-        && !IsPlayerInAnyVehicle( playerid ))
+        && !IsPlayerInAnyVehicle( playerid ) && Global:EntranceTitleShown<>[playerid] != 1)
         {
             new DETUtils_InteriorName[100];
             format(DETUtils_InteriorName,sizeof(DETUtils_InteriorName),"Property: %s",gDETUtils_InteriorData[ i ][ e_DETUtils_INTERIOR_NAME ]);
             
-            GameTextForPlayer(playerid, DETUtils_InteriorName, 5000, 2);
+            Private:Announcement<>(playerid, DETUtils_InteriorName);
             #if defined detutils_debug
             printf("[samp-detutils]: (debug) - playerupdate :: Gametext shown.");
             #endif
+            GlobalVarGet(EntranceTitleShown)[playerid] = 1;
+            Global:set_detutils_timer<>("reset_gmtext_boolean", 10000, false, "i", playerid);
         }
     }
     if(funcidx("aint_ALS_OnPlayerUpdate") != -1)
@@ -668,7 +807,13 @@ main()
 
 public OnFilterScriptInit()
 {
+    Global:CreateAnncTextdraws<>();
     AnnounceLibraryLoaded_int();
+
+    if(funcidx("a_int_OnFilterScriptInit") != -1)
+    {
+        CallLocalFunction("a_int_OnFilterScriptInit", "i", playerid);
+    }
     return DETUtils_INTERIORS_TRUE;
 }
 
