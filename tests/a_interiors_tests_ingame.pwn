@@ -11,7 +11,7 @@ main()
 public OnGameModeInit()
 {
 	DisableDefaultInteriors();
-	CreateCustomInterior("Bank", 811.1299,-1616.0647,13.5469, 644.6613,-1496.7572,14.8386, 1,0,1,0);
+	CreateCustomInterior("Bank", 811.1299,-1616.0647,13.5469, 644.6613,-1496.7572,14.8386, 0,0,0,0);
 	return 1;
 }
 
@@ -19,6 +19,7 @@ public OnPlayerConnect(playerid)
 {
 	SetSpawnInfo(playerid, 0, 0, 811.1299,-1616.0647,13.5469, 0, 0,0,0,0,0,0);
 	SpawnPlayer(playerid);
+	return 1;
 }
 
 interior Bank(playerid)
@@ -36,3 +37,8 @@ interior Bank(playerid)
   return 1;
 }
 
+/*
+
+Everything works fine as it should.
+
+*/
