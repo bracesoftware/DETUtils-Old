@@ -70,4 +70,80 @@ interior Bank(playerid)
 
 Everything works fine as it should.
 
+Debug output:
+
+
+[22:15:23] [samp-detutils]: (debug) - ongminit :: Commands init...
+[22:15:25] Interior 'Bank' successfully created, entrance is set to: 811.129882, -1616.064697, 13.546899.
+[22:15:25] [samp-detutils]: (debug) - Interior created.
+[22:15:25] [samp-detutils]: (debug) - Saved interior name.
+[22:15:25] Interior 'Bank' has an id 1.
+[22:15:25] [samp-detutils]: (debug) - Interior id assigned.
+[22:15:25] [samp-detutils]: (debug) - Entrance coordinates assigned to interior data.
+[22:15:25] [samp-detutils]: (debug) - Exit coordinates assigned to interior data.
+[22:15:25] [samp-detutils]: (debug) - Virtual world and interiorids assigned to custom interior.
+[22:15:25] [samp-detutils]: (debug) - Internal interior data assigned.
+[22:15:25] |======================================|
+[22:15:25]             d_interiors.inc             
+[22:15:25]           Successfully loaded!          
+[22:15:25]                                         
+[22:15:25]                By: DEntisT              
+[22:15:25] |======================================|
+[22:15:25] [samp-detutils]: (debug) - ongminit :: Commands loading finished.
+[22:15:25] |======================================|
+[22:15:25]              d_commands.inc             
+[22:15:25]           Successfully loaded!          
+[22:15:25]                                         
+[22:15:25]                By: DEntisT              
+[22:15:25] |======================================|
+[22:15:25] |======================================|
+[22:15:25]               d_fmargs.inc              
+[22:15:25]           Successfully loaded!          
+[22:15:25]                                         
+[22:15:25]                By: DEntisT              
+[22:15:25] |======================================|
+[22:15:25] gamemode loaded.
+[22:15:25] Number of vehicle models: 0
+[22:15:47] [connection] 127.0.0.1:58457 requests connection cookie.
+[22:15:48] [connection] incoming connection: 127.0.0.1:58457 id: 0
+[22:15:48] [join] Unity has joined the server (0:127.0.0.1)
+[22:15:48] [samp-detutils]: (debug) - fmargs :: Function id : 1 successfully called.
+[22:15:48] [samp-detutils]: (debug) - fmargs :: Function id : 2 successfully called.
+[22:15:48] [samp-detutils]: (debug) - playerupdate :: Gametext shown.
+[22:15:53] [samp-detutils]: (debug) - fmargs :: Function id : 1 successfully called.
+[22:15:53] [samp-detutils]: (debug) - nearintcallback :: Player entered the interior with id : 1.
+[22:15:53] [samp-detutils]: (debug) - tpcll :: Player ( id : 0 ) is now controlable.
+[22:15:53] [samp-detutils]: (debug) - keystate :: OnPlayerNearEntrance called successfully.
+[22:15:54] [samp-detutils]: (debug) - tpcll :: Player ( id : 0 ) is now controlable.
+[22:15:54] [samp-detutils]: (debug) - nearintcallback :: Player exited the interior with id : 1.
+[22:15:54] [samp-detutils]: (debug) - fmargs :: Function id : 1 successfully called.
+[22:15:54] [samp-detutils]: (debug) - keystate :: OnPlayerNearEntrance called successfully.
+[22:15:59] [samp-detutils]: (debug) - keystate :: util function 'ResOnUpdateBool' called successfully.
+[22:15:59] [samp-detutils]: (debug) - opct :: Successfully declared variables.
+[22:15:59] [samp-detutils]: (debug) - opct :: cmdtext[] validated.
+[22:15:59] [samp-detutils]: (debug) - opct :: Formatted function strings successfully.
+[22:15:59] Command /sayhi worked.
+[22:15:59] [samp-detutils]: (debug) - opct :: Called custom debug function : sayhi@dbg.
+[22:15:59] [samp-detutils]: (debug) - opct :: position variable validated.
+[22:15:59] [samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 2
+[22:15:59] [samp-detutils]: (debug) - fmargs :: Function id : 1 successfully called.
+[22:16:03] [samp-detutils]: (debug) - opct :: Successfully declared variables.
+[22:16:03] [samp-detutils]: (debug) - opct :: cmdtext[] validated.
+[22:16:03] [samp-detutils]: (debug) - opct :: Formatted function strings successfully.
+[22:16:03] Alias command /hi also worked.
+[22:16:03] [samp-detutils]: (debug) - opct :: Called custom debug function : hi@dbg.
+[22:16:03] [samp-detutils]: (debug) - opct :: position variable validated.
+[22:16:03] [samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 2
+[22:16:03] [samp-detutils]: (debug) - fmargs :: Function id : 1 successfully called.
+[22:16:12] [samp-detutils]: (debug) - playerupdate :: Gametext shown.
+[22:16:23] [samp-detutils]: (debug) - keystate :: util function 'ResOnUpdateBool' called successfully.
+[22:16:25] [samp-detutils]: (debug) - playerupdate :: Gametext shown.
+[22:16:36] [samp-detutils]: (debug) - keystate :: util function 'ResOnUpdateBool' called successfully.
+[22:16:36] [samp-detutils]: (debug) - playerupdate :: Gametext shown.
+[22:16:44] [samp-detutils]: (debug) - ClearPlayerInteriorData called successfully.
+[22:16:44] [samp-detutils]: (debug) - ClearPlayerInteriorData action successfully performed.
+[22:16:44] [samp-detutils]: (debug) - playerdiscc :: Player interior data cleared.
+[22:16:44] [part] Unity has left the server (0:1)
+[22:16:47] [samp-detutils]: (debug) - keystate :: util function 'ResOnUpdateBool' called successfully.
+
 */
