@@ -1,7 +1,7 @@
 /*
 
                             =============================
-                              SA:MP DEntisT'utils_sec Utilities
+                              SA:MP DEntisT's Utilities
                             =============================
 
 Legal:
