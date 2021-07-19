@@ -39,3 +39,20 @@ Functions which will work like this after including *d_fmargs.inc* are:
 - TextDrawSetString 
 
 - PlayerTextDrawSetString 
+## Messages from creator
+
+### Warnings
+
+No warnings - yet.
+
+### Notes
+
+***Making filterscript with d_fmargs?***
+- Well, we have good news for you, because there is also new filterscript support feature. 
+
+- So, if you're making a filterscript - make sure you use:
+
+```pawn
+#define FILTERSCRIPT
+```
+... before including *d_fmargs*.
