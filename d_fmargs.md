@@ -43,7 +43,7 @@ Functions which will work like this after including *d_fmargs.inc* are:
 
 ### Warnings
 
-No warnings - yet.
+- No warnings - yet.
 
 ### Notes
 
