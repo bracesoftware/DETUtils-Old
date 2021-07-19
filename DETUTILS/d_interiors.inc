@@ -246,13 +246,13 @@ public OnPlayerSpawn(playerid)
     return detutils_interiors_TRUE;
 }
 
-#if defined _ALS_OnplayerSpawn
-    #undef OnplayerSpawn
+#if defined _ALS_OnPlayerSpawn
+    #undef OnPlayerSpawn
 #else
-    #define _ALS_OnplayerSpawn
+    #define _ALS_OnPlayerSpawn
 #endif
 
-#define OnplayerSpawn a_ints_OnplayerSpawn
+#define OnPlayerSpawn a_ints_OnplayerSpawn
 
 forward a_ints_OnplayerSpawn(playerid);
 
@@ -384,10 +384,10 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
 forward aint_ALS_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 
-util function:ResetOnPlayerUpdateBoolean(playerid)
+util function:ResOnUpdateBool(playerid)
 {
     #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - keystate :: util function 'ResetOnPlayerUpdateBoolean' called successfully.");
+    printf("[samp-detutils]: (debug) - keystate :: util function 'ResOnUpdateBool' called successfully.");
     #endif
 
     utils_EntranceTitleShown[playerid] = 0;
@@ -411,7 +411,7 @@ public OnPlayerUpdate(playerid)
             printf("[samp-detutils]: (debug) - playerupdate :: Gametext shown.");
             #endif
             utils_EntranceTitleShown[playerid] = 1;
-            utils_SetTimer("ResetOnPlayerUpdateBoolean", 10000, false, "i", playerid);
+            utils_SetTimer("ResOnUpdateBool", 10000, false, "i", playerid);
         }
     }
     if(funcidx("aint_ALS_OnPlayerUpdate") != -1)
@@ -809,6 +809,10 @@ main()
 public OnFilterScriptInit()
 {
     utils_CreateAnncTextDraws();
+    #if defined detutils_debug
+    SaveLogIntoFile("detutils_interiors.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_interiors.log", "[samp-detutils]: (debug) - Loaded.");
+    #endif
     AnnounceLibraryLoaded_int();
 
     if(funcidx("a_int_OnFilterScriptInit") != -1)

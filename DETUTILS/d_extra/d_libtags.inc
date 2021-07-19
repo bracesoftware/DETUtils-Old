@@ -65,8 +65,8 @@ Optional plugins:
 
 #define util%3function:%0(%1) @utils_%0(%1); public @utils_%0(%1)
 
-new PlayerText:utils_AnnouncementString[MAX_PLAYERS];
-new Text:utils_AnnouncementUsebox;
+stock PlayerText:utils_AnnouncementString[MAX_PLAYERS];
+stock Text:utils_AnnouncementUsebox;
 
 stock utils_CallFunction(const func[], const spec[], id)
 {
@@ -94,6 +94,8 @@ stock utils_SetTimer(const func[], delay, bool:a, const spec[], id)
 
 #endif
 
+stock utils_Functionid;
+
 /*
                                                                       
 88888888888                                                           
@@ -108,9 +110,17 @@ stock utils_SetTimer(const func[], delay, bool:a, const spec[], id)
 
 */
 
+stock ReturnPlayerName(id) 
+{
+    new utils_PlayerName[ MAX_PLAYER_NAME ];
+    
+    GetPlayerName( id, utils_PlayerName, sizeof utils_PlayerName);
+    return utils_PlayerName;
+}
+
 new utils_g_Shifthour, utils_g_Timeshift = 0;
 
-utils_FixHourData(utils_f_Hour)
+static stock utils_FixHourData(utils_f_Hour)
 {
     utils_f_Hour = utils_g_Timeshift+utils_f_Hour;
 
@@ -130,7 +140,7 @@ stock SaveLogIntoFile( const utils_FileName[], const utils_Log[])
 {
     new utils_Entry[ 128 ], 
         utils_sec, 
-        utils_month, 
+        utils_minutes, 
         utils_data, 
         utils_day, 
         utils_year, 
@@ -138,7 +148,7 @@ stock SaveLogIntoFile( const utils_FileName[], const utils_Log[])
 
     getdate( utils_year, utils_month, utils_day );
 
-    gettime( utils_sec, utils_month, utils_data );
+    gettime( utils_sec, utils_minutes, utils_data );
 
     utils_FixHourData( utils_sec );
 
@@ -147,7 +157,7 @@ stock SaveLogIntoFile( const utils_FileName[], const utils_Log[])
     format( utils_Entry, sizeof( utils_Entry ), 
         "%d/%d/%d | %d/%d/%d | %s\r\n", 
         utils_day, utils_month, utils_year, 
-        utils_sec, utils_month, utils_data, utils_Log );
+        utils_sec, utils_minutes, utils_data, utils_Log );
 
     new File:utils_File;
     utils_File = fopen( utils_FileName, io_append );

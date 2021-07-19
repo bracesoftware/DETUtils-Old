@@ -224,15 +224,15 @@ static AnnounceLibraryLoaded()
 }
 
 static
-        bool:utils_IsOnPlayerCmdReceivedValid = false,
-        bool:utils_IsOnPlayerCmdPerformValid = false;
+        bool:utils_IsOnCmdRValid = false,
+        bool:utils_IsOnCmdPValid = false;
 
 #if !defined FILTERSCRIPT
 
 public OnGameModeInit()
 {
-    utils_IsOnPlayerCmdReceivedValid = funcidx("OnPlayerCommandReceived") != -1;
-    utils_IsOnPlayerCmdPerformValid = funcidx("OnPlayerCommandPerformed") != -1;
+    utils_IsOnCmdRValid = funcidx("OnPlayerCommandReceived") != -1;
+    utils_IsOnCmdPValid = funcidx("OnPlayerCommandPerformed") != -1;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - ongminit :: Commands init...");
@@ -266,8 +266,8 @@ public OnFilterScriptInit()
     SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     AnnounceLibraryLoaded();
-    utils_IsOnPlayerCmdReceivedValid = funcidx("OnPlayerCommandReceived") != -1;
-    utils_IsOnPlayerCmdPerformValid = funcidx("OnPlayerCommandPerformed") != -1;
+    utils_IsOnCmdRValid = funcidx("OnPlayerCommandReceived") != -1;
+    utils_IsOnCmdPValid = funcidx("OnPlayerCommandPerformed") != -1;
 
     if (funcidx("a_cmd_OnFilterScriptInit") != -1)
     {
@@ -280,7 +280,7 @@ public OnFilterScriptInit()
  
 public OnPlayerCommandText(playerid, cmdtext[])
 {
-    if (utils_IsOnPlayerCmdReceivedValid && !CallLocalFunction("OnPlayerCommandReceived", 
+    if (utils_IsOnCmdRValid && !CallLocalFunction("OnPlayerCommandReceived", 
         "is", 
         playerid, 
         cmdtext))
@@ -328,7 +328,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
     #endif
     if (!cmdtext[position])
     {
-        if (utils_IsOnPlayerCmdPerformValid)
+        if (utils_IsOnCmdPValid)
         {
             #if defined detutils_debug
             printf("[samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 1");
@@ -344,7 +344,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
         #endif
         return CallLocalFunction(function_name, "is", playerid, "\1");      
     }
-    if (utils_IsOnPlayerCmdPerformValid)
+    if (utils_IsOnCmdPValid)
     {
         #if defined detutils_debug
         printf("[samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 3");
