@@ -71,4 +71,5 @@ interior Bank(playerid)
         return 1;
     }
     return 1;
-}```
+}
+```
