@@ -2,7 +2,7 @@
 
 Using *d_fmargs.inc* you can easily use specifiers in string-like type arguments of various SA:MP functions.
 
-[Go back to home...](README.md)
+[Go back to home page...](README.md)
 
 # Usage
 
