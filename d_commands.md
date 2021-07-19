@@ -1,4 +1,4 @@
-# a_commands.inc
+# d_commands.inc
 SA:MP Commands - a "built-in" fast and easy way to create commands.
 
 [Go back to home page...](README.md)
@@ -109,7 +109,7 @@ debug command mycmd()
 
 ```pawn
 #define A_CMDS_COMPATIBILITY_MODE
-#include <a_commands>
+#include <DETUTILS\d_commands>
 ```
 It tehnically disables all of custom syntax and keywords, replacing them with upper-case, double-underscore-suffixed versions - so:
 
@@ -135,4 +135,4 @@ DEBUG__COMMAND__ mycmd()
 ```pawn
 #define FILTERSCRIPT
 ```
-... before including *a_commands*.
+... before including *d_commands*.
