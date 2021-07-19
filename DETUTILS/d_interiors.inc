@@ -52,6 +52,12 @@ Optional plugins:
     #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
+#if defined d_interiors_included
+    #endinput
+#endif
+
+#define d_interiors_included
+
 #define DisableDefaultInteriors DisableInteriorEnterExits
 
 #if !defined MAX_INTERIORS
