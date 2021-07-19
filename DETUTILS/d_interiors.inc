@@ -17,7 +17,7 @@ Legal:
     for the specific language governing rights and limitations under the
     License.
     
-    The Original Code is SA:MP | DETUtils.
+    The Original Code is SA:MP | utils.
     
     The Initial Developer of the original code is DEntisT 'Unity' Brace.
     Portions created by the Initial Developer are Copyright C 2021
@@ -49,7 +49,7 @@ Optional plugins:
 #tryinclude "d_extra\d_libtags.inc"
 
 #if !defined d_extra_included
-    #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+    #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\utils" folder.
 #endif
 
 #define DisableDefaultInteriors DisableInteriorEnterExits
@@ -64,38 +64,38 @@ Optional plugins:
         #define IsValidString(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
 #endif
 
-enum e_DETUtils_INTERIOR_DATA
+enum e_utils_INTERIOR_DATA
 {
-    e_DETUtils_INTERIOR_NAME[32],
+    e_utils_INTERIOR_NAME[32],
 
-    Float:e_DETUtils_INTENTRANCE_X,
-    Float:e_DETUtils_INTENTRANCE_Y,
-    Float:e_DETUtils_INTENTRANCE_Z,
-    Float:e_DETUtils_INTENTRANCE_A,
+    Float:e_utils_INTENTRANCE_X,
+    Float:e_utils_INTENTRANCE_Y,
+    Float:e_utils_INTENTRANCE_Z,
+    Float:e_utils_INTENTRANCE_A,
 
-    Float:e_DETUtils_INTEXIT_X,
-    Float:e_DETUtils_INTEXIT_Y,
-    Float:e_DETUtils_INTEXIT_Z,
-    Float:e_DETUtils_INTEXIT_A,
+    Float:e_utils_INTEXIT_X,
+    Float:e_utils_INTEXIT_Y,
+    Float:e_utils_INTEXIT_Z,
+    Float:e_utils_INTEXIT_A,
 
-    e_DETUtils_INTERIOR_INTID,
-    e_DETUtils_INTERIOR_INTID_OUT,
-    e_DETUtils_INTERIOR_VWID,
-    e_DETUtils_INTERIOR_VWID_OUT,
+    e_utils_INTERIOR_INTID,
+    e_utils_INTERIOR_INTID_OUT,
+    e_utils_INTERIOR_VWID,
+    e_utils_INTERIOR_VWID_OUT,
 
-    e_DETUtils_INTERIOR_PICKUP,
-    e_DETUtils_INTERIOR_PICKUPID,
-    e_DETUtils_INTERIOR_3DLABEL,
-    e_DETUtils_INTERIOR_3DLABELID
+    e_utils_INTERIOR_PICKUP,
+    e_utils_INTERIOR_PICKUPID,
+    e_utils_INTERIOR_3DLABEL,
+    e_utils_INTERIOR_3DLABELID
 };
 
-new gDETUtils_PlayersInterior[MAX_PLAYERS];
+new utils_PlayersInterior[MAX_PLAYERS];
 
-new InteriorData:[e_DETUtils_INTERIOR_DATA];
+new utils_InteriorData[MAX_INTERIORS][e_utils_INTERIOR_DATA];
 
-new gDETUtils_Interiorid;
+new utils_Interiorid;
 
-new Global:EntranceTitleShown<>[MAX_PLAYERS];
+new utils_EntranceTitleShown[MAX_PLAYERS];
 
 #if !defined col_white
     #define col_white "{ffffff}"
@@ -117,13 +117,13 @@ new Global:EntranceTitleShown<>[MAX_PLAYERS];
 
 */
 
-#define DETUtils_INTERIORS_TRUE 1
-#define DETUtils_INTERIORS_FALSE 0
+#define detutils_interiors_TRUE 1
+#define detutils_interiors_FALSE 0
 
 #define INTERIOR_ACTION_ENTER 0
 #define INTERIOR_ACTION_EXIT 1
 
-gDETUtils_InteriorLoadingTime(const playerid)
+utils_InteriorLoadingTime(const playerid)
 {
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - tpcll :: Player ( id : %i ) is now controlable.", playerid);
@@ -131,76 +131,76 @@ gDETUtils_InteriorLoadingTime(const playerid)
     TogglePlayerControllable(playerid,true);
 }
 
-static Global:HideAnnouncement<>[MAX_PLAYERS];
+static utils_HideAnnouncement[MAX_PLAYERS];
 
-static Private:Announcement<>(playerid, const Private:Message<>[])
+static utils_Announcement(playerid, const utils_Message[])
 {
-    new cDETUtils_Message[300];
+    new cutils_Message[300];
 
-    KillTimer(Global:HideAnnouncement<>[playerid]);
+    KillTimer(utils_HideAnnouncement[playerid]);
 
-    format(cDETUtils_Message,300,"%s",Private:Message<>);
+    format(cutils_Message,300,"%s",utils_Message);
 
-    TextDrawShowForPlayer(playerid, gDETUtils_AnnouncementUsebox);
+    TextDrawShowForPlayer(playerid, utils_AnnouncementUsebox);
 
-    PlayerTextDrawSetString( playerid, gDETUtils_AnnouncementString[ playerid ], cDETUtils_Message );
+    PlayerTextDrawSetString( playerid, utils_AnnouncementString[ playerid ], cutils_Message );
 
-    PlayerTextDrawShow(playerid,gDETUtils_AnnouncementString[ playerid ]);
+    PlayerTextDrawShow(playerid,utils_AnnouncementString[ playerid ]);
 
-    Global:HideAnnouncement<>[playerid] = Global:set_detutils_timer<>("hideannouncement", 4000, false, "i", playerid);
-    return DETUtils_INTERIORS_TRUE;
+    utils_HideAnnouncement[playerid] = utils_SetTimer("hideannouncement", 4000, false, "i", playerid);
+    return detutils_interiors_TRUE;
 }
 
-DETUtilsFunc:hideannouncement(playerid)
+util function:hideannouncement(playerid)
 {
-    TextDrawHideForPlayer(playerid, gDETUtils_AnnouncementUsebox);
-    PlayerTextDrawHide(playerid, gDETUtils_AnnouncementString[playerid]);
-    KillTimer(Global:HideAnnouncement<>[playerid]);
-    return DETUtils_INTERIORS_TRUE;
+    TextDrawHideForPlayer(playerid, utils_AnnouncementUsebox);
+    PlayerTextDrawHide(playerid, utils_AnnouncementString[playerid]);
+    KillTimer(utils_HideAnnouncement[playerid]);
+    return detutils_interiors_TRUE;
 }
 
-static Global:CreateAnncTextdraws<>()
+static utils_CreateAnncTextDraws()
 {
-    gDETUtils_AnnouncementUsebox = TextDrawCreate(366.444427, 363.882232, "usebox");
-    TextDrawLetterSize(gDETUtils_AnnouncementUsebox, 0.000000, 1.840366);
-    TextDrawTextSize(gDETUtils_AnnouncementUsebox, 267.333312, 0.000000);
-    TextDrawAlignment(gDETUtils_AnnouncementUsebox, 1);
-    TextDrawColor(gDETUtils_AnnouncementUsebox, 0);
-    TextDrawUseBox(gDETUtils_AnnouncementUsebox, true);
+    utils_AnnouncementUsebox = TextDrawCreate(366.444427, 363.882232, "usebox");
+    TextDrawLetterSize(utils_AnnouncementUsebox, 0.000000, 1.840366);
+    TextDrawTextSize(utils_AnnouncementUsebox, 267.333312, 0.000000);
+    TextDrawAlignment(utils_AnnouncementUsebox, 1);
+    TextDrawColor(utils_AnnouncementUsebox, 0);
+    TextDrawUseBox(utils_AnnouncementUsebox, true);
 
-    TextDrawBoxColor(gDETUtils_AnnouncementUsebox, 102);
-    TextDrawSetShadow(gDETUtils_AnnouncementUsebox, 0);
-    TextDrawSetOutline(gDETUtils_AnnouncementUsebox, 0);
-    TextDrawFont(gDETUtils_AnnouncementUsebox, 0);
-    return DETUtils_INTERIORS_TRUE;
+    TextDrawBoxColor(utils_AnnouncementUsebox, 102);
+    TextDrawSetShadow(utils_AnnouncementUsebox, 0);
+    TextDrawSetOutline(utils_AnnouncementUsebox, 0);
+    TextDrawFont(utils_AnnouncementUsebox, 0);
+    return detutils_interiors_TRUE;
 }
 
-static Global:CreatePlayerTextdraws<>(playerid)
+static utils_CreatePlayerTextDraws(playerid)
 {
-    gDETUtils_AnnouncementString[playerid] = CreatePlayerTextDraw(playerid, 315.111145, 364.373321, "string");
-    PlayerTextDrawLetterSize(playerid, gDETUtils_AnnouncementString[playerid], 0.201111, 1.346133);
+    utils_AnnouncementString[playerid] = CreatePlayerTextDraw(playerid, 315.111145, 364.373321, "string");
+    PlayerTextDrawLetterSize(playerid, utils_AnnouncementString[playerid], 0.201111, 1.346133);
 
-    PlayerTextDrawAlignment(playerid, gDETUtils_AnnouncementString[playerid], 2);
-    PlayerTextDrawColor(playerid, gDETUtils_AnnouncementString[playerid], -1);
-    PlayerTextDrawSetShadow(playerid, gDETUtils_AnnouncementString[playerid], 0);
+    PlayerTextDrawAlignment(playerid, utils_AnnouncementString[playerid], 2);
+    PlayerTextDrawColor(playerid, utils_AnnouncementString[playerid], -1);
+    PlayerTextDrawSetShadow(playerid, utils_AnnouncementString[playerid], 0);
 
-    PlayerTextDrawSetOutline(playerid, gDETUtils_AnnouncementString[playerid], 1);
-    PlayerTextDrawBackgroundColor(playerid, gDETUtils_AnnouncementString[playerid], 51);
-    PlayerTextDrawFont(playerid, gDETUtils_AnnouncementString[playerid], 2);
-    PlayerTextDrawSetProportional(playerid, gDETUtils_AnnouncementString[playerid], 1);
-    return DETUtils_INTERIORS_TRUE;
+    PlayerTextDrawSetOutline(playerid, utils_AnnouncementString[playerid], 1);
+    PlayerTextDrawBackgroundColor(playerid, utils_AnnouncementString[playerid], 51);
+    PlayerTextDrawFont(playerid, utils_AnnouncementString[playerid], 2);
+    PlayerTextDrawSetProportional(playerid, utils_AnnouncementString[playerid], 1);
+    return detutils_interiors_TRUE;
 }
 
 #if !defined FILTERSCRIPT
 
 public OnGameModeInit()
 {
-    Global:CreateAnncTextdraws<>();
+    utils_CreateAnncTextDraws();
     if(funcidx("a_ints_OnGameModeInit") != -1)
     {
         CallLocalFunction("a_ints_OnGameModeInit", "");
     }
-    return DETUtils_INTERIORS_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #if defined _ALS_OnGameModeInit
@@ -217,12 +217,12 @@ forward a_ints_OnGameModeInit();
 
 public OnPlayerConnect(playerid)
 {
-    Global:CreatePlayerTextdraws<>(playerid);
+    utils_CreatePlayerTextDraws(playerid);
     if(funcidx("a_ints_OnPlayerConnect") != -1)
     {
         CallLocalFunction("a_ints_OnPlayerConnect", "i", playerid);
     }
-    return DETUtils_INTERIORS_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #if defined _ALS_OnPlayerConnect
@@ -237,13 +237,13 @@ forward a_ints_OnPlayerConnect(playerid);
 
 public OnPlayerSpawn(playerid)
 {
-    TextDrawHideForPlayer(playerid, gDETUtils_AnnouncementUsebox);
-    PlayerTextDrawHide(playerid, gDETUtils_AnnouncementString[playerid]);
+    TextDrawHideForPlayer(playerid, utils_AnnouncementUsebox);
+    PlayerTextDrawHide(playerid, utils_AnnouncementString[playerid]);
     if(funcidx("a_ints_OnplayerSpawn") != -1)
     {
         CallLocalFunction("a_ints_OnplayerSpawn", "i", playerid);
     }
-    return DETUtils_INTERIORS_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #if defined _ALS_OnplayerSpawn
@@ -256,33 +256,34 @@ public OnPlayerSpawn(playerid)
 
 forward a_ints_OnplayerSpawn(playerid);
 
-DETUtils_OnPlayerNearEntrance(playerid);
-public DETUtils_OnPlayerNearEntrance(playerid)
+utils_OnPlayerNearEntrance(playerid);
+
+public utils_OnPlayerNearEntrance(playerid)
 {
-    new Private:InteriorFunctionName<>[100];
-    new Private:InteriorActionid<>;
+    new utils_InteriorFunctionName[100];
+    new utils_InteriorActionid;
     TogglePlayerControllable(playerid,false);
     for(new i; i < MAX_INTERIORS; i++)
     {
-        if( IsPlayerInRangeOfPoint( playerid, 1.5, gDETUtils_InteriorData[ i ][e_DETUtils_INTENTRANCE_X], \
-        gDETUtils_InteriorData[ i ][e_DETUtils_INTENTRANCE_Y], gDETUtils_InteriorData[ i ][e_DETUtils_INTENTRANCE_Z]) \
-        && GetPlayerVirtualWorld( playerid ) == gDETUtils_InteriorData[ i ][e_DETUtils_INTERIOR_VWID_OUT] \
+        if( IsPlayerInRangeOfPoint( playerid, 1.5, utils_InteriorData[ i ][e_utils_INTENTRANCE_X], \
+        utils_InteriorData[ i ][e_utils_INTENTRANCE_Y], utils_InteriorData[ i ][e_utils_INTENTRANCE_Z]) \
+        && GetPlayerVirtualWorld( playerid ) == utils_InteriorData[ i ][e_utils_INTERIOR_VWID_OUT] \
         && !IsPlayerInAnyVehicle( playerid ))
         {
-            DETUtils_InteriorActionid = 0;
-            format(DETUtils_InteriorFunctionName,sizeof(DETUtils_InteriorFunctionName),
-                "%s@int",gDETUtils_InteriorData[ i ][e_DETUtils_INTERIOR_NAME]);
+            utils_InteriorActionid = 0;
+            format(utils_InteriorFunctionName,sizeof(utils_InteriorFunctionName),
+                "%s@int",utils_InteriorData[ i ][e_utils_INTERIOR_NAME]);
 
-            if(funcidx(DETUtils_InteriorFunctionName) != -1) CallLocalFunction(DETUtils_InteriorFunctionName,
-                                                                "ii",playerid,DETUtils_InteriorActionid);
+            if(funcidx(utils_InteriorFunctionName) != -1) CallLocalFunction(utils_InteriorFunctionName,
+                                                                "ii",playerid,utils_InteriorActionid);
 
-            SetPlayerInterior( playerid, gDETUtils_InteriorData[ i ][e_DETUtils_INTERIOR_INTID] );
-            SetPlayerVirtualWorld( playerid, gDETUtils_InteriorData[ i ][e_DETUtils_INTERIOR_VWID] );
+            SetPlayerInterior( playerid, utils_InteriorData[ i ][e_utils_INTERIOR_INTID] );
+            SetPlayerVirtualWorld( playerid, utils_InteriorData[ i ][e_utils_INTERIOR_VWID] );
             
-            SetPlayerPos( playerid, gDETUtils_InteriorData[ i ][e_DETUtils_INTEXIT_X], gDETUtils_InteriorData[ i ][e_DETUtils_INTEXIT_Y], \
-            gDETUtils_InteriorData[ i ][e_DETUtils_INTEXIT_Z] );
+            SetPlayerPos( playerid, utils_InteriorData[ i ][e_utils_INTEXIT_X], utils_InteriorData[ i ][e_utils_INTEXIT_Y], \
+            utils_InteriorData[ i ][e_utils_INTEXIT_Z] );
             
-            SetPlayerFacingAngle( playerid, gDETUtils_InteriorData[ i ][e_DETUtils_INTEXIT_A] );
+            SetPlayerFacingAngle( playerid, utils_InteriorData[ i ][e_utils_INTEXIT_A] );
             SetCameraBehindPlayer( playerid );
             
             #if defined detutils_debug
@@ -290,39 +291,39 @@ public DETUtils_OnPlayerNearEntrance(playerid)
             #endif
 
             SetPlayerTime( playerid, 12, 0 );
-            gDETUtils_InteriorLoadingTime(playerid);
+            utils_InteriorLoadingTime(playerid);
             
-            gDETUtils_PlayersInterior[ playerid ] = i;
+            utils_PlayersInterior[ playerid ] = i;
             
         }
-        else if( IsPlayerInRangeOfPoint( playerid, 1.5, gDETUtils_InteriorData[ i ][e_DETUtils_INTEXIT_X], \
-        gDETUtils_InteriorData[ i ][e_DETUtils_INTEXIT_Y], gDETUtils_InteriorData[ i ][e_DETUtils_INTEXIT_Z]) && \
-        GetPlayerVirtualWorld( playerid ) == gDETUtils_InteriorData[ i ][e_DETUtils_INTERIOR_VWID])
+        else if( IsPlayerInRangeOfPoint( playerid, 1.5, utils_InteriorData[ i ][e_utils_INTEXIT_X], \
+        utils_InteriorData[ i ][e_utils_INTEXIT_Y], utils_InteriorData[ i ][e_utils_INTEXIT_Z]) && \
+        GetPlayerVirtualWorld( playerid ) == utils_InteriorData[ i ][e_utils_INTERIOR_VWID])
         {
-            SetPlayerVirtualWorld( playerid, gDETUtils_InteriorData[ i ][e_DETUtils_INTERIOR_VWID_OUT] );
-            SetPlayerInterior( playerid, gDETUtils_InteriorData[ i ][e_DETUtils_INTERIOR_INTID_OUT] );
+            SetPlayerVirtualWorld( playerid, utils_InteriorData[ i ][e_utils_INTERIOR_VWID_OUT] );
+            SetPlayerInterior( playerid, utils_InteriorData[ i ][e_utils_INTERIOR_INTID_OUT] );
             
-            SetPlayerPos( playerid, gDETUtils_InteriorData[ i ][e_DETUtils_INTENTRANCE_X], gDETUtils_InteriorData[ i ][e_DETUtils_INTENTRANCE_Y], \
-            gDETUtils_InteriorData[ i ][e_DETUtils_INTENTRANCE_Z] );
+            SetPlayerPos( playerid, utils_InteriorData[ i ][e_utils_INTENTRANCE_X], utils_InteriorData[ i ][e_utils_INTENTRANCE_Y], \
+            utils_InteriorData[ i ][e_utils_INTENTRANCE_Z] );
             
-            SetPlayerFacingAngle( playerid, gDETUtils_InteriorData[ i ][e_DETUtils_INTENTRANCE_A] );
+            SetPlayerFacingAngle( playerid, utils_InteriorData[ i ][e_utils_INTENTRANCE_A] );
             SetCameraBehindPlayer( playerid );
-            gDETUtils_InteriorLoadingTime(playerid);
+            utils_InteriorLoadingTime(playerid);
 
             #if defined detutils_debug
             printf("[samp-detutils]: (debug) - nearintcallback :: Player exited the interior with id : %i.", i);
             #endif
 
-            DETUtils_InteriorActionid = 1;
-            format(DETUtils_InteriorFunctionName,sizeof(DETUtils_InteriorFunctionName),
-                "%s@int",gDETUtils_InteriorData[ i ][e_DETUtils_INTERIOR_NAME]);
+            utils_InteriorActionid = 1;
+            format(utils_InteriorFunctionName,sizeof(utils_InteriorFunctionName),
+                "%s@int",utils_InteriorData[ i ][e_utils_INTERIOR_NAME]);
 
-            if(funcidx(DETUtils_InteriorFunctionName) != -1) CallLocalFunction(DETUtils_InteriorFunctionName,"ii",playerid,DETUtils_InteriorActionid);
+            if(funcidx(utils_InteriorFunctionName) != -1) CallLocalFunction(utils_InteriorFunctionName,"ii",playerid,utils_InteriorActionid);
 
-            gDETUtils_PlayersInterior[ playerid ] = -1;
+            utils_PlayersInterior[ playerid ] = -1;
         }
     }
-    return DETUtils_INTERIORS_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 public OnPlayerDisconnect(playerid, reason)
@@ -335,7 +336,7 @@ public OnPlayerDisconnect(playerid, reason)
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - playerdiscc :: Player interior data cleared.");
     #endif
-    return DETUtils_INTERIORS_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #if defined _ALS_OnPlayerDisconnect
@@ -354,7 +355,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
     {
         if(GetPlayerState(playerid) == 1)
         {
-            DETUtils_OnPlayerNearEntrance(playerid);
+            utils_OnPlayerNearEntrance(playerid);
             #if defined detutils_debug
             printf("[samp-detutils]: (debug) - keystate :: OnPlayerNearEntrance called successfully.");
             #endif
@@ -370,7 +371,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
     {
         CallLocalFunction("aint_ALS_OnPlayerKeyStateChange", "iii", playerid, newkeys, oldkeys);
     }
-    return DETUtils_INTERIORS_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #if defined _ALS_OnPlayerKeyStateChange
@@ -383,41 +384,41 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
 forward aint_ALS_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 
-DETUtilsFunc:reset_gmtext_boolean(playerid)
+util function:ResetOnPlayerUpdateBoolean(playerid)
 {
     #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - keystate :: DETUtilsFunc 'reset_gmtext_boolean' called successfully.");
+    printf("[samp-detutils]: (debug) - keystate :: util function 'ResetOnPlayerUpdateBoolean' called successfully.");
     #endif
 
-    GlobalVarGet(EntranceTitleShown)[playerid] = 0;
-    return DETUtils_INTERIORS_TRUE;
+    utils_EntranceTitleShown[playerid] = 0;
+    return detutils_interiors_TRUE;
 }
 
 public OnPlayerUpdate(playerid)
 {
     for(new i; i < MAX_INTERIORS; i++)
     {
-        if( IsPlayerInRangeOfPoint( playerid, 1.5, gDETUtils_InteriorData[ i ][e_DETUtils_INTENTRANCE_X], \
-        gDETUtils_InteriorData[ i ][e_DETUtils_INTENTRANCE_Y], gDETUtils_InteriorData[ i ][e_DETUtils_INTENTRANCE_Z]) \
-        && GetPlayerVirtualWorld( playerid ) == gDETUtils_InteriorData[ i ][e_DETUtils_INTERIOR_VWID_OUT] \
-        && !IsPlayerInAnyVehicle( playerid ) && Global:EntranceTitleShown<>[playerid] != 1)
+        if( IsPlayerInRangeOfPoint( playerid, 1.5, utils_InteriorData[ i ][e_utils_INTENTRANCE_X], \
+        utils_InteriorData[ i ][e_utils_INTENTRANCE_Y], utils_InteriorData[ i ][e_utils_INTENTRANCE_Z]) \
+        && GetPlayerVirtualWorld( playerid ) == utils_InteriorData[ i ][e_utils_INTERIOR_VWID_OUT] \
+        && !IsPlayerInAnyVehicle( playerid ) && utils_EntranceTitleShown[playerid] != 1)
         {
-            new DETUtils_InteriorName[100];
-            format(DETUtils_InteriorName,sizeof(DETUtils_InteriorName),"Property: %s",gDETUtils_InteriorData[ i ][ e_DETUtils_INTERIOR_NAME ]);
+            new utils_InteriorName[100];
+            format(utils_InteriorName,sizeof(utils_InteriorName),"Property: %s",utils_InteriorData[ i ][ e_utils_INTERIOR_NAME ]);
             
-            Private:Announcement<>(playerid, DETUtils_InteriorName);
+            utils_Announcement(playerid, utils_InteriorName);
             #if defined detutils_debug
             printf("[samp-detutils]: (debug) - playerupdate :: Gametext shown.");
             #endif
-            GlobalVarGet(EntranceTitleShown)[playerid] = 1;
-            Global:set_detutils_timer<>("reset_gmtext_boolean", 10000, false, "i", playerid);
+            utils_EntranceTitleShown[playerid] = 1;
+            utils_SetTimer("ResetOnPlayerUpdateBoolean", 10000, false, "i", playerid);
         }
     }
     if(funcidx("aint_ALS_OnPlayerUpdate") != -1)
     {
         CallLocalFunction("aint_ALS_OnPlayerUpdate", "i", playerid);
     }
-    return DETUtils_INTERIORS_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #if defined _ALS_OnPlayerUpdate
@@ -447,62 +448,62 @@ forward aint_ALS_OnPlayerUpdate(playerid);
 */
 
 stock Create3DLabelAndPickup( 
-        const DETUtils_LabelString[], 
-        Float:DETUtils_xPosition, 
-        Float:DETUtils_yPosition, 
-        Float:DETUtils_zPosition, 
-        DETUtils_Interior, 
-        DETUtils_VirtualWorld, 
-        DETUtils_Pickupid, 
-        Float:DETUtils_LabelRadius ) 
+        const utils_LabelString[], 
+        Float:utils_xPosition, 
+        Float:utils_yPosition, 
+        Float:utils_zPosition, 
+        utils_Interior, 
+        utils_VirtualWorld, 
+        utils_Pickupid, 
+        Float:utils_LabelRadius ) 
 {
-    if(IsValidString(DETUtils_LabelString))
-        return DETUtils_INTERIORS_FALSE;
+    if(IsValidString(utils_LabelString))
+        return detutils_interiors_FALSE;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: String checking finished.");
     #endif
 
-    if(DETUtils_Interior < 0)
-        return DETUtils_INTERIORS_FALSE;
+    if(utils_Interior < 0)
+        return detutils_interiors_FALSE;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: Interiorid validity checked.");
     #endif
 
-    if(DETUtils_VirtualWorld < 0)
-        return DETUtils_INTERIORS_FALSE;
+    if(utils_VirtualWorld < 0)
+        return detutils_interiors_FALSE;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: Virtual world validity checked.");
     #endif
 
-    if(DETUtils_LabelRadius <= 0)
-        return DETUtils_INTERIORS_FALSE;
+    if(utils_LabelRadius <= 0)
+        return detutils_interiors_FALSE;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: Label visibility radius check finished.");
     #endif
 
-    if(DETUtils_Pickupid < 0)
-        return DETUtils_INTERIORS_FALSE;
+    if(utils_Pickupid < 0)
+        return detutils_interiors_FALSE;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: Pickup id validity checked.");
     #endif
 
     CreateDynamic3DTextLabel(
-                            DETUtils_LabelString, 
+                            utils_LabelString, 
                             0x0059FFAA, 
-                            DETUtils_xPosition, 
-                            DETUtils_yPosition, 
-                            DETUtils_zPosition, 
-                            DETUtils_LabelRadius, 
+                            utils_xPosition, 
+                            utils_yPosition, 
+                            utils_zPosition, 
+                            utils_LabelRadius, 
                             INVALID_PLAYER_ID, 
                             INVALID_VEHICLE_ID, 
                             0, 
-                            DETUtils_VirtualWorld, 
-                            DETUtils_Interior, 
+                            utils_VirtualWorld, 
+                            utils_Interior, 
                             -1, 
                             20.0);
 
@@ -511,13 +512,13 @@ stock Create3DLabelAndPickup(
     #endif
 
     CreateDynamicPickup(
-                    DETUtils_Pickupid, 
+                    utils_Pickupid, 
                     1, 
-                    DETUtils_xPosition, 
-                    DETUtils_yPosition, 
-                    DETUtils_zPosition, 
-                    DETUtils_VirtualWorld, 
-                    DETUtils_Interior);
+                    utils_xPosition, 
+                    utils_yPosition, 
+                    utils_zPosition, 
+                    utils_VirtualWorld, 
+                    utils_Interior);
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: Created dynamic pickup successfully.");
@@ -527,155 +528,155 @@ stock Create3DLabelAndPickup(
     printf("[samp-detutils]: (debug) - Operation completed successfully. Error code: ERRNULL");
     #endif
 
-    return DETUtils_INTERIORS_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 stock CreateCustomInteriorEx(
-        const DETUtils_InteriorName[], 
-        Float:DETUtils_xEntrance, 
-        Float:DETUtils_yEntrance, 
-        Float:DETUtils_zEntrance, 
-        Float:DETUtils_xExit, 
-        Float:DETUtils_yExit, 
-        Float:DETUtils_zExit, 
-        DETUtils_eInteriorid, 
-        DETUtils_xInteriorid, 
-        DETUtils_eVirtualWorldid, 
-        DETUtils_xVirtualWorldid)
+        const utils_InteriorName[], 
+        Float:utils_xEntrance, 
+        Float:utils_yEntrance, 
+        Float:utils_zEntrance, 
+        Float:utils_xExit, 
+        Float:utils_yExit, 
+        Float:utils_zExit, 
+        utils_eInteriorid, 
+        utils_xInteriorid, 
+        utils_eVirtualWorldid, 
+        utils_xVirtualWorldid)
 {
     printf("Interior '%s' successfully created, entrance is set to: %f, %f, %f.",
-            DETUtils_InteriorName,
-            Float:DETUtils_xEntrance, 
-            Float:DETUtils_yEntrance, 
-            Float:DETUtils_zEntrance);
+            utils_InteriorName,
+            Float:utils_xEntrance, 
+            Float:utils_yEntrance, 
+            Float:utils_zEntrance);
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Interior created.");
     #endif
 
-    gDETUtils_Interiorid++;
+    utils_Interiorid++;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Interior id assigned.");
     #endif
 
-    strmid(gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_NAME], 
-            DETUtils_InteriorName, 
+    strmid(utils_InteriorData[utils_Interiorid][e_utils_INTERIOR_NAME], 
+            utils_InteriorName, 
             0, 
-            strlen(DETUtils_InteriorName), 
+            strlen(utils_InteriorName), 
             255);
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Saved interior name.");
     #endif
 
-    printf("Interior '%s' has an id %d.",DETUtils_InteriorName,gDETUtils_Interiorid);
+    printf("Interior '%s' has an id %d.",utils_InteriorName,utils_Interiorid);
 
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTENTRANCE_X] = DETUtils_xEntrance;
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTENTRANCE_Y] = DETUtils_yEntrance;
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTENTRANCE_Z] = DETUtils_zEntrance;
+    utils_InteriorData[utils_Interiorid][e_utils_INTENTRANCE_X] = utils_xEntrance;
+    utils_InteriorData[utils_Interiorid][e_utils_INTENTRANCE_Y] = utils_yEntrance;
+    utils_InteriorData[utils_Interiorid][e_utils_INTENTRANCE_Z] = utils_zEntrance;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Entrance coordinates assigned to interior data.");
     #endif
 
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTEXIT_X] = DETUtils_xExit;
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTEXIT_Y] = DETUtils_yExit;
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTEXIT_Z] = DETUtils_zExit;
+    utils_InteriorData[utils_Interiorid][e_utils_INTEXIT_X] = utils_xExit;
+    utils_InteriorData[utils_Interiorid][e_utils_INTEXIT_Y] = utils_yExit;
+    utils_InteriorData[utils_Interiorid][e_utils_INTEXIT_Z] = utils_zExit;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Exit coordinates assigned to interior data.");
     #endif
 
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_INTID] = DETUtils_eInteriorid;
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_INTID_OUT] = DETUtils_xInteriorid;
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_VWID] = DETUtils_eVirtualWorldid;
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_VWID_OUT] = DETUtils_xVirtualWorldid;
+    utils_InteriorData[utils_Interiorid][e_utils_INTERIOR_INTID] = utils_eInteriorid;
+    utils_InteriorData[utils_Interiorid][e_utils_INTERIOR_INTID_OUT] = utils_xInteriorid;
+    utils_InteriorData[utils_Interiorid][e_utils_INTERIOR_VWID] = utils_eVirtualWorldid;
+    utils_InteriorData[utils_Interiorid][e_utils_INTERIOR_VWID_OUT] = utils_xVirtualWorldid;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Virtual world and interiorids assigned to custom interior.");
     #endif
 
-    new DETUtils_EntranceLabelString[300];
+    new utils_EntranceLabelString[300];
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Empty string declared.");
     #endif
-    format(DETUtils_EntranceLabelString,sizeof(DETUtils_EntranceLabelString),"{ffffff}[ %s ]\n"col_white"Enter here!",DETUtils_InteriorName);
+    format(utils_EntranceLabelString,sizeof(utils_EntranceLabelString),"{ffffff}[ %s ]\n"col_white"Enter here!",utils_InteriorName);
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Formatted the 3D label string successfully.");
     #endif
-    Create3DLabelAndPickup(DETUtils_EntranceLabelString, DETUtils_xEntrance,DETUtils_yEntrance,DETUtils_zEntrance, -1, -1, 19133, 2.0);
+    Create3DLabelAndPickup(utils_EntranceLabelString, utils_xEntrance,utils_yEntrance,utils_zEntrance, -1, -1, 19133, 2.0);
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Streamer :: Created 3D label and pickup on entrance.");
     #endif
-    Create3DLabelAndPickup("Exit here!", DETUtils_xExit,DETUtils_yExit,DETUtils_zExit, -1, -1, 19133, 2.0);
+    Create3DLabelAndPickup("Exit here!", utils_xExit,utils_yExit,utils_zExit, -1, -1, 19133, 2.0);
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Streamer :: Created 3D label and pickup on exit.");
     #endif
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Internal interior data assigned.");
     #endif
-    return DETUtils_INTERIORS_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 stock CreateCustomInterior(
-        const DETUtils_InteriorName[], 
-        Float:DETUtils_xEntrance, 
-        Float:DETUtils_yEntrance, 
-        Float:DETUtils_zEntrance, 
-        Float:DETUtils_xExit, 
-        Float:DETUtils_yExit, 
-        Float:DETUtils_zExit, 
-        DETUtils_eInteriorid, 
-        DETUtils_xInteriorid, 
-        DETUtils_eVirtualWorldid, 
-        DETUtils_xVirtualWorldid)
+        const utils_InteriorName[], 
+        Float:utils_xEntrance, 
+        Float:utils_yEntrance, 
+        Float:utils_zEntrance, 
+        Float:utils_xExit, 
+        Float:utils_yExit, 
+        Float:utils_zExit, 
+        utils_eInteriorid, 
+        utils_xInteriorid, 
+        utils_eVirtualWorldid, 
+        utils_xVirtualWorldid)
 {
     printf("Interior '%s' successfully created, entrance is set to: %f, %f, %f.",
-            DETUtils_InteriorName,
-            Float:DETUtils_xEntrance, 
-            Float:DETUtils_yEntrance, 
-            Float:DETUtils_zEntrance);
+            utils_InteriorName,
+            Float:utils_xEntrance, 
+            Float:utils_yEntrance, 
+            Float:utils_zEntrance);
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Interior created.");
     #endif
 
-    gDETUtils_Interiorid++;
+    utils_Interiorid++;
 
-    strmid(gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_NAME], 
-            DETUtils_InteriorName, 
+    strmid(utils_InteriorData[utils_Interiorid][e_utils_INTERIOR_NAME], 
+            utils_InteriorName, 
             0, 
-            strlen(DETUtils_InteriorName), 
+            strlen(utils_InteriorName), 
             255);
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Saved interior name.");
     #endif
 
-    printf("Interior '%s' has an id %d.",DETUtils_InteriorName,gDETUtils_Interiorid);
+    printf("Interior '%s' has an id %d.",utils_InteriorName,utils_Interiorid);
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Interior id assigned.");
     #endif
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTENTRANCE_X] = DETUtils_xEntrance;
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTENTRANCE_Y] = DETUtils_yEntrance;
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTENTRANCE_Z] = DETUtils_zEntrance;
+    utils_InteriorData[utils_Interiorid][e_utils_INTENTRANCE_X] = utils_xEntrance;
+    utils_InteriorData[utils_Interiorid][e_utils_INTENTRANCE_Y] = utils_yEntrance;
+    utils_InteriorData[utils_Interiorid][e_utils_INTENTRANCE_Z] = utils_zEntrance;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Entrance coordinates assigned to interior data.");
     #endif
 
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTEXIT_X] = DETUtils_xExit;
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTEXIT_Y] = DETUtils_yExit;
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTEXIT_Z] = DETUtils_zExit;
+    utils_InteriorData[utils_Interiorid][e_utils_INTEXIT_X] = utils_xExit;
+    utils_InteriorData[utils_Interiorid][e_utils_INTEXIT_Y] = utils_yExit;
+    utils_InteriorData[utils_Interiorid][e_utils_INTEXIT_Z] = utils_zExit;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Exit coordinates assigned to interior data.");
     #endif
 
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_INTID] = DETUtils_eInteriorid;
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_INTID_OUT] = DETUtils_xInteriorid;
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_VWID] = DETUtils_eVirtualWorldid;
-    gDETUtils_InteriorData[gDETUtils_Interiorid][e_DETUtils_INTERIOR_VWID_OUT] = DETUtils_xVirtualWorldid;
+    utils_InteriorData[utils_Interiorid][e_utils_INTERIOR_INTID] = utils_eInteriorid;
+    utils_InteriorData[utils_Interiorid][e_utils_INTERIOR_INTID_OUT] = utils_xInteriorid;
+    utils_InteriorData[utils_Interiorid][e_utils_INTERIOR_VWID] = utils_eVirtualWorldid;
+    utils_InteriorData[utils_Interiorid][e_utils_INTERIOR_VWID_OUT] = utils_xVirtualWorldid;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Virtual world and interiorids assigned to custom interior.");
@@ -685,12 +686,12 @@ stock CreateCustomInterior(
     printf("[samp-detutils]: (debug) - Internal interior data assigned.");
     #endif
 
-    return DETUtils_INTERIORS_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 stock bool:IsPlayerInCustomInterior(playerid)
 {
-    if(gDETUtils_PlayersInterior[ playerid ] == -1) return false;
+    if(utils_PlayersInterior[ playerid ] == -1) return false;
     else return true;
 }
 
@@ -699,11 +700,11 @@ stock ClearPlayerInteriorData(playerid)
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - ClearPlayerInteriorData called successfully.");
     #endif
-    gDETUtils_PlayersInterior[playerid] = -1;
+    utils_PlayersInterior[playerid] = -1;
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - ClearPlayerInteriorData action successfully performed.");
     #endif
-    return DETUtils_INTERIORS_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 stock GetLastInterioridUsed()
@@ -711,21 +712,21 @@ stock GetLastInterioridUsed()
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - GetLastInterioridUsed successfully called.");
     #endif
-    return gDETUtils_Interiorid;
+    return utils_Interiorid;
 }
 
 stock SetInteriorEntranceCustomAngles(
-        const DETUtils_CustomInteriorid,
-        Float:DETUtils_aAngle,
-        Float:DETUtils_bAngle)
+        const utils_CustomInteriorid,
+        Float:utils_aAngle,
+        Float:utils_bAngle)
 {
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Successfully set interior (intid : %i) angles to %f-%f.", 
-        DETUtils_CustomInteriorid, DETUtils_aAngle, DETUtils_bAngle);
+        utils_CustomInteriorid, utils_aAngle, utils_bAngle);
     #endif
-    gDETUtils_InteriorData[DETUtils_CustomInteriorid][e_DETUtils_INTENTRANCE_A] = DETUtils_aAngle;
-    gDETUtils_InteriorData[DETUtils_CustomInteriorid][e_DETUtils_INTEXIT_A] = DETUtils_bAngle;
-    return DETUtils_INTERIORS_TRUE;
+    utils_InteriorData[utils_CustomInteriorid][e_utils_INTENTRANCE_A] = utils_aAngle;
+    utils_InteriorData[utils_CustomInteriorid][e_utils_INTEXIT_A] = utils_bAngle;
+    return detutils_interiors_TRUE;
 }
 
 /*
@@ -746,32 +747,32 @@ stock SetInteriorEntranceCustomAngles(
 #if !defined A_INTS_COMPATIBILITY_MODE
 
 #define interior%0(%1) \
-    forward%0@int(%1,DETUtils_Actionid); \
-    public%0@int(%1,DETUtils_Actionid)
+    forward%0@int(%1,utils_Actionid); \
+    public%0@int(%1,utils_Actionid)
 
 #else
 
 #define INTERIOR__%0(%1) \
-    forward%0@int(%1,DETUtils_Actionid); \
-    public%0@int(%1,DETUtils_Actionid)
+    forward%0@int(%1,utils_Actionid); \
+    public%0@int(%1,utils_Actionid)
 
 #endif
 
-stock SetPlayerCustomInterior(DETUtils_p_Playerid, pDETUtils_Interiorid)
+stock SetPlayerCustomInterior(utils_p_Playerid, putils_Interiorid)
 {
-    if(pDETUtils_Interiorid < -1)
-        return DETUtils_INTERIORS_FALSE;
+    if(putils_Interiorid < -1)
+        return detutils_interiors_FALSE;
 
     #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - Successfully set players (id : %i) interior to %i.", DETUtils_p_Playerid, pDETUtils_Interiorid);
+    printf("[samp-detutils]: (debug) - Successfully set players (id : %i) interior to %i.", utils_p_Playerid, putils_Interiorid);
     #endif
 
-    gDETUtils_PlayersInterior[DETUtils_p_Playerid] = pDETUtils_Interiorid;
-    return DETUtils_INTERIORS_TRUE;
+    utils_PlayersInterior[utils_p_Playerid] = putils_Interiorid;
+    return detutils_interiors_TRUE;
 }
 
 #define IsInteriorActionPerformed(%0) \
-    DETUtils_Actionid == %0
+    utils_Actionid == %0
 
 static AnnounceLibraryLoaded_int()
 {
@@ -788,7 +789,7 @@ static AnnounceLibraryLoaded_int()
 main()
 {
     #if defined detutils_debug
-    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_interiors.log", "[samp-detutils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_interiors.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     AnnounceLibraryLoaded_int();
@@ -807,14 +808,14 @@ main()
 
 public OnFilterScriptInit()
 {
-    Global:CreateAnncTextdraws<>();
+    utils_CreateAnncTextDraws();
     AnnounceLibraryLoaded_int();
 
     if(funcidx("a_int_OnFilterScriptInit") != -1)
     {
         CallLocalFunction("a_int_OnFilterScriptInit", "i", playerid);
     }
-    return DETUtils_INTERIORS_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #if defined _ALS_OnFilterScriptInit

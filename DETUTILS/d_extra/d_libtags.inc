@@ -1,7 +1,7 @@
 /*
 
                             =============================
-                              SA:MP DEntisT's Utilities
+                              SA:MP DEntisT'utils_sec Utilities
                             =============================
 
 Legal:
@@ -17,7 +17,7 @@ Legal:
     for the specific language governing rights and limitations under the
     License.
     
-    The Original Code is SA:MP | DETUtils.
+    The Original Code is SA:MP | utils.
     
     The Initial Developer of the original code is DEntisT 'Unity' Brace.
     Portions created by the Initial Developer are Copyright C 2021
@@ -60,33 +60,39 @@ Optional plugins:
 */
 
 #define MAX_INTERIORS 300
-#define InteriorData:[%0] gDETUtils_InteriorData[MAX_INTERIORS][%0]
 
 #define MAX_FUNC_NAME (32)
 
-#define Global:%0<%1> gDETUtils_%0
-#define Private:%0<%1> DETUtils_%0
+#define util%3function:%0(%1) @utils_%0(%1); public @utils_%0(%1)
 
-#define GlobalVarGet(%0) gDETUtils_%0
+new PlayerText:utils_AnnouncementString[MAX_PLAYERS];
+new Text:utils_AnnouncementUsebox;
 
-#define DETUtilsFunc:%0(%1) @DETUtils_%0(%1); public @DETUtils_%0(%1)
-
-new PlayerText:gDETUtils_AnnouncementString[MAX_PLAYERS];
-new Text:gDETUtils_AnnouncementUsebox;
-
-stock Global:call_detutils_func<>(const func[], const spec[], id)
+stock utils_CallFunction(const func[], const spec[], id)
 {
     new funcname[100];
-    format(funcname, 100, "@DETUtils_%s", func);
+    format(funcname, 100, "@utils_%s", func);
     return CallLocalFunction(funcname, spec, id);
 }
 
-stock Global:set_detutils_timer<>(const func[], delay, bool:a, const spec[], id)
+stock utils_SetTimer(const func[], delay, bool:a, const spec[], id)
 {
     new funcname[100];
-    format(funcname, 100, "@DETUtils_%s", func);
+    format(funcname, 100, "@utils_%s", func);
     return SetTimerEx(funcname, delay, a, spec, id);
 }
+
+#if !defined OnPlayerCommandReceived
+
+    forward OnPlayerCommandReceived(playerid, cmdtext[]);
+
+#endif
+
+#if !defined OnPlayerCommandPerformed
+
+    forward OnPlayerCommandPerformed(playerid, cmdtext[], success);
+
+#endif
 
 /*
                                                                       
@@ -102,43 +108,51 @@ stock Global:set_detutils_timer<>(const func[], delay, bool:a, const spec[], id)
 
 */
 
-new DETUtils_g_Shifthour, DETUtils_g_Timeshift = 0;
+new utils_g_Shifthour, utils_g_Timeshift = 0;
 
-gDETUtils_FixHourData(DETUtils_f_Hour)
+utils_FixHourData(utils_f_Hour)
 {
-    DETUtils_f_Hour = DETUtils_g_Timeshift+DETUtils_f_Hour;
+    utils_f_Hour = utils_g_Timeshift+utils_f_Hour;
 
-    if(DETUtils_f_Hour < 0)
+    if(utils_f_Hour < 0)
     {
-        DETUtils_f_Hour = DETUtils_f_Hour+24;
+        utils_f_Hour = utils_f_Hour+24;
     }
-    else if(DETUtils_f_Hour > 23)
+    else if(utils_f_Hour > 23)
     {
-        DETUtils_f_Hour = DETUtils_f_Hour-24;
+        utils_f_Hour = utils_f_Hour-24;
     }
-    DETUtils_g_Shifthour = DETUtils_f_Hour;
+    utils_g_Shifthour = utils_f_Hour;
     return 1;
 }
 
-stock SaveLogIntoFile( const DETUtils_FileName[], const DETUtils_Log[]) 
+stock SaveLogIntoFile( const utils_FileName[], const utils_Log[]) 
 {
-    new DETUtils_Entry[ 128 ], s, m, se, day, year, month;
+    new utils_Entry[ 128 ], 
+        utils_sec, 
+        utils_month, 
+        utils_data, 
+        utils_day, 
+        utils_year, 
+        utils_month;
 
-    getdate( year, month, day );
+    getdate( utils_year, utils_month, utils_day );
 
-    gettime( s, m, se );
+    gettime( utils_sec, utils_month, utils_data );
 
-    gDETUtils_FixHourData( s );
+    utils_FixHourData( utils_sec );
 
-    s = DETUtils_g_Shifthour;
+    utils_sec = utils_g_Shifthour;
     
-    format( DETUtils_Entry, sizeof( DETUtils_Entry ), 
-        "%d/%d/%d | %d/%d/%d | %s\r\n", day, month, year, s, m, se, DETUtils_Log );
+    format( utils_Entry, sizeof( utils_Entry ), 
+        "%d/%d/%d | %d/%d/%d | %s\r\n", 
+        utils_day, utils_month, utils_year, 
+        utils_sec, utils_month, utils_data, utils_Log );
 
-    new File:DETUtils_File;
-    DETUtils_File = fopen( DETUtils_FileName, io_append );
+    new File:utils_File;
+    utils_File = fopen( utils_FileName, io_append );
 
-    fwrite( DETUtils_File, DETUtils_Entry );
+    fwrite( utils_File, utils_Entry );
 
-    fclose( DETUtils_File );
+    fclose( utils_File );
 }
