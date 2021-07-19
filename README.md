@@ -5,8 +5,8 @@ Hi! Welcome to *SA:MP-DET Utilities* "read me" file. In general, *samp-detutils*
 ## Docs
 Click on blue text to see all information about each include.
 
-- Learn more: [a_commands.inc](a_commands.md)
-- Learn more: [a_interiors.inc](a_interiors.md)
+- Learn more: [d_commands.inc](d_commands.md)
+- Learn more: [d_interiors.inc](d_interiors.md)
 
 ## Tests
 To make sure everything works, we do tests and upload here - obviously.
