@@ -1,4 +1,4 @@
-# a_interiors.inc
+# d_interiors.inc
 SA:MP Interiors - an easy way to create custom interiors.
 
 [Go back to home page...](README.md)
@@ -7,7 +7,7 @@ SA:MP Interiors - an easy way to create custom interiors.
 
 ### Interior creation
 
-To create a interior with *a_interiors*, make sure you use *CreateCustomInterior* function.
+To create a interior with *d_interiors*, make sure you use *CreateCustomInterior* function.
 
 Let's see how it works:
 
@@ -58,7 +58,7 @@ interior PoliceStation(playerid)
 
 ### Functions
 
-*a_interiors.inc* also contains some handy functions, let's see.
+*d_interiors.inc* also contains some handy functions, let's see.
 
 **IsInteriorActionPerformed**
 
@@ -176,7 +176,7 @@ Parameters: same as on CreateCustomInterior
 
 - Make sure you have *streamer.inc* include file for *CreateCustomInteriorEx*.
 
-***Making filterscript with a_interiors?***
+***Making filterscript with d_interiors?***
 - Well, we have good news for you, because there is also new filterscript support feature. 
 
 - So, if you're making a filterscript - make sure you use:
@@ -184,14 +184,14 @@ Parameters: same as on CreateCustomInterior
 ```pawn
 #define FILTERSCRIPT
 ```
-... before including *a_interiors*.
+... before including *d_interiors*.
 
 ***Compatibility mode***
-- a_interiors have compatibility mode! Enable it using:
+- d_interiors have compatibility mode! Enable it using:
 
 ```pawn
 #define A_INTS_COMPATIBILITY_MODE
-#include <a_interiors>
+#include <d_interiors>
 ```
 It tehnically disables all of custom syntax and keywords, replacing them with upper-case, double-underscore-suffixed versions - so:
 
