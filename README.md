@@ -2,6 +2,10 @@
 Hi! Welcome to *SA:MP-DET Utilities* "read me" file. In general, *samp-detutils* contain libraries that have in-game visible effects and libraries that contain new scripting features. 
 - Below, you can find information about each library.
 
+## Examples
+
+- [View](d_example.md) one simple example of script made using **SA:MP-DET Utilities**.
+
 ## Docs
 Click on blue text to see all information about each include.
 
