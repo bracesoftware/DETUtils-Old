@@ -1,6 +1,7 @@
 # Example
 
 - One simple example of script made using *SA:MP-DET Utilites*.
+- [Go back...](README.md)
 
 ## Code
 
