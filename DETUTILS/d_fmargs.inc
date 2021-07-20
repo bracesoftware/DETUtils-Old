@@ -39,7 +39,7 @@ Optional plugins:
     Incognito - streamer
 
 */
-
+    
 #if defined DEV_MODE
 
 #include <a_samp>
@@ -697,19 +697,67 @@ stock
 
 */
 
+#if defined _ALS_SendClientMessage
+    #undef SendClientMessage
+#else
+    #define _ALS_SendClientMessage
+#endif
+
 #define SendClientMessage fmargs_SendClientMessage
+
+#if defined _ALS_SendClientMessageToAll
+    #undef SendClientMessageToAll
+#else
+    #define _ALS_SendClientMessageToAll
+#endif
 
 #define SendClientMessageToAll fmargs_SendClientMessageToAll
 
+#if defined _ALS_GameTextForPlayer
+    #undef GameTextForPlayer
+#else
+    #define _ALS_GameTextForPlayer
+#endif
+
 #define GameTextForPlayer fmargs_GameTextForPlayer
+
+#if defined _ALS_GameTextForAll
+    #undef GameTextForAll
+#else
+    #define _ALS_GameTextForAll
+#endif
 
 #define GameTextForAll fmargs_GameTextForAll
 
+#if defined _ALS_TextDrawCreate
+    #undef TextDrawCreate
+#else
+    #define _ALS_TextDrawCreate
+#endif
+
 #define TextDrawCreate fmargs_TextDrawCreate
+
+#if defined _ALS_CreatePlayerTextDraw
+    #undef CreatePlayerTextDraw
+#else
+    #define _ALS_CreatePlayerTextDraw
+#endif
 
 #define CreatePlayerTextDraw fmargs_CreatePlayerTextDraw
 
+#if defined _ALS_TextDrawSetString
+    #undef TextDrawSetString
+#else
+    #define _ALS_TextDrawSetString
+#endif
+
 #define TextDrawSetString fmargs_TextDrawSetString
+
+#if defined _ALS_PlayerTextDrawSetString
+    #undef PlayerTextDrawSetString
+#else
+    #define _ALS_PlayerTextDrawSetString
+#endif
 
 #define PlayerTextDrawSetString fmargs_PlayerTextDrawSetString
 
