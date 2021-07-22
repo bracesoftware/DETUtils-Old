@@ -38,7 +38,9 @@ Functions which will work like this after including *d_fmargs.inc* are:
 
 - TextDrawSetString 
 
-- PlayerTextDrawSetString 
+- PlayerTextDrawSetString
+ 
+- SendRconCommand
 ## Messages from creator
 
 ### Warnings
