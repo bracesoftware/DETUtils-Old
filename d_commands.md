@@ -54,7 +54,7 @@ debug command mycmd()
 
 *d_commands* also lets you to create admin commands.
 
-You can do it easily and fast mixing ``admin`` and ``command`` keyword.
+You can do it easily and fast mixing ``admin`` and ``command`` keywords.
 
 Example:
 
