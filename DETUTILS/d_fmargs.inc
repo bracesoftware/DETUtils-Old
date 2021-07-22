@@ -17,7 +17,7 @@ Legal:
     for the specific language governing rights and limitations under the
     License.
     
-    The Original Code is SA:MP | utils.
+    The Original Code is SA:MP | DETUtils.
     
     The Initial Developer of the original code is DEntisT 'Unity' Brace.
     Portions created by the Initial Developer are Copyright C 2021
@@ -27,6 +27,7 @@ Contributors:
     DEntisT
 
 Thanks:
+    Zeex - ideas and ZCMD
     open.mp team - ideas, support, help during development
 
 Very special thanks to:
@@ -39,7 +40,7 @@ Optional plugins:
     Incognito - streamer
 
 */
-    
+
 #if defined DEV_MODE
 
 #include <a_samp>
@@ -820,3 +821,91 @@ public OnFilterScriptInit()
 forward a_fmargs_OnfsInit();
 
 #endif
+
+stock
+    fmargs_SendRconCommand
+(
+    const utils_message_string[],
+    
+    {Float,_}:...
+)
+{
+    #if defined detutils_debug
+    utils_Functionid = 9;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", utils_Functionid);
+    #endif
+    static
+        args,
+        
+        start,
+        
+        end,
+        
+        utils_unspecified_string[144]
+    ;
+    #emit LOAD.S.pri 8
+    
+    #emit STOR.pri args
+
+    if (
+        args > 12
+    )
+    {
+        #emit ADDR.pri utils_message_string
+        
+        #emit STOR.pri start
+
+        for
+        (
+            end = start + (args - 12);
+            
+            end > start;
+            
+            end -= 4
+        )
+        {
+            #emit LREF.pri end
+            
+            #emit PUSH.pri
+        }
+        #emit PUSH.S utils_message_string
+        
+        #emit PUSH.C 144
+        
+        #emit PUSH.C utils_unspecified_string
+        
+        #emit PUSH.C args
+        
+        #emit SYSREQ.C format
+
+        SendRconCommand
+        (
+            utils_unspecified_string
+        )
+        ;
+
+        #emit LCTRL 5
+        
+        #emit SCTRL 4
+        
+        #emit RETN
+    }
+    #if defined detutils_debug
+    utils_Functionid = 9;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", utils_Functionid);
+    #endif
+    return
+        SendRconCommand
+        (
+            utils_message_string
+        )
+    ;
+}
+
+#if defined _ALS_SendRconCommand
+    #undef SendRconCommand
+#else
+    #define _ALS_SendRconCommand
+#endif
+
+#define SendRconCommand fmargs_SendRconCommand

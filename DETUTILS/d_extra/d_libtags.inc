@@ -17,7 +17,7 @@ Legal:
     for the specific language governing rights and limitations under the
     License.
     
-    The Original Code is SA:MP | utils.
+    The Original Code is SA:MP | DETUtils.
     
     The Initial Developer of the original code is DEntisT 'Unity' Brace.
     Portions created by the Initial Developer are Copyright C 2021
@@ -27,6 +27,7 @@ Contributors:
     DEntisT
 
 Thanks:
+    Zeex - ideas and ZCMD
     open.mp team - ideas, support, help during development
 
 Very special thanks to:
@@ -80,6 +81,16 @@ stock utils_SetTimer(const func[], delay, bool:a, const spec[], id)
     new funcname[100];
     format(funcname, 100, "@utils_%s", func);
     return SetTimerEx(funcname, delay, a, spec, id);
+}
+
+stock utils_Open(utils_FileName[])
+{
+    return fopen(utils_FileName, io_read);
+}
+
+stock File:utils_Close(File: utils_FileName[])
+{
+    return fclose(File: utils_FileName);
 }
 
 #if !defined OnPlayerCommandReceived
