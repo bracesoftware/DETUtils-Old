@@ -104,7 +104,7 @@ Optional plugins:
 
 #define admin%5command%0(%1,%2[%3]%4) \
     forward%0@cmd(%1,%2[]);%3public%0@cmd(%1,%2[]){if(!IsPlayerAdmin(%1)) return 0; return %0@cmd_func(%1,%2)%4;%5} \
-    forward%0@cmd_func(%1,%2[]);public%0@cmd_func(%1,%2[])
+    forward%0@cmd_func(%1,%2[]);public%0@cmd_func(%1,%2[]%5)
 
 #else
 
@@ -118,6 +118,10 @@ Optional plugins:
     forward%0@dbg(debugged_cmdtext[]);%1public%0@dbg(debugged_cmdtext[])
 
 #define GETDBGCMD__%0(%1) %0debugged_cmdtext%1
+
+#define ADMIN__COMMAND__%0(%1,%2[%3]%4) \
+    forward%0@cmd(%1,%2[]);%3public%0@cmd(%1,%2[]){if(!IsPlayerAdmin(%1)) return 0; return %0@cmd_func(%1,%2)%4;} \
+    forward%0@cmd_func(%1,%2[]);public%0@cmd_func(%1,%2[])
 
 #define CMD__:%0(%1) \
     forward %0@cmd(%1); public %0@cmd(%1)
