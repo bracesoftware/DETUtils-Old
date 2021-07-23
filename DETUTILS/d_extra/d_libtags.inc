@@ -47,6 +47,8 @@ Optional plugins:
 
 #define d_extra_included
 
+#include "d_init.inc"
+
 /*
                                                 
 88888888ba,                                     
@@ -83,16 +85,6 @@ stock utils_SetTimer(const func[], delay, bool:a, const spec[], id)
     return SetTimerEx(funcname, delay, a, spec, id);
 }
 
-stock utils_Open(utils_FileName[])
-{
-    return fopen(utils_FileName, io_read);
-}
-
-stock File:utils_Close(File: utils_FileName[])
-{
-    return fclose(File: utils_FileName);
-}
-
 #if !defined OnPlayerCommandReceived
 
     forward OnPlayerCommandReceived(playerid, cmdtext[]);
@@ -106,6 +98,11 @@ stock File:utils_Close(File: utils_FileName[])
 #endif
 
 stock utils_Functionid;
+
+stock utils_GlobalFileName[MAX_PLAYERS][MAX_PLAYER_NAME];
+
+#define utils_FormatPlayerDatabaseFileName(%0) \
+    format(utils_GlobalFileName[%0],MAX_PLAYER_NAME,"%s.ini",ReturnPlayerName(%0))
 
 /*
                                                                       
@@ -176,4 +173,9 @@ stock SaveLogIntoFile( const utils_FileName[], const utils_Log[])
     fwrite( utils_File, utils_Entry );
 
     fclose( utils_File );
+}
+
+stock utils_SetTag( const utils_FileName[], const utils_TagName[] )
+{
+    SaveLogIntoFile(utils_FileName,utils_TagName);
 }

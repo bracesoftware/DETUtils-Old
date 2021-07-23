@@ -7,8 +7,8 @@
 Legal:
     Version: MPL 1.1
     
-    The contents of this file are subject to the Mozilla Public License Version 
-    1.1 the "License"; you may not use this file except in compliance with 
+    The contents of this utils_GlobalFileName are subject to the Mozilla Public License Version 
+    1.1 the "License"; you may not use this utils_GlobalFileName except in compliance with 
     the License. You may obtain a copy of the License at 
     http://www.mozilla.org/MPL/
     
@@ -40,7 +40,7 @@ Optional plugins:
     Incognito - streamer
 
 */
-    
+
 #define DEV_MODE
 #if defined DEV_MODE
 
@@ -76,195 +76,22 @@ Optional plugins:
 
 */
 
-#define utils_MaxStringLength 255
-#define utils_RegistrationDialog 1
-#define utils_LoginDialog 2
-#define utils_SuccessFirst 3
-#define utils_SuccessSec 4
-
-#define utils_DatabasePath "../DETUTILS/Database/%s.utils"
-
-#define utils_WhiteColor "{FFFFFF}"
-#define utils_RedColor "{F81414}"
-#define utils_GreenColor "{00FF22}"
-#define utils_LightBlueColor "{00CED1}"
-
-enum utils_PlayerDataEnumeration
-{
-    pPass,
-    pCash,
-    pAdmin,
-    pKills,
-    pDeaths
-}
-new utils_g_PlayerData[MAX_PLAYERS][utils_PlayerDataEnumeration];
-
-stock utils_Int(utils_FileName[],utils_DataKey[]) 
-{
-   return strval(utils_Get(utils_FileName,utils_DataKey));
-}
-
-stock utils_Get(utils_FileName[],utils_DataKey[]) 
-{
-    new utils_TmpresFileData[utils_MaxStringLength];
-    
-    new utils_DataKey_length = strlen(utils_DataKey);
-    if (utils_DataKey_length==0 || utils_DataKey_length+2>utils_MaxStringLength) return utils_TmpresFileData;
-    
-    new File:utils_FileOhnd;
-    utils_FileOhnd=fopen(utils_FileName,io_read);
-    if (!utils_FileOhnd) return utils_TmpresFileData;
-    
-    while (fread(utils_FileOhnd,utils_TmpresFileData)) {
-        if (
-            utils_TmpresFileData[utils_DataKey_length]=='='
-            && !strcmp(utils_TmpresFileData, utils_DataKey, true, utils_DataKey_length) 
-        ) 
-        {
-            utils_StripNewLine(utils_TmpresFileData);
-            strmid(utils_TmpresFileData, utils_TmpresFileData, utils_DataKey_length + 1, 
-                strlen(utils_TmpresFileData), utils_MaxStringLength);
-            fclose(utils_FileOhnd);
-            return utils_TmpresFileData;
-        }
-    }
-    fclose(utils_FileOhnd);
-    return utils_TmpresFileData;
-}
-
-forward utils_LoadData(playerid);
-public utils_LoadData(playerid)
-{
-    new utils:File = utils_Open(Userutils_DatabasePath(playerid));
-    utils_Int("Password",utils_g_PlayerData[playerid][pPass]);
-    utils_Int("Cash",utils_g_PlayerData[playerid][pCash]);
-    utils_Int("Admin",utils_g_PlayerData[playerid][pAdmin]);
-    utils_Int("Kills",utils_g_PlayerData[playerid][pKills]);
-    utils_Int("Deaths",utils_g_PlayerData[playerid][pDeaths]);
-    utils_Close(File);
-    return 1;
-}
-
-stock Userutils_DatabasePath(playerid)
-{
-    new string[128],playername[MAX_PLAYER_NAME];
-    GetPlayerName(playerid,playername,sizeof(playername));
-    format(string,sizeof(string),utils_DatabasePath,playername);
-    return string;
-}
-
-stock utils_StripNewLine(string[]) 
-{
-    new len = strlen(string);
-    if (string[0]==0) return ;
-    if ((string[len - 1] == '\n') || 
-        (string[len - 1] == '\r')) {
-        string[len - 1] = 0;
-        if (string[0]==0) return ;
-        if ((string[len - 2] == '\n') || 
-            (string[len - 2] == '\r')) string[len - 2] = 0;
-    }
-}
-
-stock udb_hash(buf[]) {
-    new length=strlen(buf);
-    new s1 = 1;
-    new s2 = 0;
-    new n;
-    for (n=0; n<length; n++)
-    {
-       s1 = (s1 + buf[n]) % 65521;
-       s2 = (s2 + s1)     % 65521;
-    }
-    return (s2 << 16) + s1;
-}
-
-public OnPlayerConnect(playerid)
-{
-    if(fexist(Userutils_DatabasePath(playerid)))
-    {
-        CallLocalFunction("utils_LoadData", "i", playerid);
-        ShowPlayerDialog(playerid, utils_LoginDialog, DIALOG_STYLE_INPUT,""utils_WhiteColor"Login",""utils_WhiteColor"Ukucajte sifru dabi se ulogovali.","Login","Izadji");
-    }
-    else
-    {
-        ShowPlayerDialog(playerid, utils_RegistrationDialog, DIALOG_STYLE_INPUT,""utils_WhiteColor"Registracija...",""utils_WhiteColor"Ukucajte sifru kako bi se registrovali","Register","Izadji");
-    }
-    return 1;
-}
-
-public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
-{
-    switch( dialogid )
-    {
-        case utils_RegistrationDialog:
-        {
-            if (!response) return Kick(playerid);
-            if(response)
-            {
-                if(!strlen(inputtext)) return ShowPlayerDialog(playerid, 
-                    utils_RegistrationDialog, DIALOG_STYLE_INPUT, 
-                    ""utils_WhiteColor"Registracija...",""utils_RedColor"Ukucali ste pogresnu lozinku.\n \
-                    "utils_WhiteColor"Ukucajte sifru kako bi registrovali nov akaunt","Register","Izadji");
-                new utils:File = utils_Open(Userutils_DatabasePath(playerid));
-                utils_SetTag(File,"data");
-                utils_WriteInt(File,"Password",udb_hash(inputtext));
-                utils_WriteInt(File,"Cash",0);
-                utils_WriteInt(File,"Admin",0);
-                utils_WriteInt(File,"Kills",0);
-                utils_WriteInt(File,"Deaths",0);
-                utils_Close(File);
-
-                SetSpawnInfo(playerid, 0, 0, 1958.33, 1343.12, 15.36, 269.15, 0, 0, 0, 0, 0, 0);
-                SpawnPlayer(playerid);
-                ShowPlayerDialog(playerid, utils_SuccessFirst, DIALOG_STYLE_MSGBOX,
-                    ""utils_WhiteColor"Dobrodosli!",""utils_GreenColor"Uspesno ste se registrovali!","Ok","");
-            }
-        }
-
-        case utils_LoginDialog:
-        {
-            if ( !response ) return Kick ( playerid );
-            if( response )
-            {
-                if(udb_hash(inputtext) == utils_g_PlayerData[playerid][pPass])
-                {
-                    utils_ParseFile(Userutils_DatabasePath(playerid), "LoadUser_%s", .bExtra = true, .extra = playerid);
-                    GivePlayerMoney(playerid, utils_g_PlayerData[playerid][pCash]);
-                    ShowPlayerDialog(playerid, utils_SuccessSec, DIALOG_STYLE_MSGBOX,
-                        ""utils_WhiteColor"Dobrodosli!",""utils_GreenColor"Uspesnos te se ulogovali!","Ok","");
-                }
-                else
-                {
-                    ShowPlayerDialog(playerid, utils_LoginDialog, DIALOG_STYLE_INPUT,
-                        ""utils_WhiteColor"Login",""utils_RedColor"Ukucali ste pogresnu sifru.\n"utils_WhiteColor" \
-                        Ukucajte sifru kako bi se ulogovali.","Login","Izadji");
-                }
-                return 1;
-            }
-        }
-    }
-    return 1;
-}
-
-public OnPlayerDisconnect(playerid, reason)
-{
-    new utils:File = utils_Open(Userutils_DatabasePath(playerid));
-    utils_SetTag(File,"data");
-    utils_WriteInt(File,"Cash",GetPlayerMoney(playerid));
-    utils_WriteInt(File,"Admin",utils_g_PlayerData[playerid][pAdmin]);
-    utils_WriteInt(File,"Kills",utils_g_PlayerData[playerid][pKills]);
-    utils_WriteInt(File,"Deaths",utils_g_PlayerData[playerid][pDeaths]);
-    utils_Close(File);
-    return 1;
-}
-
-public OnPlayerDeath(playerid, killerid, reason)
-{
-    utils_g_PlayerData[killerid][pKills]++;
-    utils_g_PlayerData[playerid][pDeaths]++;
-    return 1;
-}
+#define skinid GetPlayerSkin(playerid)
+#define vehicleid GetPlayerVehicleID(playerid)
+#define teamid GetPlayerTeam(playerid)
+#define ammo GetPlayerAmmo(playerid)
+#define interiorid GetPlayerInterior(playerid)
+#define stateid GetPlayerState(playerid)
+#define worldid GetPlayerVirtualWorld(playerid)
+#define score GetPlayerScore(playerid)
+#define ping GetPlayerPing(playerid)
+#define color GetPlayerColor(playerid)
+#define weaponid GetPlayerWeapon(playerid)
+#define menuid GetPlayerMenu(playerid)
+#define drunklevel GetPlayerDrunkLevel(playerid)
+#define fightingstyle GetPlayerFightingStyle(playerid)
+#define seatid GetPlayerVehicleSeat(playerid)
+#define money GetPlayerMoney(playerid)
 
 /*
                                                                       
