@@ -1,11 +1,6 @@
 {
 	"user": "DentisT-SAMP",
 	"repo": "samp-detutils",
-	"dependencies": [
-		"sampctl/samp-stdlib,"
-    "Incognito/streamer"
-	],
-	"contributors": [
-    "DentisT-SAMP"
-	]
+	"dependencies": ["sampctl/samp-stdlib", "Incognito/streamer"],
+	"contributors": ["DentisT-SAMP"]
 }
