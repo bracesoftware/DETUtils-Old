@@ -10,4 +10,12 @@ Let's find out.
  
  ### With *sampctl*
  
+ Simply install to your project and begin using the library:
+ 
+ ```bat
+ sampctl package install dentist-samp/samp-detutils
+ ```
+ 
  ### Manual install
+ 
+ Download all files from *master* branch and extract them to your *pawno\includes* folder.
