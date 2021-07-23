@@ -7,8 +7,10 @@ Hi! Welcome to *SA:MP-DET Utilities* "read me" file. In general, *samp-detutils*
 - [View](d_example.md) one simple example of script made using **SA:MP-DET Utilities**.
 
 ## Docs
-Click on blue text to see all information about each include.
-
+Click on blue text to see all information about each feature.
+### Installation
+- Learn more about [installation](d_installation.md)...
+### Libraries
 - Learn more: [d_commands.inc](d_commands.md)
 - Learn more: [d_interiors.inc](d_interiors.md)
 - Learn more: [d_fmargs.inc](d_fmargs.md)
