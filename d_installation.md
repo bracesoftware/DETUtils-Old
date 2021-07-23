@@ -1,7 +1,8 @@
 # Library installation
 
 - How to install SA:MP | DET Utilities on my server?
- Let's find out.
+
+Let's find out.
  
  [Go back to home page...](README.md)
  
