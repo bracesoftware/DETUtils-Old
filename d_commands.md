@@ -119,7 +119,7 @@ create role AdminRole(playerid, Player[playerid][Admin] == 1);
 - Now, we have our role - let's use it in our command.
 - To create role commands, you need to use ``role command`` keywords.
 
-```pawn
+```php
 role command clearchat(playerid, params[], AdminRole)
 {
 	for(new i; i < 20; i++)
