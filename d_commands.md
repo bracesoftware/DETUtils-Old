@@ -140,7 +140,7 @@ debug command mycmd()
 ### Notes
 
 ***Backwards compatibility***
-- d_commands also have backwards compatibility, incase you are upgrading from iZCMD/ZCMD, the ``CMD:`` keyword will still work as nothing changed. But, we still recommend creating your future commands using ``command`` and ``alias`` keywords.
+- d_commands also have backwards compatibility, incase you are upgrading from iZCMD/ZCMD, the ``CMD:`` keyword will still work as nothing changed. But, I still recommend creating your future commands using ``command`` and ``alias`` keywords.
 
 ***Compatibility mode***
 - d_commands have compatibility mode! Enable it using:
@@ -166,7 +166,7 @@ DEBUG__COMMAND__ mycmd()
 }
 ```
 ***Making filterscript with d_commands?***
-- Well, we have good news for you, because there is also new filterscript support feature. 
+- Well, I have good news for you, because there is also new filterscript support feature. 
 
 - So, if you're making a filterscript - make sure you use:
 
