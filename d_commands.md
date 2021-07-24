@@ -83,7 +83,7 @@ prefixed command mycmd(playerid, params[], "!")
 }
 ```
 
-Now, whenever player sends ``!test`` to chat, command will be executed (performed).
+Now, whenever player sends ``!mycmd`` to chat, command will be executed (performed).
 
 **INFO**: To use custom-prefixed commands, you also need to use new built-in **/chatmode** command. This built-in command toggles the ability of a player to execute these commands.
 
