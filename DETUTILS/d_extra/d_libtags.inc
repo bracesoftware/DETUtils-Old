@@ -104,6 +104,8 @@ stock utils_GlobalFileName[MAX_PLAYERS][MAX_PLAYER_NAME];
 #define utils_FormatPlayerDatabaseFileName(%0) \
     format(utils_GlobalFileName[%0],MAX_PLAYER_NAME,"%s.ini",ReturnPlayerName(%0))
 
+new const utils_g_Script = 0;
+
 /*
                                                                       
 88888888888                                                           

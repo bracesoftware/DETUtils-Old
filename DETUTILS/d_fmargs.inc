@@ -78,7 +78,7 @@ stock
 (
     p_id,
     color,
-    const utils_message_string[],
+    const utils_StringArgs[],
     {Float,_}:...
 )
 {
@@ -99,7 +99,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_message_string
+        #emit ADDR.pri utils_StringArgs
         #emit STOR.pri start
  
         for
@@ -112,7 +112,7 @@ stock
             #emit LREF.pri end
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_message_string
+        #emit PUSH.S utils_StringArgs
         #emit PUSH.C 144
         #emit PUSH.C utils_unspecified_string
         #emit PUSH.C args
@@ -139,7 +139,7 @@ stock
         (
             p_id,
             color,
-            utils_message_string
+            utils_StringArgs
         )
     ;
 }
@@ -148,7 +148,7 @@ stock
     fmargs_SendClientMessageToAll
 (
     color,
-    const utils_message_string[],
+    const utils_StringArgs[],
     {Float,_}:...
 )
 {
@@ -169,7 +169,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_message_string
+        #emit ADDR.pri utils_StringArgs
         #emit STOR.pri start
  
         for
@@ -182,7 +182,7 @@ stock
             #emit LREF.pri end
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_message_string
+        #emit PUSH.S utils_StringArgs
         #emit PUSH.C 144
         #emit PUSH.C utils_unspecified_string
         #emit PUSH.C args
@@ -203,11 +203,11 @@ stock
     utils_Functionid = 2;
     printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", utils_Functionid);
     #endif
-    return
+    return 
         SendClientMessageToAll
         (
-            color,
-            utils_message_string
+            color, 
+            utils_StringArgs
         )
     ;
 }
@@ -217,7 +217,7 @@ stock
 (
     i,
     
-    const utils_message_string[],
+    const utils_StringArgs[],
     
     duration,
     
@@ -247,7 +247,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_message_string
+        #emit ADDR.pri utils_StringArgs
         
         #emit STOR.pri start
 
@@ -264,7 +264,7 @@ stock
             
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_message_string
+        #emit PUSH.S utils_StringArgs
         
         #emit PUSH.C 144
         
@@ -301,7 +301,7 @@ stock
         (
             i,
             
-            utils_message_string,
+            utils_StringArgs,
             
             duration,
             
@@ -313,7 +313,7 @@ stock
 stock
     fmargs_GameTextForAll
 (
-    const utils_message_string[],
+    const utils_StringArgs[],
     
     duration,
     
@@ -343,7 +343,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_message_string
+        #emit ADDR.pri utils_StringArgs
         
         #emit STOR.pri start
 
@@ -360,7 +360,7 @@ stock
             
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_message_string
+        #emit PUSH.S utils_StringArgs
         
         #emit PUSH.C 144
         
@@ -393,7 +393,7 @@ stock
     return
         GameTextForAll
         (
-            utils_message_string,
+            utils_StringArgs,
             
             duration,
             
@@ -407,7 +407,7 @@ stock
 (
     Float:x,
     Float:y,
-    const utils_message_string[],
+    const utils_StringArgs[],
     {Float,_}:...
 )
 {
@@ -428,7 +428,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_message_string
+        #emit ADDR.pri utils_StringArgs
         #emit STOR.pri start
  
         for
@@ -441,7 +441,7 @@ stock
             #emit LREF.pri end
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_message_string
+        #emit PUSH.S utils_StringArgs
         #emit PUSH.C 144
         #emit PUSH.C utils_unspecified_string
         #emit PUSH.C args
@@ -468,7 +468,7 @@ stock
         (
             x,
             y,
-            utils_message_string
+            utils_StringArgs
         )
     ;
 }
@@ -479,7 +479,7 @@ stock
     i,
     Float:x,
     Float:y,
-    const utils_message_string[],
+    const utils_StringArgs[],
     {Float,_}:...
 )
 {
@@ -500,7 +500,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_message_string
+        #emit ADDR.pri utils_StringArgs
         #emit STOR.pri start
  
         for
@@ -513,7 +513,7 @@ stock
             #emit LREF.pri end
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_message_string
+        #emit PUSH.S utils_StringArgs
         #emit PUSH.C 144
         #emit PUSH.C utils_unspecified_string
         #emit PUSH.C args
@@ -542,7 +542,7 @@ stock
             i,
             x,
             y,
-            utils_message_string
+            utils_StringArgs
         )
     ;
 }
@@ -551,7 +551,7 @@ stock
     fmargs_TextDrawSetString
 (
     Text:id,
-    const utils_message_string[],
+    const utils_StringArgs[],
     {Float,_}:...
 )
 {
@@ -572,7 +572,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_message_string
+        #emit ADDR.pri utils_StringArgs
         #emit STOR.pri start
 
         for
@@ -585,7 +585,7 @@ stock
             #emit LREF.pri end
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_message_string
+        #emit PUSH.S utils_StringArgs
         #emit PUSH.C 144
         #emit PUSH.C utils_unspecified_string
         #emit PUSH.C args
@@ -610,7 +610,7 @@ stock
         TextDrawSetString
         (
             id,
-            utils_message_string
+            utils_StringArgs
         )
     ;
 }
@@ -620,7 +620,7 @@ stock
 (
     i,
     Text:id,
-    const utils_message_string[],
+    const utils_StringArgs[],
     {Float,_}:...
 )
 {
@@ -641,7 +641,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_message_string
+        #emit ADDR.pri utils_StringArgs
         #emit STOR.pri start
 
         for
@@ -654,7 +654,7 @@ stock
             #emit LREF.pri end
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_message_string
+        #emit PUSH.S utils_StringArgs
         #emit PUSH.C 144
         #emit PUSH.C utils_unspecified_string
         #emit PUSH.C args
@@ -679,7 +679,7 @@ stock
         PlayerTextDrawSetString
         (
             i,id,
-            utils_message_string
+            utils_StringArgs
         )
     ;
 }
@@ -825,7 +825,7 @@ forward a_fmargs_OnfsInit();
 stock
     fmargs_SendRconCommand
 (
-    const utils_message_string[],
+    const utils_StringArgs[],
     
     {Float,_}:...
 )
@@ -851,7 +851,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_message_string
+        #emit ADDR.pri utils_StringArgs
         
         #emit STOR.pri start
 
@@ -868,7 +868,7 @@ stock
             
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_message_string
+        #emit PUSH.S utils_StringArgs
         
         #emit PUSH.C 144
         
@@ -897,7 +897,7 @@ stock
     return
         SendRconCommand
         (
-            utils_message_string
+            utils_StringArgs
         )
     ;
 }

@@ -170,6 +170,8 @@ stock CallLocalCommand(const command[], const specifiers[], integner, const stri
         ;
 }
 
+static utils_g_ChatMode[MAX_PLAYERS];
+
 stock CallRemoteCommand(const command[], const specifiers[], integner, const string[])
 {
     new command_name[MAX_FUNC_NAME];
@@ -266,6 +268,16 @@ main()
 
 #else
 
+public OnPlayerDisconnect(playerid, reason)
+{
+    utils_ClearChatModeData(playerid);
+    if(funcidx("a_cmd_OnPlayerDisconnect") != -1)
+    {
+        CallLocalFunction("a_cmd_OnPlayerDisconnect", "ii", playerid, reason);
+    }
+    return 1;
+}
+
 public OnFilterScriptInit()
 {
     #if defined detutils_debug
@@ -300,8 +312,8 @@ public OnPlayerCommandText(playerid, cmdtext[])
     }
     new
         position,
-        function_name[MAX_FUNC_NAME],
-        function_debug[MAX_FUNC_NAME];
+        utils_ClassicFunctionName[MAX_FUNC_NAME],
+        utils_CommandDebugFunc[MAX_FUNC_NAME];
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - opct :: Successfully declared variables.");
@@ -309,25 +321,25 @@ public OnPlayerCommandText(playerid, cmdtext[])
 
     while (cmdtext[++position] > ' ')
     {
-        function_name[position-1] = tolower(cmdtext[position]);
+        utils_ClassicFunctionName[position-1] = tolower(cmdtext[position]);
     }
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - opct :: cmdtext[] validated.");
     #endif
-    format(function_debug, sizeof(function_debug), "%s@dbg", function_name);
-    format(function_name, sizeof(function_name), "%s@cmd", function_name);
+    format(utils_CommandDebugFunc, sizeof(utils_CommandDebugFunc), "%s@dbg", utils_ClassicFunctionName);
+    format(utils_ClassicFunctionName, sizeof(utils_ClassicFunctionName), "%s@cmd", utils_ClassicFunctionName);
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - opct :: Formatted function strings successfully.");
     #endif
 
-    if(funcidx(function_debug) != -1)
+    if(funcidx(utils_CommandDebugFunc) != -1)
     {
-        CallLocalFunction(function_debug, "s", cmdtext);
+        CallLocalFunction(utils_CommandDebugFunc, "s", cmdtext);
     }
 
     #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - opct :: Called custom debug function : %s.", function_debug);
+    printf("[samp-detutils]: (debug) - opct :: Called custom debug function : %s.", utils_CommandDebugFunc);
     #endif
 
     while (cmdtext[position] == ' ') position++;
@@ -345,12 +357,12 @@ public OnPlayerCommandText(playerid, cmdtext[])
                     "isi", 
                     playerid, 
                     cmdtext, 
-                    CallLocalFunction(function_name, "is", playerid, "\1"));
+                    CallLocalFunction(utils_ClassicFunctionName, "is", playerid, "\1"));
         }
         #if defined detutils_debug
         printf("[samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 2");
         #endif
-        return CallLocalFunction(function_name, "is", playerid, "\1");      
+        return CallLocalFunction(utils_ClassicFunctionName, "is", playerid, "\1");      
     }
     if (utils_IsOnCmdPValid)
     {
@@ -361,7 +373,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
                 "isi", 
                 playerid, 
                 cmdtext, 
-                CallLocalFunction(function_name, "is", playerid, cmdtext[position]));
+                CallLocalFunction(utils_ClassicFunctionName, "is", playerid, cmdtext[position]));
     }
 
     if (funcidx("a_OnPlayerCommandText") != -1)
@@ -374,7 +386,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
             playerid, 
             cmdtext);
     }
-    return CallLocalFunction(function_name, "is", playerid, cmdtext[position]);
+    return CallLocalFunction(utils_ClassicFunctionName, "is", playerid, cmdtext[position]);
 }
 
 /*
@@ -432,5 +444,264 @@ forward a_cmd_processor_OnGameModeInit();
 #define OnFilterScriptInit a_cmd_OnFilterScriptInit
 
 forward a_cmd_OnFilterScriptInit();
+
+#endif
+
+forward OnPrefixedCommandReceived(playerid, cmdtext[]);
+
+forward OnPrefixedCommandPerformed(playerid, cmdtext[], success);
+
+stock strgetfc(const string[]) 
+{
+    return ((string)[0] > 255) ? string{0} : string[0];
+}
+
+public OnPlayerText(playerid, text[])
+{
+    if(utils_g_Script == 1)
+    {
+        #if defined a_cmds_opthook
+
+        if(funcidx("a_cmd_OnPlayerText") != -1)
+        {
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned its hook call.");
+            #endif
+            CallLocalFunction("a_cmd_OnPlayerText", "is", playerid, text);
+        }
+
+        #endif
+
+        if (utils_IsOnCmdRValid && !CallLocalFunction("OnPrefixedCommandReceived", 
+            "is", 
+            playerid, 
+            text))
+        {
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned 1.");
+            #endif
+            return 1;
+        }
+
+        new
+            position,
+            utils_Prefix[MAX_FUNC_NAME],
+            utils_FunctionName[MAX_FUNC_NAME];
+
+        #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared variables!");
+        #endif
+
+        while(text[++position] > ' ')
+        {
+            utils_FunctionName[position-1] = tolower(text[position]);
+        }
+
+        #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) validated text[] and position;.");
+            #endif
+
+        format(utils_Prefix, sizeof(utils_Prefix),
+            "%s@prx", utils_FunctionName);
+
+        strdel(utils_Prefix, 0, 1);
+
+        #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) generated cmd_prx funcname.");
+            #endif
+
+        format(utils_FunctionName, sizeof(utils_FunctionName), 
+            "pc@%s", text);
+        
+        strdel(utils_FunctionName, 3, 4);
+
+        #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) generated cmd funcname.");
+            #endif
+
+        while(text[position] == ' ')
+        {
+            position++;
+        }
+
+        #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) position ++");
+            #endif
+
+        if(!text[position])
+        {
+            if(utils_IsOnCmdPValid)
+            {
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 0");
+                #endif
+                return CallLocalFunction("OnPrefixedCommandPerformed", 
+                            "isi", playerid, text, 
+                            CallLocalFunction(utils_FunctionName, "is", playerid, "\1"));
+            }
+            #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 1");
+                #endif
+            return CallLocalFunction(utils_FunctionName, "is", playerid, "\1");
+        }
+        if(utils_IsOnCmdPValid)
+        {
+            #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 2");
+                #endif
+            return CallLocalFunction("OnPrefixedCommandPerformed", 
+                    "isi", playerid, text, 
+                    CallLocalFunction(utils_FunctionName, "is", playerid, text[position]));
+        }
+        #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 3");
+                #endif
+        return CallLocalFunction(utils_FunctionName, "is", playerid, text[position]);
+    
+    }
+
+    if(utils_g_ChatMode[playerid] == 1)
+    {
+        if (utils_IsOnCmdRValid && !CallLocalFunction("OnPrefixedCommandReceived", 
+            "is", 
+            playerid, 
+            text))
+        {
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned 1.");
+            #endif
+            return 1;
+        }
+
+        static 
+            utils_FunctionName[MAX_FUNC_NAME],
+            utils_PrefixFuncName[MAX_FUNC_NAME];
+
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared variables!");
+        #endif
+
+        format(utils_PrefixFuncName, sizeof(utils_PrefixFuncName),
+            "%s_prx", text);
+
+        format(utils_FunctionName, sizeof(utils_FunctionName),
+            "pc_%s", text);
+
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) string formattion finished.");
+        #endif
+
+        strdel(utils_PrefixFuncName, 0, 1);
+
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) called strdel func.");
+        #endif
+
+        new utils_ActPrefix[MAX_FUNC_NAME];
+
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared active_prefix variable!");
+        #endif
+
+        format(utils_ActPrefix, sizeof(utils_ActPrefix), "%s", CallLocalFunction(utils_PrefixFuncName, ""));
+
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) formatted active prefix var.");
+        #endif
+
+        if(!strcmp(utils_ActPrefix, text[0]))
+        {
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) performed if-pattern check.");
+            #endif
+            strdel(utils_FunctionName, 3, 4);
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) called strdel func. ID: 1");
+            #endif
+            if(utils_IsOnCmdPValid)
+            {
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 0");
+                #endif
+                CallLocalFunction("OnPrefixedCommandPerformed", 
+                    "isi", playerid, text, 
+                    CallLocalFunction(utils_FunctionName, "is", playerid, text));
+                return 0;
+            }
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 1");
+            #endif
+            CallLocalFunction(utils_FunctionName, "is", playerid, text);
+            return 0;
+        }
+    }
+    if(utils_g_ChatMode[playerid] == 0)
+    {
+        if(funcidx("a_cmd_OnPlayerText") != -1)
+        {
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned its hook call.");
+            #endif
+            CallLocalFunction("a_cmd_OnPlayerText", "is", playerid, text);
+        }
+    }
+    return 1;
+}
+
+#if defined _ALS_OnPlayerText
+    #undef OnPlayerText
+#else
+    #define _ALS_OnPlayerText
+#endif
+
+#define OnPlayerText a_cmd_OnPlayerText
+
+forward a_cmd_OnPlayerText(playerid, text[]);
+
+command chatmode(playerid, params[])
+{
+    if(utils_g_ChatMode[playerid] == 0)
+    {
+        SendClientMessage(playerid, -1, "SERVER: Chat mode switched to custom-prefixed commands mode.");
+        utils_g_ChatMode[playerid] = 1;
+        return 1;
+    }
+    else if(utils_g_ChatMode[playerid] == 1)
+    {
+        SendClientMessage(playerid, -1, "SERVER: Chat mode switched to plain-text messages mode.");
+        utils_g_ChatMode[playerid] = 0;
+        return 1;
+    }
+    return 0;
+}
+
+static stock utils_ClearChatModeData(playerid)
+{
+    return utils_g_ChatMode[playerid] = 0;
+}
+
+#if defined _ALS_OnPlayerDisconnect
+    #undef OnPlayerDisconnect
+#else
+    #define _ALS_OnPlayerDisconnect
+#endif
+
+#define OnPlayerDisconnect a_cmd_OnPlayerDisconnect
+
+forward a_cmd_OnPlayerDisconnect(playerid, reason);
+
+#if !defined A_CMDS_COMPATIBILITY_MODE
+
+#define pc_%0\32; pc_
+
+#define prefixed%2command%0(%1,%3) \
+    stock%0_prx(){new p[1];format(p,sizeof(p),%3);return p;}forward pc_%0(%1);public pc_%0(%1)
+
+#else
+
+#define pc@%0\32; pc@
+
+#define PREFIXED__COMMAND__%0(%1,%3) \
+    stock%0_prx(){new p[1];format(p,sizeof(p),%3);return p;}forward pc_%0(%1);public pc_%0(%1)
 
 #endif
