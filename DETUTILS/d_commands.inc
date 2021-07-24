@@ -106,6 +106,13 @@ Optional plugins:
     forward%0@cmd(%1,%2[]);%3public%0@cmd(%1,%2[]){if(!IsPlayerAdmin(%1)) return 0; return %0@cmd_func(%1,%2)%4;%5} \
     forward%0@cmd_func(%1,%2[]);public%0@cmd_func(%1,%2[]%5)
 
+#define role%5command%0(%1,%2[%3]%4,%6) \
+    forward%0@cmd(%1,%2[]);%3public%0@cmd(%1,%2[]){if( !%6@role(%1) ) return 0; return %0@cmd_func(%1,%2)%4;%5} \
+    forward%0@cmd_func(%1,%2[]);public%0@cmd_func(%1,%2[]%5)
+
+#define create%0role%1(%2,%3); \
+    stock bool:%1@role(%2) { if(!(%3)) return false; else return true; }
+
 #else
 
 #define COMMAND__%0(%1) \
