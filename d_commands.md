@@ -89,6 +89,51 @@ Now, whenever player sends ``!mycmd`` to chat, command will be executed (perform
 
 **WARNING**: This type of commands cannot be debugged using ``debug command``.
 
+### Commands with custom permissions
+
+*d_commands* also allows you to create commands that require certain permissions / conditions to be executed. This is really nice feature if you're making administrator system, V.I.P. system or anything else that has to do with the user system.
+
+- Let's see how to create **roles**. To create role you need to use ``create role`` keywords.
+
+- Let's declare some variables:
+
+```pawn
+enum Enums
+{
+  Money,
+  Bank,
+  Deaths,
+  Kills,
+	Admin
+}
+
+new Player[MAX_PLAYERS][Enums];
+```
+
+- Now, let's create a role.
+
+```pawn
+create role AdminRole(playerid, Player[playerid][Admin] == 1);
+```
+
+- Now, we have our role - let's use it in our command.
+- To create role commands, you need to use ``role command`` keywords.
+
+```pawn
+role command clearchat(playerid, params[], AdminRole)
+{
+	for(new i; i < 20; i++)
+		SendClientMessage(playerid, -1, "");
+
+	SendClientMessage(playerid, -1, "You cleared the chat.");
+	return 1;
+}
+```
+
+Now, we created a command which requires ``AdminRole`` role to be executed - performed.
+
+**NOTE**: If role command's conditions are not met, command will return ``0`` (false) and will send client message saying: **"SERVER: Unknown command."**
+
 ## API ( programming interface )
 
 ### Functions
