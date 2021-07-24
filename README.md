@@ -6,6 +6,8 @@ Hi! Welcome to *SA:MP-DET Utilities* "read me" file. In general, *samp-detutils*
 
 - [View](d_example.md) one simple example of script made using **SA:MP-DET Utilities**.
 
+## Warnings
+1. Do not use *d_data.inc*, it's pretty useless and will enable developer mode after including. **d_data** was supposed to be user system, but I said "no" to myself and put some random things. 
 ## Docs
 Click on blue text to see all information about each feature.
 ### Installation
