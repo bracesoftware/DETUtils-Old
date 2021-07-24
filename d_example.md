@@ -25,6 +25,13 @@ public OnPlayerSpawn(playerid)
     return 1;
 }
 
+enum Enums
+{
+	Admin
+}
+
+new Player[MAX_PLAYERS][Enums];
+
 command sayhi(playerid,params[])
 {
     SendClientMessage(playerid, -1, "Hi %s", ReturnPlayerName(playerid));
@@ -69,6 +76,24 @@ prefixed command hi(playerid, params[], "#")
 	return 1;
 }
 
+create role AdminRole(playerid, Player[playerid][Admin] == 1);
+
+command makeadmin(playerid, params[])
+{
+	SendClientMessage(playerid, -1, "You're now an administrator.");
+	Player[playerid][Admin] = 1;
+	return 1;
+}
+
+role command clearchat(playerid, params[], AdminRole)
+{
+	for(new i; i < 20; i++)
+		SendClientMessage(playerid, -1, "");
+
+	SendClientMessage(playerid, -1, "You cleared the chat.");
+	return 1;
+}
+
 public OnGameModeInit()
 {
     DisableDefaultInteriors();
@@ -97,4 +122,5 @@ interior Bank(playerid)
     }
     return 1;
 }
+
 ```
