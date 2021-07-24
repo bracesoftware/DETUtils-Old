@@ -68,6 +68,27 @@ admin command admincheck(playerid,params[])
 
 **INFO**: If player is not logged in as RCON administrator, function will return *false* (0) and send client message saying: **"SERVER: Unknown command."**
 
+### Commands with custom prefix
+
+*d_commands* also arrive with brand new system with custom-prefixed commands.
+Create commands like those using two keywords and one extra parameter - fast and easy.
+
+- Let's see how to do it:
+
+```pawn
+prefixed command mycmd(playerid, params[], "!")
+{
+  SendClientMessage(playerid, -1, "This worked, %s.", ReturnPlayerName(playerid));
+  return 1;
+}
+```
+
+Now, whenever player sends ``!test`` to chat, command will be executed (performed).
+
+**INFO**: To use custom-prefixed commands, you also need to use new built-in **/chatmode** command. This built-in command toggles the ability of a player to execute these commands.
+
+**WARNING**: This type of commands cannot be debugged using ``debug command``.
+
 ## API ( programming interface )
 
 ### Functions
