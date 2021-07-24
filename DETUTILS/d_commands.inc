@@ -282,16 +282,6 @@ main()
 
 #else
 
-public OnPlayerDisconnect(playerid, reason)
-{
-    utils_ClearChatModeData(playerid);
-    if(funcidx("a_cmd_OnPlayerDisconnect") != -1)
-    {
-        CallLocalFunction("a_cmd_OnPlayerDisconnect", "ii", playerid, reason);
-    }
-    return 1;
-}
-
 public OnFilterScriptInit()
 {
     #if defined detutils_debug
@@ -311,6 +301,16 @@ public OnFilterScriptInit()
 }
 
 #endif
+
+public OnPlayerDisconnect(playerid, reason)
+{
+    utils_ClearChatModeData(playerid);
+    if(funcidx("a_cmd_OnPlayerDisconnect") != -1)
+    {
+        CallLocalFunction("a_cmd_OnPlayerDisconnect", "ii", playerid, reason);
+    }
+    return 1;
+}
  
 public OnPlayerCommandText(playerid, cmdtext[])
 {
