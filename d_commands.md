@@ -11,7 +11,7 @@ To declare a command, you need to use ``command`` keyword.
 
 Let's see how it works:
 
-```pawn
+```php
 
 command mycommand(playerid, params[])
 {
