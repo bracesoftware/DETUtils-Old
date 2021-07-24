@@ -33,6 +33,12 @@ command sayhi(playerid,params[])
 
 alias command hi(playerid,params[]) = sayhi;
 
+admin command ac(playerid,params[])
+{
+	SendClientMessage(playerid, -1, "You're admin.");
+	return 1;
+}
+
 debug command sayhi()
 {
 	print("Command /sayhi worked.");
@@ -42,6 +48,24 @@ debug command sayhi()
 debug command hi()
 {
 	print("Alias command /hi also worked.");
+	return 1;
+}
+
+prefixed command test(playerid, params[], "&")
+{
+	SendClientMessage(playerid, -1, "Amazing %s, this custom-prefixed command worked.", ReturnPlayerName(playerid));
+	return 1;
+}
+
+prefixed command dear(playerid, params[], "@")
+{
+	SendClientMessage(playerid, -1, "%s said hi.", ReturnPlayerName(playerid));
+	return 1;
+}
+
+prefixed command hi(playerid, params[], "#")
+{
+	SendClientMessage(playerid, -1, "Hi man");
 	return 1;
 }
 
