@@ -26,3 +26,17 @@ if(IsPlayerUsingAndroidClient(playerid)) return Ban(playerid);
 ```
 
 **NOTE**: Android SA-MP client is not legal at the moment, so I recommend banning its users.
+
+#### ``public`` OnPlayerClientCheckReceived
+
+- Called when client check is started.
+
+- Example:
+
+```php
+public OnPlayerClientCheckReceived(playerid)
+{
+  printf("Successfully performed client check on player id %i.", playerid);
+  return 1;
+}
+```
