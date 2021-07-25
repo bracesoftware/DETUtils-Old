@@ -234,6 +234,42 @@ debug command mycmd ()
 
 - Simply, *CallRemoteCommand* works same as *CallLocalCommand* (it has same parameters etc.) - but the command can be called from anywhere. Even, from another file.
 
+**Command processing**
+
+A simple script:
+
+```pawn
+public OnPrefixedCommandReceived(playerid, cmdtext[])
+{
+    SendClientMessage(playerid, -1, "%s, your command was received. (%s)", ReturnPlayerName(playerid), cmdtext);
+    return 1;
+}
+
+public OnPrefixedCommandPerformed(playerid, cmdtext[], success)
+{
+    if(!success)
+    {
+        SendClientMessage(playerid, -1, "Command %s doesn't exist.", cmdtext);
+    }
+    return 1;
+}
+
+public OnPlayerCommandReceived(playerid, cmdtext[])
+{
+    SendClientMessage(playerid, -1, "%s, your command was received. (%s)", ReturnPlayerName(playerid), cmdtext);
+    return 1;
+}
+
+public OnPlayerCommandPerformed(playerid, cmdtext[], success)
+{
+    if(!success)
+    {
+        SendClientMessage(playerid, -1, "Command %s doesn't exist.", cmdtext);
+    }
+    return 1;
+}
+```
+
 ## Messages from creator
 
 ### Warnings
