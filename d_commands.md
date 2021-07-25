@@ -239,33 +239,41 @@ debug command mycmd ()
 A simple script:
 
 ```pawn
+// When player enters prefixed command:
 public OnPrefixedCommandReceived(playerid, cmdtext[])
 {
     SendClientMessage(playerid, -1, "%s, your command was received. (%s)", ReturnPlayerName(playerid), cmdtext);
     return 1;
 }
 
+// When command text goes trough processor
 public OnPrefixedCommandPerformed(playerid, cmdtext[], success)
 {
+	// If command doesn't exist:
     if(!success)
     {
         SendClientMessage(playerid, -1, "Command %s doesn't exist.", cmdtext);
     }
+    // Else just return 1.
     return 1;
 }
 
+// When player submits a regular command:
 public OnPlayerCommandReceived(playerid, cmdtext[])
 {
     SendClientMessage(playerid, -1, "%s, your command was received. (%s)", ReturnPlayerName(playerid), cmdtext);
     return 1;
 }
 
+// When command goes trough processor:
 public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 {
+	// If command does not exist:
     if(!success)
     {
         SendClientMessage(playerid, -1, "Command %s doesn't exist.", cmdtext);
     }
+    // else return 1
     return 1;
 }
 ```
