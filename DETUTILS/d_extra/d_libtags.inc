@@ -106,6 +106,56 @@ stock utils_GlobalFileName[MAX_PLAYERS][MAX_PLAYER_NAME];
 
 new const utils_g_Script = 0;
 
+static utils_g_Client[MAX_PLAYERS];
+
+public OnPlayerConnect(playerid)
+{
+    utils_g_Client[playerid] = 0;
+    SendClientCheck(playerid, 0x48, 0, 0, 2);
+    return 1;
+}
+
+public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
+{
+    if(actionid == 0x48)
+    {
+        utils_g_Client[playerid] = 1;
+    }
+    return 1;
+}
+
+#if defined _ALS_OnPlayerConnect
+    #undef OnPlayerConnect
+#else
+    #define _ALS_OnPlayerConnect
+#endif
+
+#define OnPlayerConnect a_lib_OnPlayerConnect
+
+forward a_lib_OnPlayerConnect(playerid);
+
+#if defined _ALS_OnClientCheckResponse
+    #undef OnClientCheckResponse
+#else
+    #define _ALS_OnClientCheckResponse
+#endif
+
+#define OnClientCheckResponse a_lib_OnClientCheckResponse
+
+forward a_lib_OnClientCheckResponse(playerid);
+
+stock bool:IsPlayerUsingPCClient(playerid)
+{
+    if(utils_g_Client == 1) return true;
+    return false;
+}
+
+stock bool:IsPlayerUsingAndroidClient(playerid)
+{
+    if(utils_g_Client == 0) return true;
+    return false;
+}
+
 /*
                                                                       
 88888888888                                                           
