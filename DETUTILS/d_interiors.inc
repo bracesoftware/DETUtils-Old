@@ -124,6 +124,8 @@ new utils_EntranceTitleShown[MAX_PLAYERS];
 
 */
 
+#define int_%0\32; int_
+
 #define detutils_interiors_TRUE 1
 #define detutils_interiors_FALSE 0
 
@@ -279,7 +281,7 @@ public utils_OnPlayerNearEntrance(playerid)
         {
             utils_InteriorActionid = 0;
             format(utils_InteriorFunctionName,sizeof(utils_InteriorFunctionName),
-                "%s@int",utils_InteriorData[ i ][e_utils_INTERIOR_NAME]);
+                "int_%s",utils_InteriorData[ i ][e_utils_INTERIOR_NAME]);
 
             if(funcidx(utils_InteriorFunctionName) != -1) CallLocalFunction(utils_InteriorFunctionName,
                                                                 "ii",playerid,utils_InteriorActionid);
@@ -323,7 +325,7 @@ public utils_OnPlayerNearEntrance(playerid)
 
             utils_InteriorActionid = 1;
             format(utils_InteriorFunctionName,sizeof(utils_InteriorFunctionName),
-                "%s@int",utils_InteriorData[ i ][e_utils_INTERIOR_NAME]);
+                "int_%s",utils_InteriorData[ i ][e_utils_INTERIOR_NAME]);
 
             if(funcidx(utils_InteriorFunctionName) != -1) CallLocalFunction(utils_InteriorFunctionName,"ii",playerid,utils_InteriorActionid);
 
@@ -754,14 +756,14 @@ stock SetInteriorEntranceCustomAngles(
 #if !defined A_INTS_COMPATIBILITY_MODE
 
 #define interior%0(%1) \
-    forward%0@int(%1,utils_Actionid); \
-    public%0@int(%1,utils_Actionid)
+    forward int_%0(%1,utils_Actionid); \
+    public int_%0(%1,utils_Actionid)
 
 #else
 
 #define INTERIOR__%0(%1) \
-    forward%0@int(%1,utils_Actionid); \
-    public%0@int(%1,utils_Actionid)
+    forward int_%0(%1,utils_Actionid); \
+    public int_%0(%1,utils_Actionid)
 
 #endif
 
