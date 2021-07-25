@@ -779,7 +779,7 @@ stock SetPlayerCustomInterior(utils_p_Playerid, putils_Interiorid)
 }
 
 #define IsInteriorActionPerformed(%0) \
-    utils_Actionid == %0
+    (utils_Actionid == %0)
 
 static AnnounceLibraryLoaded_int()
 {
