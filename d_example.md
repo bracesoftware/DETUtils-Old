@@ -32,60 +32,60 @@ enum Enums
 
 new Player[MAX_PLAYERS][Enums];
 
-command sayhi(playerid,params[])
+command sayhi (playerid,params[])
 {
     SendClientMessage(playerid, -1, "Hi %s", ReturnPlayerName(playerid));
     return 1;
 }
 
-alias command hi(playerid,params[]) = sayhi;
+alias command hi (playerid,params[]) = sayhi;
 
-admin command ac(playerid,params[])
+admin command ac (playerid,params[])
 {
 	SendClientMessage(playerid, -1, "You're admin.");
 	return 1;
 }
 
-debug command sayhi()
+debug command sayhi ()
 {
 	print("Command /sayhi worked.");
 	return 1;
 }
 
-debug command hi()
+debug command hi ()
 {
 	print("Alias command /hi also worked.");
 	return 1;
 }
 
-prefixed command test(playerid, params[], "&")
+prefixed command test (playerid, params[], "&")
 {
 	SendClientMessage(playerid, -1, "Amazing %s, this custom-prefixed command worked.", ReturnPlayerName(playerid));
 	return 1;
 }
 
-prefixed command dear(playerid, params[], "@")
+prefixed command dear (playerid, params[], "@")
 {
 	SendClientMessage(playerid, -1, "%s said hi.", ReturnPlayerName(playerid));
 	return 1;
 }
 
-prefixed command hi(playerid, params[], "#")
+prefixed command hi (playerid, params[], "#")
 {
 	SendClientMessage(playerid, -1, "Hi man");
 	return 1;
 }
 
-create role AdminRole(playerid, Player[playerid][Admin] == 1);
+create role AdminRole (playerid, Player[playerid][Admin] == 1);
 
-command makeadmin(playerid, params[])
+command makeadmin (playerid, params[])
 {
 	SendClientMessage(playerid, -1, "You're now an administrator.");
 	Player[playerid][Admin] = 1;
 	return 1;
 }
 
-role command clearchat(playerid, params[], AdminRole)
+role command clearchat (playerid, params[], AdminRole)
 {
 	for(new i; i < 20; i++)
 		SendClientMessage(playerid, -1, "");
@@ -103,12 +103,19 @@ public OnGameModeInit()
 
 public OnPlayerConnect(playerid)
 {
+    if(!IsPlayerUsingAndroidClient(playerid)) return SendClientMessage(playerid, -1, "You're using a computer to play SA:MP, great!");
     SetSpawnInfo(playerid, 0, 0, 811.1299,-1616.0647,13.5469, 0, 0,0,0,0,0,0);
     SpawnPlayer(playerid);
     return 1;
 }
 
-interior Bank(playerid)
+public OnPlayerClientCheckReceived(playerid)
+{
+    printf("Successfully performed client check on player id %i.", playerid);
+    return 1;
+}
+
+interior Bank (playerid)
 {
     if(IsInteriorActionPerformed(INTERIOR_ACTION_ENTER))
     {
@@ -122,5 +129,4 @@ interior Bank(playerid)
     }
     return 1;
 }
-
 ```
