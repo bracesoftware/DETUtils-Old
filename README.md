@@ -11,12 +11,15 @@ Hi! Welcome to *SA:MP-DET Utilities* "read me" file. In general, *samp-detutils*
 ## Docs
 Click on blue text to see all information about each feature.
 ### Installation
+------------------------------------------
 - Learn more about [installation](d_installation.md)...
 ### Libraries
+------------------------------------------
 - Learn more: [d_commands.inc](d_commands.md)
 - Learn more: [d_interiors.inc](d_interiors.md)
 - Learn more: [d_fmargs.inc](d_fmargs.md)
 ### Extra bonus
+------------------------------------------
 - Read more here: [Extra stuff](d_extra.md)
 ## Tests
 To make sure everything works, we do tests and upload here - obviously.
@@ -44,9 +47,9 @@ To join Discord server, [click here...](https://discord.gg/samp)
 - Big thanks to *open.mp* community for helping me during library development.
 
 ### SA:MP DEntisT's Utilities
-
+------------------------------------------
 Legal:
-
+------------------------------------------
 - Version: MPL 1.1
     
     The contents of this file are subject to the Mozilla Public License Version 
@@ -66,14 +69,15 @@ Legal:
     the Initial Developer. All Rights Reserved.
 
 Contributors:
-
+------------------------------------------
 - DEntisT
 
 Thanks:
+------------------------------------------
 - open.mp team - ideas, support, help during development
 
 Very special thanks to:
-
+------------------------------------------
 - Thiadmer - PAWN, whose limits continue to amaze me!
 
 - Kye/Kalcor - SA:MP
@@ -83,5 +87,5 @@ Very special thanks to:
 - open.mp team present and future - SA:MP
 
 Optional plugins:
-
+------------------------------------------
 - Incognito - streamer
