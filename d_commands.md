@@ -207,6 +207,28 @@ debug command mycmd()
   return 1;
 }
 ```
+**NOTE**: This function can be only used in command ``debug`` function.
+
+**GetCommandDebugState**
+
+- Usage of this function is really simple. It gets the command's debug state.
+
+Parameters: noone
+
+```php
+debug command mycmd ()
+{
+    if(GetCommandDebugState() == COMMAND_DEBUG_STATE_RECEIVED)
+    {
+        printf("Command %s received.", GetDebuggedCommandName());
+        return 1;
+    }
+    return 0;
+}
+```
+- So, when command processor receives command and command's parameters, console will print out message saying: **"Command /mycmd received."**.
+
+**NOTE**: This function can be only used in command ``debug`` function.
 
 **CallRemoteCommand**
 
