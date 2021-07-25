@@ -108,6 +108,10 @@ new const utils_g_Script = 0;
 
 static utils_g_Client[MAX_PLAYERS];
 
+#if !defined SendClientCheck
+    native SendClientCheck(playerid, type, memAddr, memOffset, byteCount);
+#endif
+
 public OnPlayerConnect(playerid)
 {
     utils_g_Client[playerid] = 0;
@@ -115,11 +119,17 @@ public OnPlayerConnect(playerid)
     return 1;
 }
 
+forward OnClientCheckResponse(playerid, actionid, memaddr, retndata);
+
 public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
 {
     if(actionid == 0x48)
     {
         utils_g_Client[playerid] = 1;
+    }
+    if(funcidx("a_lib_OnClientCheckResponse") != -1)
+    {
+        CallLocalFunction("a_lib_OnClientCheckResponse", "iiii", playerid, actionid, memaddr, retndata);
     }
     return 1;
 }
@@ -142,17 +152,17 @@ forward a_lib_OnPlayerConnect(playerid);
 
 #define OnClientCheckResponse a_lib_OnClientCheckResponse
 
-forward a_lib_OnClientCheckResponse(playerid);
+forward a_lib_OnClientCheckResponse(playerid, actionid, memaddr, retndata);
 
 stock bool:IsPlayerUsingPCClient(playerid)
 {
-    if(utils_g_Client == 1) return true;
+    if(utils_g_Client[playerid] == 1) return true;
     return false;
 }
 
 stock bool:IsPlayerUsingAndroidClient(playerid)
 {
-    if(utils_g_Client == 0) return true;
+    if(utils_g_Client[playerid] == 0) return true;
     return false;
 }
 
