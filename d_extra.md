@@ -1,5 +1,8 @@
 # Extra stuff
 - After including any of DET Utils includes, those includes also import some extra stuff to your code as well. That *extra* stuff can be anything, functions, callbacks and more.
+
+[Go back to home page...](README.md)
+
 ## Handy features
 - Read information about each feature below.
 ### API ( programming interface )
