@@ -1,6 +1,7 @@
 # Extra stuff
 - After including any of DET Utils includes, those includes also import some extra stuff to your code as well. That *extra* stuff can be anything, functions, callbacks and more.
-## Handa features
+## Handy features
+- Read information about each feature below.
 ### API ( programming interface )
 #### IsPlayerUsingPCClient
 - This function checks if is player using PC to play SA:MP.
