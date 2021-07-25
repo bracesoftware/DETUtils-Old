@@ -16,7 +16,8 @@ Click on blue text to see all information about each feature.
 - Learn more: [d_commands.inc](d_commands.md)
 - Learn more: [d_interiors.inc](d_interiors.md)
 - Learn more: [d_fmargs.inc](d_fmargs.md)
-
+### Extra bonus
+- Read more here: [Extra stuff](d_extra.md)
 ## Tests
 To make sure everything works, we do tests and upload here - obviously.
 
