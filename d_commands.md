@@ -238,7 +238,8 @@ debug command mycmd ()
 
 ### Warnings
 
-1. Make sure that whenever you create commands using the ``command`` keyword, the command name does not contain capital letters. Otherwise, unfortunately - server will recognize the command as unknown.
+1. Make sure that whenever you create commands using the ``command`` keyword, the command name does not contain capital letters. Otherwise, unfortunately - server will recognize the command as unknown. But - this does not need to make you sad because this type of commands are not case-sensitive.
+2. Custom-prefixed commands are case-sensitive. Also, command names can contain capital letters.
 
 ### Notes
 
