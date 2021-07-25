@@ -96,7 +96,7 @@ Optional plugins:
 #define forward_ forward
 
 #define debug%1command%0() \
-    forward dbg_%0(debugged_cmdtext[]);%1public dbg_%0(debugged_cmdtext[])
+    forward dbg_%0(debugged_cmdtext[], debugged_stateid);%1public dbg_%0(debugged_cmdtext[], debugged_stateid)
 
 #define GetDebuggedCommandName%0(%1) %0debugged_cmdtext%1
 
@@ -127,7 +127,7 @@ Optional plugins:
     forward cmd_%0(%1[]);%3public cmd_%0(%1[]){return cmd_%2(%1)%4;%5}
 
 #define DEBUG__COMMAND__%0(%1) \
-    forward dbg_%0(debugged_cmdtext[]);%1public dbg_%0(debugged_cmdtext[])
+    forward dbg_%0(debugged_cmdtext[], debugged_stateid);%1public dbg_%0(debugged_cmdtext[], debugged_stateid)
 
 #define GETDBGCMD__%0(%1) %0debugged_cmdtext%1
 
@@ -216,6 +216,8 @@ stock CallRemoteCommand(const command[], const specifiers[], integner, const str
 
 }
 
+#define GetCommandDebugState%1(%2) %1debugged_stateid%2
+
 #if !defined OnPlayerCommandReceived
 
     forward OnPlayerCommandReceived(playerid, cmdtext[]);
@@ -227,6 +229,10 @@ stock CallRemoteCommand(const command[], const specifiers[], integner, const str
     forward OnPlayerCommandPerformed(playerid, cmdtext[], success);
 
 #endif
+
+#define COMMAND_DEBUG_STATE_RECEIVED 0
+#define COMMAND_DEBUG_STATE_READY 1
+#define COMMAND_DEBUG_STATE_PERFORMED 2
 
 /*
                                          
@@ -354,7 +360,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 
     if(funcidx(utils_CommandDebugFunc) != -1)
     {
-        CallLocalFunction(utils_CommandDebugFunc, "s", cmdtext);
+        CallLocalFunction(utils_CommandDebugFunc, "si", cmdtext, COMMAND_DEBUG_STATE_RECEIVED);
     }
 
     #if defined detutils_debug
@@ -362,6 +368,12 @@ public OnPlayerCommandText(playerid, cmdtext[])
     #endif
 
     while (cmdtext[position] == ' ') position++;
+
+    if(funcidx(utils_CommandDebugFunc) != -1)
+    {
+        CallLocalFunction(utils_CommandDebugFunc, "si", cmdtext, COMMAND_DEBUG_STATE_READY);
+    }
+
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - opct :: position variable validated.");
     #endif
@@ -370,8 +382,12 @@ public OnPlayerCommandText(playerid, cmdtext[])
         if (utils_IsOnCmdPValid)
         {
             #if defined detutils_debug
-            printf("[samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 1");
+                printf("[samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 1");
             #endif
+                if(funcidx(utils_CommandDebugFunc) != -1)
+                {
+                    CallLocalFunction(utils_CommandDebugFunc, "si", cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
+                }
                 return CallLocalFunction("OnPlayerCommandPerformed", 
                     "isi", 
                     playerid, 
@@ -379,6 +395,10 @@ public OnPlayerCommandText(playerid, cmdtext[])
                     CallLocalFunction(utils_ClassicFunctionName, "is", playerid, "\1"));
         }
         #if defined detutils_debug
+        if(funcidx(utils_CommandDebugFunc) != -1)
+        {
+            CallLocalFunction(utils_CommandDebugFunc, "si", cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
+        }
         printf("[samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 2");
         #endif
         return CallLocalFunction(utils_ClassicFunctionName, "is", playerid, "\1");      
@@ -388,6 +408,10 @@ public OnPlayerCommandText(playerid, cmdtext[])
         #if defined detutils_debug
         printf("[samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 3");
         #endif
+            if(funcidx(utils_CommandDebugFunc) != -1)
+            {
+                CallLocalFunction(utils_CommandDebugFunc, "si", cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
+            }
             return CallLocalFunction("OnPlayerCommandPerformed", 
                 "isi", 
                 playerid, 
@@ -405,6 +429,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
             playerid, 
             cmdtext);
     }
+
     return CallLocalFunction(utils_ClassicFunctionName, "is", playerid, cmdtext[position]);
 }
 
