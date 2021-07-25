@@ -6,7 +6,7 @@ SA:MP Commands - a "built-in" fast and easy way to create commands.
 ## How to start to use?
 
 ### Command declaration
-
+------------------------------------------
 To declare a command, you need to use ``command`` keyword.
 
 Let's see how it works:
@@ -24,7 +24,7 @@ command mycommand(playerid, params[])
 ... and - that's it, command is declared, and whenever someone sends */mycommand* to chat, a message saying "Your very first command works!" appears.
 
 ### Command aliasing
-
+------------------------------------------
 There is also way to declare alias of a specific command.
 
 You can do it using ``alias`` keyword, an example:
@@ -36,7 +36,7 @@ alias command mycmd(playerid, params[]) = mycommand;
 ```
 
 ### Command debugging
-
+------------------------------------------
 There is also a way to debug commands!
 
 Advanced debugging can be done using ``debug`` keyword.
@@ -51,7 +51,7 @@ debug command mycmd()
 }
 ```
 ### Debug states
-
+------------------------------------------
 - For advanced debugging, one ``print`` isn't enough - right? That is why I added command debug states. Command debug is called 3 times after player submits to execute a command, so there are three debug states.
 
 - Debug states:
@@ -61,7 +61,7 @@ debug command mycmd()
 - ``COMMAND_DEBUG_STATE_PERFORMED`` - command performed successfully
 
 **How to use states?**
-
+------------------------------------------
 - To use states, you need to use **GetCommandDebugState**. Here's how to do it:
 
 ```pawn
@@ -87,7 +87,7 @@ debug command mycmd ()
 ```
 
 ### Admin commands
-
+------------------------------------------
 *d_commands* also lets you to create admin commands.
 
 You can do it easily and fast mixing ``admin`` and ``command`` keywords.
@@ -105,7 +105,7 @@ admin command admincheck(playerid,params[])
 **INFO**: If player is not logged in as RCON administrator, function will return *false* (0) and send client message saying: **"SERVER: Unknown command."**
 
 ### Commands with custom prefix
-
+------------------------------------------
 *d_commands* also arrive with brand new system with custom-prefixed commands.
 Create commands like those using two keywords and one extra parameter - fast and easy.
 
@@ -126,7 +126,7 @@ Now, whenever player sends ``!mycmd`` to chat, command will be executed (perform
 **WARNING**: This type of commands cannot be debugged using ``debug command``.
 
 ### Commands with custom permissions
-
+------------------------------------------
 *d_commands* also allows you to create commands that require certain permissions / conditions to be executed. This is really nice feature if you're making administrator system, V.I.P. system or anything else that has to do with the user system.
 
 - Let's see how to create **roles**. To create role you need to use ``create role`` keywords.
@@ -173,11 +173,11 @@ Now, we created a command which requires ``AdminRole`` role to be executed - per
 ## API ( programming interface )
 
 ### Functions
-
+------------------------------------------
 *d_commands.inc* also contains some handy functions, let's see.
 
 **CallLocalCommand**
-
+------------------------------------------
 - This function does nothing besides returning command function call.
 
 Parameters:
@@ -193,7 +193,7 @@ Example:
 CallLocalCommand("mycommand", "is", playerid, inputtext);
 ```
 **GetDebuggedCommandName**
-
+------------------------------------------
 - This function gets the name of debugged command.
 
 Parameters: noone
@@ -210,7 +210,7 @@ debug command mycmd()
 **NOTE**: This function can be only used in command ``debug`` function.
 
 **GetCommandDebugState**
-
+------------------------------------------
 - Usage of this function is really simple. It gets the command's debug state.
 
 Parameters: noone
@@ -231,11 +231,11 @@ debug command mycmd ()
 **NOTE**: This function can be only used in command ``debug`` function.
 
 **CallRemoteCommand**
-
+------------------------------------------
 - Simply, *CallRemoteCommand* works same as *CallLocalCommand* (it has same parameters etc.) - but the command can be called from anywhere. Even, from another file.
 
 **Command processing**
-
+------------------------------------------
 A simple script:
 
 ```pawn
@@ -279,17 +279,17 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 ```
 
 ## Messages from creator
-
+------------------------------------------
 ### Warnings
-
+------------------------------------------
 1. Make sure that whenever you create commands using the ``command`` keyword, the command name does not contain capital letters. Otherwise, unfortunately - server will recognize the command as unknown. But - this does not need to make you sad because this type of commands are not case-sensitive.
 2. Custom-prefixed commands are case-sensitive. Also, command names can contain capital letters.
 
 ### Notes
-
+------------------------------------------
 ***Backwards compatibility***
 - d_commands also have backwards compatibility, incase you are upgrading from iZCMD/ZCMD, the ``CMD:`` keyword will still work as nothing changed. But, I still recommend creating your future commands using ``command`` and ``alias`` keywords.
-
+------------------------------------------
 ***Compatibility mode***
 - d_commands have compatibility mode! Enable it using:
 
@@ -314,6 +314,7 @@ DEBUG__COMMAND__ mycmd()
 }
 ```
 ***Making filterscript with d_commands?***
+------------------------------------------
 - Well, I have good news for you, because there is also new filterscript support feature. 
 
 - So, if you're making a filterscript - make sure you use:
