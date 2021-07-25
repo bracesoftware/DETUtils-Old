@@ -37,7 +37,7 @@ if(IsPlayerUsingAndroidClient(playerid)) return Ban(playerid);
 ```php
 public OnPlayerClientCheckReceived(playerid)
 {
-  printf("Successfully performed client check on player id %i.", playerid);
+  printf("Performing client check on player id %i...", playerid);
   return 1;
 }
 ```
