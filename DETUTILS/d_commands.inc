@@ -79,66 +79,71 @@ Optional plugins:
 
 #endif
 
+#define cmd_%0\32; cmd_
+#define dbg_%0\32; dbg_
+#define cmd_func_%0\32; cmd_func_
+#define role_%0\32; role_
+
 #if !defined A_CMDS_COMPATIBILITY_MODE
 
 #define command%0(%1) \
-    forward%0@cmd(%1);public%0@cmd(%1)
+    forward cmd_%0(%1);public cmd_%0(%1)
 
 #define alias%5command%0(%1[%3]%4)=%2; \
-    forward%0@cmd(%1[]);%3public%0@cmd(%1[]){return %2@cmd(%1)%4;%5}
+    forward cmd_%0(%1[]);%3public cmd_%0(%1[]){return cmd_%2(%1)%4;%5}
 
 #define _public public
 #define forward_ forward
 
 #define debug%1command%0() \
-    forward%0@dbg(debugged_cmdtext[]);%1public%0@dbg(debugged_cmdtext[])
+    forward dbg_%0(debugged_cmdtext[]);%1public dbg_%0(debugged_cmdtext[])
 
 #define GetDebuggedCommandName%0(%1) %0debugged_cmdtext%1
 
 #define CMD:%0(%1) \
-    forward %0@cmd(%1); public %0@cmd(%1)
+    forward cmd_%0(%1); public cmd_%0(%1)
 
 #if !defined IsValidString
         #define IsValidString(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
 #endif
 
 #define admin%5command%0(%1,%2[%3]%4) \
-    forward%0@cmd(%1,%2[]);%3public%0@cmd(%1,%2[]){if(!IsPlayerAdmin(%1)) return 0; return %0@cmd_func(%1,%2)%4;%5} \
-    forward%0@cmd_func(%1,%2[]);public%0@cmd_func(%1,%2[]%5)
+    forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if(!IsPlayerAdmin(%1)) return 0; return  cmd_func_%0(%1,%2)%4;%5} \
+    forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[]%5)
 
 #define role%5command%0(%1,%2[%3]%4,%6) \
-    forward%0@cmd(%1,%2[]);%3public%0@cmd(%1,%2[]){if( !%6@role(%1) ) return 0; return %0@cmd_func(%1,%2)%4;%5} \
-    forward%0@cmd_func(%1,%2[]);public%0@cmd_func(%1,%2[]%5)
+    forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if( !role_%6(%1) ) return 0; return  cmd_func_%0(%1,%2)%4;%5} \
+    forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[]%5)
 
 #define create%0role%1(%2,%3); \
-    stock bool:%1@role(%2) { if(!(%3)) return false; else return true; }
+    stock bool: role_%1(%2) { if(!(%3)) return false; else return true; }
 
 #else
 
 #define COMMAND__%0(%1) \
-    forward%0@cmd(%1);public%0@cmd(%1)
+    forward cmd_%0(%1);public cmd_%0(%1)
 
 #define ALIAS__COMMAND__%0(%1[%3]%4)%5=%2; \
-    forward%0@cmd(%1[]);%3public%0@cmd(%1[]){return %2@cmd(%1)%4;%5}
+    forward cmd_%0(%1[]);%3public cmd_%0(%1[]){return cmd_%2(%1)%4;%5}
 
 #define DEBUG__COMMAND__%0(%1) \
-    forward%0@dbg(debugged_cmdtext[]);%1public%0@dbg(debugged_cmdtext[])
+    forward dbg_%0(debugged_cmdtext[]);%1public dbg_%0(debugged_cmdtext[])
 
 #define GETDBGCMD__%0(%1) %0debugged_cmdtext%1
 
 #define ADMIN__COMMAND__%0(%1,%2[%3]%4) \
-    forward%0@cmd(%1,%2[]);%3public%0@cmd(%1,%2[]){if(!IsPlayerAdmin(%1)) return 0; return %0@cmd_func(%1,%2)%4;} \
-    forward%0@cmd_func(%1,%2[]);public%0@cmd_func(%1,%2[])
+    forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if(!IsPlayerAdmin(%1)) return 0; return  cmd_func_%0(%1,%2)%4;} \
+    forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[])
 
 #define ROLE__COMMAND__%0(%1,%2[%3]%4,%6) \
-    forward%0@cmd(%1,%2[]);%3public%0@cmd(%1,%2[]){if( !%6@role(%1) ) return 0; return %0@cmd_func(%1,%2)%4;} \
-    forward%0@cmd_func(%1,%2[]);public%0@cmd_func(%1,%2[])
+    forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if( !role_%6(%1) ) return 0; return  cmd_func_%0(%1,%2)%4;} \
+    forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[])
 
 #define CREATE__ROLE__%1(%2,%3); \
-    stock bool:%1@role(%2) { if(!(%3)) return false; else return true; }
+    stock bool: role_%1(%2) { if(!(%3)) return false; else return true; }
 
 #define CMD__:%0(%1) \
-    forward %0@cmd(%1); public %0@cmd(%1)
+    forward  cmd_%0(%1); public cmd_%0(%1)
 
 #if !defined IsValidString
         #define IsValidString(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
@@ -167,7 +172,7 @@ stock CallLocalCommand(const command[], const specifiers[], integner, const stri
         (
             command_name, 
             MAX_FUNC_NAME, 
-            "%s@cmd", 
+            "cmd_%s", 
             command
         )
     ;
@@ -193,7 +198,7 @@ stock CallRemoteCommand(const command[], const specifiers[], integner, const str
         (
             command_name, 
             MAX_FUNC_NAME, 
-            "%s@cmd", 
+            "cmd_%s", 
             command
         )
     ;
@@ -340,8 +345,8 @@ public OnPlayerCommandText(playerid, cmdtext[])
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - opct :: cmdtext[] validated.");
     #endif
-    format(utils_CommandDebugFunc, sizeof(utils_CommandDebugFunc), "%s@dbg", utils_ClassicFunctionName);
-    format(utils_ClassicFunctionName, sizeof(utils_ClassicFunctionName), "%s@cmd", utils_ClassicFunctionName);
+    format(utils_CommandDebugFunc, sizeof(utils_CommandDebugFunc), "dbg_%s", utils_ClassicFunctionName);
+    format(utils_ClassicFunctionName, sizeof(utils_ClassicFunctionName), "cmd_%s", utils_ClassicFunctionName);
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - opct :: Formatted function strings successfully.");
@@ -596,7 +601,7 @@ public OnPlayerText(playerid, text[])
         #endif
 
         format(utils_PrefixFuncName, sizeof(utils_PrefixFuncName),
-            "%s_prx", text);
+            "prx_%s", text);
 
         format(utils_FunctionName, sizeof(utils_FunctionName),
             "pc_%s", text);
@@ -605,7 +610,7 @@ public OnPlayerText(playerid, text[])
         printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) string formattion finished.");
         #endif
 
-        strdel(utils_PrefixFuncName, 0, 1);
+        strdel(utils_PrefixFuncName, 4, 5);
 
         #if defined detutils_debug
         printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) called strdel func.");
@@ -707,15 +712,17 @@ forward a_cmd_OnPlayerDisconnect(playerid, reason);
 #if !defined A_CMDS_COMPATIBILITY_MODE
 
 #define pc_%0\32; pc_
+#define prx_%0\32; prx_
 
 #define prefixed%2command%0(%1,%3) \
-    stock%0_prx(){new p[1];format(p,sizeof(p),%3);return p;}forward pc_%0(%1);public pc_%0(%1)
+    stock prx_%0(){new p[1];format(p,sizeof(p),%3);return p;}forward pc_%0(%1);public pc_%0(%1)
 
 #else
 
-#define pc@%0\32; pc@
+#define pc_%0\32; pc_
+#define prx_%0\32; prx_
 
 #define PREFIXED__COMMAND__%0(%1,%3) \
-    stock%0_prx(){new p[1];format(p,sizeof(p),%3);return p;}forward pc_%0(%1);public pc_%0(%1)
+    stock prx_%0(){new p[1];format(p,sizeof(p),%3);return p;}forward pc_%0(%1);public pc_%0(%1)
 
 #endif
