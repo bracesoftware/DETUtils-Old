@@ -50,6 +50,42 @@ debug command mycmd()
   return 1;
 }
 ```
+### Debug states
+
+- For advanced debugging, one ``print`` isn't enough - right? That is why I added command debug states. Command debug is called 3 times after player submits to execute a command, so there are three debug states.
+
+- Debug states:
+
+``COMMAND_DEBUG_STATE_RECEIVED`` - command processor received command and command parameters
+``COMMAND_DEBUG_STATE_READY`` - command is ready to be performed
+``COMMAND_DEBUG_STATE_PERFORMED`` - command performed successfully
+
+**How to use states?**
+
+- To use states, you need to use **GetCommandDebugState**. Here's how to do it:
+
+```pawn
+debug command mycmd ()
+{
+    if(GetCommandDebugState() == COMMAND_DEBUG_STATE_RECEIVED)
+    {
+        printf("Command %s received.", GetDebuggedCommandName());
+        return 1;
+    }
+    else if(GetCommandDebugState() == COMMAND_DEBUG_STATE_READY)
+    {
+        printf("Command %s ready.", GetDebuggedCommandName());
+        return 1;
+    }
+    else if(GetCommandDebugState() == COMMAND_DEBUG_STATE_PERFORMED)
+    {
+        printf("Command %s performed.", GetDebuggedCommandName());
+        return 1;
+    }
+	return 0;
+}
+```
+
 ### Admin commands
 
 *d_commands* also lets you to create admin commands.
