@@ -6,6 +6,19 @@
 ## Handy features
 - Read information about each feature below.
 ### API ( programming interface )
+#### **Command Processor Features**
+------------------------------------------
+#### CallLocalPrefixedCommand
+- This function simply calls the prefixed command as a function. Very useful if you are creating prefixed command alias.
+
+- Example:
+
+```pawn
+CallLocalPrefixedCommand("mycmd", "is", playerid, string);
+```
+#### CallRemotePrefixedCommand
+- This one is same as previous one, but the command function call be called even from another file.
+------------------------------------------
 #### **Client Check Features**
 #### IsPlayerUsingPCClient
 - This function checks if is player using PC to play SA:MP.
