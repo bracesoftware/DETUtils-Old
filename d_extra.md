@@ -1,3 +1,24 @@
 # Extra stuff
-- After including any of DET Utils includes, those includes also import some extra stuff to your code as well.
--
+- After including any of DET Utils includes, those includes also import some extra stuff to your code as well. That *extra* stuff can be anything, functions, callbacks and more.
+## Handa features
+### API ( programming interface )
+#### IsPlayerUsingPCClient
+- This function checks if is player using PC to play SA:MP.
+
+- Example:
+
+```php
+if(IsPlayerUsingPCClient(playerid)) return SendClientMessage(playerid, -1, "Welcome to server.);
+```
+
+- So, if player is using original client client message saying **"Welcome to server."** will appear.
+
+#### IsPlayerUsingAndroidClient
+
+- Opposite of previous one.
+
+```php
+if(IsPlayerUsingAndroidClient(playerid)) return Ban(playerid);
+```
+
+**NOTE**: Android SA-MP client is not legal at the moment, so I recommend banning its users.
