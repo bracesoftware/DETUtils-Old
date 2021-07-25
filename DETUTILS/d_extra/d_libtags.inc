@@ -109,13 +109,30 @@ new const utils_g_Script = 0;
 static utils_g_Client[MAX_PLAYERS];
 
 #if !defined SendClientCheck
+
     native SendClientCheck(playerid, type, memAddr, memOffset, byteCount);
+
+#endif
+
+
+#if defined OnPlayerClientCheckReceived
+
+    forward OnPlayerClientCheckReceived(playerid);
+
 #endif
 
 public OnPlayerConnect(playerid)
 {
     utils_g_Client[playerid] = 0;
     SendClientCheck(playerid, 0x48, 0, 0, 2);
+    if(funcidx("OnPlayerClientCheckReceived") != -1)
+    {
+        CallLocalFunction("OnPlayerClientCheckReceived", "i", playerid);
+    }
+    if(funcidx("a_lib_OnPlayerConnect") != -1)
+    {
+        CallLocalFunction("a_lib_OnPlayerConnect", "i", playerid);
+    }
     return 1;
 }
 
