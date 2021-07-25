@@ -44,12 +44,13 @@ Functions which will work like this after including *d_fmargs.inc* are:
 ## Messages from creator
 
 ### Warnings
-
+------------------------------------------
 - No warnings - yet.
 
 ### Notes
-
+------------------------------------------
 ***Making filterscript with d_fmargs?***
+------------------------------------------
 - Well, I have good news for you, because there is also new filterscript support feature. 
 
 - So, if you're making a filterscript - make sure you use:
