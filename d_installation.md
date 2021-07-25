@@ -13,7 +13,7 @@ Let's find out.
  Simply install to your project and begin using the library:
  
  ```bat
- sampctl package install DentisT-SAMP/samp-detutils
+ sampctl package install DEntisT-ofc/samp-detutils
  ```
  
  ### Manual install
