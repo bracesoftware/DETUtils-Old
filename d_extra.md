@@ -6,6 +6,7 @@
 ## Handy features
 - Read information about each feature below.
 ### API ( programming interface )
+#### **Client Check Features**
 #### IsPlayerUsingPCClient
 - This function checks if is player using PC to play SA:MP.
 
