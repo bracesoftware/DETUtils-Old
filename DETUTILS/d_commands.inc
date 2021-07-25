@@ -216,6 +216,56 @@ stock CallRemoteCommand(const command[], const specifiers[], integner, const str
 
 }
 
+stock CallRemotePrefixedCommand(const command[], const specifiers[], integner, const string[])
+{
+    new command_name[MAX_FUNC_NAME];
+    format
+        (
+            command_name, 
+            MAX_FUNC_NAME, 
+            "pc_%s", 
+            command
+        )
+    ;
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - CallRemoteCommand called successfully.");
+    #endif
+    return CallRemoteFunction
+                (
+                    command_name, 
+                    specifiers, 
+                    integner, 
+                    string
+                )
+        ;
+
+}
+
+stock CallLocalPrefixedCommand(const command[], const specifiers[], integner, const string[])
+{
+    new command_name[MAX_FUNC_NAME];
+    format
+        (
+            command_name, 
+            MAX_FUNC_NAME, 
+            "pc_%s", 
+            command
+        )
+    ;
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - CallRemoteCommand called successfully.");
+    #endif
+    return CallLocalFunction
+                (
+                    command_name, 
+                    specifiers, 
+                    integner, 
+                    string
+                )
+        ;
+
+}
+
 #define GetCommandDebugState%1(%2) %1debugged_stateid%2
 
 #if !defined OnPlayerCommandReceived
