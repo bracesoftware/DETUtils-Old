@@ -5,7 +5,7 @@
 
 ## Code
 
-```pawn
+```php
 #define DEV_MODE
 #define detutils_debug
 
