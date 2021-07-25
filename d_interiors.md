@@ -6,7 +6,7 @@ SA:MP Interiors - an easy way to create custom interiors.
 ## How to start to use?
 
 ### Interior creation
-
+------------------------------------------
 To create a interior with *d_interiors*, make sure you use *CreateCustomInterior* function.
 
 Let's see how it works:
@@ -26,11 +26,11 @@ public OnGameModeInit()
 **WARNING**: Note that these coordinates aren't really coordinates of police station in the game. This was just an example for parameters.
 
 ### Interior debugging
-
+------------------------------------------
 - Whenever *CreateCustomInterior* is called, it automatically sends debug messages onto the console.
 
 ### Interior functions
-
+------------------------------------------
 - There is one really useful feature, in my opinion - literal interior functions.
 
 - These literal interior functions are called whenever player enters/exits specific interior.
@@ -57,11 +57,11 @@ interior PoliceStation(playerid)
 ## API ( programming interface )
 
 ### Functions
-
+------------------------------------------
 *d_interiors.inc* also contains some handy functions, let's see.
 
 **IsInteriorActionPerformed**
-
+------------------------------------------
 - This function does nothing besides checking which interior action was performed.
 
 **WARNING**: This function can be only used with *if* statements and in literal interior functions.
@@ -80,7 +80,7 @@ interior Bank(playerid)
 }
 ```
 **SetPlayerCustomInterior**
-
+------------------------------------------
 - This function sets player's interior. Interior id can be seen after certain interior is created - thanks to debug messages!
 
 **WARNING**: Interior id will be always same unless it is not created on callback *OnGameModeInit* or you changed interior creating algorithm.
@@ -100,13 +100,13 @@ static Your_Function(p,i)
 }
 ```
 **GetLastInterioridUsed**
-
+------------------------------------------
 - Gets last interior id which was used to assign interior data to.
 
 **WARNING**: Works best and properly after
 
 **SetInteriorEntranceCustomAngles**
-
+------------------------------------------
 - This function sets interior entrance and exit position angles.
 
 Parameters:
@@ -126,7 +126,7 @@ public OnGameModeInit()
 }
 ```
 **ClearPlayerInteriorData**
-
+------------------------------------------
 - The thing this function does is really simple. Clears interior id data which is assigned to player's data.
 
 Parameters:
@@ -145,7 +145,7 @@ public OnPlayerDisconnect(playerid, reason)
 }
 ```
 **IsPlayerInCustomInterior**
-
+------------------------------------------
 - Also, one simple function - checks if is player in one of custom interiors declared.
 
 - If yes, returns *true*, else returns *false*.
@@ -159,7 +159,7 @@ if(IsPlayerInCustomInterior(playerid)) return SendClientMessage(playerid, -1, "Y
 ```
 
 **CreateCustomInteriorEx**
-
+------------------------------------------
 - This is just a function successor, this function does the same thing *CreateCustomInterior* does. Only difference is that *CustomInteriorEx* creates 3D label and pickup on entrance and exit point.
 
 Parameters: same as on CreateCustomInterior
@@ -167,16 +167,17 @@ Parameters: same as on CreateCustomInterior
 ## Messages from creator
 
 ### Warnings
-
+------------------------------------------
 - No warnings - yet.
 
 ### Notes
-
+------------------------------------------
 ***Streamer***
-
+------------------------------------------
 - Make sure you have *streamer.inc* include file for *CreateCustomInteriorEx*.
 
 ***Making filterscript with d_interiors?***
+------------------------------------------
 - Well, I have good news for you, because there is also new filterscript support feature. 
 
 - So, if you're making a filterscript - make sure you use:
@@ -187,6 +188,7 @@ Parameters: same as on CreateCustomInterior
 ... before including *d_interiors*.
 
 ***Compatibility mode***
+------------------------------------------
 - d_interiors have compatibility mode! Enable it using:
 
 ```pawn
