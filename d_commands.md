@@ -284,6 +284,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 ------------------------------------------
 1. Make sure that whenever you create commands using the ``command`` keyword, the command name does not contain capital letters. Otherwise, unfortunately - server will recognize the command as unknown. But - this does not need to make you sad because this type of commands are not case-sensitive.
 2. Custom-prefixed commands are case-sensitive. Also, command names can contain capital letters.
+3. ``params[]`` custom-prefixed command parameter won't work with *sscanf*. The parameter is here to follow normal command standards and can be used like a *local* string variable.
 
 ### Notes
 ------------------------------------------
