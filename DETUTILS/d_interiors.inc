@@ -137,7 +137,7 @@ utils_InteriorLoadingTime(const playerid)
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - tpcll :: Player ( id : %i ) is now controlable.", playerid);
     #endif
-    TogglePlayerControllable(playerid,true);
+    SetTimer("utils_ToggleControllable", 1000, false);
 }
 
 static utils_HideAnnouncement[MAX_PLAYERS];
@@ -168,9 +168,11 @@ util function:hideannouncement(playerid)
     return detutils_interiors_TRUE;
 }
 
+#define USEBOX "usebox"
+
 static utils_CreateAnncTextDraws()
 {
-    utils_AnnouncementUsebox = TextDrawCreate(366.444427, 363.882232, "usebox");
+    utils_AnnouncementUsebox = TextDrawCreate(366.444427, 363.882232, USEBOX);
     TextDrawLetterSize(utils_AnnouncementUsebox, 0.000000, 1.840366);
     TextDrawTextSize(utils_AnnouncementUsebox, 267.333312, 0.000000);
     TextDrawAlignment(utils_AnnouncementUsebox, 1);
@@ -184,9 +186,11 @@ static utils_CreateAnncTextDraws()
     return detutils_interiors_TRUE;
 }
 
+#define STRING "string"
+
 static utils_CreatePlayerTextDraws(playerid)
 {
-    utils_AnnouncementString[playerid] = CreatePlayerTextDraw(playerid, 315.111145, 364.373321, "string");
+    utils_AnnouncementString[playerid] = CreatePlayerTextDraw(playerid, 315.111145, 364.373321, STRING);
     PlayerTextDrawLetterSize(playerid, utils_AnnouncementString[playerid], 0.201111, 1.346133);
 
     PlayerTextDrawAlignment(playerid, utils_AnnouncementString[playerid], 2);
@@ -200,11 +204,24 @@ static utils_CreatePlayerTextDraws(playerid)
     return detutils_interiors_TRUE;
 }
 
+forward utils_ToggleControllable();
+
+public utils_ToggleControllable()
+{
+    for(new i; i < MAX_PLAYERS; i++)
+    {
+        TogglePlayerControllable(i, true);
+    }
+    rem:<This is used to prevent player being frozen for several minutes>;
+    return 1;
+}
+
 #if !defined FILTERSCRIPT
 
 public OnGameModeInit()
 {
     utils_CreateAnncTextDraws();
+    
     if(funcidx("a_ints_OnGameModeInit") != -1)
     {
         CallLocalFunction("a_ints_OnGameModeInit", "");
@@ -271,7 +288,7 @@ public utils_OnPlayerNearEntrance(playerid)
 {
     new utils_InteriorFunctionName[100];
     new utils_InteriorActionid;
-    TogglePlayerControllable(playerid,false);
+    
     for(new i; i < MAX_INTERIORS; i++)
     {
         if( IsPlayerInRangeOfPoint( playerid, 1.5, utils_InteriorData[ i ][e_utils_INTENTRANCE_X], \
@@ -299,6 +316,8 @@ public utils_OnPlayerNearEntrance(playerid)
             printf("[samp-detutils]: (debug) - nearintcallback :: Player entered the interior with id : %i.", i);
             #endif
 
+            TogglePlayerControllable(playerid,false);
+
             SetPlayerTime( playerid, 12, 0 );
             utils_InteriorLoadingTime(playerid);
             
@@ -317,6 +336,9 @@ public utils_OnPlayerNearEntrance(playerid)
             
             SetPlayerFacingAngle( playerid, utils_InteriorData[ i ][e_utils_INTENTRANCE_A] );
             SetCameraBehindPlayer( playerid );
+
+            TogglePlayerControllable(playerid,false);
+
             utils_InteriorLoadingTime(playerid);
 
             #if defined detutils_debug
@@ -460,8 +482,7 @@ stock Create3DLabelAndPickup(
         const utils_LabelString[], 
         Float:utils_xPosition, 
         Float:utils_yPosition, 
-        Float:utils_zPosition, 
-        utils_Interior, 
+        Float:utils_zPosition,  
         utils_VirtualWorld, 
         utils_Pickupid, 
         Float:utils_LabelRadius ) 
@@ -471,13 +492,6 @@ stock Create3DLabelAndPickup(
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: String checking finished.");
-    #endif
-
-    if(utils_Interior < 0)
-        return detutils_interiors_FALSE;
-
-    #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - c3dladp :: Interiorid validity checked.");
     #endif
 
     if(utils_VirtualWorld < 0)
@@ -501,33 +515,26 @@ stock Create3DLabelAndPickup(
     printf("[samp-detutils]: (debug) - c3dladp :: Pickup id validity checked.");
     #endif
 
-    CreateDynamic3DTextLabel(
+    /*Create3DTextLabel(
                             utils_LabelString, 
                             0x0059FFAA, 
                             utils_xPosition, 
                             utils_yPosition, 
                             utils_zPosition, 
                             utils_LabelRadius, 
-                            INVALID_PLAYER_ID, 
-                            INVALID_VEHICLE_ID, 
-                            0, 
-                            utils_VirtualWorld, 
-                            utils_Interior, 
-                            -1, 
-                            20.0);
+                            utils_VirtualWorld);*/
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: Created 3d label successfully.");
     #endif
 
-    CreateDynamicPickup(
+    CreatePickup(
                     utils_Pickupid, 
                     1, 
                     utils_xPosition, 
                     utils_yPosition, 
                     utils_zPosition, 
-                    utils_VirtualWorld, 
-                    utils_Interior);
+                    utils_VirtualWorld);
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: Created dynamic pickup successfully.");
@@ -613,11 +620,11 @@ stock CreateCustomInteriorEx(
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Formatted the 3D label string successfully.");
     #endif
-    Create3DLabelAndPickup(utils_EntranceLabelString, utils_xEntrance,utils_yEntrance,utils_zEntrance, -1, -1, 19133, 2.0);
+    Create3DLabelAndPickup(utils_EntranceLabelString, utils_xEntrance,utils_yEntrance,utils_zEntrance, utils_xVirtualWorldid, 19133, 3.0);
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Streamer :: Created 3D label and pickup on entrance.");
     #endif
-    Create3DLabelAndPickup("Exit here!", utils_xExit,utils_yExit,utils_zExit, -1, -1, 19133, 2.0);
+    Create3DLabelAndPickup("Exit here!", utils_xExit,utils_yExit,utils_zExit, utils_eVirtualWorldid, 19133, 3.0);
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Streamer :: Created 3D label and pickup on exit.");
     #endif

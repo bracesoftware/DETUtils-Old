@@ -668,12 +668,30 @@ public OnPlayerText(playerid, text[])
         }
 
         static 
+            utils_pos,
             utils_FunctionName[MAX_FUNC_NAME],
             utils_PrefixFuncName[MAX_FUNC_NAME];
 
         #if defined detutils_debug
         printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared variables!");
         #endif
+
+        if(utils_g_Script == 1)
+        {
+
+            while (text[++utils_pos] > ' ')
+            {
+                utils_FunctionName[utils_pos-1] = tolower(text[utils_pos]);
+            }
+
+            utils_pos = 0;
+
+            while(text[++utils_pos] > ' ')
+            {
+                utils_PrefixFuncName[utils_pos-1] = tolower(text[utils_pos]);
+            }
+
+        }
 
         format(utils_PrefixFuncName, sizeof(utils_PrefixFuncName),
             "prx_%s", text);
@@ -685,6 +703,15 @@ public OnPlayerText(playerid, text[])
         printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) string formattion finished.");
         #endif
 
+        if(utils_g_Script == 1)
+        {
+            while(text[utils_pos] == ' ')
+            {
+                utils_pos++;
+            }
+
+        }
+        
         strdel(utils_PrefixFuncName, 4, 5);
 
         #if defined detutils_debug

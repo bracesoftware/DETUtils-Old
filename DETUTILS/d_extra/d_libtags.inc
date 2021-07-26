@@ -62,14 +62,16 @@ Optional plugins:
                                                 
 */
 
+#define rem:<%0>;
+
 #define MAX_INTERIORS 300
 
 #define MAX_FUNC_NAME (32)
 
 #define util%3function:%0(%1) @utils_%0(%1); public @utils_%0(%1)
 
-stock PlayerText:utils_AnnouncementString[MAX_PLAYERS];
-stock Text:utils_AnnouncementUsebox;
+new PlayerText:utils_AnnouncementString[MAX_PLAYERS];
+new Text:utils_AnnouncementUsebox;
 
 stock utils_CallFunction(const func[], const spec[], id)
 {
