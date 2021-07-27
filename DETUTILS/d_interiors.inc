@@ -137,6 +137,9 @@ _InteriorLoadingTime(const playerid)
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - tpcll :: Player ( id : %i ) is now controlable.", playerid);
     #endif
+    rem:<To prevent symbol-never-used error:>;
+    new _c = playerid;
+    _c++;
     SetTimer("_ToggleControllable", 1000, false);
 }
 
@@ -168,11 +171,9 @@ util function:hideannouncement(playerid)
     return det_interiors_TRUE;
 }
 
-#define USEBOX "usebox"
-
 static _CreateAnncTextDraws()
 {
-    _AnnouncementUsebox = TextDrawCreate(366.444427, 363.882232, USEBOX);
+    _AnnouncementUsebox = TextDrawCreate(366.444427, 363.882232, "usebox");
     TextDrawLetterSize(_AnnouncementUsebox, 0.000000, 1.840366);
     TextDrawTextSize(_AnnouncementUsebox, 267.333312, 0.000000);
     TextDrawAlignment(_AnnouncementUsebox, 1);
@@ -190,7 +191,7 @@ static _CreateAnncTextDraws()
 
 static _CreatePlayerTextDraws(playerid)
 {
-    _AnnouncementString[playerid] = CreatePlayerTextDraw(playerid, 315.111145, 364.373321, STRING);
+    _AnnouncementString[playerid] = CreatePlayerTextDraw(playerid, 315.111145, 364.373321, "string");
     PlayerTextDrawLetterSize(playerid, _AnnouncementString[playerid], 0.201111, 1.346133);
 
     PlayerTextDrawAlignment(playerid, _AnnouncementString[playerid], 2);

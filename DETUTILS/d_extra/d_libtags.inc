@@ -62,7 +62,9 @@ Optional plugins:
                                                 
 */
 
-#define rem:<%0>;
+stock _RemID;
+
+#define rem:<%0>; _RemID++; printf("[samp-detutils]: (rem) - Rem called. ID: %i", _RemID);
 
 #define MAX_INTERIORS 300
 
