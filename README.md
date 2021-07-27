@@ -42,6 +42,14 @@ To enable A.D. feature, use:
 
 To join Discord server, [click here...](https://discord.gg/samp)
 
+## Compile-time errors
+
+- Make sure you have updated dependencies and updated Pawn Compiler.
+
+- You can get latest version of SA:MP standard libraries [here](https://github.com/pawn-lang/samp-stdlib)...
+
+- You can get latest version of Pawn Compiler for SA:MP [here](https://github.com/pawn-lang/compiler/releases)...
+
 ### Thanks
 
 - Big thanks to *open.mp* community for helping me during library development.
