@@ -290,6 +290,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 ------------------------------------------
 ***Backwards compatibility***
 - d_commands also have backwards compatibility, incase you are upgrading from iZCMD/ZCMD, the ``CMD:`` keyword will still work as nothing changed. But, I still recommend creating your future commands using ``command`` and ``alias`` keywords.
+- Also, ``YCMD:`` and ``COMMAND:`` keywords will work.
 ------------------------------------------
 ***Compatibility mode***
 - d_commands have compatibility mode! Enable it using:
