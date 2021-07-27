@@ -1,6 +1,8 @@
 # d_interiors.inc
 SA:MP Interiors - an easy way to create custom interiors.
 
+![interiors](img/d_interiors.png)
+
 [Go back to home page...](README.md)
 
 ## How to start to use?
