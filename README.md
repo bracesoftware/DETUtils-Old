@@ -99,3 +99,4 @@ Very special thanks to:
 Optional plugins:
 ------------------------------------------
 - Incognito - streamer
+- Y_Less (y-less.com, github.com/y-less) - sscanf
