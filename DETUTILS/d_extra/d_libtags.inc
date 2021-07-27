@@ -68,22 +68,22 @@ Optional plugins:
 
 #define MAX_FUNC_NAME (32)
 
-#define util%3function:%0(%1) @utils_%0(%1); public @utils_%0(%1)
+#define util%3function:%0(%1) @_%0(%1); public @_%0(%1)
 
-new PlayerText:utils_AnnouncementString[MAX_PLAYERS];
-new Text:utils_AnnouncementUsebox;
+new PlayerText:_AnnouncementString[MAX_PLAYERS];
+new Text:_AnnouncementUsebox;
 
-stock utils_CallFunction(const func[], const spec[], id)
+stock _CallFunction(const func[], const spec[], id)
 {
     new funcname[100];
-    format(funcname, 100, "@utils_%s", func);
+    format(funcname, 100, "@_%s", func);
     return CallLocalFunction(funcname, spec, id);
 }
 
-stock utils_SetTimer(const func[], delay, bool:a, const spec[], id)
+stock _SetTimer(const func[], delay, bool:a, const spec[], id)
 {
     new funcname[100];
-    format(funcname, 100, "@utils_%s", func);
+    format(funcname, 100, "@_%s", func);
     return SetTimerEx(funcname, delay, a, spec, id);
 }
 
@@ -99,16 +99,16 @@ stock utils_SetTimer(const func[], delay, bool:a, const spec[], id)
 
 #endif
 
-stock utils_Functionid;
+stock _Functionid;
 
-stock utils_GlobalFileName[MAX_PLAYERS][MAX_PLAYER_NAME];
+stock _GlobalFileName[MAX_PLAYERS][MAX_PLAYER_NAME];
 
-#define utils_FormatPlayerDatabaseFileName(%0) \
-    format(utils_GlobalFileName[%0],MAX_PLAYER_NAME,"%s.ini",ReturnPlayerName(%0))
+#define _FormatPlayerDatabaseFileName(%0) \
+    format(_GlobalFileName[%0],MAX_PLAYER_NAME,"%s.ini",ReturnPlayerName(%0))
 
-new const utils_g_Script = 0;
+new const _g_Script = 0;
 
-static utils_g_Client[MAX_PLAYERS];
+static _g_Client[MAX_PLAYERS];
 
 #if !defined SendClientCheck
 
@@ -125,7 +125,7 @@ static utils_g_Client[MAX_PLAYERS];
 
 public OnPlayerConnect(playerid)
 {
-    utils_g_Client[playerid] = 0;
+    _g_Client[playerid] = 0;
     SendClientCheck(playerid, 0x48, 0, 0, 2);
     if(funcidx("OnPlayerClientCheckReceived") != -1)
     {
@@ -144,7 +144,7 @@ public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
 {
     if(actionid == 0x48)
     {
-        utils_g_Client[playerid] = 1;
+        _g_Client[playerid] = 1;
     }
     if(funcidx("a_lib_OnClientCheckResponse") != -1)
     {
@@ -175,13 +175,13 @@ forward a_lib_OnClientCheckResponse(playerid, actionid, memaddr, retndata);
 
 stock bool:IsPlayerUsingPCClient(playerid)
 {
-    if(utils_g_Client[playerid] == 1) return true;
+    if(_g_Client[playerid] == 1) return true;
     return false;
 }
 
 stock bool:IsPlayerUsingAndroidClient(playerid)
 {
-    if(utils_g_Client[playerid] == 0) return true;
+    if(_g_Client[playerid] == 0) return true;
     return false;
 }
 
@@ -201,62 +201,62 @@ stock bool:IsPlayerUsingAndroidClient(playerid)
 
 stock ReturnPlayerName(id) 
 {
-    new utils_PlayerName[ MAX_PLAYER_NAME ];
+    new _PlayerName[ MAX_PLAYER_NAME ];
     
-    GetPlayerName( id, utils_PlayerName, sizeof utils_PlayerName);
-    return utils_PlayerName;
+    GetPlayerName( id, _PlayerName, sizeof _PlayerName);
+    return _PlayerName;
 }
 
-new utils_g_Shifthour, utils_g_Timeshift = 0;
+new _g_Shifthour, _g_Timeshift = 0;
 
-static stock utils_FixHourData(utils_f_Hour)
+static stock _FixHourData(_f_Hour)
 {
-    utils_f_Hour = utils_g_Timeshift+utils_f_Hour;
+    _f_Hour = _g_Timeshift+_f_Hour;
 
-    if(utils_f_Hour < 0)
+    if(_f_Hour < 0)
     {
-        utils_f_Hour = utils_f_Hour+24;
+        _f_Hour = _f_Hour+24;
     }
-    else if(utils_f_Hour > 23)
+    else if(_f_Hour > 23)
     {
-        utils_f_Hour = utils_f_Hour-24;
+        _f_Hour = _f_Hour-24;
     }
-    utils_g_Shifthour = utils_f_Hour;
+    _g_Shifthour = _f_Hour;
     return 1;
 }
 
-stock SaveLogIntoFile( const utils_FileName[], const utils_Log[]) 
+stock SaveLogIntoFile( const _FileName[], const _Log[]) 
 {
-    new utils_Entry[ 128 ], 
-        utils_sec, 
-        utils_minutes, 
-        utils_data, 
-        utils_day, 
-        utils_year, 
-        utils_month;
+    new _Entry[ 128 ], 
+        _sec, 
+        _minutes, 
+        _data, 
+        _day, 
+        _year, 
+        _month;
 
-    getdate( utils_year, utils_month, utils_day );
+    getdate( _year, _month, _day );
 
-    gettime( utils_sec, utils_minutes, utils_data );
+    gettime( _sec, _minutes, _data );
 
-    utils_FixHourData( utils_sec );
+    _FixHourData( _sec );
 
-    utils_sec = utils_g_Shifthour;
+    _sec = _g_Shifthour;
     
-    format( utils_Entry, sizeof( utils_Entry ), 
+    format( _Entry, sizeof( _Entry ), 
         "%d/%d/%d | %d/%d/%d | %s\r\n", 
-        utils_day, utils_month, utils_year, 
-        utils_sec, utils_minutes, utils_data, utils_Log );
+        _day, _month, _year, 
+        _sec, _minutes, _data, _Log );
 
-    new File:utils_File;
-    utils_File = fopen( utils_FileName, io_append );
+    new File:_File;
+    _File = fopen( _FileName, io_append );
 
-    fwrite( utils_File, utils_Entry );
+    fwrite( _File, _Entry );
 
-    fclose( utils_File );
+    fclose( _File );
 }
 
-stock utils_SetTag( const utils_FileName[], const utils_TagName[] )
+stock _SetTag( const _FileName[], const _TagName[] )
 {
-    SaveLogIntoFile(utils_FileName,utils_TagName);
+    SaveLogIntoFile(_FileName,_TagName);
 }

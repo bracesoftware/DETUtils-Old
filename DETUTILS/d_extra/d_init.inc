@@ -80,7 +80,7 @@ Optional plugins:
 
 */
 
-static const DETUtils_g_Version[1][10] = { "1.0" };
+static const DET_g_Version[1][10] = { "1.0" };
 
 #if !defined FILTERSCRIPT
 
@@ -142,7 +142,7 @@ static AnnounceLibraryLoading_init()
     print("            SA:MP | DETUtils            ");
     print("        System is now loading...        ");
     print("                                        ");
-    printf("              Version: %s              ", DETUtils_g_Version);
+    printf("              Version: %s              ", DET_g_Version);
     print("                                        ");
     print("               By: DEntisT              ");
     print("                                        ");

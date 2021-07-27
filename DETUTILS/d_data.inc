@@ -7,8 +7,8 @@
 Legal:
     Version: MPL 1.1
     
-    The contents of this utils_GlobalFileName are subject to the Mozilla Public License Version 
-    1.1 the "License"; you may not use this utils_GlobalFileName except in compliance with 
+    The contents of this _GlobalFileName are subject to the Mozilla Public License Version 
+    1.1 the "License"; you may not use this _GlobalFileName except in compliance with 
     the License. You may obtain a copy of the License at 
     http://www.mozilla.org/MPL/
     
@@ -122,8 +122,8 @@ static AnnounceLibraryLoaded_data()
 main()
 {
     #if defined detutils_debug
-    SaveLogIntoFile("detutils_data.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_data.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("det_data.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("det_data.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     AnnounceLibraryLoaded_data();
     a_data_main();
@@ -139,20 +139,20 @@ main()
 
 #else
 
-#define detutils_data_TRUE 1
+#define det_data_TRUE 1
 
 public OnFilterScriptutilst()
 {
     AnnounceLibraryLoaded_data();
     #if defined detutils_debug
-    SaveLogIntoFile("detutils_data.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_data.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("det_data.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("det_data.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     if(funcidx("a_data_Onfsutilst") != -1)
     {
         CallLocalFunction("a_data_Onfsutilst", "i", playerid);
     }
-    return detutils_data_TRUE;
+    return det_data_TRUE;
 }
 
 #if defined _ALS_OnFilterScriptutilst

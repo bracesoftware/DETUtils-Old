@@ -78,19 +78,19 @@ stock
 (
     p_id,
     color,
-    const utils_StringArgs[],
+    const _StringArgs[],
     {Float,_}:...
 )
 {
     #if defined detutils_debug
-    utils_Functionid = 1;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", utils_Functionid);
+    _Functionid = 1;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
         start,
         end,
-        utils_unspecified_string[144]
+        _unspecified_string[144]
     ;
     #emit LOAD.S.pri 8
     #emit STOR.pri args
@@ -99,7 +99,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_StringArgs
+        #emit ADDR.pri _StringArgs
         #emit STOR.pri start
  
         for
@@ -112,9 +112,9 @@ stock
             #emit LREF.pri end
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_StringArgs
+        #emit PUSH.S _StringArgs
         #emit PUSH.C 144
-        #emit PUSH.C utils_unspecified_string
+        #emit PUSH.C _unspecified_string
         #emit PUSH.C args
         #emit SYSREQ.C format
  
@@ -122,7 +122,7 @@ stock
         (
             p_id,
             color,
-            utils_unspecified_string
+            _unspecified_string
         )
         ;
  
@@ -131,15 +131,15 @@ stock
         #emit RETN
     }
     #if defined detutils_debug
-    utils_Functionid = 1;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", utils_Functionid);
+    _Functionid = 1;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         SendClientMessage
         (
             p_id,
             color,
-            utils_StringArgs
+            _StringArgs
         )
     ;
 }
@@ -148,19 +148,19 @@ stock
     fmargs_SendClientMessageToAll
 (
     color,
-    const utils_StringArgs[],
+    const _StringArgs[],
     {Float,_}:...
 )
 {
     #if defined detutils_debug
-    utils_Functionid = 2;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", utils_Functionid);
+    _Functionid = 2;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
         start,
         end,
-        utils_unspecified_string[144]
+        _unspecified_string[144]
     ;
     #emit LOAD.S.pri 8
     #emit STOR.pri args
@@ -169,7 +169,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_StringArgs
+        #emit ADDR.pri _StringArgs
         #emit STOR.pri start
  
         for
@@ -182,16 +182,16 @@ stock
             #emit LREF.pri end
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_StringArgs
+        #emit PUSH.S _StringArgs
         #emit PUSH.C 144
-        #emit PUSH.C utils_unspecified_string
+        #emit PUSH.C _unspecified_string
         #emit PUSH.C args
         #emit SYSREQ.C format
  
         SendClientMessageToAll
         (
             color,
-            utils_unspecified_string
+            _unspecified_string
         )
         ;
  
@@ -200,14 +200,14 @@ stock
         #emit RETN
     }
     #if defined detutils_debug
-    utils_Functionid = 2;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", utils_Functionid);
+    _Functionid = 2;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return 
         SendClientMessageToAll
         (
             color, 
-            utils_StringArgs
+            _StringArgs
         )
     ;
 }
@@ -217,7 +217,7 @@ stock
 (
     i,
     
-    const utils_StringArgs[],
+    const _StringArgs[],
     
     duration,
     
@@ -227,8 +227,8 @@ stock
 )
 {
     #if defined detutils_debug
-    utils_Functionid = 3;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", utils_Functionid);
+    _Functionid = 3;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
@@ -237,7 +237,7 @@ stock
         
         end,
         
-        utils_unspecified_string[144]
+        _unspecified_string[144]
     ;
     #emit LOAD.S.pri 8
     
@@ -247,7 +247,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_StringArgs
+        #emit ADDR.pri _StringArgs
         
         #emit STOR.pri start
 
@@ -264,11 +264,11 @@ stock
             
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_StringArgs
+        #emit PUSH.S _StringArgs
         
         #emit PUSH.C 144
         
-        #emit PUSH.C utils_unspecified_string
+        #emit PUSH.C _unspecified_string
         
         #emit PUSH.C args
         
@@ -278,7 +278,7 @@ stock
         (
             i,
             
-            utils_unspecified_string,
+            _unspecified_string,
             
             duration,
             
@@ -293,15 +293,15 @@ stock
         #emit RETN
     }
     #if defined detutils_debug
-    utils_Functionid = 3;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", utils_Functionid);
+    _Functionid = 3;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         GameTextForPlayer
         (
             i,
             
-            utils_StringArgs,
+            _StringArgs,
             
             duration,
             
@@ -313,7 +313,7 @@ stock
 stock
     fmargs_GameTextForAll
 (
-    const utils_StringArgs[],
+    const _StringArgs[],
     
     duration,
     
@@ -323,8 +323,8 @@ stock
 )
 {
     #if defined detutils_debug
-    utils_Functionid = 4;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", utils_Functionid);
+    _Functionid = 4;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
@@ -333,7 +333,7 @@ stock
         
         end,
         
-        utils_unspecified_string[144]
+        _unspecified_string[144]
     ;
     #emit LOAD.S.pri 8
     
@@ -343,7 +343,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_StringArgs
+        #emit ADDR.pri _StringArgs
         
         #emit STOR.pri start
 
@@ -360,11 +360,11 @@ stock
             
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_StringArgs
+        #emit PUSH.S _StringArgs
         
         #emit PUSH.C 144
         
-        #emit PUSH.C utils_unspecified_string
+        #emit PUSH.C _unspecified_string
         
         #emit PUSH.C args
         
@@ -372,7 +372,7 @@ stock
 
         GameTextForAll
         (
-            utils_unspecified_string,
+            _unspecified_string,
             
             duration,
             
@@ -387,13 +387,13 @@ stock
         #emit RETN
     }
     #if defined detutils_debug
-    utils_Functionid = 4;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", utils_Functionid);
+    _Functionid = 4;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         GameTextForAll
         (
-            utils_StringArgs,
+            _StringArgs,
             
             duration,
             
@@ -407,19 +407,19 @@ stock
 (
     Float:x,
     Float:y,
-    const utils_StringArgs[],
+    const _StringArgs[],
     {Float,_}:...
 )
 {
     #if defined detutils_debug
-    utils_Functionid = 5;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", utils_Functionid);
+    _Functionid = 5;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
         start,
         end,
-        utils_unspecified_string[144]
+        _unspecified_string[144]
     ;
     #emit LOAD.S.pri 8
     #emit STOR.pri args
@@ -428,7 +428,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_StringArgs
+        #emit ADDR.pri _StringArgs
         #emit STOR.pri start
  
         for
@@ -441,9 +441,9 @@ stock
             #emit LREF.pri end
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_StringArgs
+        #emit PUSH.S _StringArgs
         #emit PUSH.C 144
-        #emit PUSH.C utils_unspecified_string
+        #emit PUSH.C _unspecified_string
         #emit PUSH.C args
         #emit SYSREQ.C format
  
@@ -451,7 +451,7 @@ stock
         (
             x,
             y,
-            utils_unspecified_string
+            _unspecified_string
         )
         ;
  
@@ -460,15 +460,15 @@ stock
         #emit RETN
     }
     #if defined detutils_debug
-    utils_Functionid = 5;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", utils_Functionid);
+    _Functionid = 5;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         TextDrawCreate
         (
             x,
             y,
-            utils_StringArgs
+            _StringArgs
         )
     ;
 }
@@ -479,19 +479,19 @@ stock
     i,
     Float:x,
     Float:y,
-    const utils_StringArgs[],
+    const _StringArgs[],
     {Float,_}:...
 )
 {
     #if defined detutils_debug
-    utils_Functionid = 6;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", utils_Functionid);
+    _Functionid = 6;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
         start,
         end,
-        utils_unspecified_string[144]
+        _unspecified_string[144]
     ;
     #emit LOAD.S.pri 8
     #emit STOR.pri args
@@ -500,7 +500,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_StringArgs
+        #emit ADDR.pri _StringArgs
         #emit STOR.pri start
  
         for
@@ -513,9 +513,9 @@ stock
             #emit LREF.pri end
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_StringArgs
+        #emit PUSH.S _StringArgs
         #emit PUSH.C 144
-        #emit PUSH.C utils_unspecified_string
+        #emit PUSH.C _unspecified_string
         #emit PUSH.C args
         #emit SYSREQ.C format
  
@@ -524,7 +524,7 @@ stock
             i,
             x,
             y,
-            utils_unspecified_string
+            _unspecified_string
         )
         ;
  
@@ -533,8 +533,8 @@ stock
         #emit RETN
     }
     #if defined detutils_debug
-    utils_Functionid = 6;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", utils_Functionid);
+    _Functionid = 6;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     return
         CreatePlayerTextDraw
@@ -542,7 +542,7 @@ stock
             i,
             x,
             y,
-            utils_StringArgs
+            _StringArgs
         )
     ;
 }
@@ -551,19 +551,19 @@ stock
     fmargs_TextDrawSetString
 (
     Text:id,
-    const utils_StringArgs[],
+    const _StringArgs[],
     {Float,_}:...
 )
 {
     #if defined detutils_debug
-    utils_Functionid = 7;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", utils_Functionid);
+    _Functionid = 7;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
         start,
         end,
-        utils_unspecified_string[144]
+        _unspecified_string[144]
     ;
     #emit LOAD.S.pri 8
     #emit STOR.pri args
@@ -572,7 +572,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_StringArgs
+        #emit ADDR.pri _StringArgs
         #emit STOR.pri start
 
         for
@@ -585,16 +585,16 @@ stock
             #emit LREF.pri end
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_StringArgs
+        #emit PUSH.S _StringArgs
         #emit PUSH.C 144
-        #emit PUSH.C utils_unspecified_string
+        #emit PUSH.C _unspecified_string
         #emit PUSH.C args
         #emit SYSREQ.C format
 
         TextDrawSetString
         (
             id,
-            utils_unspecified_string
+            _unspecified_string
         )
         ;
 
@@ -603,14 +603,14 @@ stock
         #emit RETN
     }
     #if defined detutils_debug
-    utils_Functionid = 7;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", utils_Functionid);
+    _Functionid = 7;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     return
         TextDrawSetString
         (
             id,
-            utils_StringArgs
+            _StringArgs
         )
     ;
 }
@@ -620,19 +620,19 @@ stock
 (
     i,
     Text:id,
-    const utils_StringArgs[],
+    const _StringArgs[],
     {Float,_}:...
 )
 {
     #if defined detutils_debug
-    utils_Functionid = 8;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", utils_Functionid);
+    _Functionid = 8;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
         start,
         end,
-        utils_unspecified_string[144]
+        _unspecified_string[144]
     ;
     #emit LOAD.S.pri 8
     #emit STOR.pri args
@@ -641,7 +641,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_StringArgs
+        #emit ADDR.pri _StringArgs
         #emit STOR.pri start
 
         for
@@ -654,16 +654,16 @@ stock
             #emit LREF.pri end
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_StringArgs
+        #emit PUSH.S _StringArgs
         #emit PUSH.C 144
-        #emit PUSH.C utils_unspecified_string
+        #emit PUSH.C _unspecified_string
         #emit PUSH.C args
         #emit SYSREQ.C format
 
         PlayerTextDrawSetString
         (
             i,id,
-            utils_unspecified_string
+            _unspecified_string
         )
         ;
 
@@ -672,14 +672,14 @@ stock
         #emit RETN
     }
     #if defined detutils_debug
-    utils_Functionid = 8;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", utils_Functionid);
+    _Functionid = 8;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     return
         PlayerTextDrawSetString
         (
             i,id,
-            utils_StringArgs
+            _StringArgs
         )
     ;
 }
@@ -777,8 +777,8 @@ static AnnounceLibraryLoaded_fmargs()
 main()
 {
     #if defined detutils_debug
-    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("det_fmargs.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("det_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     AnnounceLibraryLoaded_fmargs();
     a_fmargs_main();
@@ -794,20 +794,20 @@ main()
 
 #else
 
-#define detutils_fmargs_TRUE 1
+#define det_fmargs_TRUE 1
 
 public OnFilterScriptInit()
 {
     AnnounceLibraryLoaded_fmargs();
     #if defined detutils_debug
-    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("det_fmargs.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("det_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     if(funcidx("a_fmargs_OnfsInit") != -1)
     {
         CallLocalFunction("a_fmargs_OnfsInit", "i", playerid);
     }
-    return detutils_fmargs_TRUE;
+    return det_fmargs_TRUE;
 }
 
 #if defined _ALS_OnFilterScriptInit
@@ -825,14 +825,14 @@ forward a_fmargs_OnfsInit();
 stock
     fmargs_SendRconCommand
 (
-    const utils_StringArgs[],
+    const _StringArgs[],
     
     {Float,_}:...
 )
 {
     #if defined detutils_debug
-    utils_Functionid = 9;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", utils_Functionid);
+    _Functionid = 9;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
@@ -841,7 +841,7 @@ stock
         
         end,
         
-        utils_unspecified_string[144]
+        _unspecified_string[144]
     ;
     #emit LOAD.S.pri 8
     
@@ -851,7 +851,7 @@ stock
         args > 12
     )
     {
-        #emit ADDR.pri utils_StringArgs
+        #emit ADDR.pri _StringArgs
         
         #emit STOR.pri start
 
@@ -868,11 +868,11 @@ stock
             
             #emit PUSH.pri
         }
-        #emit PUSH.S utils_StringArgs
+        #emit PUSH.S _StringArgs
         
         #emit PUSH.C 144
         
-        #emit PUSH.C utils_unspecified_string
+        #emit PUSH.C _unspecified_string
         
         #emit PUSH.C args
         
@@ -880,7 +880,7 @@ stock
 
         SendRconCommand
         (
-            utils_unspecified_string
+            _unspecified_string
         )
         ;
 
@@ -891,13 +891,13 @@ stock
         #emit RETN
     }
     #if defined detutils_debug
-    utils_Functionid = 9;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", utils_Functionid);
+    _Functionid = 9;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         SendRconCommand
         (
-            utils_StringArgs
+            _StringArgs
         )
     ;
 }
