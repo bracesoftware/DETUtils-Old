@@ -103,6 +103,11 @@ Optional plugins:
 #define CMD:%0(%1) \
     forward cmd_%0(%1); public cmd_%0(%1)
 
+#define YCMD:%0(%1) \
+    forward cmd_%0(%1); public cmd_%0(%1)
+
+#define COMMAND CMD
+
 #if !defined IsValidString
         #define IsValidString(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
 #endif
@@ -144,6 +149,11 @@ Optional plugins:
 
 #define CMD__:%0(%1) \
     forward  cmd_%0(%1); public cmd_%0(%1)
+
+#define YCMD__:%0(%1) \
+    forward cmd_%0(%1); public cmd_%0(%1)
+
+#define COMMAND__ CMD__
 
 #if !defined IsValidString
         #define IsValidString(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
