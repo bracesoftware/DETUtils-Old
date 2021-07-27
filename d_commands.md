@@ -314,8 +314,9 @@ DEBUG__COMMAND__ mycmd()
   return 1;
 }
 ```
-***Making filterscript with d_commands?***
 ------------------------------------------
+***Making filterscript with d_commands?***
+
 - Well, I have good news for you, because there is also new filterscript support feature. 
 
 - So, if you're making a filterscript - make sure you use:
