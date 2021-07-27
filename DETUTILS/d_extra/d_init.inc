@@ -147,4 +147,10 @@ static AnnounceLibraryLoading_init()
     print("               By: DEntisT              ");
     print("                                        ");
     print("|======================================|");
+    print("                                        ");
+    print("                                        ");
+    print("                                        ");
+    print("                                        ");
+    print("                                        ");
+    print("                                        ");
 }
