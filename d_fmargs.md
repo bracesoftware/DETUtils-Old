@@ -2,6 +2,8 @@
 
 Using *d_fmargs.inc* you can easily use specifiers in string-like type arguments of various SA:MP functions.
 
+![specifiers-used-without-format](img/d_fmargs.png)
+
 [Go back to home page...](README.md)
 
 # Usage
