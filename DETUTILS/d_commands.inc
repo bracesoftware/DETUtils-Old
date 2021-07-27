@@ -308,7 +308,7 @@ stock CallLocalPrefixedCommand(const command[], const specifiers[], integner, co
                         88               
 */
 
-static AnnounceLibraryLoaded()
+static void:AnnounceLibraryLoaded()
 {
     print("|======================================|");
     print("             d_commands.inc             ");

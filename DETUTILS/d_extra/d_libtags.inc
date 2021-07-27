@@ -229,7 +229,7 @@ static stock _FixHourData(_f_Hour)
     return 1;
 }
 
-stock SaveLogIntoFile( const _FileName[], const _Log[]) 
+stock void:SaveLogIntoFile( const _FileName[], const _Log[]) 
 {
     new _Entry[ 128 ], 
         _sec, 
@@ -260,7 +260,7 @@ stock SaveLogIntoFile( const _FileName[], const _Log[])
     fclose( _File );
 }
 
-stock _SetTag( const _FileName[], const _TagName[] )
+stock void:_SetTag( const _FileName[], const _TagName[] )
 {
     SaveLogIntoFile(_FileName,_TagName);
 }

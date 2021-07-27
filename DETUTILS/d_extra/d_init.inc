@@ -39,7 +39,7 @@ Optional plugins:
     Incognito - streamer
 
 */
-    
+
 #if defined d_init_included
 
     #endscript
@@ -81,6 +81,26 @@ Optional plugins:
 */
 
 static const DET_g_Version[1][10] = { "1.0" };
+
+static void:AnnounceLibraryLoading_init()
+{
+    print("|======================================|");
+    print("                                        ");
+    print("            SA:MP | DETUtils            ");
+    print("        System is now loading...        ");
+    print("                                        ");
+    printf("              Version: %s              ", DET_g_Version);
+    print("                                        ");
+    print("               By: DEntisT              ");
+    print("                                        ");
+    print("|======================================|");
+    print("                                        ");
+    print("                                        ");
+    print("                                        ");
+    print("                                        ");
+    print("                                        ");
+    print("                                        ");
+}
 
 #if !defined FILTERSCRIPT
 
@@ -133,24 +153,4 @@ public OnDETUtilsInit()
 {
     AnnounceLibraryLoading_init();
     return 1;
-}
-
-static AnnounceLibraryLoading_init()
-{
-    print("|======================================|");
-    print("                                        ");
-    print("            SA:MP | DETUtils            ");
-    print("        System is now loading...        ");
-    print("                                        ");
-    printf("              Version: %s              ", DET_g_Version);
-    print("                                        ");
-    print("               By: DEntisT              ");
-    print("                                        ");
-    print("|======================================|");
-    print("                                        ");
-    print("                                        ");
-    print("                                        ");
-    print("                                        ");
-    print("                                        ");
-    print("                                        ");
 }

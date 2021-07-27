@@ -96,6 +96,8 @@ enum e__INTERIOR_DATA
     e__INTERIOR_3DLABELID
 };
 
+forward OnCustomInteriorCreated(customintid);
+
 new _PlayersInterior[MAX_PLAYERS];
 
 new _InteriorData[MAX_INTERIORS][e__INTERIOR_DATA];
@@ -132,7 +134,7 @@ new _EntranceTitleShown[MAX_PLAYERS];
 #define INTERIOR_ACTION_ENTER 0
 #define INTERIOR_ACTION_EXIT 1
 
-_InteriorLoadingTime(const playerid)
+void:_InteriorLoadingTime(const playerid)
 {
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - tpcll :: Player ( id : %i ) is now controlable.", playerid);
@@ -632,6 +634,16 @@ stock CreateCustomInteriorEx(
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Internal interior data assigned.");
     #endif
+
+    if(funcidx("OnCustomInteriorCreated") != -1)
+    {
+        CallLocalFunction("OnCustomInteriorCreated", "i", _Interiorid);
+    }
+
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - OnCustomInteriorCreated(customintid) called.");
+    #endif
+
     return det_interiors_TRUE;
 }
 
@@ -701,6 +713,15 @@ stock CreateCustomInterior(
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Internal interior data assigned.");
+    #endif
+
+    if(funcidx("OnCustomInteriorCreated") != -1)
+    {
+        CallLocalFunction("OnCustomInteriorCreated", "i", _Interiorid);
+    }
+
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - OnCustomInteriorCreated(customintid) called.");
     #endif
 
     return det_interiors_TRUE;
@@ -791,7 +812,7 @@ stock SetPlayerCustomInterior(_p_Playerid, p_Interiorid)
 #define IsInteriorActionPerformed(%0) \
     (_Actionid == %0)
 
-static AnnounceLibraryLoaded_int()
+static void:AnnounceLibraryLoaded_int()
 {
     print("|======================================|");
     print("            d_interiors.inc             ");

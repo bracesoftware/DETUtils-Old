@@ -107,7 +107,7 @@ Optional plugins:
 
 */
 
-static AnnounceLibraryLoaded_data()
+static void:AnnounceLibraryLoaded_data()
 {
     print("|======================================|");
     print("                d_data.inc              ");

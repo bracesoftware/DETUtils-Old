@@ -762,7 +762,7 @@ stock
 
 #define PlayerTextDrawSetString fmargs_PlayerTextDrawSetString
 
-static AnnounceLibraryLoaded_fmargs()
+static void:AnnounceLibraryLoaded_fmargs()
 {
     print("|======================================|");
     print("              d_fmargs.inc              ");
