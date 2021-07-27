@@ -534,7 +534,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 6;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         CreatePlayerTextDraw
@@ -604,7 +604,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 7;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         TextDrawSetString
@@ -673,7 +673,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 8;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         PlayerTextDrawSetString
