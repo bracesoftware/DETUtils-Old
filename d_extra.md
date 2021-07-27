@@ -6,6 +6,23 @@
 ## Handy features
 - Read information about each feature below.
 ### API ( programming interface )
+#### **Pawn Language extensions**
+------------------------------------------
+#### until(...)
+- **SA:MP DET-Utils** also provides new loop known as *until* loop.
+- Example:
+```pawn
+command untiltest(playerid, params[])
+{
+    new i;
+    until(i = 50)
+    {
+        i++;
+    }
+    SendClientMessage(playerid, -1, "i is now 50.");
+    return 1;
+}
+```
 #### **Command Processor Features**
 ------------------------------------------
 #### CallLocalPrefixedCommand
