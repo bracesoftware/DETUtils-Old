@@ -516,14 +516,14 @@ stock Create3DLabelAndPickup(
     printf("[samp-detutils]: (debug) - c3dladp :: Pickup id validity checked.");
     #endif
 
-    /*Create3DTextLabel(
+    Create3DTextLabel(
                             _LabelString, 
-                            0x0059FFAA, 
+                            0xffffffff, 
                             _xPosition, 
                             _yPosition, 
                             _zPosition, 
                             _LabelRadius, 
-                            _VirtualWorld);*/
+                            _VirtualWorld);
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: Created 3d label successfully.");

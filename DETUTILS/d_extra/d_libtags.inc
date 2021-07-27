@@ -62,6 +62,8 @@ Optional plugins:
                                                 
 */
 
+#define until(%0)%8\10;%9 while( !( %0 ))%8
+
 stock _RemID;
 
 #define rem:<%0>; _RemID++; printf("[samp-detutils]: (rem) - Rem called. ID: %i", _RemID);
