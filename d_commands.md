@@ -1,6 +1,6 @@
 # d_commands.inc
 SA:MP Commands - a "built-in" fast and easy way to create commands.
-
+[cmd-processing](img/d_commands.png)
 [Go back to home page...](README.md)
 
 ## How to start to use?
