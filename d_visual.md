@@ -25,3 +25,12 @@ public OnGameModeInit()
   return 1;
 }
 ```
+## Built-in visual features
+### Commands
+#### /pickgun
+- This command allows the player to pick up the gun if he is standing near it.
+#### /destroygun
+- This one allows player to destroy the object of the gun.
+#### /throwgun
+- This one, obviously, allows the player to throw a gun he is holding away.
+- **NOTE**: This command has timer attached to it. Command is only operable every 30 seconds. If you are spamming with it, it will not work until the timer toggles player's ability to throw guns again.
