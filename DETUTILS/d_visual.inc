@@ -152,19 +152,19 @@ new __Weapon_information[ 47 ][ ___Weapon_information ] = {
     {"Parachute", 46, 11, 371 }
 };
 
-new DropedGun[MAX_PLAYERS];
+new __WeaponTimer_var[MAX_PLAYERS];
 
-#define MAX_GOBJ 3000
+#define MAX_GUN_OBJECTS 3000
 
-enum dGunEnum {
+enum __Weapon_data__Enum {
     Float:__Weapon_ObjectPosition[ 3 ],
     __Weapon_ObjectID,
     __Weapon_Object_Data[ 2 ],
 };
-new _WeaponData[ MAX_GOBJ ][ dGunEnum ];
+new _WeaponData[ MAX_GUN_OBJECTS ][ __Weapon_data__Enum ];
 
 stock CreateDroppedGun( __Weapon_id, __Weapon_ammo, Float:__Weapon_pos_x, Float:__Weapon_pos_y, Float:__Weapon_pos_z ) {
-    for( new __weap_index = 0; __weap_index < MAX_GOBJ; __weap_index++ ) {
+    for( new __weap_index = 0; __weap_index < MAX_GUN_OBJECTS; __weap_index++ ) {
         if( _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0 ] == 0.0 ) {
             _WeaponData[ __weap_index ][ __Weapon_Object_Data ][ 0 ] = __Weapon_id;
             _WeaponData[ __weap_index ][ __Weapon_Object_Data ][ 1 ] = __Weapon_ammo;
@@ -186,7 +186,7 @@ command throwgun( playerid, params[] )
 {
     if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT) return 1;
     
-    if(DropedGun[playerid] != 0) return 1;
+    if(__WeaponTimer_var[playerid] != 0) return 1;
 
     new __Weapon_id = GetPlayerWeapon( playerid );
     new __Weapon_ammo = GetPlayerAmmo( playerid );
@@ -195,7 +195,7 @@ command throwgun( playerid, params[] )
         if( _g_Script == 0 )
         {
             new __weap_idx = -1;
-            for( new __weap_index = 0; __weap_index < MAX_GOBJ; __weap_index++ )
+            for( new __weap_index = 0; __weap_index < MAX_GUN_OBJECTS; __weap_index++ )
             {
                 if( _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0 ] == 0.0 )
                 {
@@ -215,7 +215,7 @@ command throwgun( playerid, params[] )
             _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] = CreateDynamicObject( __Weapon_information[ __Weapon_id ][ wModel ], 
                 _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 0 ], _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 1 ], 
                 _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 2 ]-1, 93.7, 120.0, 120.0 );
-            DropedGun[ playerid ] = 30;
+            __WeaponTimer_var[ playerid ] = 30;
             SendClientMessage( playerid, client_green, "You threw away {ffffff}%s.", 
                 __Weapon_information[ _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] ][ wName ] );
         }
@@ -227,7 +227,7 @@ command destroygun( playerid, params[] )
 {
     if( GetPlayerState( playerid ) != PLAYER_STATE_ONFOOT ) return 1;
     new __weap_idx = -1;
-    for( new __weap_index = 0; __weap_index < MAX_GOBJ; __weap_index++ )
+    for( new __weap_index = 0; __weap_index < MAX_GUN_OBJECTS; __weap_index++ )
     {
         if( IsPlayerInRangeOfPoint( playerid, 5.0, _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0] , 
             _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 1 ], 
@@ -255,7 +255,7 @@ command pickgun( playerid, params[] )
     if( GetPlayerState(playerid) != PLAYER_STATE_ONFOOT ) return 1;
     
     new __weap_idx = -1;
-    for( new __weap_index = 0; __weap_index < MAX_GOBJ; __weap_index++ )
+    for( new __weap_index = 0; __weap_index < MAX_GUN_OBJECTS; __weap_index++ )
     {
         if( IsPlayerInRangeOfPoint( playerid, 5.0, _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0] ,
          _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 1 ], 
@@ -286,7 +286,7 @@ COMMAND__ throwgun( playerid, params[] )
 {
     if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT) return 1;
     
-    if(DropedGun[playerid] != 0) return 1;
+    if(__WeaponTimer_var[playerid] != 0) return 1;
 
     new __Weapon_id = GetPlayerWeapon( playerid );
     new __Weapon_ammo = GetPlayerAmmo( playerid );
@@ -295,7 +295,7 @@ COMMAND__ throwgun( playerid, params[] )
         if( _g_Script == 0 )
         {
             new __weap_idx = -1;
-            for( new __weap_index = 0; __weap_index < MAX_GOBJ; __weap_index++ )
+            for( new __weap_index = 0; __weap_index < MAX_GUN_OBJECTS; __weap_index++ )
             {
                 if( _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0 ] == 0.0 )
                 {
@@ -315,7 +315,7 @@ COMMAND__ throwgun( playerid, params[] )
             _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] = CreateDynamicObject( __Weapon_information[ __Weapon_id ][ wModel ], 
                 _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 0 ], _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 1 ], 
                 _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 2 ]-1, 93.7, 120.0, 120.0 );
-            DropedGun[ playerid ] = 30;
+            __WeaponTimer_var[ playerid ] = 30;
             SendClientMessage( playerid, client_green, "You threw away {ffffff}%s.", 
                 __Weapon_information[ _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] ][ wName ] );
         }
@@ -327,7 +327,7 @@ COMMAND__ destroygun( playerid, params[] )
 {
     if( GetPlayerState( playerid ) != PLAYER_STATE_ONFOOT ) return 1;
     new __weap_idx = -1;
-    for( new __weap_index = 0; __weap_index < MAX_GOBJ; __weap_index++ )
+    for( new __weap_index = 0; __weap_index < MAX_GUN_OBJECTS; __weap_index++ )
     {
         if( IsPlayerInRangeOfPoint( playerid, 5.0, _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0] , 
             _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 1 ], 
@@ -355,7 +355,7 @@ COMMAND__ pickgun( playerid, params[] )
     if( GetPlayerState(playerid) != PLAYER_STATE_ONFOOT ) return 1;
     
     new __weap_idx = -1;
-    for( new __weap_index = 0; __weap_index < MAX_GOBJ; __weap_index++ )
+    for( new __weap_index = 0; __weap_index < MAX_GUN_OBJECTS; __weap_index++ )
     {
         if( IsPlayerInRangeOfPoint( playerid, 5.0, _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0] ,
          _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 1 ], 
@@ -387,7 +387,7 @@ forward __Weapon_timer();
 public __Weapon_timer()
 {
     for(new i; i < MAX_PLAYERS; i++)
-        if( DropedGun[ i ] > 0 ) DropedGun[ i ]--;
+        if( __WeaponTimer_var[ i ] > 0 ) __WeaponTimer_var[ i ]--;
 
     return 1;
 }
