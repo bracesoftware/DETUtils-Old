@@ -96,6 +96,9 @@ static void:AnnounceLibraryLoading_init()
     print("|======================================|");
     print("                                        ");
     print("                                        ");
+    #if defined DETUTILS_COMPATIBILITY_MODE
+    print(" SA:MP | DETUtils - Compatibility mode is on.");
+    #endif
     print("                                        ");
     print("                                        ");
     print("                                        ");

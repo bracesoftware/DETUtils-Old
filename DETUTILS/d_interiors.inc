@@ -782,7 +782,7 @@ stock SetInteriorEntranceCustomAngles(
                                                                                                  
 */
 
-#if !defined A_INTS_COMPATIBILITY_MODE
+#if !defined DETUTILS_COMPATIBILITY_MODE
 
 #define interior%0(%1) \
     forward int_%0(%1,_Actionid); \

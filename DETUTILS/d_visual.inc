@@ -180,6 +180,8 @@ stock CreateDroppedGun( __Weapon_id, __Weapon_ammo, Float:__Weapon_pos_x, Float:
     return 1;
 }
 
+#if !defined DETUTILS_COMPATIBILITY_MODE
+
 command throwgun( playerid, params[] )
 {
     if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT) return 1;
@@ -277,6 +279,108 @@ command pickgun( playerid, params[] )
     _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 1 ] = 0;
     return true;
 }
+
+#else
+
+COMMAND__ throwgun( playerid, params[] )
+{
+    if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT) return 1;
+    
+    if(DropedGun[playerid] != 0) return 1;
+
+    new __Weapon_id = GetPlayerWeapon( playerid );
+    new __Weapon_ammo = GetPlayerAmmo( playerid );
+    if( __Weapon_id > 0 && __Weapon_ammo != 0 )
+    {
+        if( _g_Script == 0 )
+        {
+            new __weap_idx = -1;
+            for( new __weap_index = 0; __weap_index < MAX_GOBJ; __weap_index++ )
+            {
+                if( _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0 ] == 0.0 )
+                {
+                    __weap_idx = __weap_index;
+                    break;
+                }
+            }
+            if( __weap_idx == -1 ) return SendClientMessage(playerid, client_green, "Operation can't be completed at the moment." );
+            #if defined RemovePlayerWeapon
+            RemovePlayerWeapon( playerid, __Weapon_id );
+            #endif
+            _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] = __Weapon_id;
+            _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 1 ] = __Weapon_ammo;
+            GetPlayerPos( playerid, _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 0 ], 
+                _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 1 ], 
+                _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 2 ] );
+            _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] = CreateDynamicObject( __Weapon_information[ __Weapon_id ][ wModel ], 
+                _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 0 ], _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 1 ], 
+                _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 2 ]-1, 93.7, 120.0, 120.0 );
+            DropedGun[ playerid ] = 30;
+            SendClientMessage( playerid, client_green, "You threw away {ffffff}%s.", 
+                __Weapon_information[ _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] ][ wName ] );
+        }
+    }
+    return true;
+}
+
+COMMAND__ destroygun( playerid, params[] )
+{
+    if( GetPlayerState( playerid ) != PLAYER_STATE_ONFOOT ) return 1;
+    new __weap_idx = -1;
+    for( new __weap_index = 0; __weap_index < MAX_GOBJ; __weap_index++ )
+    {
+        if( IsPlayerInRangeOfPoint( playerid, 5.0, _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0] , 
+            _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 1 ], 
+            _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 2 ] ) )
+        {
+            __weap_idx = __weap_index;
+            break;
+        }
+    }
+    if( __weap_idx == -1 ) return SendClientMessage(playerid, client_green, "No guns nearby." );
+    DestroyDynamicObject( _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] );
+    SendClientMessage( playerid, client_green, "You destroyed {ffffff}%s.", 
+        __Weapon_information[ _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] ][ wName ] );
+    _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 0 ] = 0.0;
+    _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 1 ] = 0.0;
+    _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 2 ] = 0.0;
+    _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] = -1;
+    _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] = 0;
+    _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 1 ] = 0;
+    return true;
+}
+
+COMMAND__ pickgun( playerid, params[] )
+{
+    if( GetPlayerState(playerid) != PLAYER_STATE_ONFOOT ) return 1;
+    
+    new __weap_idx = -1;
+    for( new __weap_index = 0; __weap_index < MAX_GOBJ; __weap_index++ )
+    {
+        if( IsPlayerInRangeOfPoint( playerid, 5.0, _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0] ,
+         _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 1 ], 
+         _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 2 ] ) )
+        {
+            __weap_idx = __weap_index;
+            break;
+        }
+    }
+    if( __weap_idx == -1 ) return SendClientMessage(playerid, client_green, "No guns nearby." );
+    DestroyDynamicObject( _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] );
+    SendClientMessage( playerid, client_green, "You picked up {ffffff}%s.", 
+        __Weapon_information[ _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] ][ wName ] );
+    GivePlayerWeapon( playerid, _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ], 
+        _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 1 ] );
+    _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 0 ] = 0.0;
+    _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 1 ] = 0.0;
+    _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 2 ] = 0.0;
+    _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] = -1;
+    _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] = 0;
+    _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 1 ] = 0;
+    return true;
+}
+
+#endif
 
 forward __Weapon_timer();
 

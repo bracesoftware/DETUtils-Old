@@ -102,7 +102,7 @@ Optional plugins:
 #define cmd_func_%0\32; cmd_func_
 #define role_%0\32; role_
 
-#if !defined A_CMDS_COMPATIBILITY_MODE
+#if !defined DETUTILS_COMPATIBILITY_MODE
 
 #define command%0(%1) \
     forward cmd_%0(%1);public cmd_%0(%1)
@@ -831,7 +831,7 @@ public OnPlayerText(playerid, text[])
 
 forward a_cmd_OnPlayerText(playerid, text[]);
 
-#if !defined A_CMDS_COMPATIBILITY_MODE
+#if !defined DETUTILS_COMPATIBILITY_MODE
 
 command chatmode(playerid, params[])
 {
@@ -886,7 +886,7 @@ static stock _ClearChatModeData(playerid)
 
 forward a_cmd_OnPlayerDisconnect(playerid, reason);
 
-#if !defined A_CMDS_COMPATIBILITY_MODE
+#if !defined DETUTILS_COMPATIBILITY_MODE
 
 #define pc_%0\32; pc_
 #define prx_%0\32; prx_
