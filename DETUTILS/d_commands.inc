@@ -41,6 +41,24 @@ Optional plugins:
 
 */
 
+#if !defined _INC_SSCANF
+
+    #warning [samp-detutils]: (warning) - Note that command processing works best with sscanf2 plugin, get it on github.com/y-less/sscanf-3.0
+
+#endif
+
+#if defined _zcmd_included || defined _I_ZCMD_INCLUDED || defined _INC_y_commands
+
+    #error [samp-detutils]: (error) - 'd_commands' can't work together with ZCMD, y_commands or iZCMD.
+
+#endif
+
+#if defined detutils_sscanf
+
+#undef detutils_sscanf
+
+#endif
+
 #if defined DEV_MODE
 
 #include <a_samp>
@@ -68,10 +86,10 @@ Optional plugins:
                                                                                
 */
 
-#if defined _a_cmd_processor_included
+#if defined _d_cmd_processor_included
         #endinput
 #endif 
-#define _a_cmd_processor_included
+#define _d_cmd_processor_included
 
 #if !defined MAX_FUNC_NAME
 
@@ -331,7 +349,7 @@ public OnGameModeInit()
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - ongminit :: Commands init...");
-    SaveLogIntoFile("det_commands.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loading...");
     #endif
 
     if (funcidx("a_cmd_processor_OnGameModeInit") != -1)
@@ -345,7 +363,7 @@ main()
 {
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - ongminit :: Commands loading finished.");
-    SaveLogIntoFile("det_commands.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     AnnounceLibraryLoaded();
     a_cmd_main();
@@ -357,8 +375,8 @@ public OnFilterScriptInit()
 {
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - onfsinit :: Commands loading finished.");
-    SaveLogIntoFile("det_commands.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("det_commands.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     AnnounceLibraryLoaded();
     _IsOnCmdRValid = funcidx("OnPlayerCommandReceived") != -1;
@@ -395,6 +413,10 @@ public OnPlayerCommandText(playerid, cmdtext[])
         #endif
         return 1;
     }
+
+    new cmd[256+1];
+    new idx;
+    cmd = strtok(cmdtext, idx);
     new
         position,
         _ClassicFunctionName[MAX_FUNC_NAME],
@@ -448,11 +470,19 @@ public OnPlayerCommandText(playerid, cmdtext[])
                 {
                     CallLocalFunction(_CommandDebugFunc, "si", cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
                 }
-                return CallLocalFunction("OnPlayerCommandPerformed", 
+                    #if !defined detutils_sscanf
+                    return CallLocalFunction("OnPlayerCommandPerformed", 
                     "isi", 
                     playerid, 
-                    cmdtext, 
+                    cmdtext,
                     CallLocalFunction(_ClassicFunctionName, "is", playerid, "\1"));
+                    #else
+                    return CallLocalFunction("OnPlayerCommandPerformed", 
+                    "isi", 
+                    playerid, 
+                    cmdtext,
+                    CallLocalFunction(_ClassicFunctionName, "is", playerid, cmd));
+                    #endif
         }
         #if defined detutils_debug
         if(funcidx(_CommandDebugFunc) != -1)
@@ -461,7 +491,11 @@ public OnPlayerCommandText(playerid, cmdtext[])
         }
         printf("[samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 2");
         #endif
-        return CallLocalFunction(_ClassicFunctionName, "is", playerid, "\1");      
+        #if !defined detutils_sscanf
+        return CallLocalFunction(_ClassicFunctionName, "is", playerid, "\1");
+        #else
+        return CallLocalFunction(_ClassicFunctionName, "is", playerid, cmd);
+        #endif
     }
     if (_IsOnCmdPValid)
     {
@@ -472,11 +506,19 @@ public OnPlayerCommandText(playerid, cmdtext[])
             {
                 CallLocalFunction(_CommandDebugFunc, "si", cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
             }
+                #if !defined detutils_sscanf
             return CallLocalFunction("OnPlayerCommandPerformed", 
                 "isi", 
                 playerid, 
                 cmdtext, 
                 CallLocalFunction(_ClassicFunctionName, "is", playerid, cmdtext[position]));
+                #else
+            return CallLocalFunction("OnPlayerCommandPerformed", 
+                "isi", 
+                playerid, 
+                cmdtext, 
+                CallLocalFunction(_ClassicFunctionName, "is", playerid, cmd));
+                #endif
     }
 
     if (funcidx("a_OnPlayerCommandText") != -1)
@@ -789,6 +831,8 @@ public OnPlayerText(playerid, text[])
 
 forward a_cmd_OnPlayerText(playerid, text[]);
 
+#if !defined A_CMDS_COMPATIBILITY_MODE
+
 command chatmode(playerid, params[])
 {
     if(_g_ChatMode[playerid] == 0)
@@ -805,6 +849,27 @@ command chatmode(playerid, params[])
     }
     return 0;
 }
+
+#else
+
+COMMAND__ chatmode(playerid, params[])
+{
+    if(_g_ChatMode[playerid] == 0)
+    {
+        SendClientMessage(playerid, -1, "SERVER: Chat mode switched to custom-prefixed commands mode.");
+        _g_ChatMode[playerid] = 1;
+        return 1;
+    }
+    else if(_g_ChatMode[playerid] == 1)
+    {
+        SendClientMessage(playerid, -1, "SERVER: Chat mode switched to plain-text messages mode.");
+        _g_ChatMode[playerid] = 0;
+        return 1;
+    }
+    return 0;
+}
+
+#endif
 
 static stock _ClearChatModeData(playerid)
 {

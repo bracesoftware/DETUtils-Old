@@ -128,8 +128,8 @@ new _EntranceTitleShown[MAX_PLAYERS];
 
 #define int_%0\32; int_
 
-#define det_interiors_TRUE 1
-#define det_interiors_FALSE 0
+#define detutils_interiors_TRUE 1
+#define detutils_interiors_FALSE 0
 
 #define INTERIOR_ACTION_ENTER 0
 #define INTERIOR_ACTION_EXIT 1
@@ -162,7 +162,7 @@ static _Announcement(playerid, const _Message[])
     PlayerTextDrawShow(playerid,_AnnouncementString[ playerid ]);
 
     _HideAnnouncement[playerid] = _SetTimer("hideannouncement", 4000, false, "i", playerid);
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 util function:hideannouncement(playerid)
@@ -170,7 +170,7 @@ util function:hideannouncement(playerid)
     TextDrawHideForPlayer(playerid, _AnnouncementUsebox);
     PlayerTextDrawHide(playerid, _AnnouncementString[playerid]);
     KillTimer(_HideAnnouncement[playerid]);
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 static _CreateAnncTextDraws()
@@ -186,7 +186,7 @@ static _CreateAnncTextDraws()
     TextDrawSetShadow(_AnnouncementUsebox, 0);
     TextDrawSetOutline(_AnnouncementUsebox, 0);
     TextDrawFont(_AnnouncementUsebox, 0);
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #define STRING "string"
@@ -204,7 +204,7 @@ static _CreatePlayerTextDraws(playerid)
     PlayerTextDrawBackgroundColor(playerid, _AnnouncementString[playerid], 51);
     PlayerTextDrawFont(playerid, _AnnouncementString[playerid], 2);
     PlayerTextDrawSetProportional(playerid, _AnnouncementString[playerid], 1);
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 forward _ToggleControllable();
@@ -229,7 +229,7 @@ public OnGameModeInit()
     {
         CallLocalFunction("a_ints_OnGameModeInit", "");
     }
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #if defined _ALS_OnGameModeInit
@@ -251,7 +251,7 @@ public OnPlayerConnect(playerid)
     {
         CallLocalFunction("a_ints_OnPlayerConnect", "i", playerid);
     }
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #if defined _ALS_OnPlayerConnect
@@ -272,7 +272,7 @@ public OnPlayerSpawn(playerid)
     {
         CallLocalFunction("a_ints_OnplayerSpawn", "i", playerid);
     }
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #if defined _ALS_OnPlayerSpawn
@@ -357,7 +357,7 @@ public _OnPlayerNearEntrance(playerid)
             _PlayersInterior[ playerid ] = -1;
         }
     }
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 public OnPlayerDisconnect(playerid, reason)
@@ -370,7 +370,7 @@ public OnPlayerDisconnect(playerid, reason)
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - playerdiscc :: Player interior data cleared.");
     #endif
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #if defined _ALS_OnPlayerDisconnect
@@ -405,7 +405,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
     {
         CallLocalFunction("aint_ALS_OnPlayerKeyStateChange", "iii", playerid, newkeys, oldkeys);
     }
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #if defined _ALS_OnPlayerKeyStateChange
@@ -425,7 +425,7 @@ util function:ResOnUpdateBool(playerid)
     #endif
 
     _EntranceTitleShown[playerid] = 0;
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 public OnPlayerUpdate(playerid)
@@ -452,7 +452,7 @@ public OnPlayerUpdate(playerid)
     {
         CallLocalFunction("aint_ALS_OnPlayerUpdate", "i", playerid);
     }
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #if defined _ALS_OnPlayerUpdate
@@ -491,28 +491,28 @@ stock Create3DLabelAndPickup(
         Float:_LabelRadius ) 
 {
     if(IsValidString(_LabelString))
-        return det_interiors_FALSE;
+        return detutils_interiors_FALSE;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: String checking finished.");
     #endif
 
     if(_VirtualWorld < 0)
-        return det_interiors_FALSE;
+        return detutils_interiors_FALSE;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: Virtual world validity checked.");
     #endif
 
     if(_LabelRadius <= 0)
-        return det_interiors_FALSE;
+        return detutils_interiors_FALSE;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: Label visibility radius check finished.");
     #endif
 
     if(_Pickupid < 0)
-        return det_interiors_FALSE;
+        return detutils_interiors_FALSE;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: Pickup id validity checked.");
@@ -547,7 +547,7 @@ stock Create3DLabelAndPickup(
     printf("[samp-detutils]: (debug) - Operation completed successfully. Error code: ERRNULL");
     #endif
 
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 stock CreateCustomInteriorEx(
@@ -644,7 +644,7 @@ stock CreateCustomInteriorEx(
     printf("[samp-detutils]: (debug) - OnCustomInteriorCreated(customintid) called.");
     #endif
 
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 stock CreateCustomInterior(
@@ -724,7 +724,7 @@ stock CreateCustomInterior(
     printf("[samp-detutils]: (debug) - OnCustomInteriorCreated(customintid) called.");
     #endif
 
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 stock bool:IsPlayerInCustomInterior(playerid)
@@ -742,7 +742,7 @@ stock ClearPlayerInteriorData(playerid)
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - ClearPlayerInteriorData action successfully performed.");
     #endif
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 stock GetLastInterioridUsed()
@@ -764,7 +764,7 @@ stock SetInteriorEntranceCustomAngles(
     #endif
     _InteriorData[_CustomInteriorid][e__INTENTRANCE_A] = _aAngle;
     _InteriorData[_CustomInteriorid][e__INTEXIT_A] = _bAngle;
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 /*
@@ -799,14 +799,14 @@ stock SetInteriorEntranceCustomAngles(
 stock SetPlayerCustomInterior(_p_Playerid, p_Interiorid)
 {
     if(p_Interiorid < -1)
-        return det_interiors_FALSE;
+        return detutils_interiors_FALSE;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Successfully set players (id : %i) interior to %i.", _p_Playerid, p_Interiorid);
     #endif
 
     _PlayersInterior[_p_Playerid] = p_Interiorid;
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #define IsInteriorActionPerformed(%0) \
@@ -827,8 +827,8 @@ static void:AnnounceLibraryLoaded_int()
 main()
 {
     #if defined detutils_debug
-    SaveLogIntoFile("det_interiors.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("det_interiors.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("detutils_interiors.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_interiors.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     AnnounceLibraryLoaded_int();
     a_int_main();
@@ -848,8 +848,8 @@ public OnFilterScriptInit()
 {
     _CreateAnncTextDraws();
     #if defined detutils_debug
-    SaveLogIntoFile("det_interiors.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("det_interiors.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("detutils_interiors.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_interiors.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     AnnounceLibraryLoaded_int();
 
@@ -857,7 +857,7 @@ public OnFilterScriptInit()
     {
         CallLocalFunction("a_int_OnFilterScriptInit", "i", playerid);
     }
-    return det_interiors_TRUE;
+    return detutils_interiors_TRUE;
 }
 
 #if defined _ALS_OnFilterScriptInit

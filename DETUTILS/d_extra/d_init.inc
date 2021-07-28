@@ -60,7 +60,7 @@ Optional plugins:
 
 #endif
 
-#if defined d_data_included
+#if defined _d_data_included
 
     #error [samp-detutils]: (error) - Unusable code reached.
 

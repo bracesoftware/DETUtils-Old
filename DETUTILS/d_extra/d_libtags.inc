@@ -62,6 +62,10 @@ Optional plugins:
                                                 
 */
 
+#define client_green 0x8ba962
+
+#define detutils_visual_TRUE
+
 #define until(%0)%8\10;%9 while( !( %0 ))%8
 
 stock _RemID;
@@ -203,7 +207,7 @@ stock bool:IsPlayerUsingAndroidClient(playerid)
 
 */
 
-stock ReturnPlayerName(id) 
+stock _ReturnPlayerName(id) 
 {
     new _PlayerName[ MAX_PLAYER_NAME ];
     
@@ -263,4 +267,37 @@ stock void:SaveLogIntoFile( const _FileName[], const _Log[])
 stock void:_SetTag( const _FileName[], const _TagName[] )
 {
     SaveLogIntoFile(_FileName,_TagName);
+}
+
+stock strtok(const string[], &index, delimiter = ' ') {
+    new length = strlen(string);
+    while ((index < length) && (string[index] <= delimiter)) {
+        index++;
+    }
+    new offset = index;
+    new result[128];
+    while ((index < length) && (string[index] > delimiter) && ((index - offset) < (sizeof(result) - 1))) {
+        result[index - offset] = string[index];
+        index++;
+    }
+    result[index - offset] = EOS;
+    return result;
+}
+
+stock strrest(const string[], &index)
+{
+    new length = strlen(string);
+    while ((index < length) && (string[index] <= ' '))
+    {
+        index++;
+    }
+    new offset = index;
+    new result[128];
+    while ((index < length) && ((index - offset) < (sizeof(result) - 1)))
+    {
+        result[index - offset] = string[index];
+        index++;
+    }
+    result[index - offset] = EOS;
+    return result;
 }

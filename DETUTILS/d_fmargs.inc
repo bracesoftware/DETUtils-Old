@@ -41,6 +41,12 @@ Optional plugins:
 
 */
 
+#if defined _INC_y_va
+
+    #error [samp-detutils]: (error) - 'd_fmargs' is not compatible with 'y_va' include.
+
+#endif
+
 #if defined DEV_MODE
 
 #include <a_samp>
@@ -777,8 +783,8 @@ static void:AnnounceLibraryLoaded_fmargs()
 main()
 {
     #if defined detutils_debug
-    SaveLogIntoFile("det_fmargs.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("det_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     AnnounceLibraryLoaded_fmargs();
     a_fmargs_main();
@@ -794,20 +800,20 @@ main()
 
 #else
 
-#define det_fmargs_TRUE 1
+#define detutils_fmargs_TRUE 1
 
 public OnFilterScriptInit()
 {
     AnnounceLibraryLoaded_fmargs();
     #if defined detutils_debug
-    SaveLogIntoFile("det_fmargs.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("det_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     if(funcidx("a_fmargs_OnfsInit") != -1)
     {
         CallLocalFunction("a_fmargs_OnfsInit", "i", playerid);
     }
-    return det_fmargs_TRUE;
+    return detutils_fmargs_TRUE;
 }
 
 #if defined _ALS_OnFilterScriptInit
