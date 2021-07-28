@@ -152,7 +152,7 @@ new __Weapon_information[ 47 ][ ___Weapon_information ] = {
     {"Parachute", 46, 11, 371 }
 };
 
-new __WeaponTimer_var[MAX_PLAYERS];
+static stock __WeaponTimer_var[MAX_PLAYERS];
 
 #define MAX_GUN_OBJECTS 3000
 
