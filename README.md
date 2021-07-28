@@ -9,7 +9,7 @@ Hi! Welcome to *SA:MP-DET Utilities* "read me" file. In general, *samp-detutils*
 - [View](d_example.md) one simple example of script made using **SA:MP-DET Utilities**.
 
 ## Warnings
-1. Always include **YSI** before DETUtils.
+1. Always include **DETUtils** last, after all includes.
 ## Docs
 Click on blue text to see all information about each feature.
 ### Installation
