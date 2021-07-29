@@ -49,6 +49,12 @@ Optional plugins:
 
 #include "d_init.inc"
 
+#if defined detutils_debug
+
+    #pragma warning disable 231
+
+#endif
+
 /*
                                                 
 88888888ba,                                     

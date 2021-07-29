@@ -125,6 +125,25 @@ public OnGameModeInit()
 
 #define OnGameModeInit a_init_OnGameModeInit
 
+#if defined detutils_debug
+
+main()
+{
+    SendRconCommand("hostname [samp-detutils]: (test) - Server");
+    SetGameModeText("SA:MP | DET-Utils");
+    a_init_main();
+}
+
+#if defined _ALS_main
+    #undef main
+#else
+    #define _ALS_main
+#endif
+
+#define main a_init_main
+
+#endif
+
 forward a_init_OnGameModeInit();
 
 #else
