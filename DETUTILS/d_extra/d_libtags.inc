@@ -41,6 +41,12 @@ Optional plugins:
 
 */
 
+#if !defined __PawnBuild
+
+    #error [samp-detutils]: (fatal error) - DETUtils require community Pawn compiler. Get it from: github.com/pawn-lang/compiler
+
+#endif
+
 #if defined d_extra_included
     #endinput
 #endif
