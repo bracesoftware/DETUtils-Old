@@ -1,5 +1,5 @@
 # SA:MP-DET Utilities | Information
-                                                               ![image](img/detutils.png)
+![image](img/detutils.png)
 
 Hi! Welcome to *SA:MP-DET Utilities* "read me" file. In general, *samp-detutils* contain libraries that have in-game visible effects and libraries that contain new scripting features. 
 - Below, you can find information about each library.
