@@ -174,5 +174,19 @@ forward OnDETUtilsInit();
 public OnDETUtilsInit()
 {
     AnnounceLibraryLoading_init();
+    if(funcidx("a_init_OnDETUtilsInit") != -1)
+    {
+        CallLocalFunction("a_init_OnDETUtilsInit", "");
+    }
     return 1;
 }
+
+#if defined _ALS_OnDETUtilsInit
+    #undef OnDETUtilsInit
+#else
+    #define _ALS_OnDETUtilsInit
+#endif
+
+#define OnDETUtilsInit a_init_OnDETUtilsInit
+
+forward a_init_OnDETUtilsInit();
