@@ -88,7 +88,7 @@ Contributors:
 
 Thanks:
 ------------------------------------------
-- open.mp team - ideas, support, help during development
+- aezzakmi - help during development
 
 Very special thanks to:
 ------------------------------------------
@@ -97,8 +97,6 @@ Very special thanks to:
 - Kye/Kalcor - SA:MP
 
 - SA:MP Team past, present and future - SA:MP
-
-- open.mp team present and future - SA:MP
 
 Optional plugins:
 ------------------------------------------
