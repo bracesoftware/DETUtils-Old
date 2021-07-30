@@ -162,7 +162,7 @@ if(IsPlayerInCustomInterior(playerid)) return SendClientMessage(playerid, -1, "Y
 
 **CreateCustomInteriorEx**
 ------------------------------------------
-- This is just a function successor, this function does the same thing *CreateCustomInterior* does. Only difference is that *CustomInteriorEx* creates 3D label and pickup on entrance and exit point.
+- This is just a function successor, this function does the same thing *CreateCustomInterior* does. Only difference is that *CreateCustomInteriorEx* creates 3D label and pickup on entrance and exit point.
 
 Parameters: same as on CreateCustomInterior
 
@@ -175,11 +175,12 @@ Parameters: same as on CreateCustomInterior
 ### Notes
 ------------------------------------------
 ***Streamer***
-------------------------------------------
+
 - Make sure you have *streamer.inc* include file for *CreateCustomInteriorEx*.
+------------------------------------------
 
 ***Making filterscript with d_interiors?***
-------------------------------------------
+
 - Well, I have good news for you, because there is also new filterscript support feature. 
 
 - So, if you're making a filterscript - make sure you use:
@@ -188,9 +189,8 @@ Parameters: same as on CreateCustomInterior
 #define FILTERSCRIPT
 ```
 ... before including *d_interiors*.
-
-***Compatibility mode***
 ------------------------------------------
+***Compatibility mode***
 - d_interiors have compatibility mode! Enable it using:
 
 ```pawn
