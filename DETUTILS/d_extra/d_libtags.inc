@@ -41,6 +41,12 @@ Optional plugins:
 
 */
 
+#if defined A_INTS_COMPATIBILITY_MODE || defined A_CMDS_COMPATIBILITY_MODE
+
+    #define DETUTILS_COMPATIBILITY_MODE
+
+#endif
+
 #if !defined __PawnBuild
 
     #error [samp-detutils]: (fatal error) - DETUtils require community Pawn compiler. Get it from: github.com/pawn-lang/compiler
