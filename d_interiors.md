@@ -189,6 +189,7 @@ Parameters: same as on CreateCustomInterior
 #define FILTERSCRIPT
 ```
 ... before including *d_interiors*.
+
 ------------------------------------------
 ***Compatibility mode***
 - d_interiors have compatibility mode! Enable it using:
