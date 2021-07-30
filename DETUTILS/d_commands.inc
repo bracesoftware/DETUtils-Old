@@ -86,6 +86,13 @@ Optional plugins:
                                                                                
 */
 
+#define @cmds_%0\32; @cmds_
+
+#define keyword @cmds_
+
+#define @cmds_public%0(%1) %0(%1);public%0(%1)
+#define @cmds_native%0(%1) native%0(%1)
+
 #if defined _d_cmd_processor_included
         #endinput
 #endif 
@@ -106,6 +113,16 @@ Optional plugins:
 
 #define command%0(%1) \
     forward cmd_%0(%1);public cmd_%0(%1)
+
+#define new%2Command:%0(%1) \
+    forward cmd_%0(%1);public cmd_%0(%1)
+
+#if defined detutils_tags_test
+
+#define alias%5Command:%0(%1[%3]%4)=%2; \
+    forward cmd_%0(%1[]);%3public cmd_%0(%1[]){return cmd_%2(%1)%4;%5}
+
+#endif
 
 #define alias%5command%0(%1[%3]%4)=%2; \
     forward cmd_%0(%1[]);%3public cmd_%0(%1[]){return cmd_%2(%1)%4;%5}
