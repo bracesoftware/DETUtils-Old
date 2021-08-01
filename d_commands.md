@@ -25,6 +25,20 @@ command mycommand(playerid, params[])
 
 ... and - that's it, command is declared, and whenever someone sends */mycommand* to chat, a message saying "Your very first command works!" appears.
 
+### Bonus
+-----------------------------------------
+
+- Creating commands now, also - can be done just using ``new``.
+- Let's take a look:
+
+```pawn
+new Command:tagtest(playerid,params[])
+{
+    SendClientMessage(playerid, -1, "Tag command worked.");
+    return 1;
+}
+```
+
 ### Command aliasing
 ------------------------------------------
 There is also way to declare alias of a specific command.
