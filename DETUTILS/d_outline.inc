@@ -17,7 +17,7 @@ Legal:
     for the specific language governing rights and limitations under the
     License.
     
-    The Original Code is SA:MP | utils.
+    The Original Code is SA:MP | DET-Utils.
     
     The Initial Developer of the original code is DEntisT 'Unity' Brace.
     Portions created by the Initial Developer are Copyright C 2021
@@ -40,33 +40,45 @@ Optional plugins:
 
 */
 
-#if defined d_init_included
+#if !defined d_outline_included
 
+    #define d_outline_included
+
+#else
+
+    #endinput
     #endscript
 
 #endif
 
-#define d_init_included
+#tryinclude "d_extra\d_libtags.inc"
 
-#if defined DEV_MODE
-
-#tryinclude <a_samp>
-
-#if !defined _inc_a_samp
-
-    #error [samp-detutils]: (error) - You need to have a_samp.inc file in your includes folder.
-
+#if !defined d_extra_included
+    #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
-#endif
+/*
 
-#if defined _d_data_included
+                                                                                      
+88b           d88              88                         db         88888888ba   88  
+888b         d888              ""                        d88b        88      "8b  88  
+88`8b       d8'88                                       d8'`8b       88      ,8P  88  
+88 `8b     d8' 88  ,adPPYYba,  88  8b,dPPYba,          d8'  `8b      88aaaaaa8P'  88  
+88  `8b   d8'  88  ""     `Y8  88  88P'   `"8a        d8YaaaaY8b     88""""""'    88  
+88   `8b d8'   88  ,adPPPPP88  88  88       88       d8""""""""8b    88           88  
+88    `888'    88  88,    ,88  88  88       88      d8'        `8b   88           88  
+88     `8'     88  `"8bbdP"Y8  88  88       88     d8'          `8b  88           88  
+                                                                                      
+                                                                                      
 
-    #error [samp-detutils]: (error) - Unusable code reached.
+*/
 
-#endif
+#define @outlinek_%0\32;
 
-public const detutils_ver = 0x1;
+#define outline @outlinek_
+
+#define @outlinek_format%0(%1, %2); \
+    stock @out_format(%1){return format(%1,%2);}
 
 /*
                                                                       
@@ -82,58 +94,26 @@ public const detutils_ver = 0x1;
 
 */
 
-static const DET_g_Version[1][10] = { "1.0" };
-
-static void:AnnounceLibraryLoading_init()
+static AnnounceLibraryLoaded_outline()
 {
     print("|======================================|");
-    print("                                        ");
-    print("            SA:MP | DETUtils            ");
-    print("        System is now loading...        ");
-    print("                                        ");
-    printf("              Version: %s              ", DET_g_Version);
+    print("             d_outline.inc              ");
+    print("          Successfully loaded!          ");
     print("                                        ");
     print("               By: DEntisT              ");
-    print("                                        ");
     print("|======================================|");
-    print("                                        ");
-    print("                                        ");
-    #if defined DETUTILS_COMPATIBILITY_MODE
-    print(" SA:MP | DETUtils - Compatibility mode is on.");
-    #endif
-    print("                                        ");
-    print("                                        ");
-    print("                                        ");
-    print("                                        ");
 }
 
 #if !defined FILTERSCRIPT
 
-public OnGameModeInit()
-{
-    if(funcidx("a_init_OnGameModeInit") != -1)
-    {
-        a_init_OnGameModeInit();
-    }
-    OnDETUtilsInit();
-    return 1;
-}
-
-#if defined _ALS_OnGameModeInit
-    #undef OnGameModeInit
-#else
-    #define _ALS_OnGameModeInit
-#endif
-
-#define OnGameModeInit a_init_OnGameModeInit
-
-#if defined detutils_debug
-
 main()
 {
-    SendRconCommand("hostname [samp-detutils]: (test) - Server");
-    SetGameModeText("SA:MP | DET-Utils");
-    a_init_main();
+    #if defined detutils_debug
+    SaveLogIntoFile("detutils_outline.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_outline.log", "[samp-detutils]: (debug) - Loaded.");
+    #endif
+    AnnounceLibraryLoaded_outline();
+    a_outline_main();
 }
 
 #if defined _ALS_main
@@ -142,22 +122,24 @@ main()
     #define _ALS_main
 #endif
 
-#define main a_init_main
-
-#endif
-
-forward a_init_OnGameModeInit();
+#define main a_outline_main
 
 #else
 
+#define detutils_outline_TRUE 1
+
 public OnFilterScriptInit()
 {
-    if(funcidx("a_init_OnFilterScriptInit") != -1)
+    AnnounceLibraryLoaded_outline();
+    #if defined detutils_debug
+    SaveLogIntoFile("detutils_outline.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_outline.log", "[samp-detutils]: (debug) - Loaded.");
+    #endif
+    if(funcidx("a_outline_OnfsInit") != -1)
     {
-        a_init_OnFilterScriptInit();
+        CallLocalFunction("a_outline_OnfsInit", "i", playerid);
     }
-    OnDETUtilsInit();
-    return 1;
+    return detutils_outline_TRUE;
 }
 
 #if defined _ALS_OnFilterScriptInit
@@ -166,29 +148,8 @@ public OnFilterScriptInit()
     #define _ALS_OnFilterScriptInit
 #endif
 
-#define OnFilterScriptInit a_init_OnFilterScriptInit
+#define OnFilterScriptInit a_outline_OnfsInit
 
-forward a_init_OnFilterScriptInit();
+forward a_outline_OnfsInit();
 
 #endif
-
-forward OnDETUtilsInit();
-public OnDETUtilsInit()
-{
-    AnnounceLibraryLoading_init();
-    if(funcidx("a_init_OnDETUtilsInit") != -1)
-    {
-        CallLocalFunction("a_init_OnDETUtilsInit", "");
-    }
-    return 1;
-}
-
-#if defined _ALS_OnDETUtilsInit
-    #undef OnDETUtilsInit
-#else
-    #define _ALS_OnDETUtilsInit
-#endif
-
-#define OnDETUtilsInit a_init_OnDETUtilsInit
-
-forward a_init_OnDETUtilsInit();
