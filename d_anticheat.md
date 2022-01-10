@@ -4,7 +4,7 @@ SA:MP AntiChat - basic anti-cheating system used to fight off the most famous ha
 [Go back to home page...](README.md)
 ## How to start to use?
 
-- If you are making a *gamemode* script, don't worry about anything, just by including **d_samp.inc**, your anti-cheat system is ready to use after you start the script.
+- You do not need to worry about anything right now, just by including **d_samp.inc**, your anti-cheat system is ready to use after you start the script.
 
 - But in order to work properly, you'll need to use anti-cheat functions instead of standard SA:MP functions. List of those functions is show below:
 
