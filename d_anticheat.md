@@ -6,12 +6,12 @@ SA:MP AntiChat - basic anti-cheating system used to fight off the most famous ha
 
 - You do not need to worry about anything right now, just by including **d_samp.inc**, your anti-cheat system is ready to use after you start the script.
 
-- But in order to work properly, you'll need to use anti-cheat functions instead of standard SA:MP functions. List of those functions is show below:
+- Anti-Cheat is built into these functions below:
 
-| SA:MP functions      | Anti-Cheat functions   | Description                                                        |
+| SA:MP functions      | Anti-Cheat function   | Description                                                        |
 | -------------------- | -----------------------|------------------------------------------------------------------- |
-| GivePlayerMoney      | GiveMoneyToPlayer      | - Gives a player certain amount of money.                          |
-| SetPlayerSkin        | SetSkinForPlayer       | - Sets a certain skin for a certain player.                        |
+| GivePlayerMoney      | saves the money variable        | - Gives a player certain amount of money.                          |
+| SetPlayerSkin        | saves the skin id          | - Sets a certain skin for a certain player.                        |
 
 ## API (programming interface)
 
