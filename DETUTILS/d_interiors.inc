@@ -563,7 +563,7 @@ stock CreateCustomInteriorEx(
         _eVirtualWorldid, 
         _xVirtualWorldid)
 {
-    printf("Interior '%s' successfully created, entrance is set to: %f, %f, %f.",
+    printf("[samp-detutils]: (debug) - Interior '%s' successfully created, entrance is set to: %f, %f, %f.",
             _InteriorName,
             Float:_xEntrance, 
             Float:_yEntrance, 
@@ -588,7 +588,7 @@ stock CreateCustomInteriorEx(
     printf("[samp-detutils]: (debug) - Saved interior name.");
     #endif
 
-    printf("Interior '%s' has an id %d.",_InteriorName,_Interiorid);
+    printf("[samp-detutils]: (debug) - Interior '%s' has an id %d.",_InteriorName,_Interiorid);
 
     _InteriorData[_Interiorid][e__INTENTRANCE_X] = _xEntrance;
     _InteriorData[_Interiorid][e__INTENTRANCE_Y] = _yEntrance;

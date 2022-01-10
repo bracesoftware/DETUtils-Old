@@ -93,30 +93,32 @@ Optional plugins:
 #define @cmds_public%0(%1) %0(%1);public%0(%1)
 #define @cmds_native%0(%1) native%0(%1)
 
+/////////////////////////////////////////////////////////////////////
+
 #if defined _d_cmd_processor_included
         #endinput
 #endif 
 #define _d_cmd_processor_included
-
+/////////////////////////////////////////////////////////////////////
 #if !defined MAX_FUNC_NAME
 
 #define MAX_FUNC_NAME (32)
 
 #endif
-
+/////////////////////////////////////////////////////////////////////
 #define cmd_%0\32; cmd_
 #define dbg_%0\32; dbg_
 #define cmd_func_%0\32; cmd_func_
 #define role_%0\32; role_
-
+/////////////////////////////////////////////////////////////////////
 #if !defined DETUTILS_COMPATIBILITY_MODE
 
 #define command%0(%1) \
     forward cmd_%0(%1);public cmd_%0(%1)
-
+/////////////////////////////////////////////////////////////////////
 #define new%2Command:%0(%1) \
-    forward cmd_%0(%1);public cmd_%0(%1)
-
+    forward cmd_%0(%1);public cmd_%0(%1) //same as thing over this
+/////////////////////////////////////////////////////////////////////
 #if defined detutils_tags_test
 
 #define alias%5Command:%0(%1[%3]%4)=%2; \
@@ -157,9 +159,9 @@ Optional plugins:
 
 #define create%0role%1(%2,%3); \
     stock bool: role_%1(%2) { if(!(%3)) return false; else return true; }
-
-#else
-
+/////////////////////////////////////////////////////////////////////
+#else // If compatibility mode is ON
+/////////////////////////////////////////////////////////////////////
 #define COMMAND__%0(%1) \
     forward cmd_%0(%1);public cmd_%0(%1)
 
@@ -210,7 +212,7 @@ Optional plugins:
                                                                                       
 */
 
-stock CallLocalCommand(const command[], const specifiers[], integner, const string[])
+stock CallLocalCommand(const command[], const specifiers[], integer, const string[])
 {
     new command_name[MAX_FUNC_NAME];
     format
@@ -228,7 +230,7 @@ stock CallLocalCommand(const command[], const specifiers[], integner, const stri
                 (
                     command_name, 
                     specifiers, 
-                    integner, 
+                    integer, 
                     string
                 )
         ;
@@ -236,7 +238,7 @@ stock CallLocalCommand(const command[], const specifiers[], integner, const stri
 
 static _g_ChatMode[MAX_PLAYERS];
 
-stock CallRemoteCommand(const command[], const specifiers[], integner, const string[])
+stock CallRemoteCommand(const command[], const specifiers[], integer, const string[])
 {
     new command_name[MAX_FUNC_NAME];
     format
@@ -254,14 +256,14 @@ stock CallRemoteCommand(const command[], const specifiers[], integner, const str
                 (
                     command_name, 
                     specifiers, 
-                    integner, 
+                    integer, 
                     string
                 )
         ;
 
 }
 
-stock CallRemotePrefixedCommand(const command[], const specifiers[], integner, const string[])
+stock CallRemotePrefixedCommand(const command[], const specifiers[], integer, const string[])
 {
     new command_name[MAX_FUNC_NAME];
     format
@@ -279,14 +281,14 @@ stock CallRemotePrefixedCommand(const command[], const specifiers[], integner, c
                 (
                     command_name, 
                     specifiers, 
-                    integner, 
+                    integer, 
                     string
                 )
         ;
 
 }
 
-stock CallLocalPrefixedCommand(const command[], const specifiers[], integner, const string[])
+stock CallLocalPrefixedCommand(const command[], const specifiers[], integer, const string[])
 {
     new command_name[MAX_FUNC_NAME];
     format
@@ -304,7 +306,7 @@ stock CallLocalPrefixedCommand(const command[], const specifiers[], integner, co
                 (
                     command_name, 
                     specifiers, 
-                    integner, 
+                    integer, 
                     string
                 )
         ;
