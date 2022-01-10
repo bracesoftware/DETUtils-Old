@@ -11,6 +11,7 @@ Hi! Welcome to *SA:MP-DET Utilities* "read me" file. In general, *samp-detutils*
 
 ## Warnings
 1. Always include **DETUtils** last, after all includes.
+2. You'll need to use latest Pawn Community compiler in order to compile everything successfully.
 ## Docs
 Click on blue text to see all information about each feature.
 ### Installation
