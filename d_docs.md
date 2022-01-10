@@ -25,6 +25,7 @@ Click on blue text to see all information about each feature.
 - Learn more: [d_interiors.inc](d_interiors.md)
 - Learn more: [d_fmargs.inc](d_fmargs.md)
 - Learn mode: [d_visual.inc](d_visual.md)
+- Learn mode: [d_anticheat.inc](d_anticheat.md)
 ### Extra bonus
 ------------------------------------------
 - Read more here: [Extra stuff](d_extra.md)
