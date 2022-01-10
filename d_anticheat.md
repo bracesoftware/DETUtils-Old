@@ -1,6 +1,6 @@
 # d_anticheat.inc
 SA:MP AntiChat - basic anti-cheating system used to fight off the most famous hacks used by cheaters on verious servers.
-
+[Go back to home page...](README.md)
 ## How to start to use?
 
 - If you are making a *gamemode* script, don't worry about anything, just by including **d_samp.inc**, your anti-cheat system is ready to use after you start the script.
