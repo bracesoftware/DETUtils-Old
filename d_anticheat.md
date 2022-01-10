@@ -1,5 +1,6 @@
 # d_anticheat.inc
 SA:MP AntiChat - basic anti-cheating system used to fight off the most famous hacks used by cheaters on verious servers.
+
 [Go back to home page...](README.md)
 ## How to start to use?
 
