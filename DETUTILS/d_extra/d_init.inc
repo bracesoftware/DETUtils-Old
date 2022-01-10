@@ -66,6 +66,8 @@ Optional plugins:
 
 #endif
 
+#include "d_version"
+
 public const detutils_ver = 0x1;
 
 /*
@@ -82,10 +84,16 @@ public const detutils_ver = 0x1;
 
 */
 
-static const DET_g_Version[1][10] = { "1.0" };
+#if defined detutils_complete_error_boom
+
+static const DET_g_Version[1][10] = { ""DETUTILS_VERSION_MAJOR"."DETUTILS_VERSION_MINOR"."DETUTILS_VERSION_PATCH"" };
+
+#endif
 
 static void:AnnounceLibraryLoading_init()
 {
+    new DET_g_Version[26];
+    format(DET_g_Version, sizeof(DET_g_Version), "%i.%i.%i", DETUTILS_VERSION_MAJOR, DETUTILS_VERSION_MINOR, DETUTILS_VERSION_PATCH);
     print("|======================================|");
     print("                                        ");
     print("            SA:MP | DETUtils            ");

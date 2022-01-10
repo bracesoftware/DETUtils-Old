@@ -48,9 +48,9 @@ Optional plugins:
 #endif
 #endif
 
-#define DETUTILS_VERSION_MAJOR (1)
-#define DETUTILS_VERSION_MINOR (0)
-#define DETUTILS_VERSION_PATCH (0)
+#define DETUTILS_VERSION_MAJOR 1
+#define DETUTILS_VERSION_MINOR 5
+#define DETUTILS_VERSION_PATCH 0
 
 /*
                                                                       
@@ -65,6 +65,8 @@ Optional plugins:
                                                                       
 
 */
+
+#if defined detutils_complete_error_boom
 
 static AnnounceLibraryLoaded_version()
 {
@@ -123,5 +125,7 @@ public OnFilterScriptInit()
 #define OnFilterScriptInit a_version_OnfsInit
 
 forward a_version_OnfsInit();
+
+#endif
 
 #endif
