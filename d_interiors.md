@@ -29,25 +29,22 @@ public OnGameModeInit()
 
 ### Interior debugging
 ------------------------------------------
-- Whenever *CreateCustomInterior* is called, it automatically sends debug messages onto the console.
+- Whenever *CreateCustomInterior* is called, it automatically sends debug messages in the console.
 
-### Interior functions
+### Interior callbacks
 ------------------------------------------
-- There is one really useful feature, in my opinion - literal interior functions.
+#### OnInteriorActionPerformed
 
-- These literal interior functions are called whenever player enters/exits specific interior.
-
-Little example:
+- It's called whenever player enters or exits a **certain** interior. In order to use the callback, you need to specify interior's name and player's ID. Little example is shown below.
 
 ```pawn
-
-interior PoliceStation(playerid)
+public OnInteriorActionPerformed(PoliceStation, playerid)
 {
   if(IsInteriorActionPerformed(INTERIOR_ACTION_ENTER))
   {
     SendClientMessage(playerid, -1, "You entered police station.");
   }
-  else if(IsInteriorActionPerformed(INTERIOR_ACTION_ENTER))
+  else if(IsInteriorActionPerformed(INTERIOR_ACTION_EXIT))
   {
     SendClientMessage(playerid, -1, "You exited police station.");
   }
@@ -55,6 +52,37 @@ interior PoliceStation(playerid)
 }
 
 ```
+
+#### OnPlayerEnterInterior
+
+- This is called whenever player enters any interior. Can be used for big variety stuff. Uses only one parameter - *playerid*.
+
+Example:
+```pawn
+public OnPlayerEnterInterior(playerid)
+{
+  new message[256];
+  format(message, 256, "%s opens the door and enters the object.", ReturnPlayerName(playerid));
+  SendMessageInRange(3.0, playerid, message, -1);
+  return 1;
+}
+```
+
+#### OnPlayerExitInterior
+
+- This is called whenever player exits any interior.
+
+```pawn
+public OnPlayerExitInterior(playerid)
+{
+  new message[256];
+  format(message, 256, "%s opens the door and leaves the place.", ReturnPlayerName(playerid));
+  SendMessageInRange(3.0, playerid, message, -1);
+  return 1;
+}
+```
+
+**TIP:** Functions *ReturnPlayerName* and *SendMessageInRange* are extra library functions. Include DETUtils to use them.
 
 ## API ( programming interface )
 
