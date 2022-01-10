@@ -97,6 +97,8 @@ enum e__INTERIOR_DATA
 };
 
 forward OnCustomInteriorCreated(customintid);
+forward OnPlayerEnterInterior(playerid);
+forward OnPlayerExitInterior(playerid);
 
 new _PlayersInterior[MAX_PLAYERS];
 
@@ -326,6 +328,9 @@ public _OnPlayerNearEntrance(playerid)
             
             _PlayersInterior[ playerid ] = i;
             
+            if(funcidx("OnPlayerEnterInterior") != -1)
+                CallLocalFunction("OnPlayerEnterInterior", "i", playerid);
+            
         }
         else if( IsPlayerInRangeOfPoint( playerid, 1.5, _InteriorData[ i ][e__INTEXIT_X], \
         _InteriorData[ i ][e__INTEXIT_Y], _InteriorData[ i ][e__INTEXIT_Z]) && \
@@ -355,6 +360,9 @@ public _OnPlayerNearEntrance(playerid)
             if(funcidx(_InteriorFunctionName) != -1) CallLocalFunction(_InteriorFunctionName,"ii",playerid,_InteriorActionid);
 
             _PlayersInterior[ playerid ] = -1;
+            
+            if(funcidx("OnPlayerExitInterior") != -1)
+                CallLocalFunction("OnPlayerExitInterior", "i", playerid);
         }
     }
     return detutils_interiors_TRUE;
