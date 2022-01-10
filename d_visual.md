@@ -25,6 +25,21 @@ public OnGameModeInit()
   return 1;
 }
 ```
+
+### SendMessageInRange
+
+- This function allows you to send the message only to the players within the certain range (radius).
+
+```pawn
+public OnPlayerExitInterior(playerid)
+{
+  new message[256];
+  format(message, 256, "%s opens the door and leaves the place.", ReturnPlayerName(playerid));
+  SendMessageInRange(3.0, playerid, message, -1);
+  return 1;
+}
+```
+
 ## Built-in visual features
 ### Commands
 #### /pickgun
@@ -36,3 +51,16 @@ public OnGameModeInit()
 #### /throwgun
 - This one, obviously, allows the player to throw a gun he is holding away.
 - **NOTE**: This command has timer attached to it. Command is only operable every 30 seconds. If you are spamming with it, it will not work until the timer toggles player's ability to throw guns again.
+-----------------------------------------
+### Headshot system
+- The library contains sniper rifle headshot system. Whenever player shoots another player into the head with sniper rifle, new callback **OnPlayerScoreSniperHeadshot** will be called.
+
+```pawn
+public OnPlayerScoreSniperHeadshot(playerid, killedid)
+{
+    new message[256];
+    format(message, 256, "You killed %s by headshot.", ReturnPlayerName(killedid));
+    SendClientMessage(playerid, -1, message);
+    return 1;
+}
+```
