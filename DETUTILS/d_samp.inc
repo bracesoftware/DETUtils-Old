@@ -54,3 +54,4 @@ Optional plugins:
 #include "d_fmargs"
 #include "d_visual"
 #include "d_outline"
+#include "d_anticheat"
