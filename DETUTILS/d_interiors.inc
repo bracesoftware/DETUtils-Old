@@ -790,19 +790,19 @@ stock SetInteriorEntranceCustomAngles(
                                                                                                  
 */
 
-#if !defined DETUTILS_COMPATIBILITY_MODE
+//#if !defined DETUTILS_COMPATIBILITY_MODE
 
-#define interior%0(%1) \
+#define public%3OnInteriorActionPerformed%2(%0,%1) \
     forward int_%0(%1,_Actionid); \
     public int_%0(%1,_Actionid)
 
-#else
+/*#else
 
 #define INTERIOR__%0(%1) \
     forward int_%0(%1,_Actionid); \
     public int_%0(%1,_Actionid)
 
-#endif
+#endif*/
 
 stock SetPlayerCustomInterior(_p_Playerid, p_Interiorid)
 {

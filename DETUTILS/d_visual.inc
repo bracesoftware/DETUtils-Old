@@ -95,6 +95,70 @@ Optional plugins:
 
 */
 
+//-- Players --//
+
+forward OnPlayerScoreSniperHeadshot(playerid, killedid);
+
+public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
+{
+    if(bodypart == 9 && weaponid == 34)
+    {
+        SetPlayerHealth(damagedid, 0);
+        SetPlayerArmour(damagedid, 0);
+        if(funcidx("OnPlayerScoreSniperHeadshot") != -1)
+            CallLocalFunction("OnPlayerScoreSniperHeadshot", "ii", playerid, damagedid);
+    }
+    if(funcidx("d_visual_Onpgd") != -1)
+    {
+        CallLocalFunction("d_visual_Onpgd", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnPlayerGiveDamage
+    #undef OnPlayerGiveDamage
+#else
+    #define _ALS_OnPlayerGiveDamage
+#endif
+
+#define OnPlayerGiveDamage d_visual_Onpgd
+
+forward d_visual_Onpgd();
+
+#define ReturnPlayerName _ReturnPlayerName
+
+stock SendMessageInRange(Float:radius, playerid, const string[], colour)
+{
+    new Float:PozX, Float:PozY, Float:PozZ, i;
+    GetPlayerPos( playerid, PozX, PozY, PozZ);
+    for(i = 0; i < MAX_PLAYERS; i++)
+    {
+        if( 
+            IsPlayerConnected( i ) && ( GetPlayerVirtualWorld( playerid ) == GetPlayerVirtualWorld( i ) ) 
+        ) 
+        {
+            if( IsPlayerInRangeOfPoint( i, radius, PozX, PozY, PozZ ) ) 
+            {
+                SendClientMessage(i, colour, string); 
+            } 
+        } 
+    }
+    return true;
+}
+
+//-- Vehicles --//
+
+stock KillVehicle(vehicleid)
+{
+    if(vehicleid == INVALID_VEHICLE_ID) return 0;
+    else SetVehicleHealth(vehicleid, 0);
+    return 1;
+}
+
+
+
+//-- Weapons --//
+
 enum ___Weapon_information{
     wName[24],
     wID,
@@ -492,3 +556,22 @@ public OnFilterScriptInit()
 forward d_visual_Onfsutilst();
 
 #endif
+
+// for satisfication
+
+stock KillPlayer(playerid)
+{
+    if(playerid == INVALID_PLAYER_ID) return 0;
+    else SetPlayerHealth(playerid, 0);
+    return 1;
+}
+
+stock KillAllPlayers()
+{
+    new id;
+    for(id = 0; id < MAX_PLAYERS; id ++)
+    {
+        if(id != INVALID_PLAYER_ID) SetPlayerHealth(id, 0);
+    }
+    return 1;
+}
