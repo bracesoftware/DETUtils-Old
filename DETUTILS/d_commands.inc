@@ -995,3 +995,31 @@ forward a_cmd_OnPlayerDisconnect(playerid, reason);
 #endif
 
 #endif
+
+#define CHAT_MODE_PLAIN_TEXT_MESSAGES 0
+#define CHAT_MODE_PREFIXED_COMMANDS 1
+
+stock GetPlayerChatMode(playerid)
+{
+    if(_g_ChatMode[playerid] == CHAT_MODE_PLAIN_TEXT_MESSAGES)
+    {
+        return CHAT_MODE_PLAIN_TEXT_MESSAGES;
+    }
+    else if(_g_ChatMode[playerid] == CHAT_MODE_PREFIXED_COMMANDS)
+    {
+        return CHAT_MODE_PREFIXED_COMMANDS;
+    }
+    else return -1;
+}
+
+stock void:SetPlayerChatMode(playerid, chatmode)
+{
+    if(chatmode == CHAT_MODE_PLAIN_TEXT_MESSAGES)
+    {
+        _g_ChatMode[playerid] = 0;
+    }
+    else if(chatmode == CHAT_MODE_PREFIXED_COMMANDS)
+    {
+        _g_ChatMode[playerid] = 1;
+    }
+}
