@@ -181,7 +181,28 @@ Now, whenever player sends ``!mycmd`` to chat, command will be executed (perform
 
 **INFO**: To use custom-prefixed commands, you also need to use new built-in **/chatmode** command. This built-in command toggles the ability of a player to execute these commands.
 
-**WARNING**: This type of commands cannot be debugged using ``debug command``.
+#### What's so-called chat mode thing?
+
+- It's, simply said, variable which controls the function of normal SA-MP chat. There are two chat modes, **CHAT_MODE_PLAIN_TEXT_MESSAGES (with ID 0)** and **CHAT_MODE_PREFIXED_COMMANDS (with ID 1)**. Player can execute custom prefixed commands only if their chat mode is **CHAT_MODE_PREFIXED_COMMANDS**. Players can switch their chat mode using mentioned **/chatmode** command.
+
+- You can also use these two functions in order to manage player's chat mode.
+
+**GetPlayerChatMode**
+
+- Used to get information about which chat mode certain player is using.
+
+```pawn
+new chatmode = GetPlayerChatMode(playerid);
+```
+
+**SetPlayerChatMode**
+
+- Uset to set chat mode for certain player.
+
+```pawn
+if(chatmode == CHAT_MODE_PLAIN_TEXT_MESSAGES)
+	SendClientMessage(playerid, -1, "You can't use custom prefixed commands.");
+```
 
 ### Commands with custom permissions
 ------------------------------------------
