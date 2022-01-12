@@ -97,7 +97,6 @@ public detutils_cheatcheck()
         {
             CheckPlayerMoney(i);
             CheckPlayerSkin(i);
-            rem:<CheatCheck>;
         }
     }
     return 1;
