@@ -146,6 +146,14 @@ stock SendMessageInRange(Float:radius, playerid, const string[], colour)
     return true;
 }
 
+enum d_PlayerWeapInfo
+{
+    Weapon[ 13 ],
+    Ammo[ 13 ]
+}
+
+new d_PlayerWeaponInfo[MAX_PLAYERS][d_PlayerWeapInfo];
+
 //-- Vehicles --//
 
 stock KillVehicle(vehicleid)
@@ -155,9 +163,9 @@ stock KillVehicle(vehicleid)
     return 1;
 }
 
-
-
 //-- Weapons --//
+
+#define IsValidWeapon(%0) (%0>=1 && %0<=18 || %0>=21 && %0<=46)
 
 enum ___Weapon_information{
     wName[24],
@@ -216,6 +224,48 @@ new __Weapon_information[ 47 ][ ___Weapon_information ] = {
     {"Parachute", 46, 11, 371 }
 };
 
+stock d_vs_GivePlayerWeapon(playerid, weaponid, ammo)
+{
+    if(IsValidWeapon(weaponid))
+    {
+        d_PlayerWeaponInfo[playerid][Weapon][__Weapon_information[weaponid][wSlot]] = weaponid;
+        d_PlayerWeaponInfo[playerid][Ammo][ __Weapon_information[weaponid][wSlot] ] += ammo;
+        GivePlayerWeapon( playerid, weaponid, ammo );
+    }
+    return 1;
+}
+
+#if defined _ALS_GivePlayerWeapon
+    #undef GivePlayerWeapon
+#else
+    #define _ALS_GivePlayerWeapon
+#endif
+
+#define GivePlayerWeapon d_vs_GivePlayerWeapon
+
+stock RemovePlayerWeapon( playerid, weaponid ) 
+{
+    ResetPlayerWeapons( playerid );
+
+    for( new i = 0; i < 13; i ++ ) 
+    {
+        if( d_PlayerWeaponInfo[ playerid ][Weapon][i] != weaponid ) 
+        {
+            GivePlayerWeapon( playerid, 
+                d_PlayerWeaponInfo[ playerid ][Weapon][i], 
+                d_PlayerWeaponInfo[ playerid ][ Ammo ][i] );
+        }
+        else 
+        {
+            d_PlayerWeaponInfo[ playerid ][ Weapon ][i] = 0;
+            d_PlayerWeaponInfo[ playerid ][ Ammo ][ i ] = 0;
+        }
+    }
+    return 1;
+}
+
+// - Commands - //
+
 static stock __WeaponTimer_var[MAX_PLAYERS];
 
 #define MAX_GUN_OBJECTS 3000
@@ -268,9 +318,9 @@ command throwgun( playerid, params[] )
                 }
             }
             if( __weap_idx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"Operation can't be completed at the moment." );
-            #if defined RemovePlayerWeapon
+            //#if defined RemovePlayerWeapon
             RemovePlayerWeapon( playerid, __Weapon_id );
-            #endif
+            //#endif
             _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] = __Weapon_id;
             _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 1 ] = __Weapon_ammo;
             GetPlayerPos( playerid, _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 0 ], 
@@ -303,7 +353,7 @@ command destroygun( playerid, params[] )
     }
     if( __weap_idx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"No guns nearby." );
     DestroyDynamicObject( _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] );
-    SendClientMessage( playerid, -1, "You destroyed {ffffff}%s.", 
+    SendClientMessage( playerid, -1, ""COLOUR_GREY"You destroyed {ffffff}%s"COLOUR_GREY".", 
         __Weapon_information[ _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] ][ wName ] );
     _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 0 ] = 0.0;
     _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 1 ] = 0.0;
@@ -368,9 +418,9 @@ COMMAND__ throwgun( playerid, params[] )
                 }
             }
             if( __weap_idx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"Operation can't be completed at the moment." );
-            #if defined RemovePlayerWeapon
+            //#if defined RemovePlayerWeapon
             RemovePlayerWeapon( playerid, __Weapon_id );
-            #endif
+            //#endif
             _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] = __Weapon_id;
             _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 1 ] = __Weapon_ammo;
             GetPlayerPos( playerid, _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 0 ], 

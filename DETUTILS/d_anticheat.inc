@@ -106,7 +106,7 @@ public detutils_cheatcheck()
 
 main()
 {
-    gAntiCheatTimer = SetTimer("detutils_cheatcheck", 1000, true);
+    gAntiCheatTimer = SetTimer("detutils_cheatcheck", 60000, true);
     a_anticheat_maina();
 }
 
