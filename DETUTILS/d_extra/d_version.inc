@@ -50,7 +50,7 @@ Optional plugins:
 
 #define DETUTILS_VERSION_MAJOR 1
 #define DETUTILS_VERSION_MINOR 5
-#define DETUTILS_VERSION_PATCH 0
+#define DETUTILS_VERSION_PATCH 2
 
 /*
                                                                       
