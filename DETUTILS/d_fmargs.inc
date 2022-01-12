@@ -480,7 +480,7 @@ stock
 }
 
 stock
-    fmargs_CreatePlayerTextDraw
+    PlayerText:fmargs_CreatePlayerTextDraw
 (
     i,
     Float:x,

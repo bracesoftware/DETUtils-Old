@@ -97,6 +97,130 @@ Optional plugins:
 
 //-- Players --//
 
+new PlayerText:d_FadeTextDraw[MAX_PLAYERS];
+new d_fade_count[MAX_PLAYERS];
+new d_fade_timer[MAX_PLAYERS];
+
+public OnPlayerConnect(playerid)
+{
+    d_FadeTextDraw[ playerid ] = CreatePlayerTextDraw( playerid, -5.000, -2.000, "~n~");
+    PlayerTextDrawFont(playerid, d_FadeTextDraw[ playerid ], 3);
+    PlayerTextDrawUseBox(playerid, d_FadeTextDraw[ playerid ], 1);
+    PlayerTextDrawLetterSize(playerid, d_FadeTextDraw[ playerid ], 0.500000, 50.300003);
+    PlayerTextDrawBoxColor(playerid, d_FadeTextDraw[ playerid ], -1);
+    PlayerTextDrawTextSize(playerid, d_FadeTextDraw[ playerid ], 655.000, 625.000);
+    PlayerTextDrawColor(playerid, d_FadeTextDraw[ playerid ], -1);
+
+    if(funcidx("d_visual_Onpc") != -1)
+    {
+        CallLocalFunction("d_visual_Onpc", "i", playerid);
+    }
+    return 1;
+}
+
+#if defined _ALS_OnPlayerConnect
+    #undef OnPlayerConnect
+#else
+    #define _ALS_OnPlayerConnect
+#endif
+
+#define OnPlayerConnect d_visual_Onpc
+
+forward d_visual_Onpc(playerid);
+
+forward d_TextDrawFading( playerid );
+public d_TextDrawFading( playerid ) {
+
+    d_fade_count[ playerid ]++;
+
+    PlayerTextDrawHide( playerid, d_FadeTextDraw[ playerid ] );
+    PlayerTextDrawShow( playerid, d_FadeTextDraw[ playerid ] );
+
+    if( d_fade_count[ playerid ] == 1 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000000A );
+    if( d_fade_count[ playerid ] == 2 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000010 );
+    if( d_fade_count[ playerid ] == 3 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000001A );
+    if( d_fade_count[ playerid ] == 4 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000020 );
+    if( d_fade_count[ playerid ] == 5 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000002A );
+    if( d_fade_count[ playerid ] == 6 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000030 );
+    if( d_fade_count[ playerid ] == 7 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000003A );
+    if( d_fade_count[ playerid ] == 8 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000040 );
+    if( d_fade_count[ playerid ] == 9 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000004A );
+    if( d_fade_count[ playerid ] == 10 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000050 );
+    if( d_fade_count[ playerid ] == 11 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000005A );
+    if( d_fade_count[ playerid ] == 12 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000060 );
+    if( d_fade_count[ playerid ] == 13 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000006A );
+    if( d_fade_count[ playerid ] == 14 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000070 );
+    if( d_fade_count[ playerid ] == 15 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000007A );
+    if( d_fade_count[ playerid ] == 16 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000080 );
+    if( d_fade_count[ playerid ] == 17 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000008A );
+    if( d_fade_count[ playerid ] == 18 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000090 );
+    if( d_fade_count[ playerid ] == 19 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000009A );
+    if( d_fade_count[ playerid ] == 20 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000A1 );
+    if( d_fade_count[ playerid ] == 21 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000AA );
+    if( d_fade_count[ playerid ] == 22 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000B1 );
+    if( d_fade_count[ playerid ] == 23 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000BB );
+    if( d_fade_count[ playerid ] == 24 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000C1 );
+    if( d_fade_count[ playerid ] == 25 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000CC );
+    if( d_fade_count[ playerid ] == 26 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000D1 );
+    if( d_fade_count[ playerid ] == 27 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000DD );
+    if( d_fade_count[ playerid ] == 28 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000E1 );
+    if( d_fade_count[ playerid ] == 29 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000EE );
+    if( d_fade_count[ playerid ] == 30 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000F1 );
+    if( d_fade_count[ playerid ] == 31 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000FF );
+    // Completely Black
+    if( d_fade_count[ playerid ] == 32 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000F1 );
+    if( d_fade_count[ playerid ] == 33 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000EE );
+    if( d_fade_count[ playerid ] == 34 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000E1 );
+    if( d_fade_count[ playerid ] == 35 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000DD );
+    if( d_fade_count[ playerid ] == 36 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000D1 );
+    if( d_fade_count[ playerid ] == 37 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000CC );
+    if( d_fade_count[ playerid ] == 38 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000C1 );
+    if( d_fade_count[ playerid ] == 39 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000BB );
+    if( d_fade_count[ playerid ] == 40 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000B1 );
+    if( d_fade_count[ playerid ] == 41 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000AA );
+    if( d_fade_count[ playerid ] == 42 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000A1 );
+    if( d_fade_count[ playerid ] == 43 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000009A );
+    if( d_fade_count[ playerid ] == 44 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000090 );
+    if( d_fade_count[ playerid ] == 45 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000008A );
+    if( d_fade_count[ playerid ] == 46 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000080 );
+    if( d_fade_count[ playerid ] == 47 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000007A );
+    if( d_fade_count[ playerid ] == 48 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000070 );
+    if( d_fade_count[ playerid ] == 49 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000006A );
+    if( d_fade_count[ playerid ] == 50 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000060 );
+    if( d_fade_count[ playerid ] == 51 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000005A );
+    if( d_fade_count[ playerid ] == 52 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000050 );
+    if( d_fade_count[ playerid ] == 53 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000004A );
+    if( d_fade_count[ playerid ] == 54 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000040 );
+    if( d_fade_count[ playerid ] == 55 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000003A );
+    if( d_fade_count[ playerid ] == 56 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000030 );
+    if( d_fade_count[ playerid ] == 57 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000002A );
+    if( d_fade_count[ playerid ] == 58 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000020 );
+    if( d_fade_count[ playerid ] == 59 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000001A );
+    if( d_fade_count[ playerid ] == 60 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x00000010 );
+    if( d_fade_count[ playerid ] == 61 ) return PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x0000000A );
+    if( d_fade_count[ playerid ] == 62 ) return PlayerTextDrawHide( playerid, d_FadeTextDraw[ playerid ] ), d_fade_count[ playerid ] = 0, KillTimer( d_fade_timer[ playerid ] );
+
+    return true;
+}
+
+forward OnPlayerScreenFade(playerid);
+
+stock FadePlayerScreen(playerid) 
+{
+
+    if( d_fade_count[ playerid ] >= 32 ) return false;
+
+    d_fade_timer[ playerid ] = SetTimerEx( "d_TextDrawFading", 50, true, "i", playerid );
+    PlayerTextDrawShow( playerid, d_FadeTextDraw[ playerid ] );
+    PlayerTextDrawBoxColor( playerid, d_FadeTextDraw[ playerid ], 0x000000FF );
+    d_fade_count[ playerid ] = 32;
+    if(funcidx("OnPlayerScreenFade") != -1)
+    {
+        CallLocalFunction("OnPlayerScreenFade", "i", playerid);
+    }
+    return true;
+}
+
 forward OnPlayerScoreSniperHeadshot(playerid, killedid);
 
 public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
@@ -164,6 +288,17 @@ stock KillVehicle(vehicleid)
 }
 
 //-- Weapons --//
+
+forward OnPlayerPickUpGun(playerid);
+forward OnPlayerThrowGun(playerid);
+forward OnPlayerDestroyGun(playerid);
+
+#if defined detutils_complete_error_boom
+
+// dummy func
+if(funcidx("OnPlayerPickUpGun") != -1) CallLocalFunction("OnPlayerPickUpGun", "i", playerid);
+
+#endif
 
 #define IsValidWeapon(%0) (%0>=1 && %0<=18 || %0>=21 && %0<=46)
 
@@ -336,6 +471,7 @@ command throwgun( playerid, params[] )
             __WeaponTimer_var[ playerid ] = 30;
             SendClientMessage( playerid, -1, ""COLOUR_GREY"You threw away {ffffff}%s"COLOUR_GREY".", 
                 __Weapon_information[ _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] ][ wName ] );
+            if(funcidx("OnPlayerThrowGun") != -1) CallLocalFunction("OnPlayerThrowGun", "i", playerid);
         }
     }
     return true;
@@ -365,6 +501,7 @@ command destroygun( playerid, params[] )
     _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] = -1;
     _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] = 0;
     _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 1 ] = 0;
+    if(funcidx("OnPlayerDestroyGun") != -1) CallLocalFunction("OnPlayerDestroyGun", "i", playerid);
     return true;
 }
 
@@ -395,6 +532,7 @@ command pickgun( playerid, params[] )
     _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] = -1;
     _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] = 0;
     _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 1 ] = 0;
+    if(funcidx("OnPlayerPickUpGun") != -1) CallLocalFunction("OnPlayerPickUpGun", "i", playerid);
     return true;
 }
 
@@ -440,6 +578,7 @@ COMMAND__ throwgun( playerid, params[] )
             __WeaponTimer_var[ playerid ] = 30;
             SendClientMessage( playerid, -1, ""COLOUR_GREY"You threw away {ffffff}%s"COLOUR_GREY".", 
                 __Weapon_information[ _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] ][ wName ] );
+            if(funcidx("OnPlayerThrowGun") != -1) CallLocalFunction("OnPlayerThrowGun", "i", playerid);
         }
     }
     return true;
@@ -469,6 +608,7 @@ COMMAND__ destroygun( playerid, params[] )
     _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] = -1;
     _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] = 0;
     _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 1 ] = 0;
+    if(funcidx("OnPlayerDestroyGun") != -1) CallLocalFunction("OnPlayerDestroyGun", "i", playerid);
     return true;
 }
 
@@ -499,6 +639,7 @@ COMMAND__ pickgun( playerid, params[] )
     _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] = -1;
     _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] = 0;
     _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 1 ] = 0;
+    if(funcidx("OnPlayerPickUpGun") != -1) CallLocalFunction("OnPlayerPickUpGun", "i", playerid);
     return true;
 }
 

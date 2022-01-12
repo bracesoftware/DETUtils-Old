@@ -55,3 +55,4 @@ Optional plugins:
 #include "d_visual"
 #include "d_outline"
 #include "d_anticheat"
+#include "d_colours"
