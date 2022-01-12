@@ -133,7 +133,7 @@ static Your_Function(p,i)
 ------------------------------------------
 - Gets last interior id which was used to assign interior data to.
 
-**WARNING**: Works best and properly after
+**WARNING**: Works best and properly after using ``CreateCustomInterior``, because ``CreateCustomInterior`` updates the ID.
 
 **SetInteriorEntranceCustomAngles**
 ------------------------------------------
