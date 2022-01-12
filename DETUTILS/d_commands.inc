@@ -142,7 +142,7 @@ Optional plugins:
 #define debug%1command%0() \
     forward dbg_%0(debugged_cmdtext[], debugged_stateid);%1public dbg_%0(debugged_cmdtext[], debugged_stateid)
 
-#define GetDebuggedCommandName%0(%1) %0debugged_cmdtext%1
+//#define GetDebuggedCommandName%0(%1) %0debugged_cmdtext%1
 
 #define CMD:%0(%1) \
     forward cmd_%0(%1); public cmd_%0(%1)
@@ -218,6 +218,9 @@ Optional plugins:
                                                                                       
                                                                                       
 */
+
+forward OnCommandStateChange(playerid, cmdtext[], stateid);
+forward OnPrefixedCommandStateChange(playerid, cmdtext[], stateid);
 
 stock CallLocalCommand(const command[], const specifiers[], integer, const string[])
 {
@@ -320,7 +323,7 @@ stock CallLocalPrefixedCommand(const command[], const specifiers[], integer, con
 
 }
 
-#define GetCommandDebugState%1(%2) %1debugged_stateid%2
+//#define GetCommandDebugState%1(%2) %1debugged_stateid%2
 
 #if !defined OnPlayerCommandReceived
 
@@ -459,7 +462,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - opct :: cmdtext[] validated.");
     #endif
-    format(_CommandDebugFunc, sizeof(_CommandDebugFunc), "dbg_%s", _ClassicFunctionName);
+    format(_CommandDebugFunc, sizeof(_CommandDebugFunc), "%s", "OnCommandStateChange");
     format(_ClassicFunctionName, sizeof(_ClassicFunctionName), "cmd_%s", _ClassicFunctionName);
 
     #if defined detutils_debug
@@ -468,7 +471,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 
     if(funcidx(_CommandDebugFunc) != -1)
     {
-        CallLocalFunction(_CommandDebugFunc, "si", cmdtext, COMMAND_DEBUG_STATE_RECEIVED);
+        CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_RECEIVED);
     }
 
     #if defined detutils_debug
@@ -479,7 +482,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 
     if(funcidx(_CommandDebugFunc) != -1)
     {
-        CallLocalFunction(_CommandDebugFunc, "si", cmdtext, COMMAND_DEBUG_STATE_READY);
+        CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_READY);
     }
 
     #if defined detutils_debug
@@ -494,7 +497,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
             #endif
                 if(funcidx(_CommandDebugFunc) != -1)
                 {
-                    CallLocalFunction(_CommandDebugFunc, "si", cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
+                    CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
                 }
                     #if !defined detutils_sscanf
                     return CallLocalFunction("OnPlayerCommandPerformed", 
@@ -513,7 +516,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
         #if defined detutils_debug
         if(funcidx(_CommandDebugFunc) != -1)
         {
-            CallLocalFunction(_CommandDebugFunc, "si", cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
+            CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
         }
         printf("[samp-detutils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 2");
         #endif
@@ -530,7 +533,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
         #endif
             if(funcidx(_CommandDebugFunc) != -1)
             {
-                CallLocalFunction(_CommandDebugFunc, "si", cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
+                CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
             }
                 #if !defined detutils_sscanf
             return CallLocalFunction("OnPlayerCommandPerformed", 
@@ -748,7 +751,17 @@ public OnPlayerText(playerid, text[])
         static 
             _pos,
             _FunctionName[MAX_FUNC_NAME],
-            _PrefixFuncName[MAX_FUNC_NAME];
+            _PrefixFuncName[MAX_FUNC_NAME],
+            _CommandDebugFunc[32];
+
+        format(_CommandDebugFunc,
+            sizeof(_CommandDebugFunc), 
+            "OnPrefixedCommandStateChange");
+
+        if(funcidx(_CommandDebugFunc) != -1)
+        {
+            CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_RECEIVED);
+        }
 
         #if defined detutils_debug
         printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared variables!");
@@ -808,6 +821,11 @@ public OnPlayerText(playerid, text[])
         printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) formatted active prefix var.");
         #endif
 
+        if(funcidx(_CommandDebugFunc) != -1)
+        {
+            CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_READY);
+        }
+
         if(!strcmp(_ActPrefix, text[0]))
         {
             #if defined detutils_debug
@@ -825,12 +843,21 @@ public OnPlayerText(playerid, text[])
                 CallLocalFunction("OnPrefixedCommandPerformed", 
                     "isi", playerid, text, 
                     CallLocalFunction(_FunctionName, "is", playerid, text));
+
+                if(funcidx(_CommandDebugFunc) != -1)
+                {
+                    CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
+                }
                 return 0;
             }
             #if defined detutils_debug
             printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 1");
             #endif
             CallLocalFunction(_FunctionName, "is", playerid, text);
+            if(funcidx(_CommandDebugFunc) != -1)
+            {
+                CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
+            }
             return 0;
         }
     }
@@ -856,6 +883,8 @@ public OnPlayerText(playerid, text[])
 #define OnPlayerText a_cmd_OnPlayerText
 
 forward a_cmd_OnPlayerText(playerid, text[]);
+
+#if defined detutils_complete_error_boom
 
 #if !defined DETUTILS_COMPATIBILITY_MODE
 
@@ -897,6 +926,26 @@ COMMAND__ chatmode(playerid, params[])
 
 #endif
 
+#endif // I hate this compatibility mode xd, making new ones
+
+forward cmd_chatmode(playerid, params[]); 
+public cmd_chatmode(playerid, params[])
+{
+    if(_g_ChatMode[playerid] == 0)
+    {
+        SendClientMessage(playerid, -1, "SERVER: Chat mode switched to custom-prefixed commands mode.");
+        _g_ChatMode[playerid] = 1;
+        return 1;
+    }
+    else if(_g_ChatMode[playerid] == 1)
+    {
+        SendClientMessage(playerid, -1, "SERVER: Chat mode switched to plain-text messages mode.");
+        _g_ChatMode[playerid] = 0;
+        return 1;
+    }
+    return 0;
+}
+
 static stock _ClearChatModeData(playerid)
 {
     return _g_ChatMode[playerid] = 0;
@@ -911,6 +960,21 @@ static stock _ClearChatModeData(playerid)
 #define OnPlayerDisconnect a_cmd_OnPlayerDisconnect
 
 forward a_cmd_OnPlayerDisconnect(playerid, reason);
+
+////////////////////////////////////////////////////////
+
+#define pc_%0\32; pc_
+#define prx_%0\32; prx_
+
+#define prefixed%2command%0(%1,%3) \
+    stock prx_%0(){new p[1];format(p,sizeof(p),%3);return p;}forward pc_%0(%1);public pc_%0(%1)
+
+#define @newk_PrefixedCommand:%0(%1,%3) \
+    stock prx_%0(){new p[1];format(p,sizeof(p),%3);return p;}forward pc_%0(%1);public pc_%0(%1)
+
+////////////////////////////////////////////////////////
+
+#if defined detutils_complete_error_boom
 
 #if !defined DETUTILS_COMPATIBILITY_MODE
 
@@ -927,5 +991,7 @@ forward a_cmd_OnPlayerDisconnect(playerid, reason);
 
 #define PREFIXED__COMMAND__%0(%1,%3) \
     stock prx_%0(){new p[1];format(p,sizeof(p),%3);return p;}forward pc_%0(%1);public pc_%0(%1)
+
+#endif
 
 #endif
