@@ -12,6 +12,9 @@ SA:MP AntiChat - basic anti-cheating system used to fight off the most famous ha
 | -------------------- | -----------------------|------------------------------------------------------------------- |
 | GivePlayerMoney      | saves the money variable        | - Gives a player certain amount of money.                          |
 | SetPlayerSkin        | saves the skin id          | - Sets a certain skin for a certain player.                        |
+| SetPlayerPos         | saves player's position    | - Sets player's position.             |
+| SetPlayerHealth      | saves player's health | - Sets player's health.         |
+| SetPlayerArmour      | saves player's armour | - Sets player's armour.         |
 
 ## API (programming interface)
 
@@ -62,6 +65,58 @@ public OnPlayerUpdate(playerid)
 public OnPlayerUpdate(playerid)
 {
   CheckPlayerMoney(playerid);
+  return 1;
+}
+```
+**NOTE:** Read *Messages from creator* part for more information.
+
+### CheckPlayerPos
+
+- Used to check if is player using teleport hacks. If player used third party softwares to change his position, anti-cheat system will detect that and call **OnPlayerCheatDetected** with cheat type **CHEAT_TYPE_TELEPORT**.
+
+```pawn
+public OnPlayerUpdate(playerid)
+{
+  CheckPlayerPos(playerid);
+  return 1;
+}
+```
+**NOTE:** Read *Messages from creator* part for more information.
+
+### CheckPlayerPing
+
+- Used to check player's ping. If player's ping is higher than 250, anti-cheat system will detect that and call **OnPlayerCheatDetected** with cheat type **CHEAT_TYPE_HIGHPING**. Though, this isn't a cheat - it's just a detecting player's high ping which can make anti-cheat system send fake cheat reports by an accident.
+
+```pawn
+public OnPlayerUpdate(playerid)
+{
+  CheckPlayerPing(playerid);
+  return 1;
+}
+```
+**NOTE:** Read *Messages from creator* part for more information.
+
+### CheckPlayerHealth
+
+- Used to check player's health. If player used third party softwares to change his health, anti-cheat system will detect that and call **OnPlayerCheatDetected** with cheat type **CHEAT_TYPE_HEALTH**.
+
+```pawn
+public OnPlayerUpdate(playerid)
+{
+  CheckPlayerHealth(playerid);
+  return 1;
+}
+```
+**NOTE:** Read *Messages from creator* part for more information.
+
+### CheckPlayerArmour
+
+- Used to check player's armour. If player used third party softwares to change his armour, anti-cheat system will detect that and call **OnPlayerCheatDetected** with cheat type **CHEAT_TYPE_ARMOUR**.
+
+```pawn
+public OnPlayerUpdate(playerid)
+{
+  CheckPlayerArmour(playerid);
   return 1;
 }
 ```
