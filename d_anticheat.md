@@ -27,12 +27,14 @@ public OnPlayerCheatDetected(playerid, cheattype)
     if(cheattype == CHEAT_TYPE_MONEY)
     {
         SendClientMessage(playerid, -1, "Stop using money hack, you could've just robbed a bank - but we got you!");
-        Kick(playerid);
+        
+        // Code.
     }
     else if(cheattype == CHEAT_TYPE_SKINCHANGER)
     {
         SendClientMessage(playerid, -1, "Don't dare to change your skin this way ever again!");
-        Kick(playerid);
+        
+        // Code.
     }
     return 1;
 }
