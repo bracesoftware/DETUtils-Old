@@ -93,8 +93,12 @@ public detutils_cheatcheck()
 {
     for(new i = 0; i < MAX_PLAYERS; i++)
     {
-        CheckPlayerMoney(i);
-        CheckPlayerSkin(i);
+        if(i != INVALID_PLAYER_ID)
+        {
+            CheckPlayerMoney(i);
+            CheckPlayerSkin(i);
+            rem:<CheatCheck>;
+        }
     }
     return 1;
 }
