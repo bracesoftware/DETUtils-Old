@@ -90,7 +90,7 @@ public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid)
 
 **How to use states?**
 ------------------------------------------
-- To use states, you need to use **GetCommandDebugState**. Here's how to do it:
+- To use states, you need to use **publics shown above**. Here's how to do it:
 
 ```pawn
 public OnCommandStateChange(playerid, cmdtext[], stateid) 
