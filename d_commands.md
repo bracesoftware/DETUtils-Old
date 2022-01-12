@@ -204,7 +204,7 @@ Parameters:
 
    - command_name (string)
    - specifiers (string)
-   - command_firstparam (integner)
+   - command_firstparam (integer)
    - command_secparam (string)
   
 Example:
