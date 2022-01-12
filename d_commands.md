@@ -201,7 +201,11 @@ new chatmode = GetPlayerChatMode(playerid);
 
 ```pawn
 if(chatmode == CHAT_MODE_PLAIN_TEXT_MESSAGES)
-	SendClientMessage(playerid, -1, "You can't use custom prefixed commands.");
+{
+	SetPlayerChatMode(playerid, CHAT_MODE_PREFIXED_COMMANDS);
+	SendClientMessage(playerid, -1, "Now you can use custom-prefixed commands.");
+}
+
 ```
 
 ### Commands with custom permissions
