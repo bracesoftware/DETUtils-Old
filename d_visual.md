@@ -40,6 +40,17 @@ public OnPlayerExitInterior(playerid)
 }
 ```
 
+### RemovePlayerWeapon
+
+- This function removes the certain player's weapon from certain weapon's slot.
+
+Example:
+
+```pawn
+new weapon = GetPlayerWeapon(playerid);
+RemovePlayerWeapon(playerid, weapon);
+```
+
 ## Built-in visual features
 ### Commands
 #### /pickgun
