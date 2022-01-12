@@ -66,9 +66,9 @@ To join Discord server, [click here...](https://discord.gg/samp)
 
 - Big thanks to *open.mp* community for helping me during library development.
 
-### SA:MP DEntisT's Utilities
+## SA:MP DEntisT's Utilities
 ------------------------------------------
-Legal:
+### Legal:
 ------------------------------------------
 - Version: MPL 1.1
     
@@ -88,15 +88,15 @@ Legal:
     Portions created by the Initial Developer are Copyright C 2021
     the Initial Developer. All Rights Reserved.
 
-Contributors:
+### Contributors:
 ------------------------------------------
 - DEntisT
 
-Thanks:
+### Thanks:
 ------------------------------------------
 - aezzakmi - help during development
 
-Very special thanks to:
+### Very special thanks to:
 ------------------------------------------
 - Thiadmer - PAWN, whose limits continue to amaze me!
 
@@ -104,7 +104,7 @@ Very special thanks to:
 
 - SA:MP Team past, present and future - SA:MP
 
-Optional plugins:
+### Optional plugins:
 ------------------------------------------
 - Incognito - streamer
 - Y_Less (y-less.com, github.com/y-less) - sscanf
