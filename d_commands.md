@@ -223,7 +223,7 @@ enum Enums
   Bank,
   Deaths,
   Kills,
-	Admin
+  Admin
 }
 
 new Player[MAX_PLAYERS][Enums];
@@ -233,6 +233,10 @@ new Player[MAX_PLAYERS][Enums];
 
 ```pawn
 create role AdminRole(playerid, Player[playerid][Admin] == 1);
+
+// ... or:
+
+decl Role:AdminRole(playerid, Player[playerid][Admin] == 1);
 ```
 
 - Now, we have our role - let's use it in our command.
@@ -240,6 +244,17 @@ create role AdminRole(playerid, Player[playerid][Admin] == 1);
 
 ```php
 role command clearchat(playerid, params[], AdminRole)
+{
+	for(new i; i < 20; i++)
+		SendClientMessage(playerid, -1, "");
+
+	SendClientMessage(playerid, -1, "You cleared the chat.");
+	return 1;
+}
+
+// ... or:
+
+decl RoleCommand:clearchat(playerid, params[], AdminRole)
 {
 	for(new i; i < 20; i++)
 		SendClientMessage(playerid, -1, "");
