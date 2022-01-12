@@ -82,6 +82,13 @@ Optional plugins:
 
 #define COLOUR_GREY "{B9C9BF}"
 
+stock d_SendWarningMessage(playerid, const string[])
+{
+    new message[300];
+    format(message, 300, ""COLOUR_GREY"Warning: [samp-detutils]: (debug) - %s", string);
+    return SendClientMessage(playerid, -1, message);
+}
+
 #define detutils_visual_TRUE
 
 #define until(%0)%8\10;%9 while( !( %0 ))%8

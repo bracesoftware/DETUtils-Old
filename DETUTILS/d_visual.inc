@@ -300,7 +300,11 @@ command throwgun( playerid, params[] )
 {
     if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT) return 1;
     
+    #if defined detutils_debug
+    if(__WeaponTimer_var[playerid] != 0) return d_SendWarningMessage(playerid, "The player tried to use the command but the timer was not over yet.");
+    #else
     if(__WeaponTimer_var[playerid] != 0) return 1;
+    #endif
 
     new __Weapon_id = GetPlayerWeapon( playerid );
     new __Weapon_ammo = GetPlayerAmmo( playerid );
@@ -400,7 +404,11 @@ COMMAND__ throwgun( playerid, params[] )
 {
     if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT) return 1;
     
+    #if defined detutils_debug
+    if(__WeaponTimer_var[playerid] != 0) return d_SendWarningMessage(playerid, "The player tried to use the command but the timer was not over yet.");
+    #else
     if(__WeaponTimer_var[playerid] != 0) return 1;
+    #endif
 
     new __Weapon_id = GetPlayerWeapon( playerid );
     new __Weapon_ammo = GetPlayerAmmo( playerid );
