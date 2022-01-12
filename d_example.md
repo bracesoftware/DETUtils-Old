@@ -5,22 +5,39 @@
 
 ## Code
 
-```php
+```pawn
 #define DEV_MODE
 #define detutils_debug
-#define detutils_sscanf
+//#define detutils_sscanf
 
+#include <a_samp>
+#include <sscanf2>
+//#include <a_fixes>
 #include "DETUTILS\d_samp"
+
+// Dummies:
+
+keyword  public Func()
+{
+    return 1;
+}
+
+keyword   forward  Function(a, const b[], Float:c);
+
+// Actual code:
 
 main()
 {
-    print("gamemode loaded.");
+    print("Gamemode loaded.");
 }
 
 public OnPlayerSpawn(playerid)
 {
     SendClientMessage(playerid, -1, "Welcome %s, your id is %i", _ReturnPlayerName(playerid), playerid);
-    SendClientMessageToAll(-1, "Player %s with id %i joined", _ReturnPlayerName(playerid), playerid);
+    SendClientMessageToAll(-1, "Player %s with id %i joined", ReturnPlayerName(playerid), playerid);
+    GivePlayerMoney(playerid, 10364);
+    SetPlayerSkin(playerid, 70);
+    GivePlayerWeapon(playerid, 24, 999);
     return 1;
 }
 
@@ -30,6 +47,34 @@ enum Enums
 }
 
 new Player[MAX_PLAYERS][Enums];
+
+decl Command: tagtest(playerid,params[])
+{
+    SendClientMessage(playerid, -1, "Tag command worked.");
+    return 1;
+}
+
+decl CommandAlias:tagt(playerid,params[]) = tagtest;
+
+CMD:cmd(playerid,params[])
+{
+    SendClientMessage(playerid, -1, "CMD: command worked.");
+    return 1;
+}
+
+YCMD:ycmd(playerid,params[])
+{
+    SendClientMessage(playerid, -1, "YCMD: command worked.");
+    return 1;
+}
+
+COMMAND:command(playerid,params[])
+{
+    SendClientMessage(playerid, -1, "COMMAND: command worked.");
+    return 1;
+}
+
+alias command tag(playerid,params[]) =tagtest;
 
 command sayhi (playerid,params[])
 {
@@ -73,7 +118,7 @@ command untiltest(playerid, params[])
     SendClientMessage(playerid, -1, "i is now 50.");
     return 1;
 }
-
+/* *removed this*
 debug command sayhi ()
 {
     if(GetCommandDebugState() == COMMAND_DEBUG_STATE_RECEIVED)
@@ -112,6 +157,59 @@ debug command hi ()
         return 1;
     }
     return 0;
+}*/
+
+public OnCommandStateChange(playerid, cmdtext[], stateid) // new and PROPER debugging
+{
+    if(stateid == COMMAND_DEBUG_STATE_RECEIVED)
+    {
+        printf("Command %s received.", cmdtext);
+        return 1;
+    }
+    else if(stateid == COMMAND_DEBUG_STATE_READY)
+    {
+        printf("Command %s ready.", cmdtext);
+        return 1;
+    }
+    else if(stateid == COMMAND_DEBUG_STATE_PERFORMED)
+    {
+        printf("Command %s performed.", cmdtext);
+        return 1;
+    }
+    return 1;
+}
+
+public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid) // you can also debug prefixed commands
+{
+    if(stateid == COMMAND_DEBUG_STATE_RECEIVED)
+    {
+        printf("Custom prefixed command %s received.", cmdtext);
+        return 1;
+    }
+    else if(stateid == COMMAND_DEBUG_STATE_READY)
+    {
+        printf("Custom prefixed command %s ready.", cmdtext);
+        return 1;
+    }
+    else if(stateid == COMMAND_DEBUG_STATE_PERFORMED)
+    {
+        printf("Custom prefixed command %s performed.", cmdtext);
+        return 1;
+    }
+    return 1;
+}
+
+public OnPlayerCheatDetected(playerid, cheattype)
+{
+    if(cheattype == CHEAT_TYPE_MONEY)
+    {
+        SendClientMessage(playerid, -1, "Stop using money hack, you could've just robbed a bank - but we got you!");
+    }
+    else if(cheattype == CHEAT_TYPE_SKINCHANGER)
+    {
+        SendClientMessage(playerid, -1, "Don't dare to change your skin this way ever again!");
+    }
+    return 1;
 }
 
 prefixed command test (playerid, params[], "&")
@@ -168,7 +266,15 @@ prefixed command hi (playerid, params[], "#")
     return 1;
 }
 
+decl PrefixedCommand:skal(playerid, params[], "$")
+{
+    SendClientMessage(playerid, -1, "Cheers, %s!", ReturnPlayerName(playerid));
+    return 1;
+}
+
 create role AdminRole (playerid, Player[playerid][Admin] == 1);
+
+decl Role:AdminRole2(playerid, Player[playerid][Admin] >= 1 );
 
 command makeadmin (playerid, params[])
 {
@@ -183,6 +289,12 @@ role command clearchat (playerid, params[], AdminRole)
         SendClientMessage(playerid, -1, "");
 
     SendClientMessage(playerid, -1, "You cleared the chat.");
+    return 1;
+}
+
+decl RoleCommand:ao(playerid, params[], AdminRole2)
+{
+    SendClientMessageToAll(-1, "Announcement!");
     return 1;
 }
 
@@ -208,7 +320,7 @@ public OnPlayerClientCheckReceived(playerid)
     return 1;
 }
 
-interior Bank (playerid)
+public OnInteriorActionPerformed (Bank,playerid)
 {
     if(IsInteriorActionPerformed(INTERIOR_ACTION_ENTER))
     {
@@ -220,7 +332,7 @@ interior Bank (playerid)
         SendClientMessage(playerid, -1, "You exited bank, %s.", _ReturnPlayerName(playerid));
         return 1;
     }
-    return 1;
+    return 0;
 }
 
 public OnCustomInteriorCreated(customintid)
@@ -229,4 +341,27 @@ public OnCustomInteriorCreated(customintid)
     return 1;
 }
 
+public OnPlayerEnterInterior(playerid)
+{
+  new message[256];
+  format(message, 256, "%s opens the door and enters the object.", ReturnPlayerName(playerid));
+  SendMessageInRange(3.0, playerid, message, -1);
+  return 1;
+}
+
+public OnPlayerExitInterior(playerid)
+{
+  new message[256];
+  format(message, 256, "%s opens the door and leaves the place.", ReturnPlayerName(playerid));
+  SendMessageInRange(3.0, playerid, message, -1);
+  return 1;
+}
+
+public OnPlayerScoreSniperHeadshot(playerid, killedid)
+{
+    new message[256];
+    format(message, 256, "You killed %s by headshot.", ReturnPlayerName(killedid));
+    SendClientMessage(playerid, -1, message);
+    return 1;
+}
 ```
