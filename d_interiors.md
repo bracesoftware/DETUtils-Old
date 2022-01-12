@@ -117,8 +117,8 @@ interior Bank(playerid)
 
 Parameters:
 
-  - playerid (integner)
-  - custom_interiorid (integner) 
+  - playerid (integer)
+  - custom_interiorid (integer) 
 
 Example:
 
@@ -141,7 +141,7 @@ static Your_Function(p,i)
 
 Parameters:
 
-  - interiorid (integner)
+  - interiorid (integer)
   - angle_a (float)
   - angle_b (float)
 
@@ -161,7 +161,7 @@ public OnGameModeInit()
 
 Parameters:
  
- - playerid (integner)
+ - playerid (integer)
 
 **NOTE**: This is called usually on callback *OnPlayerDisconnect*.
 
@@ -182,7 +182,7 @@ public OnPlayerDisconnect(playerid, reason)
 
 Parameters:
 
-  - playerid (integner)
+  - playerid (integer)
 
 ```pawn
 if(IsPlayerInCustomInterior(playerid)) return SendClientMessage(playerid, -1, "You're in interior.");
