@@ -376,7 +376,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 ### Notes
 ------------------------------------------
 ***Backwards compatibility***
-- d_commands also have backwards compatibility, incase you are upgrading from iZCMD/ZCMD, the ``CMD:`` keyword will still work as nothing changed. But, I still recommend creating your future commands using ``command`` and ``alias`` keywords.
+- d_commands also have backwards compatibility, incase you are upgrading from iZCMD/ZCMD, the ``CMD:`` keyword will still work as nothing changed. But, I still recommend creating your future commands using methods shown in tutorials and examples above.
 - Also, ``YCMD:`` and ``COMMAND:`` keywords will work.
 ------------------------------------------
 ***Making filterscript with d_commands?***
