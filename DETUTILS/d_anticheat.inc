@@ -139,7 +139,7 @@ forward a_anticheat_Ongmexit();
 
 public OnFilterScriptInit()
 {
-    gAntiCheatTimer = SetTimer("detutils_cheatcheck", 1000, true);
+    gAntiCheatTimer = SetTimer("detutils_cheatcheck", 60000, true);
     if(funcidx("a_anticheat_OnfsInita") != -1)
     {
         CallLocalFunction("a_anticheat_OnfsInita", "i", playerid);
