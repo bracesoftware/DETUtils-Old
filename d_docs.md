@@ -104,6 +104,8 @@ To join Discord server, [click here...](https://discord.gg/samp)
 
 - SA:MP Team past, present and future - SA:MP
 
+- open.mp team present and future - open.mp
+
 ### Optional plugins:
 
 - Incognito - streamer
