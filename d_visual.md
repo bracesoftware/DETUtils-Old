@@ -51,6 +51,14 @@ new weapon = GetPlayerWeapon(playerid);
 RemovePlayerWeapon(playerid, weapon);
 ```
 
+### IsValidWeapon
+
+- Checks if is weapon an actual valid weapon. If the weapon ID is equal to or greater than 1 and equal to or less than 18, and if it is equal to or greater than 21 and equal to or less than 46, then that weapon is a valid weapon - otherwise not.
+
+```pawn
+static Weapon_IsValidWeapon(weapid) return IsValidWeapon(weapid);
+```
+
 ## Built-in visual features
 ### Commands
 #### /pickgun
