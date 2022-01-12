@@ -26,6 +26,40 @@ public OnGameModeInit()
 }
 ```
 
+### ``public`` OnPlayerPickUpGun
+
+- Callback called whenever player picks up a certain gun.
+
+```pawn
+public OnPlayerPickUpGun(playerid)
+{
+    SendClientMessage(playerid, -1, "You picked up a gun.");
+    return 1;
+}
+```
+### ``public`` OnPlayerThrowGun
+
+- Callback called whenever player throws away a certain gun.
+
+```pawn
+public OnPlayerThrowGun(playerid)
+{
+    SendClientMessage(playerid, -1, "You threw away a gun.");
+    return 1;
+}
+```
+### ``public`` OnPlayerDestroyGun
+
+- Callback called whenever player destroys a certain gun.
+
+```pawn
+public OnPlayerDestroyGun(playerid)
+{
+    SendClientMessage(playerid, -1, "You destroyed a gun.");
+    return 1;
+}
+```
+
 ### SendMessageInRange
 
 - This function allows you to send the message only to the players within the certain range (radius).
@@ -57,6 +91,30 @@ RemovePlayerWeapon(playerid, weapon);
 
 ```pawn
 static Weapon_IsValidWeapon(weapid) return IsValidWeapon(weapid);
+```
+
+### FadePlayerScreen
+
+- This function fades player's screen. Player's screen becomes black and becomes brighter every 50 milliseconds.
+
+```pawn
+public OnPlayerSpawn(playerid)
+{
+  FadePlayerScreen(playerid);
+  return 1;
+}
+```
+
+### ``public`` OnPlayerScreenFade
+
+- Callback called when ``FadePlayerScreen`` is used.
+
+```pawn
+public OnPlayerScreenFade(playerid)
+{
+    SendClientMessage(playerid, -1, "Your screen faded!");
+    return 1;
+}
 ```
 
 ## Built-in visual features
