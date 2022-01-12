@@ -28,11 +28,11 @@ command mycommand(playerid, params[])
 ### Bonus
 -----------------------------------------
 
-- Creating commands now, also - can be done just using ``new``.
+- Creating commands now, also - can be done just using ``decl`` and ``Command:`` tag.
 - Let's take a look:
 
 ```pawn
-new Command:tagtest(playerid,params[])
+decl Command:tagtest(playerid,params[])
 {
     SendClientMessage(playerid, -1, "Tag command worked.");
     return 1;
@@ -48,6 +48,10 @@ You can do it using ``alias`` keyword, an example:
 ```pawn
 
 alias command mycmd(playerid, params[]) = mycommand;
+
+// ... or:
+
+decl CommandAlias:mycmd(playerid, params[]) = mycommand;
 
 ```
 
