@@ -96,3 +96,9 @@ new Command:acoff(playerid,params[])
 ### Contribution
 
 - As you can see, this system is currently really small and is far away from being done, the point is to wipe all the cheaters from SA:MP scene and make the game fun and exciting. The way you can help is to *contribute* to the project - add more stuff and do a pull request!
+
+### Warnings
+
+#### Automatic cheat checking
+
+- Yes, ``d_anticheat`` has automatic cheat checking, as I mentioned before - just by including **d_samp.inc**, your anti-cheat system is ready to use. This means that when you compile with ``d_anticheat.inc`` included, anticheat will work and check all players online for cheats, but keep in mind that cheat checking is performed only every **1** minute.
