@@ -137,6 +137,14 @@ prefixed command mycmd(playerid, params[], "!")
   SendClientMessage(playerid, -1, "This worked, %s.", ReturnPlayerName(playerid));
   return 1;
 }
+
+// ... or:
+
+decl PrefixedCommand:mycmd(playerid, params[], "!")
+{
+  SendClientMessage(playerid, -1, "This worked, %s.", ReturnPlayerName(playerid));
+  return 1;
+}
 ```
 
 Now, whenever player sends ``!mycmd`` to chat, command will be executed (performed).
