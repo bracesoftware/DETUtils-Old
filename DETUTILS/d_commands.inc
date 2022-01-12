@@ -89,9 +89,13 @@ Optional plugins:
 #define @cmds_%0\32; @cmds_
 
 #define keyword @cmds_
+/////////////////////////////////////////////////////////////////////
+#define @newk_%0\32; @newk_
 
+#define decl @newk_
+/////////////////////////////////////////////////////////////////////
 #define @cmds_public%0(%1) %0(%1);public%0(%1)
-#define @cmds_native%0(%1) native%0(%1)
+#define @cmds_forward%0(%1) forward%0(%1)
 
 /////////////////////////////////////////////////////////////////////
 
@@ -116,7 +120,7 @@ Optional plugins:
 #define command%0(%1) \
     forward cmd_%0(%1);public cmd_%0(%1)
 /////////////////////////////////////////////////////////////////////
-#define new%2Command:%0(%1) \
+#define @newk_Command:%0(%1) \
     forward cmd_%0(%1);public cmd_%0(%1) //same as thing over this
 /////////////////////////////////////////////////////////////////////
 #if defined detutils_tags_test
@@ -125,10 +129,13 @@ Optional plugins:
     forward cmd_%0(%1[]);%3public cmd_%0(%1[]){return cmd_%2(%1)%4;%5}
 
 #endif
-
+/////////////////////////////////////////////////////////////////////
 #define alias%5command%0(%1[%3]%4)=%2; \
     forward cmd_%0(%1[]);%3public cmd_%0(%1[]){return cmd_%2(%1)%4;%5}
 
+#define @newk_CommandAlias:%0(%1[%3]%4)=%2; \
+    forward cmd_%0(%1[]);%3 public cmd_%0(%1[]){return cmd_%2(%1)%4;}
+/////////////////////////////////////////////////////////////////////
 #define _public public
 #define forward_ forward
 
