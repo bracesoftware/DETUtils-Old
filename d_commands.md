@@ -59,15 +59,23 @@ decl CommandAlias:mycmd(playerid, params[]) = mycommand;
 ------------------------------------------
 There is also a way to debug commands!
 
-Advanced debugging can be done using ``debug`` keyword.
+Advanced debugging can be done using ``OnCommandStateChange`` and ``OnPrefixedCommandStateChange`` - depends on command type.
 
 Example:
 
 ```pawn
-debug command mycmd()
+public OnCommandStateChange(playerid, cmdtext[], stateid)
 {
-  print("Command %s successfully called.", GetDebuggedCommandName());
-  return 1;
+	printf("Command state changed. Command: %s", cmdtext[]);
+	return 1;
+}
+
+// ... or:
+
+public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid)
+{
+	printf("Custom prefixed command state changed. Command: %s", cmdtext[]);
+	return 1;
 }
 ```
 ### Debug states
@@ -85,24 +93,46 @@ debug command mycmd()
 - To use states, you need to use **GetCommandDebugState**. Here's how to do it:
 
 ```pawn
-debug command mycmd ()
+public OnCommandStateChange(playerid, cmdtext[], stateid) 
 {
-    if(GetCommandDebugState() == COMMAND_DEBUG_STATE_RECEIVED)
+    if(stateid == COMMAND_DEBUG_STATE_RECEIVED)
     {
-        printf("Command %s received.", GetDebuggedCommandName());
+        printf("Command %s received.", cmdtext);
         return 1;
     }
-    else if(GetCommandDebugState() == COMMAND_DEBUG_STATE_READY)
+    else if(stateid == COMMAND_DEBUG_STATE_READY)
     {
-        printf("Command %s ready.", GetDebuggedCommandName());
+        printf("Command %s ready.", cmdtext);
         return 1;
     }
-    else if(GetCommandDebugState() == COMMAND_DEBUG_STATE_PERFORMED)
+    else if(stateid == COMMAND_DEBUG_STATE_PERFORMED)
     {
-        printf("Command %s performed.", GetDebuggedCommandName());
+        printf("Command %s performed.", cmdtext);
         return 1;
     }
-	return 0;
+    return 1;
+}
+
+// ... or:
+
+public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid) 
+{
+    if(stateid == COMMAND_DEBUG_STATE_RECEIVED)
+    {
+        printf("Custom prefixed command %s received.", cmdtext);
+        return 1;
+    }
+    else if(stateid == COMMAND_DEBUG_STATE_READY)
+    {
+        printf("Custom prefixed command %s ready.", cmdtext);
+        return 1;
+    }
+    else if(stateid == COMMAND_DEBUG_STATE_PERFORMED)
+    {
+        printf("Custom prefixed command %s performed.", cmdtext);
+        return 1;
+    }
+    return 1;
 }
 ```
 
@@ -220,47 +250,36 @@ Example:
 ```pawn
 CallLocalCommand("mycommand", "is", playerid, inputtext);
 ```
-**GetDebuggedCommandName**
-------------------------------------------
-- This function gets the name of debugged command.
-
-Parameters: noone
-
-Example:
-
-```pawn
-debug command mycmd()
-{
-  print("Command %s successfully called.", GetDebuggedCommandName());
-  return 1;
-}
-```
-**NOTE**: This function can be only used in command ``debug`` function.
-
-**GetCommandDebugState**
-------------------------------------------
-- Usage of this function is really simple. It gets the command's debug state.
-
-Parameters: noone
-
-```php
-debug command mycmd ()
-{
-    if(GetCommandDebugState() == COMMAND_DEBUG_STATE_RECEIVED)
-    {
-        printf("Command %s received.", GetDebuggedCommandName());
-        return 1;
-    }
-    return 0;
-}
-```
-- So, when command processor receives command and command's parameters, console will print out message saying: **"Command /mycmd received."**.
-
-**NOTE**: This function can be only used in command ``debug`` function.
 
 **CallRemoteCommand**
 ------------------------------------------
 - Simply, *CallRemoteCommand* works same as *CallLocalCommand* (it has same parameters etc.) - but the command can be called from anywhere. Even, from another file.
+
+**CallLocalPrefixedCommand**
+------------------------------------------
+
+- Used to call local prefixed command.
+
+Example:
+
+```pawn
+CallLocalPrefixedCommand("sayhi", "is", playerid, text);
+```
+
+**WARNING:** In command name parameter (in this case - it is this **"sayhi"** thing), you only need to put command name - not a prefix!
+
+**CallRemotePrefixedCommand**
+------------------------------------------
+
+- Used to call remote prefixed command.
+
+Example:
+
+```pawn
+CallRemotePrefixedCommand("sayhi", "is", playerid, text);
+```
+
+**WARNING:** In command name parameter (in this case - it is this **"sayhi"** thing), you only need to put command name - not a prefix!
 
 **Command processing**
 ------------------------------------------
