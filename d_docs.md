@@ -108,3 +108,5 @@ Optional plugins:
 ------------------------------------------
 - Incognito - streamer
 - Y_Less (y-less.com, github.com/y-less) - sscanf
+
+![image](img/d_samp_wordmark.png)
