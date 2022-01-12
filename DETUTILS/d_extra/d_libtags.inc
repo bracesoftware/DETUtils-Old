@@ -80,7 +80,7 @@ Optional plugins:
                                                 
 */
 
-#define client_green 0x8ba962
+#define COLOUR_GREY "{B9C9BF}"
 
 #define detutils_visual_TRUE
 

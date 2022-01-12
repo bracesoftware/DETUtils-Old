@@ -267,7 +267,7 @@ command throwgun( playerid, params[] )
                     break;
                 }
             }
-            if( __weap_idx == -1 ) return SendClientMessage(playerid, client_green, "Operation can't be completed at the moment." );
+            if( __weap_idx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"Operation can't be completed at the moment." );
             #if defined RemovePlayerWeapon
             RemovePlayerWeapon( playerid, __Weapon_id );
             #endif
@@ -280,7 +280,7 @@ command throwgun( playerid, params[] )
                 _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 0 ], _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 1 ], 
                 _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 2 ]-1, 93.7, 120.0, 120.0 );
             __WeaponTimer_var[ playerid ] = 30;
-            SendClientMessage( playerid, client_green, "You threw away {ffffff}%s.", 
+            SendClientMessage( playerid, -1, ""COLOUR_GREY"You threw away {ffffff}%s"COLOUR_GREY".", 
                 __Weapon_information[ _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] ][ wName ] );
         }
     }
@@ -301,9 +301,9 @@ command destroygun( playerid, params[] )
             break;
         }
     }
-    if( __weap_idx == -1 ) return SendClientMessage(playerid, client_green, "No guns nearby." );
+    if( __weap_idx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"No guns nearby." );
     DestroyDynamicObject( _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] );
-    SendClientMessage( playerid, client_green, "You destroyed {ffffff}%s.", 
+    SendClientMessage( playerid, -1, "You destroyed {ffffff}%s.", 
         __Weapon_information[ _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] ][ wName ] );
     _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 0 ] = 0.0;
     _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 1 ] = 0.0;
@@ -329,9 +329,9 @@ command pickgun( playerid, params[] )
             break;
         }
     }
-    if( __weap_idx == -1 ) return SendClientMessage(playerid, client_green, "No guns nearby." );
+    if( __weap_idx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"No guns nearby." );
     DestroyDynamicObject( _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] );
-    SendClientMessage( playerid, client_green, "You picked up {ffffff}%s.", 
+    SendClientMessage( playerid, -1, ""COLOUR_GREY"You picked up {ffffff}%s"COLOUR_GREY".", 
         __Weapon_information[ _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] ][ wName ] );
     GivePlayerWeapon( playerid, _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ], 
         _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 1 ] );
@@ -367,7 +367,7 @@ COMMAND__ throwgun( playerid, params[] )
                     break;
                 }
             }
-            if( __weap_idx == -1 ) return SendClientMessage(playerid, client_green, "Operation can't be completed at the moment." );
+            if( __weap_idx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"Operation can't be completed at the moment." );
             #if defined RemovePlayerWeapon
             RemovePlayerWeapon( playerid, __Weapon_id );
             #endif
@@ -380,7 +380,7 @@ COMMAND__ throwgun( playerid, params[] )
                 _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 0 ], _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 1 ], 
                 _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 2 ]-1, 93.7, 120.0, 120.0 );
             __WeaponTimer_var[ playerid ] = 30;
-            SendClientMessage( playerid, client_green, "You threw away {ffffff}%s.", 
+            SendClientMessage( playerid, -1, ""COLOUR_GREY"You threw away {ffffff}%s"COLOUR_GREY".", 
                 __Weapon_information[ _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] ][ wName ] );
         }
     }
@@ -401,9 +401,9 @@ COMMAND__ destroygun( playerid, params[] )
             break;
         }
     }
-    if( __weap_idx == -1 ) return SendClientMessage(playerid, client_green, "No guns nearby." );
+    if( __weap_idx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"No guns nearby." );
     DestroyDynamicObject( _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] );
-    SendClientMessage( playerid, client_green, "You destroyed {ffffff}%s.", 
+    SendClientMessage( playerid, -1, ""COLOUR_GREY"You destroyed {ffffff}%s"COLOUR_GREY".", 
         __Weapon_information[ _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] ][ wName ] );
     _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 0 ] = 0.0;
     _WeaponData[ __weap_idx ][ __Weapon_ObjectPosition ][ 1 ] = 0.0;
@@ -429,9 +429,9 @@ COMMAND__ pickgun( playerid, params[] )
             break;
         }
     }
-    if( __weap_idx == -1 ) return SendClientMessage(playerid, client_green, "No guns nearby." );
+    if( __weap_idx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"No guns nearby." );
     DestroyDynamicObject( _WeaponData[ __weap_idx ][ __Weapon_ObjectID ] );
-    SendClientMessage( playerid, client_green, "You picked up {ffffff}%s.", 
+    SendClientMessage( playerid, -1, ""COLOUR_GREY"You picked up {ffffff}%s"COLOUR_GREY".", 
         __Weapon_information[ _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ] ][ wName ] );
     GivePlayerWeapon( playerid, _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 0 ], 
         _WeaponData[ __weap_idx ][ __Weapon_Object_Data ][ 1 ] );

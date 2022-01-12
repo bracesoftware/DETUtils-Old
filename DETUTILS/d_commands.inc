@@ -159,12 +159,21 @@ Optional plugins:
 #define admin%5command%0(%1,%2[%3]%4) \
     forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if(!IsPlayerAdmin(%1)) return 0; return  cmd_func_%0(%1,%2)%4;%5} \
     forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[]%5)
+/////////////////////////////////////////////////////////////////////
 
 #define role%5command%0(%1,%2[%3]%4,%6) \
     forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if( !role_%6(%1) ) return 0; return  cmd_func_%0(%1,%2)%4;%5} \
     forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[]%5)
 
+#define @newk_RoleCommand:%0(%1,%2[%3]%4,%6) \
+    forward cmd_%0(%1,%2[]);%3 public cmd_%0(%1,%2[]){if( !role_%6(%1) ) return 0; return  cmd_func_%0(%1,%2)%4;} \
+    forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[])
+/////////////////////////////////////////////////////////////////////
+
 #define create%0role%1(%2,%3); \
+    stock bool: role_%1(%2) { if(!(%3)) return false; else return true; }
+
+#define @newk_Role:%1(%2,%3); \
     stock bool: role_%1(%2) { if(!(%3)) return false; else return true; }
 /////////////////////////////////////////////////////////////////////
 #else // If compatibility mode is ON
