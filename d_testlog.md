@@ -14,8 +14,9 @@
 
 ### Anti-cheat issues
 1. System is really unstable. 
-2. System sends fake cheating reports.
+2. System sends fake cheating reports with cheat types: **CHEAT_TYPE_HEALTH**, **CHEAT_TYPE_ARMOUR** and **CHEAT_TYPE_SKINCHANGER**.
 
 ### Visual game issues
 1. ``FadePlayerScreen(...);`` is not working.
+2. ``FadePlayerScreen(...);`` still calls ``OnPlayerScreenFade(...);`` callback, although that did not happen.
 ----------------------------------------
