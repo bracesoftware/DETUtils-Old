@@ -15,18 +15,30 @@ decl IntColour:gray = 223435231; // Not an actual colour, just an example intege
 decl StrColour:gray[20] = "{B9C9BF}"; // This is an actual colour code I found this morning... xD
 ```
 
+... or:
+
+```pawn
+decl IntColor:gray = 223435231; // Not an actual colour, just an example integer.
+
+// ... or:
+
+decl StrColor:gray[20] = "{B9C9BF}"; // This is an actual colour code I found this morning... xD
+```
+
 - After declaring a colour, you need to use it. You do it using **ReturnInt(Str)Colour**.
 
 Code:
 ```pawn
 SendClientMessage(playerid, ReturnIntColour(gray), "I am gray-coloured text.");
 
+// ... or:
+
 SendClientMessage(playerid, -1, "%sHello, %s!", ReturnStrColour(gray), ReturnPlayerName(playerid));
 ```
 
 ## API (programming interface)
 
-- Everything has been shown above. Only what I forgot to say that I made aliases for **ReturnInt(Str)Colour** functions and they're *ReturnInt(Str)***Color**.
+- Everything has been shown above. Only what I forgot to say that I made aliases for **ReturnInt(Str)Colour** functions and they're *ReturnInt(Str)* **Color**. There are also full naming versions - ReturnIntegerColour(Color) and ReturnStringColour(Color).
 
 ## Messages from creator
 
