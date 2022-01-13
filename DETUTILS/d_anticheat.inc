@@ -89,6 +89,7 @@ new gAntiCheatTimer;
 #define CHEAT_TYPE_HIGHPING 3
 #define CHEAT_TYPE_HEALTH 4
 #define CHEAT_TYPE_ARMOUR 5
+#define CHEAT_TYPE_SPEEDHACK 6
 
 // Functions:
 
@@ -106,6 +107,7 @@ public detutils_cheatcheck()
             CheckPlayerPing(i);
             CheckPlayerArmour(i);
             CheckPlayerHealth(i);
+            CheckPlayerSpeed(i);
         }
     }
     return 1;
@@ -497,6 +499,46 @@ stock CheckPlayerArmour(playerid)
 #endif
 
 #define SetPlayerArmour d_ac_SetPlayerArmour
+
+// SPEED HACK ANTI-CHEAT:
+
+static bool:d_ac_aerovehicle(vehid)
+{
+    switch(GetVehicleModel(vehid))
+    {
+        case 417, 425, 447, 460, 469, 476, 487, 488, 497, 511, 512, 513, 519,
+        520, 548, 553, 563, 577, 592, 593: return true;
+    }
+    return (false);
+}
+
+static stock d_ac_GetSpeed(playerid)
+{
+    new Float:d_ac_GetSpeedVar[4];
+    if(IsPlayerInAnyVehicle(playerid)) 
+    {
+        GetVehicleVelocity(GetPlayerVehicleID(playerid), d_ac_GetSpeedVar[0], d_ac_GetSpeedVar[1], d_ac_GetSpeedVar[2]);
+    }
+    else GetPlayerVelocity(playerid, d_ac_GetSpeedVar[0], d_ac_GetSpeedVar[1], d_ac_GetSpeedVar[2]);
+    d_ac_GetSpeedVar[3] = floatsqroot(floatpower(floatabs(d_ac_GetSpeedVar[0]), 2.0) + floatpower(floatabs(d_ac_GetSpeedVar[1]), 2.0) + floatpower(floatabs(d_ac_GetSpeedVar[2]), 2.0)) * 178.8617875;
+    return floatround(d_ac_GetSpeedVar[3]);
+}
+
+stock CheckPlayerSpeed(playerid)
+{
+    if(d_ac_GetSpeed(playerid) > 291)
+    {
+        if(!d_ac_aerovehicle(GetPlayerVehicleID(playerid)))
+        {
+            if(funcidx("OnPlayerCheatDetected") != -1)
+            {
+                CallLocalFunction("OnPlayerCheatDetected", "ii", playerid, CHEAT_TYPE_SPEEDHACK);
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
 
 /*
                                                                       
