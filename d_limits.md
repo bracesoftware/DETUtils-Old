@@ -1,8 +1,14 @@
-# Limits
+# SA:MP - DETUtils | Library limits
 
 - Here, you can learn more about library limits. Below, you can see a list of DETUtils includes and learn more about limits built into them.
 
 [Go back to home page...](README.md)
+
+# Updates
+
+- In upcoming updates, some limits may be reduced or eventually removed. But, due to existing SA:MP limits, that is not possible in bright future.
+
+Check [open.mp](open.mp/) for more information about SA:MP limits!
 
 # ``d_samp.inc`` includes
 
