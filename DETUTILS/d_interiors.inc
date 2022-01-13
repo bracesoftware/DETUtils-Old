@@ -303,10 +303,10 @@ public _OnPlayerNearEntrance(playerid)
         {
             _InteriorActionid = 0;
             format(_InteriorFunctionName,sizeof(_InteriorFunctionName),
-                "int_%s",_InteriorData[ i ][e__INTERIOR_NAME]);
+                "OnInteriorActionPerformed",_InteriorData[ i ][e__INTERIOR_NAME]);
 
             if(funcidx(_InteriorFunctionName) != -1) CallLocalFunction(_InteriorFunctionName,
-                                                                "ii",playerid,_InteriorActionid);
+                                                                "iii",playerid,i,_InteriorActionid);
 
             SetPlayerInterior( playerid, _InteriorData[ i ][e__INTERIOR_INTID] );
             SetPlayerVirtualWorld( playerid, _InteriorData[ i ][e__INTERIOR_VWID] );
@@ -355,9 +355,9 @@ public _OnPlayerNearEntrance(playerid)
 
             _InteriorActionid = 1;
             format(_InteriorFunctionName,sizeof(_InteriorFunctionName),
-                "int_%s",_InteriorData[ i ][e__INTERIOR_NAME]);
+                "OnInteriorActionPerformed",_InteriorData[ i ][e__INTERIOR_NAME]);
 
-            if(funcidx(_InteriorFunctionName) != -1) CallLocalFunction(_InteriorFunctionName,"ii",playerid,_InteriorActionid);
+            if(funcidx(_InteriorFunctionName) != -1) CallLocalFunction(_InteriorFunctionName,"iii",playerid,i,_InteriorActionid);
 
             _PlayersInterior[ playerid ] = -1;
             
@@ -779,10 +779,10 @@ stock ClearPlayerInteriorData(playerid)
     return detutils_interiors_TRUE;
 }
 
-stock GetLastInterioridUsed()
+stock GetLastInteriorIDUsed()
 {
     #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - GetLastInterioridUsed successfully called.");
+    printf("[samp-detutils]: (debug) - GetLastInteriorIDUsed successfully called.");
     #endif
     return _Interiorid;
 }
@@ -818,17 +818,45 @@ stock SetInteriorEntranceCustomAngles(
 
 //#if !defined DETUTILS_COMPATIBILITY_MODE
 
-#define public%3OnInteriorActionPerformed%2(%0,%1) \
-    forward int_%0(%1,_Actionid); \
-    public int_%0(%1,_Actionid)
+forward OnInteriorActionPerformed(playerid, interiorid, actionid);
 
-/*#else
+stock GetInteriorName(_InteriorId)
+{
+    return _InteriorData[_InteriorId][e__INTERIOR_NAME];
+}
+
+stock GetInteriorIDByName(const _InteriorName[])
+{
+    new __InteriorName[256];
+    for(new _IntCount = 0; 
+        _IntCount < MAX_INTERIORS; 
+        _IntCount++)
+    {
+        format(__InteriorName, 256, "%s", _InteriorData[_IntCount][e__INTERIOR_NAME]);
+        if(!strcmp(__InteriorName, _InteriorName))
+        {
+            return _IntCount;
+        }
+    }
+    return 0;
+}
+
+#if defined detutils_complete_error_boom
+
+#define public%3OnInteriorActionPerformed%2(%0,%1) \
+    forward int_%0(%1); \
+    public int_%0(%1)
+
+
+#endif
+
+#if defined detutils_complete_error_boom
 
 #define INTERIOR__%0(%1) \
     forward int_%0(%1,_Actionid); \
     public int_%0(%1,_Actionid)
 
-#endif*/
+#endif
 
 stock SetPlayerCustomInterior(_p_Playerid, p_Interiorid)
 {
@@ -843,8 +871,12 @@ stock SetPlayerCustomInterior(_p_Playerid, p_Interiorid)
     return detutils_interiors_TRUE;
 }
 
+#if defined detutils_complete_error_boom
+
 #define IsInteriorActionPerformed(%0) \
-    (_Actionid == %0)
+    (_Actionid == %0) >>> data * plus / Check;
+
+#endif
 
 static void:AnnounceLibraryLoaded_int()
 {
