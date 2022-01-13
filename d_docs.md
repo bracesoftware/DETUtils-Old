@@ -45,6 +45,10 @@ Check out test files here:
 
 - Beta testing program is currently down since this project is far away from being done. Also, according to news - new **open.mp** is coming soon, so these libraries shall be updated regularly to keep up with the project.
 
+## Test log
+
+- Recently, I started test logging program in which I log every library issue I spotted during testing. You can check it [here](d_testlog.md)...
+
 ## Troubleshooting
 
 If you're facing problems like function failed to call, function is not valid, critical errors - make sure you enable automatic debugging.
