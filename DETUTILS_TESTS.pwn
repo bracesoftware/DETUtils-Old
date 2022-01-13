@@ -1,4 +1,4 @@
-#define DEV_MODE
+//#define DEV_MODE
 #define detutils_debug
 //#define detutils_sscanf
 
@@ -40,6 +40,18 @@ enum Enums
 }
 
 new Player[MAX_PLAYERS][Enums];
+/////////////////////////////////////////////////////////////
+decl Command:acon(playerid,params[])
+{
+    ToggleAntiCheatSystem(true);
+    return 1;
+}
+
+decl Command:acoff(playerid,params[])
+{
+    ToggleAntiCheatSystem(false);
+    return 1;
+}
 /////////////////////////////////////////////////////////////
 decl IntColour:green = 223231;
 decl StrColour:g_GrayColour[20] = "{B9C9BF}";
@@ -130,46 +142,7 @@ command untiltest(playerid, params[])
     SendClientMessage(playerid, -1, "i is now 50.");
     return 1;
 }
-/* *removed this*
-debug command sayhi ()
-{
-    if(GetCommandDebugState() == COMMAND_DEBUG_STATE_RECEIVED)
-    {
-        printf("Command %s received.", GetDebuggedCommandName());
-        return 1;
-    }
-    else if(GetCommandDebugState() == COMMAND_DEBUG_STATE_READY)
-    {
-        printf("Command %s ready.", GetDebuggedCommandName());
-        return 1;
-    }
-    else if(GetCommandDebugState() == COMMAND_DEBUG_STATE_PERFORMED)
-    {
-        printf("Command %s performed.", GetDebuggedCommandName());
-        return 1;
-    }
-    return 0;
-}
 
-debug command hi ()
-{
-    if(GetCommandDebugState() == COMMAND_DEBUG_STATE_RECEIVED)
-    {
-        printf("Command %s received.", GetDebuggedCommandName());
-        return 1;
-    }
-    else if(GetCommandDebugState() == COMMAND_DEBUG_STATE_READY)
-    {
-        printf("Command %s ready.", GetDebuggedCommandName());
-        return 1;
-    }
-    else if(GetCommandDebugState() == COMMAND_DEBUG_STATE_PERFORMED)
-    {
-        printf("Command %s performed.", GetDebuggedCommandName());
-        return 1;
-    }
-    return 0;
-}*/
 /////////////////////////////////////////////////////////////
 public OnCommandStateChange(playerid, cmdtext[], stateid) // new and PROPER debugging
 {
@@ -220,6 +193,22 @@ public OnPlayerCheatDetected(playerid, cheattype)
     else if(cheattype == CHEAT_TYPE_SKINCHANGER)
     {
         SendClientMessage(playerid, -1, "Don't dare to change your skin this way ever again!");
+    }
+    else if(cheattype == CHEAT_TYPE_TELEPORT)
+    {
+        SendClientMessage(playerid, -1, "Stop teleporting!");
+    }
+    else if(cheattype == CHEAT_TYPE_HIGHPING)
+    {
+        SendClientMessage(playerid, -1, "Your ping is too high man! Try to reduce it a bit.");
+    }
+    else if(cheattype == CHEAT_TYPE_HEALTH)
+    {
+        SendClientMessage(playerid, -1, "Hey! Don't modify your health - you aren't immortal.");
+    }
+    else if(cheattype == CHEAT_TYPE_ARMOUR)
+    {
+        SendClientMessage(playerid, -1, "Stop changing your armour.");
     }
     return 1;
 }
@@ -339,8 +328,8 @@ public OnInteriorActionPerformed(playerid, interiorid, actionid)
     {
         format(string, 256, "%sYou entered %s, %s. Interior id: %i [%i]", 
             ReturnStringColour(g_GrayColour),
-            _ReturnPlayerName(playerid), 
             GetInteriorName(interiorid),
+            _ReturnPlayerName(playerid), 
             GetInteriorIDByName(GetInteriorName(interiorid)),
             interiorid);
         SendClientMessage(playerid, -1, string);
@@ -350,8 +339,8 @@ public OnInteriorActionPerformed(playerid, interiorid, actionid)
     {
         format(string, 256, "%sYou exited %s, %s. Interior id: %i [%i]", 
             ReturnStringColour(g_GrayColour),
-            _ReturnPlayerName(playerid), 
             GetInteriorName(interiorid),
+            _ReturnPlayerName(playerid), 
             GetInteriorIDByName(GetInteriorName(interiorid)),
             interiorid);
         SendClientMessage(playerid, -1, string);
