@@ -30,11 +30,15 @@ Click on blue text to see all information about each feature.
 ------------------------------------------
 - Read more here: [Extra stuff](d_extra.md)
 ## Tests
-To make sure everything works, we do tests and upload here - obviously.
+- I regularly make test scripts with all new features I added to the library to ensure everything is working as expected.
 
 Check out test files here:
 
 - [Go to tests...](https://github.com/DentisT-SAMP/samp-detutils/tree/master/tests)
+
+## Limits
+
+- Everything has its limits, so does DETUtils - view them [here](d_limits.md)...
 
 ## Beta testing
 
