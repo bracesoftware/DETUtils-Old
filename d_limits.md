@@ -18,7 +18,18 @@ Check [open.mp official resources site](https://open.mp/docs/scripting/resources
 
 ## d_colours.inc
 
-- No limits at the moment.
+### Maximum colour name length
+Include code:
+```pawn
+#if !defined MAX_COLOUR_NAME_LENGTH && !defined MAX_COLOR_NAME_LENGTH
+
+    #define MAX_COLOUR_NAME_LENGTH (32 - 7)
+    
+    #define MAX_COLOR_NAME_LENGTH MAX_COLOUR_NAME_LENGTH
+
+#endif
+```
+- This limits the number of characters that colour's name can have. 
 
 ## d_commands.inc
 
