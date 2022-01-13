@@ -4,8 +4,11 @@
 
 **NOTE:** This version of the library is a BETA version and is really unstable.
 **WARNING:** I started test logging program on **13 Jan 2022**. 
-
+----------------------------------------
 ## Test no. 1 - 13 Jan 2022
+
+Tested by: DEntisT-ofc
+Version: 1.5.2
 
 ### Anti-cheat issues
 1. System is really unstable. 
@@ -13,3 +16,4 @@
 
 ### Visual game issues
 1. ``FadePlayerScreen(...);`` is not working.
+----------------------------------------
