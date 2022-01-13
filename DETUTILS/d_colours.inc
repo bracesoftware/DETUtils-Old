@@ -116,7 +116,14 @@ Optional plugins:
 
 // Limits:
 
-#define MAX_COLOURS 2
+#if !defined MAX_COLOUR_NAME_LENGTH && !defined MAX_COLOR_NAME_LENGTH
+
+    #define MAX_COLOUR_NAME_LENGTH (32 - 7)
+    
+    #define MAX_COLOR_NAME_LENGTH MAX_COLOUR_NAME_LENGTH
+
+#endif
+
 static stock _DeclaredColours;
 
 // Invalid colour ids:
