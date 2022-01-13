@@ -93,7 +93,7 @@ new gAntiCheatTimer;
 // Functions:
 
 forward OnPlayerCheatDetected(playerid, cheattype);
-forward detutils_cheatcheck(playerid);
+forward detutils_cheatcheck();
 public detutils_cheatcheck()
 {
     for(new i = 0; i < MAX_PLAYERS; i++)
