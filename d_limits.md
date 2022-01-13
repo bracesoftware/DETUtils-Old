@@ -8,7 +8,7 @@
 
 - In upcoming updates, some limits may be reduced or eventually removed. But, due to existing SA:MP limits, that is not possible in bright future.
 
-Check [open.mp](https://open.mp/) for more information about SA:MP limits!
+Check [open.mp official resources site](https://open.mp/docs/scripting/resources/limits) for more information about SA:MP limits!
 
 # ``d_samp.inc`` includes
 
