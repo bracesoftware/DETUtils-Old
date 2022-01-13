@@ -26,6 +26,7 @@ Click on blue text to see all information about each feature.
 - Learn more: [d_fmargs.inc](d_fmargs.md)
 - Learn mode: [d_visual.inc](d_visual.md)
 - Learn mode: [d_anticheat.inc](d_anticheat.md)
+- Learn more: [d_colours.inc](d_colours.md)
 ### Extra bonus
 ------------------------------------------
 - Read more here: [Extra stuff](d_extra.md)
