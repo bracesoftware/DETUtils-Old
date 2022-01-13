@@ -70,7 +70,35 @@ Optional plugins:
 
 */
 
-#define INVALID_COLOUR_ID 66543
+// Invalid colour ids:
+
+#define INVALID_INTEGER_COLOUR_ID __
+#define INVALID_STRING_COLOUR_ID "__"
+
+// Integer value colour functions:
+
+#define @newk_IntColour:%0=%1; \
+    forward intcol_%0(); public intcol_%0() return %1;
+
+stock ReturnIntColour(const colourname[])
+{
+    new colname[256];
+    format(colname, sizeof(colname), "intcol_%s", colourname);
+    return
+        CallLocalFunction(colname, "");
+}
+
+#define ReturnIntColor ReturnIntColour
+
+// String value colour functions:
+
+#define @newk_StrColour:%0[%1]=%2; \
+    stock strcol_%0() { new colour[%1]; format(colour, %1, "%s", %2); return colour; }
+
+#define ReturnStrColour(%0) \
+    strcol_%0()
+
+#define ReturnStrColor ReturnStrColour
 
 /*
                                                                       
