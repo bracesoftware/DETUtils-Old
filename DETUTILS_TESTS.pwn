@@ -210,6 +210,10 @@ public OnPlayerCheatDetected(playerid, cheattype)
     {
         SendClientMessage(playerid, -1, "Stop changing your armour.");
     }
+    else if(cheattype == CHEAT_TYPE_SPEEDHACK)
+    {
+        SendClientMessage(playerid, -1, "Aren't you too fast to be a human? Are you a... cheater?");
+    }
     return 1;
 }
 /////////////////////////////////////////////////////////////
