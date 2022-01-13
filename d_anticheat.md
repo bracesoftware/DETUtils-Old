@@ -122,6 +122,19 @@ public OnPlayerUpdate(playerid)
 ```
 **NOTE:** Read *Messages from creator* part for more information.
 
+### CheckPlayerSpeed
+
+- Used to check player's speed. If player's speed is to high, anti-cheat system will detect that and call **OnPlayerCheatDetected** with cheat type **CHEAT_TYPE_SPEEDHACK**.
+
+```pawn
+public OnPlayerUpdate(playerid)
+{
+  CheckPlayerSpeed(playerid);
+  return 1;
+}
+```
+**NOTE:** Read *Messages from creator* part for more information.
+
 ### ToggleAntiCheatSystem
 
 - Used to toggle anti-cheat system on or off. Efficient in commands and also if you don't want to use **d_anticheat.inc** at all.
