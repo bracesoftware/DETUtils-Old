@@ -206,6 +206,7 @@ stock ToggleAntiCheatSystem(bool:toggle)
         gAntiCheatToggled = 0;
         return 1;
     }
+    return INVALID_CHEAT_ID;
 }
 
 // Anti-cheat code:
@@ -222,6 +223,43 @@ enum ENUM_g_PlayerInfo
 }
 
 new g_PlayerInfo[MAX_PLAYERS][ENUM_g_PlayerInfo];
+
+#if defined detutils_debug
+
+#define DIALOG_ID_ACSTATS 0
+
+forward cmd_acstats(playerid, params[]);
+public cmd_acstats(playerid, params[])
+{
+    new p_DialogText[1024];
+    format(p_DialogText,
+        sizeof p_DialogText,
+
+        "Amount of money: %i\n \
+        Your skin ID: %i\n \
+        Your position: %f, %f, %f\n \
+        Ping: %i\n \
+        Health: %f\n \
+        Armour: %f\n \
+        ",
+
+        g_PlayerInfo[playerid][Money],
+        g_PlayerInfo[playerid][Skin],
+        g_PlayerInfo[playerid][Pos][0],g_PlayerInfo[playerid][Pos][1],g_PlayerInfo[playerid][Pos][2],
+        g_PlayerInfo[playerid][Ping],
+        g_PlayerInfo[playerid][Health],
+        g_PlayerInfo[playerid][Armour]);
+
+    ShowPlayerDialog(playerid, 
+        DIALOG_ID_ACSTATS, 
+        DIALOG_STYLE_MSGBOX, 
+        "SA:MP Anti-Cheat - Notice", 
+        p_DialogText, 
+        "Close", "");
+    return 1;
+}
+
+#endif
 
 public OnPlayerSpawn(playerid)
 {
