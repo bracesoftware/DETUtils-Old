@@ -223,6 +223,34 @@ enum ENUM_g_PlayerInfo
 
 new g_PlayerInfo[MAX_PLAYERS][ENUM_g_PlayerInfo];
 
+public OnPlayerSpawn(playerid)
+{
+    new Float:hp, Float:ap;
+    GetPlayerHealth(playerid, hp);
+    GetPlayerArmour(playerid, ap);
+
+    g_PlayerInfo[playerid][Money] = GetPlayerMoney(playerid);
+    g_PlayerInfo[playerid][Skin] = GetPlayerSkin(playerid);
+    g_PlayerInfo[playerid][UsingTPHack] = false;
+    g_PlayerInfo[playerid][Health] = hp;
+    g_PlayerInfo[playerid][Armour] = ap;
+
+    if(funcidx("a_ac_OnplayerSpawn") != -1)
+    {
+        CallLocalFunction("a_ac_OnplayerSpawn", "i", playerid);
+    }
+    return detutils_interiors_TRUE;
+}
+
+#if defined _ALS_OnPlayerSpawn
+    #undef OnPlayerSpawn
+#else
+    #define _ALS_OnPlayerSpawn
+#endif
+
+#define OnPlayerSpawn a_ac_OnplayerSpawn
+
+forward a_ac_OnplayerSpawn(playerid);
 
 public OnPlayerDisconnect(playerid, reason)
 {
@@ -231,6 +259,7 @@ public OnPlayerDisconnect(playerid, reason)
     g_PlayerInfo[playerid][UsingTPHack] = false;
     g_PlayerInfo[playerid][Health] = 0;
     g_PlayerInfo[playerid][Armour] = 0;
+
     if(funcidx("a_anticheat_Onpds") != -1)
     {
         CallLocalFunction("a_anticheat_Onpds", "");

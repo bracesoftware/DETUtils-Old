@@ -816,13 +816,39 @@ stock SetInteriorEntranceCustomAngles(
                                                                                                  
 */
 
+// Bug fix:
+
+public OnPlayerSpawn(playerid)
+{
+    TogglePlayerControllable(playerid, 1);
+    if(funcidx("a_int_Onplayerspawn") != -1)
+    {
+        CallLocalFunction("a_int_Onplayerspawn", "i", playerid);
+    }
+    return detutils_interiors_TRUE;
+}
+
+#if defined _ALS_OnPlayerSpawn
+    #undef OnPlayerSpawn
+#else
+    #define _ALS_OnPlayerSpawn
+#endif
+
+#define OnPlayerSpawn a_int_Onplayerspawn
+
+forward a_int_Onplayerspawn(playerid);
+
+//////////////////////////////////////////////////
+
 //#if !defined DETUTILS_COMPATIBILITY_MODE
 
 forward OnInteriorActionPerformed(playerid, interiorid, actionid);
 
 stock GetInteriorName(_InteriorId)
 {
-    return _InteriorData[_InteriorId][e__INTERIOR_NAME];
+    new InteriorName[256];
+    format(InteriorName, sizeof InteriorName, "%s", _InteriorData[_InteriorId][e__INTERIOR_NAME]);
+    return InteriorName;
 }
 
 stock GetInteriorIDByName(const _InteriorName[])
@@ -921,7 +947,7 @@ public OnFilterScriptInit()
 
     if(funcidx("a_int_OnFilterScriptInit") != -1)
     {
-        CallLocalFunction("a_int_OnFilterScriptInit", "i", playerid);
+        CallLocalFunction("a_int_OnFilterScriptInit", "");
     }
     return detutils_interiors_TRUE;
 }
