@@ -403,26 +403,51 @@ stock RemovePlayerWeapon( playerid, weaponid )
 
 static stock __WeaponTimer_var[MAX_PLAYERS];
 
-#define MAX_GUN_OBJECTS 3000
+#if !defined MAX_DROPPED_GUNS
+
+#define MAX_DROPPED_GUNS 2000
+
+#endif
+new _CreatedDroppedGuns;
 
 enum __Weapon_data__Enum {
     Float:__Weapon_ObjectPosition[ 3 ],
     __Weapon_ObjectID,
     __Weapon_Object_Data[ 2 ],
 };
-new _WeaponData[ MAX_GUN_OBJECTS ][ __Weapon_data__Enum ];
+new _WeaponData[ MAX_DROPPED_GUNS ][ __Weapon_data__Enum ];
 
-stock CreateDroppedGun( __Weapon_id, __Weapon_ammo, Float:__Weapon_pos_x, Float:__Weapon_pos_y, Float:__Weapon_pos_z ) {
-    for( new __weap_index = 0; __weap_index < MAX_GUN_OBJECTS; __weap_index++ ) {
-        if( _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0 ] == 0.0 ) {
+stock CreateDroppedGun( __Weapon_id, __Weapon_ammo, Float:__Weapon_pos_x, Float:__Weapon_pos_y, Float:__Weapon_pos_z ) 
+{
+    if(_CreatedDroppedGuns == MAX_DROPPED_GUNS)
+    {
+        #if defined detutils_debug
+        for(new i = 0; i < MAX_PLAYERS; i++)
+        {
+            if(i != INVALID_PLAYER_ID)
+            {
+                d_SendWarningMessage(i, "Maximum number of dropped gun objects reached.");
+            }
+        }
+        #endif
+        return 0;
+    }
+    for( new __weap_index = 0; __weap_index < MAX_DROPPED_GUNS; __weap_index++ ) 
+    {
+        if( _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0 ] == 0.0 ) 
+        {
             _WeaponData[ __weap_index ][ __Weapon_Object_Data ][ 0 ] = __Weapon_id;
             _WeaponData[ __weap_index ][ __Weapon_Object_Data ][ 1 ] = __Weapon_ammo;
             _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0 ] = __Weapon_pos_x;
             _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 1 ] = __Weapon_pos_y;
             _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 2 ] = __Weapon_pos_z;
-            _WeaponData[ __weap_index ][ __Weapon_ObjectID ] = CreateDynamicObject( __Weapon_information[ __Weapon_id ][ wModel ], 
-                _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0 ], _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 1 ], 
+            _WeaponData[ __weap_index ][ __Weapon_ObjectID ] = CreateDynamicObject( 
+                __Weapon_information[ __Weapon_id ][ wModel ], 
+                _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0 ],
+                 _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 1 ], 
                 _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 2 ]-1, 93.7, 120.0, random(360) );
+            
+            _CreatedDroppedGuns++;
             return 1;
         }
     }
@@ -448,7 +473,7 @@ command throwgun( playerid, params[] )
         if( _g_Script == 0 )
         {
             new __weap_idx = -1;
-            for( new __weap_index = 0; __weap_index < MAX_GUN_OBJECTS; __weap_index++ )
+            for( new __weap_index = 0; __weap_index < MAX_DROPPED_GUNS; __weap_index++ )
             {
                 if( _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0 ] == 0.0 )
                 {
@@ -481,7 +506,7 @@ command destroygun( playerid, params[] )
 {
     if( GetPlayerState( playerid ) != PLAYER_STATE_ONFOOT ) return 1;
     new __weap_idx = -1;
-    for( new __weap_index = 0; __weap_index < MAX_GUN_OBJECTS; __weap_index++ )
+    for( new __weap_index = 0; __weap_index < MAX_DROPPED_GUNS; __weap_index++ )
     {
         if( IsPlayerInRangeOfPoint( playerid, 5.0, _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0] , 
             _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 1 ], 
@@ -510,7 +535,7 @@ command pickgun( playerid, params[] )
     if( GetPlayerState(playerid) != PLAYER_STATE_ONFOOT ) return 1;
     
     new __weap_idx = -1;
-    for( new __weap_index = 0; __weap_index < MAX_GUN_OBJECTS; __weap_index++ )
+    for( new __weap_index = 0; __weap_index < MAX_DROPPED_GUNS; __weap_index++ )
     {
         if( IsPlayerInRangeOfPoint( playerid, 5.0, _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0] ,
          _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 1 ], 
@@ -555,7 +580,7 @@ COMMAND__ throwgun( playerid, params[] )
         if( _g_Script == 0 )
         {
             new __weap_idx = -1;
-            for( new __weap_index = 0; __weap_index < MAX_GUN_OBJECTS; __weap_index++ )
+            for( new __weap_index = 0; __weap_index < MAX_DROPPED_GUNS; __weap_index++ )
             {
                 if( _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0 ] == 0.0 )
                 {
@@ -588,7 +613,7 @@ COMMAND__ destroygun( playerid, params[] )
 {
     if( GetPlayerState( playerid ) != PLAYER_STATE_ONFOOT ) return 1;
     new __weap_idx = -1;
-    for( new __weap_index = 0; __weap_index < MAX_GUN_OBJECTS; __weap_index++ )
+    for( new __weap_index = 0; __weap_index < MAX_DROPPED_GUNS; __weap_index++ )
     {
         if( IsPlayerInRangeOfPoint( playerid, 5.0, _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0] , 
             _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 1 ], 
@@ -617,7 +642,7 @@ COMMAND__ pickgun( playerid, params[] )
     if( GetPlayerState(playerid) != PLAYER_STATE_ONFOOT ) return 1;
     
     new __weap_idx = -1;
-    for( new __weap_index = 0; __weap_index < MAX_GUN_OBJECTS; __weap_index++ )
+    for( new __weap_index = 0; __weap_index < MAX_DROPPED_GUNS; __weap_index++ )
     {
         if( IsPlayerInRangeOfPoint( playerid, 5.0, _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 0] ,
          _WeaponData[ __weap_index ][ __Weapon_ObjectPosition ][ 1 ], 

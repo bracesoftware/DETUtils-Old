@@ -82,6 +82,7 @@ new gAntiCheatTimer;
 
 // Cheat defines:
 
+#define INVALID_CHEAT_ID -1 // Currently, there's no use of it.
 #define CHEAT_TYPE_MONEY 0
 #define CHEAT_TYPE_SKINCHANGER 1
 #define CHEAT_TYPE_TELEPORT 2

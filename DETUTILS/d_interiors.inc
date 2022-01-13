@@ -571,6 +571,19 @@ stock CreateCustomInteriorEx(
         _eVirtualWorldid, 
         _xVirtualWorldid)
 {
+    if(_Interiorid == MAX_INTERIORS)
+    {
+        #if defined detutils_debug
+        for(new i = 0; i < MAX_PLAYERS; i++)
+        {
+            if(i != INVALID_PLAYER_ID)
+            {
+                d_SendWarningMessage(i, "Maximum number of created interiors reached.");
+            }
+        }
+        #endif
+        return 0;
+    }
     printf("[samp-detutils]: (debug) - Interior '%s' successfully created, entrance is set to: %f, %f, %f.",
             _InteriorName,
             Float:_xEntrance, 
@@ -668,7 +681,20 @@ stock CreateCustomInterior(
         _eVirtualWorldid, 
         _xVirtualWorldid)
 {
-    printf("Interior '%s' successfully created, entrance is set to: %f, %f, %f.",
+    if(_Interiorid == MAX_INTERIORS)
+    {
+        #if defined detutils_debug
+        for(new i = 0; i < MAX_PLAYERS; i++)
+        {
+            if(i != INVALID_PLAYER_ID)
+            {
+                d_SendWarningMessage(i, "Maximum number of created interiors reached.");
+            }
+        }
+        #endif
+        return 0;
+    }
+    printf("[samp-detutils]: (debug) - Interior '%s' successfully created, entrance is set to: %f, %f, %f.",
             _InteriorName,
             Float:_xEntrance, 
             Float:_yEntrance, 
@@ -690,7 +716,7 @@ stock CreateCustomInterior(
     printf("[samp-detutils]: (debug) - Saved interior name.");
     #endif
 
-    printf("Interior '%s' has an id %d.",_InteriorName,_Interiorid);
+    printf("[samp-detutils]: (debug) - Interior '%s' has an id %d.",_InteriorName,_Interiorid);
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Interior id assigned.");
     #endif
