@@ -1,9 +1,11 @@
-# Library test log
+# Information about the program
 
 - Below you can see a library test log. Since this is an open-sourced library, I've decided to make this test log thing so I can log my progress and that progress is now available to everyone.
 
 **NOTE:** This version of the library is a BETA version and is really unstable.
-**WARNING:** I started test logging program on **13 Jan 2022**. 
+**WARNING:** I started test logging program on **13 Jan 2022**.
+
+Library est log
 ----------------------------------------
 ## Test no. 1 - 13 Jan 2022
 
