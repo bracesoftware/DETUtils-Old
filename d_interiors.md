@@ -90,25 +90,6 @@ public OnPlayerExitInterior(playerid)
 ------------------------------------------
 *d_interiors.inc* also contains some handy functions, let's see.
 
-**IsInteriorActionPerformed**
-------------------------------------------
-- This function does nothing besides checking which interior action was performed.
-
-**WARNING**: This function can be only used with *if* statements and in literal interior functions.
-
-Parameters:
-
-   - interior_action (integner)
-  
-Example:
-
-```pawn
-interior Bank(playerid)
-{
-  if(IsInteriorActionPerformed( INTERIOR_ACTION_EXIT )) return SendClientMessage(playerid, -1, "See you again!");
-  return 1;
-}
-```
 **SetPlayerCustomInterior**
 ------------------------------------------
 - This function sets player's interior. Interior id can be seen after certain interior is created - thanks to debug messages!
@@ -129,7 +110,7 @@ static Your_Function(p,i)
   return 1;
 }
 ```
-**GetLastInterioridUsed**
+**GetLastInteriorIDUsed**
 ------------------------------------------
 - Gets last interior id which was used to assign interior data to.
 
@@ -151,7 +132,7 @@ Example:
 public OnGameModeInit()
 {
   CreateCustomInterior("PoliceStation", 243.66, 345.21, 12.78, 9.0, 4564.8, 12.8, 1, 0, 1, 0);
-  SetInteriorEntranceCustomAngles(GetLastInterioridUsed(), 234.453, 0.23);
+  SetInteriorEntranceCustomAngles(GetLastInteriorIDUsed(), 234.453, 0.23);
   return 1;
 }
 ```
