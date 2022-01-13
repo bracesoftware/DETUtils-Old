@@ -152,8 +152,21 @@ decl Command:acoff(playerid,params[])
 
 - As you can see, this system is currently really small and is far away from being done, the point is to wipe all the cheaters from SA:MP scene and make the game fun and exciting. The way you can help is to *contribute* to the project - add more stuff and do a pull request!
 
+### Debugging
+
+- If ``detutils_debug`` is enabled, ``d_anticheat.inc`` contains built-in command **/acstats** which displays a dialog with player's information details, like health, money or armour - useful feature for testing.
+
 ### Warnings
 
 #### Automatic cheat checking
 
 - Yes, ``d_anticheat`` has automatic cheat checking, as I mentioned before - just by including **d_samp.inc**, your anti-cheat system is ready to use. This means that when you compile with ``d_anticheat.inc`` included, anticheat will work and check all players online for cheats, but keep in mind that cheat checking is performed only every **1** minute.
+
+#### Debugging dialog
+
+- Debugging dialog mentioned above will use dialog ID **0**.
+
+Include code:
+```pawn
+#define DIALOG_ID_ACSTATS 0
+```
