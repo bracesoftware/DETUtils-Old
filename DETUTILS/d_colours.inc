@@ -78,15 +78,9 @@ Optional plugins:
 // Integer value colour functions:
 
 #define @newk_IntColour:%0=%1; \
-    forward intcol_%0(); public intcol_%0() return %1;
+    new intcol_%0 = %1;
 
-stock ReturnIntColour(const colourname[])
-{
-    new colname[256];
-    format(colname, sizeof(colname), "intcol_%s", colourname);
-    return
-        CallLocalFunction(colname, "");
-}
+#define ReturnIntColour(%0) intcol_%0
 
 #define ReturnIntColor ReturnIntColour
 
