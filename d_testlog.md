@@ -9,8 +9,8 @@
 ----------------------------------------
 ## Test no. 1 - 13 Jan 2022
 
-Tested by: DEntisT-ofc
-Version: 1.5.2
+- Tested by: DEntisT-ofc
+- Version: 1.5.2
 
 ### Anti-cheat issues
 1. System is really unstable. 
