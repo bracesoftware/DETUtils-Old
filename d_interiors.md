@@ -38,19 +38,33 @@ public OnGameModeInit()
 - It's called whenever player enters or exits a **certain** interior. In order to use the callback, you need to specify interior's name and player's ID. Little example is shown below.
 
 ```pawn
-public OnInteriorActionPerformed(PoliceStation, playerid)
+public OnInteriorActionPerformed(playerid, interiorid, actionid)
 {
-  if(IsInteriorActionPerformed(INTERIOR_ACTION_ENTER))
-  {
-    SendClientMessage(playerid, -1, "You entered police station.");
-  }
-  else if(IsInteriorActionPerformed(INTERIOR_ACTION_EXIT))
-  {
-    SendClientMessage(playerid, -1, "You exited police station.");
-  }
-  return 1;
+    new string[256];
+    if(actionid == INTERIOR_ACTION_ENTER)
+    {
+        format(string, 256, "%sYou entered %s, %s. Interior id: %i [%i]", 
+            ReturnStringColour(g_GrayColour),
+            GetInteriorName(interiorid),
+            _ReturnPlayerName(playerid), 
+            GetInteriorIDByName(GetInteriorName(interiorid)),
+            interiorid);
+        SendClientMessage(playerid, -1, string);
+        return 1;
+    }
+    else if(actionid == INTERIOR_ACTION_EXIT)
+    {
+        format(string, 256, "%sYou exited %s, %s. Interior id: %i [%i]", 
+            ReturnStringColour(g_GrayColour),
+            GetInteriorName(interiorid),
+            _ReturnPlayerName(playerid), 
+            GetInteriorIDByName(GetInteriorName(interiorid)),
+            interiorid);
+        SendClientMessage(playerid, -1, string);
+        return 1;
+    }
+    return 0;
 }
-
 ```
 
 #### OnPlayerEnterInterior
