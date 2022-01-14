@@ -228,7 +228,11 @@ new g_PlayerInfo[MAX_PLAYERS][ENUM_g_PlayerInfo];
 
 #if defined detutils_debug
 
+#if !defined DIALOG_ID_ACSTATS
+
 #define DIALOG_ID_ACSTATS 0
+
+#endif
 
 forward cmd_acstats(playerid, params[]);
 public cmd_acstats(playerid, params[])
