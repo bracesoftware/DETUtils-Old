@@ -26,23 +26,18 @@ public OnPlayerSpawn(playerid)
 
 Functions which will work like this after including *d_fmargs.inc* are:
 
-- SendClientMessage 
+| SA:MP functions      | Description                                                                                |
+| -------------------- | ------------------------------------------------------------------------------------------ |
+SendClientMessage      | - Sends a message to certain client. |
+SendClientMessageToAll | - Sends a message to all players (clients). | 
+GameTextForPlayer      | - Shows a GameText to certain player. |
+GameTextForAll         | - Shows a GameText to all players. |
+TextDrawCreate         | - Creates a global TextDraw. |
+CreatePlayerTextDraw   | - Creates a player TextDraw. |
+TextDrawSetString      | - Changes global TextDraw's string. |
+PlayerTextDrawSetString| - Changes player TextDraw's string. |
+SendRconCommand        | - Sends a RCON command to a server. |
 
-- SendClientMessageToAll 
-
-- GameTextForPlayer 
-
-- GameTextForAll 
-
-- TextDrawCreate 
-
-- CreatePlayerTextDraw 
-
-- TextDrawSetString 
-
-- PlayerTextDrawSetString
- 
-- SendRconCommand
 ## Messages from creator
 
 ### Warnings
