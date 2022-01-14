@@ -43,7 +43,7 @@ Optional plugins:
 
 #if defined _INC_y_va
 
-    #error [samp-detutils]: (error) - 'd_fmargs' is not compatible with 'y_va' include.
+    #warning [samp-detutils]: (warning) - 'd_fmargs' is not compatible with 'y_va' include.
 
 #endif
 
@@ -409,7 +409,7 @@ stock
 }
 
 stock
-    fmargs_TextDrawCreate
+    Text:fmargs_TextDrawCreate
 (
     Float:x,
     Float:y,
@@ -554,7 +554,7 @@ stock
 }
 
 stock
-    fmargs_TextDrawSetString
+    Text:fmargs_TextDrawSetString
 (
     Text:id,
     const _StringArgs[],
@@ -622,10 +622,10 @@ stock
 }
 
 stock
-    fmargs_PlayerTextDrawSetString
+    PlayerText:fmargs_PlayerTextDrawSetString
 (
     i,
-    Text:id,
+    PlayerText:id,
     const _StringArgs[],
     {Float,_}:...
 )

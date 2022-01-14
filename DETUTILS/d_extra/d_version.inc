@@ -48,6 +48,36 @@ Optional plugins:
 #endif
 #endif
 
+#if defined d_version_included
+
+    #endinput
+
+#endif
+
+#define d_version_included
+
+/*
+
+                                                                                      
+88b           d88              88                         db         88888888ba   88  
+888b         d888              ""                        d88b        88      "8b  88  
+88`8b       d8'88                                       d8'`8b       88      ,8P  88  
+88 `8b     d8' 88  ,adPPYYba,  88  8b,dPPYba,          d8'  `8b      88aaaaaa8P'  88  
+88  `8b   d8'  88  ""     `Y8  88  88P'   `"8a        d8YaaaaY8b     88""""""'    88  
+88   `8b d8'   88  ,adPPPPP88  88  88       88       d8""""""""8b    88           88  
+88    `888'    88  88,    ,88  88  88       88      d8'        `8b   88           88  
+88     `8'     88  `"8bbdP"Y8  88  88       88     d8'          `8b  88           88  
+                                                                                      
+                                                                                      
+
+*/
+
+#if __Pawn >= 0x0400
+    #error [samp-detutils]: (error) - Library does not support Pawn 4.0.x
+#elseif __Pawn < 0x0300
+    #error [samp-detutils]: (error) - Library does not support Pawn 2.0.x/1.0.x
+#endif
+
 #define DETUTILS_VERSION_MAJOR 1
 #define DETUTILS_VERSION_MINOR 5
 #define DETUTILS_VERSION_PATCH 2
