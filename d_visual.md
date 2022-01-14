@@ -48,6 +48,8 @@ public OnPlayerThrowGun(playerid)
     return 1;
 }
 ```
+**WARNING:** If player had any weapons, and he dies, he will lose all the weapons and those will be created as dropped guns on the coordinates he died on - so **OnPlayerThrowGun** will be called.
+
 ### ``public`` OnPlayerDestroyGun
 
 - Callback called whenever player destroys a certain gun.
