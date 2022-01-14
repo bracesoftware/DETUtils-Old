@@ -103,8 +103,8 @@ stock _RemID;
 
 #define util%3function:%0(%1) @_%0(%1); public @_%0(%1)
 
-new PlayerText:_AnnouncementString[MAX_PLAYERS];
-new Text:_AnnouncementUsebox;
+new PlayerText:g_AnnouncementString[MAX_PLAYERS];
+new Text:g_AnnouncementUsebox;
 
 stock _CallFunction(const func[], const spec[], id)
 {
