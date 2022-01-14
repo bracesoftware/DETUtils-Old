@@ -232,6 +232,27 @@ stock bool:IsPlayerUsingAndroidClient(playerid)
 
 */
 
+new bool:g_PlayerPedAnims = false;
+
+stock d_lib_UsePlayerPedAnims()
+{
+    g_PlayerPedAnims = true;
+    return UsePlayerPedAnims();
+}
+
+stock bool:ArePlayerPedAnimsUsed()
+{
+    return g_PlayerPedAnims;
+}
+
+#if defined _ALS_UsePlayerPedAnims
+    #undef UsePlayerPedAnims
+#else
+    #define _ALS_UsePlayerPedAnims
+#endif
+
+#define UsePlayerPedAnims d_lib_UsePlayerPedAnims
+
 stock _ReturnPlayerName(id) 
 {
     new _PlayerName[ MAX_PLAYER_NAME ];

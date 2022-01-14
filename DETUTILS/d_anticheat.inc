@@ -389,6 +389,18 @@ stock CheckPlayerSkin(playerid)
 
 // TELEPORT ANTI-CHEAT:
 
+static stock d_ac_GetSpeed(playerid) // Also used in Speed Anti Cheat
+{
+    new Float:d_ac_GetSpeedVar[4];
+    if(IsPlayerInAnyVehicle(playerid)) 
+    {
+        GetVehicleVelocity(GetPlayerVehicleID(playerid), d_ac_GetSpeedVar[0], d_ac_GetSpeedVar[1], d_ac_GetSpeedVar[2]);
+    }
+    else GetPlayerVelocity(playerid, d_ac_GetSpeedVar[0], d_ac_GetSpeedVar[1], d_ac_GetSpeedVar[2]);
+    d_ac_GetSpeedVar[3] = floatsqroot(floatpower(floatabs(d_ac_GetSpeedVar[0]), 2.0) + floatpower(floatabs(d_ac_GetSpeedVar[1]), 2.0) + floatpower(floatabs(d_ac_GetSpeedVar[2]), 2.0)) * 178.8617875;
+    return floatround(d_ac_GetSpeedVar[3]);
+}
+
 stock d_ac_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
 {
     SetPlayerPos(playerid, x, y, z);
@@ -398,9 +410,27 @@ stock d_ac_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
     return 1;
 }
 
+stock SetPlayerVehiclePos(playerid, Float:x, Float:y, Float:z)
+{
+    g_PlayerInfo[playerid][Pos][0] = x;
+    g_PlayerInfo[playerid][Pos][1] = y;
+    g_PlayerInfo[playerid][Pos][2] = z;
+    return d_v_SetPlayerVehiclePos(playerid, x, y, z); // Hooks d_visual.inc function
+}
+
 stock CheckPlayerPos(playerid)
 {
     anticheat_system_check(CheckPlayerPos);
+
+    if(ArePlayerPedAnimsUsed())
+    {
+
+    }
+    else if(!ArePlayerPedAnimsUsed())
+    {
+        
+    }
+
     if(g_PlayerInfo[playerid][UsingTPHack] == true)
     {
         if(funcidx("OnPlayerCheatDetected") != -1)
@@ -419,6 +449,14 @@ stock CheckPlayerPos(playerid)
 #endif
 
 #define SetPlayerPos d_ac_SetPlayerPos
+
+#if defined _ALS_SetVehiclePos
+    #undef SetVehiclePos
+#else
+    #define _ALS_SetVehiclePos
+#endif
+
+#define SetVehiclePos d_ac_SetVehiclePos
 
 // HIGH PING ANTI-CHEAT:
 
@@ -514,18 +552,6 @@ static bool:d_ac_aerovehicle(vehid)
         520, 548, 553, 563, 577, 592, 593: return true;
     }
     return (false);
-}
-
-static stock d_ac_GetSpeed(playerid)
-{
-    new Float:d_ac_GetSpeedVar[4];
-    if(IsPlayerInAnyVehicle(playerid)) 
-    {
-        GetVehicleVelocity(GetPlayerVehicleID(playerid), d_ac_GetSpeedVar[0], d_ac_GetSpeedVar[1], d_ac_GetSpeedVar[2]);
-    }
-    else GetPlayerVelocity(playerid, d_ac_GetSpeedVar[0], d_ac_GetSpeedVar[1], d_ac_GetSpeedVar[2]);
-    d_ac_GetSpeedVar[3] = floatsqroot(floatpower(floatabs(d_ac_GetSpeedVar[0]), 2.0) + floatpower(floatabs(d_ac_GetSpeedVar[1]), 2.0) + floatpower(floatabs(d_ac_GetSpeedVar[2]), 2.0)) * 178.8617875;
-    return floatround(d_ac_GetSpeedVar[3]);
 }
 
 stock CheckPlayerSpeed(playerid)
