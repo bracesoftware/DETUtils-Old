@@ -218,6 +218,7 @@ enum ENUM_g_PlayerInfo
     Money,
     Skin,
     Float:Pos[3],
+    Float:NewPos[3], //for tp hack detection
     bool:UsingTPHack = false,
     Ping,
     Float:Health,
@@ -389,7 +390,21 @@ stock CheckPlayerSkin(playerid)
 
 // TELEPORT ANTI-CHEAT:
 
-static stock d_ac_GetSpeed(playerid) // Also used in Speed Anti Cheat
+#define MAX_PLAYER_SPEED 23
+#define MAX_PLAYER_JUMP_SPEED 46
+
+#define MAX_PLAYERPED_SPEED 43
+#define MAX_PLAYERPED_JUMP_SPEED MAX_PLAYER_JUMP_SPEEDs
+
+stock Float:d_ac_GetDistance(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2)
+{
+    new Float:p_DistanceM, Float:x = x2-x1, Float:y = y2-y1, Float:z = z2-z1;
+
+    p_DistanceM = floatsqroot(x*x + y*y + z*z);
+    return p_DistanceM;
+}
+
+stock d_ac_GetSpeed(playerid) // Also used in Speed Anti Cheat
 {
     new Float:d_ac_GetSpeedVar[4];
     if(IsPlayerInAnyVehicle(playerid)) 
@@ -399,6 +414,21 @@ static stock d_ac_GetSpeed(playerid) // Also used in Speed Anti Cheat
     else GetPlayerVelocity(playerid, d_ac_GetSpeedVar[0], d_ac_GetSpeedVar[1], d_ac_GetSpeedVar[2]);
     d_ac_GetSpeedVar[3] = floatsqroot(floatpower(floatabs(d_ac_GetSpeedVar[0]), 2.0) + floatpower(floatabs(d_ac_GetSpeedVar[1]), 2.0) + floatpower(floatabs(d_ac_GetSpeedVar[2]), 2.0)) * 178.8617875;
     return floatround(d_ac_GetSpeedVar[3]);
+}
+
+stock d_ac_GetSpeedMs(playerid) // Also used in Speed Anti Cheat
+{
+    new Float:d_ac_GetSpeedVar[4], d_ac_KmhSpeed, d_ac_MsSpeed;
+    if(IsPlayerInAnyVehicle(playerid)) 
+    {
+        GetVehicleVelocity(GetPlayerVehicleID(playerid), d_ac_GetSpeedVar[0], d_ac_GetSpeedVar[1], d_ac_GetSpeedVar[2]);
+    }
+    else GetPlayerVelocity(playerid, d_ac_GetSpeedVar[0], d_ac_GetSpeedVar[1], d_ac_GetSpeedVar[2]);
+    d_ac_GetSpeedVar[3] = floatsqroot(floatpower(floatabs(d_ac_GetSpeedVar[0]), 2.0) + floatpower(floatabs(d_ac_GetSpeedVar[1]), 2.0) + floatpower(floatabs(d_ac_GetSpeedVar[2]), 2.0)) * 178.8617875;
+    d_ac_KmhSpeed = floatround(d_ac_GetSpeedVar[3]);
+    d_ac_MsSpeed = d_ac_KmhSpeed / 3.6;
+    return d_ac_MsSpeed;
+
 }
 
 stock d_ac_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
@@ -422,14 +452,56 @@ stock CheckPlayerPos(playerid)
 {
     anticheat_system_check(CheckPlayerPos);
 
-    if(ArePlayerPedAnimsUsed())
+    new Float:x, Float:y, Float:z;
+
+    GetPlayerPos(playerid, x, y, z);
+
+    g_PlayerInfo[playerid][NewPos][0] = x;
+    g_PlayerInfo[playerid][NewPos][1] = y;
+    g_PlayerInfo[playerid][NewPos][2] = z;
+
+    //new speed = d_ac_GetSpeedMs(playerid); // Because I am checking CheckPlayerPos every second.
+
+    if(!IsPlayerInAnyVehicle(playerid))
     {
 
+        if(ArePlayerPedAnimsUsed())
+        {
+            new Float:p_MaxPlayerPedSpeed = MAX_PLAYERPED_SPEED / 3.6;
+
+            new Float:distance = d_ac_GetDistance(g_PlayerInfo[playerid][Pos][0], 
+                            g_PlayerInfo[playerid][Pos][1], 
+                            g_PlayerInfo[playerid][Pos][2],
+                            g_PlayerInfo[playerid][NewPos][0],
+                            g_PlayerInfo[playerid][NewPos][1],
+                            g_PlayerInfo[playerid][NewPos][2]);
+
+            if(distance > p_MaxPlayerPedSpeed)
+            {
+                g_PlayerInfo[playerid][UsingTPHack] = true;
+            }
+        }
+        else if(!ArePlayerPedAnimsUsed())
+        {
+            new Float:p_MaxPlayerSpeed = MAX_PLAYER_SPEED / 3.6;
+            
+            new Float:distance = d_ac_GetDistance(g_PlayerInfo[playerid][Pos][0], 
+                            g_PlayerInfo[playerid][Pos][1], 
+                            g_PlayerInfo[playerid][Pos][2],
+                            g_PlayerInfo[playerid][NewPos][0],
+                            g_PlayerInfo[playerid][NewPos][1],
+                            g_PlayerInfo[playerid][NewPos][2]);
+
+            if(distance > p_MaxPlayerSpeed)
+            {
+                g_PlayerInfo[playerid][UsingTPHack] = true;
+            }
+        }
     }
-    else if(!ArePlayerPedAnimsUsed())
-    {
-        
-    }
+
+    g_PlayerInfo[playerid][Pos][0] = x;
+    g_PlayerInfo[playerid][Pos][1] = y;
+    g_PlayerInfo[playerid][Pos][2] = z;
 
     if(g_PlayerInfo[playerid][UsingTPHack] == true)
     {

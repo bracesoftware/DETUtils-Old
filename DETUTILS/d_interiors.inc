@@ -71,24 +71,24 @@ Optional plugins:
         #define IsValidString(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
 #endif
 
-enum e__INTERIOR_DATA
+enum enum_InteriorData
 {
-    e__INTERIOR_NAME[32],
+    i_InteriorName[32],
 
-    Float:e__INTENTRANCE_X,
-    Float:e__INTENTRANCE_Y,
-    Float:e__INTENTRANCE_Z,
-    Float:e__INTENTRANCE_A,
+    Float:i_InteriorEntrance_X,
+    Float:i_InteriorEntrance_Y,
+    Float:i_InteriorEntrance_Z,
+    Float:i_InteriorEntrance_A,
 
-    Float:e__INTEXIT_X,
-    Float:e__INTEXIT_Y,
-    Float:e__INTEXIT_Z,
-    Float:e__INTEXIT_A,
+    Float:i_InteriorExit_X,
+    Float:i_InteriorExit_Y,
+    Float:i_InteriorExit_Z,
+    Float:i_InteriorExit_A,
 
-    e__INTERIOR_INTID,
-    e__INTERIOR_INTID_OUT,
-    e__INTERIOR_VWID,
-    e__INTERIOR_VWID_OUT,
+    i_InteriorIntid,
+    i_InteriorIntid_OUT,
+    i_InteriorVwid,
+    i_InteriorVwid_OUT,
 
     e__INTERIOR_PICKUP,
     e__INTERIOR_PICKUPID,
@@ -102,7 +102,7 @@ forward OnPlayerExitInterior(playerid);
 
 new _PlayersInterior[MAX_PLAYERS];
 
-new _InteriorData[MAX_INTERIORS][e__INTERIOR_DATA];
+new g_InteriorData[MAX_INTERIORS][enum_InteriorData];
 
 new _Interiorid;
 
@@ -147,47 +147,47 @@ void:_InteriorLoadingTime(const playerid)
     SetTimer("_ToggleControllable", 1000, false);
 }
 
-static _HideAnnouncement[MAX_PLAYERS];
+static g_HideAnnouncement[MAX_PLAYERS];
 
 static _Announcement(playerid, const _Message[])
 {
     new c_Message[300];
 
-    KillTimer(_HideAnnouncement[playerid]);
+    KillTimer(g_HideAnnouncement[playerid]);
 
     format(c_Message,300,"%s",_Message);
 
-    TextDrawShowForPlayer(playerid, _AnnouncementUsebox);
+    TextDrawShowForPlayer(playerid, g_AnnouncementUsebox);
 
-    PlayerTextDrawSetString( playerid, _AnnouncementString[ playerid ], c_Message );
+    PlayerTextDrawSetString( playerid, g_AnnouncementString[ playerid ], c_Message );
 
-    PlayerTextDrawShow(playerid,_AnnouncementString[ playerid ]);
+    PlayerTextDrawShow(playerid,g_AnnouncementString[ playerid ]);
 
-    _HideAnnouncement[playerid] = _SetTimer("hideannouncement", 4000, false, "i", playerid);
+    g_HideAnnouncement[playerid] = _SetTimer("hideannouncement", 4000, false, "i", playerid);
     return detutils_interiors_TRUE;
 }
 
 util function:hideannouncement(playerid)
 {
-    TextDrawHideForPlayer(playerid, _AnnouncementUsebox);
-    PlayerTextDrawHide(playerid, _AnnouncementString[playerid]);
-    KillTimer(_HideAnnouncement[playerid]);
+    TextDrawHideForPlayer(playerid, g_AnnouncementUsebox);
+    PlayerTextDrawHide(playerid, g_AnnouncementString[playerid]);
+    KillTimer(g_HideAnnouncement[playerid]);
     return detutils_interiors_TRUE;
 }
 
 static _CreateAnncTextDraws()
 {
-    _AnnouncementUsebox = TextDrawCreate(366.444427, 363.882232, "usebox");
-    TextDrawLetterSize(_AnnouncementUsebox, 0.000000, 1.840366);
-    TextDrawTextSize(_AnnouncementUsebox, 267.333312, 0.000000);
-    TextDrawAlignment(_AnnouncementUsebox, 1);
-    TextDrawColor(_AnnouncementUsebox, 0);
-    TextDrawUseBox(_AnnouncementUsebox, true);
+    g_AnnouncementUsebox = TextDrawCreate(366.444427, 363.882232, "usebox");
+    TextDrawLetterSize(g_AnnouncementUsebox, 0.000000, 1.840366);
+    TextDrawTextSize(g_AnnouncementUsebox, 267.333312, 0.000000);
+    TextDrawAlignment(g_AnnouncementUsebox, 1);
+    TextDrawColor(g_AnnouncementUsebox, 0);
+    TextDrawUseBox(g_AnnouncementUsebox, true);
 
-    TextDrawBoxColor(_AnnouncementUsebox, 102);
-    TextDrawSetShadow(_AnnouncementUsebox, 0);
-    TextDrawSetOutline(_AnnouncementUsebox, 0);
-    TextDrawFont(_AnnouncementUsebox, 0);
+    TextDrawBoxColor(g_AnnouncementUsebox, 102);
+    TextDrawSetShadow(g_AnnouncementUsebox, 0);
+    TextDrawSetOutline(g_AnnouncementUsebox, 0);
+    TextDrawFont(g_AnnouncementUsebox, 0);
     return detutils_interiors_TRUE;
 }
 
@@ -195,17 +195,17 @@ static _CreateAnncTextDraws()
 
 static _CreatePlayerTextDraws(playerid)
 {
-    _AnnouncementString[playerid] = CreatePlayerTextDraw(playerid, 315.111145, 364.373321, "string");
-    PlayerTextDrawLetterSize(playerid, _AnnouncementString[playerid], 0.201111, 1.346133);
+    g_AnnouncementString[playerid] = CreatePlayerTextDraw(playerid, 315.111145, 364.373321, "string");
+    PlayerTextDrawLetterSize(playerid, g_AnnouncementString[playerid], 0.201111, 1.346133);
 
-    PlayerTextDrawAlignment(playerid, _AnnouncementString[playerid], 2);
-    PlayerTextDrawColor(playerid, _AnnouncementString[playerid], -1);
-    PlayerTextDrawSetShadow(playerid, _AnnouncementString[playerid], 0);
+    PlayerTextDrawAlignment(playerid, g_AnnouncementString[playerid], 2);
+    PlayerTextDrawColor(playerid, g_AnnouncementString[playerid], -1);
+    PlayerTextDrawSetShadow(playerid, g_AnnouncementString[playerid], 0);
 
-    PlayerTextDrawSetOutline(playerid, _AnnouncementString[playerid], 1);
-    PlayerTextDrawBackgroundColor(playerid, _AnnouncementString[playerid], 51);
-    PlayerTextDrawFont(playerid, _AnnouncementString[playerid], 2);
-    PlayerTextDrawSetProportional(playerid, _AnnouncementString[playerid], 1);
+    PlayerTextDrawSetOutline(playerid, g_AnnouncementString[playerid], 1);
+    PlayerTextDrawBackgroundColor(playerid, g_AnnouncementString[playerid], 51);
+    PlayerTextDrawFont(playerid, g_AnnouncementString[playerid], 2);
+    PlayerTextDrawSetProportional(playerid, g_AnnouncementString[playerid], 1);
     return detutils_interiors_TRUE;
 }
 
@@ -268,8 +268,8 @@ forward a_ints_OnPlayerConnect(playerid);
 
 public OnPlayerSpawn(playerid)
 {
-    TextDrawHideForPlayer(playerid, _AnnouncementUsebox);
-    PlayerTextDrawHide(playerid, _AnnouncementString[playerid]);
+    TextDrawHideForPlayer(playerid, g_AnnouncementUsebox);
+    PlayerTextDrawHide(playerid, g_AnnouncementString[playerid]);
     if(funcidx("a_ints_OnplayerSpawn") != -1)
     {
         CallLocalFunction("a_ints_OnplayerSpawn", "i", playerid);
@@ -296,25 +296,25 @@ public _OnPlayerNearEntrance(playerid)
     
     for(new i; i < MAX_INTERIORS; i++)
     {
-        if( IsPlayerInRangeOfPoint( playerid, 1.5, _InteriorData[ i ][e__INTENTRANCE_X], \
-        _InteriorData[ i ][e__INTENTRANCE_Y], _InteriorData[ i ][e__INTENTRANCE_Z]) \
-        && GetPlayerVirtualWorld( playerid ) == _InteriorData[ i ][e__INTERIOR_VWID_OUT] \
+        if( IsPlayerInRangeOfPoint( playerid, 1.5, g_InteriorData[ i ][i_InteriorEntrance_X], \
+        g_InteriorData[ i ][i_InteriorEntrance_Y], g_InteriorData[ i ][i_InteriorEntrance_Z]) \
+        && GetPlayerVirtualWorld( playerid ) == g_InteriorData[ i ][i_InteriorVwid_OUT] \
         && !IsPlayerInAnyVehicle( playerid ))
         {
             _InteriorActionid = 0;
             format(_InteriorFunctionName,sizeof(_InteriorFunctionName),
-                "OnInteriorActionPerformed",_InteriorData[ i ][e__INTERIOR_NAME]);
+                "OnInteriorActionPerformed",g_InteriorData[ i ][i_InteriorName]);
 
             if(funcidx(_InteriorFunctionName) != -1) CallLocalFunction(_InteriorFunctionName,
                                                                 "iii",playerid,i,_InteriorActionid);
 
-            SetPlayerInterior( playerid, _InteriorData[ i ][e__INTERIOR_INTID] );
-            SetPlayerVirtualWorld( playerid, _InteriorData[ i ][e__INTERIOR_VWID] );
+            SetPlayerInterior( playerid, g_InteriorData[ i ][i_InteriorIntid] );
+            SetPlayerVirtualWorld( playerid, g_InteriorData[ i ][i_InteriorVwid] );
             
-            SetPlayerPos( playerid, _InteriorData[ i ][e__INTEXIT_X], _InteriorData[ i ][e__INTEXIT_Y], \
-            _InteriorData[ i ][e__INTEXIT_Z] );
+            SetPlayerPos( playerid, g_InteriorData[ i ][i_InteriorExit_X], g_InteriorData[ i ][i_InteriorExit_Y], \
+            g_InteriorData[ i ][i_InteriorExit_Z] );
             
-            SetPlayerFacingAngle( playerid, _InteriorData[ i ][e__INTEXIT_A] );
+            SetPlayerFacingAngle( playerid, g_InteriorData[ i ][i_InteriorExit_A] );
             SetCameraBehindPlayer( playerid );
             
             #if defined detutils_debug
@@ -332,17 +332,17 @@ public _OnPlayerNearEntrance(playerid)
                 CallLocalFunction("OnPlayerEnterInterior", "i", playerid);
             
         }
-        else if( IsPlayerInRangeOfPoint( playerid, 1.5, _InteriorData[ i ][e__INTEXIT_X], \
-        _InteriorData[ i ][e__INTEXIT_Y], _InteriorData[ i ][e__INTEXIT_Z]) && \
-        GetPlayerVirtualWorld( playerid ) == _InteriorData[ i ][e__INTERIOR_VWID])
+        else if( IsPlayerInRangeOfPoint( playerid, 1.5, g_InteriorData[ i ][i_InteriorExit_X], \
+        g_InteriorData[ i ][i_InteriorExit_Y], g_InteriorData[ i ][i_InteriorExit_Z]) && \
+        GetPlayerVirtualWorld( playerid ) == g_InteriorData[ i ][i_InteriorVwid])
         {
-            SetPlayerVirtualWorld( playerid, _InteriorData[ i ][e__INTERIOR_VWID_OUT] );
-            SetPlayerInterior( playerid, _InteriorData[ i ][e__INTERIOR_INTID_OUT] );
+            SetPlayerVirtualWorld( playerid, g_InteriorData[ i ][i_InteriorVwid_OUT] );
+            SetPlayerInterior( playerid, g_InteriorData[ i ][i_InteriorIntid_OUT] );
             
-            SetPlayerPos( playerid, _InteriorData[ i ][e__INTENTRANCE_X], _InteriorData[ i ][e__INTENTRANCE_Y], \
-            _InteriorData[ i ][e__INTENTRANCE_Z] );
+            SetPlayerPos( playerid, g_InteriorData[ i ][i_InteriorEntrance_X], g_InteriorData[ i ][i_InteriorEntrance_Y], \
+            g_InteriorData[ i ][i_InteriorEntrance_Z] );
             
-            SetPlayerFacingAngle( playerid, _InteriorData[ i ][e__INTENTRANCE_A] );
+            SetPlayerFacingAngle( playerid, g_InteriorData[ i ][i_InteriorEntrance_A] );
             SetCameraBehindPlayer( playerid );
 
             TogglePlayerControllable(playerid,false);
@@ -355,7 +355,7 @@ public _OnPlayerNearEntrance(playerid)
 
             _InteriorActionid = 1;
             format(_InteriorFunctionName,sizeof(_InteriorFunctionName),
-                "OnInteriorActionPerformed",_InteriorData[ i ][e__INTERIOR_NAME]);
+                "OnInteriorActionPerformed",g_InteriorData[ i ][i_InteriorName]);
 
             if(funcidx(_InteriorFunctionName) != -1) CallLocalFunction(_InteriorFunctionName,"iii",playerid,i,_InteriorActionid);
 
@@ -440,13 +440,13 @@ public OnPlayerUpdate(playerid)
 {
     for(new i; i < MAX_INTERIORS; i++)
     {
-        if( IsPlayerInRangeOfPoint( playerid, 1.5, _InteriorData[ i ][e__INTENTRANCE_X], \
-        _InteriorData[ i ][e__INTENTRANCE_Y], _InteriorData[ i ][e__INTENTRANCE_Z]) \
-        && GetPlayerVirtualWorld( playerid ) == _InteriorData[ i ][e__INTERIOR_VWID_OUT] \
+        if( IsPlayerInRangeOfPoint( playerid, 1.5, g_InteriorData[ i ][i_InteriorEntrance_X], \
+        g_InteriorData[ i ][i_InteriorEntrance_Y], g_InteriorData[ i ][i_InteriorEntrance_Z]) \
+        && GetPlayerVirtualWorld( playerid ) == g_InteriorData[ i ][i_InteriorVwid_OUT] \
         && !IsPlayerInAnyVehicle( playerid ) && _EntranceTitleShown[playerid] != 1)
         {
             new _InteriorName[100];
-            format(_InteriorName,sizeof(_InteriorName),"Property: %s",_InteriorData[ i ][ e__INTERIOR_NAME ]);
+            format(_InteriorName,sizeof(_InteriorName),"Property: %s",g_InteriorData[ i ][ i_InteriorName ]);
             
             _Announcement(playerid, _InteriorName);
             #if defined detutils_debug
@@ -599,7 +599,7 @@ stock CreateCustomInteriorEx(
     printf("[samp-detutils]: (debug) - Interior id assigned.");
     #endif
 
-    strmid(_InteriorData[_Interiorid][e__INTERIOR_NAME], 
+    strmid(g_InteriorData[_Interiorid][i_InteriorName], 
             _InteriorName, 
             0, 
             strlen(_InteriorName), 
@@ -611,26 +611,26 @@ stock CreateCustomInteriorEx(
 
     printf("[samp-detutils]: (debug) - Interior '%s' has an id %d.",_InteriorName,_Interiorid);
 
-    _InteriorData[_Interiorid][e__INTENTRANCE_X] = _xEntrance;
-    _InteriorData[_Interiorid][e__INTENTRANCE_Y] = _yEntrance;
-    _InteriorData[_Interiorid][e__INTENTRANCE_Z] = _zEntrance;
+    g_InteriorData[_Interiorid][i_InteriorEntrance_X] = _xEntrance;
+    g_InteriorData[_Interiorid][i_InteriorEntrance_Y] = _yEntrance;
+    g_InteriorData[_Interiorid][i_InteriorEntrance_Z] = _zEntrance;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Entrance coordinates assigned to interior data.");
     #endif
 
-    _InteriorData[_Interiorid][e__INTEXIT_X] = _xExit;
-    _InteriorData[_Interiorid][e__INTEXIT_Y] = _yExit;
-    _InteriorData[_Interiorid][e__INTEXIT_Z] = _zExit;
+    g_InteriorData[_Interiorid][i_InteriorExit_X] = _xExit;
+    g_InteriorData[_Interiorid][i_InteriorExit_Y] = _yExit;
+    g_InteriorData[_Interiorid][i_InteriorExit_Z] = _zExit;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Exit coordinates assigned to interior data.");
     #endif
 
-    _InteriorData[_Interiorid][e__INTERIOR_INTID] = _eInteriorid;
-    _InteriorData[_Interiorid][e__INTERIOR_INTID_OUT] = _xInteriorid;
-    _InteriorData[_Interiorid][e__INTERIOR_VWID] = _eVirtualWorldid;
-    _InteriorData[_Interiorid][e__INTERIOR_VWID_OUT] = _xVirtualWorldid;
+    g_InteriorData[_Interiorid][i_InteriorIntid] = _eInteriorid;
+    g_InteriorData[_Interiorid][i_InteriorIntid_OUT] = _xInteriorid;
+    g_InteriorData[_Interiorid][i_InteriorVwid] = _eVirtualWorldid;
+    g_InteriorData[_Interiorid][i_InteriorVwid_OUT] = _xVirtualWorldid;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Virtual world and interiorids assigned to custom interior.");
@@ -706,7 +706,7 @@ stock CreateCustomInterior(
 
     _Interiorid++;
 
-    strmid(_InteriorData[_Interiorid][e__INTERIOR_NAME], 
+    strmid(g_InteriorData[_Interiorid][i_InteriorName], 
             _InteriorName, 
             0, 
             strlen(_InteriorName), 
@@ -720,26 +720,26 @@ stock CreateCustomInterior(
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Interior id assigned.");
     #endif
-    _InteriorData[_Interiorid][e__INTENTRANCE_X] = _xEntrance;
-    _InteriorData[_Interiorid][e__INTENTRANCE_Y] = _yEntrance;
-    _InteriorData[_Interiorid][e__INTENTRANCE_Z] = _zEntrance;
+    g_InteriorData[_Interiorid][i_InteriorEntrance_X] = _xEntrance;
+    g_InteriorData[_Interiorid][i_InteriorEntrance_Y] = _yEntrance;
+    g_InteriorData[_Interiorid][i_InteriorEntrance_Z] = _zEntrance;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Entrance coordinates assigned to interior data.");
     #endif
 
-    _InteriorData[_Interiorid][e__INTEXIT_X] = _xExit;
-    _InteriorData[_Interiorid][e__INTEXIT_Y] = _yExit;
-    _InteriorData[_Interiorid][e__INTEXIT_Z] = _zExit;
+    g_InteriorData[_Interiorid][i_InteriorExit_X] = _xExit;
+    g_InteriorData[_Interiorid][i_InteriorExit_Y] = _yExit;
+    g_InteriorData[_Interiorid][i_InteriorExit_Z] = _zExit;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Exit coordinates assigned to interior data.");
     #endif
 
-    _InteriorData[_Interiorid][e__INTERIOR_INTID] = _eInteriorid;
-    _InteriorData[_Interiorid][e__INTERIOR_INTID_OUT] = _xInteriorid;
-    _InteriorData[_Interiorid][e__INTERIOR_VWID] = _eVirtualWorldid;
-    _InteriorData[_Interiorid][e__INTERIOR_VWID_OUT] = _xVirtualWorldid;
+    g_InteriorData[_Interiorid][i_InteriorIntid] = _eInteriorid;
+    g_InteriorData[_Interiorid][i_InteriorIntid_OUT] = _xInteriorid;
+    g_InteriorData[_Interiorid][i_InteriorVwid] = _eVirtualWorldid;
+    g_InteriorData[_Interiorid][i_InteriorVwid_OUT] = _xVirtualWorldid;
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Virtual world and interiorids assigned to custom interior.");
@@ -796,8 +796,8 @@ stock SetInteriorEntranceCustomAngles(
     printf("[samp-detutils]: (debug) - Successfully set interior (intid : %i) angles to %f-%f.", 
         _CustomInteriorid, _aAngle, _bAngle);
     #endif
-    _InteriorData[_CustomInteriorid][e__INTENTRANCE_A] = _aAngle;
-    _InteriorData[_CustomInteriorid][e__INTEXIT_A] = _bAngle;
+    g_InteriorData[_CustomInteriorid][i_InteriorEntrance_A] = _aAngle;
+    g_InteriorData[_CustomInteriorid][i_InteriorExit_A] = _bAngle;
     return detutils_interiors_TRUE;
 }
 
@@ -847,7 +847,7 @@ forward OnInteriorActionPerformed(playerid, interiorid, actionid);
 stock GetInteriorName(_InteriorId)
 {
     new InteriorName[256];
-    format(InteriorName, sizeof InteriorName, "%s", _InteriorData[_InteriorId][e__INTERIOR_NAME]);
+    format(InteriorName, sizeof InteriorName, "%s", g_InteriorData[_InteriorId][i_InteriorName]);
     return InteriorName;
 }
 
@@ -858,7 +858,7 @@ stock GetInteriorIDByName(const _InteriorName[])
         _IntCount < MAX_INTERIORS; 
         _IntCount++)
     {
-        format(__InteriorName, 256, "%s", _InteriorData[_IntCount][e__INTERIOR_NAME]);
+        format(__InteriorName, 256, "%s", g_InteriorData[_IntCount][i_InteriorName]);
         if(!strcmp(__InteriorName, _InteriorName))
         {
             return _IntCount;
