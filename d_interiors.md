@@ -33,7 +33,7 @@ public OnGameModeInit()
 
 ### Interior callbacks
 ------------------------------------------
-#### OnInteriorActionPerformed
+#### ``public`` OnInteriorActionPerformed
 
 - It's called whenever player enters or exits a **certain** interior. In order to use the callback, you need to specify interior's name and player's ID. Little example is shown below.
 
@@ -67,7 +67,7 @@ public OnInteriorActionPerformed(playerid, interiorid, actionid)
 }
 ```
 
-#### OnPlayerEnterInterior
+#### ``public`` OnPlayerEnterInterior
 
 - This is called whenever player enters any interior. Can be used for big variety stuff. Uses only one parameter - *playerid*.
 
@@ -82,7 +82,7 @@ public OnPlayerEnterInterior(playerid)
 }
 ```
 
-#### OnPlayerExitInterior
+#### ``public`` OnPlayerExitInterior
 
 - This is called whenever player exits any interior.
 
@@ -188,6 +188,16 @@ if(IsPlayerInCustomInterior(playerid)) return SendClientMessage(playerid, -1, "Y
 - This is just a function successor, this function does the same thing *CreateCustomInterior* does. Only difference is that *CreateCustomInteriorEx* creates 3D label and pickup on entrance and exit point.
 
 Parameters: same as on CreateCustomInterior
+
+**GetInteriorName**
+------------------------------------------
+
+- Used to get interior's name. Usage example shown on **``public`` OnInteriorActionPerformed** documentation.
+
+**GetInteriorIDByName**
+------------------------------------------
+
+- Used to get interior's ID by specifying its name. Usage example shown on **``public`` OnInteriorActionPerformed** documentation.
 
 ## Messages from creator
 
