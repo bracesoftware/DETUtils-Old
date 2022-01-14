@@ -6,7 +6,7 @@
 ## Handy features
 - Read information about each feature below.
 ### API ( programming interface )
-#### **Pawn Language extensions**
+#### **String functions**
 ------------------------------------------
 #### strtok
 - **SA:MP DET-Utils** provides few new functions which are *extensions* to standard Pawn and SA:MP libraries.
@@ -14,7 +14,7 @@
 - *strtok* function is one of them, example:
 
 ```pawn
-command mycmd(playerid, params[])
+decl Command:mycmd(playerid, params[])
 {
     new param[128], idx, num;
     param = strtok(params, idx);
@@ -55,7 +55,22 @@ public OnPlayerCommandText(playerid, cmdtext[])
 }
 ```
 **NOTE**: This code is the code from *gl_chat.pwn* originally written by SA-MP team.
+#### **SA:MP function extensions**
+------------------------------------------
+#### ArePlayerPedAnimsUsed
+- Used to check are player ped anims used in the gamemode.
 
+```pawn
+decl Command:cjanims(playerid, params[])
+{
+	if(ArePlayerPedAnimsUsed()) return true;
+	else return false;
+	return 1;
+}
+```
+
+#### **Loop**
+------------------------------------------
 #### until(...)
 - **SA:MP DET-Utils** also provides new loop known as *until* loop.
 - Example:
