@@ -183,3 +183,15 @@ Include code:
 ```pawn
 #define DIALOG_ID_ACSTATS 0
 ```
+
+- But don't worry, you can modify this value before including **d_samp.inc** - just use:
+
+```pawn
+#define detutils_debug
+#define DIALOG_ID_ACSTATS Your_Value
+
+#include <a_samp>
+
+// Other includes...
+
+#include <d_samp>
