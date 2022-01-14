@@ -117,6 +117,21 @@ public OnPlayerScreenFade(playerid)
 }
 ```
 
+### SetPlayerVehiclePos
+
+- This function sets player's and player's vehicle's position.
+
+```pawn
+public OnPlayerStateChange(playerid, newstate, oldstate)
+{
+    if(newstate == PLAYER_STATE_DRIVER)
+    {
+        SetPlayerVehiclePos(playerid, 825.6589,-1614.8202,13.5469);
+    }
+    return 1;
+}
+```
+
 ## Built-in visual features
 ### Commands
 #### /pickgun
