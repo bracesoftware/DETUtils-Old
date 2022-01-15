@@ -55,13 +55,15 @@ If you're facing problems like function failed to call, function is not valid, c
 - Automatic debugging literally sends debug messages whenever it needs to.
 - With this feature you can easily track problems and report them on Discord or try to troubleshoot them yourself.
 
-To enable A.D. feature, use:
+To enable advanced debugging feature, use:
 
 ```pawn
 #define detutils_debug
 ```
 
 To join Discord server, [click here...](https://discord.gg/samp)
+
+**NOTE:** After you enabled advanced debugging, your console may be full with *DETUtils* debug messages - in that case, don't worry.
 
 ## Compile-time errors
 
