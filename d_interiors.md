@@ -33,6 +33,16 @@ public OnGameModeInit()
 
 ### Interior callbacks
 ------------------------------------------
+#### ``public`` OnCustomInteriorCreated
+
+- Called whenever is custom interior created. Example:
+```pawn
+public OnCustomInteriorCreated(customintid)
+{
+    printf("Interior created! ID: %i", customintid);
+    return 1;
+}
+```
 #### ``public`` OnInteriorActionPerformed
 
 - It's called whenever player enters or exits a **certain** interior. In order to use the callback, you need to specify interior's name and player's ID. Little example is shown below.
