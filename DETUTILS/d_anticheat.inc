@@ -213,19 +213,19 @@ stock ToggleAntiCheatSystem(bool:toggle)
 
 // Anti-cheat code:
 
-enum ENUM_g_PlayerInfo
+enum ENUM_g_PlayerData
 {
     Money,
     Skin,
     Float:Pos[3],
     Float:NewPos[3], //for tp hack detection
-    bool:UsingTPHack = false,
+    bool:UsingTPHack,
     Ping,
     Float:Health,
     Float:Armour
 }
 
-new g_PlayerInfo[MAX_PLAYERS][ENUM_g_PlayerInfo];
+new g_PlayerData[MAX_PLAYERS][ENUM_g_PlayerData];
 
 #if defined detutils_debug
 
@@ -250,12 +250,12 @@ public cmd_acstats(playerid, params[])
         Armour: %f\n \
         ",
 
-        g_PlayerInfo[playerid][Money],
-        g_PlayerInfo[playerid][Skin],
-        g_PlayerInfo[playerid][Pos][0],g_PlayerInfo[playerid][Pos][1],g_PlayerInfo[playerid][Pos][2],
-        g_PlayerInfo[playerid][Ping],
-        g_PlayerInfo[playerid][Health],
-        g_PlayerInfo[playerid][Armour]);
+        g_PlayerData[playerid][Money],
+        g_PlayerData[playerid][Skin],
+        g_PlayerData[playerid][Pos][0],g_PlayerData[playerid][Pos][1],g_PlayerData[playerid][Pos][2],
+        g_PlayerData[playerid][Ping],
+        g_PlayerData[playerid][Health],
+        g_PlayerData[playerid][Armour]);
 
     ShowPlayerDialog(playerid, 
         DIALOG_ID_ACSTATS, 
@@ -274,11 +274,11 @@ public OnPlayerSpawn(playerid)
     GetPlayerHealth(playerid, hp);
     GetPlayerArmour(playerid, ap);
 
-    g_PlayerInfo[playerid][Money] = GetPlayerMoney(playerid);
-    g_PlayerInfo[playerid][Skin] = GetPlayerSkin(playerid);
-    g_PlayerInfo[playerid][UsingTPHack] = false;
-    g_PlayerInfo[playerid][Health] = hp;
-    g_PlayerInfo[playerid][Armour] = ap;
+    g_PlayerData[playerid][Money] = GetPlayerMoney(playerid);
+    g_PlayerData[playerid][Skin] = GetPlayerSkin(playerid);
+    g_PlayerData[playerid][UsingTPHack] = false;
+    g_PlayerData[playerid][Health] = hp;
+    g_PlayerData[playerid][Armour] = ap;
 
     if(funcidx("a_ac_OnplayerSpawn") != -1)
     {
@@ -299,11 +299,11 @@ forward a_ac_OnplayerSpawn(playerid);
 
 public OnPlayerDisconnect(playerid, reason)
 {
-    g_PlayerInfo[playerid][Money] = 0;
-    g_PlayerInfo[playerid][Skin] = 0;
-    g_PlayerInfo[playerid][UsingTPHack] = false;
-    g_PlayerInfo[playerid][Health] = 0;
-    g_PlayerInfo[playerid][Armour] = 0;
+    g_PlayerData[playerid][Money] = 0;
+    g_PlayerData[playerid][Skin] = 0;
+    g_PlayerData[playerid][UsingTPHack] = false;
+    g_PlayerData[playerid][Health] = 0;
+    g_PlayerData[playerid][Armour] = 0;
 
     if(funcidx("a_anticheat_Onpds") != -1)
     {
@@ -327,7 +327,7 @@ forward a_anticheat_Onpds(playerid, reason);
 stock d_ac_GivePlayerMoney(playerid, money)
 {
     GivePlayerMoney(playerid, money);
-    g_PlayerInfo[playerid][Money] += money;
+    g_PlayerData[playerid][Money] += money;
     return 1;
 }
 
@@ -336,7 +336,7 @@ stock CheckPlayerMoney(playerid)
     anticheat_system_check(CheckPlayerMoney);
 
     new currentmoney = GetPlayerMoney(playerid);
-    if(currentmoney != g_PlayerInfo[playerid][Money])
+    if(currentmoney != g_PlayerData[playerid][Money])
     {
         if(funcidx("OnPlayerCheatDetected") != -1)
         {
@@ -360,7 +360,7 @@ stock CheckPlayerMoney(playerid)
 stock d_ac_SetPlayerSkin(playerid, skin)
 {
     SetPlayerSkin(playerid, skin);
-    g_PlayerInfo[playerid][Skin] = skin;
+    g_PlayerData[playerid][Skin] = skin;
     return 1;
 }
 
@@ -369,7 +369,7 @@ stock CheckPlayerSkin(playerid)
     anticheat_system_check(CheckPlayerSkin);
 
     new currentskin = GetPlayerSkin(playerid);
-    if(currentskin != g_PlayerInfo[playerid][Skin])
+    if(currentskin != g_PlayerData[playerid][Skin])
     {
         if(funcidx("OnPlayerCheatDetected") != -1)
         {
@@ -434,17 +434,17 @@ stock d_ac_GetSpeedMs(playerid) // Also used in Speed Anti Cheat
 stock d_ac_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
 {
     SetPlayerPos(playerid, x, y, z);
-    g_PlayerInfo[playerid][Pos][0] = x;
-    g_PlayerInfo[playerid][Pos][1] = y;
-    g_PlayerInfo[playerid][Pos][2] = z;
+    g_PlayerData[playerid][Pos][0] = x;
+    g_PlayerData[playerid][Pos][1] = y;
+    g_PlayerData[playerid][Pos][2] = z;
     return 1;
 }
 
 stock SetPlayerVehiclePos(playerid, Float:x, Float:y, Float:z)
 {
-    g_PlayerInfo[playerid][Pos][0] = x;
-    g_PlayerInfo[playerid][Pos][1] = y;
-    g_PlayerInfo[playerid][Pos][2] = z;
+    g_PlayerData[playerid][Pos][0] = x;
+    g_PlayerData[playerid][Pos][1] = y;
+    g_PlayerData[playerid][Pos][2] = z;
     return d_v_SetPlayerVehiclePos(playerid, x, y, z); // Hooks d_visual.inc function
 }
 
@@ -456,9 +456,9 @@ stock CheckPlayerPos(playerid)
 
     GetPlayerPos(playerid, x, y, z);
 
-    g_PlayerInfo[playerid][NewPos][0] = x;
-    g_PlayerInfo[playerid][NewPos][1] = y;
-    g_PlayerInfo[playerid][NewPos][2] = z;
+    g_PlayerData[playerid][NewPos][0] = x;
+    g_PlayerData[playerid][NewPos][1] = y;
+    g_PlayerData[playerid][NewPos][2] = z;
 
     //new speed = d_ac_GetSpeedMs(playerid); // Because I am checking CheckPlayerPos every second.
 
@@ -469,41 +469,41 @@ stock CheckPlayerPos(playerid)
         {
             new Float:p_MaxPlayerPedSpeed = MAX_PLAYERPED_SPEED / 3.6;
 
-            new Float:distance = d_ac_GetDistance(g_PlayerInfo[playerid][Pos][0], 
-                            g_PlayerInfo[playerid][Pos][1], 
-                            g_PlayerInfo[playerid][Pos][2],
-                            g_PlayerInfo[playerid][NewPos][0],
-                            g_PlayerInfo[playerid][NewPos][1],
-                            g_PlayerInfo[playerid][NewPos][2]);
+            new Float:distance = d_ac_GetDistance(g_PlayerData[playerid][Pos][0], 
+                            g_PlayerData[playerid][Pos][1], 
+                            g_PlayerData[playerid][Pos][2],
+                            g_PlayerData[playerid][NewPos][0],
+                            g_PlayerData[playerid][NewPos][1],
+                            g_PlayerData[playerid][NewPos][2]);
 
             if(distance > p_MaxPlayerPedSpeed)
             {
-                g_PlayerInfo[playerid][UsingTPHack] = true;
+                g_PlayerData[playerid][UsingTPHack] = true;
             }
         }
         else if(!ArePlayerPedAnimsUsed())
         {
             new Float:p_MaxPlayerSpeed = MAX_PLAYER_SPEED / 3.6;
             
-            new Float:distance = d_ac_GetDistance(g_PlayerInfo[playerid][Pos][0], 
-                            g_PlayerInfo[playerid][Pos][1], 
-                            g_PlayerInfo[playerid][Pos][2],
-                            g_PlayerInfo[playerid][NewPos][0],
-                            g_PlayerInfo[playerid][NewPos][1],
-                            g_PlayerInfo[playerid][NewPos][2]);
+            new Float:distance = d_ac_GetDistance(g_PlayerData[playerid][Pos][0], 
+                            g_PlayerData[playerid][Pos][1], 
+                            g_PlayerData[playerid][Pos][2],
+                            g_PlayerData[playerid][NewPos][0],
+                            g_PlayerData[playerid][NewPos][1],
+                            g_PlayerData[playerid][NewPos][2]);
 
             if(distance > p_MaxPlayerSpeed)
             {
-                g_PlayerInfo[playerid][UsingTPHack] = true;
+                g_PlayerData[playerid][UsingTPHack] = true;
             }
         }
     }
 
-    g_PlayerInfo[playerid][Pos][0] = x;
-    g_PlayerInfo[playerid][Pos][1] = y;
-    g_PlayerInfo[playerid][Pos][2] = z;
+    g_PlayerData[playerid][Pos][0] = x;
+    g_PlayerData[playerid][Pos][1] = y;
+    g_PlayerData[playerid][Pos][2] = z;
 
-    if(g_PlayerInfo[playerid][UsingTPHack] == true)
+    if(g_PlayerData[playerid][UsingTPHack] == true)
     {
         if(funcidx("OnPlayerCheatDetected") != -1)
         {
@@ -536,8 +536,8 @@ stock CheckPlayerPing(playerid)
 {
     anticheat_system_check(CheckPlayerPing);
     new ping = GetPlayerPing(playerid);
-    g_PlayerInfo[playerid][Ping] = ping;
-    if(g_PlayerInfo[playerid][Ping] > 250)
+    g_PlayerData[playerid][Ping] = ping;
+    if(g_PlayerData[playerid][Ping] > 250)
     {
         if(funcidx("OnPlayerCheatDetected") != -1)
         {
@@ -553,7 +553,7 @@ stock CheckPlayerPing(playerid)
 stock d_ac_SetPlayerHealth(playerid, Float:health)
 {
     SetPlayerHealth(playerid, health);
-    g_PlayerInfo[playerid][Health] = health;
+    g_PlayerData[playerid][Health] = health;
     return 1;
 }
 
@@ -562,7 +562,7 @@ stock CheckPlayerHealth(playerid)
     anticheat_system_check(CheckPlayerHealth);
     new Float:health;
     GetPlayerHealth(playerid, Float:health);
-    if(health != g_PlayerInfo[playerid][Health])
+    if(health != g_PlayerData[playerid][Health])
     {
         if(funcidx("OnPlayerCheatDetected") != -1)
         {
@@ -586,7 +586,7 @@ stock CheckPlayerHealth(playerid)
 stock d_ac_SetPlayerArmour(playerid, Float:armour)
 {
     SetPlayerArmour(playerid, armour);
-    g_PlayerInfo[playerid][Armour] = armour;
+    g_PlayerData[playerid][Armour] = armour;
     return 1;
 }
 
@@ -595,7 +595,7 @@ stock CheckPlayerArmour(playerid)
     anticheat_system_check(CheckPlayerArmour);
     new Float:armour;
     GetPlayerArmour(playerid, Float:armour);
-    if(armour != g_PlayerInfo[playerid][Armour])
+    if(armour != g_PlayerData[playerid][Armour])
     {
         if(funcidx("OnPlayerCheatDetected") != -1)
         {
