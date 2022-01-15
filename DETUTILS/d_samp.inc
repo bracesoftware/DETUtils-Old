@@ -53,6 +53,5 @@ Optional plugins:
 #include "d_commands"
 #include "d_fmargs"
 #include "d_visual"
-#include "d_outline"
 #include "d_anticheat"
 #include "d_colours"
