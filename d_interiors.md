@@ -9,7 +9,7 @@ SA:MP Interiors - an easy way to create custom interiors.
 
 ### Interior creation
 ------------------------------------------
-To create a interior with *d_interiors*, make sure you use *CreateCustomInterior* function.
+To create a interior with *d_interiors*, make sure you use *CreateInteriorEntrance* function.
 
 Let's see how it works:
 
@@ -17,13 +17,39 @@ Let's see how it works:
 
 public OnGameModeInit()
 {
-  CreateCustomInterior("PoliceStation", 243.66, 345.21, 12.78, 9.0, 4564.8, 12.8, 1, 0, 1, 0);
+  CreateInteriorEntrance("24/7 Market", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_MARKET_247_1); // Create entrance for 24/7 Market.
   return 1;
 }
 
 ```
 
-... and - that's it, interior entrance is created on coordinates *243.66,345.21,12.78*, and interior exit on coordinates 9.0, 4564.8, 12.8. And whenever player press key which he use to enter a car near entrance coordinates given, he will be *teleported* on coordinates of interior exit.
+... and - that's it, interior entrance is created on coordinates *243.66,345.21,12.78*, and interior exit, virtual world and interior id are set automatically depending on interior you set - in this case, it's **INTERIOR_MARKET_247_1**. And whenever player press key which he use to enter a vehicle (in most cases it's F key) near entrance coordinates given, he will be *teleported* on coordinates of interior exit.
+
+- Though, most people prefer mapping their own interiors, so - in order to support that, I added extra parameters to **CreateInteriorEntrance** function.
+
+... so:
+
+```
+public OnGameModeInit()
+{
+  CreateInteriorEntrance("Your Interior", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
+  // In order to make YOUR CUSTOM interior, you need to provide extra data (parameters).
+  // So, you need to change interior type to INTERIOR_CUSTOM and add exit coordinates, and interiorid and virtual world.
+  return 1;
+}
+```
+
+... all parameters:
+
+```pawn
+native CreateInteriorEntrance(const name[], Float:x1, Float:y1, Float:z1, interiorid, worldid, bool:labels = false, interior = INTERIOR_CUSTOM, Float:x2 = 0.000, Float:y2 = 0.000, Float:z2 = 0.000, interiorid2 = 0, worldid2 = 0);
+```
+
+#### Interiors
+
+- This include also provides default interiors (as I mentioned), if you provide it as a last parameter - exit coordinates, interior ID and virtual world ID will be automatically assigned to interior data, as I did here: ``CreateInteriorEntrance("24/7 Market", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_MARKET_247_1); // Create entrance for 24/7 Market.``, below you can see all interiors you can use - including their look and ``INTERIOR_(...)`` ID.
+
+**Coming soon...**
 
 **WARNING**: Note that these coordinates aren't really coordinates of police station in the game. This was just an example for parameters.
 
