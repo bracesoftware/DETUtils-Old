@@ -79,9 +79,15 @@ new _Interiorid;
 
 new _EntranceTitleShown[MAX_PLAYERS];
 
-#if !defined col_white
-    #define col_white "{ffffff}"
-#endif
+// Interior IDs:
+
+#define INTERIOR_CUSTOM         -1
+#define INTERIOR_MARKET_247_1    0
+#define INTERIOR_MARKET_247_2    1
+#define INTERIOR_MARKET_247_3    2
+#define INTERIOR_MARKET_247_4    3
+#define INTERIOR_MARKET_247_5    4
+#define INTERIOR_MARKET_247_6    5
 
 /*
 
@@ -282,7 +288,7 @@ public _OnPlayerNearEntrance(playerid)
             SetPlayerInterior( playerid, g_InteriorData[ i ][i_InteriorIntid] );
             SetPlayerVirtualWorld( playerid, g_InteriorData[ i ][i_InteriorVwid] );
             
-            SetPlayerPos( playerid, g_InteriorData[ i ][i_InteriorExit_X], g_InteriorData[ i ][i_InteriorExit_Y], \
+            d_ac_SetPlayerPos( playerid, g_InteriorData[ i ][i_InteriorExit_X], g_InteriorData[ i ][i_InteriorExit_Y], \
             g_InteriorData[ i ][i_InteriorExit_Z] );
             
             SetPlayerFacingAngle( playerid, g_InteriorData[ i ][i_InteriorExit_A] );
@@ -310,7 +316,7 @@ public _OnPlayerNearEntrance(playerid)
             SetPlayerVirtualWorld( playerid, g_InteriorData[ i ][i_InteriorVwid_OUT] );
             SetPlayerInterior( playerid, g_InteriorData[ i ][i_InteriorIntid_OUT] );
             
-            SetPlayerPos( playerid, g_InteriorData[ i ][i_InteriorEntrance_X], g_InteriorData[ i ][i_InteriorEntrance_Y], \
+            d_ac_SetPlayerPos( playerid, g_InteriorData[ i ][i_InteriorEntrance_X], g_InteriorData[ i ][i_InteriorEntrance_Y], \
             g_InteriorData[ i ][i_InteriorEntrance_Z] );
             
             SetPlayerFacingAngle( playerid, g_InteriorData[ i ][i_InteriorEntrance_A] );
@@ -529,18 +535,20 @@ stock Create3DLabelAndPickup(
     return detutils_interiors_TRUE;
 }
 
-stock CreateCustomInteriorEx(
+stock CreateInteriorEntrance(
         const _InteriorName[], 
         Float:_xEntrance, 
         Float:_yEntrance, 
-        Float:_zEntrance, 
-        Float:_xExit, 
-        Float:_yExit, 
-        Float:_zExit, 
-        _eInteriorid, 
-        _xInteriorid, 
-        _eVirtualWorldid, 
-        _xVirtualWorldid)
+        Float:_zEntrance,  
+        _xInteriorid,  
+        _xVirtualWorldid,
+        bool:Labels = false,
+        Interior = INTERIOR_CUSTOM,
+        Float:_xExit = 0.000, 
+        Float:_yExit = 0.000, 
+        Float:_zExit = 0.000, 
+        _eInteriorid = 0,
+        _eVirtualWorldid = 0)
 {
     if(_Interiorid == MAX_INTERIORS)
     {
@@ -607,22 +615,43 @@ stock CreateCustomInteriorEx(
     printf("[samp-detutils]: (debug) - Virtual world and interiorids assigned to custom interior.");
     #endif
 
-    new _EntranceLabelString[300];
-    #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - Empty string declared.");
-    #endif
-    format(_EntranceLabelString,sizeof(_EntranceLabelString),"{ffffff}[ %s ]\n"col_white"Enter here!",_InteriorName);
-    #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - Formatted the 3D label string successfully.");
-    #endif
-    Create3DLabelAndPickup(_EntranceLabelString, _xEntrance,_yEntrance,_zEntrance, _xVirtualWorldid, 19133, 3.0);
-    #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - Streamer :: Created 3D label and pickup on entrance.");
-    #endif
-    Create3DLabelAndPickup("Exit here!", _xExit,_yExit,_zExit, _eVirtualWorldid, 19133, 3.0);
-    #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - Streamer :: Created 3D label and pickup on exit.");
-    #endif
+    if(Interior != INTERIOR_CUSTOM)
+    {
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - Assigned interior map id to interior id : %i", Interior);
+        #endif
+
+        if(Interior == INTERIOR_MARKET_247_1)
+        {
+            g_InteriorData[_Interiorid][i_InteriorIntid] = 17;
+            g_InteriorData[_Interiorid][i_InteriorVwid] = 17;
+
+            g_InteriorData[_Interiorid][i_InteriorExit_X] = -25.884498;
+            g_InteriorData[_Interiorid][i_InteriorExit_Y] = -185.868988;
+            g_InteriorData[_Interiorid][i_InteriorExit_Z] = 1003.546875;
+        }
+    }
+
+    if(Labels == true)
+    {
+        new _EntranceLabelString[300];
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - Empty string declared.");
+        #endif
+        format(_EntranceLabelString,sizeof(_EntranceLabelString),"{ffffff}[ %s ]\n{ffffff}Enter here!",_InteriorName);
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - Formatted the 3D label string successfully.");
+        #endif
+        Create3DLabelAndPickup(_EntranceLabelString, _xEntrance,_yEntrance,_zEntrance, _xVirtualWorldid, 19133, 3.0);
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - Streamer :: Created 3D label and pickup on entrance.");
+        #endif
+        Create3DLabelAndPickup("Exit here!", _xExit,_yExit,_zExit, _eVirtualWorldid, 19133, 3.0);
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - Streamer :: Created 3D label and pickup on exit.");
+        #endif
+    }
+
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Internal interior data assigned.");
     #endif
@@ -638,6 +667,8 @@ stock CreateCustomInteriorEx(
 
     return detutils_interiors_TRUE;
 }
+
+#if defined detutils_complete_error_boom
 
 stock CreateCustomInterior(
         const _InteriorName[], 
@@ -731,6 +762,8 @@ stock CreateCustomInterior(
 
     return detutils_interiors_TRUE;
 }
+
+#endif
 
 stock bool:IsPlayerInCustomInterior(playerid)
 {

@@ -256,7 +256,7 @@ public OnPlayerSpawn(playerid)
     {
         CallLocalFunction("a_ac_OnplayerSpawn", "i", playerid);
     }
-    return detutils_interiors_TRUE;
+    return 1;
 }
 
 #if defined _ALS_OnPlayerSpawn
