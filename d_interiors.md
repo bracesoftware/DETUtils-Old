@@ -29,7 +29,7 @@ public OnGameModeInit()
 
 ... so:
 
-```
+```pawn
 public OnGameModeInit()
 {
   CreateInteriorEntrance("Your Interior", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
