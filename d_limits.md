@@ -48,22 +48,18 @@ Include code:
 
 - No limits at the moment.
 
-## d_interiors.inc
+## d_properties.inc
 
-### Maximum number of created interiors
+### Maximum number of created properties
 Include code:
 ```pawn
-#if !defined MAX_INTERIORS
+#if !defined MAX_PROPERTIES
 
-#define MAX_INTERIORS 300
+#define MAX_PROPERTIES 300
 
 #endif
 ```
-- This limits the maximum number of custom interiors that can be created, if you attempt to create an interior with ID 301, function will return **0** - also if you have **detutils_debug** enabled, server will get an ingame warning which tells everyone on the server that maximum number of created interiors has been reached.
-
-## d_outline.inc
-
-- Include file is empty and has no functionality.
+- This limits the maximum number of custom properties that can be created, if you attempt to create a property with ID 301, function will return **0** - also if you have **detutils_debug** enabled, server will get an ingame warning which tells everyone on the server that maximum number of created properties has been reached.
 
 ## d_visual.inc
 
