@@ -268,8 +268,8 @@ _OnPlayerNearEntrance(playerid);
 
 public _OnPlayerNearEntrance(playerid)
 {
-    new PropertyFuncName[100];
-    new InteriorActionID;
+    //new PropertyFuncName[100];
+    new PropertyActionID;
     
     for(new i; i < MAX_PROPERTIES; i++)
     {
@@ -278,12 +278,12 @@ public _OnPlayerNearEntrance(playerid)
         && GetPlayerVirtualWorld( playerid ) == g_PropertyData[ i ][p_PropertyVwid_OUT] \
         && !IsPlayerInAnyVehicle( playerid ))
         {
-            InteriorActionID = 0;
-            format(PropertyFuncName,sizeof(PropertyFuncName),
-                "OnPropertyActionPerformed",g_PropertyData[ i ][p_PropertyName]);
+            PropertyActionID = 0;
+            /*format(PropertyFuncName,sizeof(PropertyFuncName),
+                "OnPropertyActionPerformed",g_PropertyData[ i ][p_PropertyName]);*/
 
-            if(funcidx(PropertyFuncName) != -1) CallLocalFunction(PropertyFuncName,
-                                                                "iii",playerid,i,InteriorActionID);
+            if(funcidx("OnPropertyActionPerformed") != -1) CallLocalFunction("OnPropertyActionPerformed",
+                                                                "iii",playerid,i,PropertyActionID);
 
             SetPlayerInterior( playerid, g_PropertyData[ i ][p_PropertyIntid] );
             SetPlayerVirtualWorld( playerid, g_PropertyData[ i ][p_PropertyVwid] );
@@ -330,11 +330,11 @@ public _OnPlayerNearEntrance(playerid)
             printf("[samp-detutils]: (debug) - nearintcallback :: Player exited the interior with id : %i.", i);
             #endif
 
-            InteriorActionID = 1;
-            format(PropertyFuncName,sizeof(PropertyFuncName),
-                "OnPropertyActionPerformed",g_PropertyData[ i ][p_PropertyName]);
+            PropertyActionID = 1;
+            /*format(PropertyFuncName,sizeof(PropertyFuncName),
+                "OnPropertyActionPerformed",g_PropertyData[ i ][p_PropertyName]);*/
 
-            if(funcidx(PropertyFuncName) != -1) CallLocalFunction(PropertyFuncName,"iii",playerid,i,InteriorActionID);
+            if(funcidx("OnPropertyActionPerformed") != -1) CallLocalFunction("OnPropertyActionPerformed","iii",playerid,i,PropertyActionID);
 
             g_PlayerProperty[ playerid ] = -1;
             
@@ -857,14 +857,14 @@ forward OnPropertyActionPerformed(playerid, propertyid, actionid);
 
 stock GetPropertyName(PropertyID)
 {
-    #if defined detutils_complete_error_boom
+    //#if defined detutils_complete_error_boom
     new f_PropertyName[256];
 
     strcat(f_PropertyName, g_PropertyData[PropertyID][p_PropertyName]);
 
     return f_PropertyName;
-    #endif
-    return g_PropertyData[PropertyID][p_PropertyName];
+    //#endif
+    //return g_PropertyData[PropertyID][p_PropertyName];
 }
 
 stock GetPropertyIDByName(const PropertyName[])
