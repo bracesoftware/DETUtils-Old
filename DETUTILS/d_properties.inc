@@ -857,22 +857,22 @@ forward OnPropertyActionPerformed(playerid, propertyid, actionid);
 
 stock GetPropertyName(PropertyID)
 {
-    new InteriorName[256];
-    format(InteriorName, sizeof InteriorName, "%s", g_PropertyData[PropertyID][p_PropertyName]);
-    return InteriorName;
+    new f_PropertyName[256];
+
+    strcat(f_PropertyName, g_PropertyData[PropertyID][p_PropertyName]);
+
+    return f_PropertyName;
 }
 
 stock GetPropertyIDByName(const PropertyName[])
 {
-    new _PropertyName[256];
-    for(new _IntCount = 0; 
-        _IntCount < MAX_PROPERTIES; 
-        _IntCount++)
+    for(new PropertyCount = 0; 
+        PropertyCount < MAX_PROPERTIES; 
+        PropertyCount++)
     {
-        format(_PropertyName, 256, "%s", g_PropertyData[_IntCount][p_PropertyName]);
-        if(!strcmp(_PropertyName, PropertyName))
+        if(!strcmp(g_PropertyData[PropertyCount][p_PropertyName], PropertyName))
         {
-            return _IntCount;
+            return PropertyCount;
         }
     }
     return 0;
