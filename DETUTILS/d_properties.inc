@@ -168,7 +168,7 @@ static _CreateAnncTextDraws()
     return 1;
 }
 
-#define STRING "string"
+//#define STRING "string" // for some reasons this exists
 
 static _CreatePlayerTextDraws(playerid)
 {
