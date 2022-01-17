@@ -338,12 +338,7 @@ stock CallLocalPrefixedCommand(const command[], const specifiers[], integer, con
 
 static void:AnnounceLibraryLoaded()
 {
-    print("|======================================|");
-    print("             d_commands.inc             ");
-    print("          Successfully loaded!          ");
-    print("                                        ");
-    print("               By: DEntisT              ");
-    print("|======================================|");
+    LoadDETUtilsScript(DETUTILS_SCRIPT_COMMANDS);
 }
 
 static
@@ -612,8 +607,11 @@ stock strgetfc(const string[])
     return ((string)[0] > 255) ? string{0} : string[0];
 }
 
+#define DETUTILS_FIX_COMMANDS 1
+
 public OnPlayerText(playerid, text[])
 {
+    #if defined DETUTILS_FIX_COMMANDS
     if(_g_Script == 1)
     {
         #if defined a_cmds_opthook
@@ -716,6 +714,8 @@ public OnPlayerText(playerid, text[])
     
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     if(_g_ChatMode[playerid] == 1)
     {
         if (_IsOnCmdRValid && !CallLocalFunction("OnPrefixedCommandReceived", 
@@ -733,7 +733,9 @@ public OnPlayerText(playerid, text[])
             _pos,
             _FunctionName[MAX_FUNC_NAME],
             _PrefixFuncName[MAX_FUNC_NAME],
-            _CommandDebugFunc[32];
+            _CommandDebugFunc[32],
+            _CommandParameters[64],
+            _nullpos;
 
         format(_CommandDebugFunc,
             sizeof(_CommandDebugFunc), 
@@ -816,6 +818,31 @@ public OnPlayerText(playerid, text[])
             #if defined detutils_debug
             printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) called strdel func. ID: 1");
             #endif
+
+            for(new i = 0; i < sizeof _FunctionName; i++)
+            {
+                if(strfind(_FunctionName[i], " "))
+                {
+                    _nullpos = i;
+                    break;
+                }
+            }
+
+            format(_CommandParameters, sizeof _CommandParameters,
+                "%s%s%s%s%s%s%s",
+                _FunctionName[_nullpos],
+                _FunctionName[_nullpos+1],
+                _FunctionName[_nullpos+2],
+                _FunctionName[_nullpos+3],
+                _FunctionName[_nullpos+4],
+                _FunctionName[_nullpos+5],
+                _FunctionName[_nullpos+6]);
+
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: Command parameters var : %s", _CommandParameters);
+            #endif
+            //strdel(_FunctionName, _nullpos, sizeof _FunctionName);
+        
             if(_IsOnCmdPValid)
             {
                 #if defined detutils_debug
@@ -823,7 +850,7 @@ public OnPlayerText(playerid, text[])
                 #endif
                 CallLocalFunction("OnPrefixedCommandPerformed", 
                     "isi", playerid, text, 
-                    CallLocalFunction(_FunctionName, "is", playerid, text));
+                    CallLocalFunction(_FunctionName, "iss", playerid, text));
 
                 if(funcidx(_CommandDebugFunc) != -1)
                 {
@@ -834,7 +861,7 @@ public OnPlayerText(playerid, text[])
             #if defined detutils_debug
             printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 1");
             #endif
-            CallLocalFunction(_FunctionName, "is", playerid, text);
+            CallLocalFunction(_FunctionName, "iss", playerid, text);
             if(funcidx(_CommandDebugFunc) != -1)
             {
                 CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
@@ -853,6 +880,10 @@ public OnPlayerText(playerid, text[])
         }
     }
     return 1;
+    #endif
+    #if !defined DETUTILS_FIX_COMMANDS
+    return data check:bool;
+    #endif
 }
 
 #if defined _ALS_OnPlayerText
@@ -947,13 +978,13 @@ forward a_cmd_OnPlayerDisconnect(playerid, reason);
 #define pc_%0\32; pc_
 #define prx_%0\32; prx_
 
-#define prefixed%2command%0(%1,%3) \
+#define prefixed%2command%0(%1)%4[%3] \
     stock prx_%0(){new p[1];format(p,sizeof(p),%3);return p;}forward pc_%0(%1);public pc_%0(%1)
 
-#define @newk_PrefixedCommand:%0(%1,%3) \
+#define @newk_PrefixedCommand:%0(%1)%4[%3] \
     stock prx_%0(){new p[1];format(p,sizeof(p),%3);return p;}forward pc_%0(%1);public pc_%0(%1)
 
-////////////////////////////////////////////////////////
+/////////////////////HACK///////BUG////////LMAO////////////////////
 
 #if defined detutils_complete_error_boom
 

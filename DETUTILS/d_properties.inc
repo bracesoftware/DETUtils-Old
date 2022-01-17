@@ -920,12 +920,7 @@ stock SetPlayerProperty(_p_Playerid, pg_PropertyID)
 
 static void:AnnounceLibraryLoaded_int()
 {
-    print("|======================================|");
-    print("            d_properties.inc            ");
-    print("          Successfully loaded!          ");
-    print("                                        ");
-    print("               By: DEntisT              ");
-    print("|======================================|");
+    LoadDETUtilsScript(DETUTILS_SCRIPT_PROPERTIES);
 }
 
 #if !defined FILTERSCRIPT

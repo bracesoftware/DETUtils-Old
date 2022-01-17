@@ -41,6 +41,71 @@
 
 public const detutils_ver = 0x1;
 
+#define DETUTILS_SCRIPT_COMMANDS 0
+#define DETUTILS_SCRIPT_PROPERTIES 1
+#define DETUTILS_SCRIPT_FMARGS 2
+#define DETUTILS_SCRIPT_VISUAL 3
+#define DETUTILS_SCRIPT_ANTICHEAT 4
+#define DETUTILS_SCRIPT_COLOURS 5
+
+stock void:LoadDETUtilsScript(scriptid)
+{
+    if(scriptid == DETUTILS_SCRIPT_COMMANDS)
+    {
+        print("|======================================|");
+        print("             d_commands.inc             ");
+        print("          Successfully loaded!          ");
+        print("                                        ");
+        print("               By: DEntisT              ");
+        print("|======================================|");
+    }
+    if(scriptid == DETUTILS_SCRIPT_PROPERTIES)
+    {
+        print("|======================================|");
+        print("            d_properties.inc            ");
+        print("          Successfully loaded!          ");
+        print("                                        ");
+        print("               By: DEntisT              ");
+        print("|======================================|");
+    }
+    if(scriptid == DETUTILS_SCRIPT_FMARGS)
+    {
+        print("|======================================|");
+        print("              d_fmargs.inc              ");
+        print("          Successfully loaded!          ");
+        print("                                        ");
+        print("               By: DEntisT              ");
+        print("|======================================|");
+    }
+    if(scriptid == DETUTILS_SCRIPT_VISUAL)
+    {
+        print("|======================================|");
+        print("              d_visual.inc              ");
+        print("          Successfully loaded!          ");
+        print("                                        ");
+        print("               By: DEntisT              ");
+        print("|======================================|");
+    }
+    if(scriptid == DETUTILS_SCRIPT_ANTICHEAT)
+    {
+        print("|======================================|");
+        print("            d_anticheat.inc             ");
+        print("          Successfully loaded!          ");
+        print("                                        ");
+        print("               By: DEntisT              ");
+        print("|======================================|");
+    }
+    if(scriptid == DETUTILS_SCRIPT_COLOURS)
+    {
+        print("|======================================|");
+        print("             d_colours.inc             ");
+        print("          Successfully loaded!          ");
+        print("                                        ");
+        print("               By: DEntisT              ");
+        print("|======================================|");
+    }
+}
+
 /*
                                                                       
 88888888888                                                           

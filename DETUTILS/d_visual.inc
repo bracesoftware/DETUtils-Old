@@ -764,12 +764,7 @@ forward d_visual_Onpde(playerid);
 
 static void:AnnounceLibraryLoaded_visual()
 {
-    print("|======================================|");
-    print("              d_visual.inc              ");
-    print("          Successfully loaded!          ");
-    print("                                        ");
-    print("               By: DEntisT              ");
-    print("|======================================|");
+    LoadDETUtilsScript(DETUTILS_SCRIPT_VISUAL);
 }
 
 #if !defined FILTERSCRIPT

@@ -165,12 +165,7 @@ static stock _DeclaredColours;
 
 static AnnounceLibraryLoaded_colours()
 {
-    print("|======================================|");
-    print("             d_colours.inc              ");
-    print("          Successfully loaded!          ");
-    print("                                        ");
-    print("               By: DEntisT              ");
-    print("|======================================|");
+    LoadDETUtilsScript(DETUTILS_SCRIPT_COLOURS);
 }
 
 #if !defined FILTERSCRIPT

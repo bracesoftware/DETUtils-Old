@@ -630,12 +630,7 @@ stock CheckPlayerSpeed(playerid)
 
 static AnnounceLibraryLoaded_anticheat()
 {
-    print("|======================================|");
-    print("            d_anticheat.inc             ");
-    print("          Successfully loaded!          ");
-    print("                                        ");
-    print("               By: DEntisT              ");
-    print("|======================================|");
+    LoadDETUtilsScript(DETUTILS_SCRIPT_ANTICHEAT);
 }
 
 #if !defined FILTERSCRIPT
