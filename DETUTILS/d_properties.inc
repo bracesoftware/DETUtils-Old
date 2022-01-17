@@ -857,11 +857,14 @@ forward OnPropertyActionPerformed(playerid, propertyid, actionid);
 
 stock GetPropertyName(PropertyID)
 {
+    #if defined detutils_complete_error_boom
     new f_PropertyName[256];
 
     strcat(f_PropertyName, g_PropertyData[PropertyID][p_PropertyName]);
 
     return f_PropertyName;
+    #endif
+    return g_PropertyData[PropertyID][p_PropertyName];
 }
 
 stock GetPropertyIDByName(const PropertyName[])
