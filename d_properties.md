@@ -57,15 +57,15 @@ native CreatePropertyEntrance(const name[], Float:x1, Float:y1, Float:z1, interi
 ------------------------------------------
 - Whenever *CreateCustomInterior* is called, it automatically sends debug messages in the console.
 
-### Interior callbacks
+### Property callbacks
 ------------------------------------------
-#### ``public`` OnCustomInteriorCreated
+#### ``public`` OnPropertyCreated
 
 - Called whenever is custom interior created. Example:
 ```pawn
-public OnCustomInteriorCreated(customintid)
+public OnPropertyCreated(propertyid)
 {
-    printf("Interior created! ID: %i", customintid);
+    printf("Property created! ID: %i", propertyid);
     return 1;
 }
 ```
