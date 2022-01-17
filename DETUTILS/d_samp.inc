@@ -20,7 +20,7 @@
 
 #define d_samp_included
 
-#include "d_interiors"
+#include "d_properties"
 #include "d_commands"
 #include "d_fmargs"
 #include "d_visual"
