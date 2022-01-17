@@ -869,7 +869,7 @@ stock GetPropertyName(PropertyID)
 
 stock GetPropertyIDByName(const PropertyName[])
 {
-    for(new PropertyCount = 0; 
+    for(new PropertyCount = 1; 
         PropertyCount < MAX_PROPERTIES; 
         PropertyCount++)
     {
