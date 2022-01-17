@@ -137,11 +137,11 @@ public OnPlayerExitProperty(playerid)
 ## API ( programming interface )
 
 ### Functions
-------------------------------------------
+
 *d_properties.inc* also contains some handy functions, let's see.
 
-**SetPlayerProperty**
-------------------------------------------
+#### SetPlayerProperty
+
 - This function sets player's interior. Interior id can be seen after certain interior is created - thanks to debug messages!
 
 **WARNING**: Interior id will be always same unless it is not created on callback *OnGameModeInit* or you changed interior creating algorithm.
@@ -160,14 +160,14 @@ static Your_Function(player, id)
   return 1;
 }
 ```
-**GetLastPropertyIDUsed**
-------------------------------------------
+#### GetLastPropertyIDUsed
+
 - Gets last property id which was used to assign interior data to.
 
 **WARNING**: Works best and properly after using ``CreatePropertyEntrance``, because ``CreatePropertyEntrance`` updates the ID after called.
 
-**SetPropertyEntranceCustomAngles**
-------------------------------------------
+#### SetPropertyEntranceCustomAngles
+
 - This function sets interior entrance and exit position angles.
 
 Parameters:
@@ -186,8 +186,8 @@ public OnGameModeInit()
   return 1;
 }
 ```
-**ClearPlayerPropertyData**
-------------------------------------------
+#### ClearPlayerPropertyData
+
 - The thing this function does is really simple. Clears property id data which is assigned to player's data.
 
 Parameters:
@@ -205,8 +205,8 @@ public OnPlayerDisconnect(playerid, reason)
   return 1;
 }
 ```
-**IsPlayerInProperty**
-------------------------------------------
+#### IsPlayerInProperty
+
 - Also, one simple function - checks if is player in one of properties declared in the script.
 
 - If yes, returns *true*, else returns *false*.
@@ -219,13 +219,13 @@ Parameters:
 if(IsPlayerInProperty(playerid)) return SendClientMessage(playerid, -1, "You're in a property.");
 ```
 
-**GetPropertyName**
-------------------------------------------
+#### GetPropertyName
+
 
 - Used to get property's name. Usage example shown on **``public`` OnPropertyActionPerformed** documentation.
 
-**GetPropertyIDByName**
-------------------------------------------
+#### GetPropertyIDByName
+
 
 - Used to get property's ID by specifying its name. Usage example shown on **``public`` OnPropertyActionPerformed** documentation.
 
