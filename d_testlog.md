@@ -27,8 +27,8 @@
 - Version: 1.5.5
 
 ### Anti-cheat issues
-1. System is really unstable. 
-2. System sends fake cheating reports with cheat types: **CHEAT_TYPE_HEALTH**, **CHEAT_TYPE_ARMOUR** and **CHEAT_TYPE_SKINCHANGER**.
+1. System is more stable than before but it still has problems and bugs.
+2. System sends fake cheating reports with cheat type **CHEAT_TYPE_HEALTH**.
 
 ### Visual game issues
 1. ``FadePlayerScreen(...);`` is not working.
