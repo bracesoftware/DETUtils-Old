@@ -150,6 +150,14 @@ admin command admincheck(playerid,params[])
   SendClientMessage(playerid, -1, "You're admin.");
   return 1;
 }
+
+// ... or:
+
+decl AdminCommand:admincheck(playerid,params[])
+{
+  SendClientMessage(playerid, -1, "You're admin.");
+  return 1;
+}
 ```
 
 **INFO**: If player is not logged in as RCON administrator, function will return *false* (0) and send client message saying: **"SERVER: Unknown command."**
