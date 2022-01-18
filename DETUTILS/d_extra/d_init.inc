@@ -38,6 +38,7 @@
 #endif
 
 #include "d_version"
+#include "d_text"
 
 public const detutils_ver = 0x1;
 

@@ -838,7 +838,7 @@ public OnPlayerText(playerid, text[])
             printf("[samp-detutils]: (debug) - opt :: Prefix function name for command %s doesn't exist.", text);
             #endif
             new textmsg[256];
-            format(textmsg, 256, "Prefix function name for command %s doesn't exist.", text);
+            format(textmsg, 256, DETUTILS_TEXT_UNK_PRX_FUNC, text);
             d_SendWarningMessage(playerid, textmsg); 
         }
 
@@ -1245,13 +1245,13 @@ command chatmode(playerid, params[])
 {
     if(_g_ChatMode[playerid] == 0)
     {
-        SendClientMessage(playerid, -1, "SERVER: Chat mode switched to custom-prefixed commands mode.");
+        //SendClientMessage(playerid, -1, "SERVER: Chat mode switched to custom-prefixed commands mode.");
         _g_ChatMode[playerid] = 1;
         return 1;
     }
     else if(_g_ChatMode[playerid] == 1)
     {
-        SendClientMessage(playerid, -1, "SERVER: Chat mode switched to plain-text messages mode.");
+        //SendClientMessage(playerid, -1, "SERVER: Chat mode switched to plain-text messages mode.");
         _g_ChatMode[playerid] = 0;
         return 1;
     }
@@ -1264,13 +1264,13 @@ COMMAND__ chatmode(playerid, params[])
 {
     if(_g_ChatMode[playerid] == 0)
     {
-        SendClientMessage(playerid, -1, "SERVER: Chat mode switched to custom-prefixed commands mode.");
+        //SendClientMessage(playerid, -1, "SERVER: Chat mode switched to custom-prefixed commands mode.");
         _g_ChatMode[playerid] = 1;
         return 1;
     }
     else if(_g_ChatMode[playerid] == 1)
     {
-        SendClientMessage(playerid, -1, "SERVER: Chat mode switched to plain-text messages mode.");
+        //SendClientMessage(playerid, -1, "SERVER: Chat mode switched to plain-text messages mode.");
         _g_ChatMode[playerid] = 0;
         return 1;
     }
@@ -1286,13 +1286,13 @@ public cmd_chatmode(playerid, params[])
 {
     if(_g_ChatMode[playerid] == 0)
     {
-        SendClientMessage(playerid, -1, "SERVER: Chat mode switched to custom-prefixed commands mode.");
+        SendClientMessage(playerid, -1, DETUTILS_TEXT_CHATMODE_PRX);
         _g_ChatMode[playerid] = 1;
         return 1;
     }
     else if(_g_ChatMode[playerid] == 1)
     {
-        SendClientMessage(playerid, -1, "SERVER: Chat mode switched to plain-text messages mode.");
+        SendClientMessage(playerid, -1, DETUTILS_TEXT_CHATMODE_MSG);
         _g_ChatMode[playerid] = 0;
         return 1;
     }

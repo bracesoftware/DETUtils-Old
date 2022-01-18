@@ -18,6 +18,12 @@
 
 #endif
 
+#if defined DETUTILS_COMPATIBILITY_MODE
+
+ 	#undef DETUTILS_COMPATIBILITY_MODE
+
+#endif
+
 #define d_samp_included
 
 #include "d_properties"

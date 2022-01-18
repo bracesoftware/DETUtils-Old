@@ -411,7 +411,7 @@ stock CreateDroppedGun( p_WeapID, p_WeapAmmo, Float:__Weapon_pos_x, Float:__Weap
         {
             if(i != INVALID_PLAYER_ID)
             {
-                d_SendWarningMessage(i, "Maximum number of dropped gun objects reached.");
+                d_SendWarningMessage(i, DETUTILS_TEXT_MAX_GUN_REACH);
             }
         }
         #endif
@@ -446,7 +446,7 @@ command throwgun( playerid, params[] )
     if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT) return 1;
     
     #if defined detutils_debug
-    if(__WeaponTimer_var[playerid] != 0) return d_SendWarningMessage(playerid, "The player tried to use the command but the timer was not over yet.");
+    if(__WeaponTimer_var[playerid] != 0) return d_SendWarningMessage(playerid, DETUTILS_TEXT_CMD_TIMER);
     #else
     if(__WeaponTimer_var[playerid] != 0) return 1;
     #endif
@@ -466,7 +466,7 @@ command throwgun( playerid, params[] )
                     break;
                 }
             }
-            if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"Operation can't be completed at the moment." );
+            if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, DETUTILS_TEXT_CANNOT_OPERATE);
             //#if defined RemovePlayerWeapon
             RemovePlayerWeapon( playerid, p_WeapID );
             //#endif
@@ -479,7 +479,7 @@ command throwgun( playerid, params[] )
                 g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ], g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ], 
                 g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ]-1, 93.7, 120.0, 120.0 );
             __WeaponTimer_var[ playerid ] = 30;
-            SendClientMessage( playerid, -1, ""COLOUR_GREY"You threw away {ffffff}%s"COLOUR_GREY".", 
+            SendClientMessage( playerid, -1, DETUTILS_TEXT_THROW_GUN, 
                 g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
             if(funcidx("OnPlayerThrowGun") != -1) CallLocalFunction("OnPlayerThrowGun", "i", playerid);
         }
@@ -501,9 +501,9 @@ command destroygun( playerid, params[] )
             break;
         }
     }
-    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"No guns nearby." );
+    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, DETUTILS_TEXT_NOGUN_NEARBY);
     DestroyDynamicObject( g_WeaponData[ p_WeapIdx ][ w_ObjectId ] );
-    SendClientMessage( playerid, -1, ""COLOUR_GREY"You destroyed {ffffff}%s"COLOUR_GREY".", 
+    SendClientMessage( playerid, -1, DETUTILS_TEXT_GUN_DESTROY, 
         g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
     g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ] = 0.0;
     g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ] = 0.0;
@@ -530,9 +530,9 @@ command pickgun( playerid, params[] )
             break;
         }
     }
-    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"No guns nearby." );
+    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, DETUTILS_TEXT_NOGUN_NEARBY);
     DestroyDynamicObject( g_WeaponData[ p_WeapIdx ][ w_ObjectId ] );
-    SendClientMessage( playerid, -1, ""COLOUR_GREY"You picked up {ffffff}%s"COLOUR_GREY".", 
+    SendClientMessage( playerid, -1, DETUTILS_TEXT_GUN_PICK, 
         g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
     GivePlayerWeapon( playerid, g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ], 
         g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] );

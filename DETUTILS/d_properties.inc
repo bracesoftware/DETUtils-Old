@@ -423,7 +423,7 @@ public OnPlayerUpdate(playerid)
         && !IsPlayerInAnyVehicle( playerid ) && _EntranceTitleShown[playerid] != 1)
         {
             new PropertyName[100];
-            format(PropertyName,sizeof(PropertyName),"Property: %s",g_PropertyData[ i ][ p_PropertyName ]);
+            format(PropertyName,sizeof(PropertyName),DETUTILS_TEXT_PROPERTY_NAME,g_PropertyData[ i ][ p_PropertyName ]);
             
             _Announcement(playerid, PropertyName);
             #if defined detutils_debug
@@ -557,7 +557,7 @@ stock CreatePropertyEntrance(
         {
             if(i != INVALID_PLAYER_ID)
             {
-                d_SendWarningMessage(i, "Maximum number of created properties reached.");
+                d_SendWarningMessage(i, DETUTILS_TEXT_MAX_PROPS_REACH);
             }
         }
         #endif
