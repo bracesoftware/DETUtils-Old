@@ -53,7 +53,7 @@ Check out test files here:
 
 - English isn't the only language on the planet though, that's why I started language contribution program. I started it by making another library's core include called **d_text.inc** in which are all strings located. Your job as a language contributor is to simply translate it!
 
-Check the file [here...](DETUTILS\d_extra\d_text.inc)
+Check the file [here...](DETUTILS/d_extra/d_text.inc)
 
 ## Troubleshooting
 
