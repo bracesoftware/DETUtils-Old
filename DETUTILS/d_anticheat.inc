@@ -362,7 +362,7 @@ stock CheckPlayerSkin(playerid)
 
 // TELEPORT ANTI-CHEAT:
 
-#define MAX_PLAYER_JUMP_SPEED 54
+#define MAX_PLAYER_SPEED 54
 
 #define MAX_PLAYERPED_SPEED 57
 

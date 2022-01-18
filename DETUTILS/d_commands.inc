@@ -131,6 +131,10 @@
 #define admin%5command%0(%1,%2[%3]%4) \
     forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if(!IsPlayerAdmin(%1)) return 0; return  cmd_func_%0(%1,%2)%4;%5} \
     forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[]%5)
+
+#define @newk_AdminCommand:%0(%1,%2[%3]%4) \
+    forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if(!IsPlayerAdmin(%1)) return 0; return  cmd_func_%0(%1,%2)%4;%5} \
+    forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[]%5)
 /////////////////////////////////////////////////////////////////////
 
 #define role%5command%0(%1,%2[%3]%4,%6) \
@@ -199,6 +203,21 @@
                                                                                       
                                                                                       
 */
+
+static stock g_CaseSensivity = 0;
+
+stock ToggleCommandCaseSensivity(bool:toggle)
+{
+    if(toggle == true)
+    {
+        g_CaseSensivity = 1;
+    }
+    else if(toggle == false)
+    {
+        g_CaseSensivity = 0;
+    }
+    return 1;
+}
 
 forward OnCommandStateChange(playerid, cmdtext[], stateid);
 forward OnPrefixedCommandStateChange(playerid, cmdtext[], stateid);
@@ -607,7 +626,327 @@ stock strgetfc(const string[])
     return ((string)[0] > 255) ? string{0} : string[0];
 }
 
-#define DETUTILS_FIX_COMMANDS 1
+#define DETUTILS_FIX_COMMANDS 1 // random shit
+
+enum enum_PlayerCmdData
+{
+    PassedPrefix[1]
+}
+
+new g_PlayerCmdData[MAX_PLAYERS][enum_PlayerCmdData];
+
+public OnPlayerText(playerid, text[])
+{
+    //#if defined DETUTILS_FIX_COMMANDS
+    if(_g_Script == 1)
+    {
+        #if defined a_cmds_opthook
+
+        if(funcidx("a_cmd_OnPlayerText") != -1)
+        {
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned its hook call.");
+            #endif
+            CallLocalFunction("a_cmd_OnPlayerText", "is", playerid, text);
+        }
+
+        #endif
+
+        if (_IsOnCmdRValid && !CallLocalFunction("OnPrefixedCommandReceived", 
+            "is", 
+            playerid, 
+            text))
+        {
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned 1.");
+            #endif
+            return 1;
+        }
+
+        new
+            position,
+            _Prefix[MAX_FUNC_NAME],
+            _FunctionName[MAX_FUNC_NAME];
+
+        #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared variables!");
+        #endif
+
+        while(text[++position] > ' ')
+        {
+            _FunctionName[position-1] = tolower(text[position]);
+        }
+
+        #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) validated text[] and position;.");
+            #endif
+
+        format(_Prefix, sizeof(_Prefix),
+            "%s@prx", _FunctionName);
+
+        strdel(_Prefix, 0, 1);
+
+        #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) generated cmd_prx funcname.");
+            #endif
+
+        format(_FunctionName, sizeof(_FunctionName), 
+            "pc@%s", text);
+        
+        strdel(_FunctionName, 3, 4);
+
+        #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) generated cmd funcname.");
+            #endif
+
+        while(text[position] == ' ')
+        {
+            position++;
+        }
+
+        #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) position ++");
+            #endif
+
+        if(!text[position])
+        {
+            if(_IsOnCmdPValid)
+            {
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 0");
+                #endif
+                return CallLocalFunction("OnPrefixedCommandPerformed", 
+                            "isi", playerid, text, 
+                            CallLocalFunction(_FunctionName, "is", playerid, "\1"));
+            }
+            #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 1");
+                #endif
+            return CallLocalFunction(_FunctionName, "is", playerid, "\1");
+        }
+        if(_IsOnCmdPValid)
+        {
+            #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 2");
+                #endif
+            return CallLocalFunction("OnPrefixedCommandPerformed", 
+                    "isi", playerid, text, 
+                    CallLocalFunction(_FunctionName, "is", playerid, text[position]));
+        }
+        #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 3");
+                #endif
+        return CallLocalFunction(_FunctionName, "is", playerid, text[position]);
+    
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    if(_g_ChatMode[playerid] == 1)
+    {
+        if (funcidx("OnPrefixedCommandReceived") != -1 && !CallLocalFunction("OnPrefixedCommandReceived", 
+            "is", 
+            playerid, 
+            text))
+        {
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned 1.");
+            #endif
+            return 1;
+        }
+
+        static 
+            _pos,
+            _FunctionName[MAX_FUNC_NAME],
+            _PrefixFuncName[MAX_FUNC_NAME],
+            _CommandDebugFunc[32];
+            //_CommandParameters[64],
+            //_nullpos;
+
+        format(_CommandDebugFunc,
+            sizeof(_CommandDebugFunc), 
+            "OnPrefixedCommandStateChange");
+
+        if(funcidx(_CommandDebugFunc) != -1)
+        {
+            CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_RECEIVED);
+        }
+
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared variables!");
+        #endif
+
+        if(_g_Script == 1)
+        {
+
+            while (text[++_pos] > ' ')
+            {
+                _FunctionName[_pos-1] = tolower(text[_pos]);
+            }
+
+            _pos = 0;
+
+            while(text[++_pos] > ' ')
+            {
+                _PrefixFuncName[_pos-1] = tolower(text[_pos]);
+            }
+
+        }
+
+        format(_PrefixFuncName, sizeof(_PrefixFuncName),
+            "prx_%s", text);
+
+        format(_FunctionName, sizeof(_FunctionName),
+            "pc_%s", text);
+
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) string formattion finished.");
+        #endif
+
+        if(_g_Script == 1)
+        {
+            while(text[_pos] == ' ')
+            {
+                _pos++;
+            }
+
+        }
+        
+        strdel(_PrefixFuncName, 4, 5);
+
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) called strdel func.");
+        #endif
+
+        new _ActPrefix[MAX_FUNC_NAME];
+
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared active_prefix variable!");
+        #endif
+
+        if(funcidx(_PrefixFuncName) != -1)
+        {
+            format(_ActPrefix, sizeof(_ActPrefix), "%s", CallLocalFunction(_PrefixFuncName, ""));
+
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) formatted active prefix var.");
+            #endif
+        }
+        else if(funcidx(_PrefixFuncName) == -1)
+        {
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: Prefix function name for command %s doesn't exist.", text);
+            #endif
+            new textmsg[256];
+            format(textmsg, 256, "Prefix function name for command %s doesn't exist.", text);
+            d_SendWarningMessage(playerid, textmsg); 
+        }
+
+        if(funcidx(_CommandDebugFunc) != -1)
+        {
+            CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_READY);
+        }
+
+        new l_CommandPrefix[1];
+        format(l_CommandPrefix, 1, "%s", text[0]);
+
+        if(!strcmp(g_PlayerCmdData[playerid][PassedPrefix], l_CommandPrefix, false)) // for some reason, text[0] was returning a whole string ???
+        {
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) performed if-pattern check.");
+            printf("[samp-detutils]: (debug) - opt :: _ActPrefix: %s / text[0]: %s", g_PlayerCmdData[playerid][PassedPrefix], l_CommandPrefix);
+            #endif
+            strdel(_FunctionName, 3, 4);
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) called strdel func. ID: 1");
+            #endif
+
+            /*for(new i = 0; i < sizeof _FunctionName; i++)
+            {
+                if(strfind(_FunctionName[i], " "))
+                {
+                    _nullpos = i;
+                    break;
+                }
+            }
+
+            strdel(_FunctionName, _nullpos, sizeof _FunctionName);
+
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: Command parameters var : %s", _CommandParameters);
+            #endif
+            */
+        
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: _PrefixFuncName: %s / _FunctionName: %s", _PrefixFuncName, _FunctionName);
+            #endif
+
+            if(funcidx("OnPrefixedCommandPerformed") != -1)
+            {
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 0");
+                #endif
+                CallLocalFunction("OnPrefixedCommandPerformed", 
+                    "isi", playerid, text, 
+                    CallLocalFunction(_FunctionName, "iss", playerid, text));
+
+                if(funcidx(_CommandDebugFunc) != -1)
+                {
+                    CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
+                }
+                return 0;
+            }
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 1");
+            #endif
+            CallLocalFunction(_FunctionName, "iss", playerid, text);
+            if(funcidx(_CommandDebugFunc) != -1)
+            {
+                CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
+            }
+            return 0;
+        }
+    }
+    if(_g_ChatMode[playerid] == 0)
+    {
+        if(funcidx("a_cmd_OnPlayerText") != -1)
+        {
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned its hook call.");
+            #endif
+            CallLocalFunction("a_cmd_OnPlayerText", "is", playerid, text);
+        }
+    }
+    return 1;
+}
+
+////////////////////////////////////////////////////
+
+#if !defined MAX_PREFIX_LENGTH
+
+    #define MAX_PREFIX_LENGTH 1
+
+#endif
+
+#define pc_%0\32; pc_
+#define prx_%0\32; prx_
+#define cpr_%0\32; cpr_
+
+#define prefixed%2command%0(%4Prefix:%3,%1) \
+    prx_%0(playerid); public prx_%0(playerid){ strmid(g_PlayerCmdData[playerid][PassedPrefix], %3, 0, MAX_PREFIX_LENGTH, MAX_PREFIX_LENGTH); return MAX_PREFIX_LENGTH;}forward pc_%0(%1);public pc_%0(%1)
+    //prx_%0(playerid); public prx_%0(playerid){new p[MAX_PREFIX_LENGTH]; format(p,sizeof(p),%3); return p;}forward pc_%0(%1);public pc_%0(%1) 
+    //stock prx_%0(){return cpr_%3;}forward pc_%0(%1);public pc_%0(%1)
+    //stock prx_%0(){new p[1];format(p,sizeof(p),%3);return p;}forward pc_%0(%1);public pc_%0(%1)
+
+#define @newk_PrefixedCommand:%0(%4Prefix:%3,%1) \
+    prx_%0(playerid); public prx_%0(playerid){ strmid(g_PlayerCmdData[playerid][PassedPrefix], %3, 0, MAX_PREFIX_LENGTH, MAX_PREFIX_LENGTH); return MAX_PREFIX_LENGTH;}forward pc_%0(%1);public pc_%0(%1)
+
+#define @newk_Prefix:%0=%1; \
+    stock cpr_%0[MAX_PREFIX_LENGTH]=%1;
+
+////////////////////////////////////////////////////
+
+#if defined detutils_complete_error_boom
 
 public OnPlayerText(playerid, text[])
 {
@@ -795,10 +1134,10 @@ public OnPlayerText(playerid, text[])
         new _ActPrefix[MAX_FUNC_NAME];
 
         #if defined detutils_debug
-        printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared active_prefix variable!");
+        printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared active prefix variable!");
         #endif
 
-        format(_ActPrefix, sizeof(_ActPrefix), "%s", CallLocalFunction(_PrefixFuncName, ""));
+        format(_ActPrefix, sizeof(_ActPrefix), CallLocalFunction(_PrefixFuncName, ""));
 
         #if defined detutils_debug
         printf("[samp-detutils]: (debug) - opt :: OnPlayerText(playerid, text[]) formatted active prefix var.");
@@ -885,6 +1224,8 @@ public OnPlayerText(playerid, text[])
     return data check:bool;
     #endif
 }
+
+#endif
 
 #if defined _ALS_OnPlayerText
     #undef OnPlayerText
@@ -975,8 +1316,7 @@ forward a_cmd_OnPlayerDisconnect(playerid, reason);
 
 ////////////////////////////////////////////////////////
 
-#define pc_%0\32; pc_
-#define prx_%0\32; prx_
+/*
 
 #define prefixed%2command%0(%1)%4[%3] \
     stock prx_%0(){new p[1];format(p,sizeof(p),%3);return p;}forward pc_%0(%1);public pc_%0(%1)
@@ -984,7 +1324,9 @@ forward a_cmd_OnPlayerDisconnect(playerid, reason);
 #define @newk_PrefixedCommand:%0(%1)%4[%3] \
     stock prx_%0(){new p[1];format(p,sizeof(p),%3);return p;}forward pc_%0(%1);public pc_%0(%1)
 
-/////////////////////HACK///////BUG////////LMAO////////////////////
+*/
+
+////////////////////////////////////LMAO////////////////////
 
 #if defined detutils_complete_error_boom
 
