@@ -362,11 +362,9 @@ stock CheckPlayerSkin(playerid)
 
 // TELEPORT ANTI-CHEAT:
 
-#define MAX_PLAYER_SPEED 23
-#define MAX_PLAYER_JUMP_SPEED 46
+#define MAX_PLAYER_JUMP_SPEED 54
 
-#define MAX_PLAYERPED_SPEED 43
-#define MAX_PLAYERPED_JUMP_SPEED MAX_PLAYER_JUMP_SPEEDs
+#define MAX_PLAYERPED_SPEED 57
 
 stock Float:d_ac_GetDistance(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2)
 {
@@ -436,7 +434,6 @@ stock CheckPlayerPos(playerid)
 
     if(!IsPlayerInAnyVehicle(playerid))
     {
-
         if(ArePlayerPedAnimsUsed())
         {
             new Float:p_MaxPlayerPedSpeed = MAX_PLAYERPED_SPEED / 3.6;
@@ -468,6 +465,10 @@ stock CheckPlayerPos(playerid)
             {
                 g_PlayerData[playerid][UsingTPHack] = true;
             }
+        }
+        if(IsPlayerInAnyVehicle(playerid))
+        {
+            g_PlayerData[playerid][UsingTPHack] = false;
         }
     }
 
