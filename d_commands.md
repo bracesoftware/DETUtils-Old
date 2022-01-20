@@ -219,6 +219,8 @@ decl PrefixedCommand:forum(Prefix:qmark, playerid, params[])
 }
 ```
 
+**INFO:** Not using the prefix in a command won't cause symbol-unused warning.
+
 #### What's so-called chat mode thing?
 
 - It's, simply said, variable which controls the function of normal SA-MP chat. There are two chat modes, **CHAT_MODE_PLAIN_TEXT_MESSAGES (with ID 0)** and **CHAT_MODE_PREFIXED_COMMANDS (with ID 1)**. Player can execute custom prefixed commands only if their chat mode is **CHAT_MODE_PREFIXED_COMMANDS**. Players can switch their chat mode using mentioned **/chatmode** command.
