@@ -44,6 +44,13 @@ Include code:
 ```
 - This limits the number of characters in function name, if the number of characters in a certain function's name is larger than **32**, then you will get an error. This is also a Pawn limit, which explains why I've added this definition to my script as well.
 
+### Maximum prefix length
+Include code:
+```pawn
+decl Prefix:qmark = "?";
+```
+- Unfortunately, prefix can only contain 1 character.
+
 ## d_fmargs.inc
 
 - No limits at the moment.
