@@ -67,7 +67,9 @@ enum enum_PropertyData
     p_PropertyPickup,
     p_PropertyPickupID,
     p_PropertyLabel,
-    p_PropertyLabelID
+    p_PropertyLabelID,
+
+    bool:p_PropertyLocked
 };
 
 forward OnPropertyCreated(propertyid);
@@ -281,6 +283,11 @@ public _OnPlayerNearEntrance(playerid)
         && GetPlayerVirtualWorld( playerid ) == g_PropertyData[ i ][p_PropertyVwid_OUT] \
         && !IsPlayerInAnyVehicle( playerid ))
         {
+            if(p_PropertyLocked == true)
+            {
+                SendClientMessage(playerid, -1, DETUTILS_TEXT_PROP_LOCK);
+            }
+
             PropertyActionID = 0;
             /*format(PropertyFuncName,sizeof(PropertyFuncName),
                 "OnPropertyActionPerformed",g_PropertyData[ i ][p_PropertyName]);*/
@@ -316,6 +323,11 @@ public _OnPlayerNearEntrance(playerid)
         g_PropertyData[ i ][p_PropertyExit_Y], g_PropertyData[ i ][p_PropertyExit_Z]) && \
         GetPlayerVirtualWorld( playerid ) == g_PropertyData[ i ][p_PropertyVwid])
         {
+            if(p_PropertyLocked == true)
+            {
+                SendClientMessage(playerid, -1, DETUTILS_TEXT_PROP_LOCK);
+            }
+
             SetPlayerVirtualWorld( playerid, g_PropertyData[ i ][p_PropertyVwid_OUT] );
             SetPlayerInterior( playerid, g_PropertyData[ i ][p_PropertyIntid_OUT] );
             
@@ -794,6 +806,38 @@ stock CreateCustomInterior(
 #endif
 
 // NORMAL CODE, MAKES SENSE:
+
+stock bool:IsPropertyLocked(propertyid)
+{
+    return g_PropertyData[propertyid][p_PropertyLocked];
+}
+
+stock void:TogglePropertyLocked(propertyid, bool:lock)
+{
+    if(lock == true)
+    {
+        g_PropertyData[propertyid][p_PropertyLocked] = true;
+    }
+    else if(lock == false)
+    {
+        g_PropertyData[propertyid][p_PropertyLocked] = false;
+    }
+}
+
+stock GetNearPropertyEntrance(playerid)
+{
+    for(new i; i < MAX_PROPERTIES; i++)
+    {
+        if( IsPlayerInRangeOfPoint( playerid, 3.0, g_PropertyData[ i ][p_PropertyEntrance_X], \
+        g_PropertyData[ i ][p_PropertyEntrance_Y], g_PropertyData[ i ][p_PropertyEntrance_Z]) \
+        && GetPlayerVirtualWorld( playerid ) == g_PropertyData[ i ][p_PropertyVwid_OUT] \
+        && !IsPlayerInAnyVehicle( playerid ))
+        {
+            return i;
+        }
+    }
+    return 0;
+}
 
 stock bool:IsPlayerInProperty(playerid)
 {

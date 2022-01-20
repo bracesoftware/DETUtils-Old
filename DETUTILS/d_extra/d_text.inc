@@ -16,6 +16,8 @@
 #define DETUTILS_TEXT_MAX_PROPS_REACH "Maximum number of created properties reached."
 #define DETUTILS_TEXT_PROPERTY_NAME "Property: %s"
 
+#define DETUTILS_TEXT_PROP_LOCK "SERVER: This property's door is locked."
+
 // d_commands
 
 #define DETUTILS_TEXT_UNK_PRX_FUNC "Prefix function name for command %s doesn't exist."
