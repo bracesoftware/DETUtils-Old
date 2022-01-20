@@ -84,6 +84,7 @@ public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid)
 
 - Debug states:
 
+- ``COMMAND_DEBUG_STATE_INVALID`` - invalid debug state, really rare to 'achieve' though
 - ``COMMAND_DEBUG_STATE_RECEIVED`` - command processor received command and command parameters
 - ``COMMAND_DEBUG_STATE_READY`` - command is ready to be performed
 - ``COMMAND_DEBUG_STATE_PERFORMED`` - command performed successfully
@@ -165,12 +166,12 @@ decl AdminCommand:admincheck(playerid,params[])
 ### Commands with custom prefix
 ------------------------------------------
 *d_commands* also arrive with brand new system with custom-prefixed commands.
-Create commands like those using two keywords and one extra parameter - fast and easy.
+Create commands like those using two keywords and one extra parameter - fast and easy. You can also use ``decl`` keyword.
 
 - Let's see how to do it:
 
 ```pawn
-prefixed command mycmd(playerid, params[], "!")
+prefixed command mycmd(Prefix:"!", playerid, params[])
 {
   SendClientMessage(playerid, -1, "This worked, %s.", ReturnPlayerName(playerid));
   return 1;
@@ -178,7 +179,7 @@ prefixed command mycmd(playerid, params[], "!")
 
 // ... or:
 
-decl PrefixedCommand:mycmd(playerid, params[], "!")
+decl PrefixedCommand:mycmd(Prefix:"!", playerid, params[])
 {
   SendClientMessage(playerid, -1, "This worked, %s.", ReturnPlayerName(playerid));
   return 1;
@@ -188,6 +189,35 @@ decl PrefixedCommand:mycmd(playerid, params[], "!")
 Now, whenever player sends ``!mycmd`` to chat, command will be executed (performed).
 
 **INFO**: To use custom-prefixed commands, you also need to use new built-in **/chatmode** command. This built-in command toggles the ability of a player to execute these commands.
+
+**WARNING:** Command's prefix can only contain 1 character!
+
+#### Creating prefixes as variables
+
+- That's also possible. Just use ``decl`` keyword and ``Prefix:`` tag in order to do that.
+
+```pawn
+decl Prefix:qmark = "?"; // Create a prefix called 'qmark', stands for 'Question Mark'.
+```
+- Now, instead of providing a prefix string directly - just provide prefix's name:
+
+```pawn
+decl PrefixedCommand:discord(Prefix:qmark, playerid, params[])
+{
+  SendClientMessage(playerid, -1, "Hi, %s - join discord.gg/samp", ReturnPlayerName(playerid));
+  return 1;
+}
+decl PrefixedCommand:mycmd(Prefix:qmark, playerid, params[])
+{
+  SendClientMessage(playerid, -1, "This worked, %s.", ReturnPlayerName(playerid));
+  return 1;
+}
+decl PrefixedCommand:forum(Prefix:qmark, playerid, params[])
+{
+  SendClientMessage(playerid, -1, "%s, check open.mp/discussion", ReturnPlayerName(playerid));
+  return 1;
+}
+```
 
 #### What's so-called chat mode thing?
 
