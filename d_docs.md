@@ -128,4 +128,4 @@ To join Discord server, [click here...](https://discord.gg/samp)
 - Incognito - streamer
 - Y_Less (y-less.com, github.com/y-less) - sscanf
 
-![image](img/d_samp_wordmark.png)
+
