@@ -199,6 +199,41 @@ enum ENUM_g_PlayerData
 
 new g_PlayerData[MAX_PLAYERS][ENUM_g_PlayerData];
 
+public OnPlayerSpawn(playerid)
+{
+    new Float:x,Float:y,Float:z;
+    GetPlayerPos(playerid, Float:x, Float:y, Float:z);
+
+    new Float:h;
+    GetPlayerHealth(playerid, Float:h);
+
+    g_PlayerData[playerid][Health] = h;
+    
+    g_PlayerData[playerid][Pos][0] = x;
+    g_PlayerData[playerid][Pos][1] = y;
+    g_PlayerData[playerid][Pos][2] = z;
+
+    if(funcidx("d_ac_onplayerspawn") != -1)
+    {
+        CallLocalFunction("d_ac_onplayerspawn", "i", playerid);
+    }
+    return 1;
+}
+
+#if defined _ALS_OnPlayerSpawn
+    
+    #undef OnPlayerSpawn
+
+#else
+    
+    #define _ALS_OnPlayerSpawn
+
+#endif
+
+#define OnPlayerSpawn d_ac_onplayerspawn
+
+forward d_ac_onplayerspawn(playerid);
+
 #if defined detutils_debug
 
 #if !defined DIALOG_ID_ACSTATS

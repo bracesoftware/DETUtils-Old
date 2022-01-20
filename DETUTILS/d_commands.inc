@@ -246,7 +246,7 @@ stock CallLocalCommand(const command[], const specifiers[], integer, const strin
         ;
 }
 
-static _g_ChatMode[MAX_PLAYERS];
+static Data_g_ChatMode[MAX_PLAYERS];
 
 stock CallRemoteCommand(const command[], const specifiers[], integer, const string[])
 {
@@ -337,6 +337,7 @@ stock CallLocalPrefixedCommand(const command[], const specifiers[], integer, con
 
 #endif
 
+#define COMMAND_DEBUG_STATE_INVALID -1
 #define COMMAND_DEBUG_STATE_RECEIVED 0
 #define COMMAND_DEBUG_STATE_READY 1
 #define COMMAND_DEBUG_STATE_PERFORMED 2
@@ -630,10 +631,124 @@ stock strgetfc(const string[])
 
 enum enum_PlayerCmdData
 {
-    PassedPrefix[1]
+    PassedPrefix[10]
 }
 
 new g_PlayerCmdData[MAX_PLAYERS][enum_PlayerCmdData];
+
+////////////////////////////////////////////////////
+
+public OnPlayerText(playerid, text[])
+{
+    if(Data_g_ChatMode[playerid] == 1)
+    {
+        if(funcidx("OnPrefixedCommandReceived") != -1)
+        {
+            CallLocalFunction("OnPrefixedCommandReceived", "is", playerid, text);
+        }
+        
+        new _CommandDebugFunc[32];
+
+        format(_CommandDebugFunc,
+            sizeof(_CommandDebugFunc), 
+            "OnPrefixedCommandStateChange");
+
+        if(funcidx(_CommandDebugFunc) != -1)
+        {
+            CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_RECEIVED);
+        }
+
+        new PrxFuncName[32], CmdFuncName[32], len;
+
+        format(PrxFuncName, sizeof PrxFuncName,
+            "prx_%s", text);
+    
+        strdel(PrxFuncName, 4, 5);
+
+        format(CmdFuncName, sizeof CmdFuncName,
+            "pc_%s", text);
+
+        strdel(CmdFuncName, 3, 4);
+
+        CallLocalFunction(PrxFuncName, "i", playerid);
+
+        #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opt :: PrxFuncName: %s / CmdFuncName: %s / Passed prefix: %s", 
+                PrxFuncName, CmdFuncName, g_PlayerCmdData[playerid][PassedPrefix]);
+        #endif
+
+        len = strlen(g_PlayerCmdData[playerid][PassedPrefix]);
+
+        if(len < 1)
+        {
+            if(funcidx(_CommandDebugFunc) != -1)
+            {
+                CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_INVALID);
+            }
+        }
+
+        if(g_PlayerCmdData[playerid][PassedPrefix][0] == text[0])
+        //if(strcmp(g_PlayerCmdData[playerid][PassedPrefix], text[0], false))
+        {
+            if(funcidx(_CommandDebugFunc) != -1)
+            {
+                CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_READY);
+            }
+
+            CallLocalFunction(CmdFuncName, "is", playerid, text);
+
+            if(funcidx("OnPrefixedCommandPerformed") != -1)
+            {
+                CallLocalFunction("OnPrefixedCommandPerformed", "isi", playerid, text, 1);
+            }
+
+            if(funcidx(_CommandDebugFunc) != -1)
+            {
+                CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
+            }
+        }
+        else
+        {
+            if(funcidx(_CommandDebugFunc) != -1)
+            {
+                CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
+            }
+
+            if(funcidx("OnPrefixedCommandPerformed") != -1)
+            {
+                return CallLocalFunction("OnPrefixedCommandPerformed", "isi", playerid, text, 0);
+            }
+        }
+    }
+    if(Data_g_ChatMode[playerid] == 0 && funcidx("a_cmd_OnPlayerText") != -1)
+    {
+        CallLocalFunction("a_cmd_OnPlayerText", "is", playerid, text);
+    }
+    return 1;
+}
+
+#if !defined MAX_PREFIX_LENGTH
+
+    #define MAX_PREFIX_LENGTH 10
+
+#endif
+
+#define pc_%0\32; pc_
+#define prx_%0\32; prx_
+#define cpr_%0\32; cpr_
+
+#define prefixed%2command%0(%4Prefix:%3,%1) \
+    prx_%0(playerid); public prx_%0(playerid){ strmid(g_PlayerCmdData[playerid][PassedPrefix], %3, 0, MAX_PREFIX_LENGTH, MAX_PREFIX_LENGTH); return MAX_PREFIX_LENGTH;}forward pc_%0(%1);public pc_%0(%1)
+
+#define @newk_PrefixedCommand:%0(%4Prefix:%3,%1) \
+    prx_%0(playerid); public prx_%0(playerid){ strmid(g_PlayerCmdData[playerid][PassedPrefix], %3, 0, MAX_PREFIX_LENGTH, MAX_PREFIX_LENGTH); return MAX_PREFIX_LENGTH;}forward pc_%0(%1);public pc_%0(%1)
+
+#define @newk_Prefix:%0=%1; \
+    stock cpr_%0[MAX_PREFIX_LENGTH]=%1;
+
+////////////////////////////////////////////////////
+
+#if defined detutils_complete_error_boom
 
 public OnPlayerText(playerid, text[])
 {
@@ -742,7 +857,7 @@ public OnPlayerText(playerid, text[])
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    if(_g_ChatMode[playerid] == 1)
+    if(Data_g_ChatMode[playerid] == 1)
     {
         if (funcidx("OnPrefixedCommandReceived") != -1 && !CallLocalFunction("OnPrefixedCommandReceived", 
             "is", 
@@ -907,7 +1022,7 @@ public OnPlayerText(playerid, text[])
             return 0;
         }
     }
-    if(_g_ChatMode[playerid] == 0)
+    if(Data_g_ChatMode[playerid] == 0)
     {
         if(funcidx("a_cmd_OnPlayerText") != -1)
         {
@@ -919,34 +1034,6 @@ public OnPlayerText(playerid, text[])
     }
     return 1;
 }
-
-////////////////////////////////////////////////////
-
-#if !defined MAX_PREFIX_LENGTH
-
-    #define MAX_PREFIX_LENGTH 1
-
-#endif
-
-#define pc_%0\32; pc_
-#define prx_%0\32; prx_
-#define cpr_%0\32; cpr_
-
-#define prefixed%2command%0(%4Prefix:%3,%1) \
-    prx_%0(playerid); public prx_%0(playerid){ strmid(g_PlayerCmdData[playerid][PassedPrefix], %3, 0, MAX_PREFIX_LENGTH, MAX_PREFIX_LENGTH); return MAX_PREFIX_LENGTH;}forward pc_%0(%1);public pc_%0(%1)
-    //prx_%0(playerid); public prx_%0(playerid){new p[MAX_PREFIX_LENGTH]; format(p,sizeof(p),%3); return p;}forward pc_%0(%1);public pc_%0(%1) 
-    //stock prx_%0(){return cpr_%3;}forward pc_%0(%1);public pc_%0(%1)
-    //stock prx_%0(){new p[1];format(p,sizeof(p),%3);return p;}forward pc_%0(%1);public pc_%0(%1)
-
-#define @newk_PrefixedCommand:%0(%4Prefix:%3,%1) \
-    prx_%0(playerid); public prx_%0(playerid){ strmid(g_PlayerCmdData[playerid][PassedPrefix], %3, 0, MAX_PREFIX_LENGTH, MAX_PREFIX_LENGTH); return MAX_PREFIX_LENGTH;}forward pc_%0(%1);public pc_%0(%1)
-
-#define @newk_Prefix:%0=%1; \
-    stock cpr_%0[MAX_PREFIX_LENGTH]=%1;
-
-////////////////////////////////////////////////////
-
-#if defined detutils_complete_error_boom
 
 public OnPlayerText(playerid, text[])
 {
@@ -1055,7 +1142,7 @@ public OnPlayerText(playerid, text[])
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    if(_g_ChatMode[playerid] == 1)
+    if(Data_g_ChatMode[playerid] == 1)
     {
         if (_IsOnCmdRValid && !CallLocalFunction("OnPrefixedCommandReceived", 
             "is", 
@@ -1208,7 +1295,7 @@ public OnPlayerText(playerid, text[])
             return 0;
         }
     }
-    if(_g_ChatMode[playerid] == 0)
+    if(Data_g_ChatMode[playerid] == 0)
     {
         if(funcidx("a_cmd_OnPlayerText") != -1)
         {
@@ -1243,16 +1330,16 @@ forward a_cmd_OnPlayerText(playerid, text[]);
 
 command chatmode(playerid, params[])
 {
-    if(_g_ChatMode[playerid] == 0)
+    if(Data_g_ChatMode[playerid] == 0)
     {
         //SendClientMessage(playerid, -1, "SERVER: Chat mode switched to custom-prefixed commands mode.");
-        _g_ChatMode[playerid] = 1;
+        Data_g_ChatMode[playerid] = 1;
         return 1;
     }
-    else if(_g_ChatMode[playerid] == 1)
+    else if(Data_g_ChatMode[playerid] == 1)
     {
         //SendClientMessage(playerid, -1, "SERVER: Chat mode switched to plain-text messages mode.");
-        _g_ChatMode[playerid] = 0;
+        Data_g_ChatMode[playerid] = 0;
         return 1;
     }
     return 0;
@@ -1262,16 +1349,16 @@ command chatmode(playerid, params[])
 
 COMMAND__ chatmode(playerid, params[])
 {
-    if(_g_ChatMode[playerid] == 0)
+    if(Data_g_ChatMode[playerid] == 0)
     {
         //SendClientMessage(playerid, -1, "SERVER: Chat mode switched to custom-prefixed commands mode.");
-        _g_ChatMode[playerid] = 1;
+        Data_g_ChatMode[playerid] = 1;
         return 1;
     }
-    else if(_g_ChatMode[playerid] == 1)
+    else if(Data_g_ChatMode[playerid] == 1)
     {
         //SendClientMessage(playerid, -1, "SERVER: Chat mode switched to plain-text messages mode.");
-        _g_ChatMode[playerid] = 0;
+        Data_g_ChatMode[playerid] = 0;
         return 1;
     }
     return 0;
@@ -1284,16 +1371,16 @@ COMMAND__ chatmode(playerid, params[])
 forward cmd_chatmode(playerid, params[]); 
 public cmd_chatmode(playerid, params[])
 {
-    if(_g_ChatMode[playerid] == 0)
+    if(Data_g_ChatMode[playerid] == 0)
     {
         SendClientMessage(playerid, -1, DETUTILS_TEXT_CHATMODE_PRX);
-        _g_ChatMode[playerid] = 1;
+        Data_g_ChatMode[playerid] = 1;
         return 1;
     }
-    else if(_g_ChatMode[playerid] == 1)
+    else if(Data_g_ChatMode[playerid] == 1)
     {
         SendClientMessage(playerid, -1, DETUTILS_TEXT_CHATMODE_MSG);
-        _g_ChatMode[playerid] = 0;
+        Data_g_ChatMode[playerid] = 0;
         return 1;
     }
     return 0;
@@ -1301,7 +1388,7 @@ public cmd_chatmode(playerid, params[])
 
 static stock _ClearChatModeData(playerid)
 {
-    return _g_ChatMode[playerid] = 0;
+    return Data_g_ChatMode[playerid] = 0;
 }
 
 #if defined _ALS_OnPlayerDisconnect
@@ -1355,11 +1442,11 @@ forward a_cmd_OnPlayerDisconnect(playerid, reason);
 
 stock GetPlayerChatMode(playerid)
 {
-    if(_g_ChatMode[playerid] == CHAT_MODE_PLAIN_TEXT_MESSAGES)
+    if(Data_g_ChatMode[playerid] == CHAT_MODE_PLAIN_TEXT_MESSAGES)
     {
         return CHAT_MODE_PLAIN_TEXT_MESSAGES;
     }
-    else if(_g_ChatMode[playerid] == CHAT_MODE_PREFIXED_COMMANDS)
+    else if(Data_g_ChatMode[playerid] == CHAT_MODE_PREFIXED_COMMANDS)
     {
         return CHAT_MODE_PREFIXED_COMMANDS;
     }
@@ -1370,10 +1457,10 @@ stock void:SetPlayerChatMode(playerid, chatmode)
 {
     if(chatmode == CHAT_MODE_PLAIN_TEXT_MESSAGES)
     {
-        _g_ChatMode[playerid] = 0;
+        Data_g_ChatMode[playerid] = 0;
     }
     else if(chatmode == CHAT_MODE_PREFIXED_COMMANDS)
     {
-        _g_ChatMode[playerid] = 1;
+        Data_g_ChatMode[playerid] = 1;
     }
 }
