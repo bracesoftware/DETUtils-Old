@@ -74,7 +74,7 @@ new d_fade_timer[MAX_PLAYERS];
 
 public OnPlayerConnect(playerid)
 {
-    d_FadeTextDraw[ playerid ] = CreatePlayerTextDraw( playerid, -5.000, -2.000, "~n~");
+    d_FadeTextDraw[playerid] = CreatePlayerTextDraw( playerid, -5.000, -2.000, "usebox");
     PlayerTextDrawFont(playerid, d_FadeTextDraw[ playerid ], 3);
     PlayerTextDrawUseBox(playerid, d_FadeTextDraw[ playerid ], 1);
     PlayerTextDrawLetterSize(playerid, d_FadeTextDraw[ playerid ], 0.500000, 50.300003);
