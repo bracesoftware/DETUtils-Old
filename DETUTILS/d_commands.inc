@@ -455,9 +455,11 @@ public OnPlayerCommandText(playerid, cmdtext[])
     {
         _ClassicFunctionName[position-1] = tolower(cmdtext[position]);
     }
+
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - opct :: cmdtext[] validated.");
     #endif
+    
     format(_CommandDebugFunc, sizeof(_CommandDebugFunc), "%s", "OnCommandStateChange");
     format(_ClassicFunctionName, sizeof(_ClassicFunctionName), "cmd_%s", _ClassicFunctionName);
 
@@ -670,6 +672,28 @@ public OnPlayerText(playerid, text[])
 
         strdel(CmdFuncName, 3, 4);
 
+        #if defined detutils_complete_error_boom
+        for(i = 0; i < MAX_FUNC_NAME; i++)
+        {
+            if(strcmp(PrxFuncName[i], " ", false))
+            {
+                nullpos = i;
+                break;
+            }
+        }
+
+        size = sizeof PrxFuncName;
+
+        strmid(params, PrxFuncName, nullpos, 32, 32);
+
+        strdel(PrxFuncName, nullpos, size);
+
+        size = sizeof CmdFuncName;
+
+        nullpos = (nullpos - 1);
+
+        strdel(CmdFuncName, nullpos, size);
+        #endif
         CallLocalFunction(PrxFuncName, "i", playerid);
 
         #if defined detutils_debug
@@ -735,7 +759,6 @@ public OnPlayerText(playerid, text[])
 
 #define pc_%0\32; pc_
 #define prx_%0\32; prx_
-#define cpr_%0\32; cpr_
 
 #define prefixed%2command%0(%4Prefix:%3,%1) \
     prx_%0(playerid); public prx_%0(playerid){ strmid(g_PlayerCmdData[playerid][PassedPrefix], %3, 0, MAX_PREFIX_LENGTH, MAX_PREFIX_LENGTH); return MAX_PREFIX_LENGTH;}forward pc_%0(%1);public pc_%0(%1)
@@ -744,7 +767,7 @@ public OnPlayerText(playerid, text[])
     prx_%0(playerid); public prx_%0(playerid){ strmid(g_PlayerCmdData[playerid][PassedPrefix], %3, 0, MAX_PREFIX_LENGTH, MAX_PREFIX_LENGTH); return MAX_PREFIX_LENGTH;}forward pc_%0(%1);public pc_%0(%1)
 
 #define @newk_Prefix:%0=%1; \
-    stock cpr_%0[MAX_PREFIX_LENGTH]=%1;
+    stock %0[MAX_PREFIX_LENGTH]=%1;
 
 ////////////////////////////////////////////////////
 
