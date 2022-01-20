@@ -204,17 +204,17 @@
                                                                                       
 */
 
-static stock g_CaseSensivity = 0;
+DETUTILS_DECL__ var:g_CaseSensivity<> = 0;
 
 stock ToggleCommandCaseSensivity(bool:toggle)
 {
     if(toggle == true)
     {
-        g_CaseSensivity = 1;
+        DETUTILS@g_CaseSensivity = 1;
     }
     else if(toggle == false)
     {
-        g_CaseSensivity = 0;
+        DETUTILS@g_CaseSensivity = 0;
     }
     return 1;
 }

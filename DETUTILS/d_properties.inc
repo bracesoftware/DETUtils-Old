@@ -143,11 +143,11 @@ static _Announcement(playerid, const _Message[])
 
     PlayerTextDrawShow(playerid,g_AnnouncementString[ playerid ]);
 
-    g_HideAnnouncement[playerid] = _SetTimer("hideannouncement", 4000, false, "i", playerid);
+    g_HideAnnouncement[playerid] = _SetTimer("hideannc", 4000, false, "i", playerid);
     return 1;
 }
 
-util function:hideannouncement(playerid)
+DETUTILS_DECL__ func:hideannc(playerid)
 {
     TextDrawHideForPlayer(playerid, g_AnnouncementUsebox);
     PlayerTextDrawHide(playerid, g_AnnouncementString[playerid]);
@@ -406,7 +406,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
 forward aint_ALS_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 
-util function:ResetUpdateBool(playerid)
+DETUTILS_DECL__ func:ResetUpdateBool(playerid)
 {
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - keystate :: util function 'ResetUpdateBool' called successfully.");

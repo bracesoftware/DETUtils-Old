@@ -72,7 +72,16 @@ stock _RemID;
 
 #define MAX_FUNC_NAME (32)
 
-#define util%3function:%0(%1) @_%0(%1); public @_%0(%1)
+////////////////////////////////////////////////////////////////////
+
+#define @new_%0\32; @new_
+
+#define DETUTILS_DECL__ @new_
+
+#define @new_func:%0(%1) DETUTILS@%0(%1); public DETUTILS@%0(%1)
+#define @new_var:%0<%1> stock %1DETUTILS@%0
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 
 new PlayerText:g_AnnouncementString[MAX_PLAYERS];
 new Text:g_AnnouncementUsebox;
@@ -80,14 +89,14 @@ new Text:g_AnnouncementUsebox;
 stock _CallFunction(const func[], const spec[], id)
 {
     new funcname[100];
-    format(funcname, 100, "@_%s", func);
+    format(funcname, 100, "DETUTILS@%s", func);
     return CallLocalFunction(funcname, spec, id);
 }
 
 stock _SetTimer(const func[], delay, bool:a, const spec[], id)
 {
     new funcname[100];
-    format(funcname, 100, "@_%s", func);
+    format(funcname, 100, "DETUTILS@%s", func);
     return SetTimerEx(funcname, delay, a, spec, id);
 }
 
