@@ -229,6 +229,20 @@ if(IsPlayerInProperty(playerid)) return SendClientMessage(playerid, -1, "You're 
 
 - Used to get property's ID by specifying its name. Usage example shown on **``public`` OnPropertyActionPerformed** documentation.
 
+#### IsPropertyLocked
+
+- Used to check if is certain property locked.
+
+```pawn
+if(IsPropertyLocked(propertyid)) { SendClientMessage(playerid, -1, "Sorry, %s! This is locked.", ReturnPlayerName(playerid)); }
+```
+
+#### TogglePropertyLocked
+
+- Used to toggle property's ability to enter it.
+
+#### GetNearPropertyEntrance
+
 ## Messages from creator
 
 ### Warnings
