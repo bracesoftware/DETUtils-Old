@@ -8,7 +8,7 @@ You do it using ``decl`` keyword and ``IntColour:`` or ``StrColour:`` tags - tag
 
 Code:
 ```pawn
-decl IntColour:gray = 223435231; // Not an actual colour, just an example integer.
+decl Colour:gray = 223435231; // Not an actual colour, just an example integer.
 
 // ... or:
 
@@ -18,18 +18,18 @@ decl StrColour:gray[20] = "{B9C9BF}"; // This is an actual colour code I found t
 ... or:
 
 ```pawn
-decl IntColor:gray = 223435231; // Not an actual colour, just an example integer.
+decl Color:gray = 223435231; // Not an actual colour, just an example integer.
 
 // ... or:
 
 decl StrColor:gray[20] = "{B9C9BF}"; // This is an actual colour code I found this morning... xD
 ```
 
-- After declaring a colour, you need to use it. You do it using **ReturnInt(Str)Colour**.
+- After declaring a colour, you need to use it. You do it using **Return(Str)Colour**.
 
 Code:
 ```pawn
-SendClientMessage(playerid, ReturnIntColour(gray), "I am gray-coloured text.");
+SendClientMessage(playerid, ReturnColour(gray), "I am gray-coloured text.");
 
 // ... or:
 
@@ -38,7 +38,7 @@ SendClientMessage(playerid, -1, "%sHello, %s!", ReturnStrColour(gray), ReturnPla
 
 ## API (programming interface)
 
-- Everything has been shown above. Only what I forgot to say that I made aliases for **ReturnInt(Str)Colour** functions and they're *ReturnInt(Str)* **Color**. There are also full naming versions - ReturnIntegerColour(Color) and ReturnStringColour(Color).
+- Everything has been shown above. Only what I forgot to say that I made aliases for **Return(Str)Colour** functions and they're *Return(Str)* **Color**.
 
 ## Messages from creator
 
