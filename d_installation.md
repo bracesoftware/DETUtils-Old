@@ -19,3 +19,10 @@ Let's find out.
  ### Manual install
  ------------------------------------------
  Download all files from *master* branch and extract them to your *pawno\includes* folder.
+
+## How to use?
+
+- Include **d_samp** in your code and begin with using the library:
+```pawn
+#include <DETUTILS\d_samp>
+```
