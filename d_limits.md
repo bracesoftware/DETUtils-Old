@@ -11,7 +11,7 @@
 Check [open.mp official resources site](https://open.mp/docs/scripting/resources/limits) for more information about SA:MP limits!
 
 # ``d_samp.inc`` includes
-
+Check all limits below:
 ## d_anticheat.inc
 
 - No limits at the moment.
