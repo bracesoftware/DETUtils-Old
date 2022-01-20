@@ -24,6 +24,12 @@
 
 #endif
 
+#if defined detutils_complete_error_boom
+
+ 	#undef detutils_complete_error_boom
+
+#endif
+
 #define d_samp_included
 
 #include "d_properties"

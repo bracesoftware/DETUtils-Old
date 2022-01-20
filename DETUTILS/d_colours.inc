@@ -48,44 +48,44 @@
 #define COLOUR_ COLOR_
 
 #define COLOR_HEY_WHITE         0xFFFFFFFF
-#define COLOR_HEX_GREY          0xAFAFAFAA
-#define COLOR_HEX_GREEN         0x33AA33AA
-#define COLOR_HEX_RED           0xAA3333AA
-#define COLOR_HEX_YELLOW        0xFFFF00AA
-#define COLOR_HEX_WHITE         0xFFFFFFAA
-#define COLOR_HEX_BLUE          0x0000BBAA
-#define COLOR_HEX_LIGHTBLUE     0x33CCFFAA
-#define COLOR_HEX_ORANGE        0xFF9900AA
-#define COLOR_HEX_RED           0xAA3333AA
-#define COLOR_HEX_LIME          0x10F441AA
-#define COLOR_HEX_MAGENTA       0xFF00FFFF
-#define COLOR_HEX_NAVY          0x000080AA
-#define COLOR_HEX_AQUA          0xF0F8FFAA
-#define COLOR_HEX_CRIMSON       0xDC143CAA
-#define COLOR_HEX_FLBLUE        0x6495EDAA
-#define COLOR_HEX_BISQUE        0xFFE4C4AA
-#define COLOR_HEX_BLACK         0x000000AA
-#define COLOR_HEX_CHARTREUSE    0x7FFF00AA
-#define COLOR_HEX_BROWN         0XA52A2AAA
-#define COLOR_HEX_CORAL         0xFF7F50AA
-#define COLOR_HEX_GOLD          0xB8860BAA
-#define COLOR_HEX_GREENYELLOW   0xADFF2FAA
-#define COLOR_HEX_INDIGO        0x4B00B0AA
-#define COLOR_HEX_IVORY         0xFFFF82AA
-#define COLOR_HEX_LAWNGREEN     0x7CFC00AA
-#define COLOR_HEX_SEAGREEN      0x20B2AAAA
-#define COLOR_HEX_LIMEGREEN     0x32CD32AA 
-#define COLOR_HEX_MIDNIGHTBLUE  0X191970AA
-#define COLOR_HEX_MAROON        0x800000AA
-#define COLOR_HEX_OLIVE         0x808000AA
-#define COLOR_HEX_ORANGERED     0xFF4500AA
-#define COLOR_HEX_PINK          0xFFC0CBAA 
-#define COLOR_HEX_SEAGREEN2     0x2E8B57AA
-#define COLOR_HEX_SPRINGGREEN   0x00FF7FAA
-#define COLOR_HEX_LIGHTRED      0xFF6347AA
-#define COLOR_HEX_YELLOWGREEN   0x9ACD32AA 
-#define COLOR_HEX_MEDIUMAQUA    0x83BFBFAA
-#define COLOR_HEX_MEDIUMMAGENTA 0x8B008BAA 
+#define COLOR_GREY          0xAFAFAFAA
+#define COLOR_GREEN         0x33AA33AA
+#define COLOR_RED           0xAA3333AA
+#define COLOR_YELLOW        0xFFFF00AA
+#define COLOR_WHITE         0xFFFFFFAA
+#define COLOR_BLUE          0x0000BBAA
+#define COLOR_LIGHTBLUE     0x33CCFFAA
+#define COLOR_ORANGE        0xFF9900AA
+#define COLOR_RED           0xAA3333AA
+#define COLOR_LIME          0x10F441AA
+#define COLOR_MAGENTA       0xFF00FFFF
+#define COLOR_NAVY          0x000080AA
+#define COLOR_AQUA          0xF0F8FFAA
+#define COLOR_CRIMSON       0xDC143CAA
+#define COLOR_FLBLUE        0x6495EDAA
+#define COLOR_BISQUE        0xFFE4C4AA
+#define COLOR_BLACK         0x000000AA
+#define COLOR_CHARTREUSE    0x7FFF00AA
+#define COLOR_BROWN         0XA52A2AAA
+#define COLOR_CORAL         0xFF7F50AA
+#define COLOR_GOLD          0xB8860BAA
+#define COLOR_GREENYELLOW   0xADFF2FAA
+#define COLOR_INDIGO        0x4B00B0AA
+#define COLOR_IVORY         0xFFFF82AA
+#define COLOR_LAWNGREEN     0x7CFC00AA
+#define COLOR_SEAGREEN      0x20B2AAAA
+#define COLOR_LIMEGREEN     0x32CD32AA 
+#define COLOR_MIDNIGHTBLUE  0X191970AA
+#define COLOR_MAROON        0x800000AA
+#define COLOR_OLIVE         0x808000AA
+#define COLOR_ORANGERED     0xFF4500AA
+#define COLOR_PINK          0xFFC0CBAA 
+#define COLOR_SEAGREEN2     0x2E8B57AA
+#define COLOR_SPRINGGREEN   0x00FF7FAA
+#define COLOR_LIGHTRED      0xFF6347AA
+#define COLOR_YELLOWGREEN   0x9ACD32AA 
+#define COLOR_MEDIUMAQUA    0x83BFBFAA
+#define COLOR_MEDIUMMAGENTA 0x8B008BAA 
 
 // Limits:
 
@@ -106,7 +106,7 @@ static stock _DeclaredColours;
 
 // Integer value colour functions:
 
-#define @newk_IntColour:%0=%1; \
+#define @newk_Colour:%0=%1; \
     new intcol_%0 = %1; 
 
 #if defined detutils_complete_error_boom
@@ -115,7 +115,7 @@ static stock _DeclaredColours;
 
 #endif
 
-#define @newk_IntColor:%0=%1; \
+#define @newk_Color:%0=%1; \
     new intcol_%0 = %1;
 
 #if defined detutils_complete_error_boom
@@ -124,13 +124,17 @@ static stock _DeclaredColours;
 
 #endif
 
-#define ReturnIntColour(%0) intcol_%0
+#define ReturnColour(%0) intcol_%0
 
-#define ReturnIntColor ReturnIntColour
+#define ReturnColor ReturnColour
+
+#if defined detutils_complete_error_boom
 
 #define ReturnIntegerColor ReturnIntColour
 
 #define ReturnIntegerColour ReturnIntColour
+
+#endif
 
 // String value colour functions:
 
