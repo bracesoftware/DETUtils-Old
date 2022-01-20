@@ -3,7 +3,11 @@
 //#define detutils_sscanf
 
 #include <a_samp>
-#include <sscanf2>
+#include <sscanf2>/*
+#include <YSI_Coding\y_timers>
+#include <YSI_Coding\y_hooks>
+#define YSI_COMPATIBILITY_MODE
+#include "DETUTILS_DENTIST\y_hooks_timers"*/
 //#include <a_fixes>
 #include "DETUTILS\d_samp"
 
@@ -15,11 +19,36 @@ keyword  public Func()
 }
 
 keyword   forward  Function(a, const b[], Float:c);
+/*
+task Test[1000]()
+{
+    print("task - Hi");
+    return 1;
+}
 
+HOOK_TASK__ Test()
+{
+    print("task Hook - Hi");
+    return 1;
+}
+
+timer Test2[1000]() 
+{
+    print("timer - Hi");
+    return 1;
+}
+
+HOOK_TIMER__ Test2()
+{
+    print("timer Hook - Hi");
+    return 1;
+}
+*/
 // Actual code:
 
 main()
 {
+    //repeat Test2();
     print("Gamemode loaded.");
 }
 /////////////////////////////////////////////////////////////
@@ -31,6 +60,21 @@ public OnPlayerSpawn(playerid)
     GivePlayerMoney(playerid, 10364);
     SetPlayerSkin(playerid, 70);
     GivePlayerWeapon(playerid, 24, 999);
+    return 1;
+}
+
+public OnPlayerStateChange(playerid, newstate, oldstate)
+{
+    if(newstate == PLAYER_STATE_DRIVER)
+    {
+        SetPlayerVehiclePos(playerid, 825.6589,-1614.8202,13.5469);
+    }
+    return 1;
+}
+
+public OnPlayerUpdate(playerid)
+{
+    //SendClientMessage(playerid, -1, "Your speed is %i km/h.", d_ac_GetSpeed(playerid));
     return 1;
 }
 /////////////////////////////////////////////////////////////
@@ -102,7 +146,7 @@ alias command tag(playerid,params[]) =tagtest;
 /////////////////////////////////////////////////////////////
 command sayhi (playerid,params[])
 {
-    new parameters[128], idx;
+    /*new parameters[128], idx;
 
     new action; 
 
@@ -110,7 +154,9 @@ command sayhi (playerid,params[])
 
     if(strlen(parameters) == 0) return SendClientMessage(playerid, 0xFFFFFFFF, "Usage: /sayhi <action>");
 
-    action = strval(parameters);
+    action = strval(parameters);*/
+    new action;
+    if(sscanf(params, "i", action)) return SendClientMessage(playerid, 0xFFFFFFFF, "Usage: /sayhi <action>");
 
     if(action == 1)
     {
@@ -217,13 +263,15 @@ public OnPlayerCheatDetected(playerid, cheattype)
     return 1;
 }
 /////////////////////////////////////////////////////////////
-prefixed command test (playerid, params[], "&")
+decl Prefix:shitprefix = "&";
+
+prefixed command test (Prefix:"&",playerid, params[])
 {
     SendClientMessage(playerid, -1, "Amazing %s, this custom-prefixed command worked.", _ReturnPlayerName(playerid));
     return 1;
 }
 /////////////////////////////////////////////////////////////
-prefixed command TEST(playerid, params[], "&")
+prefixed command TEST(Prefix:"&",playerid, params[])
 {
     SendClientMessage(playerid, -1, "WORKS!");
     return 1;
@@ -259,21 +307,54 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
     return 1;
 }
 /////////////////////////////////////////////////////////////
-prefixed command dear (playerid, params[], "@")
+decl Prefix:aletter = "@";
+decl Prefix: hashtag = "#" ;
+
+decl Command:cson(playerid, params[])
+{
+    ToggleCommandCaseSensivity(true);
+    SendClientMessage(playerid, -1, "%s turned command case-sensivity on.", ReturnPlayerName(playerid));
+    return 1;
+}
+
+decl Command:csoff(playerid, params[])
+{
+    ToggleCommandCaseSensivity(false);
+    SendClientMessage(playerid, -1, "%s turned command case-sensivity off.", ReturnPlayerName(playerid));
+    return 1;
+}
+prefixed command dear ( Prefix: aletter, playerid, params[])
 {
     SendClientMessage(playerid, -1, "%s said hi.", _ReturnPlayerName(playerid));
     return 1;
 }
 /////////////////////////////////////////////////////////////
-prefixed command hi (playerid, params[], "#")
+prefixed command hi (Prefix:"#", playerid, params[])
 {
     SendClientMessage(playerid, -1, "Hi man");
     return 1;
 }
 /////////////////////////////////////////////////////////////
-decl PrefixedCommand:skal(playerid, params[], "$")
+decl Prefix:dollar = "$"; 
+decl PrefixedCommand:skal(Prefix:"$", playerid, params[])
 {
     SendClientMessage(playerid, -1, "Cheers, %s!", ReturnPlayerName(playerid));
+    return 1;
+}
+decl Prefix:plus = "+";
+decl PrefixedCommand:sscanf(Prefix: "+",playerid, params[]) 
+{
+    new action;
+    if(sscanf(params, "i", action)) return SendClientMessage(playerid, 0xFFFFFFFF, "Usage: +sscanf <action>");
+
+    if(action == 1)
+    {
+        SendClientMessage(playerid, -1, "Hi, %s.", _ReturnPlayerName(playerid));
+    }
+    else if(action != 1)
+    {
+        SendClientMessage(playerid, -1, "No HI for you!");
+    }
     return 1;
 }
 /////////////////////////////////////////////////////////////
@@ -305,8 +386,10 @@ decl RoleCommand:ao(playerid, params[], AdminRole2)
 /////////////////////////////////////////////////////////////
 public OnGameModeInit()
 {
-    DisableDefaultInteriors();
-    CreateCustomInteriorEx("Bank", 811.1299,-1616.0647,13.5469, 644.6613,-1496.7572,14.8386, 0,0,0,0);
+    UsePlayerPedAnims();
+    DisableDefaultProperties();
+    CreatePropertyEntrance("24/7 Market", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_MARKET_247_1);
+    CreatePropertyEntrance("Your Interior", 825.6589,-1614.8202,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
     CreateDroppedGun(30,999,811.1299,-1616.0647,13.5469);
     return 1;
 }
@@ -325,41 +408,41 @@ public OnPlayerClientCheckReceived(playerid)
     return 1;
 }
 /////////////////////////////////////////////////////////////
-public OnInteriorActionPerformed(playerid, interiorid, actionid)
+public OnPropertyActionPerformed(playerid, propertyid, actionid)
 {
     new string[256];
-    if(actionid == INTERIOR_ACTION_ENTER)
+    if(actionid == PROPERTY_ACTION_ENTER)
     {
-        format(string, 256, "%sYou entered %s, %s. Interior id: %i [%i]", 
+        format(string, 256, "%sYou entered %s, %s. Property id: %i [%i]", 
             ReturnStringColour(g_GrayColour),
-            GetInteriorName(interiorid),
-            _ReturnPlayerName(playerid), 
-            GetInteriorIDByName(GetInteriorName(interiorid)),
-            interiorid);
+            GetPropertyName(propertyid),
+            ReturnPlayerName(playerid), 
+            GetPropertyIDByName(g_PropertyData[propertyid][p_PropertyName]), //GetPropertyIDByName(GetPropertyName(propertyid)), // to ensure this also works
+            propertyid);
         SendClientMessage(playerid, -1, string);
         return 1;
     }
-    else if(actionid == INTERIOR_ACTION_EXIT)
+    else if(actionid == PROPERTY_ACTION_EXIT)
     {
-        format(string, 256, "%sYou exited %s, %s. Interior id: %i [%i]", 
+        format(string, 256, "%sYou exited %s, %s. Property id: %i [%i]", 
             ReturnStringColour(g_GrayColour),
-            GetInteriorName(interiorid),
-            _ReturnPlayerName(playerid), 
-            GetInteriorIDByName(GetInteriorName(interiorid)),
-            interiorid);
+            GetPropertyName(propertyid),
+            ReturnPlayerName(playerid), 
+            GetPropertyIDByName(GetPropertyName(propertyid)),
+            propertyid);
         SendClientMessage(playerid, -1, string);
         return 1;
     }
     return 0;
 }
 /////////////////////////////////////////////////////////////
-public OnCustomInteriorCreated(customintid)
+public OnPropertyCreated(propertyid)
 {
-    printf("Interior created! ID: %i", customintid);
+    printf("Property created! ID: %i", propertyid);
     return 1;
 }
 /////////////////////////////////////////////////////////////
-public OnPlayerEnterInterior(playerid)
+public OnPlayerEnterProperty(playerid)
 {
   new message[256];
   format(message, 256, "%s opens the door and enters the object.", ReturnPlayerName(playerid));
@@ -367,7 +450,7 @@ public OnPlayerEnterInterior(playerid)
   return 1;
 }
 /////////////////////////////////////////////////////////////
-public OnPlayerExitInterior(playerid)
+public OnPlayerExitProperty(playerid)
 {
   new message[256];
   format(message, 256, "%s opens the door and leaves the place.", ReturnPlayerName(playerid));
