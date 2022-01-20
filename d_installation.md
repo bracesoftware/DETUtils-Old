@@ -26,3 +26,4 @@ Let's find out.
 ```pawn
 #include <DETUTILS\d_samp>
 ```
+- You can read the full documentation in order to understand the library and its components better.
