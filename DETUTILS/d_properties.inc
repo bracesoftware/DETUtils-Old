@@ -84,6 +84,9 @@ new _EntranceTitleShown[MAX_PLAYERS];
 
 // Interior IDs:
 
+#define DETUTILS_PROP_PARAMS__(%0,%1,%2,%3); \
+    g_PropertyData[g_PropertyID][p_PropertyIntid] = %3;g_PropertyData[g_PropertyID][p_PropertyVwid] = %3;_eInteriorid = %3; _eVirtualWorldid = %3;g_PropertyData[g_PropertyID][p_PropertyExit_X] = %0;g_PropertyData[g_PropertyID][p_PropertyExit_Y] = %1;g_PropertyData[g_PropertyID][p_PropertyExit_Z] = %3;
+
 #define INTERIOR_CUSTOM         -1
 #define INTERIOR_MARKET_247_1    0
 #define INTERIOR_MARKET_247_2    1
@@ -631,6 +634,26 @@ stock CreatePropertyEntrance(
             g_PropertyData[g_PropertyID][p_PropertyExit_X] = -25.884498;
             g_PropertyData[g_PropertyID][p_PropertyExit_Y] = -185.868988;
             g_PropertyData[g_PropertyID][p_PropertyExit_Z] = 1003.546875;
+        }
+        if(Interior == INTERIOR_MARKET_247_2)
+        {
+            DETUTILS_PROP_PARAMS__(6.091179,-29.271898,1003.549438,10);
+        }
+        if(Interior == INTERIOR_MARKET_247_3)
+        {
+            DETUTILS_PROP_PARAMS__(-30.946699,-89.609596,1003.546875,18);
+        }
+        if(Interior == INTERIOR_MARKET_247_4)
+        {
+            DETUTILS_PROP_PARAMS__(-25.132598,-139.066986,1003.546875,16);
+        }
+        if(Interior == INTERIOR_MARKET_247_5)
+        {
+            DETUTILS_PROP_PARAMS__(-27.312299,-29.277599,1003.557250,4);
+        }
+        if(Interior == INTERIOR_MARKET_247_6)
+        {
+            DETUTILS_PROP_PARAMS__(-26.691598,-55.714897,1003.546875,6);
         }
     }
 
