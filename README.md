@@ -1,6 +1,5 @@
 # SA-MP-DETUtils
-- SA:MP - DEntisT's Utilities | Fast and easy ways to create with actual Pawn syntax, provides SA:MP Anti-Cheat and way more stuff.
-
+- Addition to SA:MP Standard Scripting Library with new stuff, anti-cheat system and many more functions!
 # Documentation (wiki)
 - To find understanding in this - read the documentation:
 [Read docs...](d_docs.md)
