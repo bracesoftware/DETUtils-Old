@@ -4,6 +4,8 @@ SA:MP Map Editor - edit San Andreas yourself in the game
 
 # How to start to use?
 
+- Look at examples below.
+
 # API (programming interface)
 
 - There are only few functions though. But really important for the system to work, also are really efficient in commands.
@@ -39,4 +41,34 @@ decl Command:labeloff(playerid, params[])
 
 ## Warnings
 
+- **d_mapeditor** contains dialog ID definitions. 
+Code:
+```pawn
+#if !defined DETUTILS_DIALOG_MAPEDITOR
+
+#define DETUTILS_DIALOG_MAPEDITOR 1
+
+#endif
+
+#if !defined DETUTILS_DIALOG_MAPEDIT_CREATE
+
+#define DETUTILS_DIALOG_MAPEDIT_CREATE 2
+
+#endif
+
+#if !defined DETUTILS_DIALOG_MAPEDIT_DSTRY
+
+#define DETUTILS_DIALOG_MAPEDIT_DSTRY 3
+
+#endif
+
+#if !defined DETUTILS_DIALOG_MAPEDIT_EDIT
+
+#define DETUTILS_DIALOG_MAPEDIT_EDIT 4
+
+#endif
+```
+- They can be pre-defined before including the library so the IDs don't mix.
 ## Notes
+
+- This is in beta stage, please, if you find any issues - report them.
