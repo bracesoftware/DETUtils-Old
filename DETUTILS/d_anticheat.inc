@@ -62,6 +62,7 @@ new gAntiCheatTimer;
 #define CHEAT_TYPE_HEALTH 4
 #define CHEAT_TYPE_ARMOUR 5
 #define CHEAT_TYPE_SPEEDHACK 6
+#define CHEAT_TYPE_DIALOG 7
 
 // Functions:
 
@@ -80,6 +81,7 @@ public detutils_cheatcheck()
             CheckPlayerArmour(i);
             CheckPlayerHealth(i);
             CheckPlayerSpeed(i);
+            CheckPlayerDialog(i);
         }
     }
     return 1;
@@ -194,7 +196,9 @@ enum ENUM_g_PlayerData
     bool:UsingTPHack,
     Ping,
     Float:Health,
-    Float:Armour
+    Float:Armour,
+    Dialog,
+    bool:UsingDialogHack
 }
 
 new g_PlayerData[MAX_PLAYERS][ENUM_g_PlayerData];
@@ -328,6 +332,62 @@ public OnPlayerDisconnect(playerid, reason)
 #define OnPlayerDisconnect a_anticheat_Onpds
 
 forward a_anticheat_Onpds(playerid, reason);
+
+// DIALOG ANTI-CHEAT:
+
+stock d_ac_ShowPlayerDialog(playerid, dialogid, style, const caption[], const info[], const button1[], const button2[])
+{
+    ShowPlayerDialog(playerid, dialogid, style, caption, info, button1, button2);
+    g_PlayerData[playerid][Dialog] = dialogid;
+    return 1;
+}
+
+stock CheckPlayerDialog(playerid)
+{
+    anticheat_system_check(CheckPlayerDialog);
+    
+    if(g_PlayerData[playerid][UsingDialogHack] == true)
+    {
+        if(funcidx("OnPlayerCheatDetected") != -1)
+        {
+            CallLocalFunction("OnPlayerCheatDetected", "ii", playerid, CHEAT_TYPE_DIALOG);
+            return 1;
+        }
+    }
+    return 0;
+}
+
+#if defined _ALS_ShowPlayerDialog
+    #undef ShowPlayerDialog
+#else
+    #define _ALS_ShowPlayerDialog
+#endif
+
+#define ShowPlayerDialog d_ac_ShowPlayerDialog
+
+public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
+{
+    if(dialogid != g_PlayerData[playerid][Dialog])
+    {
+        g_PlayerData[playerid][UsingDialogHack] = true;
+    }
+
+    if(funcidx("d_ac_dialogresponse") != -1)
+    {
+        CallLocalFunction("d_ac_dialogresponse", "iiiis", playerid, dialogid, response, listitem, inputtext);
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDialogResponse
+    #undef OnDialogResponse
+#else
+    #define _ALS_OnDialogResponse
+#endif
+
+#define OnDialogResponse d_ac_dialogresponse
+
+forward d_ac_dialogresponse(playerid, dialogid, response, listitem, inputtext[]);
 
 // MONEY ANTI-CHEAT:
 
