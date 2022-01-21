@@ -1,5 +1,6 @@
 # SA:MP DETUtils | Wiki
 ![image](img/detutils.png)
+Addition to SA:MP Standard Scripting Library with new stuff, anti-cheat system and many more functions!
 
 Hello scripter! Welcome to *SA:MP DEntisT's Utilities* (or **detutils** for short) "read me" file. So, now, you may ask - what's this? Well - in general, this addition to SA:MP Standard Scripting package contains libraries that have in-game visible effects and libraries that contain new scripting features. 
 - Below, you can find information about each library.
