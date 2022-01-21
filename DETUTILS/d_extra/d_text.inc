@@ -40,3 +40,14 @@
 // d_anticheat
 
 // d_colours
+
+// d_mapeditor
+
+#define DETUTILS_TEXT_DIALOG_CONFIRM "Confirm"
+#define DETUTILS_TEXT_EXITDIALOG "Cancel"
+#define DETUTILS_TEXT_MAPEDITOR_CAPTION "Map Editor"
+
+#define DETUTILS_TEXT_MAPEDITOR_CHOICES "Create object\nDestroy object\nEdit object"
+#define DETUTILS_TEXT_MAPEDITOR_OBJID "Please insert the object ID you want to create below:"
+#define DETUTILS_TEXT_MAPEDITOR_DSTRY "Please insert the object's ID you want to destroy below:"
+#define DETUTILS_TEXT_MAPEDITOR_EDIT "Please insert the object's ID you want to edit below:"

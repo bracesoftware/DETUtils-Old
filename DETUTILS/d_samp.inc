@@ -18,6 +18,12 @@
 
 #endif
 
+#if defined DETUTILS_DEBUG_MODE
+
+ 	#define detutils_debug
+
+#endif
+
 #if defined DETUTILS_COMPATIBILITY_MODE
 
  	#undef DETUTILS_COMPATIBILITY_MODE
@@ -38,3 +44,4 @@
 #include "d_visual"
 #include "d_anticheat"
 #include "d_colours"
+#include "d_mapeditor"
