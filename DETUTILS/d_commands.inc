@@ -137,11 +137,11 @@
     forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[]%5)
 /////////////////////////////////////////////////////////////////////
 
-#define role%5command%0(%1,%2[%3]%4,%6) \
+#define role%5command%0(%7Role:%6,%1,%2[%3]%4) \
     forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if( !role_%6(%1) ) return 0; return  cmd_func_%0(%1,%2)%4;%5} \
     forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[]%5)
 
-#define @newk_RoleCommand:%0(%1,%2[%3]%4,%6) \
+#define @newk_RoleCommand:%0(%7Role:%6,%1,%2[%3]%4) \
     forward cmd_%0(%1,%2[]);%3 public cmd_%0(%1,%2[]){if( !role_%6(%1) ) return 0; return  cmd_func_%0(%1,%2)%4;} \
     forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[])
 /////////////////////////////////////////////////////////////////////

@@ -69,7 +69,7 @@ enum enum_PropertyData
     p_PropertyLabel,
     p_PropertyLabelID,
 
-    bool:p_PropertyLocked
+    p_PropertyLocked
 };
 
 forward OnPropertyCreated(propertyid);
@@ -117,6 +117,8 @@ new _EntranceTitleShown[MAX_PLAYERS];
 
 #define PROPERTY_ACTION_ENTER 0
 #define PROPERTY_ACTION_EXIT 1
+#define PROPERTY_ACTION_LOCK 2
+#define PROPERTY_ACTION_UNLOCK 3
 
 void:_PropertyLoadingTime(const playerid)
 {
@@ -283,9 +285,9 @@ public _OnPlayerNearEntrance(playerid)
         && GetPlayerVirtualWorld( playerid ) == g_PropertyData[ i ][p_PropertyVwid_OUT] \
         && !IsPlayerInAnyVehicle( playerid ))
         {
-            if(p_PropertyLocked == true)
+            if(g_PropertyData[i][p_PropertyLocked] == 1)
             {
-                SendClientMessage(playerid, -1, DETUTILS_TEXT_PROP_LOCK);
+                return SendClientMessage(playerid, -1, DETUTILS_TEXT_PROP_LOCK);
             }
 
             PropertyActionID = 0;
@@ -323,9 +325,9 @@ public _OnPlayerNearEntrance(playerid)
         g_PropertyData[ i ][p_PropertyExit_Y], g_PropertyData[ i ][p_PropertyExit_Z]) && \
         GetPlayerVirtualWorld( playerid ) == g_PropertyData[ i ][p_PropertyVwid])
         {
-            if(p_PropertyLocked == true)
+            if(g_PropertyData[i][p_PropertyLocked] == 1)
             {
-                SendClientMessage(playerid, -1, DETUTILS_TEXT_PROP_LOCK);
+                return SendClientMessage(playerid, -1, DETUTILS_TEXT_PROP_LOCK);
             }
 
             SetPlayerVirtualWorld( playerid, g_PropertyData[ i ][p_PropertyVwid_OUT] );
@@ -807,20 +809,32 @@ stock CreateCustomInterior(
 
 // NORMAL CODE, MAKES SENSE:
 
-stock bool:IsPropertyLocked(propertyid)
+stock IsPropertyLocked(propertyid)
 {
-    return g_PropertyData[propertyid][p_PropertyLocked];
+    if(g_PropertyData[propertyid][p_PropertyLocked] == 1)
+    {
+        return 1;
+    }
+    else if(g_PropertyData[propertyid][p_PropertyLocked] == 0)
+    {
+        return 0;
+    }
+    return -1;
 }
 
 stock void:TogglePropertyLocked(propertyid, bool:lock)
 {
     if(lock == true)
     {
-        g_PropertyData[propertyid][p_PropertyLocked] = true;
+        if(funcidx("OnPropertyActionPerformed") != -1) CallLocalFunction("OnPropertyActionPerformed",
+                                                                "iii",INVALID_PLAYER_ID,propertyid,PROPERTY_ACTION_LOCK);
+        g_PropertyData[propertyid][p_PropertyLocked] = 1;
     }
     else if(lock == false)
     {
-        g_PropertyData[propertyid][p_PropertyLocked] = false;
+        if(funcidx("OnPropertyActionPerformed") != -1) CallLocalFunction("OnPropertyActionPerformed",
+                                                                "iii",INVALID_PLAYER_ID,propertyid,PROPERTY_ACTION_UNLOCK);
+        g_PropertyData[propertyid][p_PropertyLocked] = 0;
     }
 }
 
