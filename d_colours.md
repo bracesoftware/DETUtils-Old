@@ -4,7 +4,7 @@
 
 - Start to use by declaring a specific colour!
 
-You do it using ``decl`` keyword and ``IntColour:`` or ``StrColour:`` tags - tag usage depends on the colour type you want to declare:
+You do it using ``decl`` keyword and ``Colour:`` or ``StrColour:`` tags - tag usage depends on the colour type you want to declare:
 
 Code:
 ```pawn
