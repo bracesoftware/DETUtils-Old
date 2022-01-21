@@ -15,6 +15,7 @@ SA:MP AntiCheat - basic anti-cheating system used to fight off the most famous h
 | SetPlayerPos         | saves player's position    | - Sets player's position.             |
 | SetPlayerHealth      | saves player's health | - Sets player's health.         |
 | SetPlayerArmour      | saves player's armour | - Sets player's armour.         |
+| ShowPlayerDialog      | saves player's dialog ID shown | - Shows dialog to player.         |
 
 ## API (programming interface)
 
@@ -124,12 +125,25 @@ public OnPlayerUpdate(playerid)
 
 ### CheckPlayerSpeed
 
-- Used to check player's speed. If player's speed is to high, anti-cheat system will detect that and call **OnPlayerCheatDetected** with cheat type **CHEAT_TYPE_SPEEDHACK**.
+- Used to check player's speed. If player's speed is too high, anti-cheat system will detect that and call **OnPlayerCheatDetected** with cheat type **CHEAT_TYPE_SPEEDHACK**.
 
 ```pawn
 public OnPlayerUpdate(playerid)
 {
   CheckPlayerSpeed(playerid);
+  return 1;
+}
+```
+**NOTE:** Read *Messages from creator* part for more information.
+
+### CheckPlayerDialog
+
+- Used to check player's dialog ID shown. If dialog ID player responded to is different from the dialog ID shown to the player by the script, anti-cheat system will detect that and call **OnPlayerCheatDetected** with cheat type **CHEAT_TYPE_DIALOG**.
+
+```pawn
+public OnPlayerUpdate(playerid)
+{
+  CheckPlayerDialog(playerid);
   return 1;
 }
 ```
