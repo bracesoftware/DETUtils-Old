@@ -727,7 +727,8 @@ public OnPlayerDeath(playerid)
                 __WeaponTimer_var[ playerid ] = 30;
                 SendClientMessage( playerid, -1, ""COLOUR_GREY"You threw away {ffffff}%s"COLOUR_GREY".", 
                     g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
-                if(funcidx("OnPlayerThrowGun") != -1) CallLocalFunction("OnPlayerThrowGun", "i", playerid);
+                //if(funcidx("OnPlayerThrowGun") != -1) CallLocalFunction("OnPlayerThrowGun", "i", playerid);
+                // We don't want to call OnPlayerThrowGun at player's death since it would get called max 13 times!!
             }
         }
     }
