@@ -97,7 +97,7 @@ decl Command:acoff(playerid,params[])
     return 1;
 }
 /////////////////////////////////////////////////////////////
-decl IntColour:green = 223231;
+decl Colour:green = 223231;
 decl StrColour:g_GrayColour[20] = "{B9C9BF}";
 /////////////////////////////////////////////////////////////
 decl Command:fadetest(playerid,params[])
@@ -123,7 +123,7 @@ decl CommandAlias:tagt(playerid,params[]) = tagtest;
 CMD:cmd(playerid,params[])
 {
     SendClientMessage(playerid, -1, "%sCMD: command worked.", ReturnStrColour(g_GrayColour));
-    SendClientMessage(playerid, COLOR_HEX_WHITE,
+    SendClientMessage(playerid, COLOR_WHITE,
     "{ffffff}This is white and {%06x}this is the %s's color!", 
     GetPlayerColor(playerid) >>> 8, ReturnPlayerName(playerid));
     return 1;
@@ -138,7 +138,7 @@ YCMD:ycmd(playerid,params[])
 COMMAND:command(playerid,params[])
 {
     SendClientMessage(playerid, -1, "%sCOMMAND: command worked.", ReturnStrColor(g_GrayColour));
-    SendClientMessage(playerid, ReturnIntColour(green), "I am g_GrayColour-coloured text.");
+    SendClientMessage(playerid, ReturnColour(green), "I am g_GrayColour-coloured text.");
     return 1;
 }
 /////////////////////////////////////////////////////////////
@@ -188,7 +188,24 @@ command untiltest(playerid, params[])
     SendClientMessage(playerid, -1, "i is now 50.");
     return 1;
 }
-
+decl Command:lock(playerid, params[])
+{
+    new propertyid = GetNearPropertyEntrance(playerid);
+    if(propertyid == 0) return SendClientMessage(playerid, -1, "You need to be near property entrance.");
+    if(IsPropertyLocked(propertyid))
+    {
+        TogglePropertyLocked(propertyid, false);
+        SendClientMessage(playerid, -1, "You Successfully Unlocked: %s", GetPropertyName(propertyid));
+        return 1;
+    }
+    else if(!IsPropertyLocked(propertyid))
+    {
+        TogglePropertyLocked(propertyid, true);
+        SendClientMessage(playerid, -1, "You Successfully Locked: %s", GetPropertyName(propertyid));
+        return 1;
+    }
+    return 1;
+}
 /////////////////////////////////////////////////////////////
 public OnCommandStateChange(playerid, cmdtext[], stateid) // new and PROPER debugging
 {
@@ -369,7 +386,7 @@ command makeadmin (playerid, params[])
     return 1;
 }
 /////////////////////////////////////////////////////////////
-role command clearchat (playerid, params[], AdminRole)
+role command clearchat (Role:AdminRole,playerid, params[])
 {
     for(new i; i < 20; i++)
         SendClientMessage(playerid, -1, "");
@@ -378,7 +395,7 @@ role command clearchat (playerid, params[], AdminRole)
     return 1;
 }
 /////////////////////////////////////////////////////////////
-decl RoleCommand:ao(playerid, params[], AdminRole2)
+decl RoleCommand:ao( Role:AdminRole2, playerid, params[])
 {
     SendClientMessageToAll(-1, "Announcement!");
     return 1;
@@ -432,6 +449,16 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
             propertyid);
         SendClientMessage(playerid, -1, string);
         return 1;
+    }
+    else if(actionid == PROPERTY_ACTION_LOCK)
+    {
+        SendClientMessageToAll(-1, "Property %s [%i] is now locked!", 
+            GetPropertyName(propertyid), GetPropertyIDByName(GetPropertyName(propertyid)));
+    }
+    else if(actionid == PROPERTY_ACTION_LOCK)
+    {
+        SendClientMessageToAll(-1, "Property %s [%i] is now unlocked!", 
+            GetPropertyName(propertyid), GetPropertyIDByName(GetPropertyName(propertyid)));
     }
     return 0;
 }
