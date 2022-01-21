@@ -283,7 +283,7 @@ decl Role:AdminRole(playerid, Player[playerid][Admin] == 1);
 - To create role commands, you need to use ``role command`` keywords.
 
 ```php
-role command clearchat(playerid, params[], AdminRole)
+role command clearchat(Role:AdminRole, playerid, params[])
 {
 	for(new i; i < 20; i++)
 		SendClientMessage(playerid, -1, "");
@@ -294,7 +294,7 @@ role command clearchat(playerid, params[], AdminRole)
 
 // ... or:
 
-decl RoleCommand:clearchat(playerid, params[], AdminRole)
+decl RoleCommand:clearchat(Role:AdminRole, playerid, params[])
 {
 	for(new i; i < 20; i++)
 		SendClientMessage(playerid, -1, "");
