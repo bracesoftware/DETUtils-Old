@@ -1,14 +1,9 @@
-//#define DEV_MODE
+# Code
+```pawn
 #define detutils_debug
-//#define detutils_sscanf
 
 #include <a_samp>
-#include <sscanf2>/*
-#include <YSI_Coding\y_timers>
-#include <YSI_Coding\y_hooks>
-#define YSI_COMPATIBILITY_MODE
-#include "DETUTILS_DENTIST\y_hooks_timers"*/
-//#include <a_fixes>
+#include <sscanf2>
 #include "DETUTILS\d_samp"
 
 // Dummies:
@@ -19,39 +14,14 @@ keyword  public Func()
 }
 
 keyword   forward  Function(a, const b[], Float:c);
-/*
-task Test[1000]()
-{
-    print("task - Hi");
-    return 1;
-}
 
-HOOK_TASK__ Test()
-{
-    print("task Hook - Hi");
-    return 1;
-}
-
-timer Test2[1000]() 
-{
-    print("timer - Hi");
-    return 1;
-}
-
-HOOK_TIMER__ Test2()
-{
-    print("timer Hook - Hi");
-    return 1;
-}
-*/
 // Actual code:
 
 main()
 {
-    //repeat Test2();
     print("Gamemode loaded.");
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPlayerSpawn(playerid)
 {
     SetPlayerPos(playerid, 825.6589,-1614.8202,13.5469);
@@ -77,14 +47,14 @@ public OnPlayerUpdate(playerid)
     //SendClientMessage(playerid, -1, "Your speed is %i km/h.", d_ac_GetSpeed(playerid));
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 enum Enums
 {
     Admin
 }
 
 new Player[MAX_PLAYERS][Enums];
-/////////////////////////////////////////////////////////////
+ 
 decl Command:acon(playerid,params[])
 {
     ToggleAntiCheatSystem(true);
@@ -96,30 +66,30 @@ decl Command:acoff(playerid,params[])
     ToggleAntiCheatSystem(false);
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 decl Colour:green = 223231;
 decl StrColour:g_GrayColour[20] = "{B9C9BF}";
-/////////////////////////////////////////////////////////////
+ 
 decl Command:fadetest(playerid,params[])
 {
     FadePlayerScreen(playerid);
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPlayerScreenFade(playerid)
 {
     SendClientMessage(playerid, -1, "%sYour screen faded!", ReturnStrColour(g_GrayColour));
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 decl Command: tagtest(playerid,params[])
 {
     SendClientMessage(playerid, -1, "Tag command worked.");
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 decl CommandAlias:tagt(playerid,params[]) = tagtest;
-/////////////////////////////////////////////////////////////
+ 
 CMD:cmd(playerid,params[])
 {
     SendClientMessage(playerid, -1, "%sCMD: command worked.", ReturnStrColour(g_GrayColour));
@@ -128,22 +98,22 @@ CMD:cmd(playerid,params[])
     GetPlayerColor(playerid) >>> 8, ReturnPlayerName(playerid));
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 YCMD:ycmd(playerid,params[])
 {
     SendClientMessage(playerid, -1, "%sYCMD: command worked.", ReturnStrColour(g_GrayColour));
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 COMMAND:command(playerid,params[])
 {
     SendClientMessage(playerid, -1, "%sCOMMAND: command worked.", ReturnStrColor(g_GrayColour));
     SendClientMessage(playerid, ReturnColour(green), "I am g_GrayColour-coloured text.");
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 alias command tag(playerid,params[]) =tagtest;
-/////////////////////////////////////////////////////////////
+ 
 command sayhi (playerid,params[])
 {
     /*new parameters[128], idx;
@@ -168,15 +138,15 @@ command sayhi (playerid,params[])
     }
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 alias command hi (playerid,params[]) = sayhi;
-/////////////////////////////////////////////////////////////
+ 
 admin command ac (playerid,params[])
 {
     SendClientMessage(playerid, -1, "You're admin.");
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 command untiltest(playerid, params[])
 {
     new i;
@@ -206,7 +176,7 @@ decl Command:lock(playerid, params[])
     }
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnCommandStateChange(playerid, cmdtext[], stateid) // new and PROPER debugging
 {
     if(stateid == COMMAND_DEBUG_STATE_RECEIVED)
@@ -226,7 +196,7 @@ public OnCommandStateChange(playerid, cmdtext[], stateid) // new and PROPER debu
     }
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid) // you can also debug prefixed commands
 {
     if(stateid == COMMAND_DEBUG_STATE_RECEIVED)
@@ -246,7 +216,7 @@ public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid) // you can als
     }
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPlayerCheatDetected(playerid, cheattype)
 {
     if(cheattype == CHEAT_TYPE_MONEY)
@@ -279,7 +249,7 @@ public OnPlayerCheatDetected(playerid, cheattype)
     }
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 decl Prefix:shitprefix = "&";
 
 prefixed command test (Prefix:"&",playerid, params[])
@@ -287,19 +257,19 @@ prefixed command test (Prefix:"&",playerid, params[])
     SendClientMessage(playerid, -1, "Amazing %s, this custom-prefixed command worked.", _ReturnPlayerName(playerid));
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 prefixed command TEST(Prefix:"&",playerid, params[])
 {
     SendClientMessage(playerid, -1, "WORKS!");
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPrefixedCommandReceived(playerid, cmdtext[])
 {
     SendClientMessage(playerid, -1, "%s, your command was received. (%s)", _ReturnPlayerName(playerid), cmdtext);
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPrefixedCommandPerformed(playerid, cmdtext[], success)
 {
     if(!success)
@@ -308,13 +278,13 @@ public OnPrefixedCommandPerformed(playerid, cmdtext[], success)
     }
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPlayerCommandReceived(playerid, cmdtext[])
 {
     SendClientMessage(playerid, -1, "%s, your command was received. (%s)", _ReturnPlayerName(playerid), cmdtext);
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 {
     if(!success)
@@ -323,7 +293,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
     }
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 decl Prefix:aletter = "@";
 decl Prefix: hashtag = "#" ;
 
@@ -345,15 +315,15 @@ prefixed command dear ( Prefix: aletter, playerid, params[])
     SendClientMessage(playerid, -1, "%s said hi.", _ReturnPlayerName(playerid));
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 prefixed command hi (Prefix:"#", playerid, params[])
 {
     SendClientMessage(playerid, -1, "Hi man");
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 decl Prefix:dollar = "$"; 
-decl PrefixedCommand:skal(Prefix:"$", playerid, params[])
+decl PrefixedCommand:skal(Prefix:dollar, playerid, params[])
 {
     SendClientMessage(playerid, -1, "Cheers, %s!", ReturnPlayerName(playerid));
     return 1;
@@ -374,18 +344,18 @@ decl PrefixedCommand:sscanf(Prefix: "+",playerid, params[])
     }
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 create role AdminRole (playerid, Player[playerid][Admin] == 1);
-/////////////////////////////////////////////////////////////
+ 
 decl Role:AdminRole2(playerid, Player[playerid][Admin] >= 1 );
-/////////////////////////////////////////////////////////////
+ 
 command makeadmin (playerid, params[])
 {
     SendClientMessage(playerid, -1, "You're now an administrator.");
     Player[playerid][Admin] = 1;
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 role command clearchat (Role:AdminRole,playerid, params[])
 {
     for(new i; i < 20; i++)
@@ -394,13 +364,13 @@ role command clearchat (Role:AdminRole,playerid, params[])
     SendClientMessage(playerid, -1, "You cleared the chat.");
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 decl RoleCommand:ao( Role:AdminRole2, playerid, params[])
 {
     SendClientMessageToAll(-1, "Announcement!");
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnGameModeInit()
 {
     UsePlayerPedAnims();
@@ -410,7 +380,7 @@ public OnGameModeInit()
     CreateDroppedGun(30,999,811.1299,-1616.0647,13.5469);
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPlayerConnect(playerid)
 {
     if(!IsPlayerUsingAndroidClient(playerid)) return SendClientMessage(playerid, -1, "You're using a computer to play SA:MP, great!");
@@ -418,13 +388,13 @@ public OnPlayerConnect(playerid)
     SpawnPlayer(playerid);
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPlayerClientCheckReceived(playerid)
 {
     printf("Successfully performed client check on player id %i.", playerid);
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPropertyActionPerformed(playerid, propertyid, actionid)
 {
     new string[256];
@@ -462,13 +432,13 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
     }
     return 0;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPropertyCreated(propertyid)
 {
     printf("Property created! ID: %i", propertyid);
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPlayerEnterProperty(playerid)
 {
   new message[256];
@@ -476,7 +446,7 @@ public OnPlayerEnterProperty(playerid)
   SendMessageInRange(3.0, playerid, message, -1);
   return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPlayerExitProperty(playerid)
 {
   new message[256];
@@ -484,7 +454,7 @@ public OnPlayerExitProperty(playerid)
   SendMessageInRange(3.0, playerid, message, -1);
   return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPlayerScoreSniperHeadshot(playerid, killedid)
 {
     new message[256];
@@ -492,22 +462,22 @@ public OnPlayerScoreSniperHeadshot(playerid, killedid)
     SendClientMessage(playerid, -1, message);
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPlayerPickUpGun(playerid)
 {
     SendClientMessage(playerid, -1, "You picked up a gun.");
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPlayerThrowGun(playerid)
 {
     SendClientMessage(playerid, -1, "You threw away a gun.");
     return 1;
 }
-/////////////////////////////////////////////////////////////
+ 
 public OnPlayerDestroyGun(playerid)
 {
     SendClientMessage(playerid, -1, "You destroyed a gun.");
     return 1;
 }
-/////////////////////////////////////////////////////////////
+```
