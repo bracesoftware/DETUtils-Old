@@ -81,3 +81,12 @@ Include code:
 ```
 
 - This limits the maximum number of created dropped gun objects. If you attempt to create a dropped gun with an ID 2001, function will return **0** - also if you have **detutils_debug** enabled, server will get an ingame warning which tells everyone on the server that maximum number of created dropped gun objects has been reached.
+
+## d_mapeditor.inc
+### Maximum objects
+Include code:
+```pawn
+#define MAX_OBJECTS (...)
+```
+
+- This limits the maximum number of created objects on the server. This is also a SA:MP limit.
