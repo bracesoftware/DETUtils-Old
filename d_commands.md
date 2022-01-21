@@ -84,7 +84,7 @@ public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid)
 
 - Debug states:
 
-- ``COMMAND_DEBUG_STATE_INVALID`` - invalid debug state, really rare to 'achieve' though
+- ``COMMAND_DEBUG_STATE_INVALID`` - invalid debug state, really hard to 'achieve' though
 - ``COMMAND_DEBUG_STATE_RECEIVED`` - command processor received command and command parameters
 - ``COMMAND_DEBUG_STATE_READY`` - command is ready to be performed
 - ``COMMAND_DEBUG_STATE_PERFORMED`` - command performed successfully
