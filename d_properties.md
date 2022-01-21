@@ -79,7 +79,18 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
     new string[256];
     if(actionid == PROPERTY_ACTION_ENTER)
     {
-        format(string, 256, "%sYou entered %s, %s. Interior id: %i [%i]", 
+        format(string, 256, "%sYou entered %s, %s. Property id: %i [%i]", 
+            ReturnStringColour(g_GrayColour),
+            GetPropertyName(propertyid),
+            ReturnPlayerName(playerid), 
+            GetPropertyIDByName(g_PropertyData[propertyid][p_PropertyName]), //GetPropertyIDByName(GetPropertyName(propertyid)), // to ensure this also works
+            propertyid);
+        SendClientMessage(playerid, -1, string);
+        return 1;
+    }
+    else if(actionid == PROPERTY_ACTION_EXIT)
+    {
+        format(string, 256, "%sYou exited %s, %s. Property id: %i [%i]", 
             ReturnStringColour(g_GrayColour),
             GetPropertyName(propertyid),
             ReturnPlayerName(playerid), 
@@ -88,16 +99,15 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
         SendClientMessage(playerid, -1, string);
         return 1;
     }
-    else if(actionid == PROPERTY_ACTION_EXIT)
+    else if(actionid == PROPERTY_ACTION_LOCK)
     {
-        format(string, 256, "%sYou exited %s, %s. Interior id: %i [%i]", 
-            ReturnStringColour(g_GrayColour),
-            GetPropertyName(propertyid),
-            ReturnPlayerName(playerid), 
-            GetPropertyIDByName(GetPropertyName(propertyid)),
-            propertyid);
-        SendClientMessage(playerid, -1, string);
-        return 1;
+        SendClientMessageToAll(-1, "Property %s [%i] is now locked!", 
+            GetPropertyName(propertyid), GetPropertyIDByName(GetPropertyName(propertyid)));
+    }
+    else if(actionid == PROPERTY_ACTION_LOCK)
+    {
+        SendClientMessageToAll(-1, "Property %s [%i] is now unlocked!", 
+            GetPropertyName(propertyid), GetPropertyIDByName(GetPropertyName(propertyid)));
     }
     return 0;
 }
@@ -239,9 +249,32 @@ if(IsPropertyLocked(propertyid)) { SendClientMessage(playerid, -1, "Sorry, %s! T
 
 #### TogglePropertyLocked
 
-- Used to toggle property's ability to enter it.
+- Used to "lock property's door", if the property is locked, then anyone inside and outside the property won't be able to enter and exit - efficient in commands.
+
+```pawn
+decl Command:lock(playerid, params[])
+{
+    new propertyid = GetNearPropertyEntrance(playerid);
+    if(propertyid == 0) return SendClientMessage(playerid, -1, "You need to be near property entrance.");
+    if(IsPropertyLocked(propertyid))
+    {
+        TogglePropertyLocked(propertyid, false);
+        SendClientMessage(playerid, -1, "You Successfully Unlocked: %s", GetPropertyName(propertyid));
+        return 1;
+    }
+    else if(!IsPropertyLocked(propertyid))
+    {
+        TogglePropertyLocked(propertyid, true);
+        SendClientMessage(playerid, -1, "You Successfully Locked: %s", GetPropertyName(propertyid));
+        return 1;
+    }
+    return 1;
+}
+```
 
 #### GetNearPropertyEntrance
+
+- Used to get the ID of a property near the player. Example is shown above.
 
 ## Messages from creator
 
