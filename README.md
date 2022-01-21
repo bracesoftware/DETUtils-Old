@@ -72,9 +72,9 @@ To join Discord server, [click here...](https://discord.gg/samp)
 
 **NOTE:** After you enabled advanced debugging, your console may be full with *DETUtils* debug messages - in that case, don't worry.
 
-## Compile-time errors
+## Compile-time issues
 
-- Make sure you have updated dependencies and updated Pawn Compiler.
+If you're facing issues with your code compilation after including the library, make sure you have updated Pawn Compiler and SA:MP Standard library package and libraries. Using them outdated can indeed cause issues while trying to implement newer libraries to your code.
 
 - You can get latest version of SA:MP standard libraries [here](https://github.com/pawn-lang/samp-stdlib)...
 
