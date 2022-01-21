@@ -65,7 +65,7 @@ If you're facing problems like function failed to call, function is not valid, c
 To enable advanced debugging feature, use:
 
 ```pawn
-#define detutils_debug
+#define DETUTILS_DEBUG_MODE
 ```
 
 To join Discord server, [click here...](https://discord.gg/samp)
