@@ -28,6 +28,7 @@ Click on blue text to see all information about each feature.
 - Learn more: [d_visual.inc](d_visual.md)
 - Learn more: [d_anticheat.inc](d_anticheat.md)
 - Learn more: [d_colours.inc](d_colours.md)
+- Learn more: [d_mapeditor.inc](d_mapeditor.md)
 ### Extra bonus
 ------------------------------------------
 - Read more here: [Extra stuff](d_extra.md)
