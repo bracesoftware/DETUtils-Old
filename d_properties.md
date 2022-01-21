@@ -104,7 +104,7 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
         SendClientMessageToAll(-1, "Property %s [%i] is now locked!", 
             GetPropertyName(propertyid), GetPropertyIDByName(GetPropertyName(propertyid)));
     }
-    else if(actionid == PROPERTY_ACTION_LOCK)
+    else if(actionid == PROPERTY_ACTION_UNLOCK)
     {
         SendClientMessageToAll(-1, "Property %s [%i] is now unlocked!", 
             GetPropertyName(propertyid), GetPropertyIDByName(GetPropertyName(propertyid)));
@@ -112,6 +112,8 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
     return 0;
 }
 ```
+
+**TIP:** The reason I used **SendClientMessageToAll** on action IDs **PROPERTY_ACTION_LOCK** and **PROPERTY_ACTION_UNLOCK** is because in these two cases, ``playerid`` is returned as ``INVALID_PLAYER_ID`` since ``TogglePropertyLocked(...)`` doesn't have player ID parameter!
 
 #### ``public`` OnPlayerEnterProperty
 
