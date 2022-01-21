@@ -22,6 +22,26 @@ public OnPlayerSpawn(playerid)
 ```
 **TIP**: Function *ReturnPlayerName* is provided by extra library include *d_libtags.inc*.
 
+## Warning
+
+- If you provide a specifier in a string, but not a value as well, calling the function will crash the server.
+
+Bad code:
+```pawn
+public OnPlayerSpawn(playerid)
+{
+  SendClientMessage(playerid, -1, "You are spawned, %s."); // this crashes the server
+  return 1;
+}
+```
+Good code:
+```pawn
+public OnPlayerSpawn(playerid)
+{
+  SendClientMessage(playerid, -1, "You are spawned, %s.", ReturnPlayerName(playerid));
+  return 1;
+}
+```
 # API ( programming interface )
 
 Functions which will work like this after including *d_fmargs.inc* are:
