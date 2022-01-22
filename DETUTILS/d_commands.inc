@@ -61,53 +61,53 @@
 #define @cmds_%0\32; @cmds_
 
 #define keyword @cmds_
-/////////////////////////////////////////////////////////////////////
+ 
 #define @newk_%0\32; @newk_
 
 #define decl @newk_
-/////////////////////////////////////////////////////////////////////
+ 
 #define @cmds_public%0(%1) %0(%1);public%0(%1)
 #define @cmds_forward%0(%1) forward%0(%1)
 
-/////////////////////////////////////////////////////////////////////
+ 
 
 #if defined _d_cmd_processor_included
         #endinput
 #endif 
 #define _d_cmd_processor_included
-/////////////////////////////////////////////////////////////////////
+ 
 #if !defined MAX_FUNC_NAME
 
 #define MAX_FUNC_NAME (32)
 
 #endif
-/////////////////////////////////////////////////////////////////////
+ 
 #define cmd_%0\32; cmd_
 #define dbg_%0\32; dbg_
 #define cmd_func_%0\32; cmd_func_
 #define role_%0\32; role_
-/////////////////////////////////////////////////////////////////////
+ 
 #if !defined DETUTILS_COMPATIBILITY_MODE
 
 #define command%0(%1) \
     forward cmd_%0(%1);public cmd_%0(%1)
-/////////////////////////////////////////////////////////////////////
+ 
 #define @newk_Command:%0(%1) \
     forward cmd_%0(%1);public cmd_%0(%1) //same as thing over this
-/////////////////////////////////////////////////////////////////////
+ 
 #if defined detutils_tags_test
 
 #define alias%5Command:%0(%1[%3]%4)=%2; \
     forward cmd_%0(%1[]);%3public cmd_%0(%1[]){return cmd_%2(%1)%4;%5}
 
 #endif
-/////////////////////////////////////////////////////////////////////
+ 
 #define alias%5command%0(%1[%3]%4)=%2; \
     forward cmd_%0(%1[]);%3public cmd_%0(%1[]){return cmd_%2(%1)%4;%5}
 
 #define @newk_CommandAlias:%0(%1[%3]%4)=%2; \
     forward cmd_%0(%1[]);%3 public cmd_%0(%1[]){return cmd_%2(%1)%4;}
-/////////////////////////////////////////////////////////////////////
+ 
 #define _public public
 #define forward_ forward
 
@@ -135,7 +135,7 @@
 #define @newk_AdminCommand:%0(%1,%2[%3]%4) \
     forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if(!IsPlayerAdmin(%1)) return 0; return  cmd_func_%0(%1,%2)%4;%5} \
     forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[]%5)
-/////////////////////////////////////////////////////////////////////
+ 
 
 #define role%5command%0(%7Role:%6,%1,%2[%3]%4) \
     forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if( !role_%6(%1) ) return 0; return  cmd_func_%0(%1,%2)%4;%5} \
@@ -144,16 +144,16 @@
 #define @newk_RoleCommand:%0(%7Role:%6,%1,%2[%3]%4) \
     forward cmd_%0(%1,%2[]);%3 public cmd_%0(%1,%2[]){if( !role_%6(%1) ) return 0; return  cmd_func_%0(%1,%2)%4;} \
     forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[])
-/////////////////////////////////////////////////////////////////////
+ 
 
 #define create%0role%1(%2,%3); \
     stock bool: role_%1(%2) { if(!(%3)) return false; else return true; }
 
 #define @newk_Role:%1(%2,%3); \
     stock bool: role_%1(%2) { if(!(%3)) return false; else return true; }
-/////////////////////////////////////////////////////////////////////
+ 
 #else // If compatibility mode is ON
-/////////////////////////////////////////////////////////////////////
+ 
 #define COMMAND__%0(%1) \
     forward cmd_%0(%1);public cmd_%0(%1)
 
@@ -878,7 +878,7 @@ public OnPlayerText(playerid, text[])
     
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
+     ///////////////////////////////
 
     if(Data_g_ChatMode[playerid] == 1)
     {
@@ -1163,7 +1163,7 @@ public OnPlayerText(playerid, text[])
     
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
+     ///////////////////////////////
 
     if(Data_g_ChatMode[playerid] == 1)
     {
