@@ -152,7 +152,7 @@ public OnPlayerUpdate(playerid)
 
 ### CheckPlayerMenu
 
-- Used to check player's menu ID shown. If mwnu ID player responded to is different from the menu ID shown to the player by the script, anti-cheat system will detect that and call **OnPlayerCheatDetected** with cheat type **CHEAT_TYPE_MENU**.
+- Used to check player's menu ID shown. If menu ID player responded to is different from the menu ID shown to the player by the script, anti-cheat system will detect that and call **OnPlayerCheatDetected** with cheat type **CHEAT_TYPE_MENU**.
 
 ```pawn
 public OnPlayerUpdate(playerid)
