@@ -32,7 +32,7 @@ public OnGameModeInit()
 ```pawn
 public OnGameModeInit()
 {
-  CreateInteriorEntrance("Your Property", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
+  CreatePropertyEntrance("Your Property", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
   // In order to make YOUR CUSTOM property with custom interior you mapped, you need to provide extra data (parameters).
   // So, you need to change interior type to INTERIOR_CUSTOM and add exit coordinates, and interiorid and virtual world.
   return 1;
