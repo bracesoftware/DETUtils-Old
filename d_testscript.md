@@ -1,6 +1,6 @@
 # Code
 ```pawn
-#define detutils_debug
+#define DETUTILS_DEBUG_MODE
 
 #include <a_samp>
 #include <sscanf2>
@@ -16,6 +16,8 @@ keyword  public Func()
 keyword   forward  Function(a, const b[], Float:c);
 
 // Actual code:
+
+new Menu:teleportmenu;
 
 main()
 {
@@ -111,12 +113,30 @@ COMMAND:command(playerid,params[])
     SendClientMessage(playerid, ReturnColour(green), "I am g_GrayColour-coloured text.");
     return 1;
 }
- 
+
+decl Command:mapeditor(playerid, params[])
+{
+    ShowMapEditorMenuToPlayer(playerid);
+    return 1;
+}
+
+decl Command:labelon(playerid, params[])
+{
+    ShowObjectInfoLabels(GetPlayerVirtualWorld(playerid));
+    return 1;
+}
+
+decl Command:labeloff(playerid, params[])
+{
+    HideObjectInfoLabels();
+    return 1;
+}
+
 alias command tag(playerid,params[]) =tagtest;
  
 command sayhi (playerid,params[])
 {
-    /*new parameters[128], idx;
+    new parameters[128], idx;
 
     new action; 
 
@@ -124,9 +144,9 @@ command sayhi (playerid,params[])
 
     if(strlen(parameters) == 0) return SendClientMessage(playerid, 0xFFFFFFFF, "Usage: /sayhi <action>");
 
-    action = strval(parameters);*/
-    new action;
-    if(sscanf(params, "i", action)) return SendClientMessage(playerid, 0xFFFFFFFF, "Usage: /sayhi <action>");
+    action = strval(parameters);
+    /*new action;
+    if(sscanf(params, "i", action)) return SendClientMessage(playerid, 0xFFFFFFFF, "Usage: /sayhi <action>");*/
 
     if(action == 1)
     {
@@ -373,11 +393,79 @@ decl RoleCommand:ao( Role:AdminRole2, playerid, params[])
  
 public OnGameModeInit()
 {
+    teleportmenu = CreateMenu("Teleportmenu", 2, 200.0, 100.0, 150.0, 150.0);
+    AddMenuItem(teleportmenu, 0, "LS");
+    AddMenuItem(teleportmenu, 0, "LS");
+    AddMenuItem(teleportmenu, 0, "SF");
+    AddMenuItem(teleportmenu, 0, "SF");
+    AddMenuItem(teleportmenu, 0, "LV");
+    AddMenuItem(teleportmenu, 0, "LV");
+     
+    AddMenuItem(teleportmenu, 1, "Grove Street");
+    AddMenuItem(teleportmenu, 1, "Starfish Tower");
+    AddMenuItem(teleportmenu, 1, "Wheel Arch Angels");
+    AddMenuItem(teleportmenu, 1, "Jizzys");
+    AddMenuItem(teleportmenu, 1, "4 Dragons");
+    AddMenuItem(teleportmenu, 1, "Come-a-Lot");
     UsePlayerPedAnims();
     DisableDefaultProperties();
     CreatePropertyEntrance("24/7 Market", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_MARKET_247_1);
     CreatePropertyEntrance("Your Interior", 825.6589,-1614.8202,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
     CreateDroppedGun(30,999,811.1299,-1616.0647,13.5469);
+    return 1;
+}
+
+public OnPlayerSelectedMenuRow(playerid, row)
+{
+    new Menu:CurrentMenu = GetPlayerMenu(playerid);
+    if(CurrentMenu == teleportmenu)
+    {
+        switch(row)
+        {
+            case 0: //Grove Street
+            {
+                SetPlayerPos(playerid, 2493.9133, -1682.3986, 13.3382);
+                SetPlayerInterior(playerid, 0);
+                SendClientMessage(playerid, 0xFFFFFFFF, "Welcome to Grove Street");
+            }
+            case 1: //Starfish Tower
+            {
+                SetPlayerPos(playerid, 1541.2833, -1362.4741, 329.6457);
+                SetPlayerInterior(playerid, 0);
+                SendClientMessage(playerid, 0xFFFFFFFF, "Welcome to the top of Starfish Tower");
+            }
+            case 2: //Wheel Arch Angels
+            {
+                SetPlayerPos(playerid, -2705.5503, 206.1621, 4.1797);
+                SetPlayerInterior(playerid, 0);
+                SendClientMessage(playerid, 0xFFFFFFFF, "Welcome to the Wheel Arch Angels tuning-shop");
+            }
+            case 3: //Jizzys
+            {
+                SetPlayerPos(playerid, -2617.5156, 1390.6353, 7.1105);
+                SetPlayerInterior(playerid, 0);
+                SendClientMessage(playerid, 0xFFFFFFFF, "Welcome to Jizzy's Nightclub!");
+            }
+            case 4: //4Dragons
+            {
+                SetPlayerPos(playerid, 2028.5538, 1008.3543, 10.8203);
+                SetPlayerInterior(playerid, 0);
+                SendClientMessage(playerid, 0xFFFFFFFF, "Welcome to the Four Dragons Casino");
+            }
+            case 5: //Come-a-Lot
+            {
+                SetPlayerPos(playerid, 2169.1838, 1122.5426, 12.6107);
+                SetPlayerInterior(playerid, 0);
+                SendClientMessage(playerid, 0xFFFFFFFF, "Welcome to the Come-a-Lot casino!");
+            }
+        }
+    }
+    return 1;
+}
+
+decl Command:tp(playerid, params[])
+{
+    ShowMenuForPlayer(teleportmenu,playerid);
     return 1;
 }
  
