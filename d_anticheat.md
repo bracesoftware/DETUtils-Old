@@ -150,6 +150,19 @@ public OnPlayerUpdate(playerid)
 ```
 **NOTE:** Read *Messages from creator* part for more information.
 
+### CheckPlayerMenu
+
+- Used to check player's menu ID shown. If mwnu ID player responded to is different from the menu ID shown to the player by the script, anti-cheat system will detect that and call **OnPlayerCheatDetected** with cheat type **CHEAT_TYPE_MENU**.
+
+```pawn
+public OnPlayerUpdate(playerid)
+{
+  CheckPlayerMenu(playerid);
+  return 1;
+}
+```
+**NOTE:** Read *Messages from creator* part for more information.
+
 ### ToggleAntiCheatSystem
 
 - Used to toggle anti-cheat system on or off. Efficient in commands and also if you don't want to use **d_anticheat.inc** at all.
@@ -174,7 +187,7 @@ decl Command:acoff(playerid,params[])
 
 ### Cheat checking
 
-- When **ToggleAntiCheatSystem(false);** is executed, all cheat checking functions such as *CheckPlayerMoney* or *CheckPlayerSkin* will not work (which is the point, this is just a quick reminder). Make sure your anti-cheat system is on so all cheat checking functions can work.
+- When **ToggleAntiCheatSystem(false);** is executed, all cheat checking functions such as *CheckPlayerMoney* or *CheckPlayerSkin* etc., will not work (which is the point, this is just a quick reminder). Make sure your anti-cheat system is on so all cheat checking functions can work.
 
 ### Contribution
 
