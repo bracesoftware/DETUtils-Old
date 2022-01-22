@@ -13,7 +13,7 @@ To declare a command, you need to use ``command`` keyword.
 
 Let's see how it works:
 
-```php
+```pawn
 
 command mycommand(playerid, params[])
 {
@@ -282,7 +282,7 @@ decl Role:AdminRole(playerid, Player[playerid][Admin] == 1);
 - Now, we have our role - let's use it in our command.
 - To create role commands, you need to use ``role command`` keywords.
 
-```php
+```pawn
 role command clearchat(Role:AdminRole, playerid, params[])
 {
 	for(new i; i < 20; i++)
