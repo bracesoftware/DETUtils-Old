@@ -267,6 +267,14 @@ public OnPlayerCheatDetected(playerid, cheattype)
     {
         SendClientMessage(playerid, -1, "Aren't you too fast to be a human? Are you a... cheater?");
     }
+    else if(cheattype == CHEAT_TYPE_DIALOG)
+    {
+        SendClientMessage(playerid, -1, "This is not the dialog you got shown!");
+    }
+    else if(cheattype == CHEAT_TYPE_MENU)
+    {
+        SendClientMessage(playerid, -1, "Switching menus? Why would you do that?");
+    }
     return 1;
 }
  
@@ -568,4 +576,5 @@ public OnPlayerDestroyGun(playerid)
     SendClientMessage(playerid, -1, "You destroyed a gun.");
     return 1;
 }
+ 
 ```
