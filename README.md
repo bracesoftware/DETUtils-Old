@@ -114,6 +114,7 @@ If you're facing issues with your code compilation after including the library, 
 ### Thanks:
 
 - aezzakmi - help during development
+- Not kalcor - testing and fixes
 
 ### Very special thanks to:
 
