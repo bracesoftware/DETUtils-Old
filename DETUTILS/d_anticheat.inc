@@ -48,7 +48,7 @@ new gAntiCheatTimer;
 
 // Macros:
 
-#define anticheat_system_check(%0); \
+#define DETUTILS_AC__%1check:(%0); \
     if(gAntiCheatToggled == 0) return print(\
     "[samp-detutils]: (debug) - Function '%0' wasn't executed because anti-cheat system is OFF.");
 
@@ -348,7 +348,7 @@ stock d_ac_ShowPlayerDialog(playerid, dialogid, style, const caption[], const in
 
 stock CheckPlayerDialog(playerid)
 {
-    anticheat_system_check(CheckPlayerDialog);
+    DETUTILS_AC__ check:(CheckPlayerDialog);
     
     if(g_PlayerData[playerid][UsingDialogHack] == true)
     {
@@ -403,7 +403,7 @@ stock Menu:d_ac_ShowMenuForPlayer(Menu:menuid, playerid)
 
 stock CheckPlayerMenu(playerid)
 {
-    anticheat_system_check(CheckPlayerMenu);
+    DETUTILS_AC__ check:(CheckPlayerMenu);
     
     if(g_PlayerData[playerid][UsingMenuHack] == true)
     {
@@ -460,7 +460,7 @@ stock d_ac_GivePlayerMoney(playerid, money)
 
 stock CheckPlayerMoney(playerid)
 {
-    anticheat_system_check(CheckPlayerMoney);
+    DETUTILS_AC__ check:(CheckPlayerMoney);
 
     new currentmoney = GetPlayerMoney(playerid);
     if(currentmoney != g_PlayerData[playerid][Money])
@@ -493,7 +493,7 @@ stock d_ac_SetPlayerSkin(playerid, skin)
 
 stock CheckPlayerSkin(playerid)
 {
-    anticheat_system_check(CheckPlayerSkin);
+    DETUTILS_AC__ check:(CheckPlayerSkin);
 
     new currentskin = GetPlayerSkin(playerid);
     if(currentskin != g_PlayerData[playerid][Skin])
@@ -575,7 +575,7 @@ stock SetPlayerVehiclePos(playerid, Float:x, Float:y, Float:z)
 
 stock CheckPlayerPos(playerid)
 {
-    anticheat_system_check(CheckPlayerPos);
+    DETUTILS_AC__ check:(CheckPlayerPos);
 
     new Float:x, Float:y, Float:z;
 
@@ -662,7 +662,7 @@ stock CheckPlayerPos(playerid)
 
 stock CheckPlayerPing(playerid)
 {
-    anticheat_system_check(CheckPlayerPing);
+    DETUTILS_AC__ check:(CheckPlayerPing);
     new ping = GetPlayerPing(playerid);
     g_PlayerData[playerid][Ping] = ping;
     if(g_PlayerData[playerid][Ping] > 250)
@@ -687,7 +687,7 @@ stock d_ac_SetPlayerHealth(playerid, Float:health)
 
 stock CheckPlayerHealth(playerid)
 {
-    anticheat_system_check(CheckPlayerHealth);
+    DETUTILS_AC__ check:(CheckPlayerHealth);
     new Float:health;
     GetPlayerHealth(playerid, Float:health);
     if(health != g_PlayerData[playerid][Health])
@@ -720,7 +720,7 @@ stock d_ac_SetPlayerArmour(playerid, Float:armour)
 
 stock CheckPlayerArmour(playerid)
 {
-    anticheat_system_check(CheckPlayerArmour);
+    DETUTILS_AC__ check:(CheckPlayerArmour);
     new Float:armour;
     GetPlayerArmour(playerid, Float:armour);
     if(armour != g_PlayerData[playerid][Armour])

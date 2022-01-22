@@ -361,6 +361,10 @@ static d_me_SplitString(const strsrc[], strdest[][], delimiter)
     return 1;
 }
 
+#if !defined floatstr
+    native Float:floatstr(const string[]);
+#endif
+
 static d_me_LoadObjects(id)
 {
     new d_ArrayCoordinates[19][64],file_name[100];
@@ -373,12 +377,12 @@ static d_me_LoadObjects(id)
     {
         fread(file, strFromFile2);
         d_me_SplitString(strFromFile2, d_ArrayCoordinates, ',');
-        g_ObjectData[id][Pos][0] = strval(d_ArrayCoordinates[0]);
-        g_ObjectData[id][Pos][1] = strval(d_ArrayCoordinates[1]);
-        g_ObjectData[id][Pos][2] = strval(d_ArrayCoordinates[2]);
-        g_ObjectData[id][RotPos][0] = strval(d_ArrayCoordinates[3]);
-        g_ObjectData[id][RotPos][0] = strval(d_ArrayCoordinates[4]);
-        g_ObjectData[id][RotPos][0] = strval(d_ArrayCoordinates[5]);
+        g_ObjectData[id][Pos][0] = floatstr(d_ArrayCoordinates[0]);
+        g_ObjectData[id][Pos][1] = floatstr(d_ArrayCoordinates[1]);
+        g_ObjectData[id][Pos][2] = floatstr(d_ArrayCoordinates[2]);
+        g_ObjectData[id][RotPos][0] = floatstr(d_ArrayCoordinates[3]);
+        g_ObjectData[id][RotPos][0] = floatstr(d_ArrayCoordinates[4]);
+        g_ObjectData[id][RotPos][0] = floatstr(d_ArrayCoordinates[5]);
         g_ObjectData[id][GtaObjID] = strval(d_ArrayCoordinates[6]);
         
         fclose(file);
