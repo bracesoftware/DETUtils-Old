@@ -86,7 +86,7 @@ Include code:
 ### Maximum objects
 Include code:
 ```pawn
-#define MAX_OBJECTS (...)
+#define MAX_OBJECTS 1000
 ```
 
 - This limits the maximum number of created objects on the server. This is also a SA:MP limit.
