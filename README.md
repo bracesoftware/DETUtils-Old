@@ -113,8 +113,8 @@ If you're facing issues with your code compilation after including the library, 
 
 ### Thanks:
 
-- aezzakmi - help during development
-- Not kalcor - testing and fixes
+- aezzakmi (no GitHub account) - help during development
+- [Unity](https://github.com/kyekalcor) - testing and fixes
 
 ### Very special thanks to:
 
