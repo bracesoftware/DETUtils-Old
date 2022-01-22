@@ -54,7 +54,7 @@ new gAntiCheatTimer;
 
 // Cheat defines:
 
-#define INVALID_CHEAT_ID -1 // Currently, there's no use of it.
+#define INVALID_CHEAT_TYPE -1 // Currently, there's no use of it.
 #define CHEAT_TYPE_MONEY 0
 #define CHEAT_TYPE_SKINCHANGER 1
 #define CHEAT_TYPE_TELEPORT 2
@@ -63,6 +63,7 @@ new gAntiCheatTimer;
 #define CHEAT_TYPE_ARMOUR 5
 #define CHEAT_TYPE_SPEEDHACK 6
 #define CHEAT_TYPE_DIALOG 7
+#define CHEAT_TYPE_MENU 8
 
 // Functions:
 
@@ -82,6 +83,7 @@ public detutils_cheatcheck()
             CheckPlayerHealth(i);
             CheckPlayerSpeed(i);
             CheckPlayerDialog(i);
+            CheckPlayerMenu(i);
         }
     }
     return 1;
@@ -182,7 +184,7 @@ stock ToggleAntiCheatSystem(bool:toggle)
         gAntiCheatToggled = 0;
         return 1;
     }
-    return INVALID_CHEAT_ID;
+    return INVALID_CHEAT_TYPE;
 }
 
 // Anti-cheat code:
@@ -198,7 +200,9 @@ enum ENUM_g_PlayerData
     Float:Health,
     Float:Armour,
     Dialog,
-    bool:UsingDialogHack
+    bool:UsingDialogHack,
+    Menu:Menu,
+    bool:UsingMenuHack
 }
 
 new g_PlayerData[MAX_PLAYERS][ENUM_g_PlayerData];
@@ -388,6 +392,62 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 #define OnDialogResponse d_ac_dialogresponse
 
 forward d_ac_dialogresponse(playerid, dialogid, response, listitem, inputtext[]);
+
+// MENU SELECTION ANTI-CHEAT:
+
+stock Menu:d_ac_ShowMenuForPlayer(Menu:menuid, playerid)
+{
+    g_PlayerData[playerid][Menu] = menuid;
+    return Menu:ShowMenuForPlayer(Menu:menuid, playerid);
+}
+
+stock CheckPlayerMenu(playerid)
+{
+    anticheat_system_check(CheckPlayerMenu);
+    
+    if(g_PlayerData[playerid][UsingMenuHack] == true)
+    {
+        if(funcidx("OnPlayerCheatDetected") != -1)
+        {
+            CallLocalFunction("OnPlayerCheatDetected", "ii", playerid, CHEAT_TYPE_MENU);
+            return 1;
+        }
+    }
+    return 0;
+}
+
+#if defined _ALS_ShowMenuForPlayer
+    #undef ShowMenuForPlayer
+#else
+    #define _ALS_ShowMenuForPlayer
+#endif
+
+#define ShowMenuForPlayer d_ac_ShowMenuForPlayer
+
+public OnPlayerSelectedMenuRow(playerid, row)
+{
+    new Menu:menuid = GetPlayerMenu(playerid);
+    if(menuid != g_PlayerData[playerid][Menu])
+    {
+        g_PlayerData[playerid][UsingMenuHack] = true;
+    }
+
+    if(funcidx("d_ac_menuresponse") != -1)
+    {
+        CallLocalFunction("d_ac_menuresponse", "ii", playerid, row);
+    }
+    return 1;
+}
+
+#if defined _ALS_OnPlayerSelectedMenuRow
+    #undef OnPlayerSelectedMenuRow
+#else
+    #define _ALS_OnPlayerSelectedMenuRow
+#endif
+
+#define OnPlayerSelectedMenuRow d_ac_menuresponse
+
+forward d_ac_menuresponse(playerid, row);
 
 // MONEY ANTI-CHEAT:
 

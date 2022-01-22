@@ -683,12 +683,12 @@ stock CreatePropertyEntrance(
         #endif
         Create3DLabelAndPickup(_EntranceLabelString, _xEntrance,_yEntrance,_zEntrance, _xVirtualWorldid, 19133, 3.0);
         #if defined detutils_debug
-        printf("[samp-detutils]: (debug) - Streamer :: Created 3D label and pickup on entrance.");
+        printf("[samp-detutils]: (debug) - lab :: Created 3D label and pickup on entrance.");
         #endif
         Create3DLabelAndPickup("Exit here!", g_PropertyData[g_PropertyID][p_PropertyExit_X],
             g_PropertyData[g_PropertyID][p_PropertyExit_Y], g_PropertyData[g_PropertyID][p_PropertyExit_Z], _eVirtualWorldid, 19133, 3.0);
         #if defined detutils_debug
-        printf("[samp-detutils]: (debug) - Streamer :: Created 3D label and pickup on exit.");
+        printf("[samp-detutils]: (debug) - pick :: Created 3D label and pickup on exit.");
         #endif
     }
 
