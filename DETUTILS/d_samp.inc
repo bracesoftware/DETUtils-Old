@@ -36,6 +36,8 @@
 
 #endif
 
+#pragma warning disable 203
+
 #define d_samp_included
 
 #include "d_properties"

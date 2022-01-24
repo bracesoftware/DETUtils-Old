@@ -341,6 +341,7 @@ stock CallLocalPrefixedCommand(const command[], const specifiers[], integer, con
 #define COMMAND_DEBUG_STATE_RECEIVED 0
 #define COMMAND_DEBUG_STATE_READY 1
 #define COMMAND_DEBUG_STATE_PERFORMED 2
+#define COMMAND_DEBUG_STATE_STOPPED 3
 
 /*
                                          
@@ -696,6 +697,37 @@ public OnPlayerText(playerid, text[])
         #endif
         CallLocalFunction(PrxFuncName, "i", playerid);
 
+        /*CallLocalFunction("OnPlayerPassCommandPrefix", "isss", 
+            playerid, text, text[0], g_PlayerCmdData[playerid][PassedPrefix][0]);*/
+        
+
+        //new PrefixPass = CallLocalFunction("OnPlayerPassCommandPrefix", "isss", playerid, text, text[0], g_PlayerCmdData[playerid][PassedPrefix]);
+
+        new expcprx[10];
+        format(expcprx, sizeof expcprx,
+            "%s", g_PlayerCmdData[playerid][PassedPrefix][0]);
+
+        new prx[10];
+        format(prx, sizeof prx,
+            "%s", text[0]);
+
+        if(funcidx("OnPlayerPassCommandPrefix") != -1)
+        {
+            if(OnPlayerPassCommandPrefix(
+                playerid, text, prx, expcprx
+            ) != 1)
+            {
+                #if defined detutils_debug
+                    printf("[samp-detutils]: (debug) - opt :: Passed prefix returned 0");
+                #endif
+                if(funcidx(_CommandDebugFunc) != -1)
+                {
+                    CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_STOPPED);
+                }
+                return 0;
+            }
+        }
+
         #if defined detutils_debug
             printf("[samp-detutils]: (debug) - opt :: PrxFuncName: %s / CmdFuncName: %s / Passed prefix: %s", 
                 PrxFuncName, CmdFuncName, g_PlayerCmdData[playerid][PassedPrefix]);
@@ -730,6 +762,7 @@ public OnPlayerText(playerid, text[])
             {
                 CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
             }
+            return 1;
         }
         else
         {
@@ -742,6 +775,7 @@ public OnPlayerText(playerid, text[])
             {
                 return CallLocalFunction("OnPrefixedCommandPerformed", "isi", playerid, text, 0);
             }
+            return 1;
         }
     }
     if(Data_g_ChatMode[playerid] == 0 && funcidx("a_cmd_OnPlayerText") != -1)
@@ -767,7 +801,7 @@ public OnPlayerText(playerid, text[])
     prx_%0(playerid); public prx_%0(playerid){ strmid(g_PlayerCmdData[playerid][PassedPrefix], %3, 0, MAX_PREFIX_LENGTH, MAX_PREFIX_LENGTH); return MAX_PREFIX_LENGTH;}forward pc_%0(%1);public pc_%0(%1)
 
 #define @newk_Prefix:%0=%1; \
-    stock %0[MAX_PREFIX_LENGTH]=%1;
+    stock const %0[MAX_PREFIX_LENGTH]=%1;
 
 ////////////////////////////////////////////////////
 
@@ -1487,3 +1521,5 @@ stock void:SetPlayerChatMode(playerid, chatmode)
         Data_g_ChatMode[playerid] = 1;
     }
 }
+
+forward OnPlayerPassCommandPrefix(playerid, cmdtext[], passedprefix[], expectedprefix[]);
