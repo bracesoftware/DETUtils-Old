@@ -53,3 +53,13 @@
 ### Fixes
 - Fixed the issue with custom prefixed commands processor.
 ----------------------------------------
+## Test no. 1 - 24 Jan 2022
+
+- Tested by: DEntisT-ofc
+- Version: 1.5.8
+
+### Fixes
+
+- Everything at a glance! Besides the ``FadePlayerScreen(...)`` TextDraw is not showing, fixing it soon.
+
+----------------------------------------
