@@ -43,8 +43,13 @@ Let's find out.
 - ... other defines:
 
 ``DETUTILS_NO_PROPERTIES`` for disabling *d_properties.inc*.
+
 ``DETUTILS_NO_FMARGS`` for disabling *d_fmargs.inc*.
+
 ``DETUTILS_NO_VISUAL`` for disabling *d_visual.inc*.
+
 ``DETUTILS_NO_ANTICHEAT`` for disabling *d_anticheat.inc*.
+
 ``DETUTILS_NO_COLOURS`` for disabling *d_colours.inc*.
+
 ``DETUTILS_NO_MAPEDITOR`` for disabling *d_mapeditor.inc*.
