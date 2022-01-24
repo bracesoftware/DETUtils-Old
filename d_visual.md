@@ -134,6 +134,14 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 }
 ```
 
+### PreloadAnimationLibrary
+
+- This function preloads the certain animation library which is, sometimes, neccessary for applying animation from certain animation libraries.
+
+```pawn
+PreloadAnimationLibrary(playerid, "PED");
+```
+
 ## Built-in visual features
 ### Commands
 #### /pickgun
