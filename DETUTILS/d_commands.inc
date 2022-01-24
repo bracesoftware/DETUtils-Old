@@ -219,9 +219,11 @@ stock ToggleCommandCaseSensivity(bool:toggle)
     return 1;
 }
 
+static Data_g_ChatMode[MAX_PLAYERS];
+
 forward OnCommandStateChange(playerid, cmdtext[], stateid);
 forward OnPrefixedCommandStateChange(playerid, cmdtext[], stateid);
-
+/*
 stock CallLocalCommand(const command[], const specifiers[], integer, const string[])
 {
     new command_name[MAX_FUNC_NAME];
@@ -321,6 +323,52 @@ stock CallLocalPrefixedCommand(const command[], const specifiers[], integer, con
                 )
         ;
 
+}*/
+
+#define COMMAND_TYPE_LOCAL 0
+#define COMMAND_TYPE_REMOTE 1
+#define COMMAND_TYPE_LOCAL_PREFIXED 2
+#define COMMAND_TYPE_REMOTE_PREFIXED 3
+
+stock CallCommand(const cmdtext[], const playerid, const params[], const type = COMMAND_TYPE_LOCAL)
+{
+    if(type == COMMAND_TYPE_LOCAL)
+    {
+        new command_name[MAX_FUNC_NAME];
+        format(command_name, MAX_FUNC_NAME, "cmd_%s", cmdtext);
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 0");
+        #endif
+        return CallLocalFunction(command_name, "is", playerid, params);   
+    }
+    if(type == COMMAND_TYPE_REMOTE)
+    {
+        new command_name[MAX_FUNC_NAME];
+        format(command_name, MAX_FUNC_NAME, "cmd_%s", cmdtext);
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 1");
+        #endif
+        return CallLocalFunction(command_name, "is", playerid, params);   
+    }
+    if(type == COMMAND_TYPE_LOCAL_PREFIXED)
+    {
+        new command_name[MAX_FUNC_NAME];
+        format(command_name, MAX_FUNC_NAME, "pc_%s", cmdtext);
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 2");
+        #endif
+        return CallLocalFunction(command_name, "is", playerid, params);   
+    }
+    if(type == COMMAND_TYPE_REMOTE_PREFIXED)
+    {
+        new command_name[MAX_FUNC_NAME];
+        format(command_name, MAX_FUNC_NAME, "pc_%s", cmdtext);
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 3");
+        #endif
+        return CallRemoteFunction(command_name, "is", playerid, params);   
+    }
+    return 1;
 }
 
 //#define GetCommandDebugState%1(%2) %1debugged_stateid%2
