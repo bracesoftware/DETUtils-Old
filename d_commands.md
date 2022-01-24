@@ -356,56 +356,57 @@ Now, we created a command which requires ``AdminRole`` role to be executed - per
 
 ## API ( programming interface )
 
-### Functions
-------------------------------------------
-*d_commands.inc* also contains some handy functions, let's see.
+- *d_commands.inc* also contains some handy functions, let's see.
 
-**CallLocalCommand**
-------------------------------------------
-- This function does nothing besides returning command function call.
+### CallCommand
 
-Parameters:
-
-   - command_name (string)
-   - specifiers (string)
-   - command_firstparam (integer)
-   - command_secparam (string)
-  
-Example:
+- Function ``CallCommand``, obviously, is used to call a command.
+- Let's see a small example:
 
 ```pawn
-CallLocalCommand("mycommand", "is", playerid, inputtext);
+CallCommand("sayhi", playerid, params); 
 ```
+- So, very simple, this will call a normal **local** command (counts for role commands, admin commants etc).
 
-**CallRemoteCommand**
-------------------------------------------
-- Simply, *CallRemoteCommand* works same as *CallLocalCommand* (it has same parameters etc.) - but the command can be called from anywhere. Even, from another file.
+But, as I mentioned, code above will call a local command, that is why I added **command call type** parameter. Read more below!
 
-**CallLocalPrefixedCommand**
-------------------------------------------
+### Command call types
 
-- Used to call local prefixed command.
+#### ``COMMAND_TYPE_LOCAL``
 
-Example:
+- This is the default call type.
+
+This code:
+```pawn
+CallCommand("sayhi", playerid, params); 
+```
+... is same as this one:
+```pawn
+CallCommand("sayhi", playerid, params, COMMAND_TYPE_LOCAL); 
+```
+#### ``COMMAND_TYPE_REMOTE``
+
+- This calls the remote commands (commands in all loaded scripts).
 
 ```pawn
-CallLocalPrefixedCommand("sayhi", "is", playerid, text);
+CallCommand("sayhi", playerid, params, COMMAND_TYPE_REMOTE); 
 ```
 
-**WARNING:** In command name parameter (in this case - it is this **"sayhi"** thing), you only need to put command name - not a prefix!
+#### ``COMMAND_TYPE_LOCAL_PREFIXED``
 
-**CallRemotePrefixedCommand**
-------------------------------------------
-
-- Used to call remote prefixed command.
-
-Example:
+- Slash commands and custom-prefixed commands are totally 'different worlds' - that's why this one exists.
 
 ```pawn
-CallRemotePrefixedCommand("sayhi", "is", playerid, text);
+CallCommand("sayhi", playerid, params, COMMAND_TYPE_LOCAL_PREFIXED); 
 ```
 
-**WARNING:** In command name parameter (in this case - it is this **"sayhi"** thing), you only need to put command name - not a prefix!
+#### ``COMMAND_TYPE_REMOTE_PREFIXED``
+
+- Like one above, but for remote prefixed commands, also note that you don't put the prefix in command name parameter.
+
+```pawn
+CallCommand("sayhi", playerid, params, COMMAND_TYPE_REMOTE_PREFIXED); 
+```
 
 **Command processing**
 ------------------------------------------
