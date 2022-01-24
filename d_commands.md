@@ -88,6 +88,7 @@ public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid)
 - ``COMMAND_DEBUG_STATE_RECEIVED`` - command processor received command and command parameters
 - ``COMMAND_DEBUG_STATE_READY`` - command is ready to be performed
 - ``COMMAND_DEBUG_STATE_PERFORMED`` - command performed successfully
+- ``COMMAND_DEBUG_STATE_STOPPED`` - explanation shown some scrolls below
 
 **How to use states?**
 ------------------------------------------
@@ -244,6 +245,40 @@ if(chatmode == CHAT_MODE_PLAIN_TEXT_MESSAGES)
 {
 	SetPlayerChatMode(playerid, CHAT_MODE_PREFIXED_COMMANDS);
 	SendClientMessage(playerid, -1, "Now you can use custom-prefixed commands.");
+}
+
+```
+### OnPlayerPassCommandPrefix
+
+- ``d_commands``'s custom-prefixed commands system also contains ``OnPlayerPassCommandPrefix`` callback which is always called before ``COMMAND_DEBUG_STATE_READY``. Really useful callback for logging and preventing the usage of commands with certain prefix. If ``OnPlayerPassCommandPrefix`` returns ``0``, ``OnPrefixedCommandStateChange`` will be called with debug state ``COMMAND_DEBUG_STATE_STOPPED``.
+
+Example:
+```pwn
+
+decl Prefix:SomeCoolPrefix = "&";
+
+public OnPlayerPassCommandPrefix(playerid, cmdtext[], passedprefix[], expectedprefix[])
+{
+    SendClientMessage(playerid, -1, "CMD: %s | Passed prefix: %s | Expected command prefix: %s", cmdtext, passedprefix, expectedprefix);
+    // For logging purposes.
+    // Parameter explanation:
+    
+    // playerid - id of a player
+    // cmdtext[] - full command text, with prefix and command name (example: "&test")
+    // passedprefix[] - prefix player passed (example: "$")
+    // expectedprefix[] - prefix expected by the command processor (in this case: "&")
+    
+    // Let's see what we have done here:
+
+	// Checked if passed and expected command prefixes match in order to check is command a valid command (aka exists).
+	// Then &&, if passedprefix is equal to prefix we declared! 
+    if(passedprefix[0] == expectedprefix[0] && passedprefix[0] == SomeCoolPrefix[0])
+    {
+    	// If check succeded...
+        SendClientMessage(playerid, -1, "You aren't allowed to use commands with & prefix!"); // Send player a message...
+        return 0; //  Return 0 to prevent command processor with processing the command.
+    }
+    return 1; // Or... just return 1 if player used another command, like "@help".
 }
 
 ```
