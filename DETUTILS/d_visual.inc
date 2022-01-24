@@ -249,6 +249,11 @@ enum d_PlayerWeapInfo
 
 new d_PlayerWeaponInfo[MAX_PLAYERS][d_PlayerWeapInfo];
 
+static void:PreloadAnimationLibrary(playerid, const animlib[])
+{
+    ApplyAnimation(playerid, animlib, "null", 0.0, 0, 0, 0, 0, 0, 1);
+}
+
 //-- Vehicles --//
 
 stock KillVehicle(vehicleid)
