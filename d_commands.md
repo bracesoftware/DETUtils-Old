@@ -282,6 +282,17 @@ public OnPlayerPassCommandPrefix(playerid, cmdtext[], passedprefix[], expectedpr
 }
 
 ```
+- How to see if command processing for certain command has stopped because of the check above? Check code below:
+```pawn
+public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid)
+{ 
+	if(stateid == COMMAND_DEBUG_STATE_STOPPED)
+	{
+		printf("Command processing for command %s stopped.", cmdtext);
+	}
+	return 1;
+}
+```
 
 ### Commands with custom permissions
 ------------------------------------------
