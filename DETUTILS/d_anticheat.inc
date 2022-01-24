@@ -76,14 +76,31 @@ public detutils_cheatcheck()
         if(i != INVALID_PLAYER_ID)
         {
             CheckPlayerMoney(i);
+            printf("[samp-detutils]: (debug) - ac :: Money check performed on %s", ReturnPlayerName(i));
+            sleep(100);
             CheckPlayerSkin(i);
+            printf("[samp-detutils]: (debug) - ac :: Skin check performed on %s", ReturnPlayerName(i));
+            sleep(100);
             CheckPlayerPos(i);
+            printf("[samp-detutils]: (debug) - ac :: Pos check performed on %s", ReturnPlayerName(i));
+            sleep(100);
             CheckPlayerPing(i);
+            printf("[samp-detutils]: (debug) - ac :: Ping check performed on %s", ReturnPlayerName(i));
+            sleep(100);
             CheckPlayerArmour(i);
+            printf("[samp-detutils]: (debug) - ac :: Armour check performed on %s", ReturnPlayerName(i));
+            sleep(100);
             CheckPlayerHealth(i);
+            printf("[samp-detutils]: (debug) - ac :: Health check performed on %s", ReturnPlayerName(i));
+            sleep(100);
             CheckPlayerSpeed(i);
+            printf("[samp-detutils]: (debug) - ac :: Speed check performed on %s", ReturnPlayerName(i));
+            sleep(100);
             CheckPlayerDialog(i);
+            printf("[samp-detutils]: (debug) - ac :: Dialog check performed on %s", ReturnPlayerName(i));
+            sleep(100);
             CheckPlayerMenu(i);
+            printf("[samp-detutils]: (debug) - ac :: Menu check performed on %s", ReturnPlayerName(i));
         }
     }
     return 1;
