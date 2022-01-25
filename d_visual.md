@@ -146,7 +146,7 @@ PreloadAnimationLibrary(playerid, "PED");
 ```pawn
 public OnPlayerWeaponChange(playerid, oldweapon, newweapon)
 {
-    new oldweap[32], newweap[32]; // Create 2 strings from weapon name.
+    new oldweap[32], newweap[32]; // Create 2 strings for weapon names.
     GetWeaponName(oldweapon, oldweap, sizeof oldweap); // Get weapon name of the old weapon.
     GetWeaponName(newweapon, newweap, sizeof newweap); // Get weapon name of the new weapon.
     if(oldweapon == 0) // If player didn't have any weapon...
