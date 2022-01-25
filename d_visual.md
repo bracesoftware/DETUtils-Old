@@ -95,29 +95,9 @@ RemovePlayerWeapon(playerid, weapon);
 static Weapon_IsValidWeapon(weapid) return IsValidWeapon(weapid);
 ```
 
-### FadePlayerScreen
+### ``public`` OnPlayerScreenUpdate
 
-- This function fades player's screen. Player's screen becomes black and becomes brighter every 50 milliseconds.
-
-```pawn
-public OnPlayerSpawn(playerid)
-{
-  FadePlayerScreen(playerid);
-  return 1;
-}
-```
-
-### ``public`` OnPlayerScreenFade
-
-- Callback called when ``FadePlayerScreen`` is used.
-
-```pawn
-public OnPlayerScreenFade(playerid)
-{
-    SendClientMessage(playerid, -1, "Your screen faded!");
-    return 1;
-}
-```
+- Docs coming after I finish the callback.
 
 ### SetPlayerVehiclePos
 
