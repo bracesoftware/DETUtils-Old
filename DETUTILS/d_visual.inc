@@ -243,6 +243,7 @@ stock SendMessageInRange(Float:radius, playerid, const string[], colour)
 
 enum d_PlayerWeapInfo
 {
+    HoldingWeapon,
     Weapon[ 13 ],
     Ammo[ 13 ]
 }
@@ -388,6 +389,32 @@ stock RemovePlayerWeapon( playerid, weaponid )
     }
     return 1;
 }
+
+forward OnPlayerWeaponChange(playerid, oldweapon, newweapon);
+
+public OnPlayerUpdate(playerid)
+{
+    new weap = GetPlayerWeapon(playerid);
+    if(d_PlayerWeaponInfo[ playerid ][ HoldingWeapon ] != weap)
+    {
+        CallLocalFunction("OnPlayerWeaponChange", "iii", playerid, d_PlayerWeaponInfo[ playerid ][ HoldingWeapon ], weap);
+    }
+    if(funcidx("d_v_playerupdate") != -1)
+    {
+        CallLocalFunction("d_v_playerupdate", "i", playerid);
+    }
+    d_PlayerWeaponInfo[ playerid ][ HoldingWeapon ] = weap;
+    return 1;
+}
+
+#if defined _ALS_OnPlayerUpdate
+    #undef OnPlayerUpdate
+#else
+    #define _ALS_OnPlayerUpdate
+#endif
+#define OnPlayerUpdate d_v_playerupdate
+
+forward d_v_playerupdate(playerid);
 
 // - Commands - //
 
