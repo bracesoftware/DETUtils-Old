@@ -141,7 +141,30 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 ```pawn
 PreloadAnimationLibrary(playerid, "PED");
 ```
-
+### ``public`` OnPlayerWeaponChange
+- Below, you can see the usage of it, and explanation of it.
+```pawn
+public OnPlayerWeaponChange(playerid, oldweapon, newweapon)
+{
+    new oldweap[32], newweap[32]; // Create 2 strings from weapon name.
+    GetWeaponName(oldweapon, oldweap, sizeof oldweap); // Get weapon name of the old weapon.
+    GetWeaponName(newweapon, newweap, sizeof newweap); // Get weapon name of the new weapon.
+    if(oldweapon == 0) // If player didn't have any weapon...
+    {
+        format(oldweap, sizeof oldweap, "none"); // ... format `oldweap` string. 
+    }
+    if(newweapon == 0) // Or, if the new weapon is my hand...
+    {
+        format(newweap, sizeof newweap, "none"); // ... format `newweap` string.
+    }
+    SendClientMessage(playerid, -1, "You changed your weapon from %s to %s.", oldweap, newweap); // Send the message.
+    return 1;
+}
+```
+Results are, if I, for example picked AK47 while holding Desert Eagle:
+```
+You changed your weapon from Desert Eagle to AK47.
+```
 ## Built-in visual features
 ### Commands
 #### /pickgun
