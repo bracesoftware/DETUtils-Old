@@ -77,28 +77,28 @@ public detutils_cheatcheck()
         {
             CheckPlayerMoney(i);
             printf("[samp-detutils]: (debug) - ac :: Money check performed on %s", ReturnPlayerName(i));
-            sleep(100);
+            //sleep(100);
             CheckPlayerSkin(i);
             printf("[samp-detutils]: (debug) - ac :: Skin check performed on %s", ReturnPlayerName(i));
-            sleep(100);
+            //sleep(100);
             CheckPlayerPos(i);
             printf("[samp-detutils]: (debug) - ac :: Pos check performed on %s", ReturnPlayerName(i));
-            sleep(100);
+            //sleep(100);
             CheckPlayerPing(i);
             printf("[samp-detutils]: (debug) - ac :: Ping check performed on %s", ReturnPlayerName(i));
-            sleep(100);
+            //sleep(100);
             CheckPlayerArmour(i);
             printf("[samp-detutils]: (debug) - ac :: Armour check performed on %s", ReturnPlayerName(i));
-            sleep(100);
+            //sleep(100);
             CheckPlayerHealth(i);
             printf("[samp-detutils]: (debug) - ac :: Health check performed on %s", ReturnPlayerName(i));
-            sleep(100);
+            //sleep(100);
             CheckPlayerSpeed(i);
             printf("[samp-detutils]: (debug) - ac :: Speed check performed on %s", ReturnPlayerName(i));
-            sleep(100);
+            //sleep(100);
             CheckPlayerDialog(i);
             printf("[samp-detutils]: (debug) - ac :: Dialog check performed on %s", ReturnPlayerName(i));
-            sleep(100);
+            //sleep(100);
             CheckPlayerMenu(i);
             printf("[samp-detutils]: (debug) - ac :: Menu check performed on %s", ReturnPlayerName(i));
         }
@@ -534,16 +534,13 @@ stock CheckPlayerSkin(playerid)
 
 // TELEPORT ANTI-CHEAT:
 
-#define MAX_PLAYER_SPEED 54
+#define MAX_PLAYER_SPEED 94
 
-#define MAX_PLAYERPED_SPEED 57
+#define MAX_PLAYERPED_SPEED 97
 
 stock Float:d_ac_GetDistance(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2)
 {
-    new Float:p_DistanceM, Float:x = x2-x1, Float:y = y2-y1, Float:z = z2-z1;
-
-    p_DistanceM = floatsqroot(x*x + y*y + z*z);
-    return p_DistanceM;
+    return VectorSize(x1-x2, y1-y2, z1-z2);
 }
 
 stock d_ac_GetSpeed(playerid) // Also used in Speed Anti Cheat
@@ -707,7 +704,7 @@ stock CheckPlayerHealth(playerid)
     DETUTILS_AC__ check:(CheckPlayerHealth);
     new Float:health;
     GetPlayerHealth(playerid, Float:health);
-    if(health != g_PlayerData[playerid][Health])
+    if(health - g_PlayerData[playerid][Health] > 10)
     {
         if(funcidx("OnPlayerCheatDetected") != -1)
         {
@@ -740,7 +737,7 @@ stock CheckPlayerArmour(playerid)
     DETUTILS_AC__ check:(CheckPlayerArmour);
     new Float:armour;
     GetPlayerArmour(playerid, Float:armour);
-    if(armour != g_PlayerData[playerid][Armour])
+    if(armour - g_PlayerData[playerid][Armour] > 10)
     {
         if(funcidx("OnPlayerCheatDetected") != -1)
         {
