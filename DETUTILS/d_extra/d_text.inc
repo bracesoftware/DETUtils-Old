@@ -13,7 +13,7 @@
 
 // d_properties
 
-#define DETUTILS_TEXT_MAX_PROPS_REACH "Maximum number of created properties reached."
+#define DETUTILS_TEXT_MAX_PROPS_REACH "Maximum number of created properties exceeded."
 #define DETUTILS_TEXT_PROPERTY_NAME "Property: %s"
 
 #define DETUTILS_TEXT_PROP_LOCK "SERVER: This property's door is locked."
@@ -29,7 +29,7 @@
 
 // d_visual
 
-#define DETUTILS_TEXT_MAX_GUN_REACH "Maximum number of dropped gun objects reached."
+#define DETUTILS_TEXT_MAX_GUN_REACH "Maximum number of dropped gun objects exceeded."
 #define DETUTILS_TEXT_CMD_TIMER "The player tried to use the command but the timer was not over yet."
 #define DETUTILS_TEXT_CANNOT_OPERATE ""COLOUR_GREY"Operation can't be completed at the moment."
 #define DETUTILS_TEXT_THROW_GUN ""COLOUR_GREY"You threw away {ffffff}%s"COLOUR_GREY"."

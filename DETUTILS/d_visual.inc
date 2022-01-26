@@ -12,14 +12,6 @@
  *
  */
 
-#tryinclude <streamer>
-
-#if !defined _streamer_included
-
-    #error [samp-detutils]: (error) - Plugin 'streamer.dll/so' required to run 'd_visual'.
-
-#endif
-
 #if !defined _d_cmd_processor_included
 
     #error [samp-detutils]: (error) - Include 'd_commands' before using 'd_visual' include.
@@ -28,7 +20,7 @@
 
 #if !defined d_fmargs_included
 
-    #error [samp-detutils]: (error) -  Include 'd_fmargs' before using 'd_visual' include.
+    #error [samp-detutils]: (error) - Include 'd_fmargs' before using 'd_visual' include.
 
 #endif
 
@@ -69,10 +61,10 @@
 //-- Players --//
 
 #define INVALID_SCREEN_UPDATE_ID -1
-#define SCREEN_UPDATE_PTEXTDRAW_SHOW 0
-#define SCREEN_UPDATE_PTEXTDRAW_HIDE 1
-#define SCREEN_UPDATE_GTEXTDRAW_SHOW 2
-#define SCREEN_UPDATE_GTEXTDRAW_HIDE 3
+#define SCREEN_UPDATE_PLAYER_TD_SHOW 0
+#define SCREEN_UPDATE_PLAYER_TD_HIDE 1
+#define SCREEN_UPDATE_GLOBAL_TD_SHOW 2
+#define SCREEN_UPDATE_GLOBAL_TD_HIDE 3
 #define SCREEN_UPDATE_GAMETEXT_SHOW 4
 #define SCREEN_UPDATE_GAMETEXT_HIDE 5
 
@@ -84,7 +76,7 @@ stock PlayerText:d_v_PlayerTextDrawShow(playerid, PlayerText:text)
 {
     if(funcidx("OnPlayerScreenUpdate") != -1)
     {
-        CallLocalFunction("OnPlayerScreenUpdate", "ii", playerid, SCREEN_UPDATE_PTEXTDRAW_SHOW);
+        CallLocalFunction("OnPlayerScreenUpdate", "ii", playerid, SCREEN_UPDATE_PLAYER_TD_SHOW);
     }
     return PlayerTextDrawShow(playerid, text);
 }
@@ -101,7 +93,7 @@ stock PlayerText:d_v_PlayerTextDrawHide(playerid, PlayerText:text)
 {
     if(funcidx("OnPlayerScreenUpdate") != -1)
     {
-        CallLocalFunction("OnPlayerScreenUpdate", "ii", playerid, SCREEN_UPDATE_PTEXTDRAW_HIDE);
+        CallLocalFunction("OnPlayerScreenUpdate", "ii", playerid, SCREEN_UPDATE_PLAYER_TD_HIDE);
     }
     return PlayerTextDrawHide(playerid, text);
 }
@@ -120,7 +112,7 @@ stock Text:d_v_TextDrawShowForPlayer(playerid, Text:text)
 {
     if(funcidx("OnPlayerScreenUpdate") != -1)
     {
-        CallLocalFunction("OnPlayerScreenUpdate", "ii", playerid, SCREEN_UPDATE_GTEXTDRAW_SHOW);
+        CallLocalFunction("OnPlayerScreenUpdate", "ii", playerid, SCREEN_UPDATE_GLOBAL_TD_SHOW);
     }
     return TextDrawShowForPlayer(playerid, text);
 }
@@ -139,7 +131,7 @@ stock Text:d_v_TextDrawShowForAll(Text:text)
     {
         for(new i; i < MAX_PLAYERS; i++) if(IsPlayerConnected(i))
         {
-            CallLocalFunction("OnPlayerScreenUpdate", "ii", i, SCREEN_UPDATE_GTEXTDRAW_SHOW);
+            CallLocalFunction("OnPlayerScreenUpdate", "ii", i, SCREEN_UPDATE_GLOBAL_TD_SHOW);
         }
     }
     return TextDrawShowForAll(text);
@@ -157,7 +149,7 @@ stock Text:d_v_TextDrawHideForPlayer(playerid, Text:text)
 {
     if(funcidx("OnPlayerScreenUpdate") != -1)
     {
-        CallLocalFunction("OnPlayerScreenUpdate", "ii", playerid, SCREEN_UPDATE_GTEXTDRAW_HIDE);
+        CallLocalFunction("OnPlayerScreenUpdate", "ii", playerid, SCREEN_UPDATE_GLOBAL_TD_HIDE);
     }
     return TextDrawHideForPlayer(playerid, text);
 }
@@ -176,7 +168,7 @@ stock Text:d_v_TextDrawHideForAll(Text:text)
     {
         for(new i; i < MAX_PLAYERS; i++) if(IsPlayerConnected(i))
         {
-            CallLocalFunction("OnPlayerScreenUpdate", "ii", i, SCREEN_UPDATE_GTEXTDRAW_HIDE);
+            CallLocalFunction("OnPlayerScreenUpdate", "ii", i, SCREEN_UPDATE_GLOBAL_TD_HIDE);
         }
     }
     return TextDrawHideForAll(text);
@@ -190,8 +182,250 @@ stock Text:d_v_TextDrawHideForAll(Text:text)
 
 #define TextDrawHideForAll d_v_TextDrawHideForAll
 
-// other code for players module
+// game texts
 
+#if defined DETUTILS_NO_FMARGS
+
+stock d_v_GameTextForPlayer(playerid, const string[], time, style)
+{
+    if(funcidx("OnPlayerScreenUpdate") != -1)
+    {
+        CallLocalFunction("OnPlayerScreenUpdate", "ii", playerid, SCREEN_UPDATE_GAMETEXT_SHOW);
+        SetTimerEx("OnPlayerScreenUpdate", time, false, "ii", playerid, SCREEN_UPDATE_GAMETEXT_HIDE);
+    }
+    return GameTextForPlayer(playerid, string, time, style);
+}
+
+#if defined _ALS_GameTextForPlayer
+    #undef GameTextForPlayer
+#else
+    #define _ALS_GameTextForPlayer
+#endif
+
+#define GameTextForPlayer d_v_GameTextForPlayer
+
+stock d_v_GameTextForAll(const string[], time, style)
+{
+    if(funcidx("OnPlayerScreenUpdate") != -1)
+    {
+        for(new i; i < MAX_PLAYERS; i++) if(IsPlayerConnected(i))
+        {
+            CallLocalFunction("OnPlayerScreenUpdate", "ii", i, SCREEN_UPDATE_GAMETEXT_SHOW);
+            SetTimerEx("OnPlayerScreenUpdate", time, false, "ii", i, SCREEN_UPDATE_GAMETEXT_HIDE);
+        }
+    }
+    return GameTextForAll(string, time, style);
+}
+
+#if defined _ALS_GameTextForAll
+    #undef GameTextForAll
+#else
+    #define _ALS_GameTextForAll
+#endif
+
+#define GameTextForAll d_v_GameTextForAll
+
+#endif
+
+#if defined detutils_complete_error_boom
+
+#if !defined fmargs_GameTextForPlayer && !defined fmargs_GameTextForAll
+
+stock
+    fmargs_GameTextForPlayer
+(
+    i,
+    
+    const _StringArgs[],
+    
+    duration,
+    
+    style,
+    
+    {Float,_}:...
+)
+{
+    #if defined detutils_debug
+    _Functionid = 3;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    #endif
+    static
+        args,
+        
+        start,
+        
+        end,
+        
+        _unspecified_string[144]
+    ;
+    #emit LOAD.S.pri 8
+    
+    #emit STOR.pri args
+
+    if (
+        args > 12
+    )
+    {
+        #emit ADDR.pri _StringArgs
+        
+        #emit STOR.pri start
+
+        for
+        (
+            end = start + (args - 12);
+            
+            end > start;
+            
+            end -= 4
+        )
+        {
+            #emit LREF.pri end
+            
+            #emit PUSH.pri
+        }
+        #emit PUSH.S _StringArgs
+        
+        #emit PUSH.C 144
+        
+        #emit PUSH.C _unspecified_string
+        
+        #emit PUSH.C args
+        
+        #emit SYSREQ.C format
+
+        GameTextForPlayer
+        (
+            i,
+            
+            _unspecified_string,
+            
+            duration,
+            
+            style
+        )
+        ;
+
+        #emit LCTRL 5
+        
+        #emit SCTRL 4
+        
+        #emit RETN
+    }
+    #if defined detutils_debug
+    _Functionid = 3;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    #endif
+    return
+        GameTextForPlayer
+        (
+            i,
+            
+            _StringArgs,
+            
+            duration,
+            
+            style
+        )
+    ;
+}
+
+stock
+    fmargs_GameTextForAll
+(
+    const _StringArgs[],
+    
+    duration,
+    
+    style,
+    
+    {Float,_}:...
+)
+{
+    #if defined detutils_debug
+    _Functionid = 4;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    #endif
+    static
+        args,
+        
+        start,
+        
+        end,
+        
+        _unspecified_string[144]
+    ;
+    #emit LOAD.S.pri 8
+    
+    #emit STOR.pri args
+
+    if (
+        args > 12
+    )
+    {
+        #emit ADDR.pri _StringArgs
+        
+        #emit STOR.pri start
+
+        for
+        (
+            end = start + (args - 12);
+            
+            end > start;
+            
+            end -= 4
+        )
+        {
+            #emit LREF.pri end
+            
+            #emit PUSH.pri
+        }
+        #emit PUSH.S _StringArgs
+        
+        #emit PUSH.C 144
+        
+        #emit PUSH.C _unspecified_string
+        
+        #emit PUSH.C args
+        
+        #emit SYSREQ.C format
+
+        GameTextForAll
+        (
+            _unspecified_string,
+            
+            duration,
+            
+            style
+        )
+        ;
+
+        #emit LCTRL 5
+        
+        #emit SCTRL 4
+        
+        #emit RETN
+    }
+    #if defined detutils_debug
+    _Functionid = 4;
+    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    #endif
+    return
+        GameTextForAll
+        (
+            _StringArgs,
+            
+            duration,
+            
+            style
+        )
+    ;
+}
+
+#endif
+// damn
+#endif
+
+// other code for players module
 
 forward OnPlayerScoreSniperHeadshot(playerid, killedid);
 
@@ -281,14 +515,14 @@ stock d_v_SetPlayerVehiclePos(playerid, Float:x, Float:y, Float:z)
 
 //-- Weapons --//
 
-forward OnPlayerPickUpGun(playerid);
-forward OnPlayerThrowGun(playerid);
-forward OnPlayerDestroyGun(playerid);
+forward OnPlayerPickUpDroppedWeapon(playerid);
+forward OnPlayerDropWeapon(playerid);
+forward OnPlayerDestroyDroppedWeapon(playerid);
 
 #if defined detutils_complete_error_boom
 
 // dummy func
-if(funcidx("OnPlayerPickUpGun") != -1) CallLocalFunction("OnPlayerPickUpGun", "i", playerid);
+if(funcidx("OnPlayerPickUpDroppedWeapon") != -1) CallLocalFunction("OnPlayerPickUpDroppedWeapon", "i", playerid);
 
 #endif
 
@@ -435,7 +669,7 @@ enum __Weapon_data__Enum {
 };
 new g_WeaponData[ MAX_DROPPED_GUNS ][ __Weapon_data__Enum ];
 
-stock CreateDroppedGun( p_WeapID, p_WeapAmmo, Float:__Weapon_pos_x, Float:__Weapon_pos_y, Float:__Weapon_pos_z ) 
+stock CreateDroppedWeapon( p_WeapID, p_WeapAmmo, Float:__Weapon_pos_x, Float:__Weapon_pos_y, Float:__Weapon_pos_z ) 
 {
     if(_CreatedDroppedGuns == MAX_DROPPED_GUNS)
     {
@@ -459,7 +693,7 @@ stock CreateDroppedGun( p_WeapID, p_WeapAmmo, Float:__Weapon_pos_x, Float:__Weap
             g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0 ] = __Weapon_pos_x;
             g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 1 ] = __Weapon_pos_y;
             g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 2 ] = __Weapon_pos_z;
-            g_WeaponData[ p_WeapIndex ][ w_ObjectId ] = CreateDynamicObject( 
+            g_WeaponData[ p_WeapIndex ][ w_ObjectId ] = CreateObject( 
                 g_WeaponInformation[ p_WeapID ][ wModel ], 
                 g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0 ],
                  g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 1 ], 
@@ -472,221 +706,141 @@ stock CreateDroppedGun( p_WeapID, p_WeapAmmo, Float:__Weapon_pos_x, Float:__Weap
     return 1;
 }
 
-#if !defined DETUTILS_COMPATIBILITY_MODE
+#define SPECIAL_ACTION_DROP_WEAPON 26
+#define SPECIAL_ACTION_DESTROY_WEAPON 27
+#define SPECIAL_ACTION_PICKUP_WEAPON 28
 
-command throwgun( playerid, params[] )
+stock d_v_SetPlayerSpecialAction(playerid, actionid)
 {
-    if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT) return 1;
-    
-    #if defined detutils_debug
-    if(__WeaponTimer_var[playerid] != 0) return d_SendWarningMessage(playerid, DETUTILS_TEXT_CMD_TIMER);
-    #else
-    if(__WeaponTimer_var[playerid] != 0) return 1;
-    #endif
-
-    new p_WeapID = GetPlayerWeapon( playerid );
-    new p_WeapAmmo = GetPlayerAmmo( playerid );
-    if( p_WeapID > 0 && p_WeapAmmo != 0 )
+    if(actionid == SPECIAL_ACTION_DROP_WEAPON)
     {
-        if( _g_Script == 0 )
+        if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT) return 1;
+        
+        #if defined detutils_debug
+        if(__WeaponTimer_var[playerid] != 0) return d_SendWarningMessage(playerid, DETUTILS_TEXT_CMD_TIMER);
+        #else
+        if(__WeaponTimer_var[playerid] != 0) return 1;
+        #endif
+
+        new p_WeapID = GetPlayerWeapon( playerid );
+        new p_WeapAmmo = GetPlayerAmmo( playerid );
+        if( p_WeapID > 0 && p_WeapAmmo != 0 )
         {
-            new p_WeapIdx = -1;
-            for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
+            if( _g_Script == 0 )
             {
-                if( g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0 ] == 0.0 )
+                new p_WeapIdx = -1;
+                for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
                 {
-                    p_WeapIdx = p_WeapIndex;
-                    break;
+                    if( g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0 ] == 0.0 )
+                    {
+                        p_WeapIdx = p_WeapIndex;
+                        break;
+                    }
                 }
+                if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, DETUTILS_TEXT_CANNOT_OPERATE);
+                //#if defined RemovePlayerWeapon
+                RemovePlayerWeapon( playerid, p_WeapID );
+                //#endif
+                g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = p_WeapID;
+                g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = p_WeapAmmo;
+                GetPlayerPos( playerid, g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ], 
+                    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ], 
+                    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] );
+                g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = CreateObject( g_WeaponInformation[ p_WeapID ][ wModel ], 
+                    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ], g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ], 
+                    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ]-1, 93.7, 120.0, 120.0 );
+                __WeaponTimer_var[ playerid ] = 30;
+                SendClientMessage( playerid, -1, DETUTILS_TEXT_THROW_GUN, 
+                    g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
+                if(funcidx("OnPlayerDropWeapon") != -1) CallLocalFunction("OnPlayerDropWeapon", "i", playerid);
             }
-            if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, DETUTILS_TEXT_CANNOT_OPERATE);
-            //#if defined RemovePlayerWeapon
-            RemovePlayerWeapon( playerid, p_WeapID );
-            //#endif
-            g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = p_WeapID;
-            g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = p_WeapAmmo;
-            GetPlayerPos( playerid, g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ], 
-                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ], 
-                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] );
-            g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = CreateDynamicObject( g_WeaponInformation[ p_WeapID ][ wModel ], 
-                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ], g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ], 
-                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ]-1, 93.7, 120.0, 120.0 );
-            __WeaponTimer_var[ playerid ] = 30;
-            SendClientMessage( playerid, -1, DETUTILS_TEXT_THROW_GUN, 
-                g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
-            if(funcidx("OnPlayerThrowGun") != -1) CallLocalFunction("OnPlayerThrowGun", "i", playerid);
         }
     }
-    return true;
-}
-
-command destroygun( playerid, params[] )
-{
-    if( GetPlayerState( playerid ) != PLAYER_STATE_ONFOOT ) return 1;
-    new p_WeapIdx = -1;
-    for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
+    if(actionid == SPECIAL_ACTION_DESTROY_WEAPON)
     {
-        if( IsPlayerInRangeOfPoint( playerid, 5.0, g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0] , 
-            g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 1 ], 
-            g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 2 ] ) )
+        if( GetPlayerState( playerid ) != PLAYER_STATE_ONFOOT ) return 1;
+        new p_WeapIdx = -1;
+        for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
         {
-            p_WeapIdx = p_WeapIndex;
-            break;
+            if( IsPlayerInRangeOfPoint( playerid, 5.0, g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0] , 
+                g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 1 ], 
+                g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 2 ] ) )
+            {
+                p_WeapIdx = p_WeapIndex;
+                break;
+            }
         }
+        if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, DETUTILS_TEXT_NOGUN_NEARBY);
+        DestroyObject( g_WeaponData[ p_WeapIdx ][ w_ObjectId ] );
+        SendClientMessage( playerid, -1, DETUTILS_TEXT_GUN_DESTROY, 
+            g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
+        g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ] = 0.0;
+        g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ] = 0.0;
+        g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] = 0.0;
+        g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = -1;
+        g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = 0;
+        g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = 0;
+        if(funcidx("OnPlayerDestroyDroppedWeapon") != -1) CallLocalFunction("OnPlayerDestroyDroppedWeapon", "i", playerid);
     }
-    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, DETUTILS_TEXT_NOGUN_NEARBY);
-    DestroyDynamicObject( g_WeaponData[ p_WeapIdx ][ w_ObjectId ] );
-    SendClientMessage( playerid, -1, DETUTILS_TEXT_GUN_DESTROY, 
-        g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
-    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ] = 0.0;
-    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ] = 0.0;
-    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] = 0.0;
-    g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = -1;
-    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = 0;
-    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = 0;
-    if(funcidx("OnPlayerDestroyGun") != -1) CallLocalFunction("OnPlayerDestroyGun", "i", playerid);
-    return true;
-}
-
-command pickgun( playerid, params[] )
-{
-    if( GetPlayerState(playerid) != PLAYER_STATE_ONFOOT ) return 1;
-    
-    new p_WeapIdx = -1;
-    for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
+    if(actionid == SPECIAL_ACTION_PICKUP_WEAPON)
     {
-        if( IsPlayerInRangeOfPoint( playerid, 5.0, g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0] ,
-         g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 1 ], 
-         g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 2 ] ) )
+        if( GetPlayerState(playerid) != PLAYER_STATE_ONFOOT ) return 1;
+        
+        new p_WeapIdx = -1;
+        for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
         {
-            p_WeapIdx = p_WeapIndex;
-            break;
+            if( IsPlayerInRangeOfPoint( playerid, 5.0, g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0] ,
+             g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 1 ], 
+             g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 2 ] ) )
+            {
+                p_WeapIdx = p_WeapIndex;
+                break;
+            }
         }
+        if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, DETUTILS_TEXT_NOGUN_NEARBY);
+        DestroyObject( g_WeaponData[ p_WeapIdx ][ w_ObjectId ] );
+        SendClientMessage( playerid, -1, DETUTILS_TEXT_GUN_PICK, 
+            g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
+        GivePlayerWeapon( playerid, g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ], 
+            g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] );
+        g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ] = 0.0;
+        g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ] = 0.0;
+        g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] = 0.0;
+        g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = -1;
+        g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = 0;
+        g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = 0;
+        if(funcidx("OnPlayerPickUpDroppedWeapon") != -1) CallLocalFunction("OnPlayerPickUpDroppedWeapon", "i", playerid);
     }
-    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, DETUTILS_TEXT_NOGUN_NEARBY);
-    DestroyDynamicObject( g_WeaponData[ p_WeapIdx ][ w_ObjectId ] );
-    SendClientMessage( playerid, -1, DETUTILS_TEXT_GUN_PICK, 
-        g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
-    GivePlayerWeapon( playerid, g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ], 
-        g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] );
-    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ] = 0.0;
-    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ] = 0.0;
-    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] = 0.0;
-    g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = -1;
-    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = 0;
-    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = 0;
-    if(funcidx("OnPlayerPickUpGun") != -1) CallLocalFunction("OnPlayerPickUpGun", "i", playerid);
-    return true;
+    else return SetPlayerSpecialAction(playerid, actionid);
+    return 1;
 }
 
+#if defined _ALS_SetPlayerSpecialAction
+    #undef SetPlayerSpecialAction
 #else
-
-COMMAND__ throwgun( playerid, params[] )
-{
-    if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT) return 1;
-    
-    #if defined detutils_debug
-    if(__WeaponTimer_var[playerid] != 0) return d_SendWarningMessage(playerid, "The player tried to use the command but the timer was not over yet.");
-    #else
-    if(__WeaponTimer_var[playerid] != 0) return 1;
-    #endif
-
-    new p_WeapID = GetPlayerWeapon( playerid );
-    new p_WeapAmmo = GetPlayerAmmo( playerid );
-    if( p_WeapID > 0 && p_WeapAmmo != 0 )
-    {
-        if( _g_Script == 0 )
-        {
-            new p_WeapIdx = -1;
-            for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
-            {
-                if( g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0 ] == 0.0 )
-                {
-                    p_WeapIdx = p_WeapIndex;
-                    break;
-                }
-            }
-            if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"Operation can't be completed at the moment." );
-            //#if defined RemovePlayerWeapon
-            RemovePlayerWeapon( playerid, p_WeapID );
-            //#endif
-            g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = p_WeapID;
-            g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = p_WeapAmmo;
-            GetPlayerPos( playerid, g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ], 
-                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ], 
-                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] );
-            g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = CreateDynamicObject( g_WeaponInformation[ p_WeapID ][ wModel ], 
-                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ], g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ], 
-                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ]-1, 93.7, 120.0, 120.0 );
-            __WeaponTimer_var[ playerid ] = 30;
-            SendClientMessage( playerid, -1, ""COLOUR_GREY"You threw away {ffffff}%s"COLOUR_GREY".", 
-                g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
-            if(funcidx("OnPlayerThrowGun") != -1) CallLocalFunction("OnPlayerThrowGun", "i", playerid);
-        }
-    }
-    return true;
-}
-
-COMMAND__ destroygun( playerid, params[] )
-{
-    if( GetPlayerState( playerid ) != PLAYER_STATE_ONFOOT ) return 1;
-    new p_WeapIdx = -1;
-    for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
-    {
-        if( IsPlayerInRangeOfPoint( playerid, 5.0, g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0] , 
-            g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 1 ], 
-            g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 2 ] ) )
-        {
-            p_WeapIdx = p_WeapIndex;
-            break;
-        }
-    }
-    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"No guns nearby." );
-    DestroyDynamicObject( g_WeaponData[ p_WeapIdx ][ w_ObjectId ] );
-    SendClientMessage( playerid, -1, ""COLOUR_GREY"You destroyed {ffffff}%s"COLOUR_GREY".", 
-        g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
-    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ] = 0.0;
-    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ] = 0.0;
-    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] = 0.0;
-    g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = -1;
-    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = 0;
-    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = 0;
-    if(funcidx("OnPlayerDestroyGun") != -1) CallLocalFunction("OnPlayerDestroyGun", "i", playerid);
-    return true;
-}
-
-COMMAND__ pickgun( playerid, params[] )
-{
-    if( GetPlayerState(playerid) != PLAYER_STATE_ONFOOT ) return 1;
-    
-    new p_WeapIdx = -1;
-    for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
-    {
-        if( IsPlayerInRangeOfPoint( playerid, 5.0, g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0] ,
-         g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 1 ], 
-         g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 2 ] ) )
-        {
-            p_WeapIdx = p_WeapIndex;
-            break;
-        }
-    }
-    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"No guns nearby." );
-    DestroyDynamicObject( g_WeaponData[ p_WeapIdx ][ w_ObjectId ] );
-    SendClientMessage( playerid, -1, ""COLOUR_GREY"You picked up {ffffff}%s"COLOUR_GREY".", 
-        g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
-    GivePlayerWeapon( playerid, g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ], 
-        g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] );
-    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ] = 0.0;
-    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ] = 0.0;
-    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] = 0.0;
-    g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = -1;
-    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = 0;
-    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = 0;
-    if(funcidx("OnPlayerPickUpGun") != -1) CallLocalFunction("OnPlayerPickUpGun", "i", playerid);
-    return true;
-}
-
+    #define _ALS_SetPlayerSpecialAction
 #endif
+#define SetPlayerSpecialAction d_v_SetPlayerSpecialAction
+
+public OnPlayerSpawn(playerid)
+{
+    SetCameraBehindPlayer(playerid);
+    if(funcidx("d_v_playerspawn") != -1)
+    {
+        CallLocalFunction("d_v_playerspawn", "i", playerid);
+    }
+    return 1;
+}
+
+#if defined _ALS_OnPlayerSpawn
+    #undef OnPlayerSpawn
+#else
+    #define _ALS_OnPlayerSpawn
+#endif
+
+#define OnPlayerSpawn d_v_playerspawn
+
+forward d_v_playerspawn(playerid);
 
 forward __Weapon_timer();
 
@@ -753,15 +907,15 @@ public OnPlayerDeath(playerid)
                 GetPlayerPos( playerid, g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ], 
                     g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ], 
                     g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] );
-                g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = CreateDynamicObject( g_WeaponInformation[ p_WeapID ][ wModel ], 
+                g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = CreateObject( g_WeaponInformation[ p_WeapID ][ wModel ], 
                     g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ], 
                     g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ], 
                     g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ]-1, 93.7, 120.0, 120.0 );
                 __WeaponTimer_var[ playerid ] = 30;
                 SendClientMessage( playerid, -1, ""COLOUR_GREY"You threw away {ffffff}%s"COLOUR_GREY".", 
                     g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
-                //if(funcidx("OnPlayerThrowGun") != -1) CallLocalFunction("OnPlayerThrowGun", "i", playerid);
-                // We don't want to call OnPlayerThrowGun at player's death since it would get called max 13 times!!
+                //if(funcidx("OnPlayerDropWeapon") != -1) CallLocalFunction("OnPlayerDropWeapon", "i", playerid);
+                // We don't want to call OnPlayerDropWeapon at player's death since it would get called max 13 times!!
             }
         }
     }
@@ -872,3 +1026,223 @@ stock KillAllPlayers()
     }
     return 1;
 }
+
+#if defined detutils_complete_error_boom
+
+#if !defined DETUTILS_COMPATIBILITY_MODE
+
+command throwgun( playerid, params[] )
+{
+    if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT) return 1;
+    
+    #if defined detutils_debug
+    if(__WeaponTimer_var[playerid] != 0) return d_SendWarningMessage(playerid, DETUTILS_TEXT_CMD_TIMER);
+    #else
+    if(__WeaponTimer_var[playerid] != 0) return 1;
+    #endif
+
+    new p_WeapID = GetPlayerWeapon( playerid );
+    new p_WeapAmmo = GetPlayerAmmo( playerid );
+    if( p_WeapID > 0 && p_WeapAmmo != 0 )
+    {
+        if( _g_Script == 0 )
+        {
+            new p_WeapIdx = -1;
+            for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
+            {
+                if( g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0 ] == 0.0 )
+                {
+                    p_WeapIdx = p_WeapIndex;
+                    break;
+                }
+            }
+            if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, DETUTILS_TEXT_CANNOT_OPERATE);
+            //#if defined RemovePlayerWeapon
+            RemovePlayerWeapon( playerid, p_WeapID );
+            //#endif
+            g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = p_WeapID;
+            g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = p_WeapAmmo;
+            GetPlayerPos( playerid, g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ], 
+                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ], 
+                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] );
+            g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = CreateObject( g_WeaponInformation[ p_WeapID ][ wModel ], 
+                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ], g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ], 
+                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ]-1, 93.7, 120.0, 120.0 );
+            __WeaponTimer_var[ playerid ] = 30;
+            SendClientMessage( playerid, -1, DETUTILS_TEXT_THROW_GUN, 
+                g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
+            if(funcidx("OnPlayerDropWeapon") != -1) CallLocalFunction("OnPlayerDropWeapon", "i", playerid);
+        }
+    }
+    return true;
+}
+
+command destroygun( playerid, params[] )
+{
+    if( GetPlayerState( playerid ) != PLAYER_STATE_ONFOOT ) return 1;
+    new p_WeapIdx = -1;
+    for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
+    {
+        if( IsPlayerInRangeOfPoint( playerid, 5.0, g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0] , 
+            g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 1 ], 
+            g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 2 ] ) )
+        {
+            p_WeapIdx = p_WeapIndex;
+            break;
+        }
+    }
+    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, DETUTILS_TEXT_NOGUN_NEARBY);
+    DestroyObject( g_WeaponData[ p_WeapIdx ][ w_ObjectId ] );
+    SendClientMessage( playerid, -1, DETUTILS_TEXT_GUN_DESTROY, 
+        g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
+    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ] = 0.0;
+    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ] = 0.0;
+    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] = 0.0;
+    g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = -1;
+    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = 0;
+    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = 0;
+    if(funcidx("OnPlayerDestroyDroppedWeapon") != -1) CallLocalFunction("OnPlayerDestroyDroppedWeapon", "i", playerid);
+    return true;
+}
+
+command pickgun( playerid, params[] )
+{
+    if( GetPlayerState(playerid) != PLAYER_STATE_ONFOOT ) return 1;
+    
+    new p_WeapIdx = -1;
+    for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
+    {
+        if( IsPlayerInRangeOfPoint( playerid, 5.0, g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0] ,
+         g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 1 ], 
+         g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 2 ] ) )
+        {
+            p_WeapIdx = p_WeapIndex;
+            break;
+        }
+    }
+    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, DETUTILS_TEXT_NOGUN_NEARBY);
+    DestroyObject( g_WeaponData[ p_WeapIdx ][ w_ObjectId ] );
+    SendClientMessage( playerid, -1, DETUTILS_TEXT_GUN_PICK, 
+        g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
+    GivePlayerWeapon( playerid, g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ], 
+        g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] );
+    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ] = 0.0;
+    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ] = 0.0;
+    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] = 0.0;
+    g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = -1;
+    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = 0;
+    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = 0;
+    if(funcidx("OnPlayerPickUpDroppedWeapon") != -1) CallLocalFunction("OnPlayerPickUpDroppedWeapon", "i", playerid);
+    return true;
+}
+
+#else
+
+COMMAND__ throwgun( playerid, params[] )
+{
+    if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT) return 1;
+    
+    #if defined detutils_debug
+    if(__WeaponTimer_var[playerid] != 0) return d_SendWarningMessage(playerid, "The player tried to use the command but the timer was not over yet.");
+    #else
+    if(__WeaponTimer_var[playerid] != 0) return 1;
+    #endif
+
+    new p_WeapID = GetPlayerWeapon( playerid );
+    new p_WeapAmmo = GetPlayerAmmo( playerid );
+    if( p_WeapID > 0 && p_WeapAmmo != 0 )
+    {
+        if( _g_Script == 0 )
+        {
+            new p_WeapIdx = -1;
+            for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
+            {
+                if( g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0 ] == 0.0 )
+                {
+                    p_WeapIdx = p_WeapIndex;
+                    break;
+                }
+            }
+            if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"Operation can't be completed at the moment." );
+            //#if defined RemovePlayerWeapon
+            RemovePlayerWeapon( playerid, p_WeapID );
+            //#endif
+            g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = p_WeapID;
+            g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = p_WeapAmmo;
+            GetPlayerPos( playerid, g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ], 
+                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ], 
+                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] );
+            g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = CreateObject( g_WeaponInformation[ p_WeapID ][ wModel ], 
+                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ], g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ], 
+                g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ]-1, 93.7, 120.0, 120.0 );
+            __WeaponTimer_var[ playerid ] = 30;
+            SendClientMessage( playerid, -1, ""COLOUR_GREY"You threw away {ffffff}%s"COLOUR_GREY".", 
+                g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
+            if(funcidx("OnPlayerDropWeapon") != -1) CallLocalFunction("OnPlayerDropWeapon", "i", playerid);
+        }
+    }
+    return true;
+}
+
+COMMAND__ destroygun( playerid, params[] )
+{
+    if( GetPlayerState( playerid ) != PLAYER_STATE_ONFOOT ) return 1;
+    new p_WeapIdx = -1;
+    for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
+    {
+        if( IsPlayerInRangeOfPoint( playerid, 5.0, g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0] , 
+            g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 1 ], 
+            g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 2 ] ) )
+        {
+            p_WeapIdx = p_WeapIndex;
+            break;
+        }
+    }
+    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"No guns nearby." );
+    DestroyObject( g_WeaponData[ p_WeapIdx ][ w_ObjectId ] );
+    SendClientMessage( playerid, -1, ""COLOUR_GREY"You destroyed {ffffff}%s"COLOUR_GREY".", 
+        g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
+    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ] = 0.0;
+    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ] = 0.0;
+    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] = 0.0;
+    g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = -1;
+    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = 0;
+    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = 0;
+    if(funcidx("OnPlayerDestroyDroppedWeapon") != -1) CallLocalFunction("OnPlayerDestroyDroppedWeapon", "i", playerid);
+    return true;
+}
+
+COMMAND__ pickgun( playerid, params[] )
+{
+    if( GetPlayerState(playerid) != PLAYER_STATE_ONFOOT ) return 1;
+    
+    new p_WeapIdx = -1;
+    for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
+    {
+        if( IsPlayerInRangeOfPoint( playerid, 5.0, g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 0] ,
+         g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 1 ], 
+         g_WeaponData[ p_WeapIndex ][ w_ObjectPos ][ 2 ] ) )
+        {
+            p_WeapIdx = p_WeapIndex;
+            break;
+        }
+    }
+    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"No guns nearby." );
+    DestroyObject( g_WeaponData[ p_WeapIdx ][ w_ObjectId ] );
+    SendClientMessage( playerid, -1, ""COLOUR_GREY"You picked up {ffffff}%s"COLOUR_GREY".", 
+        g_WeaponInformation[ g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
+    GivePlayerWeapon( playerid, g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ], 
+        g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] );
+    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ] = 0.0;
+    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ] = 0.0;
+    g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] = 0.0;
+    g_WeaponData[ p_WeapIdx ][ w_ObjectId ] = -1;
+    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = 0;
+    g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = 0;
+    if(funcidx("OnPlayerPickUpDroppedWeapon") != -1) CallLocalFunction("OnPlayerPickUpDroppedWeapon", "i", playerid);
+    return true;
+}
+
+#endif
+// asshole
+#endif

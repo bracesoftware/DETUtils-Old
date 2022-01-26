@@ -44,14 +44,14 @@
 */
 
 #if __Pawn >= 0x0400
-    #error [samp-detutils]: (error) - Library does not support Pawn 4.0.x
+    #error [samp-detutils]: (error) - Library does not support Pawn 4.0.x yet.
 #elseif __Pawn < 0x0300
-    #error [samp-detutils]: (error) - Library does not support Pawn 2.0.x/1.0.x
+    #error [samp-detutils]: (error) - Library does not support Pawn 2.0.x/1.0.x yet.
 #endif
 
 #define DETUTILS_VERSION_MAJOR 1
-#define DETUTILS_VERSION_MINOR 5
-#define DETUTILS_VERSION_PATCH 8
+#define DETUTILS_VERSION_MINOR 6
+#define DETUTILS_VERSION_PATCH 0
 
 /*
                                                                       

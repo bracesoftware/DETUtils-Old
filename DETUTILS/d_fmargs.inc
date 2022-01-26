@@ -188,6 +188,10 @@ stock
     ;
 }
 
+#define DETUTILS_HOOK_FMARGS_GMT
+
+#if defined DETUTILS_HOOK_FMARGS_GMT
+
 stock
     fmargs_GameTextForPlayer
 (
@@ -202,6 +206,12 @@ stock
     {Float,_}:...
 )
 {
+    new time = duration;
+    if(funcidx("OnPlayerScreenUpdate") != -1)
+    {
+        CallLocalFunction("OnPlayerScreenUpdate", "ii", i, 4);
+        SetTimerEx("OnPlayerScreenUpdate", time, false, "ii", i, 5);
+    }
     #if defined detutils_debug
     _Functionid = 3;
     printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
@@ -298,6 +308,15 @@ stock
     {Float,_}:...
 )
 {
+    new time = duration;
+    if(funcidx("OnPlayerScreenUpdate") != -1)
+    {
+        for(new i; i < MAX_PLAYERS; i++) if(IsPlayerConnected(i))
+        {
+            CallLocalFunction("OnPlayerScreenUpdate", "ii", i, 4);
+            SetTimerEx("OnPlayerScreenUpdate", time, false, "ii", i, 5);
+        }
+    }
     #if defined detutils_debug
     _Functionid = 4;
     printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
@@ -377,6 +396,8 @@ stock
         )
     ;
 }
+
+#endif
 
 stock
     Text:fmargs_TextDrawCreate
