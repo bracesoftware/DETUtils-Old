@@ -7,13 +7,11 @@
 
 - Usage is really simple. *d_visual.inc* provides very few functions whose can be used for roleplay purposes!
 
-**NOTE**: These libraries require *streamer*.
-
 ## API ( programming interface )
 
-### CreateDroppedGun
+### CreateDroppedWeapon
 
-- This function creates the gun object which can be picked up either destroyed by player.
+- This function creates the weapon object which can be either picked up or destroyed by the player.
 
 Example:
 
@@ -21,41 +19,40 @@ Example:
 public OnGameModeInit()
 {
   // Create AKM with 100 ammo on coordinates 811.1299, -1616.0647, 13.5469:
-  CreateDroppedGun(30, 100, 811.1299, -1616.0647, 13.5469);
+  CreateDroppedWeapon(30, 100, 811.1299, -1616.0647, 13.5469);
   return 1;
 }
 ```
 
-### ``public`` OnPlayerPickUpGun
+### ``public`` OnPlayerPickUpDroppedWeapon
 
-- Callback called whenever player picks up a certain gun.
+- Callback called whenever the player picks up a certain dropped weapon.
 
 ```pawn
-public OnPlayerPickUpGun(playerid)
+public OnPlayerPickUpDroppedWeapon(playerid)
 {
     SendClientMessage(playerid, -1, "You picked up a gun.");
     return 1;
 }
 ```
-### ``public`` OnPlayerThrowGun
+### ``public`` OnPlayerDropWeapon
 
-- Callback called whenever player throws away a certain gun.
+- Callback called whenever the player drops away a certain weapon.
 
 ```pawn
-public OnPlayerThrowGun(playerid)
+public OnPlayerDropWeapon(playerid)
 {
     SendClientMessage(playerid, -1, "You threw away a gun.");
     return 1;
 }
 ```
-**WARNING:** If player had any weapons, and he dies, he will lose all the weapons and those will be created as dropped guns on the coordinates he died on - so **OnPlayerThrowGun** will be called.
 
-### ``public`` OnPlayerDestroyGun
+### ``public`` OnPlayerDestroyDroppedWeapon
 
-- Callback called whenever player destroys a certain gun.
+- Callback called whenever the player destroys a certain dropped weapon.
 
 ```pawn
-public OnPlayerDestroyGun(playerid)
+public OnPlayerDestroyDroppedWeapon(playerid)
 {
     SendClientMessage(playerid, -1, "You destroyed a gun.");
     return 1;
@@ -97,7 +94,37 @@ static Weapon_IsValidWeapon(weapid) return IsValidWeapon(weapid);
 
 ### ``public`` OnPlayerScreenUpdate
 
-- Docs coming after I finish the callback.
+- Called whenever the player's screen gets updated - that update can be textdraw and gametext visibility for now.
+```pawn
+public OnPlayerScreenUpdate(playerid, screenupdate)
+{
+    if(screenupdate == SCREEN_UPDATE_PLAYER_TD_SHOW)
+    {
+        SendClientMessage(playerid, -1, "Player TD shown.");
+    }
+    if(screenupdate == SCREEN_UPDATE_PLAYER_TD_HIDE)
+    {
+        SendClientMessage(playerid, -1, "Player TD hidden.");
+    }
+    if(screenupdate == SCREEN_UPDATE_GLOBAL_TD_SHOW)
+    {
+        SendClientMessage(playerid, -1, "Global TD shown.");
+    }
+    if(screenupdate == SCREEN_UPDATE_GLOBAL_TD_HIDE)
+    {
+        SendClientMessage(playerid, -1, "Global TD hidden.");
+    }
+    if(screenupdate == SCREEN_UPDATE_GAMETEXT_SHOW)
+    {
+        SendClientMessage(playerid, -1, "GameText shown.");
+    }
+    if(screenupdate == SCREEN_UPDATE_GAMETEXT_HIDE)
+    {
+        SendClientMessage(playerid, -1, "GameText hidden.");
+    }
+    return 1;
+}
+```
 
 ### SetPlayerVehiclePos
 
@@ -146,17 +173,27 @@ Results are, if I, for example picked AK47 while holding Desert Eagle:
 You changed your weapon from Desert Eagle to AK47.
 ```
 ## Built-in visual features
-### Commands
-#### /pickgun
-- This command allows the player to pick up the gun if he is standing near it.
------------------------------------------
-#### /destroygun
-- This one allows player to destroy the object of the gun.
------------------------------------------
-#### /throwgun
-- This one, obviously, allows the player to throw a gun he is holding away.
-- **NOTE**: This command has timer attached to it. Command is only operable every 30 seconds. If you are spamming with it, it will not work until the timer toggles player's ability to throw guns again.
------------------------------------------
+### Special action features
+```pawn
+decl Command:pickgun(playerid, params[])
+{
+    SetPlayerSpecialAction(playerid, SPECIAL_ACTION_PICKUP_WEAPON); // Pick up nearby dropped weapon.
+    return 1;
+}
+
+decl Command:dropgun(playerid, params[])
+{
+    SetPlayerSpecialAction(playerid, SPECIAL_ACTION_DROP_WEAPON); // Drop weapon which the player is holding.
+    return 1;
+}
+
+decl Command:destroygun(playerid, params[])
+{
+    SetPlayerSpecialAction(playerid, SPECIAL_ACTION_DESTROY_WEAPON); // Destroy nearby dropped weapon.
+    return 1;
+}
+```
+- ``d_visual`` also hooks ``SetPlayerSpecialAction`` native in order to import some new action IDs into it. You can check the code shown above in order to see new action IDs added. 
 ### Headshot system
 - The library contains sniper rifle headshot system. Whenever player shoots another player into the head with sniper rifle, new callback **OnPlayerScoreSniperHeadshot** will be called.
 
