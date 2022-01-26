@@ -118,6 +118,7 @@ If you're facing issues with your code compilation after including the library, 
 - aezzakmi (no GitHub account) - help during development
 - [Unity](https://github.com/kyekalcor) - testing and fixes
 - Dimi (no GitHub account) - fmargs ``#emit`` stuff
+- [Zeex](https://github.com/zeex) - ZCMD command processor concept
 
 ### Very special thanks to:
 
