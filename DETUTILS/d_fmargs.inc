@@ -49,6 +49,10 @@
                         88               
 */
 
+static stock const d_fmargs_emitStuff;
+
+#if defined d_fmargs_emitStuff
+
 stock
     fmargs_SendClientMessage
 (
@@ -681,139 +685,6 @@ stock
     ;
 }
 
-/*
-                                                                      
-88888888888                                                           
-88                          ,d                                        
-88                          88                                        
-88aaaaa      8b,     ,d8  MM88MMM  8b,dPPYba,  ,adPPYYba,  ,adPPYba,  
-88"""""       `Y8, ,8P'     88     88P'   "Y8  ""     `Y8  I8[    ""  
-88              )888(       88     88          ,adPPPPP88   `"Y8ba,   
-88            ,d8" "8b,     88,    88          88,    ,88  aa    ]8I  
-88888888888  8P'     `Y8    "Y888  88          `"8bbdP"Y8  `"YbbdP"'  
-                                                                      
-
-*/
-
-#if defined _ALS_SendClientMessage
-    #undef SendClientMessage
-#else
-    #define _ALS_SendClientMessage
-#endif
-
-#define SendClientMessage fmargs_SendClientMessage
-
-#if defined _ALS_SendClientMessageToAll
-    #undef SendClientMessageToAll
-#else
-    #define _ALS_SendClientMessageToAll
-#endif
-
-#define SendClientMessageToAll fmargs_SendClientMessageToAll
-
-#if defined _ALS_GameTextForPlayer
-    #undef GameTextForPlayer
-#else
-    #define _ALS_GameTextForPlayer
-#endif
-
-#define GameTextForPlayer fmargs_GameTextForPlayer
-
-#if defined _ALS_GameTextForAll
-    #undef GameTextForAll
-#else
-    #define _ALS_GameTextForAll
-#endif
-
-#define GameTextForAll fmargs_GameTextForAll
-
-#if defined _ALS_TextDrawCreate
-    #undef TextDrawCreate
-#else
-    #define _ALS_TextDrawCreate
-#endif
-
-#define TextDrawCreate fmargs_TextDrawCreate
-
-#if defined _ALS_CreatePlayerTextDraw
-    #undef CreatePlayerTextDraw
-#else
-    #define _ALS_CreatePlayerTextDraw
-#endif
-
-#define CreatePlayerTextDraw fmargs_CreatePlayerTextDraw
-
-#if defined _ALS_TextDrawSetString
-    #undef TextDrawSetString
-#else
-    #define _ALS_TextDrawSetString
-#endif
-
-#define TextDrawSetString fmargs_TextDrawSetString
-
-#if defined _ALS_PlayerTextDrawSetString
-    #undef PlayerTextDrawSetString
-#else
-    #define _ALS_PlayerTextDrawSetString
-#endif
-
-#define PlayerTextDrawSetString fmargs_PlayerTextDrawSetString
-
-static void:AnnounceLibraryLoaded_fmargs()
-{
-    LoadDETUtilsScript(DETUTILS_SCRIPT_FMARGS);
-}
-
-#if !defined FILTERSCRIPT
-
-main()
-{
-    #if defined detutils_debug
-    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    AnnounceLibraryLoaded_fmargs();
-    a_fmargs_main();
-}
-
-#if defined _ALS_main
-    #undef main
-#else
-    #define _ALS_main
-#endif
-
-#define main a_fmargs_main
-
-#else
-
-#define detutils_fmargs_TRUE 1
-
-public OnFilterScriptInit()
-{
-    AnnounceLibraryLoaded_fmargs();
-    #if defined detutils_debug
-    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    if(funcidx("a_fmargs_OnfsInit") != -1)
-    {
-        CallLocalFunction("a_fmargs_OnfsInit", "i", playerid);
-    }
-    return detutils_fmargs_TRUE;
-}
-
-#if defined _ALS_OnFilterScriptInit
-    #undef OnFilterScriptInit
-#else
-    #define _ALS_OnFilterScriptInit
-#endif
-
-#define OnFilterScriptInit a_fmargs_OnfsInit
-
-forward a_fmargs_OnfsInit();
-
-#endif
-
 stock
     fmargs_SendRconCommand
 (
@@ -894,6 +765,92 @@ stock
     ;
 }
 
+#endif
+
+/*
+                                                                      
+88888888888                                                           
+88                          ,d                                        
+88                          88                                        
+88aaaaa      8b,     ,d8  MM88MMM  8b,dPPYba,  ,adPPYYba,  ,adPPYba,  
+88"""""       `Y8, ,8P'     88     88P'   "Y8  ""     `Y8  I8[    ""  
+88              )888(       88     88          ,adPPPPP88   `"Y8ba,   
+88            ,d8" "8b,     88,    88          88,    ,88  aa    ]8I  
+88888888888  8P'     `Y8    "Y888  88          `"8bbdP"Y8  `"YbbdP"'  
+                                                                      
+
+*/
+/*
+#define fmargs_SendClientMessage%4(%0,%1,%3) \
+    new scm[512];format(scm,sizeof scm, %3);SendClientMessage(%0,%1,scm)
+*/
+#if defined _ALS_SendClientMessage
+    #undef SendClientMessage
+#else
+    #define _ALS_SendClientMessage
+#endif
+
+#define SendClientMessage fmargs_SendClientMessage
+/*
+#define fmargs_SendClientMessageToAll%4(%1,%3) \
+    new scma[512];format(scma,sizeof scma, %3);SendClientMessageToAll(%1,scma)*/
+
+#if defined _ALS_SendClientMessageToAll
+    #undef SendClientMessageToAll
+#else
+    #define _ALS_SendClientMessageToAll
+#endif
+
+#define SendClientMessageToAll fmargs_SendClientMessageToAll
+
+#if defined _ALS_GameTextForPlayer
+    #undef GameTextForPlayer
+#else
+    #define _ALS_GameTextForPlayer
+#endif
+
+#define GameTextForPlayer fmargs_GameTextForPlayer
+
+#if defined _ALS_GameTextForAll
+    #undef GameTextForAll
+#else
+    #define _ALS_GameTextForAll
+#endif
+
+#define GameTextForAll fmargs_GameTextForAll
+
+#if defined _ALS_TextDrawCreate
+    #undef TextDrawCreate
+#else
+    #define _ALS_TextDrawCreate
+#endif
+
+#define TextDrawCreate fmargs_TextDrawCreate
+
+#if defined _ALS_CreatePlayerTextDraw
+    #undef CreatePlayerTextDraw
+#else
+    #define _ALS_CreatePlayerTextDraw
+#endif
+
+#define CreatePlayerTextDraw fmargs_CreatePlayerTextDraw
+
+#if defined _ALS_TextDrawSetString
+    #undef TextDrawSetString
+#else
+    #define _ALS_TextDrawSetString
+#endif
+
+#define TextDrawSetString fmargs_TextDrawSetString
+
+#if defined _ALS_PlayerTextDrawSetString
+    #undef PlayerTextDrawSetString
+#else
+    #define _ALS_PlayerTextDrawSetString
+#endif
+
+#define PlayerTextDrawSetString fmargs_PlayerTextDrawSetString
+
 #if defined _ALS_SendRconCommand
     #undef SendRconCommand
 #else
@@ -901,3 +858,60 @@ stock
 #endif
 
 #define SendRconCommand fmargs_SendRconCommand
+
+// init code
+
+static void:AnnounceLibraryLoaded_fmargs()
+{
+    LoadDETUtilsScript(DETUTILS_SCRIPT_FMARGS);
+}
+
+#if !defined FILTERSCRIPT
+
+main()
+{
+    #if defined detutils_debug
+    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
+    #endif
+    AnnounceLibraryLoaded_fmargs();
+    a_fmargs_main();
+}
+
+#if defined _ALS_main
+    #undef main
+#else
+    #define _ALS_main
+#endif
+
+#define main a_fmargs_main
+
+#else
+
+#define detutils_fmargs_TRUE 1
+
+public OnFilterScriptInit()
+{
+    AnnounceLibraryLoaded_fmargs();
+    #if defined detutils_debug
+    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
+    #endif
+    if(funcidx("a_fmargs_OnfsInit") != -1)
+    {
+        CallLocalFunction("a_fmargs_OnfsInit", "i", playerid);
+    }
+    return detutils_fmargs_TRUE;
+}
+
+#if defined _ALS_OnFilterScriptInit
+    #undef OnFilterScriptInit
+#else
+    #define _ALS_OnFilterScriptInit
+#endif
+
+#define OnFilterScriptInit a_fmargs_OnfsInit
+
+forward a_fmargs_OnfsInit();
+
+#endif
