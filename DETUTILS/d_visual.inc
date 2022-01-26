@@ -67,8 +67,23 @@
 #define SCREEN_UPDATE_GLOBAL_TD_HIDE 3
 #define SCREEN_UPDATE_GAMETEXT_SHOW 4
 #define SCREEN_UPDATE_GAMETEXT_HIDE 5
+#define SCREEN_UPDATE_GTD_CHANGE_POS 6
+#define SCREEN_UPDATE_PTD_CHANGE_POS 7
 
 forward OnPlayerScreenUpdate(playerid, screenupdate);
+
+#if defined DETUTILS_NO_FMARGS
+
+enum enum_TextDrawData
+{
+    Float:Pos[2],
+    Float:OldPos[2]
+}
+
+new g_TextDrawData[MAX_TEXT_DRAWS][enum_TextDrawData];
+new g_PlayerTextDrawData[MAX_TEXT_DRAWS][enum_TextDrawData];
+
+#endif
 
 // player td update
 
@@ -114,7 +129,7 @@ stock Text:d_v_TextDrawShowForPlayer(playerid, Text:text)
     {
         CallLocalFunction("OnPlayerScreenUpdate", "ii", playerid, SCREEN_UPDATE_GLOBAL_TD_SHOW);
     }
-    return TextDrawShowForPlayer(playerid, text);
+    return Text:TextDrawShowForPlayer(playerid, text);
 }
 
 #if defined _ALS_TextDrawShowForPlayer
@@ -224,6 +239,71 @@ stock d_v_GameTextForAll(const string[], time, style)
 #endif
 
 #define GameTextForAll d_v_GameTextForAll
+
+stock Text:d_v_TextDrawCreate(Float:x, Float:y, text[])
+{
+    new Text:textid = TextDrawCreate
+        (
+            x,
+            y,
+            text
+        )
+    ;
+    g_TextDrawData[textid][Pos][0] = x;
+    g_TextDrawData[textid][Pos][1] = y;
+    if(g_TextDrawData[textid][Pos][0] != g_TextDrawData[textid][OldPos][0] || g_TextDrawData[textid][Pos][1] != g_TextDrawData[textid][OldPos][1])
+    {
+        if(funcidx("OnPlayerScreenUpdate") != -1)
+        {
+            for(new i; i < MAX_PLAYERS; i++)
+            {
+                CallLocalFunction("OnPlayerScreenUpdate", "ii", i, SCREEN_UPDATE_GTD_CHANGE_POS);
+            }
+        }
+    }
+    g_TextDrawData[textid][OldPos][0] = x;
+    g_TextDrawData[textid][OldPos][1] = y;
+    return textid;
+}
+
+#if defined _ALS_TextDrawCreate
+    #undef TextDrawCreate
+#else
+    #define _ALS_TextDrawCreate
+#endif
+
+#define TextDrawCreate d_v_TextDrawCreate
+
+stock PlayerText:d_v_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
+{
+    new PlayerText:textid = CreatePlayerTextDraw
+        (
+            x,
+            y,
+            text
+        )
+    ;
+    g_PlayerTextDrawData[textid][Pos][0] = x;
+    g_PlayerTextDrawData[textid][Pos][1] = y;
+    if(g_PlayerTextDrawData[textid][Pos][0] != g_PlayerTextDrawData[textid][OldPos][0] || g_PlayerTextDrawData[textid][Pos][1] != g_PlayerTextDrawData[textid][OldPos][1])
+    {
+        if(funcidx("OnPlayerScreenUpdate") != -1)
+        {
+            CallLocalFunction("OnPlayerScreenUpdate", "ii", playerid, SCREEN_UPDATE_PTD_CHANGE_POS);
+        }
+    }
+    g_PlayerTextDrawData[textid][OldPos][0] = x;
+    g_PlayerTextDrawData[textid][OldPos][1] = y;
+    return textid;
+}
+
+#if defined _ALS_CreatePlayerTextDraw
+    #undef CreatePlayerTextDraw
+#else
+    #define _ALS_CreatePlayerTextDraw
+#endif
+
+#define CreatePlayerTextDraw d_v_CreatePlayerTextDraw
 
 #endif
 

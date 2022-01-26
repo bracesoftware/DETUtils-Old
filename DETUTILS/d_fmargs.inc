@@ -49,6 +49,18 @@
                         88               
 */
 
+// for d_visual
+
+enum enum_TextDrawData
+{
+    bool:Valid,
+    Float:Pos[2],
+    Float:OldPos[2]
+}
+
+new g_TextDrawData[MAX_TEXT_DRAWS][enum_TextDrawData];
+new g_PlayerTextDrawData[MAX_TEXT_DRAWS][enum_TextDrawData];
+
 static stock const d_fmargs_emitStuff;
 
 #if defined d_fmargs_emitStuff
@@ -412,6 +424,8 @@ stock
     {Float,_}:...
 )
 {
+    new Text:textid;
+
     #if defined detutils_debug
     _Functionid = 5;
     printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
@@ -448,14 +462,29 @@ stock
         #emit PUSH.C args
         #emit SYSREQ.C format
  
-        TextDrawCreate
+        textid = TextDrawCreate
         (
             x,
             y,
             _unspecified_string
         )
         ;
- 
+        #if defined detutils_complete_error_boom
+        g_TextDrawData[textid][Pos][0] = x;
+        g_TextDrawData[textid][Pos][1] = y;
+        if(g_TextDrawData[textid][Pos][0] != g_TextDrawData[textid][OldPos][0] || g_TextDrawData[textid][Pos][1] != g_TextDrawData[textid][OldPos][1])
+        {
+            if(funcidx("OnPlayerScreenUpdate") != -1)
+            {
+                for(new i; i < MAX_PLAYERS; i++)
+                {
+                    CallLocalFunction("OnPlayerScreenUpdate", "ii", i, 6);
+                }
+            }
+        }
+        g_TextDrawData[textid][OldPos][0] = x;
+        g_TextDrawData[textid][OldPos][1] = y;
+        #endif
         #emit LCTRL 5
         #emit SCTRL 4
         #emit RETN
@@ -464,14 +493,31 @@ stock
     _Functionid = 5;
     printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
-    return
-        TextDrawCreate
+    
+    textid = TextDrawCreate
         (
             x,
             y,
             _StringArgs
         )
     ;
+    g_TextDrawData[textid][Pos][0] = x;
+    g_TextDrawData[textid][Pos][1] = y;
+    if(g_TextDrawData[textid][Valid] == 1 && 
+    g_TextDrawData[textid][Pos][0] != g_TextDrawData[textid][OldPos][0] || g_TextDrawData[textid][Pos][1] != g_TextDrawData[textid][OldPos][1])
+    {
+        if(funcidx("OnPlayerScreenUpdate") != -1)
+        {
+            for(new i; i < MAX_PLAYERS; i++)
+            {
+                CallLocalFunction("OnPlayerScreenUpdate", "ii", i, 6);
+            }
+        }
+    }
+    g_TextDrawData[textid][OldPos][0] = x;
+    g_TextDrawData[textid][OldPos][1] = y;
+    g_TextDrawData[textid][Valid] = 1;
+    return textid;
 }
 
 stock
@@ -484,6 +530,7 @@ stock
     {Float,_}:...
 )
 {
+    new PlayerText:textid;
     #if defined detutils_debug
     _Functionid = 6;
     printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
@@ -520,7 +567,7 @@ stock
         #emit PUSH.C args
         #emit SYSREQ.C format
  
-        CreatePlayerTextDraw
+        textid = CreatePlayerTextDraw
         (
             i,
             x,
@@ -537,8 +584,8 @@ stock
     _Functionid = 6;
     printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
-    return
-        CreatePlayerTextDraw
+    
+    textid = CreatePlayerTextDraw
         (
             i,
             x,
@@ -546,6 +593,23 @@ stock
             _StringArgs
         )
     ;
+    g_PlayerTextDrawData[textid][Pos][0] = x;
+    g_PlayerTextDrawData[textid][Pos][1] = y;
+    if(g_PlayerTextDrawData[textid][Valid] == 1 && 
+    g_PlayerTextDrawData[textid][Pos][0] != g_PlayerTextDrawData[textid][OldPos][0] || g_PlayerTextDrawData[textid][Pos][1] != g_PlayerTextDrawData[textid][OldPos][1])
+    {
+        if(funcidx("OnPlayerScreenUpdate") != -1)
+        {
+            for(new i; i < MAX_PLAYERS; i++)
+            {
+                CallLocalFunction("OnPlayerScreenUpdate", "ii", i, 7);
+            }
+        }
+    }
+    g_PlayerTextDrawData[textid][OldPos][0] = x;
+    g_PlayerTextDrawData[textid][OldPos][1] = y;
+    g_PlayerTextDrawData[textid][Valid] = 1;
+    return textid;
 }
 
 stock
