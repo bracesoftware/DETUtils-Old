@@ -70,12 +70,13 @@
 #define SCREEN_UPDATE_GTD_CHANGE_POS 6
 #define SCREEN_UPDATE_PTD_CHANGE_POS 7
 
-forward OnPlayerScreenUpdate(playerid, screenupdate);
+forward OnPlayerScreenUpdate(playerid, updatetype);
 
 #if defined DETUTILS_NO_FMARGS
 
 enum enum_TextDrawData
 {
+    Valid,
     Float:Pos[2],
     Float:OldPos[2]
 }
@@ -166,7 +167,7 @@ stock Text:d_v_TextDrawHideForPlayer(playerid, Text:text)
     {
         CallLocalFunction("OnPlayerScreenUpdate", "ii", playerid, SCREEN_UPDATE_GLOBAL_TD_HIDE);
     }
-    return TextDrawHideForPlayer(playerid, text);
+    return Text:TextDrawHideForPlayer(playerid, text);
 }
 
 #if defined _ALS_TextDrawHideForPlayer
@@ -251,7 +252,8 @@ stock Text:d_v_TextDrawCreate(Float:x, Float:y, text[])
     ;
     g_TextDrawData[textid][Pos][0] = x;
     g_TextDrawData[textid][Pos][1] = y;
-    if(g_TextDrawData[textid][Pos][0] != g_TextDrawData[textid][OldPos][0] || g_TextDrawData[textid][Pos][1] != g_TextDrawData[textid][OldPos][1])
+    if(g_TextDrawData[textid][Valid] == 1 &&
+    g_TextDrawData[textid][Pos][0] != g_TextDrawData[textid][OldPos][0] || g_TextDrawData[textid][Pos][1] != g_TextDrawData[textid][OldPos][1])
     {
         if(funcidx("OnPlayerScreenUpdate") != -1)
         {
@@ -263,6 +265,7 @@ stock Text:d_v_TextDrawCreate(Float:x, Float:y, text[])
     }
     g_TextDrawData[textid][OldPos][0] = x;
     g_TextDrawData[textid][OldPos][1] = y;
+    g_TextDrawData[textid][Valid] = 1;
     return textid;
 }
 
@@ -285,7 +288,8 @@ stock PlayerText:d_v_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
     ;
     g_PlayerTextDrawData[textid][Pos][0] = x;
     g_PlayerTextDrawData[textid][Pos][1] = y;
-    if(g_PlayerTextDrawData[textid][Pos][0] != g_PlayerTextDrawData[textid][OldPos][0] || g_PlayerTextDrawData[textid][Pos][1] != g_PlayerTextDrawData[textid][OldPos][1])
+    if(g_PlayerTextDrawData[textid][Valid] == 1 &&
+    g_PlayerTextDrawData[textid][Pos][0] != g_PlayerTextDrawData[textid][OldPos][0] || g_PlayerTextDrawData[textid][Pos][1] != g_PlayerTextDrawData[textid][OldPos][1])
     {
         if(funcidx("OnPlayerScreenUpdate") != -1)
         {
@@ -294,6 +298,7 @@ stock PlayerText:d_v_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
     }
     g_PlayerTextDrawData[textid][OldPos][0] = x;
     g_PlayerTextDrawData[textid][OldPos][1] = y;
+    g_PlayerTextDrawData[textid][Valid] = 1;
     return textid;
 }
 

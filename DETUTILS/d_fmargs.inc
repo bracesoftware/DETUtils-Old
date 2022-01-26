@@ -53,7 +53,7 @@
 
 enum enum_TextDrawData
 {
-    bool:Valid,
+    Valid,
     Float:Pos[2],
     Float:OldPos[2]
 }
