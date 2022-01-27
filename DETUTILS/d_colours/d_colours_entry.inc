@@ -45,8 +45,6 @@
 
 // Colour definitions:
 
-#define COLOUR_ COLOR_
-
 #define COLOR_HEY_WHITE         0xFFFFFFFF
 #define COLOR_GREY          0xAFAFAFAA
 #define COLOR_GREEN         0x33AA33AA
@@ -87,6 +85,8 @@
 #define COLOR_MEDIUMAQUA    0x83BFBFAA
 #define COLOR_MEDIUMMAGENTA 0x8B008BAA 
 
+#if defined detutils_complete_error_boom
+
 // Limits:
 
 #if !defined MAX_COLOUR_NAME_LENGTH && !defined MAX_COLOR_NAME_LENGTH
@@ -106,17 +106,11 @@ static stock _DeclaredColours;
 
 // Integer value colour functions:
 
-#define @newk_Colour:%0=%1; \
-    new intcol_%0 = %1; 
-
 #if defined detutils_complete_error_boom
 
     _DeclaredColours++;
 
 #endif
-
-#define @newk_Color:%0=%1; \
-    new intcol_%0 = %1;
 
 #if defined detutils_complete_error_boom
 
@@ -138,11 +132,35 @@ static stock _DeclaredColours;
 
 // String value colour functions:
 
+#if defined DETUTILS_COMPAT
+
 #define @newk_StrColour:%0[%1]=%2; \
     stock strcol_%0() { new colour[%1]; format(colour, %1, "%s", %2); return colour; }
 
 #define @newk_StrColor:%0[%1]=%2; \
     stock strcol_%0() { new colour[%1]; format(colour, %1, "%s", %2); return colour; }
+
+#define @newk_Colour:%0=%1; \
+    new intcol_%0 = %1; 
+
+#define @newk_Color:%0=%1; \
+    new intcol_%0 = %1;
+
+#elseif !defined DETUTILS_COMPAT
+
+#define StrColour:%0[%1]=%2; \
+    stock strcol_%0() { new colour[%1]; format(colour, %1, "%s", %2); return colour; }
+
+#define StrColor:%0[%1]=%2; \
+    stock strcol_%0() { new colour[%1]; format(colour, %1, "%s", %2); return colour; }
+
+#define Colour:%0=%1; \
+    new intcol_%0 = %1; 
+
+#define Color:%0=%1; \
+    new intcol_%0 = %1;
+
+#endif
 
 #define ReturnStrColour(%0) \
     strcol_%0()
@@ -152,6 +170,8 @@ static stock _DeclaredColours;
 #define ReturnStringColor ReturnStrColour
 
 #define ReturnStringColour ReturnStrColour
+
+#endif
 
 /*
                                                                       

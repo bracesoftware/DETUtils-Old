@@ -69,6 +69,8 @@
 
 #endif
  
+#if defined DETUTILS_COMPAT
+
 #define cmd_%0\32; cmd_
 #define dbg_%0\32; dbg_
 #define cmd_func_%0\32; cmd_func_
@@ -137,6 +139,80 @@
 
 #define @newk_Prefix:%0=%1; \
     stock const %0[MAX_PREFIX_LENGTH]=%1;
+
+#elseif !defined DETUTILS_COMPAT
+
+#define cmd_%0\32; cmd_
+#define dbg_%0\32; dbg_
+#define cmd_func_%0\32; cmd_func_
+#define cmdf_%0\32; cmdf_
+#define cmda_%0\32; cmda_
+#define role_%0\32; role_
+
+#define command%0(%1) \
+    forward cmd_%0(%1);public cmd_%0(%1)
+ 
+#define Command:%0(%1) \
+    forward cmd_%0(%1);public cmd_%0(%1)//same as thing over this
+ 
+#define alias%5command%0(%1[%3]%4)=%2; \
+    forward public cmda_%0(); public cmda_%0(){return 1;}forward cmd_%0(%1[]);%3public cmd_%0(%1[]){return cmd_%2(%1)%4;%5}
+
+#define CommandAlias:%0(%1[%3]%4)=%2; \
+    forward public cmda_%0(); public cmda_%0(){return 1;}forward cmd_%0(%1[]);%3 public cmd_%0(%1[]){return cmd_%2(%1)%4;}
+
+#define CMD:%0(%1) \
+    forward cmd_%0(%1); public cmd_%0(%1)
+
+#define YCMD:%0(%1) \
+    forward cmd_%0(%1); public cmd_%0(%1)
+
+#define COMMAND CMD
+
+#define cmd CMD
+
+#if !defined IsValidString
+        #define IsValidString(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
+#endif
+
+#define admin%5command%0(%1,%2[%3]%4) \
+    forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if(!IsPlayerAdmin(%1)) return 0; return  cmd_func_%0(%1,%2)%4;%5} \
+    forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[]%5)
+
+#define AdminCommand:%0(%1,%2[%3]%4) \
+    forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if(!IsPlayerAdmin(%1)) return 0; return  cmd_func_%0(%1,%2)%4;%5} \
+    forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[]%5)
+ 
+
+#define role%5command%0(%7Role:%6,%1,%2[%3]%4) \
+    forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if( !role_%6(%1) ) return 0; return  cmd_func_%0(%1,%2)%4;%5} \
+    forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[]%5)
+
+#define RoleCommand:%0(%7Role:%6,%1,%2[%3]%4) \
+    forward cmd_%0(%1,%2[]);%3 public cmd_%0(%1,%2[]){if( !role_%6(%1) ) return 0; return  cmd_func_%0(%1,%2)%4;} \
+    forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[])
+ 
+
+#define create%0role%1(%2,%3); \
+    stock bool: role_%1(%2) { if(!(%3)) return false; else return true; }
+
+#define Role:%1(%2,%3); \
+    stock bool: role_%1(%2) { if(!(%3)) return false; else return true; }
+ 
+#define pc_%0\32; pc_
+#define prx_%0\32; prx_
+
+#define prefixed%2command%0(%4Prefix:%3,%1) \
+    prx_%0(playerid); public prx_%0(playerid){ strmid(g_PlayerCmdData[playerid][PassedPrefix], %3, 0, MAX_PREFIX_LENGTH, MAX_PREFIX_LENGTH); return MAX_PREFIX_LENGTH;}forward pc_%0(%1);public pc_%0(%1)
+
+#define PrefixedCommand:%0(%4Prefix:%3,%1) \
+    prx_%0(playerid); public prx_%0(playerid){ strmid(g_PlayerCmdData[playerid][PassedPrefix], %3, 0, MAX_PREFIX_LENGTH, MAX_PREFIX_LENGTH); return MAX_PREFIX_LENGTH;}forward pc_%0(%1);public pc_%0(%1)
+
+#define Prefix:%0=%1; \
+    stock const %0[MAX_PREFIX_LENGTH]=%1;
+
+#endif
+// Code
 
 #define @cmds_%0\32; @cmds_
 
