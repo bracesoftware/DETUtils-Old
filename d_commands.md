@@ -56,7 +56,7 @@ YCMD:cmd(playerid, params[])
 	return 1;
 }
 
-cmd:cmd(playerid, params[]
+cmd:cmd(playerid, params[])
 {
 	// Code.
 	return 1;
