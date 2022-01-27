@@ -12,7 +12,7 @@ SA:MP Map Editor - edit San Andreas yourself in the game
 ## ShowMapEditorMenuToPlayer
 - Shows player a dialog with map editor options.
 ```pawn
- decl Command:mapeditor(playerid, params[])
+Command:mapeditor(playerid, params[])
 {
     ShowMapEditorMenuToPlayer(playerid);
     return 1;
