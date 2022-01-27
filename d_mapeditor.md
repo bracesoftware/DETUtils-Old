@@ -21,7 +21,7 @@ SA:MP Map Editor - edit San Andreas yourself in the game
 ## ShowObjectInfoLabels
 - Used to show everyone on the server, in the specified virtual world, object info labels. They contain info about object's ID, object's rotation offset and object's **x, y and z** coordinates!
 ```pawn
-decl Command:labelon(playerid, params[])
+Command:labelon(playerid, params[])
 {
     ShowObjectInfoLabels(GetPlayerVirtualWorld(playerid));
     return 1;
@@ -30,7 +30,7 @@ decl Command:labelon(playerid, params[])
 ## HideObjectInfoLabels
 - Used to hide object info labels.
 ```pawn
-decl Command:labeloff(playerid, params[])
+Command:labeloff(playerid, params[])
 {
     HideObjectInfoLabels();
     return 1;
