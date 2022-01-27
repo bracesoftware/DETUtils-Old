@@ -55,6 +55,12 @@ YCMD:cmd(playerid, params[])
 	// Code.
 	return 1;
 }
+
+cmd:cmd(playerid, params[]
+{
+	// Code.
+	return 1;
+}
 ```
 
 ### Command aliasing
