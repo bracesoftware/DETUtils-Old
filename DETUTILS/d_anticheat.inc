@@ -1,0 +1,1 @@
+#include "d_anticheat\d_anticheat_entry"
