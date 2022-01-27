@@ -28,14 +28,32 @@ command mycommand(playerid, params[])
 ### Bonus
 -----------------------------------------
 
-- Creating commands now, also - can be done just using ``decl`` and ``Command:`` tag.
+- More command declaration styles!
 - Let's take a look:
 
 ```pawn
-decl Command:tagtest(playerid,params[])
+DETUTILS Command:cmd(playerid,params[]) // Compatibility mode, use `#define DETUTILS_COMPAT`.
 {
-    SendClientMessage(playerid, -1, "Tag command worked.");
+    // Code.
     return 1;
+}
+
+Command:cmd(playerid,params[])
+{
+    // Code.
+    return 1;
+}
+
+CMD:cmd(playerid, params[])
+{
+	// Code.
+	return 1;
+}
+
+YCMD:cmd(playerid, params[])
+{
+	// Code.
+	return 1;
 }
 ```
 
@@ -51,7 +69,11 @@ alias command mycmd(playerid, params[]) = mycommand;
 
 // ... or:
 
-decl CommandAlias:mycmd(playerid, params[]) = mycommand;
+CommandAlias:mycmd(playerid, params[]) = mycommand;
+
+// ... or if the `DETUTILS_COMPAT` is on:
+
+DETUTILS CommandAlias:mycmd(playerid, params[]) = mycommand;
 
 ```
 
@@ -155,7 +177,15 @@ admin command admincheck(playerid,params[])
 
 // ... or:
 
-decl AdminCommand:admincheck(playerid,params[])
+AdminCommand:admincheck(playerid,params[])
+{
+  SendClientMessage(playerid, -1, "You're admin.");
+  return 1;
+}
+
+// Compat mode:
+
+DETUTILS AdminCommand:admincheck(playerid,params[])
 {
   SendClientMessage(playerid, -1, "You're admin.");
   return 1;
@@ -180,7 +210,13 @@ prefixed command mycmd(Prefix:"!", playerid, params[])
 
 // ... or:
 
-decl PrefixedCommand:mycmd(Prefix:"!", playerid, params[])
+PrefixedCommand:mycmd(Prefix:"!", playerid, params[])
+{
+  SendClientMessage(playerid, -1, "This worked, %s.", ReturnPlayerName(playerid));
+  return 1;
+}
+
+DETUTILS PrefixedCommand:mycmd(Prefix:"!", playerid, params[])
 {
   SendClientMessage(playerid, -1, "This worked, %s.", ReturnPlayerName(playerid));
   return 1;
@@ -198,22 +234,26 @@ Now, whenever player sends ``!mycmd`` to chat, command will be executed (perform
 - That's also possible. Just use ``decl`` keyword and ``Prefix:`` tag in order to do that.
 
 ```pawn
-decl Prefix:qmark = "?"; // Create a prefix called 'qmark', stands for 'Question Mark'.
+Prefix:qmark = "?"; // Create a prefix called 'qmark', stands for 'Question Mark'.
+
+// ... or:
+
+DETUTILS Prefix:qmark = "?"; // Create a prefix called 'qmark', stands for 'Question Mark'.
 ```
 - Now, instead of providing a prefix string directly - just provide prefix's name:
 
 ```pawn
-decl PrefixedCommand:discord(Prefix:qmark, playerid, params[])
+PrefixedCommand:discord(Prefix:qmark, playerid, params[])
 {
   SendClientMessage(playerid, -1, "Hi, %s - join discord.gg/samp", ReturnPlayerName(playerid));
   return 1;
 }
-decl PrefixedCommand:mycmd(Prefix:qmark, playerid, params[])
+PrefixedCommand:mycmd(Prefix:qmark, playerid, params[])
 {
   SendClientMessage(playerid, -1, "This worked, %s.", ReturnPlayerName(playerid));
   return 1;
 }
-decl PrefixedCommand:forum(Prefix:qmark, playerid, params[])
+PrefixedCommand:forum(Prefix:qmark, playerid, params[])
 {
   SendClientMessage(playerid, -1, "%s, check open.mp/discussion", ReturnPlayerName(playerid));
   return 1;
@@ -322,7 +362,9 @@ create role AdminRole(playerid, Player[playerid][Admin] == 1);
 
 // ... or:
 
-decl Role:AdminRole(playerid, Player[playerid][Admin] == 1);
+Role:AdminRole(playerid, Player[playerid][Admin] == 1);
+
+DETUTILS Role:AdminRole(playerid, Player[playerid][Admin] == 1);
 ```
 
 - Now, we have our role - let's use it in our command.
@@ -340,7 +382,16 @@ role command clearchat(Role:AdminRole, playerid, params[])
 
 // ... or:
 
-decl RoleCommand:clearchat(Role:AdminRole, playerid, params[])
+RoleCommand:clearchat(Role:AdminRole, playerid, params[])
+{
+	for(new i; i < 20; i++)
+		SendClientMessage(playerid, -1, "");
+
+	SendClientMessage(playerid, -1, "You cleared the chat.");
+	return 1;
+}
+
+DETUTILS RoleCommand:clearchat(Role:AdminRole, playerid, params[])
 {
 	for(new i; i < 20; i++)
 		SendClientMessage(playerid, -1, "");
