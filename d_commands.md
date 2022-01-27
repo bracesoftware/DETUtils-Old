@@ -38,6 +38,12 @@ DETUTILS Command:cmd(playerid,params[]) // Compatibility mode, use `#define DETU
     return 1;
 }
 
+COMMAND:cmd(playerid, params[])
+{
+	// Code.
+	return 1;
+}
+
 Command:cmd(playerid,params[])
 {
     // Code.
