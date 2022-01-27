@@ -183,19 +183,19 @@ You changed your weapon from Desert Eagle to AK47.
 ## Built-in visual features
 ### Special action features
 ```pawn
-decl Command:pickgun(playerid, params[])
+Command:pickgun(playerid, params[])
 {
     SetPlayerSpecialAction(playerid, SPECIAL_ACTION_PICKUP_WEAPON); // Pick up nearby dropped weapon.
     return 1;
 }
 
-decl Command:dropgun(playerid, params[])
+Command:dropgun(playerid, params[])
 {
     SetPlayerSpecialAction(playerid, SPECIAL_ACTION_DROP_WEAPON); // Drop weapon which the player is holding.
     return 1;
 }
 
-decl Command:destroygun(playerid, params[])
+Command:destroygun(playerid, params[])
 {
     SetPlayerSpecialAction(playerid, SPECIAL_ACTION_DESTROY_WEAPON); // Destroy nearby dropped weapon.
     return 1;
