@@ -96,31 +96,39 @@ static Weapon_IsValidWeapon(weapid) return IsValidWeapon(weapid);
 
 - Called whenever the player's screen gets updated - that update can be textdraw and gametext visibility for now.
 ```pawn
-public OnPlayerScreenUpdate(playerid, screenupdate)
+public OnPlayerScreenUpdate(playerid, updatetype)
 {
-    if(screenupdate == SCREEN_UPDATE_PLAYER_TD_SHOW)
+    if(updatetype == SCREEN_UPDATE_PLAYER_TD_SHOW)
     {
         SendClientMessage(playerid, -1, "Player TD shown.");
     }
-    if(screenupdate == SCREEN_UPDATE_PLAYER_TD_HIDE)
+    if(updatetype == SCREEN_UPDATE_PLAYER_TD_HIDE)
     {
         SendClientMessage(playerid, -1, "Player TD hidden.");
     }
-    if(screenupdate == SCREEN_UPDATE_GLOBAL_TD_SHOW)
+    if(updatetype == SCREEN_UPDATE_GLOBAL_TD_SHOW)
     {
         SendClientMessage(playerid, -1, "Global TD shown.");
     }
-    if(screenupdate == SCREEN_UPDATE_GLOBAL_TD_HIDE)
+    if(updatetype == SCREEN_UPDATE_GLOBAL_TD_HIDE)
     {
         SendClientMessage(playerid, -1, "Global TD hidden.");
     }
-    if(screenupdate == SCREEN_UPDATE_GAMETEXT_SHOW)
+    if(updatetype == SCREEN_UPDATE_GAMETEXT_SHOW)
     {
         SendClientMessage(playerid, -1, "GameText shown.");
     }
-    if(screenupdate == SCREEN_UPDATE_GAMETEXT_HIDE)
+    if(updatetype == SCREEN_UPDATE_GAMETEXT_HIDE)
     {
         SendClientMessage(playerid, -1, "GameText hidden.");
+    }
+    if(updatetype == SCREEN_UPDATE_GTD_CHANGE_POS)
+    {
+        SendClientMessage(playerid, -1, "Global TD changed position.");
+    }
+    if(updatetype == SCREEN_UPDATE_PTD_CHANGE_POS)
+    {
+        SendClientMessage(playerid, -1, "Player TD changed position.");
     }
     return 1;
 }
