@@ -79,8 +79,8 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
     new string[256];
     if(actionid == PROPERTY_ACTION_ENTER)
     {
-        format(string, 256, "%sYou entered %s, %s. Property id: %i [%i]", 
-            ReturnStringColour(g_GrayColour),
+        format(string, 256, "You entered %s, %s. Property id: %i [%i]", 
+            
             GetPropertyName(propertyid),
             ReturnPlayerName(playerid), 
             GetPropertyIDByName(g_PropertyData[propertyid][p_PropertyName]), //GetPropertyIDByName(GetPropertyName(propertyid)), // to ensure this also works
@@ -90,8 +90,8 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
     }
     else if(actionid == PROPERTY_ACTION_EXIT)
     {
-        format(string, 256, "%sYou exited %s, %s. Property id: %i [%i]", 
-            ReturnStringColour(g_GrayColour),
+        format(string, 256, "You exited %s, %s. Property id: %i [%i]", 
+            
             GetPropertyName(propertyid),
             ReturnPlayerName(playerid), 
             GetPropertyIDByName(GetPropertyName(propertyid)),
