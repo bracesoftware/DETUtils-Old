@@ -490,7 +490,7 @@ Now, we created a command which requires ``AdminRole`` role to be executed - per
 
 ### UPDATED!
 
-Roles are now **command flags**. Despite the fact that code syntax above is still supported, it's still marked as outdated since I am not updating those methods anymore, this is the new updated decorator command type. Note that the other documentation (without code and new keywords) for this feature is still valid.
+Roles are now **command flags**. Despite the fact that code syntax above is still supported, it's still marked as outdated since I am not updating those methods anymore, this is the new updated decorator command type. Note that the other documentation (without the code examples and new - old in this case - keywords) for this feature is still valid.
 
 How you SHOULD do it from now on:
 
