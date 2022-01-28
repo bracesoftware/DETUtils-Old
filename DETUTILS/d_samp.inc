@@ -40,6 +40,12 @@
 
 #pragma warning disable 203
 
+#if defined FILTERSCRIPT
+
+ 	#undef FILTERSCRIPT
+
+#endif
+
 #define d_samp_included
 
 #if !defined DETUTILS_NO_PROPERTIES

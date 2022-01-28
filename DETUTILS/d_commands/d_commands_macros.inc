@@ -21,30 +21,27 @@
 #define pc_%0\32; pc_
 #define prx_%0\32; prx_
 
-#define @cmddecorator_%0\32; @cmddecorator_
+#define @DETUTILS_CMD_DEC_%0\32; @DETUTILS_CMD_DEC_
 
-#define @command%0(%1.type%2= @cmddecorator_
+#define @command%0(%1.type%2= @DETUTILS_CMD_DEC_
 
-#define @cmddecorator_SLASH_COMMAND%2)%0(%1) \
-    forward cmd_%0(%1); public cmd_%0(%1)
+#define @DETUTILS_CMD_DEC_SLASH_COMMAND%2)%0(%1) DETUTILSCMD_DECL_CMD__<%0|%1>
 
-#define @cmddecorator_ALIAS_COMMAND%3)%0(%1[%4])=%2; \
-    forward cmd_%0(%1[]); public cmd_%0(%1[]){return cmd_%2(%1);}
+#define @DETUTILS_CMD_DEC_ALIAS_COMMAND%3)%0(%1[%4])=%2; DETUTILSCMD_DECL_CMD__B<%0,%1> DETUTILSCMD_RET_CMD__B|%2,%1|
 
-#define @cmddecorator_ADMIN_COMMAND%3)%0(%1,%2[%5]%4) DETUTILSCMD_ACMD_DECL__|%0|%1|%2| \
+#define @DETUTILS_CMD_DEC_ADMIN_COMMAND%3)%0(%1,%2[%5]%4) DETUTILSCMD_ACMD_DECL__|%0|%1|%2| \
     DETUTILSCMD_ACMD_CHECK__<%1>|%0,%2| DETUTILSCMD_ACMD_CMDFRET__|%0,<%1>,%2|
 
-#define @cmddecorator_FLAGGED_COMMAND%4,%5.flag%6=%3)%0(%1,%2[%7]%8) DETUTILSCMD_FCMD_ENTRY__|%0|(%1,%2) \
+#define @DETUTILS_CMD_DEC_FLAGGED_COMMAND%4,%5.flag%6=%3)%0(%1,%2[%7]%8) DETUTILSCMD_FCMD_ENTRY__|%0|(%1,%2) \
     DETUTILSCMD_FLAG_CHECK__|%3|<%0>(%1,%2) DETUTILSCMD_CMD_FUNC__|%0|<%1,%2>
 
 #define @flag(%0.dependencies%4=%5(%3)%6)%1(%2); \
-    stock bool:role_%1(%2) { if(!(%3)) return false; else if(%3) return true; return false;}
+    DETUTILSCMD_DECL_FLAG__<%1|%2> DETUTILSCMD_FLAG_DATA_CHECK__|%3|
 
-#define @cmddecorator_PREFIXED_COMMAND%5,%6.prefix%7=%3)%0(%1) DETUTILSCMD_PRX_CALL__|%0| \
+#define @DETUTILS_CMD_DEC_PREFIXED_COMMAND%5,%6.prefix%7=%3)%0(%1) DETUTILSCMD_PRX_CALL__|%0| \
     DETUTILSCMD_PRX_FUNC__<%3> DETUTILSCMD_PC_DECL__|%0|%1|    
 
-#define @prefix%2(%3.value%4=%1)%0(%5)%6; \
-    stock const %0[MAX_PREFIX_LENGTH]=%1;
+#define @prefix%2(%3.value%4=%1)%0(%5)%6; DETUTILSCMD_PRX_DECL__<|%0|,|%1|>
 /*
 #define @dependency(someshit thing); \
     stock bool: role_%1(%2) { if(!(%3)) return false; else return true; }
