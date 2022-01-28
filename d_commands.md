@@ -15,7 +15,7 @@ Let's see how it works:
 
 ```pawn
 
-@command(.type = SLASH_COMMAND ) mycommand(playerid, params[]) 
+@command(.type = SLASH_COMMAND) mycommand(playerid, params[]) 
 {
     SendClientMessage(playerid, -1, "Your very first command works!");
     return 1;
