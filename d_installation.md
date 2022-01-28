@@ -50,6 +50,4 @@ Let's find out.
 
 ``DETUTILS_NO_ANTICHEAT`` for disabling *d_anticheat.inc*.
 
-``DETUTILS_NO_COLOURS`` for disabling *d_colours.inc*.
-
 ``DETUTILS_NO_MAPEDITOR`` for disabling *d_mapeditor.inc*.
