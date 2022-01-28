@@ -1,6 +1,7 @@
 # Code
 ```pawn
 #define DETUTILS_DEBUG_MODE
+#define DETUTILS_COMPAT
 
 #include <a_samp>
 #include <sscanf2>
@@ -17,11 +18,43 @@ keyword   forward  Function(a, const b[], Float:c);
 
 // Actual code:
 
+enum Enums
+{
+    Admin
+}
+
+new Player[MAX_PLAYERS][Enums];
+
 new Menu:teleportmenu;
 
 main()
 {
+    printf("%d arrays in 'CallCommand'", DETUTILS_ARR_PARAMS_CallCommand);
     print("Gamemode loaded.");
+}
+
+public OnUnoccupiedVehicleUpdate(vehicleid, playerid, passenger_seat, Float:new_x, Float:new_y, Float:new_z, Float:vel_x, Float:vel_y, Float:vel_z) 
+{
+    if (GetVehicleDistanceFromPoint(vehicleid, new_x, new_y, new_z) > 3.0)
+        SetVehicleToRespawn(vehicleid);
+    return 0;
+}
+
+public OnPlayerWeaponChange(playerid, oldweapon, newweapon)
+{
+    new oldweap[32], newweap[32];
+    GetWeaponName(oldweapon, oldweap, sizeof oldweap);
+    GetWeaponName(newweapon, newweap, sizeof newweap);
+    if(oldweapon == 0)
+    {
+        format(oldweap, sizeof oldweap, "none");
+    }
+    if(newweapon == 0)
+    {
+        format(newweap, sizeof newweap, "none");
+    }
+    SendClientMessage(playerid, -1, "You changed your weapon from %s to %s.", oldweap, newweap);
+    return 1;
 }
  
 public OnPlayerSpawn(playerid)
@@ -32,6 +65,121 @@ public OnPlayerSpawn(playerid)
     GivePlayerMoney(playerid, 10364);
     SetPlayerSkin(playerid, 70);
     GivePlayerWeapon(playerid, 24, 999);
+    GameTextForPlayer(playerid, "You spawned, %s!", 4000, 1, ReturnPlayerName(playerid));
+    return 1;
+}
+
+@command(.type = SLASH_COMMAND) pickgun(playerid, params[]) 
+{
+    SetPlayerSpecialAction(playerid, SPECIAL_ACTION_PICKUP_WEAPON); // Pick up nearby dropped weapon.
+    return 1;
+}
+
+@command(.type = SLASH_COMMAND) dropgun(playerid, params[]) 
+{
+    SetPlayerSpecialAction(playerid, SPECIAL_ACTION_DROP_WEAPON); // Drop weapon which the player is holding.
+    return 1;
+}
+
+@command(.type = SLASH_COMMAND) destroygun(playerid, params[]) 
+{
+    SetPlayerSpecialAction(playerid, SPECIAL_ACTION_DESTROY_WEAPON); // Destroy nearby dropped weapon.
+    return 1;
+}
+
+@command(.type = SLASH_COMMAND ) help (playerid, params[]) 
+{
+    SendClientMessage(playerid, -1, "New decorator thing works.");
+    return 1;
+}
+
+@command ( .type = SLASH_COMMAND) cmdhelp ( playerid, params[] ) 
+{
+    SendClientMessage(playerid, -1, "New decorator thing works. #2");
+    return 1;
+}
+
+@command ( .type = ADMIN_COMMAND ) amiadmin ( playerid, params[] ) 
+{
+    SendClientMessage(playerid, -1, "Yes you are.");
+    return 1;
+}
+
+@command ( .type = PREFIXED_COMMAND, .prefix = "!" ) prefix( playerid, params[] ) 
+{
+    SendClientMessage(playerid, -1, "Cool prefix.");
+    return 1;
+}
+
+@prefix(.value = "1") myprefix();
+
+@command ( .type = PREFIXED_COMMAND, .prefix =myprefix ) prefixtest( playerid, params[] ) 
+{
+    SendClientMessage(playerid, -1, "Cool prefixtest.");
+    return 1;
+}
+
+@flag(.dependencies=(Player[playerid][Admin] == 1)) admin(playerid);
+@command(.type = FLAGGED_COMMAND , .flag = admin) amiadmin2( playerid,params[ ] ) 
+{
+    SendClientMessage(playerid, -1, "Yes you are.");
+    return 1;
+}
+
+@command(.type = ALIAS_COMMAND) cmds( playerid, params[]) = help;
+
+public OnPlayerScreenUpdate(playerid, updatetype)
+{
+    if(updatetype == SCREEN_UPDATE_PLAYER_TD_SHOW)
+    {
+        SendClientMessage(playerid, -1, "Player TD shown.");
+    }
+    if(updatetype == SCREEN_UPDATE_PLAYER_TD_HIDE)
+    {
+        SendClientMessage(playerid, -1, "Player TD hidden.");
+    }
+    if(updatetype == SCREEN_UPDATE_GLOBAL_TD_SHOW)
+    {
+        SendClientMessage(playerid, -1, "Global TD shown.");
+    }
+    if(updatetype == SCREEN_UPDATE_GLOBAL_TD_HIDE)
+    {
+        SendClientMessage(playerid, -1, "Global TD hidden.");
+    }
+    if(updatetype == SCREEN_UPDATE_GAMETEXT_SHOW)
+    {
+        SendClientMessage(playerid, -1, "GameText shown.");
+    }
+    if(updatetype == SCREEN_UPDATE_GAMETEXT_HIDE)
+    {
+        SendClientMessage(playerid, -1, "GameText hidden.");
+    }
+    if(updatetype == SCREEN_UPDATE_GTD_CHANGE_POS)
+    {
+        SendClientMessage(playerid, -1, "Global TD changed position.");
+    }
+    if(updatetype == SCREEN_UPDATE_PTD_CHANGE_POS)
+    {
+        SendClientMessage(playerid, -1, "Player TD changed position.");
+    }
+    return 1;
+}
+
+new Text:test;
+
+DETUTILS Command:createtd(playerid, params[])
+{
+    test = TextDrawCreate(240.0,580.0, "~g~SA:MP DET-Utils");
+    TextDrawShowForPlayer(playerid, test);
+    return 1;
+}
+
+DETUTILS Command:movetd(playerid, params[])
+{
+    TextDrawHideForPlayer(playerid, test);
+    TextDrawDestroy(test);
+    test = TextDrawCreate(240.0,581.0, "~g~SA:MP DET-Utils");
+    TextDrawShowForPlayer(playerid, test);
     return 1;
 }
 
@@ -50,51 +198,29 @@ public OnPlayerUpdate(playerid)
     return 1;
 }
  
-enum Enums
-{
-    Admin
-}
-
-new Player[MAX_PLAYERS][Enums];
- 
-decl Command:acon(playerid,params[])
+DETUTILS Command:acon(playerid,params[])
 {
     ToggleAntiCheatSystem(true);
     return 1;
 }
 
-decl Command:acoff(playerid,params[])
+DETUTILS Command:acoff(playerid,params[])
 {
     ToggleAntiCheatSystem(false);
     return 1;
 }
  
-decl Colour:green = 223231;
-decl StrColour:g_GrayColour[20] = "{B9C9BF}";
- 
-decl Command:fadetest(playerid,params[])
-{
-    FadePlayerScreen(playerid);
-    return 1;
-}
- 
-public OnPlayerScreenFade(playerid)
-{
-    SendClientMessage(playerid, -1, "%sYour screen faded!", ReturnStrColour(g_GrayColour));
-    return 1;
-}
- 
-decl Command: tagtest(playerid,params[])
+DETUTILS Command: tagtest(playerid,params[])
 {
     SendClientMessage(playerid, -1, "Tag command worked.");
     return 1;
 }
  
-decl CommandAlias:tagt(playerid,params[]) = tagtest;
+DETUTILS CommandAlias:tagt(playerid,params[]) = tagtest;
  
 CMD:cmd(playerid,params[])
 {
-    SendClientMessage(playerid, -1, "%sCMD: command worked.", ReturnStrColour(g_GrayColour));
+    SendClientMessage(playerid, -1, "CMD: command worked.");
     SendClientMessage(playerid, COLOR_WHITE,
     "{ffffff}This is white and {%06x}this is the %s's color!", 
     GetPlayerColor(playerid) >>> 8, ReturnPlayerName(playerid));
@@ -103,30 +229,29 @@ CMD:cmd(playerid,params[])
  
 YCMD:ycmd(playerid,params[])
 {
-    SendClientMessage(playerid, -1, "%sYCMD: command worked.", ReturnStrColour(g_GrayColour));
+    SendClientMessage(playerid, -1, "YCMD: command worked.");
     return 1;
 }
  
 COMMAND:command(playerid,params[])
 {
-    SendClientMessage(playerid, -1, "%sCOMMAND: command worked.", ReturnStrColor(g_GrayColour));
-    SendClientMessage(playerid, ReturnColour(green), "I am g_GrayColour-coloured text.");
+    SendClientMessage(playerid, -1, "COMMAND: command worked.");
     return 1;
 }
 
-decl Command:mapeditor(playerid, params[])
+DETUTILS Command:mapeditor(playerid, params[])
 {
     ShowMapEditorMenuToPlayer(playerid);
     return 1;
 }
 
-decl Command:labelon(playerid, params[])
+DETUTILS Command:labelon(playerid, params[])
 {
     ShowObjectInfoLabels(GetPlayerVirtualWorld(playerid));
     return 1;
 }
 
-decl Command:labeloff(playerid, params[])
+DETUTILS Command:labeloff(playerid, params[])
 {
     HideObjectInfoLabels();
     return 1;
@@ -178,7 +303,7 @@ command untiltest(playerid, params[])
     SendClientMessage(playerid, -1, "i is now 50.");
     return 1;
 }
-decl Command:lock(playerid, params[])
+DETUTILS Command:lock(playerid, params[])
 {
     new propertyid = GetNearPropertyEntrance(playerid);
     if(propertyid == 0) return SendClientMessage(playerid, -1, "You need to be near property entrance.");
@@ -234,9 +359,13 @@ public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid) // you can als
         printf("Custom prefixed command %s performed.", cmdtext);
         return 1;
     }
+    else if(stateid == COMMAND_DEBUG_STATE_STOPPED)
+    {
+        printf("Command processing for command %s stopped.", cmdtext);
+    }
     return 1;
 }
- 
+
 public OnPlayerCheatDetected(playerid, cheattype)
 {
     if(cheattype == CHEAT_TYPE_MONEY)
@@ -277,16 +406,29 @@ public OnPlayerCheatDetected(playerid, cheattype)
     }
     return 1;
 }
- 
-decl Prefix:shitprefix = "&";
 
-prefixed command test (Prefix:"&",playerid, params[])
+DETUTILS Prefix:shitprefix = "&";
+
+public OnPlayerPassCommandPrefix(playerid, cmdtext[], passedprefix[], expectedprefix[])
+{
+    SendClientMessage(playerid, -1, "OnPlayerPassCommandPrefix is called.");
+    SendClientMessage(playerid, -1, "CMD: %s | PASSED PREFIX: %s | EXPECTED PREFIX: %s", cmdtext, passedprefix, expectedprefix);
+
+    if(passedprefix[0] == expectedprefix[0] && passedprefix[0] == shitprefix[0])
+    {
+        SendClientMessage(playerid, -1, "You aren't allowed to use commands with & prefix!");
+        return 0;
+    }
+    return 1;
+}
+ 
+DETUTILS PrefixedCommand: test ( Prefix:"&",playerid, params[])
 {
     SendClientMessage(playerid, -1, "Amazing %s, this custom-prefixed command worked.", _ReturnPlayerName(playerid));
     return 1;
 }
  
-prefixed command TEST(Prefix:"&",playerid, params[])
+DETUTILS PrefixedCommand:TEST(Prefix:"&",playerid, params[])
 {
     SendClientMessage(playerid, -1, "WORKS!");
     return 1;
@@ -322,42 +464,42 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
     return 1;
 }
  
-decl Prefix:aletter = "@";
-decl Prefix: hashtag = "#" ;
+DETUTILS Prefix:aletter = "@";
+DETUTILS Prefix: hashtag = "#" ;
 
-decl Command:cson(playerid, params[])
+DETUTILS Command:cson(playerid, params[])
 {
     ToggleCommandCaseSensivity(true);
     SendClientMessage(playerid, -1, "%s turned command case-sensivity on.", ReturnPlayerName(playerid));
     return 1;
 }
 
-decl Command:csoff(playerid, params[])
+DETUTILS Command:csoff(playerid, params[])
 {
     ToggleCommandCaseSensivity(false);
     SendClientMessage(playerid, -1, "%s turned command case-sensivity off.", ReturnPlayerName(playerid));
     return 1;
 }
-prefixed command dear ( Prefix: aletter, playerid, params[])
+DETUTILS PrefixedCommand: dear ( Prefix: aletter, playerid, params[])
 {
     SendClientMessage(playerid, -1, "%s said hi.", _ReturnPlayerName(playerid));
     return 1;
 }
  
-prefixed command hi (Prefix:"#", playerid, params[])
+DETUTILS   PrefixedCommand: minecraft( Prefix: "#", playerid, params[])
 {
     SendClientMessage(playerid, -1, "Hi man");
     return 1;
 }
  
-decl Prefix:dollar = "$"; 
-decl PrefixedCommand:skal(Prefix:dollar, playerid, params[])
+DETUTILS Prefix:dollar = "$"; 
+DETUTILS PrefixedCommand: skal (  Prefix:dollar, playerid, params[])
 {
     SendClientMessage(playerid, -1, "Cheers, %s!", ReturnPlayerName(playerid));
     return 1;
 }
-decl Prefix:plus = "+";
-decl PrefixedCommand:sscanf(Prefix: "+",playerid, params[]) 
+DETUTILS Prefix:plus = "+";
+DETUTILS PrefixedCommand:sscanf(Prefix: "+",playerid, params[]) 
 {
     new action;
     if(sscanf(params, "i", action)) return SendClientMessage(playerid, 0xFFFFFFFF, "Usage: +sscanf <action>");
@@ -372,10 +514,16 @@ decl PrefixedCommand:sscanf(Prefix: "+",playerid, params[])
     }
     return 1;
 }
- 
+
+prefixed command lol(Prefix: "e", playerid, params[])
+{
+    SendClientMessageToAll(-1, "E");
+    return 1;
+}
+
 create role AdminRole (playerid, Player[playerid][Admin] == 1);
  
-decl Role:AdminRole2(playerid, Player[playerid][Admin] >= 1 );
+DETUTILS Role:AdminRole2(playerid, Player[playerid][Admin] >= 1 );
  
 command makeadmin (playerid, params[])
 {
@@ -393,7 +541,7 @@ role command clearchat (Role:AdminRole,playerid, params[])
     return 1;
 }
  
-decl RoleCommand:ao( Role:AdminRole2, playerid, params[])
+DETUTILS RoleCommand:ao( Role:AdminRole2, playerid, params[])
 {
     SendClientMessageToAll(-1, "Announcement!");
     return 1;
@@ -401,6 +549,7 @@ decl RoleCommand:ao( Role:AdminRole2, playerid, params[])
  
 public OnGameModeInit()
 {
+    AddStaticVehicle(560, 844.7139,-1614.3539,13.5391,316.9723, 25, 23);
     teleportmenu = CreateMenu("Teleportmenu", 2, 200.0, 100.0, 150.0, 150.0);
     AddMenuItem(teleportmenu, 0, "LS");
     AddMenuItem(teleportmenu, 0, "LS");
@@ -419,7 +568,7 @@ public OnGameModeInit()
     DisableDefaultProperties();
     CreatePropertyEntrance("24/7 Market", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_MARKET_247_1);
     CreatePropertyEntrance("Your Interior", 825.6589,-1614.8202,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
-    CreateDroppedGun(30,999,811.1299,-1616.0647,13.5469);
+    CreateDroppedWeapon(30,999,811.1299,-1616.0647,13.5469);
     return 1;
 }
 
@@ -471,7 +620,7 @@ public OnPlayerSelectedMenuRow(playerid, row)
     return 1;
 }
 
-decl Command:tp(playerid, params[])
+DETUTILS Command:tp(playerid, params[])
 {
     ShowMenuForPlayer(teleportmenu,playerid);
     return 1;
@@ -496,8 +645,7 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
     new string[256];
     if(actionid == PROPERTY_ACTION_ENTER)
     {
-        format(string, 256, "%sYou entered %s, %s. Property id: %i [%i]", 
-            ReturnStringColour(g_GrayColour),
+        format(string, 256, "You entered %s, %s. Property id: %i [%i]", 
             GetPropertyName(propertyid),
             ReturnPlayerName(playerid), 
             GetPropertyIDByName(g_PropertyData[propertyid][p_PropertyName]), //GetPropertyIDByName(GetPropertyName(propertyid)), // to ensure this also works
@@ -507,8 +655,7 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
     }
     else if(actionid == PROPERTY_ACTION_EXIT)
     {
-        format(string, 256, "%sYou exited %s, %s. Property id: %i [%i]", 
-            ReturnStringColour(g_GrayColour),
+        format(string, 256, "You exited %s, %s. Property id: %i [%i]", 
             GetPropertyName(propertyid),
             ReturnPlayerName(playerid), 
             GetPropertyIDByName(GetPropertyName(propertyid)),
@@ -559,22 +706,21 @@ public OnPlayerScoreSniperHeadshot(playerid, killedid)
     return 1;
 }
  
-public OnPlayerPickUpGun(playerid)
+public OnPlayerPickUpDroppedWeapon(playerid)
 {
-    SendClientMessage(playerid, -1, "You picked up a gun.");
+    SendClientMessage(playerid, -1, "You picked up a weapon.");
     return 1;
 }
  
-public OnPlayerThrowGun(playerid)
+public OnPlayerDropWeapon(playerid)
 {
-    SendClientMessage(playerid, -1, "You threw away a gun.");
+    SendClientMessage(playerid, -1, "You dropped a weapon.");
     return 1;
 }
  
-public OnPlayerDestroyGun(playerid)
+public OnPlayerDestroyDroppedWeapon(playerid)
 {
-    SendClientMessage(playerid, -1, "You destroyed a gun.");
+    SendClientMessage(playerid, -1, "You destroyed a weapon.");
     return 1;
 }
- 
-```
+ ```
