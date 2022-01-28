@@ -660,12 +660,14 @@ public OnPlayerText(playerid, text[])
         //new PrefixPass = CallLocalFunction("OnPlayerPassCommandPrefix", "isss", playerid, text, text[0], g_PlayerCmdData[playerid][PassedPrefix]);
 
         new expcprx[10];
-        format(expcprx, sizeof expcprx,
+        if(funcidx(PrxFuncName) != -1) format(expcprx, sizeof expcprx,
             "%s", g_PlayerCmdData[playerid][PassedPrefix][0]);
+
+        if(funcidx(PrxFuncName) == -1) format(expcprx, sizeof expcprx, " ");
 
         new prx[10];
         format(prx, sizeof prx,
-            "%s", text[0]);
+            "%c", text[0]);
 
         if(funcidx("OnPlayerPassCommandPrefix") != -1)
         {
