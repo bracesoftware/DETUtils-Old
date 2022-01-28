@@ -98,16 +98,6 @@
  	#warning [samp-detutils]: (includes) - Library 'd_anticheat' is disabled.
 
 #endif
-#if !defined DETUTILS_NO_COLOURS
-
- 	//#warning [samp-detutils]: (includes) - Library 'd_colours' is disabled.
-	#include "d_colours"
-
-#else
-
- 	#warning [samp-detutils]: (includes) - Library 'd_colours' is disabled.
-
-#endif
 #if !defined DETUTILS_NO_MAPEDITOR
 	
 	//#warning [samp-detutils]: (includes) - Library 'd_mapeditor' is disabled.
