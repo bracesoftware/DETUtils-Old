@@ -51,6 +51,10 @@ You have:
 ```
 I know it is a subtle difference, but an important one.
 
+#### Macros
+
+- These macros are not that much complex but anyways are a nightmare - they are set up in ``d_commands_setup``. The rest is in ``d_commands_macros``. Note that they won't be FULLY reduced to normal Pawn syntax by the preprocessor (I am talking about ``-l`` compile option).
+
 ### Bonus
 -----------------------------------------
 
