@@ -117,7 +117,7 @@ If you're facing issues with your code compilation after including the library, 
 
 - aezzakmi (no GitHub account) - help during development
 - [Unity](https://github.com/kyekalcor) - testing and fixes
-- Y_Less(https://github.com/y-less) & Zeex - fmargs ``#emit`` stuff, d_commands decorator concept
+- [Y_Less](https://github.com/y-less) & Zeex - fmargs ``#emit`` stuff, d_commands decorator concept
 - [Zeex](https://github.com/zeex) - ZCMD command processor concept
 
 ### Very special thanks to:
