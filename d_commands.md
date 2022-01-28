@@ -515,7 +515,39 @@ How you SHOULD do it from now on:
 
 - *d_commands.inc* also contains some handy functions, let's see.
 
-### CallCommand
+### ``GetSlashCommandType``
+
+```pawn
+@command(.type = SLASH_COMMAND) typecheck(playerid, params[]) 
+{
+    new cmdname[32];
+    if(sscanf(params, "s[32]", cmdname))
+    {
+        return SendClientMessage(playerid, -1, "/typecheck <cmdname>");
+    }
+    SendClientMessage(playerid, -1, "Command: %s | Slash command type: %i", cmdname, GetSlashCommandType(cmdname));
+    return 1;
+}
+```
+- ``GetSlashCommandType`` gets a type of a slash command, as you know (if you've read the documentation), there are *4* types of slash commands - normal ones, aliases, flagged commands and commands for RCON administrators!
+
+- Since they are all slash commands, but with different functionality, sometimes it's a mess to sort things out, so that's why I've added this. Above, you can see simple command with ``sscanf`` with which you can check for that.
+
+- Besides the shwon example, there's a lot of more other exampes:
+
+```pawn
+new slashcmdtype = GetSlashCommandType(cmdname);
+```
+
+- Since ``GetSlashCommandType`` just returns an integer value (-1, 3, etc.) it's sometimes "hard" to remember which one is for which command type. Below, you can see **defines** for slash command types whose can also be used instead of bare numbers:
+
+``INVALID_SLASH_COMMAND_TYPE`` or ``-1`` - returned if the commands is not slash command (custom prefixed command) or the command does not even exist
+``SLASH_COMMAND_TYPE_NORMAL`` or ``0`` - returned if the command is a normal slash command
+``SLASH_COMMAND_TYPE_ALIAS`` or ``1`` - returned if the command is just an alias for an another command
+``SLASH_COMMAND_TYPE_ADMIN`` or ``2`` - returned if the command is admin command (available after **/rcon login ...**)
+``SLASH_COMMAND_TYPE_FLAGGED`` or ``3`` - returned if the command is a flagged command (aka role command)
+
+### ``CallCommand``
 
 - Function ``CallCommand``, obviously, is used to call a command.
 - Let's see a small example:
