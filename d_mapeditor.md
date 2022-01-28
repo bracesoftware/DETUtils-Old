@@ -12,7 +12,7 @@ SA:MP Map Editor - edit San Andreas yourself in the game
 ## ShowMapEditorMenuToPlayer
 - Shows player a dialog with map editor options.
 ```pawn
-Command:mapeditor(playerid, params[])
+@command(.type = SLASH_COMMAND) mapeditor(playerid, params[]) 
 {
     ShowMapEditorMenuToPlayer(playerid);
     return 1;
@@ -21,7 +21,7 @@ Command:mapeditor(playerid, params[])
 ## ShowObjectInfoLabels
 - Used to show everyone on the server, in the specified virtual world, object info labels. They contain info about object's ID, object's rotation offset and object's **x, y and z** coordinates!
 ```pawn
-Command:labelon(playerid, params[])
+@command(.type = SLASH_COMMAND) labelon(playerid, params[])
 {
     ShowObjectInfoLabels(GetPlayerVirtualWorld(playerid));
     return 1;
@@ -30,7 +30,7 @@ Command:labelon(playerid, params[])
 ## HideObjectInfoLabels
 - Used to hide object info labels.
 ```pawn
-Command:labeloff(playerid, params[])
+@command(.type = SLASH_COMMAND) labeloff(playerid, params[])
 {
     HideObjectInfoLabels();
     return 1;
