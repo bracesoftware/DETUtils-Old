@@ -23,3 +23,11 @@
 #define DETUTILSCMD_DECL_FLAG__<%1|%2> stock bool:role_%1(%2)
 #define DETUTILSCMD_FLAG_DATA_CHECK__|%3| { if(!(%3)) return false; else if(%3) return true; return false;}
 #define DETUTILSCMD_PRX_DECL__<|%0|,|%1|> stock const %0[MAX_PREFIX_LENGTH]=%1;
+
+#define INVALID_SLASH_COMMAND_TYPE -1
+#define SLASH_COMMAND_TYPE_NORMAL 0
+#define SLASH_COMMAND_TYPE_ALIAS 1
+#define SLASH_COMMAND_TYPE_ADMIN 2
+#define SLASH_COMMAND_TYPE_FLAGGED 3
+
+#define DETUTILSCMD_TYPESET__|<%0>,%1| cty_%0();public cty_%0(){return %1;}

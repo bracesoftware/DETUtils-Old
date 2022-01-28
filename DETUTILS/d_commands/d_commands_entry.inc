@@ -82,6 +82,15 @@
                                                                                       
 */
 
+stock GetSlashCommandType(const cmdtext[])
+{
+    new cmdname[MAX_FUNC_NAME];
+    format(cmdname, sizeof cmdname, "cty_%s", cmdtext);
+    if(funcidx(cmdname) == -1) return INVALID_SLASH_COMMAND_TYPE; 
+    // If slash command does not exist or command is not slash command (above)
+    return CallLocalFunction(cmdname, "");
+}
+
 DETUTILS_DECL__ var:g_CaseSensivity<> = 0;
 
 stock ToggleCommandCaseSensivity(bool:toggle)
