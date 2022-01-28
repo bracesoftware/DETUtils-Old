@@ -12,9 +12,13 @@
  *
  */
 
+#if defined detutils_complete_error_boom
+
 #if !defined _d_cmd_processor_included
 
     #error [samp-detutils]: (error) - Include 'd_commands' before using 'd_visual' include.
+
+#endif
 
 #endif
 

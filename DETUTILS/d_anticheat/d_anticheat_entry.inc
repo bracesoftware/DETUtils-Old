@@ -73,7 +73,7 @@ public detutils_cheatcheck()
 {
     for(new i = 0; i < MAX_PLAYERS; i++)
     {
-        if(i != INVALID_PLAYER_ID)
+        if(IsPlayerConnected(i) && i != INVALID_PLAYER_ID)
         {
             CheckPlayerMoney(i);
             printf("[samp-detutils]: (debug) - ac :: Money check performed on %s", ReturnPlayerName(i));

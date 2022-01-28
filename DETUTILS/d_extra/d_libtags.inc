@@ -18,6 +18,8 @@
 
 #endif
 
+#include "d_thirdpartyinclude" //_INC_code_parse_inc
+
 #if !defined __PawnBuild
 
     #error [samp-detutils]: (fatal error) - DETUtils require community Pawn compiler. Get it from: github.com/pawn-lang/compiler
