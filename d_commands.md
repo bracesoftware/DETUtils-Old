@@ -416,6 +416,9 @@ public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid)
 
 ### Commands with custom permissions
 ------------------------------------------
+
+### OUTDATED!
+
 *d_commands* also allows you to create commands that require certain permissions / conditions to be executed. This is really nice feature if you're making administrator system, V.I.P. system or anything else that has to do with the user system.
 
 - Let's see how to create **roles**. To create role you need to use ``create role`` keywords.
@@ -484,6 +487,25 @@ DETUTILS RoleCommand:clearchat(Role:AdminRole, playerid, params[])
 Now, we created a command which requires ``AdminRole`` role to be executed - performed.
 
 **NOTE**: If role command's conditions are not met, command will return ``0`` (false) and will send client message saying: **"SERVER: Unknown command."**
+
+### UPDATED!
+
+Roles are now **command flags**. Despite the fact that code syntax above is still supported, it's still marked as outdated since I am not updating those methods anymore, this is the new updated decorator command type. Note that the other documentation (without code and new keywords) for this feature is still valid.
+
+How you SHOULD do it from now on:
+
+```pawn
+@flag(.dependencies = (Player[playerid][Admin] == 1)) AdminRole(playerid);
+
+@command(.type = FLAGGED_COMMAND, .flag = AdminRole) clearchat(playerid,params[]) 
+{
+    	for(new i; i < 20; i++)
+		SendClientMessage(playerid, -1, "");
+
+	SendClientMessage(playerid, -1, "You cleared the chat.");
+	return 1;
+}
+```
 
 ## API ( programming interface )
 
