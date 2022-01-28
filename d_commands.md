@@ -9,26 +9,52 @@ SA:MP Commands - a "built-in" fast and easy way to create commands.
 
 ### Command declaration
 ------------------------------------------
-To declare a command, you need to use ``command`` keyword.
+To declare a command, you need to use ``@command`` decorator. This way of command declaration is MAINLY supported and regularly updated.
 
 Let's see how it works:
 
 ```pawn
 
-command mycommand(playerid, params[])
+@command(.type = SLASH_COMMAND ) mycommand(playerid, params[]) 
 {
-  SendClientMessage(playerid, -1, "{ffffff}Your very first command works!");
-  return 1;
+    SendClientMessage(playerid, -1, "Your very first command works!");
+    return 1;
 }
 
 ```
 
 ... and - that's it, command is declared, and whenever someone sends */mycommand* to chat, a message saying "Your very first command works!" appears.
 
+#### Why is it done this way?
+
+- Using ``command`` keyword, as I used 6 months ago also started to look absurd to me, since keywords are components of syntax of a certain programming language, so creating ``command`` keyword for visual feature makes no sense to me. And since, I looked at commands as visual entities, such as TextDraws and 3D Labels, whose have their tags, so I decided to make that - ``new Command:.``!
+
+But, that also wasn't a great idea - tags are already a language feature, denoting return "types".  Using them for a totally different purpose, but looking the same, is confusing and misleading. Keywords are for language features, things like commands and vehicles are API, not language. But then, declaring commands should be easy, so we need a third thing that is neither keywords nor tags - and I have actually proposed something in this vein before, because is something that has been solved in other languages - decorators.
+
+So instead of:
+```c
+new Command:help()
+{
+}
+```
+Or:
+```c
+command help()
+{
+}
+```
+You have:
+```c
+@command() help()
+{
+}
+```
+I know it is a subtle difference, but an important one.
+
 ### Bonus
 -----------------------------------------
 
-- More command declaration styles!
+- More command declaration styles for backwards compatibility...
 - Let's take a look:
 
 ```pawn
@@ -36,6 +62,12 @@ DETUTILS Command:cmd(playerid,params[]) // Compatibility mode, use `#define DETU
 {
     // Code.
     return 1;
+}
+
+command mycommand(playerid, params[])
+{
+  SendClientMessage(playerid, -1, "{ffffff}Your very first command works!");
+  return 1;
 }
 
 COMMAND:cmd(playerid, params[])
