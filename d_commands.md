@@ -541,11 +541,11 @@ new slashcmdtype = GetSlashCommandType("some_cool_command_name");
 
 - Since ``GetSlashCommandType`` just returns an integer value (-1, 3, etc.) it's sometimes "hard" to remember which one is for which command type. Below, you can see **defines** for slash command types whose can also be used instead of bare numbers:
 
-``INVALID_SLASH_COMMAND_TYPE`` or ``-1`` - returned if the command is not slash command (custom prefixed command) or the command does not even exist
-``SLASH_COMMAND_TYPE_NORMAL`` or ``0`` - returned if the command is a normal slash command
-``SLASH_COMMAND_TYPE_ALIAS`` or ``1`` - returned if the command is just an alias for an another command
-``SLASH_COMMAND_TYPE_ADMIN`` or ``2`` - returned if the command is admin command (available after **/rcon login ...**)
-``SLASH_COMMAND_TYPE_FLAGGED`` or ``3`` - returned if the command is a flagged command (aka role command)
+- ``INVALID_SLASH_COMMAND_TYPE`` or ``-1`` - returned if the command is not slash command (custom prefixed command) or the command does not even exist
+- ``SLASH_COMMAND_TYPE_NORMAL`` or ``0`` - returned if the command is a normal slash command
+- ``SLASH_COMMAND_TYPE_ALIAS`` or ``1`` - returned if the command is just an alias for an another command
+- ``SLASH_COMMAND_TYPE_ADMIN`` or ``2`` - returned if the command is admin command (available after **/rcon login ...**)
+- ``SLASH_COMMAND_TYPE_FLAGGED`` or ``3`` - returned if the command is a flagged command (aka role command)
 
 ### ``CallCommand``
 
