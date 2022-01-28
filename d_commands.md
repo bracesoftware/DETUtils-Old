@@ -531,17 +531,17 @@ How you SHOULD do it from now on:
 ```
 - ``GetSlashCommandType`` gets a type of a slash command, as you know (if you've read the documentation), there are *4* types of slash commands - normal ones, aliases, flagged commands and commands for RCON administrators!
 
-- Since they are all slash commands, but with different functionality, sometimes it's a mess to sort things out, so that's why I've added this. Above, you can see simple command with ``sscanf`` with which you can check for that.
+- Since they are all slash commands, but with different functionality, sometimes it's a mess to sort things out, so that's why I've added this. Above, you can see simple command with ``sscanf`` which checks the slash command type of a command ``cmdname``.
 
-- Besides the shwon example, there's a lot of more other exampes:
+- Besides the shwon example, there's a lot of more other examples:
 
 ```pawn
-new slashcmdtype = GetSlashCommandType(cmdname);
+new slashcmdtype = GetSlashCommandType("some_cool_command_name");
 ```
 
 - Since ``GetSlashCommandType`` just returns an integer value (-1, 3, etc.) it's sometimes "hard" to remember which one is for which command type. Below, you can see **defines** for slash command types whose can also be used instead of bare numbers:
 
-``INVALID_SLASH_COMMAND_TYPE`` or ``-1`` - returned if the commands is not slash command (custom prefixed command) or the command does not even exist
+``INVALID_SLASH_COMMAND_TYPE`` or ``-1`` - returned if the command is not slash command (custom prefixed command) or the command does not even exist
 ``SLASH_COMMAND_TYPE_NORMAL`` or ``0`` - returned if the command is a normal slash command
 ``SLASH_COMMAND_TYPE_ALIAS`` or ``1`` - returned if the command is just an alias for an another command
 ``SLASH_COMMAND_TYPE_ADMIN`` or ``2`` - returned if the command is admin command (available after **/rcon login ...**)
