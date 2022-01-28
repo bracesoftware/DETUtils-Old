@@ -105,8 +105,10 @@ cmd:cmd(playerid, params[])
 ------------------------------------------
 There is also way to declare alias of a specific command.
 
-You can do it using ``alias`` keyword, an example:
-
+```pawn
+@command(.type = ALIAS_COMMAND) cmds( playerid, params[]) = help;
+```
+... or, if you're outdated, these are still usable.
 ```pawn
 
 alias command mycmd(playerid, params[]) = mycommand;
@@ -208,6 +210,15 @@ public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid)
 ------------------------------------------
 *d_commands* also lets you to create admin commands.
 
+```pawn
+@command(.type = ADMIN_COMMAND) admincheck(playerid, params[]) 
+{
+    SendClientMessage(playerid, -1, "Yes you are.");
+    return 1;
+}
+```
+
+... for outdated poeple:
 You can do it easily and fast mixing ``admin`` and ``command`` keywords.
 
 Example:
@@ -241,6 +252,17 @@ DETUTILS AdminCommand:admincheck(playerid,params[])
 ### Commands with custom prefix
 ------------------------------------------
 *d_commands* also arrive with brand new system with custom-prefixed commands.
+
+```pawn
+@command(.type = PREFIXED_COMMAND, .prefix = "!") mycmd( playerid, params[] ) 
+{
+    SendClientMessage(playerid, -1, "This worked, %s.", ReturnPlayerName(playerid));
+    return 1;
+}
+```
+
+... for outdated people:
+
 Create commands like those using two keywords and one extra parameter - fast and easy. You can also use ``decl`` keyword.
 
 - Let's see how to do it:
@@ -274,6 +296,20 @@ Now, whenever player sends ``!mycmd`` to chat, command will be executed (perform
 **WARNING:** Command's prefix can only contain 1 character!
 
 #### Creating prefixes as variables
+
+Simple code:
+
+```pawn
+@prefix(.value = "!") prefix(); // Use prefix decorator to make prefix named `prefix`
+
+@command(.type = PREFIXED_COMMAND, .prefix = prefix) prefixtest(playerid, params[]) // Make custom prefixed command with `prefix` commands 
+{
+    SendClientMessage(playerid, -1, "Cool prefix test.");
+    return 1;
+}
+```
+
+... or for outdated ones:
 
 - That's also possible. Just use ``decl`` keyword and ``Prefix:`` tag in order to do that.
 
@@ -339,7 +375,7 @@ if(chatmode == CHAT_MODE_PLAIN_TEXT_MESSAGES)
 Example:
 ```pwn
 
-decl Prefix:SomeCoolPrefix = "&";
+// Declare SomeCoolPrefix somewhere in your code...
 
 public OnPlayerPassCommandPrefix(playerid, cmdtext[], passedprefix[], expectedprefix[])
 {
