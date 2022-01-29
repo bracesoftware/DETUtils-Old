@@ -22,28 +22,37 @@
 #define prx_%0\32; prx_
 #define cty_%0\32; cty_
 
-#define @DETUTILS_CMD_DEC_%0\32; @DETUTILS_CMD_DEC_
+#define @DETUTILS_CMD_DEC__@%0\32; @DETUTILS_CMD_DEC__@
 
-#define @command%0(%1.type%2= @DETUTILS_CMD_DEC_
+#define @command%0(%1.type%2= @DETUTILS_CMD_DEC__@
 
 // @command() macros
 
-#define @DETUTILS_CMD_DEC_SLASH_COMMAND%2)%0(%1) DETUTILSCMD_TYPESET__|<%0>,SLASH_COMMAND_TYPE_NORMAL| \
-    DETUTILSCMD_DECL_CMD__<%0|%1>
+#if @DETUTILSCMD_NEXTLINE_TEST__ == 1
+    
+    #define @DETUTILS_CMD_DEC__@@DETUTILSCMD_CLS_BRCKT__SC%0(%1) \
+        DETUTILSCMD_TYPESET__|<%0>,SLASH_COMMAND_TYPE_NORMAL| DETUTILSCMD_DECL_CMD__<%0|%1>
 
-#define @DETUTILS_CMD_DEC_ALIAS_COMMAND%3)%0(%1[%4])=%2; DETUTILSCMD_TYPESET__|<%0>,SLASH_COMMAND_TYPE_ALIAS| \
+#else
+
+    #define @DETUTILS_CMD_DEC__@SLASH_COMMAND%2)%0(%1) DETUTILSCMD_TYPESET__|<%0>,SLASH_COMMAND_TYPE_NORMAL| \
+        DETUTILSCMD_DECL_CMD__<%0|%1>
+
+#endif
+
+#define @DETUTILS_CMD_DEC__@ALIAS_COMMAND%3)%0(%1[%4])=%2; DETUTILSCMD_TYPESET__|<%0>,SLASH_COMMAND_TYPE_ALIAS| \
     DETUTILSCMD_DECL_CMD__B<%0,%1> DETUTILSCMD_RET_CMD__B|%2,%1|
 
-#define @DETUTILS_CMD_DEC_ADMIN_COMMAND%3)%0(%1,%2[%5]%4) DETUTILSCMD_TYPESET__|<%0>,SLASH_COMMAND_TYPE_ADMIN| \
+#define @DETUTILS_CMD_DEC__@ADMIN_COMMAND%3)%0(%1,%2[%5]%4) DETUTILSCMD_TYPESET__|<%0>,SLASH_COMMAND_TYPE_ADMIN| \
     DETUTILSCMD_ACMD_DECL__|%0|%1|%2| DETUTILSCMD_ACMD_CHECK__<%1>|%0,%2| DETUTILSCMD_ACMD_CMDFRET__|%0,<%1>,%2|
 
-#define @DETUTILS_CMD_DEC_FLAGGED_COMMAND%4,%5.flag%6=%3)%0(%1,%2[%7]%8) DETUTILSCMD_TYPESET__|<%0>,SLASH_COMMAND_TYPE_FLAGGED| \
+#define @DETUTILS_CMD_DEC__@FLAGGED_COMMAND%4,%5.flag%6=%3)%0(%1,%2[%7]%8) DETUTILSCMD_TYPESET__|<%0>,SLASH_COMMAND_TYPE_FLAGGED| \
     DETUTILSCMD_FCMD_ENTRY__|%0|(%1,%2) DETUTILSCMD_FLAG_CHECK__|%3|<%0>(%1,%2) DETUTILSCMD_CMD_FUNC__|%0|<%1,%2>
 
 #define @flag(%0.dependencies%4=%5(%3)%6)%1(%2); \
     DETUTILSCMD_DECL_FLAG__<%1|%2> DETUTILSCMD_FLAG_DATA_CHECK__|%3|
 
-#define @DETUTILS_CMD_DEC_PREFIXED_COMMAND%5,%6.prefix%7=%3)%0(%1) DETUTILSCMD_PRX_CALL__|%0| \
+#define @DETUTILS_CMD_DEC__@PREFIXED_COMMAND%5,%6.prefix%7=%3)%0(%1) DETUTILSCMD_PRX_CALL__|%0| \
     DETUTILSCMD_PRX_FUNC__<%3> DETUTILSCMD_PC_DECL__|%0|%1|    
 
 #define @prefix%2(%3.value%4=%1)%0(%5)%6; DETUTILSCMD_PRX_DECL__<|%0|,|%1|>
@@ -53,16 +62,16 @@
 */
 
 /*
-useless
+useless and outdated...
                                                                                
-88b           d88                                                              
-888b         d888                                                              
-88`8b       d8'88                                                              
-88 `8b     d8' 88  ,adPPYYba,   ,adPPYba,  8b,dPPYba,   ,adPPYba,   ,adPPYba,  
-88  `8b   d8'  88  ""     `Y8  a8"     ""  88P'   "Y8  a8"     "8a  I8[    ""  
-88   `8b d8'   88  ,adPPPPP88  8b          88          8b       d8   `"Y8ba,   
-88    `888'    88  88,    ,88  "8a,   ,aa  88          "8a,   ,a8"  aa    ]8I  
-88     `8'     88  `"8bbdP"Y8   `"Ybbd8"'  88           `"YbbdP"'   `"YbbdP"'  
+        88b           d88                                                              
+        888b         d888                                                              
+        88`8b       d8'88                                                              
+        88 `8b     d8' 88  ,adPPYYba,   ,adPPYba,  8b,dPPYba,   ,adPPYba,   ,adPPYba,  
+        88  `8b   d8'  88  ""     `Y8  a8"     ""  88P'   "Y8  a8"     "8a  I8[    ""  
+        88   `8b d8'   88  ,adPPPPP88  8b          88          8b       d8   `"Y8ba,   
+        88    `888'    88  88,    ,88  "8a,   ,aa  88          "8a,   ,a8"  aa    ]8I  
+@ @ @   88     `8'     88  `"8bbdP"Y8   `"Ybbd8"'  88           `"YbbdP"'   `"YbbdP"'  
                                                                                
                                                                                
 */
