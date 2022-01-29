@@ -67,6 +67,76 @@ new gAntiCheatTimer;
 
 // Functions:
 
+static stock d_ac_IsPlayerNearSprunk(playerid)
+{
+    if(IsPlayerInRangeOfPoint(playerid, 4, -2420.219, 984.578, 44.297)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -2420.180, 985.945, 44.297)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2225.203, -1153.422, 1025.906)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2576.703, -1284.430, 1061.094)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2155.906, 1606.773, 1000.055)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2209.906, 1607.195, 1000.055)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2222.203, 1606.773, 1000.055)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 495.969, -24.320, 1000.734)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 501.828, -1.430, 1000.734)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 373.828, -178.141, 1000.734)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 330.680, 178.500, 1020.070)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 331.922, 178.500, 1020.070)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 350.906, 206.086, 1008.477)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 361.563, 158.617, 1008.477)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 371.594, 178.453, 1020.070)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 374.891, 188.977, 1008.477)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2155.844, 1607.875, 1000.063)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2202.453, 1617.008, 1000.063)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2209.242, 1621.211, 1000.063)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2222.367, 1602.641, 1000.063)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 500.563, -1.367, 1000.734)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 379.039, -178.883, 1000.734)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2480.86,-1959.27,12.9609)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 1634.11,-2237.53,12.8906)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2139.52,-1161.48,23.3594)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2153.23,-1016.15,62.2344)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -1350.12,493.859,10.5859)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -2229.19,286.414,34.7031)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 1659.46,1722.86,10.2188)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2647.7,1129.66,10.2188)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2845.73,1295.05,10.7891)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 1398.84,2222.61,10.4219)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -1455.12,2591.66,55.2344)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -76.0312,1227.99,19.125)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 662.43,-552.164,15.7109)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -253.742,2599.76,62.2422)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2271.73,-76.4609,25.9609)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 1789.21,-1369.27,15.1641)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 1729.79,-1943.05,12.9453)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2060.12,-1897.64,12.9297)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 1928.73,-1772.45,12.9453)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2325.98,-1645.13,14.2109)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2352.18,-1357.16,23.7734)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 1154.73,-1460.89,15.1562)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -1350.12,492.289,10.5859)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -2118.97,-423.648,34.7266)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -2118.62,-422.414,34.7266)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -2097.27,-398.336,34.7266)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -2092.09,-490.055,34.7266)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -2063.27,-490.055,34.7266)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -2005.65,-490.055,34.7266)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -2034.46,-490.055,34.7266)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -2068.56,-398.336,34.7266)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -2039.85,-398.336,34.7266)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -2011.14,-398.336,34.7266)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -1980.79,142.664,27.0703)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2319.99,2532.85,10.2188)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 1520.15,1055.27,10.00)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2503.14,1243.7,10.2188)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 2085.77,2071.36,10.4531)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -862.828,1536.61,21.9844)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -14.7031,1175.36,18.9531)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, -253.742,2597.95,62.2422)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 201.016,-107.617,0.898438)) return 1;
+    else if(IsPlayerInRangeOfPoint(playerid, 4, 1277.84,372.516,18.9531)) return 1;
+    else return 0;
+}
+
 forward OnPlayerCheatDetected(playerid, cheattype);
 forward detutils_cheatcheck();
 public detutils_cheatcheck()
@@ -534,9 +604,9 @@ stock CheckPlayerSkin(playerid)
 
 // TELEPORT ANTI-CHEAT:
 
-#define MAX_PLAYER_SPEED 94
+#define MAX_PLAYER_SPEED 219
 
-#define MAX_PLAYERPED_SPEED 97
+#define MAX_PLAYERPED_SPEED 220
 
 stock Float:d_ac_GetDistance(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2)
 {
@@ -699,12 +769,51 @@ stock d_ac_SetPlayerHealth(playerid, Float:health)
     return 1;
 }
 
+public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
+{
+    new Float:armour;
+    if(GetPlayerArmour(playerid, armour) != 0) 
+        g_PlayerData[playerid][Health] = g_PlayerData[playerid][Health] - amount;
+
+    else g_PlayerData[playerid][Armour] = g_PlayerData[playerid][Armour] - amount;
+
+    if(funcidx("d_ac_ptakedmg") != -1)
+    {
+        CallLocalFunction("d_ac_ptakedmg", "iifii", playerid, issuerid, amount, weaponid, bodypart);
+    }
+    return 1;
+}
+
+#if defined _ALS_OnPlayerTakeDamage
+    #undef OnPlayerTakeDamage
+#else
+    #define _ALS_OnPlayerTakeDamage
+#endif
+
+#define OnPlayerTakeDamage d_ac_ptakedmg
+
+forward d_ac_ptakedmg(playerid, issuerid, Float:amount, weaponid, bodypart);
+
 stock CheckPlayerHealth(playerid)
 {
     DETUTILS_AC__ check:(CheckPlayerHealth);
-    new Float:health;
-    GetPlayerHealth(playerid, Float:health);
-    if(health - g_PlayerData[playerid][Health] > 10)
+
+    new Float:p_Health, bool:UsingStaticHack = false;
+    GetPlayerHealth(playerid,p_Health);
+    if(p_Health < g_PlayerData[playerid][Health])
+    {
+        g_PlayerData[playerid][Health] = g_PlayerData[playerid][Health] + 2;
+    }
+    if(d_ac_IsPlayerNearSprunk(playerid))
+    {
+        g_PlayerData[playerid][Health] = g_PlayerData[playerid][Health] + 2;
+    }
+    if(p_Health > g_PlayerData[playerid][Health] && !d_ac_IsPlayerNearSprunk(playerid))
+    {
+        UsingStaticHack = true;
+    }
+
+    if(UsingStaticHack == true)
     {
         if(funcidx("OnPlayerCheatDetected") != -1)
         {
@@ -735,9 +844,19 @@ stock d_ac_SetPlayerArmour(playerid, Float:armour)
 stock CheckPlayerArmour(playerid)
 {
     DETUTILS_AC__ check:(CheckPlayerArmour);
-    new Float:armour;
-    GetPlayerArmour(playerid, Float:armour);
-    if(armour - g_PlayerData[playerid][Armour] > 10)
+    
+    new Float:p_Armour, bool:UsingStaticHack = false;
+    GetPlayerHealth(playerid,p_Armour);
+    if(p_Armour < g_PlayerData[playerid][Armour])
+    {
+        g_PlayerData[playerid][Armour] = g_PlayerData[playerid][Armour] + 2;
+    }
+    if(p_Armour > g_PlayerData[playerid][Armour])
+    {
+        UsingStaticHack = true;
+    }
+
+    if(UsingStaticHack == true)
     {
         if(funcidx("OnPlayerCheatDetected") != -1)
         {
