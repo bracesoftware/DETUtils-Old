@@ -278,6 +278,7 @@ stock ToggleAntiCheatSystem(bool:toggle)
 
 enum ENUM_g_PlayerData
 {
+    bool:Protection,
     Money,
     Skin,
     Float:Pos[3],
@@ -302,7 +303,11 @@ public OnPlayerSpawn(playerid)
     new Float:h;
     GetPlayerHealth(playerid, Float:h);
 
+    new Float:a;
+    GetPlayerArmour(playerid, Float:a);
+
     g_PlayerData[playerid][Health] = h;
+    g_PlayerData[playerid][Armour] = a;
     
     g_PlayerData[playerid][Pos][0] = x;
     g_PlayerData[playerid][Pos][1] = y;

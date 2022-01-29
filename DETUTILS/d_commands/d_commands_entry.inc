@@ -58,8 +58,6 @@
                                                                                
 */
 
-#define DETUTILS_PARSE__ARRAY_COUNT
-
 #if !defined MAX_PREFIX_LENGTH
 
     #define MAX_PREFIX_LENGTH 10
@@ -217,35 +215,7 @@ stock CallLocalPrefixedCommand(const command[], const specifiers[], integer, con
 #define COMMAND_TYPE_LOCAL_PREFIXED 2
 #define COMMAND_TYPE_REMOTE_PREFIXED 3
 
-#if defined DETUTILS_PARSE__ARRAY_COUNT
-
-#define ARRAY_COUNT:%1(%2) FUNC_PARSER(ARRAY_COUNT,ARR:NUM:)(%1(%2)) stock const DETUTILS_ARR_PARAMS_%1 = 0; %1(%2)
-#define ARRAY_COUNT_NUM(%9)%8$ %8$
-#define ARRAY_COUNT_ARR(%9)%8$%0=%1; %8$%0=%1 + 1;
-#define ARRAY_COUNT_END(%9)%8$ %8$
-#define ARRAY_COUNT_NUL(%9)%8$ %8$
-
-#else
-
-#define ALL_COUNT:%1(%2) FUNC_PARSER(ALL_COUNT,ARR:NUM:EXT:STR:REF:)(%1(%2)) \
-    stock const \
-        refCount_%1 = 0, \
-        extCount_%1 = 0, \
-        arrCount_%1 = 0, \
-        strCount_%1 = 0, \
-        numCount_%1 = 0; \
-    %1(%2)
-
-#define ALL_COUNT_REF(%9)%8$%0,%1,%2,%3,%4; %8$%0 + 1,%1,%2,%3,%4;
-#define ALL_COUNT_EXT(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1 + 1,%2,%3,%4;
-#define ALL_COUNT_ARR(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2 + 1,%3,%4;
-#define ALL_COUNT_STR(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2,%3 + 1,%4;
-#define ALL_COUNT_NUM(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2,%3,%4 + 1;
-
-#define ALL_COUNT_END(%9)%8$ %8$
-#define ALL_COUNT_NUL(%9)%8$ %8$
-
-#endif
+#if defined _INC_code_parse_inc
 
 ARRAY_COUNT:CallCommand(const cmdtext[], const playerid, const params[], const type = COMMAND_TYPE_LOCAL)
 {
@@ -287,6 +257,51 @@ ARRAY_COUNT:CallCommand(const cmdtext[], const playerid, const params[], const t
     }
     return 1;
 }
+
+#elseif !defined _INC_code_parse_inc
+
+stock CallCommand(const cmdtext[], const playerid, const params[], const type = COMMAND_TYPE_LOCAL)
+{
+    if(type == COMMAND_TYPE_LOCAL)
+    {
+        new command_name[MAX_FUNC_NAME];
+        format(command_name, MAX_FUNC_NAME, "cmd_%s", cmdtext);
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 0");
+        #endif
+        return CallLocalFunction(command_name, "is", playerid, params);   
+    }
+    if(type == COMMAND_TYPE_REMOTE)
+    {
+        new command_name[MAX_FUNC_NAME];
+        format(command_name, MAX_FUNC_NAME, "cmd_%s", cmdtext);
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 1");
+        #endif
+        return CallLocalFunction(command_name, "is", playerid, params);   
+    }
+    if(type == COMMAND_TYPE_LOCAL_PREFIXED)
+    {
+        new command_name[MAX_FUNC_NAME];
+        format(command_name, MAX_FUNC_NAME, "pc_%s", cmdtext);
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 2");
+        #endif
+        return CallLocalFunction(command_name, "is", playerid, params);   
+    }
+    if(type == COMMAND_TYPE_REMOTE_PREFIXED)
+    {
+        new command_name[MAX_FUNC_NAME];
+        format(command_name, MAX_FUNC_NAME, "pc_%s", cmdtext);
+        #if defined detutils_debug
+        printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 3");
+        #endif
+        return CallRemoteFunction(command_name, "is", playerid, params);   
+    }
+    return 1;
+}
+
+#endif
 
 //#define GetCommandDebugState%1(%2) %1debugged_stateid%2
 
