@@ -254,7 +254,7 @@ if(IsPropertyLocked(propertyid)) { SendClientMessage(playerid, -1, "Sorry, %s! T
 - Used to "lock property's door", if the property is locked, then anyone inside and outside the property won't be able to enter and exit - efficient in commands.
 
 ```pawn
-decl Command:lock(playerid, params[])
+@command(.type = SLASH_COMMAND) lock(playerid, params[])
 {
     new propertyid = GetNearPropertyEntrance(playerid);
     if(propertyid == 0) return SendClientMessage(playerid, -1, "You need to be near property entrance.");
