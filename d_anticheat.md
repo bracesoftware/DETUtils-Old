@@ -1,5 +1,5 @@
 # d_anticheat.inc
-SA:MP AntiCheat - basic anti-cheating system used to fight off the most famous hacks used by cheaters on verious servers.
+SA:MP AntiCheat - basic anti-cheating system used to fight off the most famous hacks used by cheaters on various servers.
 
 [Go back to home page...](README.md)
 ## How to start to use?
