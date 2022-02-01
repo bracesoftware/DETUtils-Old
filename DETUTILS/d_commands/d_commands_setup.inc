@@ -19,11 +19,53 @@
 
 // All for parsing!
 
-#define @DETUTILSCMD_PARSE_REF__%0\32; @DETUTILSCMD_PARSE_REF__
-#define @DETUTILSCMD_PARSE_EXT__%0\32; @DETUTILSCMD_PARSE_EXT__
-#define @DETUTILSCMD_PARSE_ARR__%0\32; @DETUTILSCMD_PARSE_ARR__
-#define @DETUTILSCMD_PARSE_STR__%0\32; @DETUTILSCMD_PARSE_STR__
-#define @DETUTILSCMD_PARSE_INT__%0\32; @DETUTILSCMD_PARSE_INT__
+#pragma warning disable 217 // Warning 217 is kind of annoying.
+
+#define P@_%0\32; P@_
+#define ref_%0\32; ref_
+#define ext_%0\32; ext_
+#define arr_%0\32; arr_
+#define str_%0\32; str_
+#define num_%0\32; num_
+#define @DETUTILSCMD_ARG_COUNT__%0\32; @DETUTILSCMD_ARG_COUNT__
+
+// These two are moved to a macro, used to save command ID to cache.
+#if defined detutils_complete_error_boom
+#define DET_PARSE_ID
+#define DET_PARSE_CACHE
+#endif
+
+#define @DETUTILSCMD_PR_CACHE__@%5@%0@%1@%2@%3@%4@ \
+    {                                               \
+        new const DET_PARAM_COUNT=%0+%1+%2+%3+%4;   \
+        printf("*** [samp-detutils]: (cmd parse) - Parsing a command : "#%5" with %i params.", DET_PARAM_COUNT); \
+        if(DET_PARAM_COUNT!=2||%2 !=1||%4 !=1){     \
+            return printf("*** [samp-detutils]: (cmd parse) - Met an unexpected or unknown argument in \n\
+                                                       the command header while parsing.\n\
+                                                       Command: %s"#%5"\n\
+                                                       Make sure that your command header looks like this:\n\
+                                                       @command(...) CMD_NAME__(playerid, params[]) {...}\n\n\n"); \
+        }                                           \
+        return 1;                                   \
+    }
+
+// Entry.  Parse all parameter types.
+#define @DETUTILSCMD_CMD_PARSE__D:%1(%2) FUNC_PARSER(__DETCMD_PARSETYPE_,ARR:NUM:EXT:STR:REF:)(%1(%2)) \
+    stock const ref_%1 = 0, ext_%1 = 0, arr_%1 = 0, str_%1 = 0, num_%1 = 0; \
+    P@_%1(); public P@_%1() @DETUTILSCMD_PR_CACHE__@%1@ref_%1@ext_%1@arr_%1@str_%1@num_%1@ %1(%2)
+
+// Counts.  Add one to the relevant number.
+#define __DETCMD_PARSETYPE__REF(%9)%8$%0,%1,%2,%3,%4; %8$%0 + 1,%1,%2,%3,%4;
+#define __DETCMD_PARSETYPE__EXT(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1 + 1,%2,%3,%4;
+#define __DETCMD_PARSETYPE__ARR(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2 + 1,%3,%4;
+#define __DETCMD_PARSETYPE__STR(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2,%3 + 1,%4;
+#define __DETCMD_PARSETYPE__NUM(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2,%3,%4 + 1;
+
+// Endings
+#define __DETCMD_PARSETYPE__END(%9)%8$ %8$
+#define __DETCMD_PARSETYPE__NUL(%9)%8$ %8$
+
+#define DETUTILSCMD_PARSE|%0,%1| @DETUTILSCMD_CMD_PARSE__D:%0(%1)
 
 #define @DETUTILSCMD_CALLFUNC__|%0$%1$%2| return CallLocalFunction("cmd_func_"#%0, "is", %1, %2);
 // Call cmdfunc
@@ -33,68 +75,115 @@
 // Assign prefix to cache
 #define @DETUTILSCMD_NEXTLINE_TEST__ 0
 // Nextline test
-
+#if defined __DET_PARSETYPE__
 #define DETUTILSCMD_ARGS__$ ARR:NUM:EXT:STR:REF:
 // For parsing #2
 #define DETUTILSCMD_ARGPARSE__<%1$%2> \
- stock @DETUTILSCMD_PARSE_REF__%1 = 0,@DETUTILSCMD_PARSE_EXT__%1 = 0, \
- @DETUTILSCMD_PARSE_ARR__%1 = 0,@DETUTILSCMD_PARSE_STR__%1 = 0,@DETUTILSCMD_PARSE_INT__%1 = 0; \
- prs_%1(%2) {}
+ stock ref_%1 = 0,ext_%1 = 0, \
+ arr_%1 = 0,str_%1 = 0,@DETUTILSCMD_ARG_COUNT__%1 = 0; \
+ %1(%2) 
 #define DETUTILSCMD_ARGCOUNT__<%1> \
- @DETUTILSCMD_PARSE_REF__%1+@DETUTILSCMD_PARSE_EXT__%1+ \
- @DETUTILSCMD_PARSE_ARR__%1+@DETUTILSCMD_PARSE_STR__%1+@DETUTILSCMD_PARSE_INT__%1
+ ref_%1+ext_%1+ \
+ arr_%1+str_%1+@DETUTILSCMD_ARG_COUNT__%1
 
-#define @DETUTILSCMD_ARG_COUNT__$%1$ DETUTILSCMD_ARGCOUNT__<%1> != 2 && @DETUTILSCMD_PARSE_INT__%1 != 1 && \
- @DETUTILSCMD_PARSE_ARR__%1 != 1
+#define @DETUTILSCMD_ARG_COUNT__@%1$ DETUTILSCMD_ARGCOUNT__<%1> != 2 && @DETUTILSCMD_ARG_COUNT__%1 != 1 && \
+ arr_%1 != 1
 
-#define DETUTILSCMD_PARSE_CMDFAIL__$%1$%2$ \
+#define DET_PRS_CMDFAIL__$%1$%2$ \
  printf("*** [samp-detutils]: (parse) - Unknown or unexpected arguments met in the command (cmd: %1 | type: %2) \
     header while parsing.\n Make sure that your command header looks like this:\n \
     @command(.type = .., ..) NAME__(playerid, params[]"); 
 
-#define DETUTILSCMD_PARSE_RES__<%1,%2> \
- main(){if(@DETUTILSCMD_ARG_COUNT__$%1$){DETUTILSCMD_PARSE_CMDFAIL__$%1$%2$}main_%1();}
+#define DET_PRS_RES__<%1,%2> \
+ main(){if(@DETUTILSCMD_ARG_COUNT__@%1$){DET_PRS_CMDFAIL__$%1$%2$}main_%1();}
 
 // Macro below is the key of command parsing method.
 // It hooks main() so parsing can continue.
 #define @DETUTILSCMD_M_HOOK__@|%0| #undef main #define main main_%0
 
 // Entry macro.
-#define @DETUTILSCMD_PARSE_ARGS__:%1|%2$%3| \
-    FUNC_PARSER(DETUTILSCMD_PARSE_INT__,ARR:NUM:EXT:STR:REF:)(prs_%1(%2)) \
-    DETUTILSCMD_ARGPARSE__<%1$%2> DETUTILSCMD_PARSE_RES__<%1,%3> @DETUTILSCMD_M_HOOK__@|%1|
+#define @DETUTILSCMD_ARGS_PARSE__C:%1|%2$%3| \
+    FUNC_PARSER(DETUTILSCMD_ARG_COUNT__,ARR:NUM:EXT:STR:REF:)(prs_%1(%2)) \
+    DETUTILSCMD_ARGPARSE__<%1$%2> DET_PRS_RES__<%1,%3> @DETUTILSCMD_M_HOOK__@|%1|
+
+    /*
+    stock ref_%1 = 0,ext_%1 = 0, \
+    arr_%1 = 0,str_%1 = 0,@DETUTILSCMD_ARG_COUNT__%1 = 0; \
+    prs_%1(%2) {} \
+    main(){if(ref_%1+ext_%1+ arr_%1+str_%1+@DETUTILSCMD_ARG_COUNT__%1 != 2 && @DETUTILSCMD_ARG_COUNT__%1 != 1 && \
+    arr_%1 != 1){printf("*** [samp-detutils]: (parse) - Unknown or unexpected arguments met in the command (cmd: %1 | type: %2) \
+    header while parsing.\n Make sure that your command header looks like this:\n \
+    @command(.type = .., ..) NAME__(playerid, params[]");}main_%1();} \
+    #undef main #define main main_%1
+
+    // This is what the macro actually looks like.
+    */
     
+#define DETUTILSCMD_ARG_COUNT___REF(%9)%8$%0,%1,%2,%3,%4; %8$%0 + 1,%1,%2,%3,%4;
+#define DETUTILSCMD_ARG_COUNT___EXT(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1 + 1,%2,%3,%4;
+#define DETUTILSCMD_ARG_COUNT___ARR(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2 + 1,%3,%4;
+#define DETUTILSCMD_ARG_COUNT___STR(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2,%3 + 1,%4;
+#define DETUTILSCMD_ARG_COUNT___NUM(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2,%3,%4 + 1;
 
-#define DETUTILSCMD_PARSE_INT___REF(%9)%8$%0,%1,%2,%3,%4; %8$%0 + 1,%1,%2,%3,%4;
-#define DETUTILSCMD_PARSE_INT___EXT(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1 + 1,%2,%3,%4;
-#define DETUTILSCMD_PARSE_INT___ARR(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2 + 1,%3,%4;
-#define DETUTILSCMD_PARSE_INT___STR(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2,%3 + 1,%4;
-#define DETUTILSCMD_PARSE_INT___NUM(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2,%3,%4 + 1;
+#define DETUTILSCMD_ARG_COUNT___END(%9)%8$ %8$
+#define DETUTILSCMD_ARG_COUNT___NUL(%9)%8$ %8$
 
-#define DETUTILSCMD_PARSE_INT___END(%9)%8$ %8$
-#define DETUTILSCMD_PARSE_INT___NUL(%9)%8$ %8$
+#define @DETUTILSCMD_ARGS_PARSE__B:%1|%2$%3| \
+    FUNC_PARSER(DETUTILSCMD_ARG_COUNT__,ARR:NUM:EXT:STR:REF:)(%1(%2)) \
+    stock ref_%1 = 0,ext_%1 = 0,arr_%1 = 0,str_%1 = 0,num_%1 = 0; \
+    main(){if(ref_%1+ext_%1+arr_%1+str_%1+num_%1 != 2 && @DETUTILSCMD_ARG_COUNT__%1 != 1 && arr_%1 != 1){ \
+    printf("*** [samp-detutils]: (parse) - Unknown or unexpected arguments met in the command (cmd: "#%1" | type: "#%3") header while parsing.\n Make sure that your command header looks like this:\n @command(.type = .., ..) NAME__(playerid, params[]"); \
+    }main_%1();} #if defined _ALS_main #undef main #else #define _ALS_main #endif #define main main_%1 %1(%2) 
 
-// IMPORTANT MACROS:
+// REALLY IMPORTANT MACROS:
 
-#define @DETUTILSCMD_PARSE_ARGS__B:%1(%2) FUNC_PARSER(ALL_COUNT,ARR:NUM:EXT:STR:REF:)(%1(%2)) \
+#define __DATA_DETUTILS_ARR_NUM_EXT_STR_REF
+
+/*
+#define DET_REF_C_prs_%0\32; DET_REF_C_prs_
+#define DET_REF_C_prs_%0\32; DET_EXT_C_prs_
+#define DET_REF_C_prs_%0\32; DET_ARR_C_prs_
+#define DET_REF_C_prs_%0\32; DET_STR_C_prs_
+#define DET_REF_C_prs_%0\32; DET_NUM_C_prs_*/
+
+
+// The entry point.  Defines our parser.
+#define @ARRAY_COUNT:%1(%2) FUNC_PARSER(ARRAY_COUNT,ARR:NUM:)(%1(%2)) stock const countOf_%1 = 0; stock const sizeOf_%1 = 0; %1(%2)
+#define ARRAY_COUNT_NUM(%9)%8$ %8$
+#define ARRAY_COUNT_ARR(%9,%9,%9,%3)%8$%0;%1; %8$%0 + 1;%1 + (%3 +0);
+#define ARRAY_COUNT_END(%9)%8$ %8$
+#define ARRAY_COUNT_NUL(%9)%8$ %8$
+
+/*
+ARRAY_COUNT:my_test_function(a, b[], c, const d[], &e = 6, string:f[] = "hi")
+{
+}
+
+main()
+{
+    printf("There are %d array parameters with size %d to \"my_test_function\"", countOf_my_test_function, sizeOf_my_test_function);
+}
+*/
+#define @DETUTILSCMD_ARGS_PARSE__D:%1(%2) FUNC_PARSER(__DETCMD_PARSETYPE_,ARR:NUM:EXT:STR:REF:)(%1(%2)) \
     stock const \
-        refCount_%1 = 0, \
-        extCount_%1 = 0, \
-        arrCount_%1 = 0, \
-        strCount_%1 = 0, \
-        numCount_%1 = 0; \
-    public %1(%2)
+        DET_REF_C_%1 = 0, \
+        DET_EXT_C_%1 = 0, \
+        DET_ARR_C_%1 = 0, \
+        DET_STR_C_%1 = 0, \
+        DET_NUM_C_%1 = 0; \
+    stock %1(%2)
 
 // Counts.  Add one to the relevant number.
-#define ALL_COUNT_REF(%9)%8$%0,%1,%2,%3,%4; %8$%0 + 1,%1,%2,%3,%4;
-#define ALL_COUNT_EXT(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1 + 1,%2,%3,%4;
-#define ALL_COUNT_ARR(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2 + 1,%3,%4;
-#define ALL_COUNT_STR(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2,%3 + 1,%4;
-#define ALL_COUNT_NUM(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2,%3,%4 + 1;
+#define __DETCMD_PARSETYPE__REF(%9)%8$%0,%1,%2,%3,%4; %8$%0 + 1,%1,%2,%3,%4;
+#define __DETCMD_PARSETYPE__EXT(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1 + 1,%2,%3,%4;
+#define __DETCMD_PARSETYPE__ARR(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2 + 1,%3,%4;
+#define __DETCMD_PARSETYPE__STR(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2,%3 + 1,%4;
+#define __DETCMD_PARSETYPE__NUM(%9)%8$%0,%1,%2,%3,%4; %8$%0,%1,%2,%3,%4 + 1;
 
 // Endings
-#define ALL_COUNT_END(%9)%8$ %8$
-#define ALL_COUNT_NUL(%9)%8$ %8$
+#define __DETCMD_PARSETYPE__END(%9)%8$ %8$
+#define __DETCMD_PARSETYPE__NUL(%9)%8$ %8$
+#endif
 
 #define DETUTILSCMD_FCMD_ENTRY__|%0|(%1,%2) forward cmd_%0(%1,%2[]); public cmd_%0(%1,%2[])
 #define DETUTILSCMD_FLAG_CHECK__|%3|<%0>(%1,%2) { if( !role_%3(%1) ) return 0; return cmd_func_%0(%1,%2); }

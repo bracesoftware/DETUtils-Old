@@ -54,66 +54,27 @@ stock void:LoadDETUtilsScript(scriptid)
 {
     if(scriptid == DETUTILS_SCRIPT_COMMANDS)
     {
-        print("|======================================|");
-        print("             d_commands.inc             ");
-        print("          Successfully loaded!          ");
-        print("                                        ");
-        print("               By: DEntisT              ");
-        print("|======================================|");
+        print("*** [samp-detutils]: (module) - Loaded: d_commands.inc");
     }
     if(scriptid == DETUTILS_SCRIPT_PROPERTIES)
     {
-        print("|======================================|");
-        print("            d_properties.inc            ");
-        print("          Successfully loaded!          ");
-        print("                                        ");
-        print("               By: DEntisT              ");
-        print("|======================================|");
+        print("*** [samp-detutils]: (module) - Loaded: d_properties.inc");
     }
     if(scriptid == DETUTILS_SCRIPT_FMARGS)
     {
-        print("|======================================|");
-        print("              d_fmargs.inc              ");
-        print("          Successfully loaded!          ");
-        print("                                        ");
-        print("               By: DEntisT              ");
-        print("|======================================|");
+        print("*** [samp-detutils]: (module) - Loaded: d_fmargs.inc");
     }
     if(scriptid == DETUTILS_SCRIPT_VISUAL)
     {
-        print("|======================================|");
-        print("              d_visual.inc              ");
-        print("          Successfully loaded!          ");
-        print("                                        ");
-        print("               By: DEntisT              ");
-        print("|======================================|");
+        print("*** [samp-detutils]: (module) - Loaded: d_visual.inc");
     }
     if(scriptid == DETUTILS_SCRIPT_ANTICHEAT)
     {
-        print("|======================================|");
-        print("            d_anticheat.inc             ");
-        print("          Successfully loaded!          ");
-        print("                                        ");
-        print("               By: DEntisT              ");
-        print("|======================================|");
-    }
-    if(scriptid == DETUTILS_SCRIPT_COLOURS)
-    {
-        print("|======================================|");
-        print("             d_colours.inc             ");
-        print("          Successfully loaded!          ");
-        print("                                        ");
-        print("               By: DEntisT              ");
-        print("|======================================|");
+        print("*** [samp-detutils]: (module) - Loaded: d_anticheat.inc");
     }
     if(scriptid == DETUTILS_SCRIPT_MAPEDITOR)
     {
-        print("|======================================|");
-        print("            d_mapeditor.inc             ");
-        print("          Successfully loaded!          ");
-        print("                                        ");
-        print("               By: DEntisT              ");
-        print("|======================================|");
+        print("*** [samp-detutils]: (module) - Loaded: d_mapeditor.inc");
     }
 }
 

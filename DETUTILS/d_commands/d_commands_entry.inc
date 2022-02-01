@@ -58,6 +58,19 @@
                                                                                
 */
 
+#define DET_MAX_CMD 10000
+
+enum enum_CommandData
+{
+    DET_REF, 
+    DET_EXT, 
+    DET_ARR, 
+    DET_STR, 
+    DET_NUM
+}
+
+new g_CommandCache[DET_MAX_CMD][enum_CommandData];
+
 #if !defined MAX_PREFIX_LENGTH
 
     #define MAX_PREFIX_LENGTH 10
@@ -217,7 +230,7 @@ stock CallLocalPrefixedCommand(const command[], const specifiers[], integer, con
 
 #if defined _INC_code_parse_inc
 
-ARRAY_COUNT:CallCommand(const cmdtext[], const playerid, const params[], const type = COMMAND_TYPE_LOCAL)
+stock CallCommand(const cmdtext[], const playerid, const params[], const type = COMMAND_TYPE_LOCAL)
 {
     if(type == COMMAND_TYPE_LOCAL)
     {
@@ -426,7 +439,8 @@ public OnPlayerCommandText(playerid, cmdtext[])
     new
         position,
         _ClassicFunctionName[MAX_FUNC_NAME],
-        _CommandDebugFunc[MAX_FUNC_NAME];
+        _CommandDebugFunc[MAX_FUNC_NAME],
+        DET_ParseFunc[MAX_FUNC_NAME];
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - opct :: Successfully declared variables.");
@@ -442,11 +456,25 @@ public OnPlayerCommandText(playerid, cmdtext[])
     #endif
     
     format(_CommandDebugFunc, sizeof(_CommandDebugFunc), "%s", "OnCommandStateChange");
+    format(DET_ParseFunc, sizeof(DET_ParseFunc), "P@_%s", _ClassicFunctionName);
     format(_ClassicFunctionName, sizeof(_ClassicFunctionName), "cmd_%s", _ClassicFunctionName);
+
+    printf("*** [samp-detutils]: (cmd parse) - Calling parse function: '%s'", DET_ParseFunc);
 
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - opct :: Formatted function strings successfully.");
     #endif
+
+    new Continue = CallLocalFunction(DET_ParseFunc, "");
+
+    if(Continue != 1)
+    {
+        if(funcidx(_CommandDebugFunc) != -1)
+        {
+            CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_STOPPED);
+        }
+        return 0;
+    }
 
     if(funcidx(_CommandDebugFunc) != -1)
     {
