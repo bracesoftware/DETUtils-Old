@@ -57,12 +57,12 @@ I know it is a subtle difference, but an important one.
 
 #### Parsing
 
-- Parsing is function analysing. There is a lot of them in the ``d_commands_setup`` and ``d_commands_macros`` (though in their defense, writing macros to do the parsing within the compiler limitations is VERY hard). Said Y_Less.
+- Parsing in Pawn is function analysing using Pawn preprocessor macros. There is a lot of such macros in the ``d_commands_setup`` and ``d_commands_macros`` (though in their defense, writing macros to do the parsing within the compiler limitations is VERY hard). Said Y_Less. Read more about parsing in ``d_commands`` [here](d_cmdparsing.md).
 
 ### Bonus
 -----------------------------------------
 
-- More command declaration styles for backwards compatibility...
+- More command declaration styles for backwards compatibility... No parsing there, if you add extra arguments - nothing will happen.
 - Let's take a look:
 
 ```pawn
