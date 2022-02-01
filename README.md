@@ -92,8 +92,8 @@ If you're facing issues with your code compilation after including the library, 
 
 - Version: MPL 1.1
     
-    The contents of this file are subject to the Mozilla Public License Version 
-    1.1 the "License"; you may not use this file except in compliance with 
+    The contents of files provided in DETUtils are subject to the Mozilla Public License 
+    Version 1.1 the "License"; you may not use this file except in compliance with 
     the License. You may obtain a copy of the License at 
     http://www.mozilla.org/MPL/
     
@@ -102,37 +102,24 @@ If you're facing issues with your code compilation after including the library, 
     for the specific language governing rights and limitations under the
     License.
     
-    The Original Code is SA:MP | DETUtils.
+    The Original Code is **SA:MP | DETUtils**.
     
-    The Initial Developer of the original code is DEntisT.
+    The Initial Developer of the original code is **DEntisT**.
     Portions created by the Initial Developer are Copyright C 2021
     the Initial Developer. All Rights Reserved.
 
-### Contributors:
+### Other contributors:
 
-- DEntisT
+- Unity
 
-### Thanks:
+### Thanks to these people for:
 
 - aezzakmi (no GitHub account) - help during development
-- [Unity](https://github.com/kyekalcor) - testing and fixes
+- [Unity](https://github.com/kyekalcor) - testing and really minor fixes
 - [Y_Less](https://github.com/y-less) & Zeex - fmargs ``#emit`` stuff, d_commands decorator concept
 - [Zeex](https://github.com/zeex) - ZCMD command processor concept
 - Y_Less - code parser, another amazing thing which you can get [here](https://github.com/y-less/code-parse.inc)
 
-### Very special thanks to:
+### Contributions
 
-- Thiadmer - PAWN, whose limits continue to amaze me!
-
-- Kye/Kalcor - SA:MP
-
-- SA:MP Team past, present and future - SA:MP
-
-- open.mp team present and future - open.mp
-
-### Optional plugins:
-
-- Incognito - streamer
-- Y_Less (y-less.com, github.com/y-less) - sscanf
-
-
+- Just fork the repo, apply your changes and create a pull request!
