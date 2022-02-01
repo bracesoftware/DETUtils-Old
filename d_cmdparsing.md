@@ -73,5 +73,5 @@ In order to try this; I made the following command (read the comments):
     return 1; // this code
 }
 ```
-# Visual effects
+## Visual effects
 - Visual effects of this feature is simple to explain; if the command header is invalid (contains extra or less parameters) - command won't be processed as it is unknown, or rather invalid.
