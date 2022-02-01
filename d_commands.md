@@ -53,7 +53,11 @@ I know it is a subtle difference, but an important one.
 
 #### Macros
 
-- These macros are not that much complex but anyways are a nightmare - they are set up in ``d_commands_setup``. The rest is in ``d_commands_macros``. Note that they won't be FULLY reduced to normal Pawn syntax by the preprocessor (I am talking about ``-l`` compile option).
+- These macros are not that much complex but anyways are a nightmare - they are set up in ``d_commands_setup``. The rest is in ``d_commands_macros``. Note that they won't be FULLY reduced to normal Pawn syntax by the preprocessor (I am talking about ``-l`` compile option). Writing them is also sometimes seriously incomprehensible in order to do parsing.
+
+#### Parsing
+
+- Parsing is function analysing. There is a lot of them in the ``d_commands_setup`` and ``d_commands_macros`` (though in their defense, writing macros to do the parsing within the compiler limitations is VERY hard). Said Y_Less.
 
 ### Bonus
 -----------------------------------------
