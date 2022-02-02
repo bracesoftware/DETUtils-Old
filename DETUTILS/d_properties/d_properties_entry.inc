@@ -68,6 +68,8 @@ enum enum_PropertyData
     p_PropertyLocked
 };
 
+#define DETUTILS_OPENMP_COMPAT
+
 forward OnPropertyCreated(propertyid);
 forward OnPlayerEnterProperty(playerid);
 forward OnPlayerExitProperty(playerid);
@@ -479,7 +481,7 @@ forward a_props_playerupdate(playerid);
 
 */
 
-stock Create3DLabelAndPickup( 
+stock __Create3DLabelAndPickup( // Internal function.
         const _LabelString[], 
         Float:_xPosition, 
         Float:_yPosition, 
@@ -545,7 +547,13 @@ stock Create3DLabelAndPickup(
     return 1;
 }
 
-stock CreatePropertyEntrance(
+#if defined DETUTILS_OPENMP_COMPAT
+    
+    #define CreatePropertyEntrance Property_CreateEntrance
+
+#endif
+
+stock Property_CreateEntrance(
         const PropertyName[], 
         Float:_xEntrance, 
         Float:_yEntrance, 
@@ -674,11 +682,11 @@ stock CreatePropertyEntrance(
         #if defined detutils_debug
         printf("[samp-detutils]: (debug) - Formatted the 3D label string successfully.");
         #endif
-        Create3DLabelAndPickup(_EntranceLabelString, _xEntrance,_yEntrance,_zEntrance, _xVirtualWorldid, 19133, 3.0);
+        __Create3DLabelAndPickup(_EntranceLabelString, _xEntrance,_yEntrance,_zEntrance, _xVirtualWorldid, 19133, 3.0);
         #if defined detutils_debug
         printf("[samp-detutils]: (debug) - lab :: Created 3D label and pickup on entrance.");
         #endif
-        Create3DLabelAndPickup("Exit here!", g_PropertyData[g_PropertyID][p_PropertyExit_X],
+        __Create3DLabelAndPickup("Exit here!", g_PropertyData[g_PropertyID][p_PropertyExit_X],
             g_PropertyData[g_PropertyID][p_PropertyExit_Y], g_PropertyData[g_PropertyID][p_PropertyExit_Z], _eVirtualWorldid, 19133, 3.0);
         #if defined detutils_debug
         printf("[samp-detutils]: (debug) - pick :: Created 3D label and pickup on exit.");
@@ -802,7 +810,13 @@ stock CreateCustomInterior(
 
 // NORMAL CODE, MAKES SENSE:
 
-stock IsPropertyLocked(propertyid)
+#if defined DETUTILS_OPENMP_COMPAT
+
+    #define IsPropertyLocked Property_IsLocked
+
+#endif
+
+stock Property_IsLocked(propertyid)
 {
     if(g_PropertyData[propertyid][p_PropertyLocked] == 1)
     {
@@ -815,23 +829,37 @@ stock IsPropertyLocked(propertyid)
     return -1;
 }
 
-stock void:TogglePropertyLocked(propertyid, bool:lock)
+#if defined DETUTILS_OPENMP_COMPAT
+
+    #define TogglePropertyLocked Property_ToggleLocked
+
+#endif
+
+stock void:Property_ToggleLocked(propertyid, bool:lock)
 {
     if(lock == true)
     {
-        if(funcidx("OnPropertyActionPerformed") != -1) CallLocalFunction("OnPropertyActionPerformed",
-                                                                "iii",INVALID_PLAYER_ID,propertyid,PROPERTY_ACTION_LOCK);
+        if(funcidx("OnPropertyActionPerformed") != -1) 
+            CallLocalFunction("OnPropertyActionPerformed",
+            "iii",INVALID_PLAYER_ID,propertyid,PROPERTY_ACTION_LOCK);
         g_PropertyData[propertyid][p_PropertyLocked] = 1;
     }
     else if(lock == false)
     {
-        if(funcidx("OnPropertyActionPerformed") != -1) CallLocalFunction("OnPropertyActionPerformed",
-                                                                "iii",INVALID_PLAYER_ID,propertyid,PROPERTY_ACTION_UNLOCK);
+        if(funcidx("OnPropertyActionPerformed") != -1) 
+            CallLocalFunction("OnPropertyActionPerformed",
+            "iii",INVALID_PLAYER_ID,propertyid,PROPERTY_ACTION_UNLOCK);
         g_PropertyData[propertyid][p_PropertyLocked] = 0;
     }
 }
 
-stock GetNearPropertyEntrance(playerid)
+#if defined DETUTILS_OPENMP_COMPAT
+
+    #define GetNearPropertyEntrance Player_GetNearProperty
+
+#endif
+
+stock Player_GetNearProperty(playerid)
 {
     for(new i; i < MAX_PROPERTIES; i++)
     {
@@ -846,33 +874,57 @@ stock GetNearPropertyEntrance(playerid)
     return 0;
 }
 
-stock bool:IsPlayerInProperty(playerid)
+#if defined DETUTILS_OPENMP_COMPAT
+
+    #define IsPlayerInProperty Player_IsInProperty
+
+#endif
+
+stock bool:Player_IsInProperty(playerid)
 {
     if(g_PlayerProperty[playerid] == -1) return false;
     else return true;
 }
 
-stock ClearPlayerPropertyData(playerid)
+#if defined DETUTILS_OPENMP_COMPAT
+
+    #define ClearPlayerPropertyData Player_ClearPropertyData
+
+#endif
+
+stock Player_ClearPropertyData(playerid)
 {
     #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - ClearPlayerPropertyData called successfully.");
+    printf("[samp-detutils]: (debug) - Player_ClearPropertyData called successfully.");
     #endif
     g_PlayerProperty[playerid] = -1;
     #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - ClearPlayerPropertyData action successfully performed.");
+    printf("[samp-detutils]: (debug) - Player_ClearPropertyData action successfully performed.");
     #endif
     return 1;
 }
 
-stock GetLastPropertyIDUsed()
+#if defined DETUTILS_OPENMP_COMPAT
+
+    #define GetLastPropertyIDUsed Property_GetLastIDUsed
+
+#endif
+
+stock Property_GetLastIDUsed()
 {
     #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - GetLastPropertyIDUsed successfully called.");
+    printf("[samp-detutils]: (debug) - Property_GetLastIDUsed successfully called.");
     #endif
     return g_PropertyID;
 }
 
-stock SetPropertyEntranceCustomAngles(
+#if defined DETUTILS_OPENMP_COMPAT
+
+    #define SetPropertyEntranceCustomAngles Property_SetEntranceAngles
+
+#endif
+
+stock Property_SetEntranceAngles(
         const _PropertyID,
         Float:_aAngle,
         Float:_bAngle)
@@ -929,7 +981,13 @@ forward a_props_playerspawn(playerid);
 
 forward OnPropertyActionPerformed(playerid, propertyid, actionid);
 
-stock GetPropertyName(PropertyID)
+#if defined DETUTILS_OPENMP_COMPAT
+
+    #define GetPropertyName Property_GetName
+
+#endif
+
+stock Property_GetName(PropertyID)
 {
     //#if defined detutils_complete_error_boom
     new f_PropertyName[256];
@@ -941,7 +999,13 @@ stock GetPropertyName(PropertyID)
     //return g_PropertyData[PropertyID][p_PropertyName];
 }
 
-stock GetPropertyIDByName(const PropertyName[])
+#if defined DETUTILS_OPENMP_COMPAT
+
+    #define GetPropertyIDByName Property_GetIDByName
+
+#endif
+
+stock Property_GetIDByName(const PropertyName[])
 {
     for(new PropertyCount = 1; 
         PropertyCount < MAX_PROPERTIES; 
@@ -972,7 +1036,13 @@ stock GetPropertyIDByName(const PropertyName[])
 
 #endif
 
-stock SetPlayerProperty(_p_Playerid, pg_PropertyID)
+#if defined DETUTILS_OPENMP_COMPAT
+
+    #define SetPlayerProperty Player_SetProperty
+
+#endif
+
+stock Player_SetProperty(_p_Playerid, pg_PropertyID)
 {
     if(pg_PropertyID < -1)
         return 0;
