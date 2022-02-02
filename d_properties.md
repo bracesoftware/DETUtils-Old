@@ -9,7 +9,7 @@ SA:MP Properties - an easy way to create custom properties.
 
 ### Property creation
 ------------------------------------------
-To create a property with *d_properties*, make sure you use *CreatePropertyEntrance* function.
+To create a property with *d_properties*, make sure you use *Property_CreateEntrance* function.
 
 Let's see how it works:
 
@@ -17,7 +17,7 @@ Let's see how it works:
 
 public OnGameModeInit()
 {
-  CreatePropertyEntrance("24/7 Market", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_MARKET_247_1); // Create entrance for 24/7 Market.
+  Property_CreateEntrance("24/7 Market", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_MARKET_247_1); // Create entrance for 24/7 Market.
   return 1;
 }
 
@@ -25,14 +25,14 @@ public OnGameModeInit()
 
 ... and - that's it, property entrance is created on coordinates *243.66,345.21,12.78*, and property exit, virtual world and interior id are set automatically depending on interior you set - in this case, it's **INTERIOR_MARKET_247_1**. And whenever player press key which he use to enter a vehicle (in most cases it's F key) near entrance coordinates given, he will be *teleported* on coordinates of property's exit.
 
-- Though, most people prefer mapping their own interiors, so - in order to support that, I added extra parameters to **CreatePropertyEntrance** function.
+- Though, most people prefer mapping their own interiors, so - in order to support that, I added extra parameters to **Property_CreateEntrance** function.
 
 ... so:
 
 ```pawn
 public OnGameModeInit()
 {
-  CreatePropertyEntrance("Your Property", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
+  Property_CreateEntrance("Your Property", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
   // In order to make YOUR CUSTOM property with custom interior you mapped, you need to provide extra data (parameters).
   // So, you need to change interior type to INTERIOR_CUSTOM and add exit coordinates, and interiorid and virtual world.
   return 1;
@@ -42,7 +42,7 @@ public OnGameModeInit()
 ... all parameters:
 
 ```pawn
-native CreatePropertyEntrance(const name[], Float:x1, Float:y1, Float:z1, interiorid, worldid, bool:labels = false, interior = INTERIOR_CUSTOM, Float:x2 = 0.000, Float:y2 = 0.000, Float:z2 = 0.000, interiorid2 = 0, worldid2 = 0);
+native Property_CreateEntrance(const name[], Float:x1, Float:y1, Float:z1, interiorid, worldid, bool:labels = false, interior = INTERIOR_CUSTOM, Float:x2 = 0.000, Float:y2 = 0.000, Float:z2 = 0.000, interiorid2 = 0, worldid2 = 0);
 ```
 
 #### Properties
@@ -55,7 +55,7 @@ native CreatePropertyEntrance(const name[], Float:x1, Float:y1, Float:z1, interi
 
 ### Property debugging
 ------------------------------------------
-- Whenever *CreateCustomInterior* is called, it automatically sends debug messages in the console.
+- Whenever *Property_CreateEntrance* is called, it automatically sends debug messages in the console.
 
 ### Property callbacks
 ------------------------------------------
@@ -81,9 +81,9 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
     {
         format(string, 256, "You entered %s, %s. Property id: %i [%i]", 
             
-            GetPropertyName(propertyid),
+            Property_GetName(propertyid),
             ReturnPlayerName(playerid), 
-            GetPropertyIDByName(g_PropertyData[propertyid][p_PropertyName]), //GetPropertyIDByName(GetPropertyName(propertyid)), // to ensure this also works
+            Property_GetIDByName(g_PropertyData[propertyid][p_PropertyName]), //GetPropertyIDByName(GetPropertyName(propertyid)), // to ensure this also works
             propertyid);
         SendClientMessage(playerid, -1, string);
         return 1;
@@ -92,9 +92,9 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
     {
         format(string, 256, "You exited %s, %s. Property id: %i [%i]", 
             
-            GetPropertyName(propertyid),
+            Property_GetName(propertyid),
             ReturnPlayerName(playerid), 
-            GetPropertyIDByName(GetPropertyName(propertyid)),
+            Property_GetIDByName(GetPropertyName(propertyid)),
             propertyid);
         SendClientMessage(playerid, -1, string);
         return 1;
@@ -102,12 +102,12 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
     else if(actionid == PROPERTY_ACTION_LOCK)
     {
         SendClientMessageToAll(-1, "Property %s [%i] is now locked!", 
-            GetPropertyName(propertyid), GetPropertyIDByName(GetPropertyName(propertyid)));
+            Property_GetName(propertyid), GetPropertyIDByName(GetPropertyName(propertyid)));
     }
     else if(actionid == PROPERTY_ACTION_UNLOCK)
     {
         SendClientMessageToAll(-1, "Property %s [%i] is now unlocked!", 
-            GetPropertyName(propertyid), GetPropertyIDByName(GetPropertyName(propertyid)));
+            Property_GetName(propertyid), GetPropertyIDByName(GetPropertyName(propertyid)));
     }
     return 0;
 }
@@ -152,11 +152,9 @@ public OnPlayerExitProperty(playerid)
 
 *d_properties.inc* also contains some handy functions, let's see.
 
-#### SetPlayerProperty
+#### ``Player_SetProperty``
 
-- This function sets player's interior. Interior id can be seen after certain interior is created - thanks to debug messages!
-
-**WARNING**: Interior id will be always same unless it is not created on callback *OnGameModeInit* or you changed interior creating algorithm.
+- This function sets player's property. Property id can be seen after certain interior is created - thanks to debug messages!
 
 Parameters:
 
@@ -168,17 +166,17 @@ Example:
 ```pawn
 static Your_Function(player, id)
 {
-  SetPlayerProperty(player, id);
+  Player_SetProperty(player, id);
   return 1;
 }
 ```
-#### GetLastPropertyIDUsed
+#### ``Property_GetLastIDUsed``
 
-- Gets last property id which was used to assign interior data to.
+- Gets last property id which was used to assign property's data (cache) to.
 
-**WARNING**: Works best and properly after using ``CreatePropertyEntrance``, because ``CreatePropertyEntrance`` updates the ID after called.
+**WARNING**: Works best and properly after using ``Property_CreateEntrance``, because ``Property_CreateEntrance`` updates the ID after called.
 
-#### SetPropertyEntranceCustomAngles
+#### ``Property_SetEntranceAngles``
 
 - This function sets interior entrance and exit position angles.
 
@@ -193,12 +191,12 @@ Example:
 ```pawn
 public OnGameModeInit()
 {
-  CreatePropertyEntrance(...); // your params
-  SetPropertyEntranceCustomAngles(GetLastPropertyIDUsed(), 234.453, 0.23);
+  Property_CreateEntrance(...); // your params
+  Property_SetEntranceAngles(Property_GetLastIDUsed(), 234.453, 0.23);
   return 1;
 }
 ```
-#### ClearPlayerPropertyData
+#### ``Player_ClearPropertyData``
 
 - The thing this function does is really simple. Clears property id data which is assigned to player's data.
 
@@ -213,11 +211,11 @@ Example:
 ```pawn
 public OnPlayerDisconnect(playerid, reason)
 {
-  ClearPlayerPropertyData(playerid);
+  Player_ClearPropertyData(playerid);
   return 1;
 }
 ```
-#### IsPlayerInProperty
+#### ``Player_IsInProperty``
 
 - Also, one simple function - checks if is player in one of properties declared in the script.
 
@@ -228,53 +226,53 @@ Parameters:
   - playerid (integer)
 
 ```pawn
-if(IsPlayerInProperty(playerid)) return SendClientMessage(playerid, -1, "You're in a property.");
+if(Player_IsInProperty(playerid)) return SendClientMessage(playerid, -1, "You're in a property.");
 ```
 
-#### GetPropertyName
+#### ``Property_GetName``
 
 
 - Used to get property's name. Usage example shown on **``public`` OnPropertyActionPerformed** documentation.
 
-#### GetPropertyIDByName
+#### ``Property_GetIDByName``
 
 
 - Used to get property's ID by specifying its name. Usage example shown on **``public`` OnPropertyActionPerformed** documentation.
 
-#### IsPropertyLocked
+#### ``Property_IsLocked``
 
 - Used to check if is certain property locked.
 
 ```pawn
-if(IsPropertyLocked(propertyid)) { SendClientMessage(playerid, -1, "Sorry, %s! This is locked.", ReturnPlayerName(playerid)); }
+if(Property_IsLocked(propertyid)) { SendClientMessage(playerid, -1, "Sorry, %s! This is locked.", ReturnPlayerName(playerid)); }
 ```
 
-#### TogglePropertyLocked
+#### ``Property_ToggleLocked``
 
 - Used to "lock property's door", if the property is locked, then anyone inside and outside the property won't be able to enter and exit - efficient in commands.
 
 ```pawn
 @command(.type = SLASH_COMMAND) lock(playerid, params[])
 {
-    new propertyid = GetNearPropertyEntrance(playerid);
+    new propertyid = Player_GetNearProperty(playerid);
     if(propertyid == 0) return SendClientMessage(playerid, -1, "You need to be near property entrance.");
-    if(IsPropertyLocked(propertyid))
+    if(Property_IsLocked(propertyid))
     {
-        TogglePropertyLocked(propertyid, false);
-        SendClientMessage(playerid, -1, "You Successfully Unlocked: %s", GetPropertyName(propertyid));
+        Property_ToggleLocked(propertyid, false);
+        SendClientMessage(playerid, -1, "You Successfully Unlocked: %s", Property_GetName(propertyid));
         return 1;
     }
-    else if(!IsPropertyLocked(propertyid))
+    else if(!Property_IsLocked(propertyid))
     {
-        TogglePropertyLocked(propertyid, true);
-        SendClientMessage(playerid, -1, "You Successfully Locked: %s", GetPropertyName(propertyid));
+        Property_ToggleLocked(propertyid, true);
+        SendClientMessage(playerid, -1, "You Successfully Locked: %s", Property_GetName(propertyid));
         return 1;
     }
     return 1;
 }
 ```
 
-#### GetNearPropertyEntrance
+#### ``Player_GetNearProperty``
 
 - Used to get the ID of a property near the player. Example is shown above.
 
