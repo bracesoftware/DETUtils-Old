@@ -113,10 +113,6 @@ useless and outdated...
 
 #define cmd CMD
 
-#if !defined IsValidString
-        #define IsValidString(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
-#endif
-
 #define admin%5command%0(%1,%2[%3]%4) \
     forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if(!IsPlayerAdmin(%1)) return 0; return  cmd_func_%0(%1,%2)%4;%5} \
     forward cmd_func_%0(%1,%2[]);public cmd_func_%0(%1,%2[]%5)
@@ -183,10 +179,6 @@ useless and outdated...
 #define COMMAND CMD
 
 #define cmd CMD
-
-#if !defined IsValidString
-        #define IsValidString(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
-#endif
 
 #define admin%5command%0(%1,%2[%3]%4) \
     forward cmd_%0(%1,%2[]);%3public cmd_%0(%1,%2[]){if(!IsPlayerAdmin(%1)) return 0; return  cmd_func_%0(%1,%2)%4;%5} \
@@ -272,10 +264,6 @@ useless and outdated...
     forward cmd_%0(%1); public cmd_%0(%1)
 
 #define COMMAND__ CMD__
-
-#if !defined IsValidString
-        #define IsValidString(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
-#endif
 
 #endif
 

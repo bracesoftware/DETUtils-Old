@@ -41,10 +41,6 @@
 
 #endif
 
-#if !defined IsValidString
-        #define IsValidString(%1) ((!(%1[0])) || (((%1[0]) == '\1') && (!(%1[1]))))
-#endif
-
 enum enum_PropertyData
 {
     p_PropertyName[32],
@@ -492,9 +488,6 @@ stock Create3DLabelAndPickup(
         _Pickupid, 
         Float:_LabelRadius ) 
 {
-    if(IsValidString(_LabelString))
-        return 0;
-
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: String checking finished.");
     #endif
