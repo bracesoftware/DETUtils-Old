@@ -1,8 +1,6 @@
 # d_properties.inc
 SA:MP Properties - an easy way to create custom properties.
 
-![interiors](img/d_interiors.png)
-
 [Go back to home page...](README.md)
 
 ## How to start to use?
