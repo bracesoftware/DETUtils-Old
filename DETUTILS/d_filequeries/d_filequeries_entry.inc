@@ -136,8 +136,8 @@ stock Query_Send(const name[])
     {
         if(!strcmp(g_QueryCache[i][QueryName], name, false))
         {
-            new dirbose[64];
-                format(dirbose, 64,
+            new dirbose[100];
+                format(dirbose, 100,
                     "%s/%s.det_q", 
                     g_QueryCache[i][QueryDir], 
                     g_QueryCache[i][QueryFile]);
@@ -183,7 +183,7 @@ stock Query_Send(const name[])
 
                 print(querylog);
             }
-            if(q_QueryCache[i][QueryType] == QUERY_TYPE_LOAD)
+            if(g_QueryCache[i][QueryType] == QUERY_TYPE_LOAD)
             {
                 new loadedquery[128];
                 if(!fexist(dirbose))
