@@ -20,6 +20,8 @@
 
 #endif
 
+#define DETUTILS_OPENMP_COMPAT
+
 #if defined DETUTILS_DEBUG_MODE
 
  	#define detutils_debug
@@ -108,9 +110,19 @@
  	#warning [samp-detutils]: (includes) - Library 'd_mapeditor' is disabled.
 
 #endif
+#if !defined DETUTILS_NO_FILEQUERIES
+	
+	//#warning [samp-detutils]: (includes) - Library 'd_mapeditor' is disabled.
+	#include "d_filequeries"
+
+#else
+
+ 	#warning [samp-detutils]: (includes) - Library 'd_userdata' is disabled.
+
+#endif
 
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
- && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_COLOURS \
+ && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
  && defined DETUTILS_NO_MAPEDITOR
 
 	#warning [samp-detutils]: (error) - All library modules are disabled.

@@ -68,7 +68,11 @@ enum enum_PropertyData
     p_PropertyLocked
 };
 
-#define DETUTILS_OPENMP_COMPAT
+#if !defined DETUTILS_OPENMP_COMPAT
+
+    #define DETUTILS_OPENMP_COMPAT
+
+#endif
 
 forward OnPropertyCreated(propertyid);
 forward OnPlayerEnterProperty(playerid);
@@ -362,7 +366,7 @@ public _OnPlayerNearEntrance(playerid)
 
 public OnPlayerDisconnect(playerid, reason)
 {
-    ClearPlayerPropertyData(playerid);
+    Player_ClearPropertyData(playerid);
     if(funcidx("aint_ALS_OnPlayerDisconnect") != -1)
     {
         CallLocalFunction("aint_ALS_OnPlayerDisconnect", "ii", playerid, reason);

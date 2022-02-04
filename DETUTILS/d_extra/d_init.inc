@@ -47,7 +47,7 @@ public const detutils_ver = 0x1;
 #define DETUTILS_SCRIPT_FMARGS 2
 #define DETUTILS_SCRIPT_VISUAL 3
 #define DETUTILS_SCRIPT_ANTICHEAT 4
-#define DETUTILS_SCRIPT_COLOURS 5
+#define DETUTILS_SCRIPT_FILEQUERIES 5
 #define DETUTILS_SCRIPT_MAPEDITOR 6
 
 stock void:LoadDETUtilsScript(scriptid)
@@ -75,6 +75,10 @@ stock void:LoadDETUtilsScript(scriptid)
     if(scriptid == DETUTILS_SCRIPT_MAPEDITOR)
     {
         print("*** [samp-detutils]: (module) - Loaded: d_mapeditor.inc");
+    }
+    if(scriptid == DETUTILS_SCRIPT_FILEQUERIES)
+    {
+        print("*** [samp-detutils]: (module) - Loaded: d_filequeries.inc");
     }
 }
 
@@ -117,9 +121,6 @@ static void:AnnounceLibraryLoading_init()
     #if defined DETUTILS_COMPATIBILITY_MODE
     print(" SA:MP | DETUtils - Compatibility mode is on.");
     #endif
-    print("                                        ");
-    print("                                        ");
-    print("                                        ");
     print("                                        ");
 }
 
