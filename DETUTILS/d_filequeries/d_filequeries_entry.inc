@@ -112,7 +112,7 @@ stock Query_Format(const name[], const content[])
     {
         if(!strcmp(g_QueryCache[i][QueryName], name, false))
         {
-            if(g_QueryCache[DET_QueryID][QueryType] == QUERY_TYPE_LOAD)
+            if(g_QueryCache[i][QueryType] == QUERY_TYPE_LOAD)
             {
                 printf(
                     "[samp-detutils]: (query error) - \
@@ -120,7 +120,7 @@ stock Query_Format(const name[], const content[])
                 ;
                 return 0;
             }
-            strmid(g_QueryCache[DET_QueryID][QueryContent], content, 
+            strmid(g_QueryCache[i][QueryContent], content, 
                 0, 1024);
             g_QueryCache[i][formatted] = true;
             return 1;
