@@ -91,9 +91,9 @@ static DET_QueryID = 0;
 stock Query_Create(const name[], type, const dir[], const file[])
 {
     DET_QueryID ++;
-    strmid(g_QueryCache[DET_QueryID][QueryName], name, 0, sizeof name, sizeof name);
-    strmid(g_QueryCache[DET_QueryID][QueryDir], dir, 0, sizeof dir, sizeof dir);
-    strmid(g_QueryCache[DET_QueryID][QueryFile], file, 0, sizeof file, sizeof file);
+    strmid(g_QueryCache[DET_QueryID][QueryName], name, 0, 30);
+    strmid(g_QueryCache[DET_QueryID][QueryDir], dir, 0, 50);
+    strmid(g_QueryCache[DET_QueryID][QueryFile], file, 0, 50);
     g_QueryCache[DET_QueryID][QueryType] = type;
     if(g_QueryCache[DET_QueryID][QueryType] == QUERY_TYPE_SAVE)
     {
@@ -121,7 +121,7 @@ stock Query_Format(const name[], const content[])
                 return 0;
             }
             strmid(g_QueryCache[DET_QueryID][QueryContent], content, 
-                0, sizeof content, sizeof content);
+                0, 1024);
             g_QueryCache[i][formatted] = true;
             return 1;
         }
@@ -138,7 +138,7 @@ stock Query_Send(const name[])
         {
             new dirbose[100];
                 format(dirbose, 100,
-                    "%s/%s.det_q", 
+                    "%s/%s", 
                     g_QueryCache[i][QueryDir], 
                     g_QueryCache[i][QueryFile]);
 
@@ -182,6 +182,7 @@ stock Query_Send(const name[])
                 SaveLogIntoFile("detutils_queries.log", querylog);
 
                 print(querylog);
+                return 1;
             }
             if(g_QueryCache[i][QueryType] == QUERY_TYPE_LOAD)
             {
@@ -201,6 +202,7 @@ stock Query_Send(const name[])
                     g_QueryCache[i][LoadedContent] = true;
                     fclose(file);
                 }
+                return 1;
             }
         }
     }
