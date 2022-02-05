@@ -176,6 +176,38 @@ public detutils_cheatcheck()
     return 1;
 }
 
+stock Player_CheatCheck(playerid, checktype)
+{
+    new i = playerid;
+    if(checktype == CHEAT_TYPE_MONEY) CheckPlayerMoney(i);
+    //printf("[samp-detutils]: (debug) - ac :: Money check performed on %s", ReturnPlayerName(i));
+    //sleep(100);
+    if(checktype == CHEAT_TYPE_SKINCHANGER) CheckPlayerSkin(i);
+    //printf("[samp-detutils]: (debug) - ac :: Skin check performed on %s", ReturnPlayerName(i));
+    //sleep(100);
+    if(checktype == CHEAT_TYPE_TELEPORT) CheckPlayerPos(i);
+    //printf("[samp-detutils]: (debug) - ac :: Pos check performed on %s", ReturnPlayerName(i));
+    //sleep(100);
+    if(checktype == CHEAT_TYPE_HIGHPING) CheckPlayerPing(i);
+    //printf("[samp-detutils]: (debug) - ac :: Ping check performed on %s", ReturnPlayerName(i));
+    //sleep(100);
+    if(checktype == CHEAT_TYPE_ARMOUR) CheckPlayerArmour(i);
+    //printf("[samp-detutils]: (debug) - ac :: Armour check performed on %s", ReturnPlayerName(i));
+    //sleep(100);
+    if(checktype == CHEAT_TYPE_HEALTH) CheckPlayerHealth(i);
+    //printf("[samp-detutils]: (debug) - ac :: Health check performed on %s", ReturnPlayerName(i));
+    //sleep(100);
+    if(checktype == CHEAT_TYPE_SPEEDHACK) CheckPlayerSpeed(i);
+    //printf("[samp-detutils]: (debug) - ac :: Speed check performed on %s", ReturnPlayerName(i));
+    //sleep(100);
+    if(checktype == CHEAT_TYPE_DIALOG) CheckPlayerDialog(i);
+    //printf("[samp-detutils]: (debug) - ac :: Dialog check performed on %s", ReturnPlayerName(i));
+    //sleep(100);
+    if(checktype == CHEAT_TYPE_MENU) CheckPlayerMenu(i);
+    //printf("[samp-detutils]: (debug) - ac :: Menu check performed on %s", ReturnPlayerName(i));
+    return 1;
+}
+
 #if !defined FILTERSCRIPT
 
 main()
