@@ -223,6 +223,8 @@ stock Query_Send(const name[])
                     fread(file, loadedquery);
                     strmid(g_QueryCache[i][LoadedQuery], loadedquery, 0, 
                         sizeof loadedquery);
+                    printf("[samp-detutils]: (query compat) - \
+                        loadedquery : %s, query from cache : %s", loadedquery, g_QueryCache[i][LoadedQuery]);
                     g_QueryCache[i][LoadedContent] = true;
                     fclose(file);
                 }
@@ -233,7 +235,7 @@ stock Query_Send(const name[])
     return 1;
 }
 
-stock Query_GetLoadedContent(const name[])
+stock Query_GetLoadedContent(const name[], dests[])
 {
     for(new i = 1; i < MAX_FILE_QUERIES; i ++)
     {
@@ -246,10 +248,12 @@ stock Query_GetLoadedContent(const name[])
                 return 0;
             }
             else if(g_QueryCache[i][LoadedContent] == false) return 0;
-            return g_QueryCache[i][LoadedQuery];
+            printf("[samp-detutils]: (query content) - \
+                Returned `%s` as a loaded query.", g_QueryCache[i][LoadedQuery]); 
+            return strmid(dests, g_QueryCache[i][LoadedQuery], 0, 1024, 1024);
         }
     }
-    return 0;
+    return 1;
 }
 
 // Needed.
