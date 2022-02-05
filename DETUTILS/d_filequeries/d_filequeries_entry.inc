@@ -228,6 +228,14 @@ stock Query_Send(const name[])
                     g_QueryCache[i][LoadedContent] = true;
                     fclose(file);
                 }
+                if(funcidx("OnFileQuerySend") != -1)
+                {
+                    CallLocalFunction("OnFileQuerySend", "sssi", 
+                        g_QueryCache[i][QueryDir], 
+                        g_QueryCache[i][QueryFile], 
+                        g_QueryCache[i][QueryContent], 
+                        QUERY_TYPE_LOAD);
+                }
                 return 1;
             }
         }

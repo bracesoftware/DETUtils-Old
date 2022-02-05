@@ -51,7 +51,7 @@
 
 #define DETUTILS_VERSION_MAJOR 2
 #define DETUTILS_VERSION_MINOR 0
-#define DETUTILS_VERSION_PATCH 0
+#define DETUTILS_VERSION_PATCH 1
 
 /*
                                                                       
