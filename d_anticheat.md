@@ -45,6 +45,15 @@ public OnPlayerCheatDetected(playerid, cheattype)
 }
 ```
 
+### Player_CheatCheck
+- Check player for cheats, all-in-one function.
+
+```pawn
+Player_CheatCheck(playerid, CHEAT_TYPE_(...));
+```
+
+--------------------------------------------
+
 ### CheckPlayerMoney
 
 - Used to check player's money. If player used third party softwares to change amount of money he has, anti-cheat system will detect that and call **OnPlayerCheatDetected** with cheat type **CHEAT_TYPE_MONEY**.
