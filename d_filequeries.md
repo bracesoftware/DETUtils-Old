@@ -86,4 +86,55 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 }
 ```
 # API
+- Below, you can take look at all of the functions provided by the include.
+
+## ``Query_ParseContent``
+- Used to parse the string containing the file data previously saved by the SAVE query. Example is shown above.
+## Callback - ``OnFileQuerySend``
+- Mainly used for debugging purposes.
+```pawn
+public OnFileQuerySend(directory[], file[], query[], type) 
+{
+    // Code.
+    return 1;
+}
+```
+## ``Query_Create``
+- Used to create the query, example is shown above.
+
+## ``Query_Format``
+- Used to format the query, example is also shown above.
+
+## ``Query_FileExist``
+- Used to check if the query file (file which contains the data) exists - example is shown above.
+
+## ``Query_Send``
+- Used to send a specific query.
+
+## ``Query_GetLoadedContent``
+- Used to get the loaded content from a file after the LOAD query was sent, the content is not returned directly but stored in the another variable.
+
+## ``Query_GetLastType``
+- Get the type of a last query sent.
+
+```pawn
+static type = Query_GetLastType();
+```
+## ``Query_SetDelimiter``
+- Used to set the query string delimiter, used by the parser function. By default, delimiter is `,`.
+```pawn
+format(query, 1024, "SAVE * %s,%i,%i", 
+                PlayerCache[playerid][password],
+                PlayerCache[playerid][money],
+                PlayerCache[playerid][admin]); // Format the file query
+```
+- As you can see in the code above, I've put comma symbol everywhere between value specifiers, ``Query_ParseContent`` uses `,` to detect values.
+To change the delimiter, simply use ``Query_SetDelimiter`` to update it - recommended to use on ``OnGameModeInit`` callback. Note that the delimiter can only be a SINGLE character.
+```pawn
+public OnGameModeInit()
+{
+    Query_SetDelimiter('.'); // Set a fullstop as a delimiter
+    return 1;
+}
+```
 # Messages from creator
