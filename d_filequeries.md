@@ -4,7 +4,7 @@ SA:MP File Queries - save cache and load it during the run-time.
 [Go back to home page...](README.md)
 
 # How to start to use?
-- Let's make an user system! I will show the procedure step by step. But before we continue, veoma important clarification - in this user system, password hashing was not implemented which is seriously NOT recommended. Always hash your passwords!
+- Let's make an user system! I will show the procedure step by step. But before we continue, seriously important clarification - in this user system, password hashing was not implemented which is seriously NOT recommended. Always hash your passwords!
 
 1. Declare an enumerator for player cache:
 ```pawn
