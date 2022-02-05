@@ -546,7 +546,13 @@ forward d_visual_Onpgd();
 
 #define ReturnPlayerName _ReturnPlayerName
 
-stock SendMessageInRange(Float:radius, playerid, const string[], colour)
+#if defined DETUTILS_OPENMP_COMPAT
+
+#define SendMessageInRange Message_SendInRange
+
+#endif
+
+stock Message_SendInRange(Float:radius, playerid, const string[], colour)
 {
     new Float:PozX, Float:PozY, Float:PozZ, i;
     GetPlayerPos( playerid, PozX, PozY, PozZ);
@@ -574,7 +580,13 @@ enum d_PlayerWeapInfo
 
 new d_PlayerWeaponInfo[MAX_PLAYERS][d_PlayerWeapInfo];
 
-static void:PreloadAnimationLibrary(playerid, const animlib[])
+#if defined DETUTILS_OPENMP_COMPAT
+
+#define PreloadAnimationLibrary Animation_PreloadLibrary
+
+#endif
+
+static void:Animation_PreloadLibrary(playerid, const animlib[])
 {
     ApplyAnimation(playerid, animlib, "null", 0.0, 0, 0, 0, 0, 0, 1);
 }
@@ -615,7 +627,13 @@ if(funcidx("OnPlayerPickUpDroppedWeapon") != -1) CallLocalFunction("OnPlayerPick
 
 #endif
 
-#define IsValidWeapon(%0) (%0>=1 && %0<=18 || %0>=21 && %0<=46)
+#if defined DETUTILS_OPENMP_COMPAT
+
+#define IsValidWeapon Weapon_IsValid
+
+#endif
+
+#define Weapon_IsValid(%0) (%0>=1 && %0<=18 || %0>=21 && %0<=46)
 
 enum g_WeapInfoEnum{
     wName[24],
@@ -676,7 +694,7 @@ new g_WeaponInformation[ 47 ][ g_WeapInfoEnum ] = {
 
 stock d_vs_GivePlayerWeapon(playerid, weaponid, ammo)
 {
-    if(IsValidWeapon(weaponid))
+    if(Weapon_IsValid(weaponid))
     {
         d_PlayerWeaponInfo[playerid][Weapon][g_WeaponInformation[weaponid][wSlot]] = weaponid;
         d_PlayerWeaponInfo[playerid][Ammo][ g_WeaponInformation[weaponid][wSlot] ] += ammo;
@@ -693,7 +711,13 @@ stock d_vs_GivePlayerWeapon(playerid, weaponid, ammo)
 
 #define GivePlayerWeapon d_vs_GivePlayerWeapon
 
-stock RemovePlayerWeapon( playerid, weaponid ) 
+#if defined DETUTILS_OPENMP_COMPAT
+
+#define RemovePlayerWeapon Player_WeaponRemove
+
+#endif
+
+stock Player_WeaponRemove( playerid, weaponid ) 
 {
     ResetPlayerWeapons( playerid );
 
@@ -758,7 +782,13 @@ enum __Weapon_data__Enum {
 };
 new g_WeaponData[ MAX_DROPPED_GUNS ][ __Weapon_data__Enum ];
 
-stock CreateDroppedWeapon( p_WeapID, p_WeapAmmo, Float:__Weapon_pos_x, Float:__Weapon_pos_y, Float:__Weapon_pos_z ) 
+#if defined DETUTILS_OPENMP_COMPAT
+
+#define CreateDroppedWeapon Weapon_Create
+
+#endif
+
+stock Weapon_Create( p_WeapID, p_WeapAmmo, Float:__Weapon_pos_x, Float:__Weapon_pos_y, Float:__Weapon_pos_z ) 
 {
     if(_CreatedDroppedGuns == MAX_DROPPED_GUNS)
     {
@@ -827,8 +857,8 @@ stock d_v_SetPlayerSpecialAction(playerid, actionid)
                     }
                 }
                 if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, DETUTILS_TEXT_CANNOT_OPERATE);
-                //#if defined RemovePlayerWeapon
-                RemovePlayerWeapon( playerid, p_WeapID );
+                //#if defined Player_WeaponRemove
+                Player_WeaponRemove( playerid, p_WeapID );
                 //#endif
                 g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = p_WeapID;
                 g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = p_WeapAmmo;
@@ -988,8 +1018,8 @@ public OnPlayerDeath(playerid)
                 }
                 if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, 
                     ""COLOUR_GREY"Operation can't be completed at the moment." );
-                //#if defined RemovePlayerWeapon
-                RemovePlayerWeapon( playerid, p_WeapID );
+                //#if defined Player_WeaponRemove
+                Player_WeaponRemove( playerid, p_WeapID );
                 //#endif
                 g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = p_WeapID;
                 g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = p_WeapAmmo;
@@ -1146,8 +1176,8 @@ command throwgun( playerid, params[] )
                 }
             }
             if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, DETUTILS_TEXT_CANNOT_OPERATE);
-            //#if defined RemovePlayerWeapon
-            RemovePlayerWeapon( playerid, p_WeapID );
+            //#if defined Player_WeaponRemove
+            Player_WeaponRemove( playerid, p_WeapID );
             //#endif
             g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = p_WeapID;
             g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = p_WeapAmmo;
@@ -1253,8 +1283,8 @@ COMMAND__ throwgun( playerid, params[] )
                 }
             }
             if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"Operation can't be completed at the moment." );
-            //#if defined RemovePlayerWeapon
-            RemovePlayerWeapon( playerid, p_WeapID );
+            //#if defined Player_WeaponRemove
+            Player_WeaponRemove( playerid, p_WeapID );
             //#endif
             g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] = p_WeapID;
             g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] = p_WeapAmmo;

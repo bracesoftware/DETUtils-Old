@@ -654,7 +654,13 @@ stock d_ac_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
     return 1;
 }
 
-stock SetPlayerVehiclePos(playerid, Float:x, Float:y, Float:z)
+#if defined DETUTILS_OPENMP_COMPAT
+
+#define SetPlayerVehiclePos Player_SetVehiclePos
+
+#endif
+
+stock Player_SetVehiclePos(playerid, Float:x, Float:y, Float:z)
 {
     g_PlayerData[playerid][Pos][0] = x;
     g_PlayerData[playerid][Pos][1] = y;
