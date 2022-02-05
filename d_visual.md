@@ -9,7 +9,7 @@
 
 ## API ( programming interface )
 
-### CreateDroppedWeapon
+### CreateDroppedWeapon or Weapon_Create
 
 - This function creates the weapon object which can be either picked up or destroyed by the player.
 
@@ -59,7 +59,7 @@ public OnPlayerDestroyDroppedWeapon(playerid)
 }
 ```
 
-### SendMessageInRange
+### SendMessageInRange or Message_SendInRange
 
 - This function allows you to send the message only to the players within the certain range (radius).
 
@@ -73,7 +73,7 @@ public OnPlayerExitInterior(playerid)
 }
 ```
 
-### RemovePlayerWeapon
+### RemovePlayerWeapon or Player_WeaponRemove
 
 - This function removes the certain player's weapon from certain weapon's slot.
 
@@ -84,7 +84,7 @@ new weapon = GetPlayerWeapon(playerid);
 RemovePlayerWeapon(playerid, weapon);
 ```
 
-### IsValidWeapon
+### IsValidWeapon or Weapon_IsValid
 
 - Checks if is weapon an actual valid weapon. If the weapon ID is equal to or greater than 1 and equal to or less than 18, and if it is equal to or greater than 21 and equal to or less than 46, then that weapon is a valid weapon - otherwise not.
 
@@ -134,7 +134,7 @@ public OnPlayerScreenUpdate(playerid, updatetype)
 }
 ```
 
-### SetPlayerVehiclePos
+### SetPlayerVehiclePos or Player_SetVehiclePos
 
 - This function sets player's and player's vehicle's position.
 
@@ -149,7 +149,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 }
 ```
 
-### PreloadAnimationLibrary
+### PreloadAnimationLibrary or Animation_PreloadLibrary
 
 - This function preloads the certain animation library which is, sometimes, neccessary for applying animation from certain animation libraries.
 
