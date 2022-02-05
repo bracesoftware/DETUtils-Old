@@ -44,7 +44,7 @@ new DET_g_LastQueryType = INVALID_QUERY_TYPE;
 new DET_g_QueryDelimiter = ',';
 
 // Really GENERIC entry since this is a function used to read data.
-static d_ud_SplitString(const source[], dest[][])
+stock Query_ParseContent(const source[], dest[][])
 {
     new i, li;
     new aNum;
@@ -114,10 +114,8 @@ stock Query_Format(const name[], const content[])
         {
             if(g_QueryCache[i][QueryType] == QUERY_TYPE_LOAD)
             {
-                printf(
-                    "[samp-detutils]: (query error) - \
-                    Unable to format queries with 'QUERY_TYPE_LOAD' type.")
-                ;
+                strmid(g_QueryCache[i][QueryContent], content, 
+                0, 1024);
                 return 0;
             }
             strmid(g_QueryCache[i][QueryContent], content, 
@@ -127,6 +125,27 @@ stock Query_Format(const name[], const content[])
         }
     }
     return 0;
+}
+
+stock bool:Query_FileExist(const name[])
+{
+   for(new i = 1; i < MAX_FILE_QUERIES; i ++)
+    {
+        if(!strcmp(g_QueryCache[i][QueryName], name, false))
+        {
+            if(g_QueryCache[i][QueryType] != QUERY_TYPE_SAVE)
+            {
+                printf("[samp-detutils]: (query error) - \
+                    Cannot check if the file exists; query is not a SAVE query.");
+                return false;
+            }
+            new dfpattern[100];
+            format(dfpattern, 100, "%s/%s", 
+                g_QueryCache[i][QueryDir], g_QueryCache[i][QueryFile]);
+            if(fexist(dfpattern)) return true;
+        }
+    }
+    return false; 
 }
 
 // Send the query to the specific file
@@ -146,9 +165,9 @@ stock Query_Send(const name[])
 
             if(g_QueryCache[i][QueryType] == QUERY_TYPE_SAVE)
             {
-                if(!strfind("save", g_QueryCache[i][QueryContent], false))
+                if(!strfind("SAVE *", g_QueryCache[i][QueryContent], false))
                 {
-                    printf("[samp-detutils]: (query error) - Expected token 'save'; but found a query data.");
+                    printf("[samp-detutils]: (query error) - Expected token 'SAVE *'; but found a query data.");
                     return 0;
                 }
                 new query[1024];
@@ -166,9 +185,9 @@ stock Query_Send(const name[])
 
                 new File:SaveFile = fopen(dirbose, io_write);
 
-                // save 1,1,1
-                // 01234
-                strdel(query, 0, 4);
+                // SAVE * 1,1,1
+                // 01234567
+                strdel(query, 0, 7); // Delete the `SAVE *` command.
 
                 fwrite(SaveFile, query);
                 fclose(SaveFile);
@@ -186,6 +205,11 @@ stock Query_Send(const name[])
             }
             if(g_QueryCache[i][QueryType] == QUERY_TYPE_LOAD)
             {
+                if(strcmp("LOAD *", g_QueryCache[i][QueryContent], false))
+                {
+                    printf("[samp-detutils]: (query error) - Expected token 'LOAD *'; but found unknown content.");
+                    return 0;
+                }
                 new loadedquery[128];
                 if(!fexist(dirbose))
                 {
@@ -193,12 +217,12 @@ stock Query_Send(const name[])
                         Unable to load a query; file '%s' does not exist.", 
                         dirbose);
                 }
-                new File: file = fopen(dirbose, io_read);
-                if (file)
+                new File:file = fopen(dirbose, io_read);
+                if(file)
                 {
                     fread(file, loadedquery);
                     strmid(g_QueryCache[i][LoadedQuery], loadedquery, 0, 
-                        sizeof loadedquery, sizeof loadedquery);
+                        sizeof loadedquery);
                     g_QueryCache[i][LoadedContent] = true;
                     fclose(file);
                 }
