@@ -45,11 +45,11 @@ public OnPlayerCheatDetected(playerid, cheattype)
 }
 ```
 
-### Player_CheatCheck
+### SendPlayerCheatCheck
 - Check player for cheats, all-in-one function.
 
 ```pawn
-Player_CheatCheck(playerid, CHEAT_TYPE_(...));
+SendPlayerCheatCheck(playerid, CHEAT_TYPE_(...));
 ```
 
 --------------------------------------------
