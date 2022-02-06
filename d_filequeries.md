@@ -21,18 +21,18 @@ new PlayerCache[MAX_PLAYERS][PlayerData];
 ```pawn
 public OnPlayerConnect(playerid)
 {
-    Query_Create("DEntisT_SAVE", QUERY_TYPE_SAVE, "Users", "DEntisT.ini"); // Create a query which will save cache
-    Query_Create("DEntisT_LOAD", QUERY_TYPE_LOAD, "Users", "DEntisT.ini"); // Create a query which will load data
+    CreateQuery("DEntisT_SAVE", QUERY_TYPE_SAVE, "Users", "DEntisT.ini"); // Create a query which will save cache
+    CreateQuery("DEntisT_LOAD", QUERY_TYPE_LOAD, "Users", "DEntisT.ini"); // Create a query which will load data
     
-    if(Query_FileExist("DEntisT_SAVE")) // Check if the query file exists.... (Users/DEntisT.ini)
+    if(QueryFileExist("DEntisT_SAVE")) // Check if the query file exists.... (Users/DEntisT.ini)
     {
         new content[1024]; // var in which the content will be stored
-        Query_Format("DEntisT_LOAD", "LOAD *"); // format the file query
-        Query_Send("DEntisT_LOAD"); // send it
-        Query_GetLoadedContent("DEntisT_LOAD", content); // After the LOAD query was sent, we need to get the content of the data.
+        FormatQuery("DEntisT_LOAD", "LOAD *"); // format the file query
+        SendQuery("DEntisT_LOAD"); // send it
+        GetLoadedQueryContent("DEntisT_LOAD", content); // After the LOAD query was sent, we need to get the content of the data.
         SendClientMessage(playerid, -1, "Loaded query file content: %s", content); // For debugging purposes
         new array[3][64]; // declare this array for PARSING
-        Query_ParseContent(content, array); // Parse the content
+        ParseQueryContent(content, array); // Parse the content
         strmid(PlayerCache[playerid][password], array[0]); // Get the password 
         PlayerCache[playerid][money] = strval(array[1]); // Get the money
         PlayerCache[playerid][admin] = strval(array[2]); // Get the admin boolean
@@ -76,8 +76,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
                 PlayerCache[playerid][password],
                 PlayerCache[playerid][money],
                 PlayerCache[playerid][admin]); // Format the file query
-            Query_Format("DEntisT_SAVE", query); // Apply the format
-            Query_Send("DEntisT_SAVE"); // Send the query we formatted
+            FormatQuery("DEntisT_SAVE", query); // Apply the format
+            SendQuery("DEntisT_SAVE"); // Send the query we formatted
             SpawnPlayer(playerid); // Spawn the player
             SendClientMessage(playerid, -1, "You are successfully registered.");
         }
@@ -88,7 +88,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 # API
 - Below, you can take look at all of the functions provided by the include.
 
-## ``Query_ParseContent``
+## ``ParseQueryContent``
 - Used to parse the string containing the file data previously saved by the SAVE query. Example is shown above.
 ## Callback - ``OnFileQuerySend``
 - Mainly used for debugging purposes.
@@ -99,28 +99,29 @@ public OnFileQuerySend(directory[], file[], query[], type)
     return 1;
 }
 ```
-## ``Query_Create``
+
+## ``CreateQuery``
 - Used to create the query, example is shown above.
 
-## ``Query_Format``
+## ``FormatQuery``
 - Used to format the query, example is also shown above.
 
-## ``Query_FileExist``
+## ``QueryFileExist``
 - Used to check if the query file (file which contains the data) exists - example is shown above.
 
-## ``Query_Send``
+## ``SendQuery``
 - Used to send a specific query.
 
-## ``Query_GetLoadedContent``
+## ``GetLoadedQueryContent``
 - Used to get the loaded content from a file after the LOAD query was sent, the content is not returned directly but stored in the another variable.
 
-## ``Query_GetLastType``
+## ``GetLastQueryType``
 - Get the type of a last query sent.
 
 ```pawn
-static type = Query_GetLastType();
+static type = GetLastQueryType();
 ```
-## ``Query_SetDelimiter``
+## ``SetQueryDelimiter``
 - Used to set the query string delimiter, used by the parser function. By default, delimiter is `,`.
 ```pawn
 format(query, 1024, "SAVE * %s,%i,%i", 
@@ -128,13 +129,14 @@ format(query, 1024, "SAVE * %s,%i,%i",
                 PlayerCache[playerid][money],
                 PlayerCache[playerid][admin]); // Format the file query
 ```
-- As you can see in the code above, I've put comma symbol everywhere between value specifiers, ``Query_ParseContent`` uses `,` to detect values.
-To change the delimiter, simply use ``Query_SetDelimiter`` to update it - recommended to use on ``OnGameModeInit`` callback. Note that the delimiter can only be a SINGLE character.
+- As you can see in the code above, I've put comma symbol everywhere between value specifiers, ``ParseQueryContent`` uses `,` to detect values.
+To change the delimiter, simply use ``SetQueryDelimiter`` to update it - recommended to use on ``OnGameModeInit`` callback. Note that the delimiter can only be a SINGLE character.
 ```pawn
 public OnGameModeInit()
 {
-    Query_SetDelimiter('.'); // Set a fullstop as a delimiter
+    SetQueryDelimiter('.'); // Set a fullstop as a delimiter
     return 1;
 }
 ```
 # Messages from creator
+- None currently.
