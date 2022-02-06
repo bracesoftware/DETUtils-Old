@@ -40,35 +40,7 @@ SA:MP Map Editor - edit San Andreas yourself in the game
 # Messages from creator
 
 ## Warnings
-### Dialog IDs
-- **d_mapeditor** contains dialog ID definitions. 
-Code:
-```pawn
-#if !defined DETUTILS_DIALOG_MAPEDITOR
-
-#define DETUTILS_DIALOG_MAPEDITOR 1
-
-#endif
-
-#if !defined DETUTILS_DIALOG_MAPEDIT_CREATE
-
-#define DETUTILS_DIALOG_MAPEDIT_CREATE 2
-
-#endif
-
-#if !defined DETUTILS_DIALOG_MAPEDIT_DSTRY
-
-#define DETUTILS_DIALOG_MAPEDIT_DSTRY 3
-
-#endif
-
-#if !defined DETUTILS_DIALOG_MAPEDIT_EDIT
-
-#define DETUTILS_DIALOG_MAPEDIT_EDIT 4
-
-#endif
-```
-- They can be pre-defined before including the library so the IDs don't mix.
+- No warnings yet.
 ## Notes
 ### Beta version
 - This is in beta stage, please, if you find any issues - report them.
