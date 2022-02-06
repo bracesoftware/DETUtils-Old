@@ -9,7 +9,7 @@
 
 ## API ( programming interface )
 
-### CreateDroppedWeapon or Weapon_Create
+### `CreateDroppedWeapon`
 
 - This function creates the weapon object which can be either picked up or destroyed by the player.
 
