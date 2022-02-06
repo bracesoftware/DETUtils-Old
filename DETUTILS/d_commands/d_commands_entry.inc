@@ -1536,3 +1536,24 @@ stock void:SetPlayerChatMode(playerid, chatmode)
 }
 
 forward OnPlayerPassCommandPrefix(playerid, cmdtext[], passedprefix[], expectedprefix[]);
+
+//Implementation
+public OnPlayerPassCommandPrefix(playerid, cmdtext[], passedprefix[], expectedprefix[])
+{
+    if(funcidx("d_cmd_oppcp") != -1)
+    {
+        return CallLocalFunction("d_cmd_oppcp", "isss", 
+            playerid, cmdtext, passedprefix, expectedprefix);
+    }
+    return 1;
+}
+
+#if defined _ALS_OnPlayerPassCommandPrefix
+    #undef OnPlayerPassCommandPrefix
+#else
+    #define _ALS_OnPlayerPassCommandPrefix
+#endif
+
+#define OnPlayerPassCommandPrefix d_cmd_oppcp
+
+forward d_cmd_oppcp(playerid, cmdtext[], passedprefix[], expectedprefix[]);
