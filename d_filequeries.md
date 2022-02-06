@@ -99,6 +99,14 @@ public OnFileQuerySend(directory[], file[], query[], type)
     return 1;
 }
 ```
+Usage:
+```pawn
+public OnFileQuerySend(directory[], file[], query[], type) 
+{
+    printf("File query sent: %s, %s, %s, %i", directory, file, query, type);
+    return 1;
+}
+```
 
 ## ``CreateQuery``
 - Used to create the query, example is shown above.
