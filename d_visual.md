@@ -59,7 +59,7 @@ public OnPlayerDestroyDroppedWeapon(playerid)
 }
 ```
 
-### SendMessageInRange or Message_SendInRange
+### `SendMessageInRange`
 
 - This function allows you to send the message only to the players within the certain range (radius).
 
@@ -73,7 +73,7 @@ public OnPlayerExitInterior(playerid)
 }
 ```
 
-### RemovePlayerWeapon or Player_WeaponRemove
+### `RemovePlayerWeapon`
 
 - This function removes the certain player's weapon from certain weapon's slot.
 
@@ -84,7 +84,7 @@ new weapon = GetPlayerWeapon(playerid);
 RemovePlayerWeapon(playerid, weapon);
 ```
 
-### IsValidWeapon or Weapon_IsValid
+### `IsValidWeapon`
 
 - Checks if is weapon an actual valid weapon. If the weapon ID is equal to or greater than 1 and equal to or less than 18, and if it is equal to or greater than 21 and equal to or less than 46, then that weapon is a valid weapon - otherwise not.
 
@@ -134,7 +134,7 @@ public OnPlayerScreenUpdate(playerid, updatetype)
 }
 ```
 
-### SetPlayerVehiclePos or Player_SetVehiclePos
+### `SetPlayerVehiclePos`
 
 - This function sets player's and player's vehicle's position.
 
@@ -149,7 +149,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 }
 ```
 
-### PreloadAnimationLibrary or Animation_PreloadLibrary
+### `PreloadAnimationLibrary`
 
 - This function preloads the certain animation library which is, sometimes, neccessary for applying animation from certain animation libraries.
 
