@@ -177,13 +177,13 @@ public OnPlayerUpdate(playerid)
 - Used to toggle anti-cheat system on or off. Efficient in commands and also if you don't want to use **d_anticheat.inc** at all.
 
 ```pawn
-decl Command:acon(playerid,params[])
+@command(.type = SLASH_COMMAND) acon(p, p[])
 {
     ToggleAntiCheatSystem(true);
     return 1;
 }
 
-decl Command:acoff(playerid,params[])
+@command(.type = SLASH_COMMAND) acoff(p, p[])
 {
     ToggleAntiCheatSystem(false);
     return 1;
