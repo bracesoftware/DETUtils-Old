@@ -600,6 +600,7 @@ CallCommand("sayhi", playerid, params, COMMAND_TYPE_REMOTE_PREFIXED);
 ```
 ### `GetPlayerChatMode`
 - Used to get player's chat mode.
+
 **Command processing**
 ------------------------------------------
 A simple script:
