@@ -366,7 +366,7 @@ public _OnPlayerNearEntrance(playerid)
 
 public OnPlayerDisconnect(playerid, reason)
 {
-    Player_ClearPropertyData(playerid);
+    ClearPlayerPropertyData(playerid);
     if(funcidx("aint_ALS_OnPlayerDisconnect") != -1)
     {
         CallLocalFunction("aint_ALS_OnPlayerDisconnect", "ii", playerid, reason);
@@ -553,11 +553,11 @@ stock __Create3DLabelAndPickup( // Internal function.
 
 #if defined DETUTILS_OPENMP_COMPAT
     
-    #define CreatePropertyEntrance Property_CreateEntrance
+    #define Property_CreateEntrance CreatePropertyEntrance
 
 #endif
 
-stock Property_CreateEntrance(
+stock CreatePropertyEntrance(
         const PropertyName[], 
         Float:_xEntrance, 
         Float:_yEntrance, 
@@ -816,11 +816,11 @@ stock CreateCustomInterior(
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-    #define IsPropertyLocked Property_IsLocked
+    #define Property_IsLocked IsPropertyLocked
 
 #endif
 
-stock Property_IsLocked(propertyid)
+stock IsPropertyLocked(propertyid)
 {
     if(g_PropertyData[propertyid][p_PropertyLocked] == 1)
     {
@@ -835,11 +835,11 @@ stock Property_IsLocked(propertyid)
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-    #define TogglePropertyLocked Property_ToggleLocked
+    #define Property_ToggleLocked TogglePropertyLocked
 
 #endif
 
-stock void:Property_ToggleLocked(propertyid, bool:lock)
+stock void:TogglePropertyLocked(propertyid, bool:lock)
 {
     if(lock == true)
     {
@@ -859,11 +859,11 @@ stock void:Property_ToggleLocked(propertyid, bool:lock)
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-    #define GetNearPropertyEntrance Player_GetNearProperty
+    #define Player_GetNearProperty GetNearPropertyEntrance
 
 #endif
 
-stock Player_GetNearProperty(playerid)
+stock GetNearPropertyEntrance(playerid)
 {
     for(new i; i < MAX_PROPERTIES; i++)
     {
@@ -880,11 +880,11 @@ stock Player_GetNearProperty(playerid)
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-    #define IsPlayerInProperty Player_IsInProperty
+    #define Player_IsInProperty IsPlayerInProperty
 
 #endif
 
-stock bool:Player_IsInProperty(playerid)
+stock bool:IsPlayerInProperty(playerid)
 {
     if(g_PlayerProperty[playerid] == -1) return false;
     else return true;
@@ -892,18 +892,18 @@ stock bool:Player_IsInProperty(playerid)
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-    #define ClearPlayerPropertyData Player_ClearPropertyData
+    #define Player_ClearPropertyData ClearPlayerPropertyData
 
 #endif
 
-stock Player_ClearPropertyData(playerid)
+stock ClearPlayerPropertyData(playerid)
 {
     #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - Player_ClearPropertyData called successfully.");
+    printf("[samp-detutils]: (debug) - ClearPlayerPropertyData called successfully.");
     #endif
     g_PlayerProperty[playerid] = -1;
     #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - Player_ClearPropertyData action successfully performed.");
+    printf("[samp-detutils]: (debug) - ClearPlayerPropertyData action successfully performed.");
     #endif
     return 1;
 }
@@ -914,21 +914,21 @@ stock Player_ClearPropertyData(playerid)
 
 #endif
 
-stock Property_GetLastIDUsed()
+stock GetLastPropertyIDUsed()
 {
     #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - Property_GetLastIDUsed successfully called.");
+    printf("[samp-detutils]: (debug) - GetLastPropertyIDUsed successfully called.");
     #endif
     return g_PropertyID;
 }
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-    #define SetPropertyEntranceCustomAngles Property_SetEntranceAngles
+    #define Property_SetEntranceAngles SetPropertyEntranceAngles
 
 #endif
 
-stock Property_SetEntranceAngles(
+stock SetPropertyEntranceAngles(
         const _PropertyID,
         Float:_aAngle,
         Float:_bAngle)
@@ -987,11 +987,11 @@ forward OnPropertyActionPerformed(playerid, propertyid, actionid);
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-    #define GetPropertyName Property_GetName
+    #define Property_GetName GetPropertyName
 
 #endif
 
-stock Property_GetName(PropertyID)
+stock GetPropertyName(PropertyID)
 {
     //#if defined detutils_complete_error_boom
     new f_PropertyName[256];
@@ -1005,11 +1005,11 @@ stock Property_GetName(PropertyID)
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-    #define GetPropertyIDByName Property_GetIDByName
+    #define Property_GetIDByName GetPropertyIDByName
 
 #endif
 
-stock Property_GetIDByName(const PropertyName[])
+stock GetPropertyIDByName(const PropertyName[])
 {
     for(new PropertyCount = 1; 
         PropertyCount < MAX_PROPERTIES; 
@@ -1042,11 +1042,11 @@ stock Property_GetIDByName(const PropertyName[])
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-    #define SetPlayerProperty Player_SetProperty
+    #define Player_SetProperty SetPlayerProperty
 
 #endif
 
-stock Player_SetProperty(_p_Playerid, pg_PropertyID)
+stock SetPlayerProperty(_p_Playerid, pg_PropertyID)
 {
     if(pg_PropertyID < -1)
         return 0;
@@ -1065,6 +1065,8 @@ stock Player_SetProperty(_p_Playerid, pg_PropertyID)
     (_Actionid == %0) >>> data * plus / Check;
 
 #endif
+
+// Actually extra.
 
 static void:AnnounceLibraryLoaded_int()
 {

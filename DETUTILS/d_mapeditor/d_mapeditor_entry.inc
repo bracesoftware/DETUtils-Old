@@ -36,29 +36,8 @@
 
 #define DETUTILS_PATH_OBJECTS "detutils_objects/%i.ini"
 
-#if !defined DETUTILS_DIALOG_MAPEDITOR
-
-#define DETUTILS_DIALOG_MAPEDITOR 1
-
-#endif
-
-#if !defined DETUTILS_DIALOG_MAPEDIT_CREATE
-
-#define DETUTILS_DIALOG_MAPEDIT_CREATE 2
-
-#endif
-
-#if !defined DETUTILS_DIALOG_MAPEDIT_DSTRY
-
-#define DETUTILS_DIALOG_MAPEDIT_DSTRY 3
-
-#endif
-
-#if !defined DETUTILS_DIALOG_MAPEDIT_EDIT
-
-#define DETUTILS_DIALOG_MAPEDIT_EDIT 4
-
-#endif
+enum {DETUTILS_DIALOG_MAPEDITOR,DETUTILS_DIALOG_MAPEDIT_CREATE,
+      DETUTILS_DIALOG_MAPEDIT_DSTRY,DETUTILS_DIALOG_MAPEDIT_EDIT};
 
 enum enum_ObjectData
 {
@@ -120,139 +99,141 @@ forward d_me_playerconnect(playerid);
 
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
-    if(dialogid == DETUTILS_DIALOG_MAPEDITOR)
+    switch(dialogid)
     {
-        if(response)
+        case DETUTILS_DIALOG_MAPEDITOR:
         {
-            switch(listitem)
+            if(response)
             {
-                case 0:
+                switch(listitem)
                 {
-                    ShowPlayerDialog(playerid, DETUTILS_DIALOG_MAPEDIT_CREATE, DIALOG_STYLE_INPUT, 
-                        DETUTILS_TEXT_MAPEDITOR_CAPTION, DETUTILS_TEXT_MAPEDITOR_OBJID, 
-                        DETUTILS_TEXT_DIALOG_CONFIRM, DETUTILS_TEXT_EXITDIALOG);       
-                }
-                case 1:
-                {
-                    ShowPlayerDialog(playerid, DETUTILS_DIALOG_MAPEDIT_DSTRY, DIALOG_STYLE_INPUT, 
-                        DETUTILS_TEXT_MAPEDITOR_CAPTION, DETUTILS_TEXT_MAPEDITOR_DSTRY, 
-                        DETUTILS_TEXT_DIALOG_CONFIRM, DETUTILS_TEXT_EXITDIALOG);
-                }
-                case 2:
-                {
-                    ShowPlayerDialog(playerid, DETUTILS_DIALOG_MAPEDIT_EDIT, DIALOG_STYLE_INPUT, 
-                        DETUTILS_TEXT_MAPEDITOR_CAPTION, DETUTILS_TEXT_MAPEDITOR_EDIT, 
-                        DETUTILS_TEXT_DIALOG_CONFIRM, DETUTILS_TEXT_EXITDIALOG);
+                    case 0:
+                    {
+                        ShowPlayerDialog(playerid, DETUTILS_DIALOG_MAPEDIT_CREATE, DIALOG_STYLE_INPUT, 
+                            DETUTILS_TEXT_MAPEDITOR_CAPTION, DETUTILS_TEXT_MAPEDITOR_OBJID, 
+                            DETUTILS_TEXT_DIALOG_CONFIRM, DETUTILS_TEXT_EXITDIALOG);       
+                    }
+                    case 1:
+                    {
+                        ShowPlayerDialog(playerid, DETUTILS_DIALOG_MAPEDIT_DSTRY, DIALOG_STYLE_INPUT, 
+                            DETUTILS_TEXT_MAPEDITOR_CAPTION, DETUTILS_TEXT_MAPEDITOR_DSTRY, 
+                            DETUTILS_TEXT_DIALOG_CONFIRM, DETUTILS_TEXT_EXITDIALOG);
+                    }
+                    case 2:
+                    {
+                        ShowPlayerDialog(playerid, DETUTILS_DIALOG_MAPEDIT_EDIT, DIALOG_STYLE_INPUT, 
+                            DETUTILS_TEXT_MAPEDITOR_CAPTION, DETUTILS_TEXT_MAPEDITOR_EDIT, 
+                            DETUTILS_TEXT_DIALOG_CONFIRM, DETUTILS_TEXT_EXITDIALOG);
+                    }
                 }
             }
         }
-    }
-    if(dialogid == DETUTILS_DIALOG_MAPEDIT_CREATE)
-    {
-        if(response)
+        case DETUTILS_DIALOG_MAPEDIT_CREATE:
         {
-            new parameters[128], idx;
-
-            new objid; 
-
-            parameters = strtok(inputtext, idx);
-
-            if(strlen(parameters) == 0) return ShowPlayerDialog(playerid, DETUTILS_DIALOG_MAPEDIT_CREATE, DIALOG_STYLE_INPUT, 
-                        DETUTILS_TEXT_MAPEDITOR_CAPTION, DETUTILS_TEXT_MAPEDITOR_OBJID, 
-                        DETUTILS_TEXT_DIALOG_CONFIRM, DETUTILS_TEXT_EXITDIALOG);  
-
-            objid = strval(parameters);
-
-            for( new i = 1; i < MAX_OBJECTS; i++ )
+            if(response)
             {
-                new file[ 40 ];
-                format(file, sizeof( file ), DETUTILS_PATH_OBJECTS, i);
-                if( !fexist( file ) )
+                new parameters[128], idx;
+
+                new objid; 
+
+                parameters = strtok(inputtext, idx);
+
+                if(strlen(parameters) == 0) return ShowPlayerDialog(playerid, DETUTILS_DIALOG_MAPEDIT_CREATE, DIALOG_STYLE_INPUT, 
+                            DETUTILS_TEXT_MAPEDITOR_CAPTION, DETUTILS_TEXT_MAPEDITOR_OBJID, 
+                            DETUTILS_TEXT_DIALOG_CONFIRM, DETUTILS_TEXT_EXITDIALOG);  
+
+                objid = strval(parameters);
+
+                for( new i = 1; i < MAX_OBJECTS; i++ )
                 {
-                    new Float:x, Float:y, Float:z, Float:angle, label_string[256];
-                    GetPlayerPos( playerid, x, y, z); 
-                    GetPlayerFacingAngle( playerid, angle);
-                    
-                    g_ObjectData[i][Pos][ 0 ] = x;
-                    g_ObjectData[i][Pos][ 1 ] = y;
-                    g_ObjectData[i][Pos][ 2 ] = z;
-                    g_ObjectData[i][RotPos][ 0 ] = 0;
-                    g_ObjectData[i][RotPos][ 1 ] = 0;
-                    g_ObjectData[i][RotPos][ 2 ] = 0;
-                    g_ObjectData[i][GtaObjID] = objid;
-                    g_ObjectData[i][ObjectID] = CreateObject(g_ObjectData[i][GtaObjID], x+2, y, z+0.6, 0.0, 0.0, angle);
+                    new file[ 40 ];
+                    format(file, sizeof( file ), DETUTILS_PATH_OBJECTS, i);
+                    if( !fexist( file ) )
+                    {
+                        new Float:x, Float:y, Float:z, Float:angle, label_string[256];
+                        GetPlayerPos( playerid, x, y, z); 
+                        GetPlayerFacingAngle( playerid, angle);
+                        
+                        g_ObjectData[i][Pos][ 0 ] = x;
+                        g_ObjectData[i][Pos][ 1 ] = y;
+                        g_ObjectData[i][Pos][ 2 ] = z;
+                        g_ObjectData[i][RotPos][ 0 ] = 0;
+                        g_ObjectData[i][RotPos][ 1 ] = 0;
+                        g_ObjectData[i][RotPos][ 2 ] = 0;
+                        g_ObjectData[i][GtaObjID] = objid;
+                        g_ObjectData[i][ObjectID] = CreateObject(g_ObjectData[i][GtaObjID], x+2, y, z+0.6, 0.0, 0.0, angle);
 
-                    format(label_string, sizeof label_string,
-                        "[samp-detutils]: (map editor)\n\nScript object ID: %i\nPosition: %f, %f, %f\nRotation: %f, %f, %f", 
-                        i, g_ObjectData[i][Pos][ 0 ], g_ObjectData[i][Pos][ 1 ], g_ObjectData[i][Pos][ 2 ],
-                        g_ObjectData[i][RotPos][ 0 ], g_ObjectData[i][RotPos][ 1 ], g_ObjectData[i][RotPos][ 2 ]);
+                        format(label_string, sizeof label_string,
+                            "[samp-detutils]: (map editor)\n\nScript object ID: %i\nPosition: %f, %f, %f\nRotation: %f, %f, %f", 
+                            i, g_ObjectData[i][Pos][ 0 ], g_ObjectData[i][Pos][ 1 ], g_ObjectData[i][Pos][ 2 ],
+                            g_ObjectData[i][RotPos][ 0 ], g_ObjectData[i][RotPos][ 1 ], g_ObjectData[i][RotPos][ 2 ]);
 
-                    g_ObjectData[i][Label] = Create3DTextLabel(label_string, -1, x+2,y+0.6,z, 30.0, GetPlayerVirtualWorld(playerid));
+                        g_ObjectData[i][Label] = Create3DTextLabel(label_string, -1, x+2,y+0.6,z, 30.0, GetPlayerVirtualWorld(playerid));
 
-                    g_MapEditorPlayerData[playerid][ObjectEditing] = i;
-                    
-                    EditObject(playerid, g_ObjectData[i][ObjectID]);
-                    d_me_SaveObject(i);
-                    break;
+                        g_MapEditorPlayerData[playerid][ObjectEditing] = i;
+                        
+                        EditObject(playerid, g_ObjectData[i][ObjectID]);
+                        d_me_SaveObject(i);
+                        break;
+                    }
                 }
             }
         }
-    }
-    if(dialogid == DETUTILS_DIALOG_MAPEDIT_DSTRY)
-    {
-        if(response)
+        case DETUTILS_DIALOG_MAPEDIT_DSTRY:
         {
-            new parameters[128], idx;
-
-            new objid; 
-
-            parameters = strtok(inputtext, idx);
-
-            if(strlen(parameters) == 0) return ShowPlayerDialog(playerid, DETUTILS_DIALOG_MAPEDIT_DSTRY, DIALOG_STYLE_INPUT, 
-                        DETUTILS_TEXT_MAPEDITOR_CAPTION, DETUTILS_TEXT_MAPEDITOR_DSTRY, 
-                        DETUTILS_TEXT_DIALOG_CONFIRM, DETUTILS_TEXT_EXITDIALOG);  
-
-            objid = strval(parameters);
-
-            if(IsValidObject(g_ObjectData[objid][ObjectID]))
+            if(response)
             {
-                DestroyObject(g_ObjectData[objid][ObjectID]);
+                new parameters[128], idx;
+
+                new objid; 
+
+                parameters = strtok(inputtext, idx);
+
+                if(strlen(parameters) == 0) return ShowPlayerDialog(playerid, DETUTILS_DIALOG_MAPEDIT_DSTRY, DIALOG_STYLE_INPUT, 
+                            DETUTILS_TEXT_MAPEDITOR_CAPTION, DETUTILS_TEXT_MAPEDITOR_DSTRY, 
+                            DETUTILS_TEXT_DIALOG_CONFIRM, DETUTILS_TEXT_EXITDIALOG);  
+
+                objid = strval(parameters);
+
+                if(IsValidObject(g_ObjectData[objid][ObjectID]))
+                {
+                    DestroyObject(g_ObjectData[objid][ObjectID]);
+                }
+
+                Delete3DTextLabel(g_ObjectData[objid][Label]);
+
+                g_ObjectData[ objid ][ Pos ][ 0 ] = 0;
+                g_ObjectData[ objid ][ Pos ][ 1 ] = 0;
+                g_ObjectData[ objid ][ Pos ][ 2 ] = 0;
+                g_ObjectData[ objid ][ RotPos ][ 0 ] = 0;
+                g_ObjectData[ objid ][ RotPos ][ 1 ] = 0;
+                g_ObjectData[ objid ][ RotPos ][ 2 ] = 0;
+
+                new fstring[ 64 ];
+                format( fstring, sizeof( fstring ), DETUTILS_PATH_OBJECTS, objid );
+                if( fexist( fstring ) ) { fremove( fstring ); }
             }
-
-            Delete3DTextLabel(g_ObjectData[objid][Label]);
-
-            g_ObjectData[ objid ][ Pos ][ 0 ] = 0;
-            g_ObjectData[ objid ][ Pos ][ 1 ] = 0;
-            g_ObjectData[ objid ][ Pos ][ 2 ] = 0;
-            g_ObjectData[ objid ][ RotPos ][ 0 ] = 0;
-            g_ObjectData[ objid ][ RotPos ][ 1 ] = 0;
-            g_ObjectData[ objid ][ RotPos ][ 2 ] = 0;
-
-            new fstring[ 64 ];
-            format( fstring, sizeof( fstring ), DETUTILS_PATH_OBJECTS, objid );
-            if( fexist( fstring ) ) { fremove( fstring ); }
         }
-    }
-    if(dialogid == DETUTILS_DIALOG_MAPEDIT_EDIT)
-    {
-        if(response)
+        case DETUTILS_DIALOG_MAPEDIT_EDIT:
         {
-            new parameters[128], idx;
+            if(response)
+            {
+                new parameters[128], idx;
 
-            new objid; 
+                new objid; 
 
-            parameters = strtok(inputtext, idx);
+                parameters = strtok(inputtext, idx);
 
-            if(strlen(parameters) == 0) return ShowPlayerDialog(playerid, DETUTILS_DIALOG_MAPEDIT_EDIT, DIALOG_STYLE_INPUT, 
-                        DETUTILS_TEXT_MAPEDITOR_CAPTION, DETUTILS_TEXT_MAPEDITOR_EDIT, 
-                        DETUTILS_TEXT_DIALOG_CONFIRM, DETUTILS_TEXT_EXITDIALOG);  
+                if(strlen(parameters) == 0) return ShowPlayerDialog(playerid, DETUTILS_DIALOG_MAPEDIT_EDIT, DIALOG_STYLE_INPUT, 
+                            DETUTILS_TEXT_MAPEDITOR_CAPTION, DETUTILS_TEXT_MAPEDITOR_EDIT, 
+                            DETUTILS_TEXT_DIALOG_CONFIRM, DETUTILS_TEXT_EXITDIALOG);  
 
-            objid = strval(parameters);
+                objid = strval(parameters);
 
-            EditObject(playerid, g_ObjectData[objid][ObjectID]);
+                EditObject(playerid, g_ObjectData[objid][ObjectID]);
+            }
         }
     }
-
     if(funcidx("d_me_dialogresponse") != -1)
     {
         CallLocalFunction("d_me_dialogresponse", "iiiis", playerid, dialogid, response, listitem, inputtext);

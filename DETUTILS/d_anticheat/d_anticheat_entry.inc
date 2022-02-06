@@ -176,7 +176,7 @@ public detutils_cheatcheck()
     return 1;
 }
 
-stock Player_CheatCheck(playerid, checktype)
+stock SendPlayerCheatCheck(playerid, checktype)
 {
     new i = playerid;
     if(checktype == CHEAT_TYPE_MONEY) CheckPlayerMoney(i);
@@ -688,11 +688,11 @@ stock d_ac_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-#define SetPlayerVehiclePos Player_SetVehiclePos
+#define Player_SetVehiclePos SetPlayerVehiclePos
 
 #endif
 
-stock Player_SetVehiclePos(playerid, Float:x, Float:y, Float:z)
+stock SetPlayerVehiclePos(playerid, Float:x, Float:y, Float:z)
 {
     g_PlayerData[playerid][Pos][0] = x;
     g_PlayerData[playerid][Pos][1] = y;

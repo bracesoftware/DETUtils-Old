@@ -44,7 +44,14 @@ new DET_g_LastQueryType = INVALID_QUERY_TYPE;
 new DET_g_QueryDelimiter = ',';
 
 // Really GENERIC entry since this is a function used to read data.
-stock Query_ParseContent(const source[], dest[][])
+
+#if defined DETUTILS_OPENMP_COMPAT
+
+#define Query_ParseContent ParseQueryContent
+
+#endif
+
+stock ParseQueryContent(const source[], dest[][])
 {
     new i, li;
     new aNum;
@@ -88,7 +95,13 @@ new g_QueryCache[MAX_FILE_QUERIES][enum_QueryData];
 
 static DET_QueryID = 0;
 
-stock Query_Create(const name[], type, const dir[], const file[])
+#if defined DETUTILS_OPENMP_COMPAT
+
+#define Query_Create CreateQuery
+
+#endif
+
+stock CreateQuery(const name[], type, const dir[], const file[])
 {
     DET_QueryID ++;
     strmid(g_QueryCache[DET_QueryID][QueryName], name, 0, 30);
@@ -106,7 +119,13 @@ stock Query_Create(const name[], type, const dir[], const file[])
     return 1;
 }
 
-stock Query_Format(const name[], const content[])
+#if defined DETUTILS_OPENMP_COMPAT
+
+#define Query_Format FormatQuery
+
+#endif
+
+stock FormatQuery(const name[], const content[])
 {
     for(new i = 1; i < MAX_FILE_QUERIES; i++)
     {
@@ -127,7 +146,13 @@ stock Query_Format(const name[], const content[])
     return 0;
 }
 
-stock bool:Query_FileExist(const name[])
+#if defined DETUTILS_OPENMP_COMPAT
+
+#define Query_FileExist QueryFileExist
+
+#endif
+
+stock bool:QueryFileExist(const name[])
 {
    for(new i = 1; i < MAX_FILE_QUERIES; i ++)
     {
@@ -148,8 +173,14 @@ stock bool:Query_FileExist(const name[])
     return false; 
 }
 
+#if defined DETUTILS_OPENMP_COMPAT
+
+#define Query_Send SendQuery
+
+#endif
+
 // Send the query to the specific file
-stock Query_Send(const name[])
+stock SendQuery(const name[])
 {
     for(new i = 1; i < MAX_FILE_QUERIES; i ++)
     {
@@ -243,7 +274,13 @@ stock Query_Send(const name[])
     return 1;
 }
 
-stock Query_GetLoadedContent(const name[], dests[])
+#if defined DETUTILS_OPENMP_COMPAT
+
+#define Query_GetLoadedContent GetLoadedQueryContent
+
+#endif
+
+stock GetLoadedQueryContent(const name[], dests[])
 {
     for(new i = 1; i < MAX_FILE_QUERIES; i ++)
     {
@@ -271,14 +308,28 @@ stock Query_GetLoadedContent(const name[], dests[])
 
 // Get the type of the last query sent.
 // When Query_Send is called DET_g_LastQueryType is updated.
-stock Query_GetLastType()
+
+#if defined DETUTILS_OPENMP_COMPAT
+
+#define Query_GetLastType GetLastQueryType
+
+#endif
+
+stock GetLastQueryType()
 {
     return DET_g_LastQueryType;
 }
 
 // Set delimiter which will be used to PARSE
 // query values. By default it is comma.
-stock Query_SetDelimiter(delimiter)
+
+#if defined DETUTILS_OPENMP_COMPAT
+
+#define Query_SetDelimiter SetQueryDelimiter
+
+#endif
+
+stock SetQueryDelimiter(delimiter)
 {
     DET_g_QueryDelimiter = delimiter;
     return 1;

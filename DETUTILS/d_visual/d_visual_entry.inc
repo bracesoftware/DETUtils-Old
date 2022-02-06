@@ -548,11 +548,11 @@ forward d_visual_Onpgd();
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-#define SendMessageInRange Message_SendInRange
+#define Message_SendInRange SendMessageInRange
 
 #endif
 
-stock Message_SendInRange(Float:radius, playerid, const string[], colour)
+stock SendMessageInRange(Float:radius, playerid, const string[], colour)
 {
     new Float:PozX, Float:PozY, Float:PozZ, i;
     GetPlayerPos( playerid, PozX, PozY, PozZ);
@@ -582,11 +582,11 @@ new d_PlayerWeaponInfo[MAX_PLAYERS][d_PlayerWeapInfo];
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-#define PreloadAnimationLibrary Animation_PreloadLibrary
+#define Animation_PreloadLibrary PreloadAnimationLibrary
 
 #endif
 
-static void:Animation_PreloadLibrary(playerid, const animlib[])
+static void:PreloadAnimationLibrary(playerid, const animlib[])
 {
     ApplyAnimation(playerid, animlib, "null", 0.0, 0, 0, 0, 0, 0, 1);
 }
