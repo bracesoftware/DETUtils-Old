@@ -517,7 +517,7 @@ How you SHOULD do it from now on:
 
 - *d_commands.inc* also contains some handy functions, let's see.
 
-### ``GetSlashCommandType`` or ``Command_GetSlashType``
+### ``GetSlashCommandType``
 
 ```pawn
 @command(.type = SLASH_COMMAND) typecheck(playerid, params[]) 
@@ -549,7 +549,7 @@ new slashcmdtype = GetSlashCommandType("some_cool_command_name");
 - ``SLASH_COMMAND_TYPE_ADMIN`` or ``2`` - returned if the command is admin command (available after **/rcon login ...**)
 - ``SLASH_COMMAND_TYPE_FLAGGED`` or ``3`` - returned if the command is a flagged command (aka role command)
 
-### ``CallCommand`` or ``Command_Call``
+### ``CallCommand``
 
 - Function ``CallCommand``, obviously, is used to call a command.
 - Let's see a small example:
@@ -598,7 +598,8 @@ CallCommand("sayhi", playerid, params, COMMAND_TYPE_LOCAL_PREFIXED);
 ```pawn
 CallCommand("sayhi", playerid, params, COMMAND_TYPE_REMOTE_PREFIXED); 
 ```
-
+### `GetPlayerChatMode`
+- Used to get player's chat mode.
 **Command processing**
 ------------------------------------------
 A simple script:
