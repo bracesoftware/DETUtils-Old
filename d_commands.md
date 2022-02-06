@@ -601,6 +601,10 @@ CallCommand("sayhi", playerid, params, COMMAND_TYPE_REMOTE_PREFIXED);
 ### `GetPlayerChatMode`
 - Used to get player's chat mode.
 
+### `ToggleCommandCaseSensivity`
+
+- This function is currently not working, I mean it is implemented, but is not functional - calling it will do nothing.
+
 **Command processing**
 ------------------------------------------
 A simple script:
