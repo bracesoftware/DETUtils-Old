@@ -6,9 +6,9 @@
 <p align="center">
   <img width="500" align="center" src="detutils.png">
 </p>
-<h5 align = "center">
+<p1 align = "center">
   Addition to SA:MP Standard Scripting Library with new stuff, anti-cheat system, map editor and many more functions!
-</h5>
+</p1>
 <h2 align = "center">
   Functions, callbacks, tips and notes
 </h2>
