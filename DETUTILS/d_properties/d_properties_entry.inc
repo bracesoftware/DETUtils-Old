@@ -302,7 +302,12 @@ public _OnPlayerNearEntrance(playerid)
             SetPlayerInterior( playerid, g_PropertyData[ i ][p_PropertyIntid] );
             SetPlayerVirtualWorld( playerid, g_PropertyData[ i ][p_PropertyVwid] );
             
-            d_ac_SetPlayerPos( playerid, g_PropertyData[ i ][p_PropertyExit_X], g_PropertyData[ i ][p_PropertyExit_Y], \
+            #if defined DETUTILS_NO_ANTICHEAT
+            SetPlayerPos
+            #else
+            d_ac_SetPlayerPos
+            #endif
+            ( playerid, g_PropertyData[ i ][p_PropertyExit_X], g_PropertyData[ i ][p_PropertyExit_Y], \
             g_PropertyData[ i ][p_PropertyExit_Z] );
             
             SetPlayerFacingAngle( playerid, g_PropertyData[ i ][p_PropertyExit_A] );
@@ -335,7 +340,12 @@ public _OnPlayerNearEntrance(playerid)
             SetPlayerVirtualWorld( playerid, g_PropertyData[ i ][p_PropertyVwid_OUT] );
             SetPlayerInterior( playerid, g_PropertyData[ i ][p_PropertyIntid_OUT] );
             
-            d_ac_SetPlayerPos( playerid, g_PropertyData[ i ][p_PropertyEntrance_X], g_PropertyData[ i ][p_PropertyEntrance_Y], \
+            #if defined DETUTILS_NO_ANTICHEAT
+            SetPlayerPos
+            #else
+            d_ac_SetPlayerPos
+            #endif
+            ( playerid, g_PropertyData[ i ][p_PropertyEntrance_X], g_PropertyData[ i ][p_PropertyEntrance_Y], \
             g_PropertyData[ i ][p_PropertyEntrance_Z] );
             
             SetPlayerFacingAngle( playerid, g_PropertyData[ i ][p_PropertyEntrance_A] );

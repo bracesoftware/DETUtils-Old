@@ -784,11 +784,11 @@ new g_WeaponData[ MAX_DROPPED_GUNS ][ __Weapon_data__Enum ];
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-#define CreateDroppedWeapon Weapon_Create
+#define Weapon_Create CreateDroppedWeapon
 
 #endif
 
-stock Weapon_Create( p_WeapID, p_WeapAmmo, Float:__Weapon_pos_x, Float:__Weapon_pos_y, Float:__Weapon_pos_z ) 
+stock CreateDroppedWeapon( p_WeapID, p_WeapAmmo, Float:__Weapon_pos_x, Float:__Weapon_pos_y, Float:__Weapon_pos_z ) 
 {
     if(_CreatedDroppedGuns == MAX_DROPPED_GUNS)
     {
