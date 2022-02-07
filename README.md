@@ -4,7 +4,7 @@
   </bold>
 </h1>
 <p align="center">
-  <img width="800" align="center" src="detutils.png">
+  <img width="500" align="center" src="detutils.png">
 </p>
 <h2 align = "center">
   Functions, callbacks, tips and notes
