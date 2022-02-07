@@ -2,9 +2,7 @@
   SA:MP DET-Utils | Wiki; functions, tips and notes
 </h1>
 
-<h2 align="center">
-  Current library version: `2.0.2`
-</h2>
+## Current library version: `2.0.2`
 
 - Addition to SA:MP Standard Scripting Library with new stuff, anti-cheat system, map editor and many more functions!
 
