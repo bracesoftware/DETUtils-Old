@@ -1,6 +1,9 @@
-<h1 align="center">
-  SA:MP DET-Utils | Wiki; functions, tips and notes
+<h1 align = "center">
+  SA:MP DET-Utils | Wiki
 </h1>
+<h2 align = "center">
+  Functions, tips and notes
+</h2>
 
 ## Current library version: `2.0.2`
 
