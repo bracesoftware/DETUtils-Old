@@ -2,7 +2,7 @@
   SA:MP DET-Utils | Wiki; functions, tips and notes
 </h1>
 
-<h12 align="center">
+<h2 align="center">
   Current library version: `2.0.2`
 </h2>
 
