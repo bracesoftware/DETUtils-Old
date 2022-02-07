@@ -3,6 +3,9 @@
   SA:MP DET-Utils | Wiki
   </bold>
 </h1>
+<p align="center">
+  <img width="128" align="center" src="detutils.png">
+</p>
 <h2 align = "center">
   Functions, callbacks, tips and notes
 </h2>
