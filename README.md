@@ -6,13 +6,14 @@
 <p align="center">
   <img width="500" align="center" src="detutils.png">
 </p>
+<h5 align = "center">
+  Addition to SA:MP Standard Scripting Library with new stuff, anti-cheat system, map editor and many more functions!
+</h5>
 <h2 align = "center">
   Functions, callbacks, tips and notes
 </h2>
 
 ## Current library version: `2.0.2`
-
-- Addition to SA:MP Standard Scripting Library with new stuff, anti-cheat system, map editor and many more functions!
 
 Hello scripter! Welcome to *SA:MP DEntisT's Utilities* (or **detutils** for short) "read me" file. So, now, you may ask about - what's this? Well - in general, this addition to SA:MP Standard Scripting package contains libraries that have in-game visible effects and libraries that contain new scripting features. 
 - Below, you can find information about each library.
