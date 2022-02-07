@@ -166,7 +166,7 @@ static Your_Function(player, id)
   return 1;
 }
 ```
-#### ``GetLastPropertyIDUser``
+#### ``GetLastPropertyIDUsed``
 
 - Gets last property id which was used to assign property's data (cache) to.
 
@@ -188,7 +188,7 @@ Example:
 public OnGameModeInit()
 {
   CreatePropertyEntrance(...); // your params
-  SetPropertyEntranceAngles(GetLastPropertyIDUser(), 234.453, 0.23);
+  SetPropertyEntranceAngles(GetLastPropertyIDUsed(), 234.453, 0.23);
   return 1;
 }
 ```
