@@ -106,6 +106,7 @@ static void:AnnounceLibraryLoading_init()
 {
     new DET_g_Version[26];
     format(DET_g_Version, sizeof(DET_g_Version), "%i.%i.%i", DETUTILS_VERSION_MAJOR, DETUTILS_VERSION_MINOR, DETUTILS_VERSION_PATCH);
+    print("                                        ");
     print("|======================================|");
     print("                                        ");
     print("            SA:MP | DETUtils            ");
@@ -119,7 +120,7 @@ static void:AnnounceLibraryLoading_init()
     print("                                        ");
     print("                                        ");
     #if defined DETUTILS_COMPATIBILITY_MODE
-    print(" SA:MP | DETUtils - Compatibility mode is on.");
+    print(" SA:MP | DETUtils - Compatibility mode is ON.");
     #endif
     print("                                        ");
 }

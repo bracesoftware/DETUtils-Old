@@ -9,6 +9,8 @@
  *
  */
 
+#if !defined @DETUTILSCMD_NO_PARSER__
+
 #tryinclude <code-parse>
 
 #if !defined _INC_code_parse_inc
@@ -18,5 +20,7 @@
 #elseif defined _INC_code_parse_inc
 
     #include "d_codeparse"
+
+#endif
 
 #endif

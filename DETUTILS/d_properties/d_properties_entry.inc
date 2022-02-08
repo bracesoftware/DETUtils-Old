@@ -528,7 +528,7 @@ stock __Create3DLabelAndPickup( // Internal function.
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: Pickup id validity checked.");
     #endif
-
+    #if !defined _DETUTILS_NO_COMMUNITY_COMPILER
     Create3DTextLabel(
                             _LabelString, 
                             0xffffffff, 
@@ -553,11 +553,16 @@ stock __Create3DLabelAndPickup( // Internal function.
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: Created dynamic pickup successfully.");
     #endif
-
+    #endif
+    #if !defined _DETUTILS_NO_COMMUNITY_COMPILER
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - Operation completed successfully. Error code: ERRNULL");
     #endif
-
+    #else
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - Operation completed. Error code: COMPILER_INVALID");
+    #endif
+    #endif
     return 1;
 }
 
@@ -1087,6 +1092,7 @@ static void:AnnounceLibraryLoaded_int()
 
 main()
 {
+    _CreateAnncTextDraws();
     #if defined detutils_debug
     SaveLogIntoFile("detutils_properties.log", "[samp-detutils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_properties.log", "[samp-detutils]: (debug) - Loaded.");
@@ -1107,7 +1113,6 @@ main()
 
 public OnFilterScriptInit()
 {
-    _CreateAnncTextDraws();
     #if defined detutils_debug
     SaveLogIntoFile("detutils_properties.log", "[samp-detutils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_properties.log", "[samp-detutils]: (debug) - Loaded.");

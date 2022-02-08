@@ -380,6 +380,8 @@ static
         bool:_IsOnCmdRValid = false,
         bool:_IsOnCmdPValid = false;
 
+// INTERESTING IMPORTANT NOTE HACK CODE:
+
 #if !defined FILTERSCRIPT
 
 public OnGameModeInit()
@@ -401,8 +403,11 @@ public OnGameModeInit()
 
 main()
 {
+    //_IsOnCmdRValid = funcidx("OnPlayerCommandReceived") != -1;
+    //_IsOnCmdPValid = funcidx("OnPlayerCommandPerformed") != -1;
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - ongminit :: Commands loading finished.");
+    //SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     AnnounceLibraryLoaded();
@@ -492,6 +497,9 @@ public OnPlayerCommandText(playerid, cmdtext[])
     {
         if(funcidx(_CommandDebugFunc) != -1)
         {
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - opct :: Command processing stopped : %s didn't return 1.",DET_ParseFunc);
+            #endif
             CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_STOPPED);
         }
         return 0;
