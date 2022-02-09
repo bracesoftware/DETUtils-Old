@@ -85,6 +85,15 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
     return 1;
 }
 ```
+4. Now we need to destroy the queries we created on `OnPlayerDisconnect` - see:
+```pawn
+public OnPlayerDisconnect(playerid, reason)
+{
+    DestroyQuery("DEntisT_SAVE");
+    DestroyQuery("DEntisT_LOAD");
+    return 1;
+}
+```
 # API
 - Below, you can take look at all of the functions provided by the include.
 
@@ -146,5 +155,7 @@ public OnGameModeInit()
     return 1;
 }
 ```
+## `DestroyQuery`
+- Used to destroy the query and free up space in the slot for another query. Example is shown on ``OnPlayerDisconnect``.
 # Messages from creator
 - None currently.
