@@ -89,8 +89,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 ```pawn
 public OnPlayerDisconnect(playerid, reason)
 {
-    DestroyQuery("DEntisT_SAVE");
-    DestroyQuery("DEntisT_LOAD");
+    DestroyQuery("DEntisT_SAVE"); // Free the slot, aka unvalidate the query.
+    DestroyQuery("DEntisT_LOAD"); // Free the slot, aka unvalidate the query.
     return 1;
 }
 ```
