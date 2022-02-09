@@ -53,6 +53,12 @@ Check out test script here:
 
 - [Go to tests...](d_testscript.md)
 
+- You can also run **DETUtils** test script directly from your includes, just use the definition below before including the libraries.
+```pawn
+#define DETUTILS_TESTING_MODE
+```
+> As I mentioned, `DETUTILS_TESTING_MODE` flag will enable the test script automatically.
+
 ## Limits
 
 - Everything has its limits, so does DETUtils - view them [here](d_limits.md)...
