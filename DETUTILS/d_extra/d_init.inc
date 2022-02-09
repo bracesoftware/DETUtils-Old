@@ -119,8 +119,8 @@ static void:AnnounceLibraryLoading_init()
     print("|======================================|");
     print("                                        ");
     print("                                        ");
-    #if defined DETUTILS_COMPATIBILITY_MODE
-    print(" SA:MP | DETUtils - Compatibility mode is ON.");
+    #if defined DETUTILS_FILTERSCRIPT_MODE
+    print(" SA:MP | DETUtils - Filterscript mode is ON.");
     #endif
     print("                                        ");
 }

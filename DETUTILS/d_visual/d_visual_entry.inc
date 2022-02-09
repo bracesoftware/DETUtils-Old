@@ -1074,8 +1074,35 @@ static void:AnnounceLibraryLoaded_visual()
     LoadDETUtilsScript(DETUTILS_SCRIPT_VISUAL);
 }
 
+#if defined detutils_complete_error_boom
 #if !defined FILTERSCRIPT
+#endif
 
+public OnDETUtilsInit()
+{
+    SetTimer("__Weapon_timer", 1000, true);
+    AnnounceLibraryLoaded_visual();
+    #if defined detutils_debug
+    SaveLogIntoFile("detutils_visual.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_visual.log", "[samp-detutils]: (debug) - Loaded.");
+    #endif
+    if(funcidx("d_visual_detutilsinit") != -1)
+    {
+        CallLocalFunction("d_visual_detutilsinit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsInit
+    #undef OnDETUtilsInit
+#else
+    #define _ALS_OnDETUtilsInit
+#endif
+
+#define OnDETUtilsInit d_visual_detutilsinit
+
+forward d_visual_detutilsinit();
+/*
 main()
 {
     #if defined detutils_debug
@@ -1092,8 +1119,11 @@ main()
     #define _ALS_main
 #endif
 
-#define main d_visual_main
+d_visual_main();
 
+#define main( public d_visual_main(*/
+
+#if defined detutils_complete_error_boom
 #else
 
 #undef detutils_visual_TRUE
@@ -1125,6 +1155,7 @@ public OnFilterScriptInit()
 
 forward d_visual_Onfsutilst();
 
+#endif
 #endif
 
 // for satisfication

@@ -11,6 +11,16 @@
  *
  */
 
+
+// ENTRY POINT TO FIX main() NOT BEING CALLED IN FILTERSCRIPTS
+#if defined FILTERSCRIPT
+
+ 	#define DETUTILS_FILTERSCRIPT_MODE
+
+#endif
+
+#tryinclude "d_extra\d_mainfix"
+
 #tryinclude "d_extra\d_libtags"
 
 #if defined d_samp_included

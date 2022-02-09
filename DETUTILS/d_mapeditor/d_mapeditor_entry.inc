@@ -433,8 +433,35 @@ static AnnounceLibraryLoaded_mapeditor()
     LoadDETUtilsScript(DETUTILS_SCRIPT_MAPEDITOR);
 }
 
+#if defined detutils_complete_error_boom
 #if !defined FILTERSCRIPT
+#endif
 
+public OnDETUtilsInit()
+{
+    #if defined detutils_debug
+    SaveLogIntoFile("detutils_mapeditor.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_mapeditor.log", "[samp-detutils]: (debug) - Loaded.");
+    #endif
+    AnnounceLibraryLoaded_mapeditor();
+    if(funcidx("d_me_detutilsinit") != -1)
+    {
+        CallLocalFunction("d_me_detutilsinit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsInit
+    #undef OnDETUtilsInit
+#else
+    #define _ALS_OnDETUtilsInit
+#endif
+
+#define OnDETUtilsInit d_me_detutilsinit
+
+forward d_me_detutilsinit();
+
+/*
 main()
 {
     #if defined detutils_debug
@@ -451,8 +478,11 @@ main()
     #define _ALS_main
 #endif
 
-#define main a_mapeditor_main
+a_mapeditor_main();
 
+#define main( public a_mapeditor_main(*/
+
+#if defined detutils_complete_error_boom
 #else
 
 #define detutils_mapeditor_TRUE 1
@@ -481,4 +511,5 @@ public OnFilterScriptInit()
 
 forward a_mapeditor_OnfsInit();
 
+#endif
 #endif

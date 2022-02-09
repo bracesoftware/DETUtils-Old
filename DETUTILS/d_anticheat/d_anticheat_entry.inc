@@ -965,8 +965,35 @@ static AnnounceLibraryLoaded_anticheat()
     LoadDETUtilsScript(DETUTILS_SCRIPT_ANTICHEAT);
 }
 
+#if defined detutils_complete_error_boom
 #if !defined FILTERSCRIPT
+#endif
 
+public OnDETUtilsInit()
+{
+    #if defined detutils_debug
+    SaveLogIntoFile("detutils_anticheat.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_anticheat.log", "[samp-detutils]: (debug) - Loaded.");
+    #endif
+    AnnounceLibraryLoaded_anticheat();
+    if(funcidx("d_ac_detutilsinit") != -1)
+    {
+        CallLocalFunction("d_ac_detutilsinit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsInit
+    #undef OnDETUtilsInit
+#else
+    #define _ALS_OnDETUtilsInit
+#endif
+
+#define OnDETUtilsInit d_ac_detutilsinit
+
+forward d_ac_detutilsinit();
+
+/*
 main()
 {
     #if defined detutils_debug
@@ -983,8 +1010,11 @@ main()
     #define _ALS_main
 #endif
 
-#define main a_anticheat_main
+a_anticheat_main();
 
+#define main( public a_anticheat_main(*/
+
+#if defined detutils_complete_error_boom
 #else
 
 #define detutils_anticheat_TRUE 1
@@ -1013,4 +1043,5 @@ public OnFilterScriptInit()
 
 forward a_anticheat_OnfsInit();
 
+#endif
 #endif

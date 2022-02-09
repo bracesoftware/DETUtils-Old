@@ -110,6 +110,12 @@ new g_PlayerCmdData[MAX_PLAYERS][enum_PlayerCmdData];
                                                                                       
 */
 
+forward OnPrefixedCommandReceived(playerid, cmdtext[]);
+
+forward OnPrefixedCommandPerformed(playerid, cmdtext[], success);
+
+forward OnPlayerPassCommandPrefix(playerid, cmdtext[], passedprefix[], expectedprefix[]);
+
 #if defined DETUTILS_OPENMP_COMPAT
 
     #define Command_GetSlashType GetSlashCommandType
@@ -389,9 +395,10 @@ static
         bool:_IsOnCmdPValid = false;
 
 // INTERESTING IMPORTANT NOTE HACK CODE:
-
+#if defined detutils_complete_error_boom
 #if !defined FILTERSCRIPT
 
+#if defined detutils_complete_error_boom
 public OnGameModeInit()
 {
     _IsOnCmdRValid = funcidx("OnPlayerCommandReceived") != -1;
@@ -408,20 +415,50 @@ public OnGameModeInit()
     }      
     return 1;
 }
+#endif
 
-main()
+public OnDETUtilsInit()
 {
-    //_IsOnCmdRValid = funcidx("OnPlayerCommandReceived") != -1;
-    //_IsOnCmdPValid = funcidx("OnPlayerCommandPerformed") != -1;
+    _IsOnCmdRValid = funcidx("OnPlayerCommandReceived") != -1;
+    _IsOnCmdPValid = funcidx("OnPlayerCommandPerformed") != -1;
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - ongminit :: Commands loading finished.");
-    //SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loaded.");
+    #endif
+    AnnounceLibraryLoaded();
+    if(funcidx("d_cmd_detutilsinit") != -1)
+    {
+        CallLocalFunction("d_cmd_detutilsinit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsInit
+    #undef OnDETUtilsInit
+#else
+    #define _ALS_OnDETUtilsInit
+#endif
+
+#define OnDETUtilsInit d_cmd_detutilsinit
+
+forward d_cmd_detutilsinit();
+
+/*
+main()
+{
+    _IsOnCmdRValid = funcidx("OnPlayerCommandReceived") != -1;
+    _IsOnCmdPValid = funcidx("OnPlayerCommandPerformed") != -1;
+    #if defined detutils_debug
+    printf("[samp-detutils]: (debug) - ongminit :: Commands loading finished.");
+    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
     AnnounceLibraryLoaded();
     a_cmd_main();
 }
-
+*/
+#if defined detutils_complete_error_boom
 #else
 
 public OnFilterScriptInit()
@@ -442,6 +479,7 @@ public OnFilterScriptInit()
     return 1;
 }
 
+#endif
 #endif
 
 public OnPlayerDisconnect(playerid, reason)
@@ -632,6 +670,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 
 forward a_OnPlayerCommandText(playerid, cmdtext[]);
 
+#if defined detutils_complete_error_boom
 #if !defined FILTERSCRIPT
 
 #if defined _ALS_OnGameModeInit
@@ -650,7 +689,9 @@ forward a_cmd_processor_OnGameModeInit();
     #define _ALS_main
 #endif
 
-#define main a_cmd_main
+forward a_cmd_main();
+
+#define main() public a_cmd_main(
 
 #else
 
@@ -665,10 +706,6 @@ forward a_cmd_processor_OnGameModeInit();
 forward a_cmd_OnFilterScriptInit();
 
 #endif
-
-forward OnPrefixedCommandReceived(playerid, cmdtext[]);
-
-forward OnPrefixedCommandPerformed(playerid, cmdtext[], success);
 
 stock strgetfc(const string[]) 
 {
@@ -1542,8 +1579,6 @@ stock void:SetPlayerChatMode(playerid, chatmode)
         Data_g_ChatMode[playerid] = 1;
     }
 }
-
-forward OnPlayerPassCommandPrefix(playerid, cmdtext[], passedprefix[], expectedprefix[]);
 
 //Implementation
 public OnPlayerPassCommandPrefix(playerid, cmdtext[], passedprefix[], expectedprefix[])

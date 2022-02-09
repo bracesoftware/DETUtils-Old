@@ -930,8 +930,35 @@ static void:AnnounceLibraryLoaded_fmargs()
     LoadDETUtilsScript(DETUTILS_SCRIPT_FMARGS);
 }
 
+#if defined detutils_complete_error_boom
 #if !defined FILTERSCRIPT
+#endif
 
+public OnDETUtilsInit()
+{
+    #if defined detutils_debug
+    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
+    #endif
+    AnnounceLibraryLoaded_fmargs();
+    if(funcidx("d_fmargs_detutilsinit") != -1)
+    {
+        CallLocalFunction("d_fmargs_detutilsinit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsInit
+    #undef OnDETUtilsInit
+#else
+    #define _ALS_OnDETUtilsInit
+#endif
+
+#define OnDETUtilsInit d_fmargs_detutilsinit
+
+forward d_fmargs_detutilsinit();
+
+/*
 main()
 {
     #if defined detutils_debug
@@ -948,8 +975,11 @@ main()
     #define _ALS_main
 #endif
 
-#define main a_fmargs_main
+a_fmargs_main();
 
+#define main( public a_fmargs_main(
+*/
+#if defined detutils_complete_error_boom
 #else
 
 #define detutils_fmargs_TRUE 1
@@ -978,4 +1008,5 @@ public OnFilterScriptInit()
 
 forward a_fmargs_OnfsInit();
 
+#endif
 #endif

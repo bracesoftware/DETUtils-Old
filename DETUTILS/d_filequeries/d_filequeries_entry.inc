@@ -392,8 +392,34 @@ static AnnounceLibraryLoaded_queries()
     LoadDETUtilsScript(DETUTILS_SCRIPT_FILEQUERIES);
 }
 
+#if defined detutils_complete_error_boom
 #if !defined FILTERSCRIPT
+#endif
 
+public OnDETUtilsInit()
+{
+    #if defined detutils_debug
+    SaveLogIntoFile("detutils_queries.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_queries.log", "[samp-detutils]: (debug) - Loaded.");
+    #endif
+    AnnounceLibraryLoaded_queries();
+    if(funcidx("d_fq_detutilsinit") != -1)
+    {
+        CallLocalFunction("d_fq_detutilsinit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsInit
+    #undef OnDETUtilsInit
+#else
+    #define _ALS_OnDETUtilsInit
+#endif
+
+#define OnDETUtilsInit d_fq_detutilsinit
+
+forward d_fq_detutilsinit();
+/*
 main()
 {
     #if defined detutils_debug
@@ -410,8 +436,11 @@ main()
     #define _ALS_main
 #endif
 
-#define main a_queries_main
+a_queries_main();
 
+#define main( public a_queries_main(
+*/
+#if defined detutils_complete_error_boom
 #else
 
 #define detutils_queries_TRUE 1
@@ -440,4 +469,5 @@ public OnFilterScriptInit()
 
 forward a_queries_OnfsInit();
 
+#endif
 #endif
