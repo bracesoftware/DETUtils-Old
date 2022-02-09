@@ -1069,19 +1069,10 @@ forward d_visual_Onpde(playerid);
 
 */
 
-static void:AnnounceLibraryLoaded_visual()
-{
-    LoadDETUtilsScript(DETUTILS_SCRIPT_VISUAL);
-}
-
-#if defined detutils_complete_error_boom
-#if !defined FILTERSCRIPT
-#endif
-
 public OnDETUtilsInit()
 {
     SetTimer("__Weapon_timer", 1000, true);
-    AnnounceLibraryLoaded_visual();
+    LoadDETUtilsScript(DETUTILS_SCRIPT_VISUAL);
     #if defined detutils_debug
     SaveLogIntoFile("detutils_visual.log", "[samp-detutils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_visual.log", "[samp-detutils]: (debug) - Loaded.");
@@ -1102,61 +1093,6 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit d_visual_detutilsinit
 
 forward d_visual_detutilsinit();
-/*
-main()
-{
-    #if defined detutils_debug
-    SaveLogIntoFile("detutils_visual.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_visual.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    AnnounceLibraryLoaded_visual();
-    d_visual_main();
-}
-
-#if defined _ALS_main
-    #undef main
-#else
-    #define _ALS_main
-#endif
-
-d_visual_main();
-
-#define main( public d_visual_main(*/
-
-#if defined detutils_complete_error_boom
-#else
-
-#undef detutils_visual_TRUE
-
-#define detutils_visual_TRUE 1
-
-public OnFilterScriptInit()
-{
-    SetTimer("__Weapon_timer", 1000, true);
-    AnnounceLibraryLoaded_visual();
-    #if defined detutils_debug
-    SaveLogIntoFile("detutils_visual.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_visual.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    if(funcidx("d_visual_Onfsutilst") != -1)
-    {
-        CallLocalFunction("d_visual_Onfsutilst", "i", playerid);
-    }
-    return detutils_visual_TRUE;
-}
-
-#if defined _ALS_OnFilterScriptInit
-    #undef OnFilterScriptInit
-#else
-    #define _ALS_OnFilterScriptInit
-#endif
-
-#define OnFilterScriptInit d_visual_Onfsutilst
-
-forward d_visual_Onfsutilst();
-
-#endif
-#endif
 
 // for satisfication
 

@@ -110,12 +110,6 @@ new g_PlayerCmdData[MAX_PLAYERS][enum_PlayerCmdData];
                                                                                       
 */
 
-forward OnPrefixedCommandReceived(playerid, cmdtext[]);
-
-forward OnPrefixedCommandPerformed(playerid, cmdtext[], success);
-
-forward OnPlayerPassCommandPrefix(playerid, cmdtext[], passedprefix[], expectedprefix[]);
-
 #if defined DETUTILS_OPENMP_COMPAT
 
     #define Command_GetSlashType GetSlashCommandType
@@ -385,37 +379,9 @@ stock CallCommand(const cmdtext[], const playerid, const params[], const type = 
                         88               
 */
 
-static void:AnnounceLibraryLoaded()
-{
-    LoadDETUtilsScript(DETUTILS_SCRIPT_COMMANDS);
-}
-
 static
         bool:_IsOnCmdRValid = false,
         bool:_IsOnCmdPValid = false;
-
-// INTERESTING IMPORTANT NOTE HACK CODE:
-#if defined detutils_complete_error_boom
-#if !defined FILTERSCRIPT
-
-#if defined detutils_complete_error_boom
-public OnGameModeInit()
-{
-    _IsOnCmdRValid = funcidx("OnPlayerCommandReceived") != -1;
-    _IsOnCmdPValid = funcidx("OnPlayerCommandPerformed") != -1;
-
-    #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - ongminit :: Commands init...");
-    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loading...");
-    #endif
-
-    if (funcidx("a_cmd_processor_OnGameModeInit") != -1)
-    {
-        return CallLocalFunction("a_cmd_processor_OnGameModeInit", "");
-    }      
-    return 1;
-}
-#endif
 
 public OnDETUtilsInit()
 {
@@ -426,7 +392,7 @@ public OnDETUtilsInit()
     SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
-    AnnounceLibraryLoaded();
+    LoadDETUtilsScript(DETUTILS_SCRIPT_COMMANDS);
     if(funcidx("d_cmd_detutilsinit") != -1)
     {
         CallLocalFunction("d_cmd_detutilsinit", "");
@@ -458,29 +424,6 @@ main()
     a_cmd_main();
 }
 */
-#if defined detutils_complete_error_boom
-#else
-
-public OnFilterScriptInit()
-{
-    #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - onfsinit :: Commands loading finished.");
-    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_commands.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    AnnounceLibraryLoaded();
-    _IsOnCmdRValid = funcidx("OnPlayerCommandReceived") != -1;
-    _IsOnCmdPValid = funcidx("OnPlayerCommandPerformed") != -1;
-
-    if (funcidx("a_cmd_OnFilterScriptInit") != -1)
-    {
-        return CallLocalFunction("a_cmd_OnFilterScriptInit", "");
-    }
-    return 1;
-}
-
-#endif
-#endif
 
 public OnPlayerDisconnect(playerid, reason)
 {
@@ -646,6 +589,16 @@ public OnPlayerCommandText(playerid, cmdtext[])
     return CallLocalFunction(_ClassicFunctionName, "is", playerid, cmdtext[position]);
 }
 
+#if defined _ALS_OnPlayerCommandText
+    #undef OnPlayerCommandText
+#else
+    #define _ALS_OnPlayerCommandText
+#endif
+
+#define OnPlayerCommandText a_OnPlayerCommandText
+
+forward a_OnPlayerCommandText(playerid, cmdtext[]);
+
 /*
                                                               
 88        88                            88                    
@@ -659,53 +612,6 @@ public OnPlayerCommandText(playerid, cmdtext[])
                                                               
 
 */
- 
-#if defined _ALS_OnPlayerCommandText
-    #undef OnPlayerCommandText
-#else
-    #define _ALS_OnPlayerCommandText
-#endif
-
-#define OnPlayerCommandText a_OnPlayerCommandText
-
-forward a_OnPlayerCommandText(playerid, cmdtext[]);
-
-#if defined detutils_complete_error_boom
-#if !defined FILTERSCRIPT
-
-#if defined _ALS_OnGameModeInit
-    #undef OnGameModeInit
-#else
-    #define _ALS_OnGameModeInit
-#endif
-
-#define OnGameModeInit a_cmd_processor_OnGameModeInit
-
-forward a_cmd_processor_OnGameModeInit();
-
-#if defined _ALS_main
-    #undef main
-#else
-    #define _ALS_main
-#endif
-
-forward a_cmd_main();
-
-#define main() public a_cmd_main(
-
-#else
-
-#if defined _ALS_OnFilterScriptInit
-    #undef OnFilterScriptInit
-#else
-    #define _ALS_OnFilterScriptInit
-#endif
-
-#define OnFilterScriptInit a_cmd_OnFilterScriptInit
-
-forward a_cmd_OnFilterScriptInit();
-
-#endif
 
 stock strgetfc(const string[]) 
 {
@@ -1579,6 +1485,12 @@ stock void:SetPlayerChatMode(playerid, chatmode)
         Data_g_ChatMode[playerid] = 1;
     }
 }
+
+forward OnPrefixedCommandReceived(playerid, cmdtext[]);
+
+forward OnPrefixedCommandPerformed(playerid, cmdtext[], success);
+
+forward OnPlayerPassCommandPrefix(playerid, cmdtext[], passedprefix[], expectedprefix[]);
 
 //Implementation
 public OnPlayerPassCommandPrefix(playerid, cmdtext[], passedprefix[], expectedprefix[])

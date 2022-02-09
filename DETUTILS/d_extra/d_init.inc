@@ -102,7 +102,7 @@ static const DET_g_Version[1][10] = { ""DETUTILS_VERSION_MAJOR"."DETUTILS_VERSIO
 
 #endif
 
-static void:AnnounceLibraryLoading_init()
+static void:LoadDETUtils()
 {
     new DET_g_Version[26];
     format(DET_g_Version, sizeof(DET_g_Version), "%i.%i.%i", DETUTILS_VERSION_MAJOR, DETUTILS_VERSION_MINOR, DETUTILS_VERSION_PATCH);
@@ -125,13 +125,32 @@ static void:AnnounceLibraryLoading_init()
     print("                                        ");
 }
 
+static void:UnloadDETUtils()
+{
+    print("                                        ");
+    print("|======================================|");
+    print("                                        ");
+    print("            SA:MP | DETUtils            ");
+    print("          System is unloading...        ");
+    print("                                        ");
+    print("               By: DEntisT              ");
+    print("                                        ");
+    print("|======================================|");
+    print("                                        ");
+    print("                                        ");
+    #if defined DETUTILS_FILTERSCRIPT_MODE
+    print(" SA:MP | DETUtils - Filterscript mode is OFF.");
+    #endif
+    print("                                        ");
+}
+
 #if !defined FILTERSCRIPT
 
 public OnGameModeInit()
 {
     if(funcidx("a_init_OnGameModeInit") != -1)
     {
-        a_init_OnGameModeInit();
+        CallLocalFunction("a_init_OnGameModeInit","");
     }
     OnDETUtilsInit();
     return 1;
@@ -145,26 +164,29 @@ public OnGameModeInit()
 
 #define OnGameModeInit a_init_OnGameModeInit
 
-#if defined detutils_debug
+forward a_init_OnGameModeInit();
 
-main()
+//
+
+public OnGameModeExit()
 {
-    SendRconCommand("hostname [samp-detutils]: (test) - Server");
-    SetGameModeText("SA:MP | DET-Utils");
-    a_init_main();
+    if(funcidx("a_init_OnGameModeExit") != -1)
+    {
+        CallLocalFunction("a_init_OnGameModeExit","");
+    }
+    OnDETUtilsExit();
+    return 1;
 }
 
-#if defined _ALS_main
-    #undef main
+#if defined _ALS_OnGameModeInit
+    #undef OnGameModeExit
 #else
-    #define _ALS_main
+    #define _ALS_OnGameModeInit
 #endif
 
-#define main a_init_main
+#define OnGameModeExit a_init_OnGameModeExit
 
-#endif
-
-forward a_init_OnGameModeInit();
+forward a_init_OnGameModeExit();
 
 #else
 
@@ -172,7 +194,7 @@ public OnFilterScriptInit()
 {
     if(funcidx("a_init_OnFilterScriptInit") != -1)
     {
-        a_init_OnFilterScriptInit();
+        CallLocalFunction("a_init_OnFilterScriptInit", "");
     }
     OnDETUtilsInit();
     return 1;
@@ -188,12 +210,40 @@ public OnFilterScriptInit()
 
 forward a_init_OnFilterScriptInit();
 
+//
+
+public OnFilterScriptExit()
+{
+    if(funcidx("a_init_OnFilterScriptExit") != -1)
+    {
+        CallLocalFunction("a_init_OnFilterScriptExit","");
+    }
+    OnDETUtilsExit();
+    return 1;
+}
+
+#if defined _ALS_OnFilterScriptExit
+    #undef OnFilterScriptExit
+#else
+    #define _ALS_OnFilterScriptExit
 #endif
+
+#define OnFilterScriptExit a_init_OnFilterScriptExit
+
+forward a_init_OnFilterScriptExit();
+
+#endif
+
+// Internal callbacks!
 
 forward OnDETUtilsInit();
 public OnDETUtilsInit()
 {
-    AnnounceLibraryLoading_init();
+    #if defined detutils_debug
+    SendRconCommand("hostname [samp-detutils]: (test) - Server");
+    SetGameModeText("SA:MP | DET-Utils");
+    #endif
+    LoadDETUtils();
     if(funcidx("a_init_OnDETUtilsInit") != -1)
     {
         CallLocalFunction("a_init_OnDETUtilsInit", "");
@@ -210,3 +260,24 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit a_init_OnDETUtilsInit
 
 forward a_init_OnDETUtilsInit();
+
+forward OnDETUtilsExit();
+public OnDETUtilsExit()
+{
+    UnloadDETUtils();
+    if(funcidx("a_init_OnDETUtilsExit") != -1)
+    {
+        CallLocalFunction("a_init_OnDETUtilsExit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsExit
+    #undef OnDETUtilsExit
+#else
+    #define _ALS_OnDETUtilsExit
+#endif
+
+#define OnDETUtilsExit a_init_OnDETUtilsExit
+
+forward a_init_OnDETUtilsExit();

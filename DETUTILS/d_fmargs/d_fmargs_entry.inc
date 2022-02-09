@@ -925,22 +925,13 @@ stock
 
 // init code
 
-static void:AnnounceLibraryLoaded_fmargs()
-{
-    LoadDETUtilsScript(DETUTILS_SCRIPT_FMARGS);
-}
-
-#if defined detutils_complete_error_boom
-#if !defined FILTERSCRIPT
-#endif
-
 public OnDETUtilsInit()
 {
     #if defined detutils_debug
     SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
-    AnnounceLibraryLoaded_fmargs();
+    LoadDETUtilsScript(DETUTILS_SCRIPT_FMARGS);
     if(funcidx("d_fmargs_detutilsinit") != -1)
     {
         CallLocalFunction("d_fmargs_detutilsinit", "");
@@ -957,56 +948,3 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit d_fmargs_detutilsinit
 
 forward d_fmargs_detutilsinit();
-
-/*
-main()
-{
-    #if defined detutils_debug
-    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    AnnounceLibraryLoaded_fmargs();
-    a_fmargs_main();
-}
-
-#if defined _ALS_main
-    #undef main
-#else
-    #define _ALS_main
-#endif
-
-a_fmargs_main();
-
-#define main( public a_fmargs_main(
-*/
-#if defined detutils_complete_error_boom
-#else
-
-#define detutils_fmargs_TRUE 1
-
-public OnFilterScriptInit()
-{
-    AnnounceLibraryLoaded_fmargs();
-    #if defined detutils_debug
-    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    if(funcidx("a_fmargs_OnfsInit") != -1)
-    {
-        CallLocalFunction("a_fmargs_OnfsInit", "i", playerid);
-    }
-    return detutils_fmargs_TRUE;
-}
-
-#if defined _ALS_OnFilterScriptInit
-    #undef OnFilterScriptInit
-#else
-    #define _ALS_OnFilterScriptInit
-#endif
-
-#define OnFilterScriptInit a_fmargs_OnfsInit
-
-forward a_fmargs_OnfsInit();
-
-#endif
-#endif

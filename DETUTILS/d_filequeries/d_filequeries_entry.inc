@@ -387,22 +387,13 @@ stock SetQueryDelimiter(delimiter)
 
 */
 
-static AnnounceLibraryLoaded_queries()
-{
-    LoadDETUtilsScript(DETUTILS_SCRIPT_FILEQUERIES);
-}
-
-#if defined detutils_complete_error_boom
-#if !defined FILTERSCRIPT
-#endif
-
 public OnDETUtilsInit()
 {
     #if defined detutils_debug
     SaveLogIntoFile("detutils_queries.log", "[samp-detutils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_queries.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
-    AnnounceLibraryLoaded_queries();
+    LoadDETUtilsScript(DETUTILS_SCRIPT_FILEQUERIES);
     if(funcidx("d_fq_detutilsinit") != -1)
     {
         CallLocalFunction("d_fq_detutilsinit", "");
@@ -419,55 +410,3 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit d_fq_detutilsinit
 
 forward d_fq_detutilsinit();
-/*
-main()
-{
-    #if defined detutils_debug
-    SaveLogIntoFile("detutils_queries.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_queries.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    AnnounceLibraryLoaded_queries();
-    a_queries_main();
-}
-
-#if defined _ALS_main
-    #undef main
-#else
-    #define _ALS_main
-#endif
-
-a_queries_main();
-
-#define main( public a_queries_main(
-*/
-#if defined detutils_complete_error_boom
-#else
-
-#define detutils_queries_TRUE 1
-
-public OnFilterScriptInit()
-{
-    AnnounceLibraryLoaded_queries();
-    #if defined detutils_debug
-    SaveLogIntoFile("detutils_queries.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_queries.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    if(funcidx("a_queries_OnfsInit") != -1)
-    {
-        CallLocalFunction("a_queries_OnfsInit", "i", playerid);
-    }
-    return detutils_queries_TRUE;
-}
-
-#if defined _ALS_OnFilterScriptInit
-    #undef OnFilterScriptInit
-#else
-    #define _ALS_OnFilterScriptInit
-#endif
-
-#define OnFilterScriptInit a_queries_OnfsInit
-
-forward a_queries_OnfsInit();
-
-#endif
-#endif

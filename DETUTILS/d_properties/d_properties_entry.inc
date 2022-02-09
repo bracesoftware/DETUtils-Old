@@ -43,6 +43,7 @@
 
 enum enum_PropertyData
 {
+    ValidProp,
     p_PropertyName[32],
 
     Float:p_PropertyEntrance_X,
@@ -62,8 +63,8 @@ enum enum_PropertyData
 
     p_PropertyPickup,
     p_PropertyPickupID,
-    p_PropertyLabel,
-    p_PropertyLabelID,
+    Text3D:p_PropertyLabel,
+    Text3D:p_PropertyLabelID,
 
     p_PropertyLocked
 };
@@ -82,7 +83,7 @@ new g_PlayerProperty[MAX_PLAYERS];
 
 new g_PropertyData[MAX_PROPERTIES][enum_PropertyData];
 
-new g_PropertyID;
+new DET_g_CreatedProperties;
 
 new _EntranceTitleShown[MAX_PLAYERS];
 
@@ -502,8 +503,12 @@ stock __Create3DLabelAndPickup( // Internal function.
         Float:_zPosition,  
         _VirtualWorld, 
         _Pickupid, 
-        Float:_LabelRadius ) 
+        Float:_LabelRadius, 
+        Text3D:label,
+        pickup ) 
 {
+    #pragma unused label
+    #pragma unused pickup
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - c3dladp :: String checking finished.");
     #endif
@@ -529,7 +534,7 @@ stock __Create3DLabelAndPickup( // Internal function.
     printf("[samp-detutils]: (debug) - c3dladp :: Pickup id validity checked.");
     #endif
     #if !defined _DETUTILS_NO_COMMUNITY_COMPILER
-    Create3DTextLabel(
+    label = Create3DTextLabel(
                             _LabelString, 
                             0xffffffff, 
                             _xPosition, 
@@ -542,7 +547,7 @@ stock __Create3DLabelAndPickup( // Internal function.
     printf("[samp-detutils]: (debug) - c3dladp :: Created 3d label successfully.");
     #endif
 
-    CreatePickup(
+    pickup = CreatePickup(
                     _Pickupid, 
                     1, 
                     _xPosition, 
@@ -587,145 +592,199 @@ stock CreatePropertyEntrance(
         _eInteriorid = 0,
         _eVirtualWorldid = 0)
 {
-    if(g_PropertyID == MAX_PROPERTIES)
-    {
-        #if defined detutils_debug
-        for(new i = 0; i < MAX_PLAYERS; i++)
+    for(new g_PropertyID = 1; 
+        g_PropertyID < MAX_PROPERTIES; 
+        g_PropertyID++)
         {
-            if(i != INVALID_PLAYER_ID)
+            if(g_PropertyData[g_PropertyID][ValidProp] == 0)
             {
-                d_SendWarningMessage(i, DETUTILS_TEXT_MAX_PROPS_REACH);
+                printf("[samp-detutils]: (debug) - Property '%s' successfully created, entrance is set to: %f, %f, %f.",
+                        PropertyName,
+                        Float:_xEntrance, 
+                        Float:_yEntrance, 
+                        Float:_zEntrance);
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - Property created.");
+                #endif
+
+                g_PropertyID++;
+
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - Property id assigned.");
+                #endif
+
+                strmid(g_PropertyData[g_PropertyID][p_PropertyName], 
+                        PropertyName, 
+                        0, 
+                        strlen(PropertyName), 
+                        255);
+
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - Saved property name.");
+                #endif
+
+                printf("[samp-detutils]: (debug) - Property '%s' has an id %d.",PropertyName,g_PropertyID);
+
+                g_PropertyData[g_PropertyID][p_PropertyEntrance_X] = _xEntrance;
+                g_PropertyData[g_PropertyID][p_PropertyEntrance_Y] = _yEntrance;
+                g_PropertyData[g_PropertyID][p_PropertyEntrance_Z] = _zEntrance;
+
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - Entrance coordinates assigned to property data.");
+                #endif
+
+                g_PropertyData[g_PropertyID][p_PropertyExit_X] = _xExit;
+                g_PropertyData[g_PropertyID][p_PropertyExit_Y] = _yExit;
+                g_PropertyData[g_PropertyID][p_PropertyExit_Z] = _zExit;
+
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - Exit coordinates assigned to property data.");
+                #endif
+
+                g_PropertyData[g_PropertyID][p_PropertyIntid] = _eInteriorid;
+                g_PropertyData[g_PropertyID][p_PropertyIntid_OUT] = _xInteriorid;
+                g_PropertyData[g_PropertyID][p_PropertyVwid] = _eVirtualWorldid;
+                g_PropertyData[g_PropertyID][p_PropertyVwid_OUT] = _xVirtualWorldid;
+
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - Virtual world IDs and interior IDs assigned to property data.");
+                #endif
+
+                if(Interior != INTERIOR_CUSTOM)
+                {
+                    #if defined detutils_debug
+                    printf("[samp-detutils]: (debug) - Assigned interior map id to property id : %i", Interior);
+                    #endif
+
+                    if(Interior == INTERIOR_MARKET_247_1)
+                    {
+                        g_PropertyData[g_PropertyID][p_PropertyIntid] = 17;
+                        g_PropertyData[g_PropertyID][p_PropertyVwid] = 17;
+                        _eInteriorid = 17;
+                        _eVirtualWorldid = 17;
+
+                        g_PropertyData[g_PropertyID][p_PropertyExit_X] = -25.884498;
+                        g_PropertyData[g_PropertyID][p_PropertyExit_Y] = -185.868988;
+                        g_PropertyData[g_PropertyID][p_PropertyExit_Z] = 1003.546875;
+                    }
+                    if(Interior == INTERIOR_MARKET_247_2)
+                    {
+                        DETUTILS_PROP_PARAMS__(6.091179,-29.271898,1003.549438,10);
+                    }
+                    if(Interior == INTERIOR_MARKET_247_3)
+                    {
+                        DETUTILS_PROP_PARAMS__(-30.946699,-89.609596,1003.546875,18);
+                    }
+                    if(Interior == INTERIOR_MARKET_247_4)
+                    {
+                        DETUTILS_PROP_PARAMS__(-25.132598,-139.066986,1003.546875,16);
+                    }
+                    if(Interior == INTERIOR_MARKET_247_5)
+                    {
+                        DETUTILS_PROP_PARAMS__(-27.312299,-29.277599,1003.557250,4);
+                    }
+                    if(Interior == INTERIOR_MARKET_247_6)
+                    {
+                        DETUTILS_PROP_PARAMS__(-26.691598,-55.714897,1003.546875,6);
+                    }
+                }
+
+                if(Labels == true)
+                {
+                    new _EntranceLabelString[300];
+                    #if defined detutils_debug
+                    printf("[samp-detutils]: (debug) - Empty string declared.");
+                    #endif
+                    format(_EntranceLabelString,sizeof(_EntranceLabelString),"{ffffff}[ %s ]\n{ffffff}Enter here!",PropertyName);
+                    #if defined detutils_debug
+                    printf("[samp-detutils]: (debug) - Formatted the 3D label string successfully.");
+                    #endif
+                    __Create3DLabelAndPickup(_EntranceLabelString, _xEntrance,_yEntrance,_zEntrance, 
+                        _xVirtualWorldid, 19133, 3.0, 
+                        g_PropertyData[g_PropertyID][p_PropertyLabelID], 
+                        g_PropertyData[g_PropertyID][p_PropertyPickupID]);
+                    #if defined detutils_debug
+                    printf("[samp-detutils]: (debug) - lab :: Created 3D label and pickup on entrance.");
+                    #endif
+                    __Create3DLabelAndPickup("Exit here!", g_PropertyData[g_PropertyID][p_PropertyExit_X],
+                        g_PropertyData[g_PropertyID][p_PropertyExit_Y], 
+                        g_PropertyData[g_PropertyID][p_PropertyExit_Z], 
+                        _eVirtualWorldid, 19133, 3.0,
+                        g_PropertyData[g_PropertyID][p_PropertyLabel], 
+                        g_PropertyData[g_PropertyID][p_PropertyPickup]);
+                    #if defined detutils_debug
+                    printf("[samp-detutils]: (debug) - pick :: Created 3D label and pickup on exit.");
+                    #endif
+                }
+
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - Internal property data assigned.");
+                #endif
+
+                if(funcidx("OnPropertyCreated") != -1)
+                {
+                    CallLocalFunction("OnPropertyCreated", "i", g_PropertyID);
+                }
+
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - OnPropertyCreated(propertyid) called.");
+                #endif
+
+                g_PropertyData[g_PropertyID][ValidProp] = 1;
+                DET_g_CreatedProperties ++;
+                break;
+            }
+            else
+            {
+                if(DET_g_CreatedProperties == MAX_PROPERTIES)
+                {
+                    #if defined detutils_debug
+                    for(new i = 0; i < MAX_PLAYERS; i++)
+                    {
+                        if(i != INVALID_PLAYER_ID)
+                        {
+                            d_SendWarningMessage(i, DETUTILS_TEXT_MAX_PROPS_REACH);
+                        }
+                    }
+                    #endif
+                    return 0;
+                }
             }
         }
-        #endif
-        return 0;
-    }
-    printf("[samp-detutils]: (debug) - Property '%s' successfully created, entrance is set to: %f, %f, %f.",
-            PropertyName,
-            Float:_xEntrance, 
-            Float:_yEntrance, 
-            Float:_zEntrance);
-    #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - Property created.");
-    #endif
-
-    g_PropertyID++;
-
-    #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - Property id assigned.");
-    #endif
-
-    strmid(g_PropertyData[g_PropertyID][p_PropertyName], 
-            PropertyName, 
-            0, 
-            strlen(PropertyName), 
-            255);
-
-    #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - Saved property name.");
-    #endif
-
-    printf("[samp-detutils]: (debug) - Property '%s' has an id %d.",PropertyName,g_PropertyID);
-
-    g_PropertyData[g_PropertyID][p_PropertyEntrance_X] = _xEntrance;
-    g_PropertyData[g_PropertyID][p_PropertyEntrance_Y] = _yEntrance;
-    g_PropertyData[g_PropertyID][p_PropertyEntrance_Z] = _zEntrance;
-
-    #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - Entrance coordinates assigned to property data.");
-    #endif
-
-    g_PropertyData[g_PropertyID][p_PropertyExit_X] = _xExit;
-    g_PropertyData[g_PropertyID][p_PropertyExit_Y] = _yExit;
-    g_PropertyData[g_PropertyID][p_PropertyExit_Z] = _zExit;
-
-    #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - Exit coordinates assigned to property data.");
-    #endif
-
-    g_PropertyData[g_PropertyID][p_PropertyIntid] = _eInteriorid;
-    g_PropertyData[g_PropertyID][p_PropertyIntid_OUT] = _xInteriorid;
-    g_PropertyData[g_PropertyID][p_PropertyVwid] = _eVirtualWorldid;
-    g_PropertyData[g_PropertyID][p_PropertyVwid_OUT] = _xVirtualWorldid;
-
-    #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - Virtual world IDs and interior IDs assigned to property data.");
-    #endif
-
-    if(Interior != INTERIOR_CUSTOM)
-    {
-        #if defined detutils_debug
-        printf("[samp-detutils]: (debug) - Assigned interior map id to property id : %i", Interior);
-        #endif
-
-        if(Interior == INTERIOR_MARKET_247_1)
-        {
-            g_PropertyData[g_PropertyID][p_PropertyIntid] = 17;
-            g_PropertyData[g_PropertyID][p_PropertyVwid] = 17;
-            _eInteriorid = 17;
-            _eVirtualWorldid = 17;
-
-            g_PropertyData[g_PropertyID][p_PropertyExit_X] = -25.884498;
-            g_PropertyData[g_PropertyID][p_PropertyExit_Y] = -185.868988;
-            g_PropertyData[g_PropertyID][p_PropertyExit_Z] = 1003.546875;
-        }
-        if(Interior == INTERIOR_MARKET_247_2)
-        {
-            DETUTILS_PROP_PARAMS__(6.091179,-29.271898,1003.549438,10);
-        }
-        if(Interior == INTERIOR_MARKET_247_3)
-        {
-            DETUTILS_PROP_PARAMS__(-30.946699,-89.609596,1003.546875,18);
-        }
-        if(Interior == INTERIOR_MARKET_247_4)
-        {
-            DETUTILS_PROP_PARAMS__(-25.132598,-139.066986,1003.546875,16);
-        }
-        if(Interior == INTERIOR_MARKET_247_5)
-        {
-            DETUTILS_PROP_PARAMS__(-27.312299,-29.277599,1003.557250,4);
-        }
-        if(Interior == INTERIOR_MARKET_247_6)
-        {
-            DETUTILS_PROP_PARAMS__(-26.691598,-55.714897,1003.546875,6);
-        }
-    }
-
-    if(Labels == true)
-    {
-        new _EntranceLabelString[300];
-        #if defined detutils_debug
-        printf("[samp-detutils]: (debug) - Empty string declared.");
-        #endif
-        format(_EntranceLabelString,sizeof(_EntranceLabelString),"{ffffff}[ %s ]\n{ffffff}Enter here!",PropertyName);
-        #if defined detutils_debug
-        printf("[samp-detutils]: (debug) - Formatted the 3D label string successfully.");
-        #endif
-        __Create3DLabelAndPickup(_EntranceLabelString, _xEntrance,_yEntrance,_zEntrance, _xVirtualWorldid, 19133, 3.0);
-        #if defined detutils_debug
-        printf("[samp-detutils]: (debug) - lab :: Created 3D label and pickup on entrance.");
-        #endif
-        __Create3DLabelAndPickup("Exit here!", g_PropertyData[g_PropertyID][p_PropertyExit_X],
-            g_PropertyData[g_PropertyID][p_PropertyExit_Y], g_PropertyData[g_PropertyID][p_PropertyExit_Z], _eVirtualWorldid, 19133, 3.0);
-        #if defined detutils_debug
-        printf("[samp-detutils]: (debug) - pick :: Created 3D label and pickup on exit.");
-        #endif
-    }
-
-    #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - Internal property data assigned.");
-    #endif
-
-    if(funcidx("OnPropertyCreated") != -1)
-    {
-        CallLocalFunction("OnPropertyCreated", "i", g_PropertyID);
-    }
-
-    #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - OnPropertyCreated(propertyid) called.");
-    #endif
-
     return 1;
+}
+
+#if defined DETUTILS_OPENMP_COMPAT
+    
+    #define Property_DestroyEntrance DestroyPropertyEntrance
+
+#endif
+
+stock DestroyPropertyEntrance(const name[])
+{
+    for(new i = 1; i < MAX_PROPERTIES; i++)
+    {
+        if(!strcmp(g_PropertyData[i][p_PropertyName], name, false))
+        {
+            g_PropertyData[i][ValidProp] = 0;
+            DET_g_CreatedProperties --;
+            Delete3DTextLabel(g_PropertyData[i][p_PropertyLabelID]);
+            Delete3DTextLabel(g_PropertyData[i][p_PropertyLabel]);
+            DestroyPickup(g_PropertyData[i][p_PropertyPickupID]);
+            DestroyPickup(g_PropertyData[i][p_PropertyPickup]);
+            g_PropertyData[g_PropertyID][p_PropertyExit_X] = 0;
+            g_PropertyData[g_PropertyID][p_PropertyExit_Y] = 0;
+            g_PropertyData[g_PropertyID][p_PropertyExit_Z] = 0;
+            g_PropertyData[g_PropertyID][p_PropertyEntrance_X] = 0;
+            g_PropertyData[g_PropertyID][p_PropertyEntrance_Y] = 0;
+            g_PropertyData[g_PropertyID][p_PropertyEntrance_Z] = 0;
+            #if defined detutils_debug
+            printf("[samp-detutils]: (debug) - dpe :: Destroyed a property entrance ID : %i", i);
+            #endif
+            return 1;
+        }
+    }
+    return 0;
 }
 
 // DELETED FUNCTION, MAKES NO SENSE.
@@ -925,16 +984,16 @@ stock ClearPlayerPropertyData(playerid)
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-    #define GetLastPropertyIDUsed Property_GetLastIDUsed
+    #define GetPropertyCount Property_GetCount
 
 #endif
 
-stock GetLastPropertyIDUsed()
+stock GetPropertyCount()
 {
     #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - GetLastPropertyIDUsed successfully called.");
+    printf("[samp-detutils]: (debug) - GetPropertyCount successfully called.");
     #endif
-    return g_PropertyID;
+    return DET_g_CreatedProperties;
 }
 
 #if defined DETUTILS_OPENMP_COMPAT
@@ -1083,15 +1142,6 @@ stock SetPlayerProperty(_p_Playerid, pg_PropertyID)
 
 // Actually extra.
 
-static void:AnnounceLibraryLoaded_int()
-{
-    LoadDETUtilsScript(DETUTILS_SCRIPT_PROPERTIES);
-}
-
-#if defined detutils_complete_error_boom
-#if !defined FILTERSCRIPT
-#endif
-
 public OnDETUtilsInit()
 {
     _CreateAnncTextDraws();
@@ -1099,7 +1149,7 @@ public OnDETUtilsInit()
     SaveLogIntoFile("detutils_properties.log", "[samp-detutils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_properties.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
-    AnnounceLibraryLoaded_int();
+    LoadDETUtilsScript(DETUTILS_SCRIPT_PROPERTIES);
     if(funcidx("d_props_detutilsinit") != -1)
     {
         CallLocalFunction("d_props_detutilsinit", "");
@@ -1116,56 +1166,3 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit d_props_detutilsinit
 
 forward d_props_detutilsinit();
-
-/*
-main()
-{
-    _CreateAnncTextDraws();
-    #if defined detutils_debug
-    SaveLogIntoFile("detutils_properties.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_properties.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    AnnounceLibraryLoaded_int();
-    a_int_main();
-}
-
-#if defined _ALS_main
-    #undef main
-#else
-    #define _ALS_main
-#endif
-
-a_int_main();
-
-#define main( public a_int_main(
-*/
-#if defined detutils_complete_error_boom
-#else
-
-public OnFilterScriptInit()
-{
-    #if defined detutils_debug
-    SaveLogIntoFile("detutils_properties.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_properties.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    AnnounceLibraryLoaded_int();
-
-    if(funcidx("a_props_filterscriptinit") != -1)
-    {
-        CallLocalFunction("a_props_filterscriptinit", "");
-    }
-    return 1;
-}
-
-#if defined _ALS_OnFilterScriptInit
-    #undef OnFilterScriptInit
-#else
-    #define _ALS_OnFilterScriptInit
-#endif
-
-#define OnFilterScriptInit a_props_filterscriptinit
-
-forward a_props_filterscriptinit();
-
-#endif
-#endif

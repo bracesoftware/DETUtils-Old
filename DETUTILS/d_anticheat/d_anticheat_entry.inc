@@ -44,7 +44,7 @@
 
 // Variables:
 
-new gAntiCheatTimer;
+new DET_g_AntiCheatTimer;
 
 // Macros:
 
@@ -180,114 +180,16 @@ stock SendPlayerCheatCheck(playerid, checktype)
 {
     new i = playerid;
     if(checktype == CHEAT_TYPE_MONEY) CheckPlayerMoney(i);
-    //printf("[samp-detutils]: (debug) - ac :: Money check performed on %s", ReturnPlayerName(i));
-    //sleep(100);
     if(checktype == CHEAT_TYPE_SKINCHANGER) CheckPlayerSkin(i);
-    //printf("[samp-detutils]: (debug) - ac :: Skin check performed on %s", ReturnPlayerName(i));
-    //sleep(100);
     if(checktype == CHEAT_TYPE_TELEPORT) CheckPlayerPos(i);
-    //printf("[samp-detutils]: (debug) - ac :: Pos check performed on %s", ReturnPlayerName(i));
-    //sleep(100);
     if(checktype == CHEAT_TYPE_HIGHPING) CheckPlayerPing(i);
-    //printf("[samp-detutils]: (debug) - ac :: Ping check performed on %s", ReturnPlayerName(i));
-    //sleep(100);
     if(checktype == CHEAT_TYPE_ARMOUR) CheckPlayerArmour(i);
-    //printf("[samp-detutils]: (debug) - ac :: Armour check performed on %s", ReturnPlayerName(i));
-    //sleep(100);
     if(checktype == CHEAT_TYPE_HEALTH) CheckPlayerHealth(i);
-    //printf("[samp-detutils]: (debug) - ac :: Health check performed on %s", ReturnPlayerName(i));
-    //sleep(100);
     if(checktype == CHEAT_TYPE_SPEEDHACK) CheckPlayerSpeed(i);
-    //printf("[samp-detutils]: (debug) - ac :: Speed check performed on %s", ReturnPlayerName(i));
-    //sleep(100);
     if(checktype == CHEAT_TYPE_DIALOG) CheckPlayerDialog(i);
-    //printf("[samp-detutils]: (debug) - ac :: Dialog check performed on %s", ReturnPlayerName(i));
-    //sleep(100);
     if(checktype == CHEAT_TYPE_MENU) CheckPlayerMenu(i);
-    //printf("[samp-detutils]: (debug) - ac :: Menu check performed on %s", ReturnPlayerName(i));
     return 1;
 }
-
-#if !defined FILTERSCRIPT
-
-main()
-{
-    gAntiCheatTimer = SetTimer("detutils_cheatcheck", 60000, true);
-    a_anticheat_maina();
-}
-
-#if defined _ALS_main
-    #undef main
-#else
-    #define _ALS_main
-#endif
-
-#define main a_anticheat_maina
-
-public OnGameModeExit()
-{
-    KillTimer(gAntiCheatTimer);
-    if(funcidx("a_anticheat_Ongmexit") != -1)
-    {
-        CallLocalFunction("a_anticheat_Ongmexit", "");
-    }
-    return 1;
-}
-
-#if defined _ALS_OnGameModeExit
-    #undef OnGameModeExit
-#else
-    #define _ALS_OnGameModeExit
-#endif
-
-#define OnGameModeExit a_anticheat_Ongmexit
-
-forward a_anticheat_Ongmexit();
-
-#else
-
-public OnFilterScriptInit()
-{
-    gAntiCheatTimer = SetTimer("detutils_cheatcheck", 60000, true);
-    if(funcidx("a_anticheat_OnfsInita") != -1)
-    {
-        CallLocalFunction("a_anticheat_OnfsInita", "i", playerid);
-    }
-    return detutils_anticheat_TRUE;
-}
-
-#if defined _ALS_OnFilterScriptInit
-    #undef OnFilterScriptInit
-#else
-    #define _ALS_OnFilterScriptInit
-#endif
-
-#define OnFilterScriptInit a_anticheat_OnfsInita
-
-forward a_anticheat_OnfsInita();
-
-public OnFilterScriptExit()
-{
-    KillTimer(gAntiCheatTimer);
-    if(funcidx("a_anticheat_Onfsexit") != -1)
-    {
-        CallLocalFunction("a_anticheat_Onfsexit", "");
-    }
-    return 1;
-}
-
-#if defined _ALS_OnFilterScriptExit
-    #undef OnFilterScriptExit
-#else
-    #define _ALS_OnFilterScriptExit
-#endif
-
-#define OnFilterScriptExit a_anticheat_Onfsexit
-
-forward a_anticheat_Onfsexit();
-
-
-#endif
 
 new gAntiCheatToggled = 1;
 
@@ -960,22 +862,14 @@ stock CheckPlayerSpeed(playerid)
 
 */
 
-static AnnounceLibraryLoaded_anticheat()
-{
-    LoadDETUtilsScript(DETUTILS_SCRIPT_ANTICHEAT);
-}
-
-#if defined detutils_complete_error_boom
-#if !defined FILTERSCRIPT
-#endif
-
 public OnDETUtilsInit()
 {
+    DET_g_AntiCheatTimer = SetTimer("detutils_cheatcheck", 60000, true);
     #if defined detutils_debug
     SaveLogIntoFile("detutils_anticheat.log", "[samp-detutils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_anticheat.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
-    AnnounceLibraryLoaded_anticheat();
+    LoadDETUtilsScript(DETUTILS_SCRIPT_ANTICHEAT);
     if(funcidx("d_ac_detutilsinit") != -1)
     {
         CallLocalFunction("d_ac_detutilsinit", "");
@@ -993,55 +887,22 @@ public OnDETUtilsInit()
 
 forward d_ac_detutilsinit();
 
-/*
-main()
+public OnDETUtilsExit()
 {
-    #if defined detutils_debug
-    SaveLogIntoFile("detutils_anticheat.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_anticheat.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    AnnounceLibraryLoaded_anticheat();
-    a_anticheat_main();
-}
-
-#if defined _ALS_main
-    #undef main
-#else
-    #define _ALS_main
-#endif
-
-a_anticheat_main();
-
-#define main( public a_anticheat_main(*/
-
-#if defined detutils_complete_error_boom
-#else
-
-#define detutils_anticheat_TRUE 1
-
-public OnFilterScriptInit()
-{
-    AnnounceLibraryLoaded_anticheat();
-    #if defined detutils_debug
-    SaveLogIntoFile("detutils_anticheat.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_anticheat.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    if(funcidx("a_anticheat_OnfsInit") != -1)
+    KillTimer(DET_g_AntiCheatTimer);
+    if(funcidx("d_ac_detutilsexit") != -1)
     {
-        CallLocalFunction("a_anticheat_OnfsInit", "i", playerid);
+        CallLocalFunction("d_ac_detutilsexit", "");
     }
-    return detutils_anticheat_TRUE;
+    return 1;
 }
 
-#if defined _ALS_OnFilterScriptInit
-    #undef OnFilterScriptInit
+#if defined _ALS_OnDETUtilsExit
+    #undef OnDETUtilsExit
 #else
-    #define _ALS_OnFilterScriptInit
+    #define _ALS_OnDETUtilsExit
 #endif
 
-#define OnFilterScriptInit a_anticheat_OnfsInit
+#define OnDETUtilsExit d_ac_detutilsexit
 
-forward a_anticheat_OnfsInit();
-
-#endif
-#endif
+forward d_ac_detutilsexit();

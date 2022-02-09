@@ -428,22 +428,13 @@ public d_me_SaveObject(loopid)
 
 */
 
-static AnnounceLibraryLoaded_mapeditor()
-{
-    LoadDETUtilsScript(DETUTILS_SCRIPT_MAPEDITOR);
-}
-
-#if defined detutils_complete_error_boom
-#if !defined FILTERSCRIPT
-#endif
-
 public OnDETUtilsInit()
 {
     #if defined detutils_debug
     SaveLogIntoFile("detutils_mapeditor.log", "[samp-detutils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_mapeditor.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
-    AnnounceLibraryLoaded_mapeditor();
+    LoadDETUtilsScript(DETUTILS_SCRIPT_MAPEDITOR);
     if(funcidx("d_me_detutilsinit") != -1)
     {
         CallLocalFunction("d_me_detutilsinit", "");
@@ -460,56 +451,3 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit d_me_detutilsinit
 
 forward d_me_detutilsinit();
-
-/*
-main()
-{
-    #if defined detutils_debug
-    SaveLogIntoFile("detutils_mapeditor.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_mapeditor.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    AnnounceLibraryLoaded_mapeditor();
-    a_mapeditor_main();
-}
-
-#if defined _ALS_main
-    #undef main
-#else
-    #define _ALS_main
-#endif
-
-a_mapeditor_main();
-
-#define main( public a_mapeditor_main(*/
-
-#if defined detutils_complete_error_boom
-#else
-
-#define detutils_mapeditor_TRUE 1
-
-public OnFilterScriptInit()
-{
-    AnnounceLibraryLoaded_mapeditor();
-    #if defined detutils_debug
-    SaveLogIntoFile("detutils_mapeditor.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_mapeditor.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    if(funcidx("a_mapeditor_OnfsInit") != -1)
-    {
-        CallLocalFunction("a_mapeditor_OnfsInit", "i", playerid);
-    }
-    return detutils_mapeditor_TRUE;
-}
-
-#if defined _ALS_OnFilterScriptInit
-    #undef OnFilterScriptInit
-#else
-    #define _ALS_OnFilterScriptInit
-#endif
-
-#define OnFilterScriptInit a_mapeditor_OnfsInit
-
-forward a_mapeditor_OnfsInit();
-
-#endif
-#endif
