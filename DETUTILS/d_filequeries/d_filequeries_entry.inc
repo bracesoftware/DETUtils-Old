@@ -370,6 +370,11 @@ stock GetLastQueryType()
 stock SetQueryDelimiter(delimiter)
 {
     DET_g_QueryDelimiter = delimiter;
+    if(delimiter == '.')
+    {
+        printf("[samp-detutils]: (warning) - delimiter :: Delimiter '.' is successfully set; \n\
+            though, having a '.' as a delimiter can cause problems while loading float values.");
+    }
     return 1;
 }
 

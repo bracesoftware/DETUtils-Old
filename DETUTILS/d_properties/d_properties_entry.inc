@@ -607,7 +607,7 @@ stock CreatePropertyEntrance(
                 printf("[samp-detutils]: (debug) - Property created.");
                 #endif
 
-                g_PropertyID++;
+                //g_PropertyID++;
 
                 #if defined detutils_debug
                 printf("[samp-detutils]: (debug) - Property id assigned.");

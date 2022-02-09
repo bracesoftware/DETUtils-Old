@@ -127,7 +127,7 @@
 
 #else
 
- 	#warning [samp-detutils]: (includes) - Library 'd_userdata' is disabled.
+ 	#warning [samp-detutils]: (includes) - Library 'd_filequeries' is disabled.
 
 #endif
 
