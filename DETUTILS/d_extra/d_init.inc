@@ -124,6 +124,9 @@ static void:LoadDETUtils()
     #if defined DETUTILS_FILTERSCRIPT_MODE
     print(" SA:MP | DETUtils - Filterscript mode is ON.");
     #endif
+    #if defined DETUTILS_TESTING_MODE
+    print(" SA:MP | DETUtils - Testing mode is ON.");
+    #endif
     print("                                        ");
 }
 
@@ -142,6 +145,9 @@ static void:UnloadDETUtils()
     print("                                        ");
     #if defined DETUTILS_FILTERSCRIPT_MODE
     print(" SA:MP | DETUtils - Filterscript mode is OFF.");
+    #endif
+    #if defined DETUTILS_TESTING_MODE
+    print(" SA:MP | DETUtils - Testing mode is OFF.");
     #endif
     print("                                        ");
 }
@@ -180,10 +186,10 @@ public OnGameModeExit()
     return 1;
 }
 
-#if defined _ALS_OnGameModeInit
+#if defined _ALS_OnGameModeExit
     #undef OnGameModeExit
 #else
-    #define _ALS_OnGameModeInit
+    #define _ALS_OnGameModeExit
 #endif
 
 #define OnGameModeExit a_init_OnGameModeExit

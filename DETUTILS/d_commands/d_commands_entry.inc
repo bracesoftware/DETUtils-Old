@@ -15,7 +15,7 @@
 
 #if !defined _INC_SSCANF
 
-    #warning [samp-detutils]: (warning) - Note that command processing works best with sscanf2 plugin, get it on github.com/y-less/sscanf-3.0
+    #warning [samp-detutils]: (warning) - Note that command processing works best with sscanf2 plugin, get it on github.com/y-less/sscanf
 
 #endif
 

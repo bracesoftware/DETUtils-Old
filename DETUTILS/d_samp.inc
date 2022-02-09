@@ -11,6 +11,7 @@
  *
  */
 
+#define DETUTILS_COMPAT
 
 // ENTRY POINT TO FIX main() NOT BEING CALLED IN FILTERSCRIPTS
 #if defined FILTERSCRIPT
@@ -135,7 +136,7 @@
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
  && defined DETUTILS_NO_MAPEDITOR
 
-	#warning [samp-detutils]: (error) - All library modules are disabled.
+	#warning [samp-detutils]: (warning) - All library modules are disabled.
 
  	#tryinclude "d_extra\d_libtags.inc"
 
@@ -143,4 +144,12 @@
 	    #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 	#endif
 
-#endif 
+#endif
+
+#if defined DETUTILS_TESTING_MODE
+
+ 	#warning [samp-detutils]: (warning) - testmode :: Testing mode is enabled. Remove `#define DETUTILS_TESTING_MODE` from your code to disable it.
+
+ 	#include "d_testing\d_testing_entry.inc"
+
+#endif
