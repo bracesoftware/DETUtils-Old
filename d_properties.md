@@ -172,11 +172,13 @@ static Your_Function(player, id)
   return 1;
 }
 ```
-#### ``GetLastPropertyIDUsed``
+#### ``GetPropertyCount``
 
-- Gets last property id which was used to assign property's data (cache) to.
-
-**WARNING**: Works best and properly after using ``CreatePropertyEntrance``, because ``CreatePropertyEntrance`` updates the ID after called.
+- Gets the count of properties created on the server.
+> Example:
+```pawn
+new count = GetPropertyCount();
+```
 
 #### ``SetPropertyEntranceAngles``
 
@@ -193,8 +195,8 @@ Example:
 ```pawn
 public OnGameModeInit()
 {
-  CreatePropertyEntrance(...); // your params
-  SetPropertyEntranceAngles(GetLastPropertyIDUsed(), 234.453, 0.23);
+  CreatePropertyEntrance("Property1", ...); // your params
+  SetPropertyEntranceAngles(GetPropertyIDByName("Property1"), 234.453, 0.23);
   return 1;
 }
 ```
