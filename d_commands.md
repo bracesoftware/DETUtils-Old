@@ -30,19 +30,19 @@ Let's see how it works:
 But, that also wasn't a great idea - tags are already a language feature, denoting return "types".  Using them for a totally different purpose, but looking the same, is confusing and misleading. Keywords are for language features, things like commands and vehicles are API, not language. But then, declaring commands should be easy, so we need a third thing that is neither keywords nor tags - and I have actually proposed something in this vein before, because is something that has been solved in other languages - decorators.
 
 So instead of:
-```c
+```pawn
 new Command:help()
 {
 }
 ```
 Or:
-```c
+```pawn
 command help()
 {
 }
 ```
 You have:
-```c
+```pawn
 @command() help()
 {
 }
