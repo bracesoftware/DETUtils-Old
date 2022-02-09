@@ -146,6 +146,12 @@
 
 #endif
 
+#if defined DETUTILS_TESTING_MODE && defined DETUTILS_FILTERSCRIPT_MODE
+
+ 	#error [samp-detutils]: (mode mismatch) - You can't use DETUTILS_TESTING_MODE and DETUTILS_FILTERSCRIPT_MODE at the same time.
+
+#endif
+
 #if defined DETUTILS_TESTING_MODE
 
  	#warning [samp-detutils]: (warning) - testmode :: Testing mode is enabled. Remove `#define DETUTILS_TESTING_MODE` from your code to disable it.
