@@ -86,6 +86,14 @@ new g_CommandCache[DET_MAX_CMD][enum_CommandData];
 
 #endif
 
+enum enum_PlayerCmdData
+{
+    PassedPrefix[10],
+    ParseProcess
+}
+
+new g_PlayerCmdData[MAX_PLAYERS][enum_PlayerCmdData];
+
 #include "d_commands_macros"
 
 /*
@@ -491,9 +499,9 @@ public OnPlayerCommandText(playerid, cmdtext[])
     printf("[samp-detutils]: (debug) - opct :: Formatted function strings successfully.");
     #endif
 
-    new Continue = CallLocalFunction(DET_ParseFunc, "");
+    CallLocalFunction(DET_ParseFunc, "i", playerid);
 
-    if(Continue != 1)
+    if(g_PlayerCmdData[playerid][ParseProcess] == 0)
     {
         if(funcidx(_CommandDebugFunc) != -1)
         {
@@ -668,13 +676,6 @@ stock strgetfc(const string[])
 }
 
 #define DETUTILS_FIX_COMMANDS 1 // random shit
-
-enum enum_PlayerCmdData
-{
-    PassedPrefix[10]
-}
-
-new g_PlayerCmdData[MAX_PLAYERS][enum_PlayerCmdData];
 
 ////////////////////////////////////////////////////
 
@@ -1446,8 +1447,7 @@ COMMAND__ chatmode(playerid, params[])
 
 #endif // I hate this compatibility mode xd, making new ones
 
-forward cmd_chatmode(playerid, params[]); 
-public cmd_chatmode(playerid, params[])
+@command(.type = SLASH_COMMAND) chatmode(playerid,p[])
 {
     if(Data_g_ChatMode[playerid] == 0)
     {

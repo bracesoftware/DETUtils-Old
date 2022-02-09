@@ -35,24 +35,25 @@
 #define DET_PARSE_CACHE
 #endif
 
+#define @DETUTILSCMD_RET_PRINT__@%5@ return printf("*** [samp-detutils]: (cmd parse) - Met an unexpected or unknown argument in \n\
+                                                       the command header while parsing.\n\
+                                                       Command: %s"#%5"\n\
+                                                       Make sure that your command header looks like this:\n\
+                                                       @command(...) CMD_NAME__(playerid, params[]) {...}\n\n\n");
+
 #define @DETUTILSCMD_PR_CACHE__@%5@%0@%1@%2@%3@%4@ \
     {                                               \
         new const DET_PARAM_COUNT=%0+%1+%2+%3+%4;   \
         printf("*** [samp-detutils]: (cmd parse) - Parsing a command : "#%5" with %i params.", DET_PARAM_COUNT); \
-        if(DET_PARAM_COUNT!=2||%2 !=1||%4 !=1){     \
-            return printf("*** [samp-detutils]: (cmd parse) - Met an unexpected or unknown argument in \n\
-                                                       the command header while parsing.\n\
-                                                       Command: %s"#%5"\n\
-                                                       Make sure that your command header looks like this:\n\
-                                                       @command(...) CMD_NAME__(playerid, params[]) {...}\n\n\n"); \
+        if(DET_PARAM_COUNT!=2||%2 !=1||%4 !=1){g_PlayerCmdData[p][ParseProcess] = 0; @DETUTILSCMD_RET_PRINT__@%5@ \
         }                                           \
-        return 1;                                   \
+        g_PlayerCmdData[p][ParseProcess] = 1; return 1;                                   \
     }
 
 // Entry.  Parse all parameter types.
 #define @DETUTILSCMD_CMD_PARSE__D:%1(%2) FUNC_PARSER(__DETCMD_PARSETYPE_,ARR:NUM:EXT:STR:REF:)(%1(%2)) \
     stock const ref_%1 = 0, ext_%1 = 0, arr_%1 = 0, str_%1 = 0, num_%1 = 0; \
-    P@_%1(); public P@_%1() @DETUTILSCMD_PR_CACHE__@%1@ref_%1@ext_%1@arr_%1@str_%1@num_%1@ %1(%2)
+    P@_%1(p); public P@_%1(p) @DETUTILSCMD_PR_CACHE__@%1@ref_%1@ext_%1@arr_%1@str_%1@num_%1@ %1(%2)
 
 // Counts.  Add one to the relevant number.
 #define __DETCMD_PARSETYPE__REF(%9)%8$%0,%1,%2,%3,%4; %8$%0 + 1,%1,%2,%3,%4;
