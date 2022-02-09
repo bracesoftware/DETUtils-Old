@@ -43,6 +43,12 @@ public OnGameModeInit()
 native CreatePropertyEntrance(const name[], Float:x1, Float:y1, Float:z1, interiorid, worldid, bool:labels = false, interior = INTERIOR_CUSTOM, Float:x2 = 0.000, Float:y2 = 0.000, Float:z2 = 0.000, interiorid2 = 0, worldid2 = 0);
 ```
 
+### Property deletion
+- To delete a property, simply use `DestroyPropertyEntrance`.
+```pawn
+DestroyPropertyEntrance("Property Name");
+```
+- You just need to pass the name of the property.
 #### Properties
 
 - This include also provides default interiors (as I mentioned), if you provide it as a last parameter - exit coordinates, interior ID and virtual world ID will be automatically assigned to property data, as I did here: ``CreatePropertyEntrance("24/7 Market", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_MARKET_247_1); // Create entrance for 24/7 Market.``, below you can see all interiors you can use - including their look and ``INTERIOR_(...)`` ID.
