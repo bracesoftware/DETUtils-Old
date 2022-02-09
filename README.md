@@ -58,6 +58,18 @@ Check out test script here:
 #define DETUTILS_TESTING_MODE
 ```
 > As I mentioned, `DETUTILS_TESTING_MODE` flag will enable the test script automatically.
+## Filterscripts
+- If you're making a filterscript using the *DETUtils* includes, make sure to enable the `DETUTILS_FILTERSCRIPT_MODE` flag.
+
+```pawn
+#define DETUTILS_FILTERSCRIPT_MODE
+```
+
+- It'll also work if you just simply do:
+
+```pawn
+#define FILTERSCRIPT
+```
 
 ## Limits
 
