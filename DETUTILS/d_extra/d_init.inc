@@ -96,6 +96,8 @@ stock void:LoadDETUtilsScript(scriptid)
 
 */
 
+#define @DETUTILSFMARGS_TAGS__: {Float,_,bool}:
+
 #if defined detutils_complete_error_boom
 
 static const DET_g_Version[1][10] = { ""DETUTILS_VERSION_MAJOR"."DETUTILS_VERSION_MINOR"."DETUTILS_VERSION_PATCH"" };

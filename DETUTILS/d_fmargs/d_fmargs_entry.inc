@@ -71,7 +71,7 @@ stock
     p_id,
     color,
     const _StringArgs[],
-    {Float,_}:...
+    @DETUTILSFMARGS_TAGS__:...
 )
 {
     #if defined detutils_debug
@@ -141,7 +141,7 @@ stock
 (
     color,
     const _StringArgs[],
-    {Float,_}:...
+    @DETUTILSFMARGS_TAGS__:...
 )
 {
     #if defined detutils_debug
@@ -219,7 +219,7 @@ stock
     
     style,
     
-    {Float,_}:...
+    @DETUTILSFMARGS_TAGS__:...
 )
 {
     new time = duration;
@@ -321,7 +321,7 @@ stock
     
     style,
     
-    {Float,_}:...
+    @DETUTILSFMARGS_TAGS__:...
 )
 {
     new time = duration;
@@ -421,7 +421,7 @@ stock
     Float:x,
     Float:y,
     const _StringArgs[],
-    {Float,_}:...
+    @DETUTILSFMARGS_TAGS__:...
 )
 {
     new Text:textid;
@@ -527,7 +527,7 @@ stock
     Float:x,
     Float:y,
     const _StringArgs[],
-    {Float,_}:...
+    @DETUTILSFMARGS_TAGS__:...
 )
 {
     new PlayerText:textid;
@@ -617,7 +617,7 @@ stock
 (
     Text:id,
     const _StringArgs[],
-    {Float,_}:...
+    @DETUTILSFMARGS_TAGS__:...
 )
 {
     #if defined detutils_debug
@@ -686,7 +686,7 @@ stock
     i,
     PlayerText:id,
     const _StringArgs[],
-    {Float,_}:...
+    @DETUTILSFMARGS_TAGS__:...
 )
 {
     #if defined detutils_debug
@@ -754,7 +754,7 @@ stock
 (
     const _StringArgs[],
     
-    {Float,_}:...
+    @DETUTILSFMARGS_TAGS__:...
 )
 {
     #if defined detutils_debug
