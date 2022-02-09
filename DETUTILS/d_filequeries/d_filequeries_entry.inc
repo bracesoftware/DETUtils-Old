@@ -81,6 +81,7 @@ forward OnFileQuerySend(directory[], file[], query[], type);
 
 enum enum_QueryData
 {
+    ValidQuery,
     QueryName[32],
     QueryContent[1024],
     QueryType,
@@ -93,7 +94,7 @@ enum enum_QueryData
 
 new g_QueryCache[MAX_FILE_QUERIES][enum_QueryData];
 
-static DET_QueryID = 0;
+static stock gDET_QueryID = 0;
 
 #if defined DETUTILS_OPENMP_COMPAT
 
@@ -103,20 +104,57 @@ static DET_QueryID = 0;
 
 stock CreateQuery(const name[], type, const dir[], const file[])
 {
-    DET_QueryID ++;
-    strmid(g_QueryCache[DET_QueryID][QueryName], name, 0, 30);
-    strmid(g_QueryCache[DET_QueryID][QueryDir], dir, 0, 50);
-    strmid(g_QueryCache[DET_QueryID][QueryFile], file, 0, 50);
-    g_QueryCache[DET_QueryID][QueryType] = type;
-    if(g_QueryCache[DET_QueryID][QueryType] == QUERY_TYPE_SAVE)
-    {
-        g_QueryCache[DET_QueryID][formatted] = false;
-    }
-    else if(g_QueryCache[DET_QueryID][QueryType] == QUERY_TYPE_LOAD)
-    {
-        g_QueryCache[DET_QueryID][formatted] = true;
-    }
+    for(new DET_QueryID = 1; 
+        DET_QueryID < MAX_FILE_QUERIES; 
+        DET_QueryID++)
+        {
+            if(g_QueryCache[DET_QueryID][ValidQuery] == 0)
+            {
+                strmid(g_QueryCache[DET_QueryID][QueryName], name, 0, 30);
+                strmid(g_QueryCache[DET_QueryID][QueryDir], dir, 0, 50);
+                strmid(g_QueryCache[DET_QueryID][QueryFile], file, 0, 50);
+                g_QueryCache[DET_QueryID][QueryType] = type;
+                if(g_QueryCache[DET_QueryID][QueryType] == QUERY_TYPE_SAVE)
+                {
+                    g_QueryCache[DET_QueryID][formatted] = false;
+                }
+                else if(g_QueryCache[DET_QueryID][QueryType] == QUERY_TYPE_LOAD)
+                {
+                    g_QueryCache[DET_QueryID][formatted] = true;
+                }
+                g_QueryCache[DET_QueryID][ValidQuery] = 1;
+                printf("[samp-detutils]: (query created) - \
+                    Query '%s'[id : %i] with type %i (loc : %s/%s) validated successfully.",
+                    name, DET_QueryID, type, dir, file);
+                break;
+            }
+        }
     return 1;
+}
+
+#if defined DETUTILS_OPENMP_COMPAT
+
+#define Query_Destroy DestroyQuery
+
+#endif
+
+stock DestroyQuery(const name[])
+{
+    for(new i = 1; i < MAX_FILE_QUERIES; i++)
+    {
+        if(!strcmp(g_QueryCache[i][QueryName], name, false))
+        {
+            g_QueryCache[i][ValidQuery] = 0;
+            strmid(g_QueryCache[i][QueryName], "_INVALID_QUERY_", 0, 30);
+            strmid(g_QueryCache[i][QueryDir], "_INVALID_QDIR_", 0, 50);
+            strmid(g_QueryCache[i][QueryFile], "_INVALID_QFILE_", 0, 50);
+            g_QueryCache[i][QueryType] = INVALID_QUERY_TYPE;
+            printf("[samp-detutils]: (query destroyed) - \
+                Destroyed the query '%s' [id : %i] successfully.", name, i);
+            return 1;
+        }
+    }
+    return 0;
 }
 
 #if defined DETUTILS_OPENMP_COMPAT
@@ -152,7 +190,7 @@ stock FormatQuery(const name[], const content[])
 
 #endif
 
-stock bool:QueryFileExist(const name[])
+stock QueryFileExist(const name[])
 {
    for(new i = 1; i < MAX_FILE_QUERIES; i ++)
     {
@@ -167,10 +205,10 @@ stock bool:QueryFileExist(const name[])
             new dfpattern[100];
             format(dfpattern, 100, "%s/%s", 
                 g_QueryCache[i][QueryDir], g_QueryCache[i][QueryFile]);
-            if(fexist(dfpattern)) return true;
+            return fexist(dfpattern);
         }
     }
-    return false; 
+    return -1; 
 }
 
 #if defined DETUTILS_OPENMP_COMPAT
