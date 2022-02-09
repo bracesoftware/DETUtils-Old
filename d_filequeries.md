@@ -20,7 +20,7 @@ new PlayerCache[MAX_PLAYERS][PlayerData];
 2. Use ``OnPlayerConnect`` callback:
 ```pawn
 public OnPlayerConnect(playerid)
-{
+{   
     CreateQuery("DEntisT_SAVE", QUERY_TYPE_SAVE, "Users", "DEntisT.ini"); // Create a query which will save cache
     CreateQuery("DEntisT_LOAD", QUERY_TYPE_LOAD, "Users", "DEntisT.ini"); // Create a query which will load data
     
@@ -39,7 +39,7 @@ public OnPlayerConnect(playerid)
         ShowPlayerDialog(playerid, 100, DIALOG_STYLE_INPUT, 
             "Login", "Please log in. Password:", "OK","Cancel"); // Show the login dialog
     }
-    else // If the player is not registered.
+    else if(!QueryFileExist("DEntisT_SAVE")) // If the player is not registered.
     {
         ShowPlayerDialog(playerid, 101, DIALOG_STYLE_INPUT, 
             "Register", "Please register. Wanted password:", "OK","Cancel"); // show the register dialog
