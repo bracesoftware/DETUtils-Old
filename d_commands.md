@@ -25,7 +25,7 @@ Let's see how it works:
 
 #### Why is it done this way?
 
-- Using ``command`` keyword, as I used 6 months ago also started to look absurd to me, since keywords are components of syntax of a certain programming language, so creating ``command`` keyword for visual feature makes no sense to me. And since, I looked at commands as visual entities, such as TextDraws and 3D Labels, whose have their tags, so I decided to make that - ``new Command:.``!
+- Using ``command`` keyword, as I used 6 months ago also started to look absurd to me, since keywords are components of syntax of a certain programming language, so creating ``command`` keyword for visual feature makes no sense to me. And since, I looked at commands as visual entities, such as TextDraws and 3D Labels, whose have their tags, so I decided to make that - ``new Command:...()``!
 
 But, that also wasn't a great idea - tags are already a language feature, denoting return "types".  Using them for a totally different purpose, but looking the same, is confusing and misleading. Keywords are for language features, things like commands and vehicles are API, not language. But then, declaring commands should be easy, so we need a third thing that is neither keywords nor tags - and I have actually proposed something in this vein before, because is something that has been solved in other languages - decorators.
 
