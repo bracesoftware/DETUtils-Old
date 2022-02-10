@@ -11,6 +11,12 @@ SA:MP DeathMatch Zones - Provides the creation of deathmatch zones, adding and r
 ### `CreateDeathMatchZone`
 - Create a deathmatch zone.
 
+### `GetPlayerDeathMatchZoneKills`
+- Gets a number of kills player reached. Note that the function will return the value ONLY if the player is in the deathmatch zone. If not, it will return `-1`.
+
+### `IsPlayerInDeathMatchZone`
+- Check if the player in the deathmatch zone or not.
+
 ### `DestroyDeathMatchZone`
 - Destroy a deathmatch zone.
 
