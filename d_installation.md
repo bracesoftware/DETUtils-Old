@@ -51,3 +51,7 @@ Let's find out.
 ``DETUTILS_NO_ANTICHEAT`` for disabling *d_anticheat.inc*.
 
 ``DETUTILS_NO_MAPEDITOR`` for disabling *d_mapeditor.inc*.
+
+``DETUTILS_NO_FILEQUERIES`` for disabling *d_filequeries.inc*.
+
+``DETUTILS_NO_DMZONE`` for disabling *d_dmzone.inc*.
