@@ -425,9 +425,44 @@ stock AddPlayerToDeathMatchZone(playerid, const name[], spawnid, kitlevel)
 stock RemovePlayerFromDeathMatchZone(playerid)
 {
 	g_PlayerDMCache[playerid][InDM] = 0;
+	g_PlayerDMCache[playerid][DMKills] = 0;
 	SetPlayerHealth(playerid, 0.0000);
 	return 1;
 }
+
+stock GetPlayerDeathMatchZoneKills(playerid)
+{
+	if(g_PlayerDMCache[playerid][InDM] == 0) return -1;
+	return g_PlayerDMCache[playerid][DMKills];
+}
+
+stock IsPlayerInDeathMatchZone(playerid)
+{
+	return g_PlayerDMCache[playerid][InDM];
+}
+
+public OnPlayerDeath(playerid, killerid, reason)
+{
+	if(g_PlayerDMCache[killerid][InDM] == 1)
+	{
+		g_PlayerDMCache[killerid][DMKills]++;
+	}
+	if(funcidx("d_dm_playerdeath") != -1)
+    {
+        CallLocalFunction("d_dm_playerdeath", "iii", playerid, killerid, reason);
+    }
+    return 1;
+}
+
+#if defined _ALS_OnPlayerDeath
+    #undef OnPlayerDeath
+#else
+    #define _ALS_OnPlayerDeath
+#endif
+
+#define OnPlayerDeath d_dm_playerdeath
+
+forward d_dm_playerdeath(playerid, killerid, reason);
 
 /*
                                                                       
