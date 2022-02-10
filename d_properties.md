@@ -63,16 +63,28 @@ DestroyPropertyEntrance("Property Name");
 
 ### Property callbacks
 ------------------------------------------
-#### ``public`` OnPropertyCreated
+#### ``public`` OnPropertyCreate
 
-- Called whenever is custom interior created. Example:
+- Called whenever property is created. Example:
 ```pawn
-public OnPropertyCreated(propertyid)
+public OnPropertyCreate(propertyid)
 {
     printf("Property created! ID: %i", propertyid);
     return 1;
 }
 ```
+
+#### ``public`` OnPropertyDestroy
+
+- Called whenever property is destroyed. Example:
+```pawn
+public OnPropertyDestroy(propertyid)
+{
+    printf("Property deleted/removed! ID: %i", propertyid);
+    return 1;
+}
+```
+
 #### ``public`` OnPropertyActionPerformed
 
 - It's called whenever player enters or exits a **certain** property. In order to use the callback, you need to specify property's name and player's ID. Little example is shown below.
