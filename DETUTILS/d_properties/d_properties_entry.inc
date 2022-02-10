@@ -75,7 +75,8 @@ enum enum_PropertyData
 
 #endif
 
-forward OnPropertyCreated(propertyid);
+forward OnPropertyCreate(propertyid);
+forward OnPropertyDestroy(propertyid);
 forward OnPlayerEnterProperty(playerid);
 forward OnPlayerExitProperty(playerid);
 
@@ -718,13 +719,13 @@ stock CreatePropertyEntrance(
                 printf("[samp-detutils]: (debug) - Internal property data assigned.");
                 #endif
 
-                if(funcidx("OnPropertyCreated") != -1)
+                if(funcidx("OnPropertyCreate") != -1)
                 {
-                    CallLocalFunction("OnPropertyCreated", "i", g_PropertyID);
+                    CallLocalFunction("OnPropertyCreate", "i", g_PropertyID);
                 }
 
                 #if defined detutils_debug
-                printf("[samp-detutils]: (debug) - OnPropertyCreated(propertyid) called.");
+                printf("[samp-detutils]: (debug) - OnPropertyCreate(propertyid) called.");
                 #endif
 
                 g_PropertyData[g_PropertyID][ValidProp] = 1;
@@ -763,6 +764,7 @@ stock DestroyPropertyEntrance(const name[])
     {
         if(!strcmp(g_PropertyData[i][p_PropertyName], name, false))
         {
+            CallLocalFunction("OnPropertyDestroy", "i", i);
             g_PropertyData[i][ValidProp] = 0;
             DET_g_CreatedProperties --;
             Delete3DTextLabel(g_PropertyData[i][p_PropertyLabelID]);
@@ -869,13 +871,13 @@ stock CreateCustomInterior(
     printf("[samp-detutils]: (debug) - Internal interior data assigned.");
     #endif
 
-    if(funcidx("OnPropertyCreated") != -1)
+    if(funcidx("OnPropertyCreate") != -1)
     {
-        CallLocalFunction("OnPropertyCreated", "i", g_PropertyID);
+        CallLocalFunction("OnPropertyCreate", "i", g_PropertyID);
     }
 
     #if defined detutils_debug
-    printf("[samp-detutils]: (debug) - OnPropertyCreated(customintid) called.");
+    printf("[samp-detutils]: (debug) - OnPropertyCreate(customintid) called.");
     #endif
 
     return 1;

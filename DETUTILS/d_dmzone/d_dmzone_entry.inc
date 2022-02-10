@@ -54,6 +54,9 @@ enum enum_DMZoneData
 
 new g_DMZoneCache[MAX_DM_ZONES][enum_DMZoneData];
 
+forward OnDeathMatchZoneCreate(id, name[]);
+forward OnDeathMatchZoneDestroy(id, name[]);
+
 stock CreateDeathMatchZone(const name[], Float:x, Float:y, Float:z, Float:x2, Float:y2, Float:z2, Float:x3, Float:y3, Float:z3)
 {
 	for(new i = 1;
@@ -80,6 +83,8 @@ stock CreateDeathMatchZone(const name[], Float:x, Float:y, Float:z, Float:x2, Fl
 
 			// Validate the id `i`
 			g_DMZoneCache[i][ValidZone] = 1;
+
+			CallLocalFunction("OnDeathMatchZoneCreate", "is", i, name);
 			break;	
 		}
 	}
@@ -94,6 +99,7 @@ stock DestroyDeathMatchZone(const name[])
 	{// check
 		if(!strcmp(g_DMZoneCache[i][ZoneName], name, false))
 		{
+			CallLocalFunction("OnDeathMatchZoneDestroy", "is", i, name);
 			// Erase the name:
 			strmid(g_DMZoneCache[i][ZoneName], "_INVALID_DMZ_NAME_", 0, 32);
 
@@ -145,13 +151,281 @@ stock GetDeathMatchZoneName(id)
     return name;
 }
 
-stock AddPlayerToDeathMatchZone(playerid, const name[], level)
+stock AddPlayerToDeathMatchZone(playerid, const name[], spawnid, kitlevel)
 {
+	for(new i = 1;
+		i < MAX_DM_ZONES;
+		i++)
+	{
+		if(!strcmp(g_DMZoneCache[i][ZoneName], name, false))
+		{
+			ResetPlayerWeapons(playerid);
+			if(spawnid == 1)
+			{
+				SetPlayerPos(playerid,
+					g_DMZoneCache[i][RandomSpawn1][0],
+					g_DMZoneCache[i][RandomSpawn1][1],
+					g_DMZoneCache[i][RandomSpawn1][2]);
+				g_PlayerDMCache[playerid][InDM] = 1;
+				if(kitlevel == 10) 
+				{
+				    GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 26, 150 );
+					GiveWeaponToPlayer( playerid, 28, 400 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+					SetPlayerSkillLevel( playerid, WEAPONSKILL_MICRO_UZI, 999 );
+					SetPlayerSkillLevel( playerid, WEAPONSKILL_SAWNOFF_SHOTGUN, 999 );
+				}
+				else if(kitlevel == 9) 
+				{
+				    GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 27, 150 );
+					GiveWeaponToPlayer( playerid, 32, 800 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+					SetPlayerSkillLevel( playerid, WEAPONSKILL_MICRO_UZI, 999 );
+				}
+				else if(kitlevel == 8) 
+				{
+				    GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 27, 150 );
+					GiveWeaponToPlayer( playerid, 28, 800 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+					SetPlayerSkillLevel( playerid, WEAPONSKILL_MICRO_UZI, 999 );
+				}
+				else if(kitlevel == 7)
+				{
+				    GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 27, 150 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+				}
+				else if(kitlevel == 6) 
+				{
+				    GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 26, 150 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+				}
+				else if(kitlevel == 5) 
+				{
+					GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 26, 150 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+					GiveWeaponToPlayer( playerid, 30, 400 );
+				}
+				else if(kitlevel == 4) 
+				{
+					GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 25, 100 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+				}
+				else if(kitlevel == 3) 
+				{
+					GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 25, 100 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+					GiveWeaponToPlayer( playerid, 30, 400 );
+				}
+				else if(kitlevel == 2) 
+				{
+					GiveWeaponToPlayer( playerid, 24, 200 );
+					GiveWeaponToPlayer( playerid, 25, 100 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+				}
+				else if(kitlevel == 1) 
+				{
+					GiveWeaponToPlayer( playerid, 24, 200 );
+					GiveWeaponToPlayer( playerid, 25, 100 );
+				}
+				else
+				{
+					printf("[samp-detutils]: (dm error) - Invalid kit level; kit level can be 1 .. 10.");
+					return 0;
+				}
+			}
+			else if(spawnid == 2)
+			{
+				SetPlayerPos(playerid,
+					g_DMZoneCache[i][RandomSpawn2][0],
+					g_DMZoneCache[i][RandomSpawn2][1],
+					g_DMZoneCache[i][RandomSpawn2][2]);
+				g_PlayerDMCache[playerid][InDM] = 1;
+				if(kitlevel == 10) 
+				{
+				    GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 26, 150 );
+					GiveWeaponToPlayer( playerid, 28, 400 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+					SetPlayerSkillLevel( playerid, WEAPONSKILL_MICRO_UZI, 999 );
+					SetPlayerSkillLevel( playerid, WEAPONSKILL_SAWNOFF_SHOTGUN, 999 );
+				}
+				else if(kitlevel == 9) 
+				{
+				    GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 27, 150 );
+					GiveWeaponToPlayer( playerid, 32, 800 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+					SetPlayerSkillLevel( playerid, WEAPONSKILL_MICRO_UZI, 999 );
+				}
+				else if(kitlevel == 8) 
+				{
+				    GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 27, 150 );
+					GiveWeaponToPlayer( playerid, 28, 800 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+					SetPlayerSkillLevel( playerid, WEAPONSKILL_MICRO_UZI, 999 );
+				}
+				else if(kitlevel == 7)
+				{
+				    GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 27, 150 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+				}
+				else if(kitlevel == 6) 
+				{
+				    GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 26, 150 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+				}
+				else if(kitlevel == 5) 
+				{
+					GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 26, 150 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+					GiveWeaponToPlayer( playerid, 30, 400 );
+				}
+				else if(kitlevel == 4) 
+				{
+					GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 25, 100 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+				}
+				else if(kitlevel == 3) 
+				{
+					GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 25, 100 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+					GiveWeaponToPlayer( playerid, 30, 400 );
+				}
+				else if(kitlevel == 2) 
+				{
+					GiveWeaponToPlayer( playerid, 24, 200 );
+					GiveWeaponToPlayer( playerid, 25, 100 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+				}
+				else if(kitlevel == 1) 
+				{
+					GiveWeaponToPlayer( playerid, 24, 200 );
+					GiveWeaponToPlayer( playerid, 25, 100 );
+				}
+				else
+				{
+					printf("[samp-detutils]: (dm error) - Invalid kit level; kit level can be 1 .. 10.");
+					return 0;
+				}
+			}
+			else if(spawnid == 3)
+			{
+				SetPlayerPos(playerid,
+					g_DMZoneCache[i][RandomSpawn3][0],
+					g_DMZoneCache[i][RandomSpawn3][1],
+					g_DMZoneCache[i][RandomSpawn3][2]);
+				g_PlayerDMCache[playerid][InDM] = 1;
+				if(kitlevel == 10) 
+				{
+				    GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 26, 150 );
+					GiveWeaponToPlayer( playerid, 28, 400 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+					SetPlayerSkillLevel( playerid, WEAPONSKILL_MICRO_UZI, 999 );
+					SetPlayerSkillLevel( playerid, WEAPONSKILL_SAWNOFF_SHOTGUN, 999 );
+				}
+				else if(kitlevel == 9) 
+				{
+				    GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 27, 150 );
+					GiveWeaponToPlayer( playerid, 32, 800 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+					SetPlayerSkillLevel( playerid, WEAPONSKILL_MICRO_UZI, 999 );
+				}
+				else if(kitlevel == 8) 
+				{
+				    GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 27, 150 );
+					GiveWeaponToPlayer( playerid, 28, 800 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+					SetPlayerSkillLevel( playerid, WEAPONSKILL_MICRO_UZI, 999 );
+				}
+				else if(kitlevel == 7)
+				{
+				    GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 27, 150 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+				}
+				else if(kitlevel == 6) 
+				{
+				    GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 26, 150 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+				}
+				else if(kitlevel == 5) 
+				{
+					GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 26, 150 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+					GiveWeaponToPlayer( playerid, 30, 400 );
+				}
+				else if(kitlevel == 4) 
+				{
+					GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 25, 100 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+					GiveWeaponToPlayer( playerid, 31, 400 );
+				}
+				else if(kitlevel == 3) 
+				{
+					GiveWeaponToPlayer( playerid, 24, 150 );
+					GiveWeaponToPlayer( playerid, 25, 100 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+					GiveWeaponToPlayer( playerid, 30, 400 );
+				}
+				else if(kitlevel == 2) 
+				{
+					GiveWeaponToPlayer( playerid, 24, 200 );
+					GiveWeaponToPlayer( playerid, 25, 100 );
+					GiveWeaponToPlayer( playerid, 29, 400 );
+				}
+				else if(kitlevel == 1) 
+				{
+					GiveWeaponToPlayer( playerid, 24, 200 );
+					GiveWeaponToPlayer( playerid, 25, 100 );
+				}
+				else
+				{
+					printf("[samp-detutils]: (dm error) - Invalid kit level; kit level can be 1 .. 10.");
+					return 0;
+				}
+			}
+			else if(spawnid != 1 && spawnid != 2 && spawnid != 3)
+			{
+				printf("[samp-detutils]: (dm error) - Invalid `spawnid` parameter; `spawnid` can be 1, 2 or 3.");
+				return 0;
+			}
+		}
+	}
 	return 1;
 }
 
 stock RemovePlayerFromDeathMatchZone(playerid)
 {
+	g_PlayerDMCache[playerid][InDM] = 0;
+	SetPlayerHealth(playerid, 0.0000);
 	return 1;
 }
 

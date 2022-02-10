@@ -1225,7 +1225,7 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
     return 0;
 }
  
-public OnPropertyCreated(propertyid)
+public OnPropertyCreate(propertyid)
 {
     printf("Property created! ID: %i", propertyid);
     return 1;
