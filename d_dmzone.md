@@ -18,6 +18,12 @@ SA:MP DeathMatch Zones - Provides the creation of deathmatch zones, adding and r
 
 ### `GetDeathMatchZoneName`
 - Get the name of a certain deathmatch zone.
+
+### `AddPlayerToDeathMatchZone`
+- Add the player to certain deathmatch zone with a specific weapon set level.
+
+### `RemovePlayerFromDeathMatchZone`
+- Remove the player from deathmatch zone.
 ## Messages from creator
 ### Warnings
 ### Notes
