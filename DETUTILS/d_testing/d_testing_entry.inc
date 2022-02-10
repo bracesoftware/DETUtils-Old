@@ -1225,12 +1225,30 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
     return 0;
 }
  
+public OnDeathMatchZoneCreate(zoneid, zonename[])
+{
+    printf("DM Zone `%s`[%i] created!", zonename, zoneid);
+    return 1;
+}
+
+public OnDeathMatchZoneDestroy(zoneid, zonename[])
+{
+    printf("DM Zone `%s`[%i] destroyed!", zonename, zoneid);
+    return 1;
+}
+
 public OnPropertyCreate(propertyid)
 {
     printf("Property created! ID: %i", propertyid);
     return 1;
 }
- 
+
+public OnPropertyDestroy(propertyid)
+{
+    printf("Property deleted/removed! ID: %i", propertyid);
+    return 1;
+}
+
 public OnPlayerEnterProperty(playerid)
 {
   new message[256];

@@ -997,7 +997,7 @@ forward d_visual_Ongminit();
 
 //////////////////////
 
-public OnPlayerDeath(playerid)
+public OnPlayerDeath(playerid, killerid, reason)
 {
     for( new i = 0; i < 13; i ++ ) 
     {
@@ -1040,7 +1040,7 @@ public OnPlayerDeath(playerid)
     }
     if(funcidx("d_visual_Onpde") != -1)
     {
-        CallLocalFunction("d_visual_Onpde", "i", playerid);
+        CallLocalFunction("d_visual_Onpde", "iii", playerid, killerid, reason);
     }
     return 1;
 }
@@ -1053,7 +1053,7 @@ public OnPlayerDeath(playerid)
 
 #define OnPlayerDeath d_visual_Onpde
 
-forward d_visual_Onpde(playerid);
+forward d_visual_Onpde(playerid, killerid, reason);
 
 /*
                                                                       

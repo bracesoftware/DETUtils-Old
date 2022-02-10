@@ -54,8 +54,8 @@ enum enum_DMZoneData
 
 new g_DMZoneCache[MAX_DM_ZONES][enum_DMZoneData];
 
-forward OnDeathMatchZoneCreate(id, name[]);
-forward OnDeathMatchZoneDestroy(id, name[]);
+forward OnDeathMatchZoneCreate(zoneid, zonename[]);
+forward OnDeathMatchZoneDestroy(zoneid, zonename[]);
 
 stock CreateDeathMatchZone(const name[], Float:x, Float:y, Float:z, Float:x2, Float:y2, Float:z2, Float:x3, Float:y3, Float:z3)
 {
