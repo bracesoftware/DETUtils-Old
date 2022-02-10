@@ -995,10 +995,35 @@ DETUTILS RoleCommand:ao( Role:AdminRole2, playerid, params[])
     SendClientMessageToAll(-1, "Announcement!");
     return 1;
 }
- 
+
+public OnDeathMatchZoneCreate(zoneid, zonename[])
+{
+    printf("DM Zone `%s`[%i] created!", zonename, zoneid);
+    return 1;
+}
+
+public OnDeathMatchZoneDestroy(zoneid, zonename[])
+{
+    printf("DM Zone `%s`[%i] destroyed!", zonename, zoneid);
+    return 1;
+}
+
+@command(.type = SLASH_COMMAND) dmjoin(playerid, params[])
+{
+    AddPlayerToDeathMatchZone(playerid, "Insane DeathMatch", 1, 10);
+    return 1;
+}
+
+@command(.type = SLASH_COMMAND) dmleave(playerid, params[])
+{
+    RemovePlayerFromDeathMatchZone(playerid);
+    return 1;
+}
+
 public OnGameModeInit()
 {
     AddStaticVehicle(560, 844.7139,-1614.3539,13.5391,316.9723, 25, 23);
+    CreateDeathMatchZone("Insane DeathMatch", 844.7139,-1614.3539,13.5391, 825.6589,-1614.8202,13.5469, 811.1299,-1616.0647,13.5469);
     teleportmenu = CreateMenu("Teleportmenu", 2, 200.0, 100.0, 150.0, 150.0);
     AddMenuItem(teleportmenu, 0, "LS");
     AddMenuItem(teleportmenu, 0, "LS");
@@ -1223,18 +1248,6 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
             GetPropertyName(propertyid), GetPropertyIDByName(GetPropertyName(propertyid)));
     }
     return 0;
-}
- 
-public OnDeathMatchZoneCreate(zoneid, zonename[])
-{
-    printf("DM Zone `%s`[%i] created!", zonename, zoneid);
-    return 1;
-}
-
-public OnDeathMatchZoneDestroy(zoneid, zonename[])
-{
-    printf("DM Zone `%s`[%i] destroyed!", zonename, zoneid);
-    return 1;
 }
 
 public OnPropertyCreate(propertyid)

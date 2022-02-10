@@ -713,11 +713,11 @@ stock d_vs_GivePlayerWeapon(playerid, weaponid, ammo)
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-#define RemovePlayerWeapon Player_WeaponRemove
+#define Player_WeaponRemove RemovePlayerWeapon
 
 #endif
 
-stock Player_WeaponRemove( playerid, weaponid ) 
+stock RemovePlayerWeapon( playerid, weaponid ) 
 {
     ResetPlayerWeapons( playerid );
 
@@ -737,6 +737,25 @@ stock Player_WeaponRemove( playerid, weaponid )
     }
     return 1;
 }
+
+stock d_v_ResetPlayerWeapons(playerid)
+{
+    ResetPlayerWeapons(playerid);
+    for(new i; i < 13; i ++)
+    {
+        d_PlayerWeaponInfo[ playerid ][ Weapon ][i] = 0;
+        d_PlayerWeaponInfo[ playerid ][ Ammo ][ i ] = 0;
+    }
+    return 1;
+}
+
+#if defined _ALS_ResetPlayerWeapons
+    #undef ResetPlayerWeapons
+#else
+    #define _ALS_ResetPlayerWeapons
+#endif
+
+#define ResetPlayerWeapons d_v_ResetPlayerWeapons
 
 forward OnPlayerWeaponChange(playerid, oldweapon, newweapon);
 
