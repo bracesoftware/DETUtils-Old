@@ -8,7 +8,8 @@ SA:MP DeathMatch Zones - Provides the creation of deathmatch zones, adding and r
 ```pawn
 public OnGameModeInit()
 {
-    CreateDeathMatchZone("Insane DeathMatch", 844.7139,-1614.3539,13.5391, 825.6589,-1614.8202,13.5469, 811.1299,-1616.0647,13.5469);
+       // Function.         // Zone name.      // First spawn coord set.     // Second spawn coord set.    // Third spawn coord set.
+    CreateDeathMatchZone("Insane DeathMatch", 844.7139,-1614.3539,13.5391,  825.6589,-1614.8202,13.5469,  811.1299,-1616.0647,13.5469);
     return 1;
 }
 ```
