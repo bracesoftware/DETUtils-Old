@@ -771,12 +771,12 @@ stock DestroyPropertyEntrance(const name[])
             Delete3DTextLabel(g_PropertyData[i][p_PropertyLabel]);
             DestroyPickup(g_PropertyData[i][p_PropertyPickupID]);
             DestroyPickup(g_PropertyData[i][p_PropertyPickup]);
-            g_PropertyData[g_PropertyID][p_PropertyExit_X] = 0;
-            g_PropertyData[g_PropertyID][p_PropertyExit_Y] = 0;
-            g_PropertyData[g_PropertyID][p_PropertyExit_Z] = 0;
-            g_PropertyData[g_PropertyID][p_PropertyEntrance_X] = 0;
-            g_PropertyData[g_PropertyID][p_PropertyEntrance_Y] = 0;
-            g_PropertyData[g_PropertyID][p_PropertyEntrance_Z] = 0;
+            g_PropertyData[i][p_PropertyExit_X] = 0;
+            g_PropertyData[i][p_PropertyExit_Y] = 0;
+            g_PropertyData[i][p_PropertyExit_Z] = 0;
+            g_PropertyData[i][p_PropertyEntrance_X] = 0;
+            g_PropertyData[i][p_PropertyEntrance_Y] = 0;
+            g_PropertyData[i][p_PropertyEntrance_Z] = 0;
             #if defined detutils_debug
             printf("[samp-detutils]: (debug) - dpe :: Destroyed a property entrance ID : %i", i);
             #endif
