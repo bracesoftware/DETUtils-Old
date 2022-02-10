@@ -27,6 +27,12 @@ enum Enums
     Admin
 }
 
+public OnDETUtilsInit()
+{
+    print("SA:MP | DETUtils - Testing mode script loaded.");
+    return 1;
+}
+
 /* ONE
 
                                                                                       
@@ -55,13 +61,13 @@ enum PlayerData
 }
 
 new PlayerCache[MAX_PLAYERS][PlayerData];
-
+/*
 main()
 {
     //printf("%d arrays in 'CallCommand'", DETUTILS_ARR_PARAMS_CallCommand);
     //printf("There are %d array parameters with size %d to \"my_test_function\"", countOf_my_test_function, sizeOf_my_test_function);
     print("SA:MP | DETUtils - Testing mode script loaded.");
-}
+}*/
 
 public OnUnoccupiedVehicleUpdate(vehicleid, playerid, passenger_seat, Float:new_x, Float:new_y, Float:new_z, Float:vel_x, Float:vel_y, Float:vel_z) 
 {
@@ -957,7 +963,7 @@ DETUTILS PrefixedCommand:sscanf(Prefix: "+",playerid, params[])
     }
     return 1;
 }
-
+#endif
 prefixed command lol(Prefix: "e", playerid, params[])
 {
     SendClientMessageToAll(-1, "E");

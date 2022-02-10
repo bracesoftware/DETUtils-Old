@@ -1,0 +1,194 @@
+/*
+ * 
+ * SA:MP DEntisT's Utilities
+ *
+ * Since 2019., DEntisT
+ *
+ *
+ *
+ * - Entry files.
+ *
+ *
+ */
+
+#tryinclude "d_extra\d_libtags.inc"
+
+#if !defined d_extra_included
+    #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+#endif
+
+/*
+
+                                                                                      
+88b           d88              88                         db         88888888ba   88  
+888b         d888              ""                        d88b        88      "8b  88  
+88`8b       d8'88                                       d8'`8b       88      ,8P  88  
+88 `8b     d8' 88  ,adPPYYba,  88  8b,dPPYba,          d8'  `8b      88aaaaaa8P'  88  
+88  `8b   d8'  88  ""     `Y8  88  88P'   `"8a        d8YaaaaY8b     88""""""'    88  
+88   `8b d8'   88  ,adPPPPP88  88  88       88       d8""""""""8b    88           88  
+88    `888'    88  88,    ,88  88  88       88      d8'        `8b   88           88  
+88     `8'     88  `"8bbdP"Y8  88  88       88     d8'          `8b  88           88  
+                                                                                      
+                                                                                      
+
+*/
+
+#define MAX_DM_ZONES 1000
+
+enum enum_PlayerDMData
+{
+	InDM,
+	DMKills
+}
+
+new g_PlayerDMCache[MAX_PLAYERS][enum_PlayerDMData];
+
+enum enum_DMZoneData
+{
+	ValidZone,
+	ZoneName[32],
+	Float:RandomSpawn1[3],
+	Float:RandomSpawn2[3],
+	Float:RandomSpawn3[3]
+}
+
+new g_DMZoneCache[MAX_DM_ZONES][enum_DMZoneData];
+
+stock CreateDeathMatchZone(const name[], Float:x, Float:y, Float:z, Float:x2, Float:y2, Float:z2, Float:x3, Float:y3, Float:z3)
+{
+	for(new i = 1;
+		i < MAX_DM_ZONES;
+		i++)
+	{
+		if(g_DMZoneCache[i][ValidZone] == 0)
+		{
+			// Save the name:
+			strmid(g_DMZoneCache[i][ZoneName], name, 0, 32);
+
+			//Save positions:
+			g_DMZoneCache[i][RandomSpawn1][0] = x;
+			g_DMZoneCache[i][RandomSpawn1][1] = y;
+			g_DMZoneCache[i][RandomSpawn1][2] = z;
+			
+			g_DMZoneCache[i][RandomSpawn2][0] = x2;
+			g_DMZoneCache[i][RandomSpawn2][1] = y2;
+			g_DMZoneCache[i][RandomSpawn2][2] = z2;
+
+			g_DMZoneCache[i][RandomSpawn3][0] = x3;
+			g_DMZoneCache[i][RandomSpawn3][1] = y3;
+			g_DMZoneCache[i][RandomSpawn3][2] = z3;
+
+			// Validate the id `i`
+			g_DMZoneCache[i][ValidZone] = 1;
+			break;	
+		}
+	}
+	return 1;
+}
+
+stock DestroyDeathMatchZone(const name[])
+{
+	for(new i = 1;
+		i < MAX_DM_ZONES;
+		i ++)
+	{// check
+		if(!strcmp(g_DMZoneCache[i][ZoneName], name, false))
+		{
+			// Erase the name:
+			strmid(g_DMZoneCache[i][ZoneName], "_INVALID_DMZ_NAME_", 0, 32);
+
+			//Save positions:
+			g_DMZoneCache[i][RandomSpawn1][0] = 0;
+			g_DMZoneCache[i][RandomSpawn1][1] = 0;
+			g_DMZoneCache[i][RandomSpawn1][2] = 0;
+			
+			g_DMZoneCache[i][RandomSpawn2][0] = 0;
+			g_DMZoneCache[i][RandomSpawn2][1] = 0;
+			g_DMZoneCache[i][RandomSpawn2][2] = 0;
+
+			g_DMZoneCache[i][RandomSpawn3][0] = 0;
+			g_DMZoneCache[i][RandomSpawn3][1] = 0;
+			g_DMZoneCache[i][RandomSpawn3][2] = 0;
+
+			// Unvalidate the id `i`
+			g_DMZoneCache[i][ValidZone] = 0;
+		}
+	}
+	return 0;
+}
+
+stock IsValidDeathMatchZone(id)
+{
+	return g_DMZoneCache[id][ValidZone];
+}
+
+stock GetDeathMatchZoneIDByName(const name[])
+{
+	for(new i = 1;
+		i < MAX_DM_ZONES;
+		i++)
+	{
+		if(!strcmp(g_DMZoneCache[i][ZoneName], name, false))
+		{
+			return i;
+		}
+	}
+	return 0;
+}
+
+stock GetDeathMatchZoneName(id)
+{
+    new name[256];
+
+    strcat(name, g_DMZoneCache[id][ZoneName]);
+
+    return name;
+}
+
+stock AddPlayerToDeathMatchZone(playerid, const name[], level)
+{
+	return 1;
+}
+
+stock RemovePlayerFromDeathMatchZone(playerid)
+{
+	return 1;
+}
+
+/*
+                                                                      
+88888888888                                                           
+88                          ,d                                        
+88                          88                                        
+88aaaaa      8b,     ,d8  MM88MMM  8b,dPPYba,  ,adPPYYba,  ,adPPYba,  
+88"""""       `Y8, ,8P'     88     88P'   "Y8  ""     `Y8  I8[    ""  
+88              )888(       88     88          ,adPPPPP88   `"Y8ba,   
+88            ,d8" "8b,     88,    88          88,    ,88  aa    ]8I  
+88888888888  8P'     `Y8    "Y888  88          `"8bbdP"Y8  `"YbbdP"'  
+                                                                      
+
+*/
+
+public OnDETUtilsInit()
+{
+    #if defined detutils_debug
+    SaveLogIntoFile("detutils_dmzone.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_dmzone.log", "[samp-detutils]: (debug) - Loaded.");
+    #endif
+    LoadDETUtilsScript(DETUTILS_SCRIPT_DMZONE);
+    if(funcidx("d_dm_detutilsinit") != -1)
+    {
+        CallLocalFunction("d_dm_detutilsinit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsInit
+    #undef OnDETUtilsInit
+#else
+    #define _ALS_OnDETUtilsInit
+#endif
+
+#define OnDETUtilsInit d_dm_detutilsinit
+
+forward d_dm_detutilsinit();

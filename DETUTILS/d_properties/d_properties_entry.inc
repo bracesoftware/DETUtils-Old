@@ -123,15 +123,12 @@ new _EntranceTitleShown[MAX_PLAYERS];
 #define PROPERTY_ACTION_LOCK 2
 #define PROPERTY_ACTION_UNLOCK 3
 
-void:_PropertyLoadingTime(const playerid)
+static void:_PropertyLoadingTime(const playerid)
 {
     #if defined detutils_debug
     printf("[samp-detutils]: (debug) - tpcll :: Player ( id : %i ) is now controlable.", playerid);
     #endif
-    rem:<To prevent symbol-never-used error:>;
-    new _c = playerid;
-    _c++;
-    SetTimer("_ToggleControllable", 1000, false);
+    SetTimerEx("_ToggleControllable", 1000, false, "i", playerid);
 }
 
 static g_HideAnnouncement[MAX_PLAYERS];
@@ -196,15 +193,15 @@ static _CreatePlayerTextDraws(playerid)
     return 1;
 }
 
-forward _ToggleControllable();
+forward _ToggleControllable(i);
 
-public _ToggleControllable()
+public _ToggleControllable(i)
 {
-    for(new i; i < MAX_PLAYERS; i++)
-    {
+    //for(new i; i < MAX_PLAYERS; i++)
+    //{
         TogglePlayerControllable(i, true);
-    }
-    rem:<This is used to prevent player being frozen for several minutes>;
+    //}
+    //rem:<This is used to prevent player being frozen for several minutes>;
     return 1;
 }
 

@@ -49,6 +49,7 @@ public const detutils_ver = 0x1;
 #define DETUTILS_SCRIPT_ANTICHEAT 4
 #define DETUTILS_SCRIPT_FILEQUERIES 5
 #define DETUTILS_SCRIPT_MAPEDITOR 6
+#define DETUTILS_SCRIPT_DMZONE 7
 
 stock void:LoadDETUtilsScript(scriptid)
 {
@@ -79,6 +80,10 @@ stock void:LoadDETUtilsScript(scriptid)
     if(scriptid == DETUTILS_SCRIPT_FILEQUERIES)
     {
         print("*** [samp-detutils]: (module) - Loaded: d_filequeries.inc");
+    }
+    if(scriptid == DETUTILS_SCRIPT_DMZONE)
+    {
+        print("*** [samp-detutils]: (module) - Loaded: d_dmzone.inc");
     }
 }
 

@@ -11,4 +11,4 @@
  *
  */
 
-#include "d_anticheat\d_anticheat_entry"
+#include "d_dmzone\d_dmzone_entry"

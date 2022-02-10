@@ -131,10 +131,20 @@
  	#warning [samp-detutils]: (includes) - Library 'd_filequeries' is disabled.
 
 #endif
+#if !defined DETUTILS_NO_DMZONE
+	
+	//#warning [samp-detutils]: (includes) - Library 'd_mapeditor' is disabled.
+	#include "d_dmzone"
+
+#else
+
+ 	#warning [samp-detutils]: (includes) - Library 'd_dmzone' is disabled.
+
+#endif
 
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
- && defined DETUTILS_NO_MAPEDITOR
+ && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_DMZONE
 
 	#warning [samp-detutils]: (warning) - All library modules are disabled.
 
