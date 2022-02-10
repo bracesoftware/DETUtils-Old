@@ -198,6 +198,7 @@ stock AddPlayerToDeathMatchZone(playerid, const name[], spawnid, kitlevel)
 					GivePlayerWeapon( playerid, 27, 150 );
 					GivePlayerWeapon( playerid, 29, 400 );
 					GivePlayerWeapon( playerid, 31, 400 );
+					SetPlayerSkillLevel( playerid, WEAPONSKILL_M4, 999 );
 				}
 				else if(kitlevel == 6) 
 				{
@@ -282,6 +283,7 @@ stock AddPlayerToDeathMatchZone(playerid, const name[], spawnid, kitlevel)
 					GivePlayerWeapon( playerid, 27, 150 );
 					GivePlayerWeapon( playerid, 29, 400 );
 					GivePlayerWeapon( playerid, 31, 400 );
+					SetPlayerSkillLevel( playerid, WEAPONSKILL_M4, 999 );
 				}
 				else if(kitlevel == 6) 
 				{
@@ -366,6 +368,7 @@ stock AddPlayerToDeathMatchZone(playerid, const name[], spawnid, kitlevel)
 					GivePlayerWeapon( playerid, 27, 150 );
 					GivePlayerWeapon( playerid, 29, 400 );
 					GivePlayerWeapon( playerid, 31, 400 );
+					SetPlayerSkillLevel( playerid, WEAPONSKILL_M4, 999 );
 				}
 				else if(kitlevel == 6) 
 				{

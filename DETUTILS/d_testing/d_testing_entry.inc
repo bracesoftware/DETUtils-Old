@@ -27,7 +27,7 @@ enum Enums
     Admin
 }
 
-public OnDETUtilsInit()
+public OnDETUtilsInit() // This should be the last hook.
 {
     print("SA:MP | DETUtils - Testing mode script loaded.");
     return 1;
