@@ -18,6 +18,15 @@
 
 #endif
 
+#if defined DETUTILS_COMPATIBILITY_MODE || defined detutils_complete_error_boom
+
+    #error [samp-detutils]: (fatal error) - crl :: Stop messing with the core libraries!
+
+#endif
+
+//Undefine this anyways:
+#undef DETUTILS_COMPATIBILITY_MODE
+
 #include "d_thirdpartyinclude" //_INC_code_parse_inc
 
 #if !defined __PawnBuild

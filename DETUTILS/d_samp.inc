@@ -22,8 +22,6 @@
 
 #tryinclude "d_extra\d_mainfix"
 
-#tryinclude "d_extra\d_libtags"
-
 #if defined d_samp_included
 
     #endinput
@@ -60,6 +58,8 @@
 #endif
 
 #define d_samp_included
+
+#tryinclude "d_extra\d_libtags"
 
 #if !defined DETUTILS_NO_PROPERTIES
 
