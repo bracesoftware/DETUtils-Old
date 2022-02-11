@@ -50,6 +50,7 @@ public const detutils_ver = 0x1;
 #define DETUTILS_SCRIPT_FILEQUERIES 5
 #define DETUTILS_SCRIPT_MAPEDITOR 6
 #define DETUTILS_SCRIPT_DMZONE 7
+#define DETUTILS_SCRIPT_TEAMS 8
 
 stock void:LoadDETUtilsScript(scriptid)
 {
@@ -85,6 +86,10 @@ stock void:LoadDETUtilsScript(scriptid)
     {
         print("*** [samp-detutils]: (module) - Loaded: d_dmzone.inc");
     }
+    if(scriptid == DETUTILS_SCRIPT_TEAMS)
+    {
+        print("*** [samp-detutils]: (module) - Loaded: d_teams.inc");
+    }
 }
 
 /*
@@ -100,6 +105,17 @@ stock void:LoadDETUtilsScript(scriptid)
                                                                       
 
 */
+
+#define @DETUTILSSTRING_NULL__1 ""
+#define @DETUTILSSTRING_NULL__2 "",""
+#define @DETUTILSSTRING_NULL__3 "","",""
+#define @DETUTILSSTRING_NULL__4 "","","",""
+#define @DETUTILSSTRING_NULL__5 "","","","","",
+#define @DETUTILSSTRING_NULL__6 "","","","","","",
+#define @DETUTILSSTRING_NULL__7 "","","","","","","",
+#define @DETUTILSSTRING_NULL__8 "","","","","","","","",
+#define @DETUTILSSTRING_NULL__9 "","","","","","","","","",
+#define @DETUTILSSTRING_NULL__10 "","","","","","","","","","",
 
 #define @DETUTILSFMARGS_TAGS__: {Float,_,bool}:
 

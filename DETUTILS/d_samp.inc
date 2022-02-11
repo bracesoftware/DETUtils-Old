@@ -141,10 +141,20 @@
  	#warning [samp-detutils]: (includes) - Library 'd_dmzone' is disabled.
 
 #endif
+#if !defined DETUTILS_NO_TEAMS
+	
+	//#warning [samp-detutils]: (includes) - Library 'd_mapeditor' is disabled.
+	#include "d_teams"
+
+#else
+
+ 	#warning [samp-detutils]: (includes) - Library 'd_teams' is disabled.
+
+#endif
 
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
- && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_DMZONE
+ && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_DMZONE && defined DETUTILS_NO_TEAMS
 
 	#warning [samp-detutils]: (warning) - All library modules are disabled.
 

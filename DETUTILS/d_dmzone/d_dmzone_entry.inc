@@ -6,7 +6,8 @@
  *
  *
  *
- * - Entry files.
+ * - Library which provides
+ *   creation of DM zones.
  *
  *
  */

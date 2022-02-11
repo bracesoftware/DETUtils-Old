@@ -518,6 +518,8 @@ stock
 
 forward OnPlayerScoreSniperHeadshot(playerid, killedid);
 
+#if defined DETUTILS_NO_TEAMS
+
 public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 {
     if(bodypart == 9 && weaponid == 34)
@@ -529,7 +531,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
     }
     if(funcidx("d_visual_Onpgd") != -1)
     {
-        CallLocalFunction("d_visual_Onpgd", "");
+        CallLocalFunction("d_visual_Onpgd", "iifii", playerid, damagedid, amount, weaponid, bodypart);
     }
     return 1;
 }
@@ -542,7 +544,9 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 
 #define OnPlayerGiveDamage d_visual_Onpgd
 
-forward d_visual_Onpgd();
+forward d_visual_Onpgd(playerid, damagedid, Float:amount, weaponid, bodypart);
+
+#endif
 
 #define ReturnPlayerName _ReturnPlayerName
 

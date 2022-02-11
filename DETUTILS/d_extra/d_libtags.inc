@@ -25,7 +25,9 @@
 #endif
 
 //Undefine this anyways:
+#if defined DETUTILS_COMPATIBILITY_MODE
 #undef DETUTILS_COMPATIBILITY_MODE
+#endif
 
 #include "d_thirdpartyinclude" //_INC_code_parse_inc
 
@@ -230,6 +232,12 @@ stock bool:IsPlayerUsingAndroidClient(playerid)
                                                                       
 
 */
+
+stock HidePlayerDialog(playerid)
+{
+    ShowPlayerDialog(playerid, -1, 1, @DETUTILSSTRING_NULL__4);
+    return 1;
+}
 
 new bool:g_PlayerPedAnims = false;
 

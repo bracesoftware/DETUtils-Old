@@ -1020,10 +1020,23 @@ public OnDeathMatchZoneDestroy(zoneid, zonename[])
     return 1;
 }
 
+@command(.type = TEAM_COMMAND, .team = "Amazing people") amiamazing(playerid, params[])
+{
+    SendClientMessage(playerid, -1, "You are amazing!");
+    return 1;
+}
+
+@command(.type = SLASH_COMMAND) joinamazing(playerid, params[])
+{
+    AddPlayerToTeam(playerid, "Amazing people");
+    return 1;
+}
+
 public OnGameModeInit()
 {
     AddStaticVehicle(560, 844.7139,-1614.3539,13.5391,316.9723, 25, 23);
     CreateDeathMatchZone("Insane DeathMatch", 844.7139,-1614.3539,13.5391, 825.6589,-1614.8202,13.5469, 811.1299,-1616.0647,13.5469);
+    CreateTeam("Amazing people");
     teleportmenu = CreateMenu("Teleportmenu", 2, 200.0, 100.0, 150.0, 150.0);
     AddMenuItem(teleportmenu, 0, "LS");
     AddMenuItem(teleportmenu, 0, "LS");
