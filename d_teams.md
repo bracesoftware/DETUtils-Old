@@ -3,7 +3,21 @@ SA:MP Teams - Create teams, add or remove players from them, enable friendly fir
 
 [Go back to home page...](README.md)
 ## How to start to use?
-## API
+## API and features
+- Let's take a look at all of the include features, including visual ones and scripting functions.
+---------------------------------
+### Features
+---------------------------------
+### Team commands
+---------------------------------
+### Functions
+---------------------------------
+### `CreateTeam`
+- Create a team.
+
+### `DeleteTeam`
+- Delete a team.
+
 ## Messages from creator
 ### Warnings
 ### Notes
