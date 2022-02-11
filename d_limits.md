@@ -16,21 +16,6 @@ Check all limits below:
 
 - No limits at the moment.
 
-## d_colours.inc
-
-### Maximum colour name length
-Include code:
-```pawn
-#if !defined MAX_COLOUR_NAME_LENGTH && !defined MAX_COLOR_NAME_LENGTH
-
-    #define MAX_COLOUR_NAME_LENGTH (32 - 7)
-    
-    #define MAX_COLOR_NAME_LENGTH MAX_COLOUR_NAME_LENGTH
-
-#endif
-```
-- This limits the number of characters that colour's name can have. 
-
 ## d_commands.inc
 
 ### Maximum function name
@@ -43,13 +28,35 @@ Include code:
 #endif
 ```
 - This limits the number of characters in function name, if the number of characters in a certain function's name is larger than **32**, then you will get an error. This is also a Pawn limit, which explains why I've added this definition to my script as well.
-
 ### Maximum prefix length
 Include code:
 ```pawn
 decl Prefix:qmark = "?";
 ```
 - Unfortunately, prefix can only contain 1 character.
+
+
+## d_dmzone.inc
+
+### Maximum number of DM zones
+Include code:
+```pawn
+#define MAX_DM_ZONES 1000
+```
+- This limits the number of DM zones that can be created.
+
+## d_filequeries.inc
+
+### Maximum number of file queries
+Include code:
+```pawn
+#if !defined MAX_FILE_QUERIES
+
+    #define MAX_FILE_QUERIES 1000
+
+#endif
+```
+- This limits the number of file queries that can be created. That's why I recomment to DELETE the player file queries when player disconnects.
 
 ## d_fmargs.inc
 
@@ -90,3 +97,12 @@ Include code:
 ```
 
 - This limits the maximum number of created objects on the server. This is also a SA:MP limit.
+
+## d_teams.inc
+### Maximum objects
+Include code:
+```pawn
+#define MAX_TEAMS 256
+```
+
+- This limits the maximum number of created teams on the server.
