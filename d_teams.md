@@ -43,6 +43,12 @@ CreateTeam("Amazing people");
     return 1;
 }
 ```
+### Team properties
+- Also, including *d_teams.inc* extends the capabilities of *d_properties.inc*, which means you can also create team properties - properties whose can be accessed only by a certain team. Creating those properties is easy to do, you only add an extra parameter next to property name - team name. So to create a property for a team we made in the example:
+
+```pawn
+CreatePropertyEntranceForTeam("Your Interior", "Amazing people", 825.6589,-1614.8202,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
+```
 ---------------------------------
 ### Functions
 ---------------------------------
@@ -64,6 +70,9 @@ GetTeamMemberCount("Amazing people");
 
 ### `AddPlayerToTeam`
 - Add (set) player to a certain team.
+
+### `CreatePropertyEntranceForTeam`
+- Create a property for a certain team. Note that this works ONLY if the file `d_properties.inc` is included.
 ## Messages from creator
 ### Warnings
 1. Players within the same team cannot harm each other.
