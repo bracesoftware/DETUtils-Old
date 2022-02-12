@@ -39,10 +39,12 @@
 
 #if !defined DETUTILS_NO_COMMANDS
 
-#define @DETUTILS_CMD_DEC__@TEAM_COMMAND%6,%5.%4team%3=%2)%0(%1,%7[%8]%9) \
+#define @DETUTILS_CMD_DEC__@TEAM_COMMAND%6,%5.team%3=%2)%0(%1,%7[%8]%9) DETUTILSCMD_TYPESET__$|<%0>,SLASH_COMMAND_TYPE_TEAM| \
     @DETUTILSCMD_TEAMS_DECL__|%0..%1,%7| @DETUTILSCMD_TEAMS_CHECK__:{%1..|%2|..%0,%7} @DETUTILSCMD_TEAMS_CALL___:|||%0|%1..%7|
 
 #endif
+
+#if defined DETUTILS_NO_PROPERTIES
 
 #define MAX_TEAMS 256
 
@@ -61,6 +63,8 @@ enum enum_PlayerTeamData
 }
 
 new g_PlayerTeamCache[MAX_PLAYERS][enum_PlayerTeamData];
+
+#endif
 
 forward OnTeamCreate(teamid, teamname[]);
 forward OnTeamDelete(teamid, teamname[]);
@@ -131,10 +135,19 @@ stock AddPlayerToTeam(playerid, const name[])
 {
 	if(!strcmp(name, "NO_TEAM", false)) // If the team is 'NO_TEAM', set player's team to nothing.
 	{
+		for(new i = 1;
+			i < MAX_TEAMS;
+			i++)
+		{
+			if(!strcmp(g_TeamCache[i][TeamName], g_PlayerTeamCache[playerid][Team], false))
+			{
+				g_TeamCache[i][TeamMembers] --;
+			}
+		}
 		#if defined detutils_debug
 			printf("[samp-detutils]: (team set) - Player '%i' added to a team '%s'.", playerid, name);
 		#endif
-		strmid(g_PlayerTeamCache[playerid][Team], name, 0, 32);
+		strmid(g_PlayerTeamCache[playerid][Team], "NO_TEAM", 0, 32);
 		return 1;
 	}
 	else
@@ -148,6 +161,7 @@ stock AddPlayerToTeam(playerid, const name[])
 				#if defined detutils_debug
 				printf("[samp-detutils]: (team set) - Player '%i' added to a team '%s'.", playerid, name);
 				#endif
+				g_TeamCache[i][TeamMembers] ++;
 				strmid(g_PlayerTeamCache[playerid][Team], name, 0, 32);
 				return 1;
 			}
@@ -173,6 +187,20 @@ stock AddPlayerToTeam(playerid, const name[])
 			return 0;
 		}
 		return 1;*/
+	}
+	return 0;
+}
+
+stock GetTeamMemberCount(const name[])
+{
+	for(new i = 1;
+		i < MAX_TEAMS;
+		i++)
+	{
+		if(!strcmp(g_TeamCache[i][TeamName], name, false))
+		{
+			return g_TeamCache[i][TeamMembers];
+		}
 	}
 	return 0;
 }
@@ -249,6 +277,190 @@ public OnPlayerDisconnect(playerid, reason)
 #define OnPlayerDisconnect d_t_disconnect
 
 forward d_t_disconnect(playerid, reason);
+
+#if !defined DETUTILS_NO_PROPERTIES
+
+stock CreatePropertyEntranceForTeam(
+        const PropertyName[],
+        const teamname[], 
+        Float:_xEntrance, 
+        Float:_yEntrance, 
+        Float:_zEntrance,  
+        _xInteriorid,  
+        _xVirtualWorldid,
+        bool:Labels = false,
+        Interior = INTERIOR_CUSTOM,
+        Float:_xExit = 0.000, 
+        Float:_yExit = 0.000, 
+        Float:_zExit = 0.000, 
+        _eInteriorid = 0,
+        _eVirtualWorldid = 0)
+{
+    for(new g_PropertyID = 1; 
+        g_PropertyID < MAX_PROPERTIES; 
+        g_PropertyID++)
+        {
+            if(g_PropertyData[g_PropertyID][ValidProp] == 0)
+            {
+            	g_PropertyData[g_PropertyID][p_PropertyTeam] = 1;
+            	strmid(g_PropertyData[g_PropertyID][p_PropTeam], teamname, 0, 32);
+                printf("[samp-detutils]: (debug) - Property '%s' successfully created, entrance is set to: %f, %f, %f.",
+                        PropertyName,
+                        Float:_xEntrance, 
+                        Float:_yEntrance, 
+                        Float:_zEntrance);
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - Property created.");
+                #endif
+
+                //g_PropertyID++;
+
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - Property id assigned.");
+                #endif
+
+                strmid(g_PropertyData[g_PropertyID][p_PropertyName], 
+                        PropertyName, 
+                        0, 
+                        strlen(PropertyName), 
+                        255);
+
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - Saved property name.");
+                #endif
+
+                printf("[samp-detutils]: (debug) - Property '%s' has an id %d.",PropertyName,g_PropertyID);
+
+                g_PropertyData[g_PropertyID][p_PropertyEntrance_X] = _xEntrance;
+                g_PropertyData[g_PropertyID][p_PropertyEntrance_Y] = _yEntrance;
+                g_PropertyData[g_PropertyID][p_PropertyEntrance_Z] = _zEntrance;
+
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - Entrance coordinates assigned to property data.");
+                #endif
+
+                g_PropertyData[g_PropertyID][p_PropertyExit_X] = _xExit;
+                g_PropertyData[g_PropertyID][p_PropertyExit_Y] = _yExit;
+                g_PropertyData[g_PropertyID][p_PropertyExit_Z] = _zExit;
+
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - Exit coordinates assigned to property data.");
+                #endif
+
+                g_PropertyData[g_PropertyID][p_PropertyIntid] = _eInteriorid;
+                g_PropertyData[g_PropertyID][p_PropertyIntid_OUT] = _xInteriorid;
+                g_PropertyData[g_PropertyID][p_PropertyVwid] = _eVirtualWorldid;
+                g_PropertyData[g_PropertyID][p_PropertyVwid_OUT] = _xVirtualWorldid;
+
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - Virtual world IDs and interior IDs assigned to property data.");
+                #endif
+
+                if(Interior != INTERIOR_CUSTOM)
+                {
+                    #if defined detutils_debug
+                    printf("[samp-detutils]: (debug) - Assigned interior map id to property id : %i", Interior);
+                    #endif
+
+                    if(Interior == INTERIOR_MARKET_247_1)
+                    {
+                        g_PropertyData[g_PropertyID][p_PropertyIntid] = 17;
+                        g_PropertyData[g_PropertyID][p_PropertyVwid] = 17;
+                        _eInteriorid = 17;
+                        _eVirtualWorldid = 17;
+
+                        g_PropertyData[g_PropertyID][p_PropertyExit_X] = -25.884498;
+                        g_PropertyData[g_PropertyID][p_PropertyExit_Y] = -185.868988;
+                        g_PropertyData[g_PropertyID][p_PropertyExit_Z] = 1003.546875;
+                    }
+                    if(Interior == INTERIOR_MARKET_247_2)
+                    {
+                        DETUTILS_PROP_PARAMS__(6.091179,-29.271898,1003.549438,10);
+                    }
+                    if(Interior == INTERIOR_MARKET_247_3)
+                    {
+                        DETUTILS_PROP_PARAMS__(-30.946699,-89.609596,1003.546875,18);
+                    }
+                    if(Interior == INTERIOR_MARKET_247_4)
+                    {
+                        DETUTILS_PROP_PARAMS__(-25.132598,-139.066986,1003.546875,16);
+                    }
+                    if(Interior == INTERIOR_MARKET_247_5)
+                    {
+                        DETUTILS_PROP_PARAMS__(-27.312299,-29.277599,1003.557250,4);
+                    }
+                    if(Interior == INTERIOR_MARKET_247_6)
+                    {
+                        DETUTILS_PROP_PARAMS__(-26.691598,-55.714897,1003.546875,6);
+                    }
+                }
+
+                if(Labels == true)
+                {
+                    new _EntranceLabelString[300];
+                    #if defined detutils_debug
+                    printf("[samp-detutils]: (debug) - Empty string declared.");
+                    #endif
+                    format(_EntranceLabelString,sizeof(_EntranceLabelString),"{ffffff}[ %s ]\n{ffffff}Enter here!",PropertyName);
+                    #if defined detutils_debug
+                    printf("[samp-detutils]: (debug) - Formatted the 3D label string successfully.");
+                    #endif
+                    __Create3DLabelAndPickup(_EntranceLabelString, _xEntrance,_yEntrance,_zEntrance, 
+                        _xVirtualWorldid, 19133, 3.0, 
+                        g_PropertyData[g_PropertyID][p_PropertyLabelID], 
+                        g_PropertyData[g_PropertyID][p_PropertyPickupID]);
+                    #if defined detutils_debug
+                    printf("[samp-detutils]: (debug) - lab :: Created 3D label and pickup on entrance.");
+                    #endif
+                    __Create3DLabelAndPickup("Exit here!", g_PropertyData[g_PropertyID][p_PropertyExit_X],
+                        g_PropertyData[g_PropertyID][p_PropertyExit_Y], 
+                        g_PropertyData[g_PropertyID][p_PropertyExit_Z], 
+                        _eVirtualWorldid, 19133, 3.0,
+                        g_PropertyData[g_PropertyID][p_PropertyLabel], 
+                        g_PropertyData[g_PropertyID][p_PropertyPickup]);
+                    #if defined detutils_debug
+                    printf("[samp-detutils]: (debug) - pick :: Created 3D label and pickup on exit.");
+                    #endif
+                }
+
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - Internal property data assigned.");
+                #endif
+
+                if(funcidx("OnPropertyCreate") != -1)
+                {
+                    CallLocalFunction("OnPropertyCreate", "i", g_PropertyID);
+                }
+
+                #if defined detutils_debug
+                printf("[samp-detutils]: (debug) - OnPropertyCreate(propertyid) called.");
+                #endif
+
+                g_PropertyData[g_PropertyID][ValidProp] = 1;
+                DET_g_CreatedProperties ++;
+                break;
+            }
+            else
+            {
+                if(DET_g_CreatedProperties == MAX_PROPERTIES)
+                {
+                    #if defined detutils_debug
+                    for(new i = 0; i < MAX_PLAYERS; i++)
+                    {
+                        if(i != INVALID_PLAYER_ID)
+                        {
+                            d_SendWarningMessage(i, DETUTILS_TEXT_MAX_PROPS_REACH);
+                        }
+                    }
+                    #endif
+                    return 0;
+                }
+            }
+        }
+    return 1;
+}
+
+#endif
 
 /*
                                                                       

@@ -17,6 +17,7 @@
 #define DETUTILS_TEXT_PROPERTY_NAME "Property: %s"
 
 #define DETUTILS_TEXT_PROP_LOCK "SERVER: This property's door is locked."
+#define DETUTILS_TEXT_TEAMPROP_LOCK "SERVER: Invalid team; try again."
 
 // d_commands
 

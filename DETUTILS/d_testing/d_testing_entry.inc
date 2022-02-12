@@ -1062,7 +1062,7 @@ public OnGameModeInit()
     UsePlayerPedAnims();
     DisableDefaultProperties();
     CreatePropertyEntrance("24/7 Market", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_MARKET_247_1);
-    CreatePropertyEntrance("Your Interior", 825.6589,-1614.8202,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
+    CreatePropertyEntranceForTeam("Your Interior", "Amazing people", 825.6589,-1614.8202,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
     SetPropertyEntranceAngles(GetPropertyIDByName("Your Interior"), 1.0000, 2.0000);
     CreateDroppedWeapon(30,999,811.1299,-1616.0647,13.5469);
     return 1;

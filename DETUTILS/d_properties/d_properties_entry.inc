@@ -67,6 +67,10 @@ enum enum_PropertyData
     Text3D:p_PropertyLabelID,
 
     p_PropertyLocked
+    #if !defined DETUTILS_NO_TEAMS
+    ,p_PropertyTeam,
+    p_PropTeam[32]
+    #endif
 };
 
 #if !defined DETUTILS_OPENMP_COMPAT
@@ -274,6 +278,28 @@ forward a_props_OnplayerSpawn(playerid);
 
 _OnPlayerNearEntrance(playerid);
 
+#if !defined DETUTILS_NO_TEAMS
+
+#define MAX_TEAMS 256
+
+enum enum_TeamData
+{
+    ValidTeam,
+    TeamName[32],
+    TeamMembers
+}
+
+new g_TeamCache[MAX_TEAMS][enum_TeamData];
+
+enum enum_PlayerTeamData
+{
+    Team[32]
+}
+
+new g_PlayerTeamCache[MAX_PLAYERS][enum_PlayerTeamData];
+
+#endif
+
 public _OnPlayerNearEntrance(playerid)
 {
     //new PropertyFuncName[100];
@@ -286,6 +312,17 @@ public _OnPlayerNearEntrance(playerid)
         && GetPlayerVirtualWorld( playerid ) == g_PropertyData[ i ][p_PropertyVwid_OUT] \
         && !IsPlayerInAnyVehicle( playerid ))
         {
+            #if !defined DETUTILS_NO_TEAMS
+                
+                if(g_PropertyData[i][p_PropertyTeam] == 1)
+                {
+                    if(strcmp(g_PlayerTeamCache[playerid][Team], g_PropertyData[i][p_PropTeam]))
+                    {
+                        return SendClientMessage(playerid, -1, DETUTILS_TEXT_TEAMPROP_LOCK);
+                    }
+                }
+            
+            #endif
             if(g_PropertyData[i][p_PropertyLocked] == 1)
             {
                 return SendClientMessage(playerid, -1, DETUTILS_TEXT_PROP_LOCK);
@@ -331,6 +368,17 @@ public _OnPlayerNearEntrance(playerid)
         g_PropertyData[ i ][p_PropertyExit_Y], g_PropertyData[ i ][p_PropertyExit_Z]) && \
         GetPlayerVirtualWorld( playerid ) == g_PropertyData[ i ][p_PropertyVwid])
         {
+            #if !defined DETUTILS_NO_TEAMS
+                
+                if(g_PropertyData[i][p_PropertyTeam] == 1)
+                {
+                    if(strcmp(g_PlayerTeamCache[playerid][Team], g_PropertyData[i][p_PropTeam]))
+                    {
+                        return SendClientMessage(playerid, -1, DETUTILS_TEXT_TEAMPROP_LOCK);
+                    }
+                }
+            
+            #endif
             if(g_PropertyData[i][p_PropertyLocked] == 1)
             {
                 return SendClientMessage(playerid, -1, DETUTILS_TEXT_PROP_LOCK);
