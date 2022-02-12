@@ -34,6 +34,28 @@
 
 #include "d_dialog_macros"
 
+#if defined DETUTILS_OPENMP_COMPAT
+
+	#define Dialog_ShowForPlayer ShowDialogForPlayer
+
+#endif
+
+enum enum_PlayerDialogData
+{
+	Dialog[32]
+}
+
+new g_PlayerDialogCache[MAX_PLAYERS][enum_PlayerDialogData];
+
+stock ShowDialogForPlayer(playerid, const name[])
+{
+	strmid(g_PlayerDialogCache[playerid][Dialog], name, 0, 32);
+	new dialogfunc[32];
+	format(dialogfunc, sizeof dialogfunc, "dlg_%s", name);
+	CallLocalFunction(dialogfunc, "i", playerid);
+	return 1;
+}
+
 /*
                                                                       
 88888888888                                                           

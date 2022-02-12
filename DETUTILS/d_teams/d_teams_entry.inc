@@ -69,6 +69,12 @@ new g_PlayerTeamCache[MAX_PLAYERS][enum_PlayerTeamData];
 forward OnTeamCreate(teamid, teamname[]);
 forward OnTeamDelete(teamid, teamname[]);
 
+#if defined DETUTILS_OPENMP_COMPAT
+
+	#define Team_Create CreateTeam
+
+#endif
+
 stock CreateTeam(const name[])
 {
 	if(!strcmp("NO_TEAM", name, false))
@@ -96,6 +102,12 @@ stock CreateTeam(const name[])
 	}
 	return 0;
 }
+
+#if defined DETUTILS_OPENMP_COMPAT
+
+	#define Team_Delete DeleteTeam
+
+#endif
 
 stock DeleteTeam(const name[])
 {
@@ -130,6 +142,12 @@ stock DeleteTeam(const name[])
 	}
 	return 0;
 }
+
+#if defined DETUTILS_OPENMP_COMPAT
+
+	#define Player_AddToTeam AddPlayerToTeam
+
+#endif
 
 stock AddPlayerToTeam(playerid, const name[])
 {
@@ -190,6 +208,12 @@ stock AddPlayerToTeam(playerid, const name[])
 	}
 	return 0;
 }
+
+#if defined DETUTILS_OPENMP_COMPAT
+
+	#define Team_GetMemberCount GetTeamMemberCount
+
+#endif
 
 stock GetTeamMemberCount(const name[])
 {
@@ -279,6 +303,13 @@ public OnPlayerDisconnect(playerid, reason)
 forward d_t_disconnect(playerid, reason);
 
 #if !defined DETUTILS_NO_PROPERTIES
+
+#if defined DETUTILS_OPENMP_COMPAT
+
+	#define Property_CreateEntranceForTeam \
+		CreatePropertyEntranceForTeam
+
+#endif
 
 stock CreatePropertyEntranceForTeam(
         const PropertyName[],
