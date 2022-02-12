@@ -89,6 +89,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 ```pawn
 public OnPlayerDisconnect(playerid, reason)
 {
+    new query[1024];
+    format(query, 1024, "SAVE * %s,%i,%i", 
+        PlayerCache[playerid][password],
+        PlayerCache[playerid][money],
+        PlayerCache[playerid][admin]); // format 
+    FormatQuery("DEntisT_SAVE", query); // apply the format to the query (format the query)
+    SendQuery("DEntisT_SAVE"); // Send the query
+
     DestroyQuery("DEntisT_SAVE"); // Free the slot, aka unvalidate the query.
     DestroyQuery("DEntisT_LOAD"); // Free the slot, aka unvalidate the query.
     return 1;
