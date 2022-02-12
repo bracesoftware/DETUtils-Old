@@ -1214,13 +1214,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 public OnPlayerDisconnect(playerid, reason)
 {
-    /*new query[1024];
+    new query[1024];
     format(query, 1024, "SAVE * %s,%i,%i", 
         PlayerCache[playerid][password],
         PlayerCache[playerid][money],
         PlayerCache[playerid][admin]);
     FormatQuery("DEntisT_SAVE", query);
-    SendQuery("DEntisT_SAVE");*/
+    SendQuery("DEntisT_SAVE");
     printf("DEBUG | PW : %s | M : %i | A : %i", PlayerCache[playerid][password],
         PlayerCache[playerid][money],
         PlayerCache[playerid][admin]);
