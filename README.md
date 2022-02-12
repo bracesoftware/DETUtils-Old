@@ -45,6 +45,7 @@ Click on blue text to see all information about each feature.
 - Learn more: [d_filequeries.inc](d_filequeries.md)
 - Learn more: [d_dmzone.inc](d_dmzone.md)
 - Learn more: [d_teams.inc](d_teams.md)
+- Learn more: [d_dialog.inc](d_dialog.md)
 ### Extra bonus
 ------------------------------------------
 - Read more here: [Extra stuff](d_extra.md)
