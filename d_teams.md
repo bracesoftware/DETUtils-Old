@@ -73,6 +73,27 @@ GetTeamMemberCount("Amazing people");
 
 ### `CreatePropertyEntranceForTeam`
 - Create a property for a certain team. Note that this works ONLY if the file `d_properties.inc` is included.
+
+### `public` OnTeamCreate
+- Called whenever a certain team is created.
+
+```pawn
+public OnTeamCreate(teamid, teamname[])
+{
+    printf("Team '%s'[%i] created.", teamname, teamid);
+    return 1;
+}
+```
+### `public` OnTeamDelete
+- Called whenever a certain team is deleted.
+
+```pawn
+public OnTeamDelete(teamid, teamname[])
+{
+    printf("Team '%s'[%i] deleted.", teamname, teamid);
+    return 1;
+}
+```
 ## Messages from creator
 ### Warnings
 1. Players within the same team cannot harm each other.
