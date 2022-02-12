@@ -548,6 +548,7 @@ new slashcmdtype = GetSlashCommandType("some_cool_command_name");
 - ``SLASH_COMMAND_TYPE_ALIAS`` or ``1`` - returned if the command is just an alias for an another command
 - ``SLASH_COMMAND_TYPE_ADMIN`` or ``2`` - returned if the command is admin command (available after **/rcon login ...**)
 - ``SLASH_COMMAND_TYPE_FLAGGED`` or ``3`` - returned if the command is a flagged command (aka role command)
+- ``SLASH_COMMAND_TYPE_TEAM`` or `4` - returned if the command is a team command (check `d_teams.inc` docs for more details)
 
 ### ``CallCommand``
 
