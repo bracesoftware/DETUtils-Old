@@ -1,6 +1,6 @@
 {
-	"user": "DEntisT-ofc",
-	"repo": "samp-detutils",
-	"dependencies": ["sampctl/samp-stdlib", "y-less/sscanf3", "pawn-lang/ysi-includes"],
-	"contributors": ["DEntisT-ofc", "pawn-lang"]
+	"user": "DEntis-T",
+	"repo": "SA-MP-DETUtils",
+	"dependencies": ["sampctl/samp-stdlib"],
+	"contributors": ["DEntis-T", "KyeKalcor"]
 }
