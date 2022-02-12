@@ -348,7 +348,7 @@ public OnPlayerDisconnect(playerid, reason)
 
     if(funcidx("a_anticheat_Onpds") != -1)
     {
-        CallLocalFunction("a_anticheat_Onpds", "");
+        CallLocalFunction("a_anticheat_Onpds", "ii", playerid, reason);
     }
     return 1;
 }
