@@ -1068,6 +1068,18 @@ public OnGameModeInit()
     return 1;
 }
 
+public OnTeamCreate(teamid, teamname[])
+{
+    printf("Team '%s'[%i] created.", teamname, teamid);
+    return 1;
+}
+
+public OnTeamDelete(teamid, teamname[])
+{
+    printf("Team '%s'[%i] deleted.", teamname, teamid);
+    return 1;
+}
+
 public OnPlayerSelectedMenuRow(playerid, row)
 {
     new Menu:CurrentMenu = GetPlayerMenu(playerid);

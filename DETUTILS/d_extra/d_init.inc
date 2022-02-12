@@ -51,6 +51,7 @@ public const detutils_ver = 0x1;
 #define DETUTILS_SCRIPT_MAPEDITOR 6
 #define DETUTILS_SCRIPT_DMZONE 7
 #define DETUTILS_SCRIPT_TEAMS 8
+#define DETUTILS_SCRIPT_DIALOG 9
 
 stock void:LoadDETUtilsScript(scriptid)
 {
@@ -89,6 +90,10 @@ stock void:LoadDETUtilsScript(scriptid)
     if(scriptid == DETUTILS_SCRIPT_TEAMS)
     {
         print("*** [samp-detutils]: (module) - Loaded: d_teams.inc");
+    }
+    if(scriptid == DETUTILS_SCRIPT_DIALOG)
+    {
+        print("*** [samp-detutils]: (module) - Loaded: d_dialog.inc");
     }
 }
 

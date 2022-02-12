@@ -1,9 +1,12 @@
 /*
+ * 
+ * SA:MP DEntisT's Utilities
  *
- * DETUTILS COMMANDS
+ * Since 2019., DEntisT
  *
  *
- * Macro setup
+ *
+ * - Macros for d_commands.inc
  *
  *
  */
