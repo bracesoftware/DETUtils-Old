@@ -1028,7 +1028,15 @@ public OnDeathMatchZoneDestroy(zoneid, zonename[])
 
 @command(.type = SLASH_COMMAND) joinamazing(playerid, params[])
 {
+    SendClientMessage(playerid, -1, "You're now amazing.");
     AddPlayerToTeam(playerid, "Amazing people");
+    return 1;
+}
+
+@command(.type = SLASH_COMMAND) quitamazing(playerid, params[])
+{
+    SendClientMessage(playerid, -1, "You aren't amazing anymore.");
+    AddPlayerToTeam(playerid, "NO_TEAM");
     return 1;
 }
 

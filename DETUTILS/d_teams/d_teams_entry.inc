@@ -230,7 +230,8 @@ forward d_visual_Onpgd(playerid, damagedid, Float:amount, weaponid, bodypart);
 public OnPlayerDisconnect(playerid, reason)
 {
 	// Set the internal team when player disconnects...
-	strmid(g_PlayerTeamCache[playerid][Team], "NO_TEAM", 0, 32);
+	//strmid(g_PlayerTeamCache[playerid][Team], "NO_TEAM", 0, 32);
+	AddPlayerToTeam(playerid, "NO_TEAM");
 
     if(funcidx("d_t_disconnect") != -1)
     {
