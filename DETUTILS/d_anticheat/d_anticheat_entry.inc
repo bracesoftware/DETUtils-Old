@@ -176,18 +176,20 @@ public detutils_cheatcheck()
     return 1;
 }
 
-stock SendPlayerCheatCheck(playerid, checktype)
+stock SendPlayerCheatCheck(i, checktype)
 {
-    new i = playerid;
-    if(checktype == CHEAT_TYPE_MONEY) CheckPlayerMoney(i);
-    if(checktype == CHEAT_TYPE_SKINCHANGER) CheckPlayerSkin(i);
-    if(checktype == CHEAT_TYPE_TELEPORT) CheckPlayerPos(i);
-    if(checktype == CHEAT_TYPE_HIGHPING) CheckPlayerPing(i);
-    if(checktype == CHEAT_TYPE_ARMOUR) CheckPlayerArmour(i);
-    if(checktype == CHEAT_TYPE_HEALTH) CheckPlayerHealth(i);
-    if(checktype == CHEAT_TYPE_SPEEDHACK) CheckPlayerSpeed(i);
-    if(checktype == CHEAT_TYPE_DIALOG) CheckPlayerDialog(i);
-    if(checktype == CHEAT_TYPE_MENU) CheckPlayerMenu(i);
+    switch(checktype)
+    {
+        case CHEAT_TYPE_MONEY: CheckPlayerMoney(i);
+        case CHEAT_TYPE_SKINCHANGER: CheckPlayerSkin(i);
+        case CHEAT_TYPE_TELEPORT: CheckPlayerPos(i);
+        case CHEAT_TYPE_HIGHPING: CheckPlayerPing(i);
+        case CHEAT_TYPE_ARMOUR: CheckPlayerArmour(i);
+        case CHEAT_TYPE_HEALTH: CheckPlayerHealth(i);
+        case CHEAT_TYPE_SPEEDHACK: CheckPlayerSpeed(i);
+        case CHEAT_TYPE_DIALOG: CheckPlayerDialog(i);
+        case CHEAT_TYPE_MENU: CheckPlayerMenu(i);
+    }
     return 1;
 }
 
@@ -404,7 +406,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
     if(funcidx("d_ac_dialogresponse") != -1)
     {
-        CallLocalFunction("d_ac_dialogresponse", "iiiis", playerid, dialogid, response, listitem, inputtext);
+        //CallLocalFunction("d_ac_dialogresponse", "iiiis", playerid, dialogid, response, listitem, inputtext);
+        #if defined d_ac_dialogresponse
+        d_ac_dialogresponse(playerid, dialogid, response, listitem, inputtext);
+        #endif
     }
     return 1;
 }

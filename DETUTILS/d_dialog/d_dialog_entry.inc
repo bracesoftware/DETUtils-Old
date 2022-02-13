@@ -109,7 +109,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		printf("[samp-detutils]: (debug) - Dialog name : %s", 
 			g_PlayerDialogCache[playerid][Dialog]);
 		#endif
-		if(inputtext[0] != EOS) 
+		/*if(inputtext[0] != EOS) 
 		{
 			CallLocalFunction("OnPlayerDialogResponse", "isiis", 
 			playerid, g_PlayerDialogCache[playerid][Dialog],
@@ -120,15 +120,21 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			CallLocalFunction("OnPlayerDialogResponse", "isiis", 
 			playerid, g_PlayerDialogCache[playerid][Dialog],
 			response, listitem, "emptystring");
-		}
+		}*/
+		#if defined OnPlayerDialogResponse
+			OnPlayerDialogResponse(playerid, g_PlayerDialogCache[playerid][Dialog],
+			response, listitem, inputtext);
+		#endif	
 		#if defined detutils_debug
 		printf("[samp-detutils]: (debug) - Called the dialog response function with args: \
 			playerid : %i | dialog : %s | response : %i | listitem : %i | inputtext : %s",
 			playerid, g_PlayerDialogCache[playerid][Dialog], response, listitem, inputtext);
 		#endif
-		strmid(g_PlayerDialogCache[playerid][Dialog], "NO_DIALOG", 0, 32);
+		//                                             012345678
+		strmid(g_PlayerDialogCache[playerid][Dialog], "NO_DIALOG", 0, 8);
 		#if defined detutils_debug
-		printf("[samp-detutils]: (debug) - Processing the dialog finished.");
+		printf("[samp-detutils]: (debug) - Processing the dialog finished; player's dialog set to '%s'",
+			g_PlayerDialogCache[playerid][Dialog]);
 		#endif
 	}
 	if(funcidx("d_dlg_dresponse") != -1)
