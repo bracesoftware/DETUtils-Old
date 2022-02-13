@@ -178,6 +178,12 @@ public OnPlayerDialogReceived(playerid, dialog[])
     return 1;
 }
 
+public OnPlayerDialogHide(playerid, dialog[])
+{
+    SendClientMessage(playerid, -1, "'%s' hidden.", dialog);
+    return 1;
+}
+
 public OnPlayerDialogResponse(playerid, dialog[], response, listitem, inputtext[])
 {
     SendClientMessage(playerid, -1, 

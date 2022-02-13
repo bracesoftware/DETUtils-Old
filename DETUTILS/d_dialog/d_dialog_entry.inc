@@ -37,6 +37,8 @@ enum
 	DETUTILS_INTERNAL_DIALOG
 }
 
+// Macro setup:
+
 #include "d_dialog_macros"
 
 enum enum_PlayerDialogData
@@ -76,8 +78,29 @@ stock ShowDialogForPlayer(playerid, const name[])
 	return 1;
 }
 
+stock GetDialogStyle(const name[])
+{
+	new dialogfunc[32];
+	format(dialogfunc, sizeof dialogfunc, "dls_%s", name);
+	if(funcidx(dialogfunc) != -1)
+	{
+		return CallLocalFunction(dialogfunc, "");
+	}
+	else 
+	{
+		printf("[samp-detutils]: (dialog IID) - Invalid dialog : %s", name);
+		return -1;
+	}
+	return 1;
+}
+
 stock HideDialogForPlayer(playerid)
 {
+	if(!strcmp(g_PlayerDialogCache[playerid][Dialog], "NO_DIALOG"))
+	{
+		printf("[samp-detutils]: (dialog error) - Unable to hide a dialog 'NO_DIALOG'.");
+		return 0;
+	}
 	CallLocalFunction("OnPlayerDialogHide", "is", playerid, g_PlayerDialogCache[playerid][Dialog]);
 	strmid(g_PlayerDialogCache[playerid][Dialog], "NO_DIALOG", 0, 32);
 	ShowPlayerDialog(playerid, -1, 1, @DETUTILSSTRING_NULL__4);
@@ -149,6 +172,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		printf("[samp-detutils]: (debug) - 'OnDialogResponse(..)' hooked.");
 		#endif
 		#if defined d_dlg_dresponse
+		//#warning [samp-detutils]: (warning) - OnDialogResponse is deprecared.
 		d_dlg_dresponse(playerid, dialogid, response, listitem, inputtext);
     	#endif
     }
