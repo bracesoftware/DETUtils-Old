@@ -155,6 +155,7 @@ If you're facing issues with your code compilation after including the library, 
 - [Y_Less](https://github.com/y-less) & Zeex - fmargs ``#emit`` stuff, d_commands decorator concept
 - [Zeex](https://github.com/zeex) - ZCMD command processor concept
 - Y_Less - code parser, another amazing thing which you can get [here](https://github.com/y-less/code-parse.inc)
+- Kirima - command guesser, another cool thing you can get [here](https://github.com/se8870/samp-command-guess)
 
 ### Contributions
 
