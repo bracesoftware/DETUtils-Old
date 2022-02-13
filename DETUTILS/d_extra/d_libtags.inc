@@ -233,11 +233,15 @@ stock bool:IsPlayerUsingAndroidClient(playerid)
 
 */
 
+#if defined DETUTILS_NO_DIALOG
+
 stock HidePlayerDialog(playerid)
 {
     ShowPlayerDialog(playerid, -1, 1, @DETUTILSSTRING_NULL__4);
     return 1;
 }
+
+#endif
 
 new bool:g_PlayerPedAnims = false;
 

@@ -164,6 +164,28 @@ public OnPlayerSpawn(playerid)
     return 1;
 }
 
+@dialog(.type = MESSAGE_BOX, .args = {"Hi", "Hello!", "OK", "NO"}) HiDialog(playerid);
+
+@command(.type = SLASH_COMMAND) dialogtest(playerid, params[]) 
+{
+    ShowDialogForPlayer(playerid, "HiDialog");
+    return 1;
+}
+
+public OnPlayerDialogReceived(playerid, dialog[])
+{
+    SendClientMessage(playerid, -1, "You received dialog '%s'", dialog);
+    return 1;
+}
+
+public OnPlayerDialogResponse(playerid, dialog[], response, listitem, inputtext[])
+{
+    SendClientMessage(playerid, -1, 
+        "You responded to dialog '%s', response: %i, listitem: %i, inputtext: %i", 
+        dialog, response, listitem, inputtext);
+    return 1;
+}
+
 @command ( .type = ADMIN_COMMAND ) amiadmin ( playerid, params[] ) 
 {
     SendClientMessage(playerid, -1, "Yes you are.");

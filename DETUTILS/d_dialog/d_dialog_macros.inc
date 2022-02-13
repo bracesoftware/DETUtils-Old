@@ -13,8 +13,6 @@
 
 // Dialog function:
 #define dlg_%0\32; dlg_
-// Dialog style:
-#define dlgs_%0\32; dlgs_
 
 #define @DETUTILSDIALOG_DEC__@%0\32; @DETUTILSDIALOG_DEC__@
 
@@ -33,3 +31,35 @@
                                                                                       
                                                                                       
 */
+
+// This is a replacement to
+//ShowPlayerDialog(playerid, dialogid, style, caption[], info[], button1[], button2[])
+
+/* Supporting these styles:
+
+DIALOG_STYLE_MSGBOX
+DIALOG_STYLE_INPUT
+DIALOG_STYLE_LIST
+DIALOG_STYLE_PASSWORD
+DIALOG_STYLE_TABLIST
+DIALOG_STYLE_TABLIST_HEADERS
+
+*/
+
+#define @DETUTILSDIALOG_DEC__@MESSAGE_BOX%6,%5.args%4=%3{%2})%0(%1); \
+	dlg_%0(%1);public dlg_%0(%1){return ShowPlayerDialog(%1,DETUTILS_INTERNAL_DIALOG,DIALOG_STYLE_MSGBOX,%2);}
+
+#define @DETUTILSDIALOG_DEC__@INPUT_BOX%6,%5.args%4=%3{%2})%0(%1); \
+	dlg_%0(%1);public dlg_%0(%1){return ShowPlayerDialog(%1,DETUTILS_INTERNAL_DIALOG,DIALOG_STYLE_INPUT,%2);}
+
+#define @DETUTILSDIALOG_DEC__@LIST%6,%5.args%4=%3{%2})%0(%1); \
+	dlg_%0(%1);public dlg_%0(%1){return ShowPlayerDialog(%1,DETUTILS_INTERNAL_DIALOG,DIALOG_STYLE_LIST,%2);}
+
+#define @DETUTILSDIALOG_DEC__@PASSWORD_INPUT%6,%5.args%4=%3{%2})%0(%1); \
+	dlg_%0(%1);public dlg_%0(%1){return ShowPlayerDialog(%1,DETUTILS_INTERNAL_DIALOG,DIALOG_STYLE_PASSWORD,%2);}
+
+#define @DETUTILSDIALOG_DEC__@TABLIST%6,%5.args%4=%3{%2})%0(%1); \
+	dlg_%0(%1);public dlg_%0(%1){return ShowPlayerDialog(%1,DETUTILS_INTERNAL_DIALOG,DIALOG_STYLE_TABLIST,%2);}
+
+#define @DETUTILSDIALOG_DEC__@TABLIST_HEADERS%6,%5.args%4=%3{%2})%0(%1); \
+	dlg_%0(%1);public dlg_%0(%1){return ShowPlayerDialog(%1,DETUTILS_INTERNAL_DIALOG,DIALOG_STYLE_TABLIST_HEADERS,%2);}

@@ -32,13 +32,12 @@
                                                                                       
 */
 
+enum 
+{
+	DETUTILS_INTERNAL_DIALOG
+}
+
 #include "d_dialog_macros"
-
-#if defined DETUTILS_OPENMP_COMPAT
-
-	#define Dialog_ShowForPlayer ShowDialogForPlayer
-
-#endif
 
 enum enum_PlayerDialogData
 {
@@ -47,14 +46,85 @@ enum enum_PlayerDialogData
 
 new g_PlayerDialogCache[MAX_PLAYERS][enum_PlayerDialogData];
 
+// Functions down there:
+
+#if defined DETUTILS_OPENMP_COMPAT
+
+	#define Dialog_ShowForPlayer ShowDialogForPlayer
+
+#endif
+
+forward OnPlayerDialogReceived(playerid, dialog[]);
+forward OnPlayerDialogResponse(playerid, dialog[], response, listitem, inputtext[]);
+forward OnPlayerDialogHide(playerid, dialog[]);
+
 stock ShowDialogForPlayer(playerid, const name[])
 {
 	strmid(g_PlayerDialogCache[playerid][Dialog], name, 0, 32);
 	new dialogfunc[32];
 	format(dialogfunc, sizeof dialogfunc, "dlg_%s", name);
-	CallLocalFunction(dialogfunc, "i", playerid);
+	if(funcidx(dialogfunc) != -1)
+	{
+		CallLocalFunction(dialogfunc, "i", playerid);
+		CallLocalFunction("OnPlayerDialogReceived", "is", playerid, name);
+	}
+	else 
+	{
+		printf("[samp-detutils]: (dialog IID) - Invalid dialog : %s", name);
+		return 0;
+	}
 	return 1;
 }
+
+stock HideDialogForPlayer(playerid)
+{
+	CallLocalFunction("OnPlayerDialogHide", "is", playerid, g_PlayerDialogCache[playerid][Dialog]);
+	strmid(g_PlayerDialogCache[playerid][Dialog], "NO_DIALOG", 0, 32);
+	ShowPlayerDialog(playerid, -1, 1, @DETUTILSSTRING_NULL__4);
+	return 1;
+}
+
+stock GetPlayerDialog(playerid)
+{
+	new dialog[32];
+
+	strmid(dialog, g_PlayerDialogCache[playerid][Dialog], 0, 32);
+
+	if(!strcmp(g_PlayerDialogCache[playerid][Dialog], "NO_DIALOG", false))
+	{
+		return 0;
+	}
+
+	return dialog;
+}
+
+public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
+{
+	if(dialogid == DETUTILS_INTERNAL_DIALOG)
+	{
+		new dialog[32];
+		format(dialog, sizeof dialog, "%s", g_PlayerDialogCache[playerid][Dialog]);
+		CallLocalFunction("OnPlayerDialogResponse", "isiis", 
+			playerid, dialog,
+			response, listitem, inputtext);
+		strmid(g_PlayerDialogCache[playerid][Dialog], "NO_DIALOG", 0, 32);
+	}
+	if(funcidx("d_dlg_dresponse") != -1)
+    {
+        CallLocalFunction("d_dlg_dresponse", "iiiis", playerid, dialogid, response, listitem, inputtext);
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDialogResponse
+    #undef OnDialogResponse
+#else
+    #define _ALS_OnDialogResponse
+#endif
+
+#define OnDialogResponse d_dlg_dresponse
+
+forward d_dlg_dresponse(playerid, dialogid, response, listitem, inputtext[]);
 
 /*
                                                                       
@@ -71,6 +141,11 @@ stock ShowDialogForPlayer(playerid, const name[])
 
 public OnDETUtilsInit()
 {
+	for(new playerid; playerid < MAX_PLAYERS; playerid++)
+	{
+		strmid(g_PlayerDialogCache[playerid][Dialog], "NO_DIALOG", 0, 32);
+	}
+
     #if defined detutils_debug
     SaveLogIntoFile("detutils_dialog.log", "[samp-detutils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_dialog.log", "[samp-detutils]: (debug) - Loaded.");
