@@ -15,11 +15,11 @@
 #tryinclude "d_extra\d_libtags.inc"
 
 #if !defined d_extra_included
-    #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+	#error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
 /*
-                                                                                      
+																					  
 88b           d88              88                         db         88888888ba   88  
 888b         d888              ""                        d88b        88      "8b  88  
 88`8b       d8'88                                       d8'`8b       88      ,8P  88  
@@ -28,8 +28,8 @@
 88   `8b d8'   88  ,adPPPPP88  88  88       88       d8""""""""8b    88           88  
 88    `888'    88  88,    ,88  88  88       88      d8'        `8b   88           88  
 88     `8'     88  `"8bbdP"Y8  88  88       88     d8'          `8b  88           88  
-                                                                                      
-                                                                                      
+																					  
+																					  
 */
 
 enum
@@ -166,23 +166,23 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		}
 	}
 	if(funcidx("d_dlg_dresponse") != -1)
-    {
-        //CallLocalFunction("d_dlg_dresponse", "iiiis", playerid, dialogid, response, listitem, inputtext);
-        #if defined detutils_debug
+	{
+		//CallLocalFunction("d_dlg_dresponse", "iiiis", playerid, dialogid, response, listitem, inputtext);
+		#if defined detutils_debug
 		printf("[samp-detutils]: (debug) - 'OnDialogResponse(..)' hooked.");
 		#endif
 		#if defined d_dlg_dresponse
 		//#warning [samp-detutils]: (warning) - OnDialogResponse is deprecared.
 		d_dlg_dresponse(playerid, dialogid, response, listitem, inputtext);
-    	#endif
-    }
-    return 1;
+		#endif
+	}
+	return 1;
 }
 
 #if defined _ALS_OnDialogResponse
-    #undef OnDialogResponse
+	#undef OnDialogResponse
 #else
-    #define _ALS_OnDialogResponse
+	#define _ALS_OnDialogResponse
 #endif
 
 #define OnDialogResponse d_dlg_dresponse
@@ -190,7 +190,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 forward d_dlg_dresponse(playerid, dialogid, response, listitem, inputtext[]);
 
 /*
-                                                                      
+																	  
 88888888888                                                           
 88                          ,d                                        
 88                          88                                        
@@ -199,7 +199,7 @@ forward d_dlg_dresponse(playerid, dialogid, response, listitem, inputtext[]);
 88              )888(       88     88          ,adPPPPP88   `"Y8ba,   
 88            ,d8" "8b,     88,    88          88,    ,88  aa    ]8I  
 88888888888  8P'     `Y8    "Y888  88          `"8bbdP"Y8  `"YbbdP"'  
-                                                                      
+																	  
 */
 
 public OnDETUtilsInit()
@@ -209,22 +209,22 @@ public OnDETUtilsInit()
 		strmid(g_PlayerDialogCache[playerid][Dialog], "NO_DIALOG", 0, 32);
 	}
 
-    #if defined detutils_debug
-    SaveLogIntoFile("detutils_dialog.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_dialog.log", "[samp-detutils]: (debug) - Loaded.");
-    #endif
-    LoadDETUtilsScript(DETUTILS_SCRIPT_DIALOG);
-    if(funcidx("d_dlg_detutilsinit") != -1)
-    {
-        CallLocalFunction("d_dlg_detutilsinit", "");
-    }
-    return 1;
+	#if defined detutils_debug
+	SaveLogIntoFile("detutils_dialog.log", "[samp-detutils]: (debug) - Loading...");
+	SaveLogIntoFile("detutils_dialog.log", "[samp-detutils]: (debug) - Loaded.");
+	#endif
+	LoadDETUtilsScript(DETUTILS_SCRIPT_DIALOG);
+	if(funcidx("d_dlg_detutilsinit") != -1)
+	{
+		CallLocalFunction("d_dlg_detutilsinit", "");
+	}
+	return 1;
 }
 
 #if defined _ALS_OnDETUtilsInit
-    #undef OnDETUtilsInit
+	#undef OnDETUtilsInit
 #else
-    #define _ALS_OnDETUtilsInit
+	#define _ALS_OnDETUtilsInit
 #endif
 
 #define OnDETUtilsInit d_dlg_detutilsinit
