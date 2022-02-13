@@ -32,10 +32,8 @@
                                                                                       
 */
 
-enum 
-{
-	DETUTILS_INTERNAL_DIALOG
-}
+// Idea I got from Emmett
+#define DETUTILS_INTERNAL_DIALOG (32700)
 
 #include "d_dialog_macros"
 
@@ -105,27 +103,28 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		#if defined detutils_debug
 		printf("[samp-detutils]: (debug) - Processing the dialog...");
 		#endif
-		new dialog[32];
-		format(dialog, sizeof dialog, "%s", g_PlayerDialogCache[playerid][Dialog]);
+		//new dialog[32];
+		//format(dialog, sizeof dialog, "%s", g_PlayerDialogCache[playerid][Dialog]);
 		#if defined detutils_debug
-		printf("[samp-detutils]: (debug) - Dialog name : %s", dialog);
+		printf("[samp-detutils]: (debug) - Dialog name : %s", 
+			g_PlayerDialogCache[playerid][Dialog]);
 		#endif
 		if(inputtext[0] != EOS) 
 		{
 			CallLocalFunction("OnPlayerDialogResponse", "isiis", 
-			playerid, dialog,
+			playerid, g_PlayerDialogCache[playerid][Dialog],
 			response, listitem, inputtext);
 		}
 		else
 		{
 			CallLocalFunction("OnPlayerDialogResponse", "isiis", 
-			playerid, dialog,
+			playerid, g_PlayerDialogCache[playerid][Dialog],
 			response, listitem, "emptystring");
 		}
 		#if defined detutils_debug
 		printf("[samp-detutils]: (debug) - Called the dialog response function with args: \
 			playerid : %i | dialog : %s | response : %i | listitem : %i | inputtext : %s",
-			playerid, dialog, response, listitem, inputtext);
+			playerid, g_PlayerDialogCache[playerid][Dialog], response, listitem, inputtext);
 		#endif
 		strmid(g_PlayerDialogCache[playerid][Dialog], "NO_DIALOG", 0, 32);
 		#if defined detutils_debug
