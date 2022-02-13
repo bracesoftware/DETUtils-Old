@@ -14,7 +14,7 @@
   Functions, callbacks, tips and notes
 </h2>
 
-## Current library version: `2.0.2`
+## Current library version: `2.0.3`
 
 Hello scripter! Welcome to *SA:MP DEntisT's Utilities* (or **detutils** for short) "read me" file. So, now, you may ask about - what's this? Well - in general, this addition to SA:MP Standard Scripting package contains libraries that have in-game visible effects and libraries that contain new scripting features. 
 - Below, you can find information about each library.
