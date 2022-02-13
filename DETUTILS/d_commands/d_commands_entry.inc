@@ -19,6 +19,12 @@
 
 #endif
 
+#if !defined _INC_guess_command
+
+    #warning [samp-detutils]: (warning) - cmdguess :: In order to provide players a better experience, you can use command checker/guesser. Get it on github.com/Se8870/samp-command-guess
+
+#endif
+
 #if defined _zcmd_included || defined _I_ZCMD_INCLUDED || defined _INC_y_commands
 
     #error [samp-detutils]: (error) - 'd_commands' can't work together with ZCMD, y_commands or iZCMD.

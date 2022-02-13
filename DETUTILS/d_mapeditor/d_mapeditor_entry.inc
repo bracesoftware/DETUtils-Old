@@ -236,7 +236,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
     }
     if(funcidx("d_me_dialogresponse") != -1)
     {
-        CallLocalFunction("d_me_dialogresponse", "iiiis", playerid, dialogid, response, listitem, inputtext);
+        //CallLocalFunction("d_me_dialogresponse", "iiiis", playerid, dialogid, response, listitem, inputtext);
+        #if defined d_me_dialogresponse
+        d_me_dialogresponse(playerid, dialogid, response, listitem, inputtext);
+        #endif
     }
     return 1;
 }
