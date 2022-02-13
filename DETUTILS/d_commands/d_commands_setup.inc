@@ -226,6 +226,7 @@ main()
 #define SLASH_COMMAND_TYPE_ADMIN 2
 #define SLASH_COMMAND_TYPE_FLAGGED 3
 #define SLASH_COMMAND_TYPE_TEAM 4
+#define SLASH_COMMAND_TYPE_DELAYED 5
 #define DETUTILSCMD_TYPESET__$|<%0>,%1| cty_%0();public cty_%0(){return %1;}
 
 #if @DETUTILSCMD_NEXTLINE_TEST__ == 1
@@ -244,3 +245,6 @@ DETUTILSCMD_TYPESET__$|<%0>,SLASH_COMMAND_TYPE_NORMAL| DETUTILSCMD_DECL_CMD__<%0
 return CallLocalFunction("cmdf_"#%0,"is",%1,%7);return 0;}
 #define @DETUTILSCMD_TEAMS_CALL___:|||%0|%1..%7| cmdf_%0(%1,%7[]);public cmdf_%0(%1,%7[])
 #endif
+#define @DETUTILSCMD_DELAYED_DECL__<%0:%1> cmd_%0(%1[]);public cmd_%0(%1[])
+#define @DETUTILSCMD_DELAY_SET__cmd:|%0:%7..%1| {return SetTimerEx("cmdf_"#%0,%7,false,"is",%1);}
+#define @DETUTILSCMD_DELAY_CALL__:{..%0|;%1;} cmdf_%0(%1[]);public cmdf_%0(%1[])

@@ -144,6 +144,12 @@ public OnPlayerSpawn(playerid)
     return 1;
 }
 
+@command(.type = DELAYED_COMMAND, .delay = 1000) delaytest(playerid, params[])
+{
+    SendClientMessage(playerid, -1, "One second passed.");
+    return 1;
+}
+
 @command(.type = SLASH_COMMAND) typecheck(playerid, params[]) 
 {
     new parameters[128], idx;
