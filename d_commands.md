@@ -211,7 +211,16 @@ public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid)
     return 1;
 }
 ```
+### Delayed commands
+- Create delayed commands!
 
+```pawn
+@command(.type = DELAYED_COMMAND, .delay = 1000) delaytest(playerid, params[])
+{
+    SendClientMessage(playerid, -1, "One second passed.");
+    return 1;
+}
+```
 ### Admin commands
 ------------------------------------------
 *d_commands* also lets you to create admin commands.
