@@ -20,16 +20,20 @@ new PlayerCache[MAX_PLAYERS][PlayerData];
 2. Use ``OnPlayerConnect`` callback:
 ```pawn
 public OnPlayerConnect(playerid)
-{   
-    CreateQuery("DEntisT_SAVE", QUERY_TYPE_SAVE, "Users", "DEntisT.ini"); // Create a query which will save cache
-    CreateQuery("DEntisT_LOAD", QUERY_TYPE_LOAD, "Users", "DEntisT.ini"); // Create a query which will load data
+{
+    new load[32], save[32], file[32];
+    format(load, 32, "%s_LOAD", ReturnPlayerName(playerid));
+    format(save, 32, "%s_SAVE", ReturnPlayerName(playerid));
+    format(file, 32, "%s.ini", ReturnPlayerName(playerid));
+    CreateQuery(save, QUERY_TYPE_SAVE, "Users", file); // Create a query which will save cache
+    CreateQuery(load, QUERY_TYPE_LOAD, "Users", file); // Create a query which will load data
     
-    if(QueryFileExist("DEntisT_SAVE")) // Check if the query file exists.... (Users/DEntisT.ini)
+    if(QueryFileExist(save)) // Check if the query file exists.... (Users/DEntisT.ini)
     {
         new content[1024]; // var in which the content will be stored
-        FormatQuery("DEntisT_LOAD", "LOAD *"); // format the file query
-        SendQuery("DEntisT_LOAD"); // send it
-        GetLoadedQueryContent("DEntisT_LOAD", content); // After the LOAD query was sent, we need to get the content of the data.
+        FormatQuery(load, "LOAD *"); // format the file query
+        SendQuery(load); // send it
+        GetLoadedQueryContent(load, content); // After the LOAD query was sent, we need to get the content of the data.
         SendClientMessage(playerid, -1, "Loaded query file content: %s", content); // For debugging purposes
         new array[3][64]; // declare this array for PARSING
         ParseQueryContent(content, array); // Parse the content
@@ -39,7 +43,7 @@ public OnPlayerConnect(playerid)
         ShowPlayerDialog(playerid, 100, DIALOG_STYLE_INPUT, 
             "Login", "Please log in. Password:", "OK","Cancel"); // Show the login dialog
     }
-    else if(!QueryFileExist("DEntisT_SAVE")) // If the player is not registered.
+    else if(!QueryFileExist(save)) // If the player is not registered.
     {
         ShowPlayerDialog(playerid, 101, DIALOG_STYLE_INPUT, 
             "Register", "Please register. Wanted password:", "OK","Cancel"); // show the register dialog
@@ -51,6 +55,8 @@ public OnPlayerConnect(playerid)
 ```pawn
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
+    new save[32];
+    format(save, 32, "%s_SAVE", ReturnPlayerName(playerid));
     if(dialogid == 100) // Check if it is login dialog
     {
         if(!response) return Kick(playerid); // If ESC pressed, kick
@@ -76,8 +82,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
                 PlayerCache[playerid][password],
                 PlayerCache[playerid][money],
                 PlayerCache[playerid][admin]); // Format the file query
-            FormatQuery("DEntisT_SAVE", query); // Apply the format
-            SendQuery("DEntisT_SAVE"); // Send the query we formatted
+            FormatQuery(save, query); // Apply the format
+            SendQuery(save); // Send the query we formatted
             SpawnPlayer(playerid); // Spawn the player
             SendClientMessage(playerid, -1, "You are successfully registered.");
         }
@@ -89,16 +95,23 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 ```pawn
 public OnPlayerDisconnect(playerid, reason)
 {
+    new save[32];
+    format(save, 32, "%s_SAVE", ReturnPlayerName(playerid));
+    new load[32];
+    format(save, 32, "%s_LOAD", ReturnPlayerName(playerid));
+
     new query[1024];
     format(query, 1024, "SAVE * %s,%i,%i", 
         PlayerCache[playerid][password],
         PlayerCache[playerid][money],
-        PlayerCache[playerid][admin]); // format 
-    FormatQuery("DEntisT_SAVE", query); // apply the format to the query (format the query)
-    SendQuery("DEntisT_SAVE"); // Send the query
-
-    DestroyQuery("DEntisT_SAVE"); // Free the slot, aka unvalidate the query.
-    DestroyQuery("DEntisT_LOAD"); // Free the slot, aka unvalidate the query.
+        PlayerCache[playerid][admin]);
+    FormatQuery(save, query);
+    SendQuery(save);
+    printf("DEBUG | PW : %s | M : %i | A : %i", PlayerCache[playerid][password],
+        PlayerCache[playerid][money],
+        PlayerCache[playerid][admin]);
+    DestroyQuery(save);
+    DestroyQuery(load);
     return 1;
 }
 ```
