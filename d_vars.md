@@ -88,6 +88,7 @@ public OnGameModeInit()
         GetStringValue("Variable3")
         )
     ;
+    return 1;
 }
 ```
 ## API
