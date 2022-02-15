@@ -39,6 +39,10 @@ public OnDETUtilsInit() // This should be the last hook.
     CallVariableHandler("HandlerName2");
     CallVariableHandler("HandlerName3");
 
+    SetIntegerValue("Variable", 1243);
+    SetBooleanValue("Variable1", false, 3);
+    SetFloatValue("Variable2", 213.21);
+
     printf("[samp-detutils]: (var info) - Testing variables: %i, %i, %f, %s",
         GetIntegerValue("Variable"),
         GetBooleanValue("Variable1", 3),
@@ -48,6 +52,19 @@ public OnDETUtilsInit() // This should be the last hook.
     ;
 
     print("SA:MP | DETUtils - Testing mode script loaded.");
+    return 1;
+}
+
+public OnVariableCreate(varname[], vartype)
+{
+    printf("Variable '%s' created - type : %i.", varname, vartype);
+    return 1;
+}
+
+public OnVariableUpdate(varname[], vartype, value, dimension)
+{
+    printf("Variable '%s' updated - type : %i, new value : %i, dimension : %i.", 
+        varname, vartype, value, dimension);
     return 1;
 }
 

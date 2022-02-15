@@ -35,6 +35,11 @@
 
 // General definitions:
 
+// CallLocalFunction("OnVariableCreate", "si", name, VARIABLE_TYPE_);
+forward OnVariableCreate(varname[], vartype);
+// CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_, value, dimension);
+forward OnVariableUpdate(varname[], vartype, value, dimension);
+
 #define VARIABLE_TYPE_INTEGER 0
 #define VARIABLE_TYPE_BOOLEAN 1
 #define VARIABLE_TYPE_STRING 2
@@ -144,6 +149,7 @@ varfunc DeclareInteger(const name[], multi, constant, constvalue = 0)
 				g_IntCache[i][Const] = 1;
 				g_IntCache[i][ReturnVal] = constvalue;
 			}
+			CallLocalFunction("OnVariableCreate", "si", name, VARIABLE_TYPE_INTEGER);
 			g_IntCache[i][Valid] = 1;
 			return 1;
 		}	
@@ -185,6 +191,7 @@ varfunc DeclareBoolean(const name[], multi, constant, bool:constvalue = false)
 				g_BoolCache[i][Const] = 1;
 				g_BoolCache[i][ReturnVal] = constvalue;
 			}
+			CallLocalFunction("OnVariableCreate", "si", name, VARIABLE_TYPE_BOOLEAN);
 			g_BoolCache[i][Valid] = 1;
 			return 1;
 		}	
@@ -221,6 +228,7 @@ varfunc DeclareFloat(const name[], multi, constant, Float:constvalue = 0.0000)
 				g_FloatCache[i][Const] = 1;
 				g_FloatCache[i][ReturnVal] = constvalue;
 			}
+			CallLocalFunction("OnVariableCreate", "si", name, VARIABLE_TYPE_FLOAT);
 			g_FloatCache[i][Valid] = 1;
 			return 1;
 		}	
@@ -245,6 +253,7 @@ varfunc DeclareString(const name[], constant, const constvalue[])
 			{
 				strmid(g_StringCache[i][ReturnVal], constvalue, 0, len);
 			}
+			CallLocalFunction("OnVariableCreate", "si", name, VARIABLE_TYPE_STRING);
 			g_StringCache[i][Valid] = 1;
 			return 1;
 		}	
@@ -348,6 +357,11 @@ stock SetIntegerValue(const name[], value, dimension = -1)
 	{
 		if(!strcmp(g_IntCache[i][IntName], name, false))
 		{
+			if(g_IntCache[i][Const] == 1)
+			{
+				printf("[samp-detutils]: (var error) - Cannot update the constant value of : %s", name);
+				return 0;
+			}
 			if(g_IntCache[i][Multi] == 1)
 			{
 				if(dimension == -1)
@@ -355,11 +369,13 @@ stock SetIntegerValue(const name[], value, dimension = -1)
 					printf("[samp-detutils]: (var error) - Invalid dimension.");
 					return 0;
 				}
+				CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_INTEGER, value, dimension);
 				g_IntCache[i][Dimensions][dimension] = value;
 				return 1;
 			}
 			else if(g_IntCache[i][Multi] == 0)
 			{
+				CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_INTEGER, value, dimension);
 				g_IntCache[i][ReturnVal] = value;
 				return 1;
 			}
@@ -374,6 +390,16 @@ stock SetBooleanValue(const name[], bool:value, dimension = -1)
 	{
 		if(!strcmp(g_BoolCache[i][BoolName], name, false))
 		{
+			if(g_BoolCache[i][Const] == 1)
+			{
+				printf("[samp-detutils]: (var error) - Cannot update the constant value of : %s", name);
+				return 0;
+			}
+			if(value != false && value != true)
+			{
+				printf("[samp-detutils]: (var error) - Boolean variables can only hold the values of 0 and 1.");
+				return 0;
+			}
 			if(g_BoolCache[i][Multi] == 1)
 			{
 				if(dimension == -1)
@@ -381,11 +407,13 @@ stock SetBooleanValue(const name[], bool:value, dimension = -1)
 					printf("[samp-detutils]: (var error) - Invalid dimension.");
 					return 0;
 				}
+				CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_BOOLEAN, value, dimension);
 				g_BoolCache[i][Dimensions][dimension] = value;
 				return true;
 			}
 			else if(g_BoolCache[i][Multi] == 0)
 			{
+				CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_BOOLEAN, value, dimension);
 				g_BoolCache[i][ReturnVal] = value;
 				return true;
 			}
@@ -400,6 +428,11 @@ stock SetFloatValue(const name[], Float:value, dimension = -1)
 	{
 		if(!strcmp(g_FloatCache[i][FloatName], name, false))
 		{
+			if(g_FloatCache[i][Const] == 1)
+			{
+				printf("[samp-detutils]: (var error) - Cannot update the constant value of : %s", name);
+				return 0;
+			}
 			if(g_FloatCache[i][Multi] == 1)
 			{
 				if(dimension == -1)
@@ -407,11 +440,13 @@ stock SetFloatValue(const name[], Float:value, dimension = -1)
 					printf("[samp-detutils]: (var error) - Invalid dimension.");
 					return 0;
 				}
+				CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_FLOAT, value, dimension);
 				g_FloatCache[i][Dimensions][dimension] = value;
 				return 1;
 			}
 			else if(g_FloatCache[i][Multi] == 0)
 			{
+				CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_FLOAT, value, dimension);
 				g_FloatCache[i][ReturnVal] = value;
 				return 1;
 			}
@@ -426,8 +461,14 @@ stock SetStringValue(const name[], const value[])
 	{
 		if(!strcmp(g_StringCache[i][StringName], name, false))
 		{
+			if(g_StringCache[i][Const] == 1)
+			{
+				printf("[samp-detutils]: (var error) - Cannot update the constant value of : %s", name);
+				return 0;
+			}
 			new len = strlen(value);
 			strmid(g_StringCache[i][ReturnVal], value, 0, len);
+			CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_STRING, 0, -1);
 			return 1;
 		}
 	}
