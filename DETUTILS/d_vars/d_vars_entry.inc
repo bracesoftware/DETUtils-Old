@@ -51,6 +51,7 @@ enum enum_IntVarData
 {
 	Valid,
 	Multi,
+	Const,
 	IntName[32],
 	ReturnVal,
 	Dimensions[MAX_VAR_DIMENSIONS]
@@ -66,6 +67,7 @@ enum enum_BoolVarData
 {
 	Valid,
 	Multi,
+	Const,
 	BoolName[32],
 	bool:ReturnVal,
 	Dimensions[MAX_VAR_DIMENSIONS]
@@ -82,6 +84,7 @@ enum enum_StringData
 {
 	Valid,
 	Multi,
+	Const,
 	StringName[32],
 	ReturnVal[MAX_STRING_CELLS]
 }
@@ -96,6 +99,7 @@ enum enum_FloatData
 {
 	Valid,
 	Multi,
+	Const,
 	FloatName[32],
 	Float:ReturnVal,
 	Float:Dimensions[MAX_VAR_DIMENSIONS]
@@ -103,7 +107,14 @@ enum enum_FloatData
 
 new g_FloatCache[MAX_FLOAT_VARS][enum]
 
-stock CreateVariable(const name[], type, multi)
+stock CreateVariable(
+	const name[], 
+	type, 
+	constant = 0, 
+	{Float,_,bool}:constvalue = 0, 
+	const conststr[] = "_", 
+	multi = 0
+)
 {
 	switch(type)
 	{
@@ -112,20 +123,140 @@ stock CreateVariable(const name[], type, multi)
 			// Integers.
 			for(new i; i < MAX_INTEGER_VARS; i++)
 			{
-				
+				if(g_IntCache[i][Valid] == 0)
+				{
+					strmid(g_IntCache[i][IntName], name, 0, 32);
+					g_IntCache[i][Multi] = multi;
+					if(constant == 1 && multi == 1)
+					{
+						printf("[samp-detutils]: (var error) - You can't create constant variables with more dimensions.");
+						return 0;
+					}
+					if(multi == 1)
+					{
+						for(new x; x < MAX_VAR_DIMENSIONS; x++)
+						{
+							g_IntCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
+						}
+					}
+					else if(multi == 0)
+					{
+						g_IntCache[i][ReturnVal] = 0; // Initialize the single return size.
+					}
+					if(constant == 1)
+					{
+						g_IntCache[i][Const] = 1;
+						g_IntCache[i][ReturnVal] = constvalue;
+					}
+					g_IntCache[i][Valid] = 1;
+					return 1;
+				}	
 			}
 		}
 		case VARIABLE_TYPE_BOOLEAN:
 		{
 			// Booleans.
+			for(new i; i < MAX_BOOLEAN_VARS; i++)
+			{
+				if(g_BoolCache[i][Valid] == 0)
+				{
+					strmid(g_BoolCache[i][BoolName], name, 0, 32);
+					g_BoolCache[i][Multi] = multi;
+					if(constant == 1 && multi == 1)
+					{
+						printf("[samp-detutils]: (var error) - You can't create constant variables with more dimensions.");
+						return 0;
+					}
+					if(multi == 1)
+					{
+						for(new x; x < MAX_VAR_DIMENSIONS; x++)
+						{
+							g_BoolCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
+						}
+					}
+					else if(multi == 0)
+					{
+						g_BoolCache[i][ReturnVal] = 0; // Initialize the single return size.
+					}
+					if(constant == 1)
+					{
+						if(constvalue != 0 && constvalue != 1)
+						{
+							printf("[samp-detutils]: (var error) - Booleans can only have 0 and 1 as values.");
+							return 0;
+						}
+						g_BoolCache[i][Const] = 1;
+						g_BoolCache[i][ReturnVal] = constvalue;
+					}
+					g_BoolCache[i][Valid] = 1;
+					return 1;
+				}	
+			}
 		}
 		case VARIABLE_TYPE_STRING:
 		{
 			// Strings.
+			for(new i; i < MAX_STRINGS; i++)
+			{
+				if(g_StringCache[i][Valid] == 0)
+				{
+					strmid(g_IntCache[i][FloatName], name, 0, 32);
+					g_StringCache[i][Multi] = multi;
+					if(constant == 1 && multi == 1)
+					{
+						printf("[samp-detutils]: (var error) - You can't create constant variables with more dimensions.");
+						return 0;
+					}
+					if(multi == 1)
+					{
+						// There can't be more than a 1 return size for strings :( Pawn limits
+						printf("[samp-detutils]: (string error) - Strings cannot be multidimensional variables.");
+						return 0;
+					}
+					else if(multi == 0)
+					{
+						g_StringCache[i][ReturnVal] = 0; // Initialize the single return size.
+					}
+					g_StringCache[i][Valid] = 1;
+					return 1;
+				}	
+			}
+
 		}
 		case VARIABLE_TYPE_FLOAT:
 		{
 			// Floats / real numbers.
+			for(new i; i < MAX_FLOAT_VARS; i++)
+			{
+				if(g_FloatCache[i][Valid] == 0)
+				{
+					strmid(g_FloatCache[i][FloatName], name, 0, 32);
+					g_FloatCache[i][Multi] = multi;
+					if(constant == 1 && multi == 1)
+					{
+						printf("[samp-detutils]: (var error) - You can't create constant variables with more dimensions.");
+						return 0;
+					}
+					if(multi == 1)
+					{
+						for(new x; x < MAX_VAR_DIMENSIONS; x++)
+						{
+							g_FloatCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
+						}
+					}
+					else if(multi == 0)
+					{
+						g_FloatCache[i][ReturnVal] = 0; // Initialize the single return size.
+					}
+					if(constant == 1)
+					{
+						g_FloatCache[i][Const] = 1;
+						g_FloatCache[i][ReturnVal] = constvalue;
+					}
+					g_FloatCache[i][Valid] = 1;
+					return 1;
+				}	
+			}
 		}
 	}
 	return 0;
