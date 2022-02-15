@@ -2,12 +2,33 @@
 SA:MP Variables - A completely new type of a variable system.
 
 [Go back to home page...](README.md)
+## `d_vars.inc` variable scheme
+```md
+Variable:
+| - Valid
+      | - true 
+      | - false
+| - Multi-dimensional variable (more returns)
+      | - true
+      | - false
+| - Const (if it is not multi-dimensional)
+      | - true
+      | - false
+| - Variable name
+      | - string: 32 characters
+| - Single return value (when it is not multidimensional variable)
+      | - return value
+| - 256 Dimensions (if it is multi-dimensional)
+      | - Each dimension
+            | - Single return value
+```
 ## How to start to use?
 - People find this REALLY complicated, though - it's not. Start by making an variable handler:
 
 ```pawn
 @variable(.datatype = INTEGER, .args = "Variable", false, false, 0) HandlerName();
 ```
+- Now, we declared a variable handler for a non-constant variable named `Variable`, with integer data type, single return value (without more than one dimension).
 ## API
 ## Messages from creator
 ### Notes
