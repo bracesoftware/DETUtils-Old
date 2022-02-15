@@ -3,8 +3,9 @@ SA:MP Variables - A completely new type of a variable system.
 
 [Go back to home page...](README.md)
 ## `d_vars.inc` variable scheme
+- Each variable ID contains certain information about each variable, below that is schemed:
 ```md
-Variable:
+Variable ID:
 | - Valid
       | - true 
       | - false
