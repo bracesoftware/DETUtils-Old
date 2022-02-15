@@ -52,6 +52,7 @@ public const detutils_ver = 0x1;
 #define DETUTILS_SCRIPT_DMZONE 7
 #define DETUTILS_SCRIPT_TEAMS 8
 #define DETUTILS_SCRIPT_DIALOG 9
+#define DETUTILS_SCRIPT_VARS 10
 
 stock void:LoadDETUtilsScript(scriptid)
 {
@@ -94,6 +95,10 @@ stock void:LoadDETUtilsScript(scriptid)
     if(scriptid == DETUTILS_SCRIPT_DIALOG)
     {
         print("*** [samp-detutils]: (module) - Loaded: d_dialog.inc");
+    }
+    if(scriptid == DETUTILS_SCRIPT_VARS)
+    {
+        print("*** [samp-detutils]: (module) - Loaded: d_vars.inc");
     }
 }
 

@@ -68,7 +68,11 @@
 
 #else
 
- 	#warning [samp-detutils]: (includes) - Library 'd_properties' is disabled.
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [samp-detutils]: (includes) - Library 'd_properties' is disabled.
+
+ 	#endif
 
 #endif
 #if !defined DETUTILS_NO_COMMANDS
@@ -78,7 +82,11 @@
 
 #else
 
- 	#warning [samp-detutils]: (includes) - Library 'd_commands' is disabled.
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [samp-detutils]: (includes) - Library 'd_commands' is disabled.
+
+ 	#endif
 
 #endif
 #if !defined DETUTILS_NO_FMARGS
@@ -88,7 +96,11 @@
 
 #else
 
- 	#warning [samp-detutils]: (includes) - Library 'd_fmargs' is disabled.
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [samp-detutils]: (includes) - Library 'd_fmargs' is disabled.
+
+ 	#endif
 
 #endif
 #if !defined DETUTILS_NO_VISUAL
@@ -98,7 +110,11 @@
 
 #else
 
- 	#warning [samp-detutils]: (includes) - Library 'd_visual' is disabled.
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [samp-detutils]: (includes) - Library 'd_visual' is disabled.
+
+ 	#endif
 
 #endif
 #if !defined DETUTILS_NO_ANTICHEAT
@@ -108,7 +124,11 @@
 
 #else
 
- 	#warning [samp-detutils]: (includes) - Library 'd_anticheat' is disabled.
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [samp-detutils]: (includes) - Library 'd_anticheat' is disabled.
+
+ 	#endif
 
 #endif
 #if !defined DETUTILS_NO_MAPEDITOR
@@ -118,7 +138,11 @@
 
 #else
 
- 	#warning [samp-detutils]: (includes) - Library 'd_mapeditor' is disabled.
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [samp-detutils]: (includes) - Library 'd_mapeditor' is disabled.
+
+ 	#endif
 
 #endif
 #if !defined DETUTILS_NO_FILEQUERIES
@@ -128,7 +152,11 @@
 
 #else
 
- 	#warning [samp-detutils]: (includes) - Library 'd_filequeries' is disabled.
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [samp-detutils]: (includes) - Library 'd_filequeries' is disabled.
+
+ 	#endif
 
 #endif
 #if !defined DETUTILS_NO_DMZONE
@@ -138,7 +166,11 @@
 
 #else
 
- 	#warning [samp-detutils]: (includes) - Library 'd_dmzone' is disabled.
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [samp-detutils]: (includes) - Library 'd_dmzone' is disabled.
+
+ 	#endif
 
 #endif
 #if !defined DETUTILS_NO_TEAMS
@@ -148,7 +180,11 @@
 
 #else
 
- 	#warning [samp-detutils]: (includes) - Library 'd_teams' is disabled.
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [samp-detutils]: (includes) - Library 'd_teams' is disabled.
+
+ 	#endif
 
 #endif
 #if !defined DETUTILS_NO_DIALOG
@@ -158,14 +194,32 @@
 
 #else
 
- 	#warning [samp-detutils]: (includes) - Library 'd_dialog' is disabled.
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [samp-detutils]: (includes) - Library 'd_dialog' is disabled.
+
+ 	#endif
+
+#endif
+#if !defined DETUTILS_NO_VARS
+	
+	//#warning [samp-detutils]: (includes) - Library 'd_mapeditor' is disabled.
+	#include "d_vars"
+
+#else
+
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [samp-detutils]: (includes) - Library 'd_vars' is disabled.
+
+ 	#endif
 
 #endif
 
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
  && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_DMZONE && defined DETUTILS_NO_TEAMS \
- && defined DETUTILS_NO_DIALOG
+ && defined DETUTILS_NO_DIALOG && defined DETUTILS_NO_VARS
 
 	#warning [samp-detutils]: (warning) - All library modules are disabled.
 
