@@ -151,7 +151,7 @@ varfunc DeclareInteger(const name[], multi, constant, constvalue = 0)
 	return 0;
 }
 
-varfunc DeclareBoolean(const name[], multi, constant, constvalue = false)
+varfunc DeclareBoolean(const name[], multi, constant, bool:constvalue = false)
 {
 	for(new i; i < MAX_BOOLEAN_VARS; i++)
 	{
@@ -173,11 +173,11 @@ varfunc DeclareBoolean(const name[], multi, constant, constvalue = false)
 			}
 			else if(multi == 0)
 			{
-				g_BoolCache[i][ReturnVal] = 0; // Initialize the single return size.
+				g_BoolCache[i][ReturnVal] = false; // Initialize the single return size.
 			}
 			if(constant == 1)
 			{
-				if(constvalue != 0 && constvalue != 1)
+				if(constvalue != false && constvalue != true)
 				{
 					printf("[samp-detutils]: (var error) - Booleans can only have 0 and 1 as values.");
 					return 0;
@@ -300,7 +300,101 @@ stock GetBooleanValue(const name[], dimension = -1)
 	return 0;
 }
 
-stock GetFloatValue(const name[])
+stock Float:GetFloatValue(const name[], dimension = -1)
+{
+	for(new i; i < MAX_BOOLEAN_VARS; i++)
+	{
+		if(!strcmp(g_FloatCache[i][FloatName], name, false))
+		{
+			if(g_FloatCache[i][Multi] == 1)
+			{
+				if(dimension == -1)
+				{
+					printf("[samp-detutils]: (var error) - Invalid dimension.");
+					return Float:0;
+				}
+				return g_FloatCache[i][Dimensions][dimension];
+			}
+			else if(g_FloatCache[i][Multi] == 0)
+			{
+				return g_FloatCache[i][ReturnVal];
+			}
+		}
+	}
+	return Float:0;
+}
+
+stock GetStringValue(const name[])
+{
+	new ret[1024];
+	format(ret, 4, "NULL");
+			
+	for(new i; i < MAX_BOOLEAN_VARS; i++)
+	{
+		if(!strcmp(g_StringCache[i][StringName], name, false))
+		{
+			format(ret, 1024, "%s", g_StringCache[i][ReturnVal]);
+			return ret;
+		}
+	}
+	return ret;
+}
+
+// SET THE VALUE.
+
+stock SetIntegerValue(const name[], value, dimension = -1)
+{
+	for(new i; i < MAX_INTEGER_VARS; i++)
+	{
+		if(!strcmp(g_IntCache[i][IntName], name, false))
+		{
+			if(g_IntCache[i][Multi] == 1)
+			{
+				if(dimension == -1)
+				{
+					printf("[samp-detutils]: (var error) - Invalid dimension.");
+					return 0;
+				}
+				g_IntCache[i][Dimensions][dimension] = value;
+				return 1;
+			}
+			else if(g_IntCache[i][Multi] == 0)
+			{
+				g_IntCache[i][ReturnVal] = value;
+				return 1;
+			}
+		}
+	}
+	return 0;
+}
+
+stock SetBooleanValue(const name[], bool:value, dimension = -1)
+{
+	for(new i; i < MAX_BOOLEAN_VARS; i++)
+	{
+		if(!strcmp(g_BoolCache[i][BoolName], name, false))
+		{
+			if(g_BoolCache[i][Multi] == 1)
+			{
+				if(dimension == -1)
+				{
+					printf("[samp-detutils]: (var error) - Invalid dimension.");
+					return 0;
+				}
+				g_BoolCache[i][Dimensions][dimension] = value;
+				return true;
+			}
+			else if(g_BoolCache[i][Multi] == 0)
+			{
+				g_BoolCache[i][ReturnVal] = value;
+				return true;
+			}
+		}
+	}
+	return 0;
+}
+
+stock SetFloatValue(const name[], Float:value, dimension = -1)
 {
 	for(new i; i < MAX_BOOLEAN_VARS; i++)
 	{
@@ -313,19 +407,30 @@ stock GetFloatValue(const name[])
 					printf("[samp-detutils]: (var error) - Invalid dimension.");
 					return 0;
 				}
-				return g_FloatCache[i][Dimensions][dimension];
+				g_FloatCache[i][Dimensions][dimension] = value;
+				return 1;
 			}
 			else if(g_FloatCache[i][Multi] == 0)
 			{
-				return g_FloatCache[i][ReturnVal];
+				g_FloatCache[i][ReturnVal] = value;
+				return 1;
 			}
 		}
 	}
 	return 0;
 }
 
-stock GetStringValue(const name[])
-{
+stock SetStringValue(const name[], const value[])
+{			
+	for(new i; i < MAX_BOOLEAN_VARS; i++)
+	{
+		if(!strcmp(g_StringCache[i][StringName], name, false))
+		{
+			new len = strlen(value);
+			strmid(g_StringCache[i][ReturnVal], value, 0, len);
+			return 1;
+		}
+	}
 	return 0;
 }
 

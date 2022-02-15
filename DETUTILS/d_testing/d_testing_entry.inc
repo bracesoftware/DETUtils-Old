@@ -28,10 +28,25 @@ enum Enums
 }
 
 @variable( .datatype = INTEGER, .args = {"Variable", false, false, 0} ) HandlerName();
+@variable( .datatype = BOOLEAN, .args = {"Variable1", true, false, false} ) HandlerName1();
+@variable( .datatype = FLOAT, .args = {"Variable2", false, false, 0.000} ) HandlerName2();
+@variable( .datatype = STRING, .args = {"Variable3", true, "Cool string tho"} ) HandlerName3();
 
 public OnDETUtilsInit() // This should be the last hook.
 {
     CallVariableHandler("HandlerName");
+    CallVariableHandler("HandlerName1");
+    CallVariableHandler("HandlerName2");
+    CallVariableHandler("HandlerName3");
+
+    printf("[samp-detutils]: (var info) - Testing variables: %i, %i, %f, %s",
+        GetIntegerValue("Variable"),
+        GetBooleanValue("Variable1", 3),
+        GetFloatValue("Variable2"),
+        GetStringValue("Variable3")
+        )
+    ;
+
     print("SA:MP | DETUtils - Testing mode script loaded.");
     return 1;
 }
