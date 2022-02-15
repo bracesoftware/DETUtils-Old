@@ -39,6 +39,7 @@
 forward OnVariableCreate(varname[], vartype);
 // CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_, value, dimension);
 forward OnVariableUpdate(varname[], vartype, value, dimension);
+forward OnVariableDelete(varname[], vartype);
 
 #define VARIABLE_TYPE_INTEGER 0
 #define VARIABLE_TYPE_BOOLEAN 1
@@ -118,6 +119,29 @@ stock CallVariableHandler(const name[])
 	new funcname[32];
 	format(funcname, sizeof funcname, "@DETVAR_%s", name);
 	return CallLocalFunction(funcname, "");
+}
+
+// Delete functions are REALLY important.
+// Though, I HIGHLY recomment to delete every variable which is not needed because
+// if you don't, you'll eventually run out of space required for variables to create and create functions will fail.
+
+stock DeleteIntegerVariable(const name[])
+{
+	for(new i; i < MAX_INTEGER_VARS; i++)
+	{
+		if(!strcmp(g_IntCache[i][IntName], name, false))
+		{
+			strmid(g_IntCache[i][IntName], " ", 0, 1);
+			g_IntCache[i][Valid] = 0;
+			for(new x; x < MAX_VAR_DIMENSIONS; x++)
+			{
+				g_IntCache[i][Dimensions][x] = 0;
+			}
+			g_IntCache[i]
+			return 1;
+		}
+	}
+	return 0;
 }
 
 varfunc DeclareInteger(const name[], multi, constant, constvalue = 0)
