@@ -91,6 +91,27 @@ public OnGameModeInit()
 }
 ```
 ## API
+- All of the functions can be seen below.
+
+### `public` OnVariableCreate
+- Called whenever a variable handler gets called.
+```pawn
+public OnVariableCreate(varname[], vartype)
+{
+    printf("Variable '%s' created - type : %i.", varname, vartype);
+    return 1;
+}
+```
+### `public` OnVariableUpdate
+- Called whenever a variable value gets updated.
+```pawn
+public OnVariableUpdate(varname[], vartype, value, dimension)
+{
+    printf("Variable '%s' updated - type : %i, new value : %i, dimension : %i.", 
+        varname, vartype, value, dimension);
+    return 1;
+}
+```
 ## Messages from creator
 ### Notes
 ### Warnings
