@@ -42,7 +42,7 @@ Variable ID:
 - People find this REALLY complicated, though - it's not. Start by making an variable handler:
 
 ```pawn
-@variable(.datatype = INTEGER, .args = "Variable", false, false, 0) HandlerName();
+@variable( .datatype = INTEGER, .args = {"Variable", false, false, 0} ) HandlerName();
 ```
 - Now, we declared a variable handler for a non-constant variable named `Variable`, with integer data type, single return value (without more than one dimension). Note that this is only a variable handler, until we call the handler - variable does not exist.
 
