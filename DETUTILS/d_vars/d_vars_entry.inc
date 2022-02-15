@@ -43,6 +43,8 @@
 
 // Data types:
 
+#include "d_vars_macros"
+
 // Integers:
 
 #define MAX_INTEGER_VARS 1000
@@ -83,7 +85,6 @@ new g_BoolCache[MAX_BOOLEAN_VARS][enum_BoolVarData];
 enum enum_StringData
 {
 	Valid,
-	Multi,
 	Const,
 	StringName[32],
 	ReturnVal[MAX_STRING_CELLS]
@@ -105,13 +106,235 @@ enum enum_FloatData
 	Float:Dimensions[MAX_VAR_DIMENSIONS]
 }
 
-new g_FloatCache[MAX_FLOAT_VARS][enum]
+new g_FloatCache[MAX_FLOAT_VARS][enum_FloatData];
 
-stock CreateVariable(
+stock CallVariableHandler(const name[])
+{
+	new funcname[32];
+	format(funcname, sizeof funcname, "@DETVAR_%s", name);
+	return CallLocalFunction(funcname, "");
+}
+
+varfunc DeclareInteger(const name[], multi, constant, constvalue = 0)
+{
+	for(new i; i < MAX_INTEGER_VARS; i++)
+	{
+		if(g_IntCache[i][Valid] == 0)
+		{
+			strmid(g_IntCache[i][IntName], name, 0, 32);
+			g_IntCache[i][Multi] = multi;
+			if(constant == 1 && multi == 1)
+			{
+				printf("[samp-detutils]: (var error) - You can't create constant variables with more dimensions.");
+				return 0;
+			}
+			if(multi == 1)
+			{
+				for(new x; x < MAX_VAR_DIMENSIONS; x++)
+				{
+					g_IntCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
+				}
+			}
+			else if(multi == 0)
+			{
+				g_IntCache[i][ReturnVal] = 0; // Initialize the single return size.
+			}
+			if(constant == 1)
+			{
+				g_IntCache[i][Const] = 1;
+				g_IntCache[i][ReturnVal] = constvalue;
+			}
+			g_IntCache[i][Valid] = 1;
+			return 1;
+		}	
+	}
+	return 0;
+}
+
+varfunc DeclareBoolean(const name[], multi, constant, constvalue = false)
+{
+	for(new i; i < MAX_BOOLEAN_VARS; i++)
+	{
+		if(g_BoolCache[i][Valid] == 0)
+		{
+			strmid(g_BoolCache[i][BoolName], name, 0, 32);
+			g_BoolCache[i][Multi] = multi;
+			if(constant == 1 && multi == 1)
+			{
+				printf("[samp-detutils]: (var error) - You can't create constant variables with more dimensions.");
+				return 0;
+			}
+			if(multi == 1)
+			{
+				for(new x; x < MAX_VAR_DIMENSIONS; x++)
+				{
+					g_BoolCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
+				}
+			}
+			else if(multi == 0)
+			{
+				g_BoolCache[i][ReturnVal] = 0; // Initialize the single return size.
+			}
+			if(constant == 1)
+			{
+				if(constvalue != 0 && constvalue != 1)
+				{
+					printf("[samp-detutils]: (var error) - Booleans can only have 0 and 1 as values.");
+					return 0;
+				}
+				g_BoolCache[i][Const] = 1;
+				g_BoolCache[i][ReturnVal] = constvalue;
+			}
+			g_BoolCache[i][Valid] = 1;
+			return 1;
+		}	
+	}
+	return 0;
+}
+
+varfunc DeclareFloat(const name[], multi, constant, Float:constvalue = 0.0000)
+{
+	for(new i; i < MAX_FLOAT_VARS; i++)
+	{
+		if(g_FloatCache[i][Valid] == 0)
+		{
+			strmid(g_FloatCache[i][FloatName], name, 0, 32);
+			g_FloatCache[i][Multi] = multi;
+			if(constant == 1 && multi == 1)
+			{
+				printf("[samp-detutils]: (var error) - You can't create constant variables with more dimensions.");
+				return 0;
+			}
+			if(multi == 1)
+			{
+				for(new x; x < MAX_VAR_DIMENSIONS; x++)
+				{
+					g_FloatCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
+				}
+			}
+			else if(multi == 0)
+			{
+				g_FloatCache[i][ReturnVal] = 0; // Initialize the single return size.
+			}
+			if(constant == 1)
+			{
+				g_FloatCache[i][Const] = 1;
+				g_FloatCache[i][ReturnVal] = constvalue;
+			}
+			g_FloatCache[i][Valid] = 1;
+			return 1;
+		}	
+	}
+	return 0;
+}
+
+varfunc DeclareString(const name[], constant, const constvalue[])
+{
+	for(new i; i < MAX_STRINGS; i++)
+	{
+		if(g_StringCache[i][Valid] == 0)
+		{
+			new len = strlen(constvalue);
+			strmid(g_StringCache[i][StringName], name, 0, 32);
+			if(constant == 1)
+			{
+				strmid(g_StringCache[i][ReturnVal], constvalue, 0, len);
+				g_StringCache[i][Const] = 1;
+			}
+			else if(constant == 0)
+			{
+				strmid(g_StringCache[i][ReturnVal], constvalue, 0, len);
+			}
+			g_StringCache[i][Valid] = 1;
+			return 1;
+		}	
+	}
+	return 0;
+}
+
+stock GetIntegerValue(const name[], dimension = -1)
+{
+	for(new i; i < MAX_INTEGER_VARS; i++)
+	{
+		if(!strcmp(g_IntCache[i][IntName], name, false))
+		{
+			if(g_IntCache[i][Multi] == 1)
+			{
+				if(dimension == -1)
+				{
+					printf("[samp-detutils]: (var error) - Invalid dimension.");
+					return 0;
+				}
+				return g_IntCache[i][Dimensions][dimension];
+			}
+			else if(g_IntCache[i][Multi] == 0)
+			{
+				return g_IntCache[i][ReturnVal];
+			}
+		}
+	}
+	return 0;
+}
+
+stock GetBooleanValue(const name[], dimension = -1)
+{
+	for(new i; i < MAX_BOOLEAN_VARS; i++)
+	{
+		if(!strcmp(g_BoolCache[i][BoolName], name, false))
+		{
+			if(g_BoolCache[i][Multi] == 1)
+			{
+				if(dimension == -1)
+				{
+					printf("[samp-detutils]: (var error) - Invalid dimension.");
+					return 0;
+				}
+				return g_BoolCache[i][Dimensions][dimension];
+			}
+			else if(g_BoolCache[i][Multi] == 0)
+			{
+				return g_BoolCache[i][ReturnVal];
+			}
+		}
+	}
+	return 0;
+}
+
+stock GetFloatValue(const name[])
+{
+	for(new i; i < MAX_BOOLEAN_VARS; i++)
+	{
+		if(!strcmp(g_FloatCache[i][FloatName], name, false))
+		{
+			if(g_FloatCache[i][Multi] == 1)
+			{
+				if(dimension == -1)
+				{
+					printf("[samp-detutils]: (var error) - Invalid dimension.");
+					return 0;
+				}
+				return g_FloatCache[i][Dimensions][dimension];
+			}
+			else if(g_FloatCache[i][Multi] == 0)
+			{
+				return g_FloatCache[i][ReturnVal];
+			}
+		}
+	}
+	return 0;
+}
+
+stock GetStringValue(const name[])
+{
+	return 0;
+}
+
+#if defined detutils_complete_error_boom
+stock CreateVariable( // this is deprecated function
 	const name[], 
 	type, 
 	constant = 0, 
-	{Float,_,bool}:constvalue = 0, 
+	{Float,_,bool}:constvalue = {Float,_,bool}:0, 
 	const conststr[] = "_", 
 	multi = 0
 )
@@ -261,6 +484,8 @@ stock CreateVariable(
 	}
 	return 0;
 }
+
+#endif
 
 /*
 																	  

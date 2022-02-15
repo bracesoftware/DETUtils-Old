@@ -27,8 +27,11 @@ enum Enums
     Admin
 }
 
+@variable( .datatype = INTEGER, .args = {"Variable", false, false, 0} ) HandlerName();
+
 public OnDETUtilsInit() // This should be the last hook.
 {
+    CallVariableHandler("HandlerName");
     print("SA:MP | DETUtils - Testing mode script loaded.");
     return 1;
 }

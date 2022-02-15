@@ -117,9 +117,11 @@ stock void:LoadDETUtilsScript(scriptid)
 */
 
 #define @DETUTILSSTRING_NULL__1 ""
+#define DET_gV_%0\32; DET_gV_
 #define @DETUTILSSTRING_NULL__2 "",""
 #define @DETUTILSSTRING_NULL__3 "","",""
 #define @DETUTILSSTRING_NULL__4 "","","",""
+#define varfunc%0(%1) stock DET_gV_%0(%1) 
 #define @DETUTILSSTRING_NULL__5 "","","","","",
 #define @DETUTILSSTRING_NULL__6 "","","","","","",
 #define @DETUTILSSTRING_NULL__7 "","","","","","","",
