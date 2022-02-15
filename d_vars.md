@@ -4,6 +4,7 @@ SA:MP Variables - A completely new type of a variable system.
 [Go back to home page...](README.md)
 ## `d_vars.inc` variable scheme
 - Each variable ID contains certain information about each variable, below that is schemed:
+### Integers, booleans and floats
 ```md
 Variable ID:
 | - Valid
@@ -22,6 +23,20 @@ Variable ID:
 | - 256 Dimensions (if it is multi-dimensional)
       | - Each dimension
             | - Single return value
+```
+### Strings
+```md
+Variable ID:
+| - Valid
+      | - true
+      | - false
+| - Const (if it is not multi-dimensional)
+      | - true
+      | - false
+| - Variable name
+      | - string: 32 characters
+| - Single return value
+      | - string: max 1024 characters
 ```
 ## How to start to use?
 - People find this REALLY complicated, though - it's not. Start by making an variable handler:
