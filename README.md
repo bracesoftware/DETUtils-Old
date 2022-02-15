@@ -46,6 +46,7 @@ Click on blue text to see all information about each feature.
 - Learn more: [d_dmzone.inc](d_dmzone.md)
 - Learn more: [d_teams.inc](d_teams.md)
 - Learn more: [d_dialog.inc](d_dialog.md)
+- Learn more: [d_vars.inc](d_vars.md)
 ### Extra bonus
 ------------------------------------------
 - Read more here: [Extra stuff](d_extra.md)
