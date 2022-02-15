@@ -44,7 +44,15 @@ Variable ID:
 ```pawn
 @variable(.datatype = INTEGER, .args = "Variable", false, false, 0) HandlerName();
 ```
-- Now, we declared a variable handler for a non-constant variable named `Variable`, with integer data type, single return value (without more than one dimension).
+- Now, we declared a variable handler for a non-constant variable named `Variable`, with integer data type, single return value (without more than one dimension). Note that this is only a variable handler, until we call the handler - variable does not exist.
+
+```pawn
+public OnGameModeInit()
+{
+      CallVariableHandler("HandlerName");
+      return 1;
+}
+```
 ## API
 ## Messages from creator
 ### Notes
