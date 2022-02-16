@@ -93,7 +93,8 @@ public OnGameModeInit()
 ```
 ## API
 - All of the functions can be seen below.
-
+### Callbacks
+------------------------------------
 ### `public` OnVariableCreate
 - Called whenever a variable handler gets called.
 ```pawn
@@ -122,6 +123,9 @@ public OnVariableDelete(varname[], vartype)
     return 1;
 }
 ```
+### Functions
+------------------------------------
+
 ## Messages from creator
 ### Notes
 ### Warnings
