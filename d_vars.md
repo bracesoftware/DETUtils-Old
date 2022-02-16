@@ -65,30 +65,30 @@ public OnGameModeInit()
 
 public OnGameModeInit()
 {
-    // This will create the variables:
-    CallVariableHandler("HandlerName");
-    CallVariableHandler("HandlerName1");
-    CallVariableHandler("HandlerName2");
-    CallVariableHandler("HandlerName3");
+      // This will create the variables:
+      CallVariableHandler("HandlerName");
+      CallVariableHandler("HandlerName1");
+      CallVariableHandler("HandlerName2");
+      CallVariableHandler("HandlerName3");
 
       // Set the values, or else all of them will be 0!
-    SetIntegerValue("Variable", 1243);
-    SetBooleanValue("Variable1", false, 3);
-    SetFloatValue("Variable2", 213.21);
-    // There is no `SetStringValue` because Variable3 is a constant value.
-    //@variable( .datatype = STRING, .args = {"Variable3", true, "Cool string tho"} ) HandlerName3();
-    //                                                    (this)
-    // Though SetStringValue do exist.
-      
+      SetIntegerValue("Variable", 1243);
+      SetBooleanValue("Variable1", false, 3);
+      SetFloatValue("Variable2", 213.21);
+      // There is no `SetStringValue` because Variable3 is a constant value.
+      //@variable( .datatype = STRING, .args = {"Variable3", true, "Cool string tho"} ) HandlerName3();
+      //                                                    (this)
+      // Though SetStringValue do exist.
+
       // Output will be 1243, 0, 213.21, Cool string tho
-    printf("[samp-detutils]: (var info) - Testing variables: %i, %i, %f, %s",
+      printf("[samp-detutils]: (var info) - Testing variables: %i, %i, %f, %s",
         GetIntegerValue("Variable"),
         GetBooleanValue("Variable1", 3),
         GetFloatValue("Variable2"),
         GetStringValue("Variable3")
         )
-    ;
-    return 1;
+      ;
+      return 1;
 }
 ```
 ## API
