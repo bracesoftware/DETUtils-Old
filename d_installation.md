@@ -56,6 +56,12 @@ Let's find out.
 
 ``DETUTILS_NO_DMZONE`` for disabling *d_dmzone.inc*.
 
+``DETUTILS_NO_TEAMS`` for disabling *d_teams.inc*.
+
+``DETUTILS_NO_DIALOG`` for disabling *d_dialog.inc*.
+
+``DETUTILS_NO_VARS`` for disabling *d_vars.inc*.
+
 ### Warnings
 - When you uninclude one of the DETUtils includes, you'll get a warning saying that the library was successfully unincluded. Sometimes, those can get boring - in order to disable them use this:
 
