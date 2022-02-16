@@ -55,3 +55,10 @@ Let's find out.
 ``DETUTILS_NO_FILEQUERIES`` for disabling *d_filequeries.inc*.
 
 ``DETUTILS_NO_DMZONE`` for disabling *d_dmzone.inc*.
+
+### Warnings
+- When you uninclude one of the DETUtils includes, you'll get a warning saying that the library was successfully unincluded. Sometimes, those can get boring - in order to disable them use this:
+
+```pawn
+#define DETUTILS_NO_MODULE_WARNINGS
+```
