@@ -22,7 +22,7 @@ Hello scripter! Welcome to *SA:MP DEntisT's Utilities* (or **detutils** for shor
 
 ## Examples
 
-- [View](d_example.md) one simple example of script made using **SA:MP-DET Utilities**.
+- [View](https://github.com/DEntis-T/SA-MP-DETUtils/blob/2.x/DETUTILS/d_testing/d_testing_entry.inc) one simple example of script made using **SA:MP-DET Utilities**.
 
 ## Warnings
 1. Always include **DETUtils** last, after all includes.
