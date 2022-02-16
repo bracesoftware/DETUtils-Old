@@ -39,6 +39,7 @@
 forward OnVariableCreate(varname[], vartype);
 // CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_, value, dimension);
 forward OnVariableUpdate(varname[], vartype, value, dimension);
+// CallLocalFunction("OnVariableDelete", "si", name, VARIABLE_TYPE_);
 forward OnVariableDelete(varname[], vartype);
 
 #define VARIABLE_TYPE_INTEGER 0
@@ -122,8 +123,9 @@ stock CallVariableHandler(const name[])
 }
 
 // Delete functions are REALLY important.
-// Though, I HIGHLY recomment to delete every variable which is not needed because
-// if you don't, you'll eventually run out of space required for variables to create and create functions will fail.
+// Though, I HIGHLY recommend to delete every variable which is not needed because
+// if you don't, you'll eventually run out of space required for variables to create 
+// and create functions will fail.
 
 stock DeleteIntegerVariable(const name[])
 {
@@ -138,6 +140,7 @@ stock DeleteIntegerVariable(const name[])
 				g_IntCache[i][Dimensions][x] = 0;
 			}
 			g_IntCache[i][ReturnVal] = 0;
+			CallLocalFunction("OnVariableDelete", "si", name, VARIABLE_TYPE_INTEGER);
 			return 1;
 		}
 	}
@@ -157,6 +160,7 @@ stock DeleteBooleanVariable(const name[])
 				g_BoolCache[i][Dimensions][x] = 0;
 			}
 			g_BoolCache[i][ReturnVal] = 0;
+			CallLocalFunction("OnVariableDelete", "si", name, VARIABLE_TYPE_BOOLEAN);
 			return 1;
 		}
 	}
@@ -176,6 +180,7 @@ stock DeleteFloatVariable(const name[])
 				g_FloatCache[i][Dimensions][x] = Float:0;
 			}
 			g_FloatCache[i][ReturnVal] = Float:0;
+			CallLocalFunction("OnVariableDelete", "si", name, VARIABLE_TYPE_FLOAT);
 			return 1;
 		}
 	}
@@ -191,6 +196,7 @@ stock DeleteStringVariable(const name[])
 			strmid(g_StringCache[i][ReturnVal], " ", 0, 1);
 			strmid(g_StringCache[i][StringName], " ", 0, 1);
 			g_StringCache[i][Valid] = 0;
+			CallLocalFunction("OnVariableDelete", "si", name, VARIABLE_TYPE_STRING);
 			return 1;
 		}
 	}

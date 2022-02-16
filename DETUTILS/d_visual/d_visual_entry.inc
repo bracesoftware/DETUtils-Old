@@ -658,7 +658,7 @@ new g_WeaponInformation[ 47 ][ g_WeapInfoEnum ] = {
     {"Katana", 8, 1, 339 },
     {"Chainsaw", 9, 1, 341 },
     {"Double-ended Dildo", 10, 10, 321 },
-    {"Dildo", 11, 10, 321 },
+    {"Dildo", 11, 10, 322 },
     {"Vibrator", 12, 10, 323 },
     {"Silver Vibrator", 13, 10, 324 },
     {"Flowers", 14, 10, 325 },
