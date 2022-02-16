@@ -137,7 +137,60 @@ stock DeleteIntegerVariable(const name[])
 			{
 				g_IntCache[i][Dimensions][x] = 0;
 			}
-			g_IntCache[i]
+			g_IntCache[i][ReturnVal] = 0;
+			return 1;
+		}
+	}
+	return 0;
+}
+
+stock DeleteBooleanVariable(const name[])
+{
+	for(new i; i < MAX_BOOLEAN_VARS; i++)
+	{
+		if(!strcmp(g_BoolCache[i][BoolName], name, false))
+		{
+			strmid(g_BoolCache[i][BoolName], " ", 0, 1);
+			g_BoolCache[i][Valid] = 0;
+			for(new x; x < MAX_VAR_DIMENSIONS; x++)
+			{
+				g_BoolCache[i][Dimensions][x] = 0;
+			}
+			g_BoolCache[i][ReturnVal] = 0;
+			return 1;
+		}
+	}
+	return 0;
+}
+
+stock DeleteFloatVariable(const name[])
+{
+	for(new i; i < MAX_FLOAT_VARS; i++)
+	{
+		if(!strcmp(g_FloatCache[i][FloatName], name, false))
+		{
+			strmid(g_FloatCache[i][FloatName], " ", 0, 1);
+			g_FloatCache[i][Valid] = 0;
+			for(new x; x < MAX_VAR_DIMENSIONS; x++)
+			{
+				g_FloatCache[i][Dimensions][x] = Float:0;
+			}
+			g_FloatCache[i][ReturnVal] = Float:0;
+			return 1;
+		}
+	}
+	return 0;
+}
+
+stock DeleteStringVariable(const name[])
+{
+	for(new i; i < MAX_BOOLEAN_VARS; i++)
+	{
+		if(!strcmp(g_StringCache[i][StringName], name, false))
+		{
+			strmid(g_StringCache[i][ReturnVal], " ", 0, 1);
+			strmid(g_StringCache[i][StringName], " ", 0, 1);
+			g_StringCache[i][Valid] = 0;
 			return 1;
 		}
 	}
