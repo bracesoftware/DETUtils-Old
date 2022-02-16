@@ -113,6 +113,15 @@ public OnVariableUpdate(varname[], vartype, value, dimension)
     return 1;
 }
 ```
+### `public` OnVariableDelete
+- Called when a certain variable gets deleted.
+```pawn
+public OnVariableDelete(varname[], vartype)
+{
+    printf("Variable '%s' deleted - type : %i.", varname, vartype);
+    return 1;
+}
+```
 ## Messages from creator
 ### Notes
 ### Warnings
