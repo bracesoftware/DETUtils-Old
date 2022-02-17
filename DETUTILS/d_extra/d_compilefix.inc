@@ -15,7 +15,9 @@
 #if !defined DETUTILS_NO_COMPILE_FIX
 
 	#pragma option -i<include>
+	
 	#pragma option $file
+	
 	#pragma option -d3
 	#pragma option -Z+
 	#pragma option -;+
