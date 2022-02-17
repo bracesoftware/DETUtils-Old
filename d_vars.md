@@ -112,7 +112,9 @@ public Callback()
 load Integer("Variable");
 ```
 **FUN FACT**: This can save up to ~531 bytes (or more if the variable is multi-dimensional) of data.
+
 **WARNING**: After using `save`, variable will be saved and then deleted in order to free up some space, though, variable data can be seen in `scriptfiles`.
+
 ## API
 - All of the functions can be seen below.
 ### Callbacks
@@ -167,7 +169,7 @@ public OnVariableDelete(varname[], vartype)
 ### Other
 - `get` - used to get the value of the variable.
 - `set` - used to set the value of the variable.
-- `delete` - used to delete a variable.
+- `delete` - used to delete a variable. I HIGHLY recommend to delete all the variables that are no longer needed, because if you don't you'll eventually run out of space required for declaring the variables - and `CallVariableHandler` will fail since there is no space.
 - `save` - used to save the variable cache into `scriptfiles` (only if `d_filequeries.inc` is included) (save the variable as specially formatted persistent data and reuse it).
 - `load` - used to load the variable previously saved using `save`
 
