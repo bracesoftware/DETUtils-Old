@@ -65,30 +65,35 @@ public OnGameModeInit()
 
 public OnGameModeInit()
 {
-      // This will create the variables:
-      CallVariableHandler("HandlerName");
-      CallVariableHandler("HandlerName1");
-      CallVariableHandler("HandlerName2");
-      CallVariableHandler("HandlerName3");
+      // Call the handlers in order to REALLY create the variables.
+      // `@variable` decorator only handles the information,
+      // then releases it after it gets called,
+      // it can be called multiple times.
+    CallVariableHandler("HandlerName");
+    CallVariableHandler("HandlerName1");
+    CallVariableHandler("HandlerName2");
+    CallVariableHandler("HandlerName3");
 
-      // Set the values, or else all of them will be 0!
-      SetIntegerValue("Variable", 1243);
-      SetBooleanValue("Variable1", false, 3);
-      SetFloatValue("Variable2", 213.21);
-      // There is no `SetStringValue` because Variable3 is a constant value.
-      //@variable( .datatype = STRING, .args = {"Variable3", true, "Cool string tho"} ) HandlerName3();
-      //                                                    (this)
-      // Though SetStringValue do exist.
+      // EXAMPLE: set values.
+    set Integer("Variable", 1243);
+    set Boolean("Variable1", false, 3);
+    set Float("Variable2", 213.21);
 
-      // Output will be 1243, 0, 213.21, Cool string tho
-      printf("[samp-detutils]: (var info) - Testing variables: %i, %i, %f, %s",
-        GetIntegerValue("Variable"),
-        GetBooleanValue("Variable1", 3),
-        GetFloatValue("Variable2"),
-        GetStringValue("Variable3")
-        )
-      ;
-      return 1;
+      // Example: get the values:
+    printf("[samp-detutils]: (var info) - Testing variables: %i, %i, %f, %s",
+        get Integer("Variable"),
+        get Boolean("Variable1", 3),
+        get Float("Variable2"),
+        get String("Variable3"));
+
+      // Delete the variables to free up space.
+    delete Integer("Variable");
+    delete Boolean("Variable1");
+    delete Float("Variable2");
+    delete String("Variable3");
+
+    print("SA:MP | DETUtils - Testing mode script loaded.");
+    return 1;
 }
 ```
 ## API
@@ -123,8 +128,27 @@ public OnVariableDelete(varname[], vartype)
     return 1;
 }
 ```
-### Functions
+### Keywords
 ------------------------------------
+
+### Decorators
+`@variable` decorator is actually a variable handler, which means, it only holds the information about the variable, and then that information is released after called (variable is declared and can be deleted, updated etc). This allows the faster server start.
+
+#### Argument explanation
+**Integers, booleans and floats**
+```pawn
+@variable( .datatype = (INTEGER, BOOLEAN, FLOAT), .args = {"NAME", (multi_dimensional ? true : false), (constant ? true : false), (constant_value)} ) HandlerName();
+```
+**Strings**
+- Strings can't be multidimensional sadly (due to PAWN limits).
+```pawn
+@variable( .datatype = STRING, .args = {"NAME", (constant ? true : false), (constant_value)} ) HandlerName();
+```
+
+### Other
+- `get` - used to get the value of the variable.
+- `set` - used to set the value of the variable.
+- `delete` - used to delete a variable.
 
 ## Messages from creator
 ### Notes
