@@ -40,7 +40,7 @@ Variable ID:
 ```
 ## How to start to use?
 ### Example 1
-- People find this REALLY complicated, though - it's not. Start by making an variable handler:
+- People find this REALLY complicated, though - it's not. Start by making a variable handler:
 
 ```pawn
 @variable( .datatype = INTEGER, .args = {"Variable", false, false, 0} ) HandlerName();
