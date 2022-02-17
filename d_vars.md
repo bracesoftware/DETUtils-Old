@@ -162,7 +162,7 @@ public OnVariableDelete(varname[], vartype)
 - `get` - used to get the value of the variable.
 - `set` - used to set the value of the variable.
 - `delete` - used to delete a variable.
-- `save` - used to save the variable cache into `scriptfiles` (only if `d_filequeries.inc` is included).
+- `save` - used to save the variable cache into `scriptfiles` (only if `d_filequeries.inc` is included) (save the variable as specially formatted persistent data and reuse it).
 
 ## Messages from creator
 ### Notes
