@@ -122,12 +122,14 @@ stock CallVariableHandler(const name[])
 	return CallLocalFunction(funcname, "");
 }
 
+// DELETE FUNCS
+
 // Delete functions are REALLY important.
 // Though, I HIGHLY recommend to delete every variable which is not needed because
 // if you don't, you'll eventually run out of space required for variables to create 
 // and create functions will fail.
 
-stock DeleteIntegerVariable(const name[])
+stock __DeleteIntegerVariable(const name[])
 {
 	for(new i; i < MAX_INTEGER_VARS; i++)
 	{
@@ -147,7 +149,7 @@ stock DeleteIntegerVariable(const name[])
 	return 0;
 }
 
-stock DeleteBooleanVariable(const name[])
+stock __DeleteBooleanVariable(const name[])
 {
 	for(new i; i < MAX_BOOLEAN_VARS; i++)
 	{
@@ -157,9 +159,9 @@ stock DeleteBooleanVariable(const name[])
 			g_BoolCache[i][Valid] = 0;
 			for(new x; x < MAX_VAR_DIMENSIONS; x++)
 			{
-				g_BoolCache[i][Dimensions][x] = 0;
+				g_BoolCache[i][Dimensions][x] = false;
 			}
-			g_BoolCache[i][ReturnVal] = 0;
+			g_BoolCache[i][ReturnVal] = false;
 			CallLocalFunction("OnVariableDelete", "si", name, VARIABLE_TYPE_BOOLEAN);
 			return 1;
 		}
@@ -167,7 +169,7 @@ stock DeleteBooleanVariable(const name[])
 	return 0;
 }
 
-stock DeleteFloatVariable(const name[])
+stock __DeleteFloatVariable(const name[])
 {
 	for(new i; i < MAX_FLOAT_VARS; i++)
 	{
@@ -187,7 +189,7 @@ stock DeleteFloatVariable(const name[])
 	return 0;
 }
 
-stock DeleteStringVariable(const name[])
+stock __DeleteStringVariable(const name[])
 {
 	for(new i; i < MAX_BOOLEAN_VARS; i++)
 	{
@@ -202,6 +204,8 @@ stock DeleteStringVariable(const name[])
 	}
 	return 0;
 }
+
+// DECLARATION FUNCS
 
 varfunc DeclareInteger(const name[], multi, constant, constvalue = 0)
 {
@@ -344,7 +348,9 @@ varfunc DeclareString(const name[], constant, const constvalue[])
 	return 0;
 }
 
-stock GetIntegerValue(const name[], dimension = -1)
+// GET... FUNCS
+
+stock __GetIntegerValue(const name[], dimension = -1)
 {
 	for(new i; i < MAX_INTEGER_VARS; i++)
 	{
@@ -368,7 +374,7 @@ stock GetIntegerValue(const name[], dimension = -1)
 	return 0;
 }
 
-stock GetBooleanValue(const name[], dimension = -1)
+stock __GetBooleanValue(const name[], dimension = -1)
 {
 	for(new i; i < MAX_BOOLEAN_VARS; i++)
 	{
@@ -392,7 +398,7 @@ stock GetBooleanValue(const name[], dimension = -1)
 	return 0;
 }
 
-stock Float:GetFloatValue(const name[], dimension = -1)
+stock Float:__GetFloatValue(const name[], dimension = -1)
 {
 	for(new i; i < MAX_BOOLEAN_VARS; i++)
 	{
@@ -416,7 +422,7 @@ stock Float:GetFloatValue(const name[], dimension = -1)
 	return Float:0;
 }
 
-stock GetStringValue(const name[])
+stock __GetStringValue(const name[])
 {
 	new ret[1024];
 	format(ret, 4, "NULL");
@@ -434,7 +440,7 @@ stock GetStringValue(const name[])
 
 // SET THE VALUE.
 
-stock SetIntegerValue(const name[], value, dimension = -1)
+stock __SetIntegerValue(const name[], value, dimension = -1)
 {
 	for(new i; i < MAX_INTEGER_VARS; i++)
 	{
@@ -467,7 +473,7 @@ stock SetIntegerValue(const name[], value, dimension = -1)
 	return 0;
 }
 
-stock SetBooleanValue(const name[], bool:value, dimension = -1)
+stock __SetBooleanValue(const name[], bool:value, dimension = -1)
 {
 	for(new i; i < MAX_BOOLEAN_VARS; i++)
 	{
@@ -505,7 +511,7 @@ stock SetBooleanValue(const name[], bool:value, dimension = -1)
 	return 0;
 }
 
-stock SetFloatValue(const name[], Float:value, dimension = -1)
+stock __SetFloatValue(const name[], Float:value, dimension = -1)
 {
 	for(new i; i < MAX_BOOLEAN_VARS; i++)
 	{
@@ -538,7 +544,7 @@ stock SetFloatValue(const name[], Float:value, dimension = -1)
 	return 0;
 }
 
-stock SetStringValue(const name[], const value[])
+stock __SetStringValue(const name[], const value[])
 {			
 	for(new i; i < MAX_BOOLEAN_VARS; i++)
 	{
@@ -752,3 +758,53 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit d_vs_detutilsinit
 
 forward d_vs_detutilsinit();
+
+// d_filequeries.inc
+#if !defined DETUTILS_NO_FILEQUERIES
+
+/*
+enum enum_IntVarData
+{
+	Valid,
+	Multi,
+	Const,
+	IntName[32],
+	ReturnVal,
+	Dimensions[MAX_VAR_DIMENSIONS]
+}
+*/
+
+stock __SaveIntegerVariable(const name[])
+{
+	for(new i; i < MAX_INTEGER_VARS; i++)
+	{
+		if(!strcmp(g_IntCache[i][IntName], name, false))
+		{
+			new savequeryfile[32], savequery[64], query[1024];
+
+			format(savequeryfile, sizeof savequeryfile, "d_int_%s.ini", name);
+			format(savequery, sizeof savequery, "d_int_%s", name);
+			
+			CreateQuery(savequery, QUERY_TYPE_SAVE, "d_vars_cache", savequeryfile);
+			format(query, sizeof query, "SAVE * %i,%i,%i,%s,%i", 
+				g_IntCache[i][Valid],
+				g_IntCache[i][Multi],
+				g_IntCache[i][Const],
+				g_IntCache[i][IntName],
+				g_IntCache[i][ReturnVal]);
+
+			FormatQuery(savequery, query);
+			SendQuery(savequery);
+			DestroyQuery(savequery);
+			return 1;
+		}
+	}
+	return 0;
+}
+
+stock __LoadIntegerVariable(const name[])
+{
+	return 0;
+}
+
+#endif
