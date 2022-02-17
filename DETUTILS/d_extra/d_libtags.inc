@@ -14,13 +14,13 @@
 
 #if defined A_INTS_COMPATIBILITY_MODE || defined A_CMDS_COMPATIBILITY_MODE
 
-    #define DETUTILS_COMPATIBILITY_MODE
+	#define DETUTILS_COMPATIBILITY_MODE
 
 #endif
 
 #if defined DETUTILS_COMPATIBILITY_MODE || defined detutils_complete_error_boom
 
-    #error [samp-detutils]: (fatal error) - crl :: Stop messing with the core libraries!
+	#error [samp-detutils]: (fatal error) - crl :: Stop messing with the core libraries!
 
 #endif
 
@@ -29,16 +29,18 @@
 #undef DETUTILS_COMPATIBILITY_MODE
 #endif
 
+#include "d_compilefix" // Add compile options
+#include "d_funcgen"
 #include "d_thirdpartyinclude" //_INC_code_parse_inc
 
 #if !defined __PawnBuild
 
-    #error [samp-detutils]: (fatal error) - DETUtils require community Pawn compiler. Get it from: github.com/pawn-lang/compiler
+	#error [samp-detutils]: (fatal error) - DETUtils require community Pawn compiler. Get it from: github.com/pawn-lang/compiler
 
 #endif
 
 #if defined d_extra_included
-    #endinput
+	#endinput
 #endif
 
 #define d_extra_included
@@ -47,12 +49,12 @@
 
 #if defined detutils_debug
 
-    #pragma warning disable 231
+	#pragma warning disable 231
 
 #endif
 
 /*
-                                                
+												
 88888888ba,                                     
 88      `"8b                 ,d                 
 88        `8b                88                 
@@ -61,16 +63,16 @@
 88         8P  ,adPPPPP88    88     ,adPPPPP88  
 88      .a8P   88,    ,88    88,    88,    ,88  
 88888888Y"'    `"8bbdP"Y8    "Y888  `"8bbdP"Y8  
-                                                
+												
 */
 
 #define COLOUR_GREY "{B9C9BF}"
 
 stock d_SendWarningMessage(playerid, const string[])
 {
-    new message[300];
-    format(message, 300, ""COLOUR_GREY"Warning: [samp-detutils]: (debug) - %s", string);
-    return SendClientMessage(playerid, -1, message);
+	new message[300];
+	format(message, 300, ""COLOUR_GREY"Warning: [samp-detutils]: (debug) - %s", string);
+	return SendClientMessage(playerid, -1, message);
 }
 
 #define detutils_visual_TRUE
@@ -109,27 +111,27 @@ new Text:g_AnnouncementUsebox;
 
 stock _CallFunction(const func[], const spec[], id)
 {
-    new funcname[100];
-    format(funcname, 100, "DETUTILS@%s", func);
-    return CallLocalFunction(funcname, spec, id);
+	new funcname[100];
+	format(funcname, 100, "DETUTILS@%s", func);
+	return CallLocalFunction(funcname, spec, id);
 }
 
 stock _SetTimer(const func[], delay, bool:a, const spec[], id)
 {
-    new funcname[100];
-    format(funcname, 100, "DETUTILS@%s", func);
-    return SetTimerEx(funcname, delay, a, spec, id);
+	new funcname[100];
+	format(funcname, 100, "DETUTILS@%s", func);
+	return SetTimerEx(funcname, delay, a, spec, id);
 }
 
 #if !defined OnPlayerCommandReceived
 
-    forward OnPlayerCommandReceived(playerid, cmdtext[]);
+	forward OnPlayerCommandReceived(playerid, cmdtext[]);
 
 #endif
 
 #if !defined OnPlayerCommandPerformed
 
-    forward OnPlayerCommandPerformed(playerid, cmdtext[], success);
+	forward OnPlayerCommandPerformed(playerid, cmdtext[], success);
 
 #endif
 
@@ -138,59 +140,63 @@ stock _Functionid;
 stock _GlobalFileName[MAX_PLAYERS][MAX_PLAYER_NAME];
 
 #define _FormatPlayerDatabaseFileName(%0) \
-    format(_GlobalFileName[%0],MAX_PLAYER_NAME,"%s.ini",ReturnPlayerName(%0))
+	format(_GlobalFileName[%0],MAX_PLAYER_NAME,"%s.ini",ReturnPlayerName(%0))
 
 new const _g_Script = 0;
 
 static _g_Client[MAX_PLAYERS];
 
+#if !defined DETUTILS_NO_ANDROID_CHECK
+
 #if !defined SendClientCheck
 
-    native SendClientCheck(playerid, type, memAddr, memOffset, byteCount);
+	native SendClientCheck(playerid, type, memAddr, memOffset, byteCount);
 
 #endif
 
 
 #if defined OnPlayerClientCheckReceived
 
-    forward OnPlayerClientCheckReceived(playerid);
+	forward OnPlayerClientCheckReceived(playerid);
 
 #endif
 
 public OnPlayerConnect(playerid)
 {
-    _g_Client[playerid] = 0;
-    SendClientCheck(playerid, 0x48, 0, 0, 2);
-    if(funcidx("OnPlayerClientCheckReceived") != -1)
-    {
-        CallLocalFunction("OnPlayerClientCheckReceived", "i", playerid);
-    }
-    if(funcidx("a_lib_OnPlayerConnect") != -1)
-    {
-        CallLocalFunction("a_lib_OnPlayerConnect", "i", playerid);
-    }
-    return 1;
+	_g_Client[playerid] = 0;
+	SendClientCheck(playerid, 0x48, 0, 0, 2);
+	if(funcidx("OnPlayerClientCheckReceived") != -1)
+	{
+		CallLocalFunction("OnPlayerClientCheckReceived", "i", playerid);
+	}
+	if(funcidx("a_lib_OnPlayerConnect") != -1)
+	{
+		#if defined a_lib_OnPlayerConnect
+		a_lib_OnPlayerConnect(playerid);
+		#endif
+	}
+	return 1;
 }
 
 forward OnClientCheckResponse(playerid, actionid, memaddr, retndata);
 
 public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
 {
-    if(actionid == 0x48)
-    {
-        _g_Client[playerid] = 1;
-    }
-    if(funcidx("a_lib_OnClientCheckResponse") != -1)
-    {
-        CallLocalFunction("a_lib_OnClientCheckResponse", "iiii", playerid, actionid, memaddr, retndata);
-    }
-    return 1;
+	if(actionid == 0x48)
+	{
+		_g_Client[playerid] = 1;
+	}
+	if(funcidx("a_lib_OnClientCheckResponse") != -1)
+	{
+		CallLocalFunction("a_lib_OnClientCheckResponse", "iiii", playerid, actionid, memaddr, retndata);
+	}
+	return 1;
 }
 
 #if defined _ALS_OnPlayerConnect
-    #undef OnPlayerConnect
+	#undef OnPlayerConnect
 #else
-    #define _ALS_OnPlayerConnect
+	#define _ALS_OnPlayerConnect
 #endif
 
 #define OnPlayerConnect a_lib_OnPlayerConnect
@@ -198,9 +204,9 @@ public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
 forward a_lib_OnPlayerConnect(playerid);
 
 #if defined _ALS_OnClientCheckResponse
-    #undef OnClientCheckResponse
+	#undef OnClientCheckResponse
 #else
-    #define _ALS_OnClientCheckResponse
+	#define _ALS_OnClientCheckResponse
 #endif
 
 #define OnClientCheckResponse a_lib_OnClientCheckResponse
@@ -209,18 +215,20 @@ forward a_lib_OnClientCheckResponse(playerid, actionid, memaddr, retndata);
 
 stock bool:IsPlayerUsingPCClient(playerid)
 {
-    if(_g_Client[playerid] == 1) return true;
-    return false;
+	if(_g_Client[playerid] == 1) return true;
+	return false;
 }
 
 stock bool:IsPlayerUsingAndroidClient(playerid)
 {
-    if(_g_Client[playerid] == 0) return true;
-    return false;
+	if(_g_Client[playerid] == 0) return true;
+	return false;
 }
 
+#endif
+
 /*
-                                                                      
+																	  
 88888888888                                                           
 88                          ,d                                        
 88                          88                                        
@@ -229,7 +237,7 @@ stock bool:IsPlayerUsingAndroidClient(playerid)
 88              )888(       88     88          ,adPPPPP88   `"Y8ba,   
 88            ,d8" "8b,     88,    88          88,    ,88  aa    ]8I  
 88888888888  8P'     `Y8    "Y888  88          `"8bbdP"Y8  `"YbbdP"'  
-                                                                      
+																	  
 
 */
 
@@ -237,8 +245,8 @@ stock bool:IsPlayerUsingAndroidClient(playerid)
 
 stock HidePlayerDialog(playerid)
 {
-    ShowPlayerDialog(playerid, -1, 1, @DETUTILSSTRING_NULL__4);
-    return 1;
+	ShowPlayerDialog(playerid, -1, 1, @DETUTILSSTRING_NULL__4);
+	return 1;
 }
 
 #endif
@@ -247,114 +255,114 @@ new bool:g_PlayerPedAnims = false;
 
 stock d_lib_UsePlayerPedAnims()
 {
-    g_PlayerPedAnims = true;
-    return UsePlayerPedAnims();
+	g_PlayerPedAnims = true;
+	return UsePlayerPedAnims();
 }
 
 stock bool:ArePlayerPedAnimsUsed()
 {
-    return g_PlayerPedAnims;
+	return g_PlayerPedAnims;
 }
 
 #if defined _ALS_UsePlayerPedAnims
-    #undef UsePlayerPedAnims
+	#undef UsePlayerPedAnims
 #else
-    #define _ALS_UsePlayerPedAnims
+	#define _ALS_UsePlayerPedAnims
 #endif
 
 #define UsePlayerPedAnims d_lib_UsePlayerPedAnims
 
 stock _ReturnPlayerName(id) 
 {
-    new _PlayerName[ MAX_PLAYER_NAME ];
-    
-    GetPlayerName( id, _PlayerName, sizeof _PlayerName);
-    return _PlayerName;
+	new _PlayerName[ MAX_PLAYER_NAME ];
+	
+	GetPlayerName( id, _PlayerName, sizeof _PlayerName);
+	return _PlayerName;
 }
 
 new _g_Shifthour, _g_Timeshift = 0;
 
 static stock _FixHourData(_f_Hour)
 {
-    _f_Hour = _g_Timeshift+_f_Hour;
+	_f_Hour = _g_Timeshift+_f_Hour;
 
-    if(_f_Hour < 0)
-    {
-        _f_Hour = _f_Hour+24;
-    }
-    else if(_f_Hour > 23)
-    {
-        _f_Hour = _f_Hour-24;
-    }
-    _g_Shifthour = _f_Hour;
-    return 1;
+	if(_f_Hour < 0)
+	{
+		_f_Hour = _f_Hour+24;
+	}
+	else if(_f_Hour > 23)
+	{
+		_f_Hour = _f_Hour-24;
+	}
+	_g_Shifthour = _f_Hour;
+	return 1;
 }
 
 stock void:SaveLogIntoFile( const _FileName[], const _Log[]) 
 {
-    new _Entry[ 128 ], 
-        _sec, 
-        _minutes, 
-        _data, 
-        _day, 
-        _year, 
-        _month;
+	new _Entry[ 128 ], 
+		_sec, 
+		_minutes, 
+		_data, 
+		_day, 
+		_year, 
+		_month;
 
-    getdate( _year, _month, _day );
+	getdate( _year, _month, _day );
 
-    gettime( _sec, _minutes, _data );
+	gettime( _sec, _minutes, _data );
 
-    _FixHourData( _sec );
+	_FixHourData( _sec );
 
-    _sec = _g_Shifthour;
-    
-    format( _Entry, sizeof( _Entry ), 
-        "%d/%d/%d | %d/%d/%d | %s\r\n", 
-        _day, _month, _year, 
-        _sec, _minutes, _data, _Log );
+	_sec = _g_Shifthour;
+	
+	format( _Entry, sizeof( _Entry ), 
+		"%d/%d/%d | %d/%d/%d | %s\r\n", 
+		_day, _month, _year, 
+		_sec, _minutes, _data, _Log );
 
-    new File:_File;
-    _File = fopen( _FileName, io_append );
+	new File:_File;
+	_File = fopen( _FileName, io_append );
 
-    fwrite( _File, _Entry );
+	fwrite( _File, _Entry );
 
-    fclose( _File );
+	fclose( _File );
 }
 
 stock void:_SetTag( const _FileName[], const _TagName[] )
 {
-    SaveLogIntoFile(_FileName,_TagName);
+	SaveLogIntoFile(_FileName,_TagName);
 }
 
 stock strtok(const string[], &index, delimiter = ' ') {
-    new length = strlen(string);
-    while ((index < length) && (string[index] <= delimiter)) {
-        index++;
-    }
-    new offset = index;
-    new result[128];
-    while ((index < length) && (string[index] > delimiter) && ((index - offset) < (sizeof(result) - 1))) {
-        result[index - offset] = string[index];
-        index++;
-    }
-    result[index - offset] = EOS;
-    return result;
+	new length = strlen(string);
+	while ((index < length) && (string[index] <= delimiter)) {
+		index++;
+	}
+	new offset = index;
+	new result[128];
+	while ((index < length) && (string[index] > delimiter) && ((index - offset) < (sizeof(result) - 1))) {
+		result[index - offset] = string[index];
+		index++;
+	}
+	result[index - offset] = EOS;
+	return result;
 }
 
 stock strrest(const string[], &index)
 {
-    new length = strlen(string);
-    while ((index < length) && (string[index] <= ' '))
-    {
-        index++;
-    }
-    new offset = index;
-    new result[128];
-    while ((index < length) && ((index - offset) < (sizeof(result) - 1)))
-    {
-        result[index - offset] = string[index];
-        index++;
-    }
-    result[index - offset] = EOS;
-    return result;
+	new length = strlen(string);
+	while ((index < length) && (string[index] <= ' '))
+	{
+		index++;
+	}
+	new offset = index;
+	new result[128];
+	while ((index < length) && ((index - offset) < (sizeof(result) - 1)))
+	{
+		result[index - offset] = string[index];
+		index++;
+	}
+	result[index - offset] = EOS;
+	return result;
 }
