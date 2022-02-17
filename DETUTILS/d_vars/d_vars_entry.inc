@@ -1225,7 +1225,7 @@ stock __SaveStringVariable(const name[])
 			SendQuery(savequery);
 			DestroyQuery(savequery);
 			
-			delete Float(name);
+			delete String(name);
 
 			return 1;
 		}
