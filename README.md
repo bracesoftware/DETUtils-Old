@@ -7,7 +7,7 @@
   <img width="500" align="center" src="detutils.png">
 </p>
 <h4 align = "center">
-  Addition to SA:MP Standard Scripting Library with new stuff,
+  Addition to open.mp Standard Scripting Library with new stuff,
   anti-cheat system, map editor and many more functions!
 </h4>
 <h2 align = "center">
@@ -16,13 +16,13 @@
 
 ## Current library version: `2.0.3`
 
-Hello scripter! Welcome to *SA:MP DEntisT's Utilities* (or **detutils** for short) "read me" file. So, now, you may ask about - what's this? Well - in general, this addition to SA:MP Standard Scripting package contains libraries that have in-game visible effects and libraries that contain new scripting features. 
+Hello scripter! Welcome to *open.mp DEntisT's Utilities* (or **detutils** for short) "read me" file. So, now, you may ask about - what's this? Well - in general, this addition to open.mp Standard Scripting package contains libraries that have in-game visible effects and libraries that contain new scripting features. 
 - Below, you can find information about each library.
 - For better understanding of this, make sure you know Pawn and a_samp - read all the docs [here](https://team.sa-mp.com/wiki-archive.html)...
 
 ## Examples
 
-- [View](https://github.com/DEntis-T/SA-MP-DETUtils/blob/2.x/DETUTILS/d_testing/d_testing_entry.inc) one simple example of script made using **SA:MP-DET Utilities**.
+- [View](https://github.com/DEntis-T/SA-MP-DETUtils/blob/2.x/DETUTILS/d_testing/d_testing_entry.inc) one simple example of script made using **open.mp DETUtils**.
 
 ## Warnings
 1. Always include **DETUtils** last, after all includes.
