@@ -107,6 +107,7 @@ public Callback()
 }
 ```
 **FUN FACT**: This can save up to ~531 bytes (or more if the variable is multi-dimensional) of data.
+**WARNING**: After using `save`, variable will be saved and then deleted in order to free up some space, though, variable data can be seen in `scriptfiles`.
 ## API
 - All of the functions can be seen below.
 ### Callbacks
