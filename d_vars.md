@@ -134,6 +134,8 @@ public OnVariableDelete(varname[], vartype)
 ### Decorators
 `@variable` decorator is actually a variable handler, which means, it only holds the information about the variable, and then that information is released after called (variable is declared and can be deleted, updated etc). This allows the faster server start.
 
+**FUN FACT**: Variable handler contains around ~19 bytes of information.
+
 #### Argument explanation
 **Integers, booleans and floats**
 ```pawn
