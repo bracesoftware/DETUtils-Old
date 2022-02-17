@@ -88,6 +88,7 @@ new g_BoolCache[MAX_BOOLEAN_VARS][enum_BoolVarData];
 
 #define MAX_STRINGS 1000
 #define MAX_STRING_CELLS 1024
+#define MAX_STRING_VARS MAX_STRINGS
 
 enum enum_StringData
 {
@@ -191,7 +192,7 @@ stock __DeleteFloatVariable(const name[])
 
 stock __DeleteStringVariable(const name[])
 {
-	for(new i; i < MAX_BOOLEAN_VARS; i++)
+	for(new i; i < MAX_STRING_VARS; i++)
 	{
 		if(!strcmp(g_StringCache[i][StringName], name, false))
 		{
@@ -400,7 +401,7 @@ stock __GetBooleanValue(const name[], dimension = -1)
 
 stock Float:__GetFloatValue(const name[], dimension = -1)
 {
-	for(new i; i < MAX_BOOLEAN_VARS; i++)
+	for(new i; i < MAX_FLOAT_VARS; i++)
 	{
 		if(!strcmp(g_FloatCache[i][FloatName], name, false))
 		{
@@ -427,7 +428,7 @@ stock __GetStringValue(const name[])
 	new ret[1024];
 	format(ret, 4, "NULL");
 			
-	for(new i; i < MAX_BOOLEAN_VARS; i++)
+	for(new i; i < MAX_STRING_VARS; i++)
 	{
 		if(!strcmp(g_StringCache[i][StringName], name, false))
 		{
@@ -513,7 +514,7 @@ stock __SetBooleanValue(const name[], bool:value, dimension = -1)
 
 stock __SetFloatValue(const name[], Float:value, dimension = -1)
 {
-	for(new i; i < MAX_BOOLEAN_VARS; i++)
+	for(new i; i < MAX_FLOAT_VARS; i++)
 	{
 		if(!strcmp(g_FloatCache[i][FloatName], name, false))
 		{
@@ -546,7 +547,7 @@ stock __SetFloatValue(const name[], Float:value, dimension = -1)
 
 stock __SetStringValue(const name[], const value[])
 {			
-	for(new i; i < MAX_BOOLEAN_VARS; i++)
+	for(new i; i < MAX_STRING_VARS; i++)
 	{
 		if(!strcmp(g_StringCache[i][StringName], name, false))
 		{
@@ -722,6 +723,62 @@ stock CreateVariable( // this is deprecated function
 
 #endif
 
+stock __GetIntegerVarId(const name[])
+{
+	for(new i = 1; 
+        i < MAX_INTEGER_VARS; 
+        i++)
+    {
+        if(!strcmp(g_IntCache[i][IntName], name))
+        {
+            return i;
+        }
+    }
+    return 0;
+}
+
+stock __GetBoolVarId(const name[])
+{
+	for(new i = 1; 
+        i < MAX_BOOLEAN_VARS; 
+        i++)
+    {
+        if(!strcmp(g_BoolCache[i][BoolName], name))
+        {
+            return i;
+        }
+    }
+    return 0;
+}
+
+stock __GetFloatVarId(const name[])
+{
+	for(new i = 1; 
+        i < MAX_FLOAT_VARS; 
+        i++)
+    {
+        if(!strcmp(g_FloatCache[i][FloatName], name))
+        {
+            return i;
+        }
+    }
+    return 0;
+}
+
+stock __GetStringVarId(const name[])
+{
+	for(new i = 1; 
+        i < MAX_STRING_VARS; 
+        i++)
+    {
+        if(!strcmp(g_StringCache[i][StringName], name))
+        {
+            return i;
+        }
+    }
+    return 0;
+}
+
 /*
 																	  
 88888888888                                                           
@@ -762,6 +819,8 @@ forward d_vs_detutilsinit();
 // d_filequeries.inc
 #if !defined DETUTILS_NO_FILEQUERIES
 
+// INTEGERS
+
 /*
 enum enum_IntVarData
 {
@@ -780,11 +839,15 @@ stock __SaveIntegerVariable(const name[])
 	{
 		if(!strcmp(g_IntCache[i][IntName], name, false))
 		{
-			new savequeryfile[32], savequery[64], query[1024];
+			new 
+				savequeryfile[32], 
+				savequery[64], 
+				query[1024],
+				dquery[64];
 
 			format(savequeryfile, sizeof savequeryfile, "d_int_%s.ini", name);
 			format(savequery, sizeof savequery, "d_int_%s", name);
-			
+
 			CreateQuery(savequery, QUERY_TYPE_SAVE, "d_vars_cache", savequeryfile);
 			format(query, sizeof query, "SAVE * %i,%i,%i,%s,%i", 
 				g_IntCache[i][Valid],
@@ -793,18 +856,443 @@ stock __SaveIntegerVariable(const name[])
 				g_IntCache[i][IntName],
 				g_IntCache[i][ReturnVal]);
 
+			for(new x; x < MAX_VAR_DIMENSIONS; x++)
+			{
+				format(dquery, sizeof dquery, ",%i", g_IntCache[i][Dimensions][x]);
+				strcat(query, dquery);
+			}
+
 			FormatQuery(savequery, query);
 			SendQuery(savequery);
 			DestroyQuery(savequery);
+			
+			delete Integer(name);
+
 			return 1;
 		}
 	}
 	return 0;
 }
 
+/*
+new content[1024]; // var in which the content will be stored
+FormatQuery(LoadQuery, "LOAD *"); // format the file query
+SendQuery(LoadQuery); // send it
+GetLoadedQueryContent(LoadQuery, content); // After the LOAD query was sent, we need to get the content of the data.
+SendClientMessage(playerid, -1, "Loaded query file content: %s", content); // For debugging purposes
+new array[3][64]; // declare this array for PARSING
+ParseQueryContent(content, array); // Parse the content
+strmid(PlayerCache[playerid][password], array[0]); // Get the password 
+PlayerCache[playerid][money] = strval(array[1]); // Get the money
+PlayerCache[playerid][admin] = strval(array[2]); // Get the admin boolean
+
+enum enum_IntVarData
+{
+	Valid,
+	Multi,
+	Const,
+	IntName[32],
+	ReturnVal,
+	Dimensions[MAX_VAR_DIMENSIONS]
+}
+*/
+
 stock __LoadIntegerVariable(const name[])
 {
+	new 
+		loadqueryfile[32], 
+		loadquery[64], 
+		content[1024],
+		address[263][64];
+
+	format(loadqueryfile, sizeof loadqueryfile, "d_int_%s.ini", name);
+	format(loadquery, sizeof loadquery, "d_int_%s", name);
+
+	CreateQuery(loadquery, QUERY_TYPE_SAVE, "d_vars_cache", loadqueryfile);
+
+	if(!QueryFileExist(loadquery))
+	{
+		printf("[samp-detutils]: (var error) - Unable to load variable : '%s'; persistent data does not exist.", name);
+		DestroyQuery(loadquery);
+		return 0;
+	}
+
+	FormatQuery(loadquery, "LOAD *");
+	SendQuery(loadquery);
+
+	GetLoadedQueryContent(LoadQuery, content);
+	ParseQueryContent(content, address);
+
+	DET_gV_DeclareInteger(name, false, false, 0);
+	new id = __GetIntegerVarId(name);
+
+	g_IntCache[id][Valid] = strval(address[0]);
+	g_IntCache[id][Multi] = strval(address[1]);
+	g_IntCache[id][Const] = strval(address[2]);
+	// We skip 3 since it is name.
+	g_IntCache[id][ReturnVal] = strval(address[4]);
+	for(new i; i < MAX_VAR_DIMENSIONS; i++)
+	{
+		g_IntCache[id][Dimensions][i] = strval(address[i+5]);
+	}
+
+	DestroyQuery(loadquery);
+
+	return 1;
+}
+
+// BOOLEANS
+
+/*
+enum enum_IntVarData
+{
+	Valid,
+	Multi,
+	Const,
+	IntName[32],
+	ReturnVal,
+	Dimensions[MAX_VAR_DIMENSIONS]
+}
+*/
+
+stock __SaveBooleanVariable(const name[])
+{
+	for(new i; i < MAX_BOOLEAN_VARS; i++)
+	{
+		if(!strcmp(g_BoolCache[i][BoolName], name, false))
+		{
+			new 
+				savequeryfile[32], 
+				savequery[64], 
+				query[1024],
+				dquery[64];
+
+			format(savequeryfile, sizeof savequeryfile, "d_bol_%s.ini", name);
+			format(savequery, sizeof savequery, "d_bol_%s", name);
+
+			CreateQuery(savequery, QUERY_TYPE_SAVE, "d_vars_cache", savequeryfile);
+			format(query, sizeof query, "SAVE * %i,%i,%i,%s,%i", 
+				g_BoolCache[i][Valid],
+				g_BoolCache[i][Multi],
+				g_BoolCache[i][Const],
+				g_BoolCache[i][BoolName],
+				g_BoolCache[i][ReturnVal]);
+
+			for(new x; x < MAX_VAR_DIMENSIONS; x++)
+			{
+				format(dquery, sizeof dquery, ",%i", g_BoolCache[i][Dimensions][x]);
+				strcat(query, dquery);
+			}
+
+			FormatQuery(savequery, query);
+			SendQuery(savequery);
+			DestroyQuery(savequery);
+			
+			delete Boolean(name);
+
+			return 1;
+		}
+	}
 	return 0;
+}
+
+/*
+new content[1024]; // var in which the content will be stored
+FormatQuery(LoadQuery, "LOAD *"); // format the file query
+SendQuery(LoadQuery); // send it
+GetLoadedQueryContent(LoadQuery, content); // After the LOAD query was sent, we need to get the content of the data.
+SendClientMessage(playerid, -1, "Loaded query file content: %s", content); // For debugging purposes
+new array[3][64]; // declare this array for PARSING
+ParseQueryContent(content, array); // Parse the content
+strmid(PlayerCache[playerid][password], array[0]); // Get the password 
+PlayerCache[playerid][money] = strval(array[1]); // Get the money
+PlayerCache[playerid][admin] = strval(array[2]); // Get the admin boolean
+
+enum enum_IntVarData
+{
+	Valid,
+	Multi,
+	Const,
+	IntName[32],
+	ReturnVal,
+	Dimensions[MAX_VAR_DIMENSIONS]
+}
+*/
+
+stock __LoadBooleanVariable(const name[])
+{
+	new 
+		loadqueryfile[32], 
+		loadquery[64], 
+		content[1024],
+		address[263][64];
+
+	format(loadqueryfile, sizeof loadqueryfile, "d_bol_%s.ini", name);
+	format(loadquery, sizeof loadquery, "d_bol_%s", name);
+
+	CreateQuery(loadquery, QUERY_TYPE_SAVE, "d_vars_cache", loadqueryfile);
+
+	if(!QueryFileExist(loadquery))
+	{
+		printf("[samp-detutils]: (var error) - Unable to load variable : '%s'; persistent data does not exist.", name);
+		DestroyQuery(loadquery);
+		return 0;
+	}
+
+	FormatQuery(loadquery, "LOAD *");
+	SendQuery(loadquery);
+
+	GetLoadedQueryContent(LoadQuery, content);
+	ParseQueryContent(content, address);
+
+	DET_gV_DeclareBoolean(name, false, false, 0);
+	new id = __GetBooleanVarId(name);
+
+	g_BoolCache[id][Valid] = strval(address[0]);
+	g_BoolCache[id][Multi] = strval(address[1]);
+	g_BoolCache[id][Const] = strval(address[2]);
+	// We skip 3 since it is name.
+	g_BoolCache[id][ReturnVal] = strval(address[4]);
+	for(new i; i < MAX_VAR_DIMENSIONS; i++)
+	{
+		g_BoolCache[id][Dimensions][i] = strval(address[i+5]);
+	}
+
+	DestroyQuery(loadquery);
+
+	return 1;
+}
+
+// FLOATS
+
+/*
+enum enum_IntVarData
+{
+	Valid,
+	Multi,
+	Const,
+	IntName[32],
+	ReturnVal,
+	Dimensions[MAX_VAR_DIMENSIONS]
+}
+*/
+
+stock __SaveFloatVariable(const name[])
+{
+	for(new i; i < MAX_FLOAT_VARS; i++)
+	{
+		if(!strcmp(g_FloatCache[i][FloatName], name, false))
+		{
+			new 
+				savequeryfile[32], 
+				savequery[64], 
+				query[1024],
+				dquery[64];
+
+			format(savequeryfile, sizeof savequeryfile, "d_flo_%s.ini", name);
+			format(savequery, sizeof savequery, "d_flo_%s", name);
+
+			CreateQuery(savequery, QUERY_TYPE_SAVE, "d_vars_cache", savequeryfile);
+			format(query, sizeof query, "SAVE * %i,%i,%i,%s,%f", 
+				g_FloatCache[i][Valid],
+				g_FloatCache[i][Multi],
+				g_FloatCache[i][Const],
+				g_FloatCache[i][FloatName],
+				g_FloatCache[i][ReturnVal]);
+
+			for(new x; x < MAX_VAR_DIMENSIONS; x++)
+			{
+				format(dquery, sizeof dquery, ",%f", g_FloatCache[i][Dimensions][x]);
+				strcat(query, dquery);
+			}
+
+			FormatQuery(savequery, query);
+			SendQuery(savequery);
+			DestroyQuery(savequery);
+			
+			delete Float(name);
+
+			return 1;
+		}
+	}
+	return 0;
+}
+
+/*
+new content[1024]; // var in which the content will be stored
+FormatQuery(LoadQuery, "LOAD *"); // format the file query
+SendQuery(LoadQuery); // send it
+GetLoadedQueryContent(LoadQuery, content); // After the LOAD query was sent, we need to get the content of the data.
+SendClientMessage(playerid, -1, "Loaded query file content: %s", content); // For debugging purposes
+new array[3][64]; // declare this array for PARSING
+ParseQueryContent(content, array); // Parse the content
+strmid(PlayerCache[playerid][password], array[0]); // Get the password 
+PlayerCache[playerid][money] = strval(array[1]); // Get the money
+PlayerCache[playerid][admin] = strval(array[2]); // Get the admin boolean
+
+enum enum_IntVarData
+{
+	Valid,
+	Multi,
+	Const,
+	IntName[32],
+	ReturnVal,
+	Dimensions[MAX_VAR_DIMENSIONS]
+}
+*/
+
+stock __LoadFloatVariable(const name[])
+{
+	new 
+		loadqueryfile[32], 
+		loadquery[64], 
+		content[1024],
+		address[263][64];
+
+	format(loadqueryfile, sizeof loadqueryfile, "d_flo_%s.ini", name);
+	format(loadquery, sizeof loadquery, "d_flo_%s", name);
+
+	CreateQuery(loadquery, QUERY_TYPE_SAVE, "d_vars_cache", loadqueryfile);
+
+	if(!QueryFileExist(loadquery))
+	{
+		printf("[samp-detutils]: (var error) - Unable to load variable : '%s'; persistent data does not exist.", name);
+		DestroyQuery(loadquery);
+		return 0;
+	}
+
+	FormatQuery(loadquery, "LOAD *");
+	SendQuery(loadquery);
+
+	GetLoadedQueryContent(LoadQuery, content);
+	ParseQueryContent(content, address);
+
+	DET_gV_DeclareFloat(name, false, false, 0);
+	new id = __GetFloatVarId(name);
+
+	g_BoolCache[id][Valid] = strval(address[0]);
+	g_BoolCache[id][Multi] = strval(address[1]);
+	g_BoolCache[id][Const] = strval(address[2]);
+	// We skip 3 since it is name.
+	g_BoolCache[id][ReturnVal] = floatstr(address[4]);
+	for(new i; i < MAX_VAR_DIMENSIONS; i++)
+	{
+		g_BoolCache[id][Dimensions][i] = floatstr(address[i+5]);
+	}
+
+	DestroyQuery(loadquery);
+
+	return 1;
+}
+
+// STRINGS
+
+/*
+enum enum_IntVarData
+{
+	Valid,
+	Multi,
+	Const,
+	IntName[32],
+	ReturnVal,
+	Dimensions[MAX_VAR_DIMENSIONS]
+}
+*/
+
+stock __SaveStringVariable(const name[])
+{
+	for(new i; i < MAX_STRING_VARS; i++)
+	{
+		if(!strcmp(g_StringCache[i][StringName], name, false))
+		{
+			new 
+				savequeryfile[32], 
+				savequery[64], 
+				query[1024],
+				dquery[64];
+
+			format(savequeryfile, sizeof savequeryfile, "d_str_%s.ini", name);
+			format(savequery, sizeof savequery, "d_str_%s", name);
+
+			CreateQuery(savequery, QUERY_TYPE_SAVE, "d_vars_cache", savequeryfile);
+			format(query, sizeof query, "SAVE * %i,%i,%s,%s", 
+				g_StringCache[i][Valid],
+				g_StringCache[i][Const],
+				g_StringCache[i][StringName],
+				g_StringCache[i][ReturnVal]);
+
+			FormatQuery(savequery, query);
+			SendQuery(savequery);
+			DestroyQuery(savequery);
+			
+			delete Float(name);
+
+			return 1;
+		}
+	}
+	return 0;
+}
+
+/*
+new content[1024]; // var in which the content will be stored
+FormatQuery(LoadQuery, "LOAD *"); // format the file query
+SendQuery(LoadQuery); // send it
+GetLoadedQueryContent(LoadQuery, content); // After the LOAD query was sent, we need to get the content of the data.
+SendClientMessage(playerid, -1, "Loaded query file content: %s", content); // For debugging purposes
+new array[3][64]; // declare this array for PARSING
+ParseQueryContent(content, array); // Parse the content
+strmid(PlayerCache[playerid][password], array[0]); // Get the password 
+PlayerCache[playerid][money] = strval(array[1]); // Get the money
+PlayerCache[playerid][admin] = strval(array[2]); // Get the admin boolean
+
+enum enum_IntVarData
+{
+	Valid,
+	Multi,
+	Const,
+	IntName[32],
+	ReturnVal,
+	Dimensions[MAX_VAR_DIMENSIONS]
+}
+*/
+
+stock __LoadStringVariable(const name[])
+{
+	new 
+		loadqueryfile[32], 
+		loadquery[64], 
+		content[1024],
+		address[263][64];
+
+	format(loadqueryfile, sizeof loadqueryfile, "d_str_%s.ini", name);
+	format(loadquery, sizeof loadquery, "d_str_%s", name);
+
+	CreateQuery(loadquery, QUERY_TYPE_SAVE, "d_vars_cache", loadqueryfile);
+
+	if(!QueryFileExist(loadquery))
+	{
+		printf("[samp-detutils]: (var error) - Unable to load variable : '%s'; persistent data does not exist.", name);
+		DestroyQuery(loadquery);
+		return 0;
+	}
+
+	FormatQuery(loadquery, "LOAD *");
+	SendQuery(loadquery);
+
+	GetLoadedQueryContent(LoadQuery, content);
+	ParseQueryContent(content, address);
+
+	DET_gV_DeclareString(name, false, "_");
+	new id = __GetStringVarId(name);
+
+	g_StringCache[id][Valid] = strval(address[0]);
+	g_StringCache[id][Const] = strval(address[1]);
+	// We skip 2 since it is name.
+	strmid(g_StringCache[id][ReturnVal], address[3], 0, strlen(address[3]));
+
+	DestroyQuery(loadquery);
+
+	return 1;
 }
 
 #endif

@@ -51,7 +51,7 @@ public OnDETUtilsInit() // This should be the last hook.
 
     save Integer("Variable");
 
-    delete Integer("Variable");
+    //delete Integer("Variable"); We're using `save`, so no need for this.
     delete Boolean("Variable1");
     delete Float("Variable2");
     delete String("Variable3");
