@@ -175,4 +175,7 @@ public OnVariableDelete(varname[], vartype)
 
 ## Messages from creator
 ### Notes
+- No notes yet.
 ### Warnings
+#### Stack size
+- Before using `load <type>(args)` you need to increase the stack size, or you'll eventually get a runtime error 3.
