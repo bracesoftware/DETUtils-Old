@@ -11,6 +11,8 @@
  *
  */
 
+#pragma dynamic 215750000
+
  // Dummies:
 
 keyword  public Func()
@@ -32,6 +34,8 @@ enum Enums
 @variable( .datatype = FLOAT, .args = {"Variable2", false, false, 0.000} ) HandlerName2();
 @variable( .datatype = STRING, .args = {"Variable3", true, "Cool string tho"} ) HandlerName3();
 
+@variable( .datatype = INTEGER, .args = {"Variable4", false, false, 0} ) HandlerName4();
+
 public OnDETUtilsInit() // This should be the last hook.
 {
     CallVariableHandler("HandlerName");
@@ -49,9 +53,12 @@ public OnDETUtilsInit() // This should be the last hook.
         get Float("Variable2"),
         get String("Variable3"));
 
-    save Integer("Variable");
+    CallVariableHandler("HandlerName4");
+    set Integer("Variable4", 172364);
+    save Integer("Variable4");
+    load Integer("Variable4");
 
-    //delete Integer("Variable"); We're using `save`, so no need for this.
+    delete Integer("Variable");
     delete Boolean("Variable1");
     delete Float("Variable2");
     delete String("Variable3");

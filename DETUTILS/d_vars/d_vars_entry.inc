@@ -920,7 +920,7 @@ stock __LoadIntegerVariable(const name[])
 	FormatQuery(loadquery, "LOAD *");
 	SendQuery(loadquery);
 
-	GetLoadedQueryContent(LoadQuery, content);
+	GetLoadedQueryContent(loadquery, content);
 	ParseQueryContent(content, address);
 
 	DET_gV_DeclareInteger(name, false, false, 0);
@@ -1042,7 +1042,7 @@ stock __LoadBooleanVariable(const name[])
 	FormatQuery(loadquery, "LOAD *");
 	SendQuery(loadquery);
 
-	GetLoadedQueryContent(LoadQuery, content);
+	GetLoadedQueryContent(loadquery, content);
 	ParseQueryContent(content, address);
 
 	DET_gV_DeclareBoolean(name, false, false, 0);
@@ -1164,7 +1164,7 @@ stock __LoadFloatVariable(const name[])
 	FormatQuery(loadquery, "LOAD *");
 	SendQuery(loadquery);
 
-	GetLoadedQueryContent(LoadQuery, content);
+	GetLoadedQueryContent(loadquery, content);
 	ParseQueryContent(content, address);
 
 	DET_gV_DeclareFloat(name, false, false, 0);
@@ -1279,7 +1279,7 @@ stock __LoadStringVariable(const name[])
 	FormatQuery(loadquery, "LOAD *");
 	SendQuery(loadquery);
 
-	GetLoadedQueryContent(LoadQuery, content);
+	GetLoadedQueryContent(loadquery, content);
 	ParseQueryContent(content, address);
 
 	DET_gV_DeclareString(name, false, "_");
