@@ -140,7 +140,11 @@ static const DET_g_Version[1][10] = { ""DETUTILS_VERSION_MAJOR"."DETUTILS_VERSIO
 static void:LoadDETUtils()
 {
     new DET_g_Version[26];
-    format(DET_g_Version, sizeof(DET_g_Version), "%i.%i.%i", DETUTILS_VERSION_MAJOR, DETUTILS_VERSION_MINOR, DETUTILS_VERSION_PATCH);
+    format(DET_g_Version, sizeof(DET_g_Version), "%i.%i.%i-R%i", 
+        DETUTILS_VERSION_MAJOR, 
+        DETUTILS_VERSION_MINOR, 
+        DETUTILS_VERSION_PATCH,
+        DETUTILS_VERSION_RELEASE);
     print("                                        ");
     print("|======================================|");
     print("                                        ");
