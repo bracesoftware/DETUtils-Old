@@ -1,6 +1,6 @@
 <h1 align = "center">
   <bold>
-  SA:MP DET-Utils | Wiki
+  open.mp DET-Utils | Wiki
   </bold>
 </h1>
 <p align="center">
