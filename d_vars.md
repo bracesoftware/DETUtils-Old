@@ -106,7 +106,7 @@ public Callback()
       return 1;
 }
 ```
-- After it is saved, you can recreate and then reuse it agan.
+- After it is saved, you can recreate it and then reuse it agan:
 
 ```pawn
 load Integer("Variable");
