@@ -69,33 +69,44 @@ public OnGameModeInit()
       // `@variable` decorator only handles the information,
       // then releases it after it gets called,
       // it can be called multiple times.
-    CallVariableHandler("HandlerName");
-    CallVariableHandler("HandlerName1");
-    CallVariableHandler("HandlerName2");
-    CallVariableHandler("HandlerName3");
+      CallVariableHandler("HandlerName");
+      CallVariableHandler("HandlerName1");
+      CallVariableHandler("HandlerName2");
+      CallVariableHandler("HandlerName3");
 
       // EXAMPLE: set values.
-    set Integer("Variable", 1243);
-    set Boolean("Variable1", false, 3);
-    set Float("Variable2", 213.21);
+      set Integer("Variable", 1243);
+      set Boolean("Variable1", false, 3);
+      set Float("Variable2", 213.21);
 
       // Example: get the values:
-    printf("[samp-detutils]: (var info) - Testing variables: %i, %i, %f, %s",
-        get Integer("Variable"),
-        get Boolean("Variable1", 3),
-        get Float("Variable2"),
-        get String("Variable3"));
+      printf("[samp-detutils]: (var info) - Testing variables: %i, %i, %f, %s",
+            get Integer("Variable"),
+            get Boolean("Variable1", 3),
+            get Float("Variable2"),
+            get String("Variable3"));
 
       // Delete the variables to free up space.
-    delete Integer("Variable");
-    delete Boolean("Variable1");
-    delete Float("Variable2");
-    delete String("Variable3");
+      delete Integer("Variable");
+      delete Boolean("Variable1");
+      delete Float("Variable2");
+      delete String("Variable3");
 
-    print("SA:MP | DETUtils - Testing mode script loaded.");
-    return 1;
+      print("SA:MP | DETUtils - Testing mode script loaded.");
+      return 1;
 }
 ```
+### Example 3
+- Save the variable into `scriptfiles` folder instead of just deleting it.
+
+```pawn
+public Callback()
+{
+      save Integer("Variable");
+      return 1;
+}
+```
+**FUN FACT**: This can save up to ~531 bytes (or more if the variable is multi-dimensional) of data.
 ## API
 - All of the functions can be seen below.
 ### Callbacks
@@ -151,6 +162,7 @@ public OnVariableDelete(varname[], vartype)
 - `get` - used to get the value of the variable.
 - `set` - used to set the value of the variable.
 - `delete` - used to delete a variable.
+- `save` - used to save the variable cache into `scriptfiles` (only if `d_filequeries.inc` is included).
 
 ## Messages from creator
 ### Notes
