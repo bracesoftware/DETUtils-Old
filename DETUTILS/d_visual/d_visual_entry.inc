@@ -995,7 +995,7 @@ public __Weapon_timer()
 }
 
 #if !defined FILTERSCRIPT
-
+/*
 public OnGameModeInit()
 {
     SetTimer("__Weapon_timer", 1000, true);
@@ -1015,7 +1015,7 @@ public OnGameModeInit()
 #define OnGameModeInit d_visual_Ongminit
 
 forward d_visual_Ongminit();
-
+*/
 #endif
 
 //////////////////////

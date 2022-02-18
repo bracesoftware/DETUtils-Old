@@ -22,11 +22,18 @@ keyword  public Func()
 
 keyword   forward  Function(a, const b[], Float:c);
 
+
 // Actual code:
 
 enum Enums
 {
 	Admin
+}
+
+als function OnGameModeInit()
+{
+    printf("[samp-detutils]: (debug) - Test ALS hook called.");
+    return als continue;
 }
 
 @variable( .datatype = INTEGER, .args = {"Variable", false, false, 0} ) HandlerName();
@@ -1138,6 +1145,7 @@ public OnDeathMatchZoneDestroy(zoneid, zonename[])
 
 public OnGameModeInit()
 {
+	als do("OnGameModeInit", "");
 	AddStaticVehicle(560, 844.7139,-1614.3539,13.5391,316.9723, 25, 23);
 	CreateDeathMatchZone("Insane DeathMatch", 844.7139,-1614.3539,13.5391, 825.6589,-1614.8202,13.5469, 811.1299,-1616.0647,13.5469);
 	CreateTeam("Amazing people");

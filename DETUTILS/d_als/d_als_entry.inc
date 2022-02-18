@@ -35,14 +35,33 @@
 
 */
 
-#include "..\d_extra\d_funcgen"
-
 #define @DETUTILSALS_KEYWORD__@%0\32; @DETUTILSALS_KEYWORD__@
 #define als @DETUTILSALS_KEYWORD__@
 #define @DET_ALS$
 #define @DETUTILSALS_KEYWORD__@continue (1)
 
 #define @DETUTILSALS_KEYWORD__@function%1(%2) @DET_ALS$ @DETUTILSFUNCGEN$%1..%2$;@DETUTILSFUNCGEN$%1..%2$
+
+#if defined DETUTILS_ALS_CALL_DEBUG
+
+#define @a_detals$ new funcname[32];for(new hookindex;hookindex<1000;hookindex++){
+#define @b_detals$%0$ format(funcname,32,"@%i@"#%0,hookindex); \
+printf("[samp-detutils]: (ALS call debug) - Attempted to call: %s", funcname); \
+if(funcidx(funcname)!= -1){
+#define @c_detals$%0$ CallLocalFunction(funcname,%0);}
+#define @d_detals$..%0$ %0}%0
+
+#else
+
+#define @a_detals$ new funcname[32];for(new hookindex;hookindex<1000;hookindex++){
+#define @b_detals$%0$ format(funcname,32,"@%i@"#%0,hookindex);if(funcidx(funcname)!= -1){
+#define @c_detals$%0$ CallLocalFunction(funcname,%0);}
+#define @d_detals$..%0$ %0}%0
+
+#endif
+
+#define @DETUTILSALS_KEYWORD__@do%1(%0,%2)%4; \
+    @a_detals$ @b_detals$%1$ @c_detals$%2$ @d_detals$..%4$
 
 /*
                                                                       

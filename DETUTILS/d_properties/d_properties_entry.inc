@@ -211,7 +211,7 @@ public _ToggleControllable(i)
 }
 
 #if !defined FILTERSCRIPT
-
+/*
 public OnGameModeInit()
 {
 	_CreateAnncTextDraws();
@@ -232,7 +232,7 @@ public OnGameModeInit()
 #define OnGameModeInit a_props_OnGameModeInit
 
 forward a_props_OnGameModeInit();
-
+*/
 #endif
 
 public OnPlayerConnect(playerid)

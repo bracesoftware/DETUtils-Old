@@ -29,8 +29,11 @@
 #undef DETUTILS_COMPATIBILITY_MODE
 #endif
 
-#include "d_compilefix" // Add compile options
-#include "d_funcgen"
+#if !defined DETUTILS_NO_COMPILEFIX
+
+	#include "d_compilefix" // Add compile options
+
+#endif//#include "d_funcgen"
 #include "d_thirdpartyinclude" //_INC_code_parse_inc
 
 #if !defined __PawnBuild

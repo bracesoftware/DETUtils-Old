@@ -68,7 +68,8 @@
  	
 #else
 
- 	#define DETUTILSFUNCGEN_INDEX__ (0)
+	//#define d_als_included
+	#define DETUTILSFUNCGEN_INDEX__ (0)
  	
  	#define @0@%0\32; @0@
 	#define @DETUTILSFUNCGEN$%1..%2$ @0@%1(%2)
@@ -76,6 +77,5 @@
  	#if defined detutils_debug
  	#warning [samp-detutils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '0'.
  	#endif
- 	#endinput
 
 #endif

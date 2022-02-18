@@ -305,6 +305,7 @@ public OnPlayerEditObject(playerid, playerobject, objectid, response,
 forward d_me_editobject(playerid, playerobject, objectid, response, 
     Float:fX, Float:fY, Float:fZ, Float:fRotX, Float:fRotY, Float:fRotZ);
 
+/*
 public OnGameModeInit()
 {
     for(new i; i < MAX_OBJECTS; i++) d_me_LoadObjects(i);
@@ -324,7 +325,7 @@ public OnGameModeInit()
 
 #define OnGameModeInit d_me_gminit
 
-forward d_me_gminit();
+forward d_me_gminit();*/
 
 static d_me_SplitString(const strsrc[], strdest[][], delimiter)
 {
@@ -437,6 +438,7 @@ public OnDETUtilsInit()
     SaveLogIntoFile("detutils_mapeditor.log", "[samp-detutils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_mapeditor.log", "[samp-detutils]: (debug) - Loaded.");
     #endif
+    for(new i; i < MAX_OBJECTS; i++) d_me_LoadObjects(i);
     LoadDETUtilsScript(DETUTILS_SCRIPT_MAPEDITOR);
     if(funcidx("d_me_detutilsinit") != -1)
     {
