@@ -61,6 +61,26 @@
 
 #tryinclude "d_extra\d_libtags"
 
+/*
+
+Includes
+
+*/
+
+#if !defined DETUTILS_NO_ALS
+
+ 	//#warning [samp-detutils]: (includes) - Library 'd_properties' is disabled.
+	#include "d_als"
+
+#else
+
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [samp-detutils]: (includes) - Library 'd_als' is disabled.
+
+ 	#endif
+
+#endif
 #if !defined DETUTILS_NO_PROPERTIES
 
  	//#warning [samp-detutils]: (includes) - Library 'd_properties' is disabled.

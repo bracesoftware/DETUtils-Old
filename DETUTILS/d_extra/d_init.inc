@@ -53,6 +53,7 @@ public const detutils_ver = 0x1;
 #define DETUTILS_SCRIPT_TEAMS 8
 #define DETUTILS_SCRIPT_DIALOG 9
 #define DETUTILS_SCRIPT_VARS 10
+#define DETUTILS_SCRIPT_ALS 11
 
 stock void:LoadDETUtilsScript(scriptid)
 {
@@ -99,6 +100,10 @@ stock void:LoadDETUtilsScript(scriptid)
     if(scriptid == DETUTILS_SCRIPT_VARS)
     {
         print("*** [samp-detutils]: (module) - Loaded: d_vars.inc");
+    }
+    if(scriptid == DETUTILS_SCRIPT_ALS)
+    {
+        print("*** [samp-detutils]: (module) - Loaded: d_als.inc");
     }
 }
 
