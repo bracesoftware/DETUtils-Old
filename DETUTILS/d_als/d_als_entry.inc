@@ -35,13 +35,14 @@
 
 */
 
+#include "..\d_extra\d_funcgen"
+
 #define @DETUTILSALS_KEYWORD__@%0\32; @DETUTILSALS_KEYWORD__@
 #define als @DETUTILSALS_KEYWORD__@
 #define @DET_ALS$
 #define @DETUTILSALS_KEYWORD__@continue (1)
 
-#define @DETUTILSALS_KEYWORD__@forward%1(%2) @DET_ALS$ @DETUTILSFUNCGEN$%1..%2$
-#define @DETUTILSALS_KEYWORD__@public%1(%2) @DET_ALS$ @DETUTILSFUNCGEN$%1..%2$
+#define @DETUTILSALS_KEYWORD__@function%1(%2) @DET_ALS$ @DETUTILSFUNCGEN$%1..%2$;@DETUTILSFUNCGEN$%1..%2$
 
 /*
                                                                       
