@@ -54,14 +54,14 @@ if(funcidx(funcname)!= -1){
 #else
 
 #define @a_detals$ new funcname[32];for(new hookindex;hookindex<1000;hookindex++){
-#define @b_detals$%0$ format(funcname,32,"@%i@"#%0,hookindex);if(funcidx(funcname)!= -1){
+#define @b_detals$%0$ format(funcname,32,"@%i@%s",hookindex,%0);if(funcidx(funcname)!= -1){
 #define @c_detals$%0$ CallLocalFunction(funcname,%0);}
 #define @d_detals$..%0$ %0}%0
 
 #endif
 
 #define @DETUTILSALS_KEYWORD__@do%1(%0,%2)%4; \
-    @a_detals$ @b_detals$%1$ @c_detals$%2$ @d_detals$..%4$
+    @a_detals$ @b_detals$%0$ @c_detals$%2$ @d_detals$..%4$
 
 /*
                                                                       
