@@ -800,7 +800,7 @@ stock __GetStringVarId(const name[])
 																	  
 */
 
-#if defined detutils_complete_error_boom
+#if defined DETUTILS_OLD_HOOK
 public OnDETUtilsInit()
 {
 	#if defined detutils_debug
@@ -825,9 +825,7 @@ public OnDETUtilsInit()
 
 forward d_vs_detutilsinit();
 #endif
-
-// PERFECTLY VALID HOOKING:
-
+/*
 public OnDETUtilsInit()
 {
     // Set the default return value.
@@ -856,7 +854,7 @@ public OnDETUtilsInit()
 forward d_vs_detutilsinit();
 
 #define OnDETUtilsInit( d_vs_detutilsinit(
-
+*/
 // d_filequeries.inc
 #if !defined DETUTILS_NO_FILEQUERIES
 

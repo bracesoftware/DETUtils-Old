@@ -77,7 +77,7 @@ if(funcidx(funcname)!= -1){
 
 */
 
-#if defined detutils_complete_error_boom
+#if defined DETUTILS_OLD_HOOK
 public OnDETUtilsInit()
 {
     #if defined detutils_debug
@@ -102,7 +102,7 @@ public OnDETUtilsInit()
 
 forward d_als_detutilsinit();
 #endif
-
+/*
 public OnDETUtilsInit()
 {
     // Set the default return value.
@@ -132,4 +132,4 @@ public OnDETUtilsInit()
 #endif
 forward d_als_detutilsinit();
 
-#define OnDETUtilsInit( d_als_detutilsinit(
+#define OnDETUtilsInit( d_als_detutilsinit(*/
