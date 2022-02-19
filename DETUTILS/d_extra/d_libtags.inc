@@ -12,6 +12,9 @@
  *
  */
 
+#define DET_g_%0\32; DET_g_
+#define __DETUTILS_ARRAY..%0,%1,%2; new DET_g_%0[%1][%2];
+
 #if defined A_INTS_COMPATIBILITY_MODE || defined A_CMDS_COMPATIBILITY_MODE
 
 	#define DETUTILS_COMPATIBILITY_MODE

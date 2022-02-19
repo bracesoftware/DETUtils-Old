@@ -14,12 +14,8 @@
 
 #if !defined DETUTILS_NO_COMPILE_FIX
 
-	#pragma option -i<include>
-
-	#pragma option $file
- 
-	#pragma option -d3
-	#pragma option -Z+
+ 	// THIS IS REALLY IMPORTANT!
+ 	// NOTE: This is a HACK, don't remove this:
 	#pragma option -;+
 
 #elseif defined DETUTILS_NO_COMPILE_FIX

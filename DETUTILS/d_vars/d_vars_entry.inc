@@ -19,6 +19,15 @@
 	#error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
+// Defining up there for 'strret' thing.
+#define MAX_STRING_CELLS 1024
+
+#if !defined DETUTILS_NO_STRVARRET
+
+ 	#include "d_vars_strret"
+
+#endif
+
 /*
 																					  
 88b           d88              88                         db         88888888ba   88  
@@ -87,7 +96,6 @@ new g_BoolCache[MAX_BOOLEAN_VARS][enum_BoolVarData];
 // Strings:
 
 #define MAX_STRINGS 1000
-#define MAX_STRING_CELLS 1024
 #define MAX_STRING_VARS MAX_STRINGS
 
 enum enum_StringData
@@ -792,6 +800,7 @@ stock __GetStringVarId(const name[])
 																	  
 */
 
+#if defined detutils_complete_error_boom
 public OnDETUtilsInit()
 {
 	#if defined detutils_debug
@@ -815,6 +824,38 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit d_vs_detutilsinit
 
 forward d_vs_detutilsinit();
+#endif
+
+// PERFECTLY VALID HOOKING:
+
+public OnDETUtilsInit()
+{
+    // Set the default return value.
+    #emit ZERO.pri
+    #if defined d_vs_detutilsinit
+        d_vs_detutilsinit();
+    #endif
+    #if defined detutils_debug
+	SaveLogIntoFile("detutils_vars.log", "[samp-detutils]: (debug) - Loading...");
+	SaveLogIntoFile("detutils_vars.log", "[samp-detutils]: (debug) - Loaded.");
+	#endif
+	LoadDETUtilsScript(DETUTILS_SCRIPT_VARS);
+    // Implicitly return the value of the previous call.  This means we can
+    // call `main` and return it's return value, without requiring it to
+    // have a `return` statement.  It might, but the most common uses don't.
+    #emit RETN
+    // Return 0, just in case.
+    return 0;
+}
+
+#if defined _ALS_OnDETUtilsInit
+    #undef OnDETUtilsInit
+#else
+    #define _ALS_OnDETUtilsInit
+#endif
+forward d_vs_detutilsinit();
+
+#define OnDETUtilsInit( d_vs_detutilsinit(
 
 // d_filequeries.inc
 #if !defined DETUTILS_NO_FILEQUERIES

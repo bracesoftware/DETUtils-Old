@@ -77,6 +77,7 @@ if(funcidx(funcname)!= -1){
 
 */
 
+#if defined detutils_complete_error_boom
 public OnDETUtilsInit()
 {
     #if defined detutils_debug
@@ -100,3 +101,35 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit d_als_detutilsinit
 
 forward d_als_detutilsinit();
+#endif
+
+public OnDETUtilsInit()
+{
+    // Set the default return value.
+    #emit ZERO.pri
+    #if defined d_als_detutilsinit
+        d_als_detutilsinit();
+    #endif
+    
+    #if defined detutils_debug
+    SaveLogIntoFile("detutils_als.log", "[samp-detutils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_als.log", "[samp-detutils]: (debug) - Loaded.");
+    #endif
+    LoadDETUtilsScript(DETUTILS_SCRIPT_ALS);
+
+    // Implicitly return the value of the previous call.  This means we can
+    // call `main` and return it's return value, without requiring it to
+    // have a `return` statement.  It might, but the most common uses don't.
+    #emit RETN
+    // Return 0, just in case.
+    return 0;
+}
+
+#if defined _ALS_OnDETUtilsInit
+    #undef OnDETUtilsInit
+#else
+    #define _ALS_OnDETUtilsInit
+#endif
+forward d_als_detutilsinit();
+
+#define OnDETUtilsInit( d_als_detutilsinit(
