@@ -4,15 +4,32 @@
 ## Include documentation
 Below, you have a list of all internal files.
 
-- Learn more: [d_codeparse.inc](d_codeparse.md)
-- Learn more: [d_compilefix.inc](d_compilefix.md)
-- Learn more: [d_funcgen.inc](d_funcgen.md)
-- Learn more: [d_init.inc](d_init.md)
-- Learn more: [d_libtags.inc](d_libtags.md)
-- Learn more: [d_mainfix.inc](d_mainfix.md)
-- Learn more: [d_text.inc](d_text.md)
-- Learn more: [d_thirdpartyinclude.inc](d_thirdpartyinclude.md)
-- Learn more: [d_version.inc](d_version.md)
+### d_codeparse.inc
+- Useless file.
+
+### d_compilefix.inc
+- Using DETUtils sometimes requires extra compiler options, these are enabled in there.
+
+### d_funcgen.inc
+- Used to generate function names for `d_als.inc`!
+
+### d_init.inc
+- Used for generally library initialisation.
+
+### d_libtags.inc
+- Entry point for all of these.
+
+### d_mainfix.inc
+- Provides a little fix where `main` function is not getting called in filterscripts!
+
+### d_text.inc
+- In this file, all of strings used in the libraries are defined.
+
+### d_thirdpartyinclude.inc
+- Using DETUtils requires some extra libraries, this include is here to manage that!
+
+### d_version.inc
+- Little include used to change library's version, including major release, minor release, patch and `R` marked release (re-release of the same version).
 
 ## Not interested?
 [Go back to home page...](README.md)
