@@ -36,7 +36,6 @@ Click on blue text to see all information about each feature.
 ------------------------------------------
 - Learn more about d_samp [here](d_samp.md)...
 ------------------------------------------
-- Learn more: [d_als.inc](d_als.md)
 - Learn more: [d_commands.inc](d_commands.md)
 - Learn more: [d_properties.inc](d_properties.md)
 - Learn more: [d_fmargs.inc](d_fmargs.md)
@@ -48,6 +47,8 @@ Click on blue text to see all information about each feature.
 - Learn more: [d_teams.inc](d_teams.md)
 - Learn more: [d_dialog.inc](d_dialog.md)
 - Learn more: [d_vars.inc](d_vars.md)
+- Learn more: [d_als.inc](d_als.md)
+
 ### Extra bonus
 ------------------------------------------
 - Read more here: [Extra stuff](d_extra.md)
