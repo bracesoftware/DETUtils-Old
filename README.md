@@ -51,6 +51,7 @@ Click on blue text to see all information about each feature.
 ### Extra bonus
 ------------------------------------------
 - Read more here: [Extra stuff](d_extra.md)
+- Learn more about internal libraries [here](d_internal.md)...
 ## Tests
 - I regularly make test scripts with all new features I added to the library to ensure everything is working as expected.
 
