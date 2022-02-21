@@ -29,7 +29,7 @@ als function OnGameModeInit()
     return als continue;
 }
 ```
-## Other
+## Facts and tips
 - Since this is an actually hook loop, you there `als continue` (or just `1`) and `als break` (or just `0`) return values. If you return `als continue`, the loop through ALS functions will continue, but if you return `als break` the looping through ALS functions will stop.
 
 ```pawn
