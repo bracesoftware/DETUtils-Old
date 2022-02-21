@@ -17,7 +17,7 @@ public OnGameModeInit()
 
 als function OnGameModeInit()
 {
-    printf("[samp-detutils]: (debug) - Test ALS hook called.");
+    printf("1st hook called.");
     return als continue;
 }
 
@@ -25,12 +25,20 @@ als function OnGameModeInit()
 
 als function OnGameModeInit()
 {
-    printf("This works! LOL");
+    printf("Hook 2 called!");
     return als continue;
 }
 ```
-## API
-- Nothing yet. Everything has been shown above.
+## Other
+- Since this is an actually hook loop, you there `als continue` (or just `1`) and `als break` (or just `0`) return values. If you return `als continue`, the loop through ALS functions will continue, but if you return `als break` the looping through ALS functions will stop.
+
+```pawn
+als function OnGameModeInit()
+{
+    printf("This will break the loop!");
+    return als break;
+}
+```
 ## Messages from creator
 ### Notes
 - No notes.
