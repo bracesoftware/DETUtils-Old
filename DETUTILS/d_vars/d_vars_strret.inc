@@ -11,26 +11,39 @@
  *
  */
 
-#define @DETUTILSVARS_STRRET__@%0\32; @DETUTILSVARS_STRRET__@
-#define do%0string @DETUTILSVARS_STRRET__@
+// If you don't use YSI (I actually wrote these!):
 
-/*
-                                                                                      
-88b           d88              88                         db         88888888ba   88  
-888b         d888              ""                        d88b        88      "8b  88  
-88`8b       d8'88                                       d8'`8b       88      ,8P  88  
-88 `8b     d8' 88  ,adPPYYba,  88  8b,dPPYba,          d8'  `8b      88aaaaaa8P'  88  
-88  `8b   d8'  88  ""     `Y8  88  88P'   `"8a        d8YaaaaY8b     88""""""'    88  
-88   `8b d8'   88  ,adPPPPP88  88  88       88       d8""""""""8b    88           88  
-88    `888'    88  88,    ,88  88  88       88      d8'        `8b   88           88  
-88     `8'     88  `"8bbdP"Y8  88  88       88     d8'          `8b  88           88  
-                                                                                      
-                                                                                      
-*/
+#if defined DETUTILS_STRRET_COMPLICATED
 
-enum enum_StringReturnData
-{
-	Content[MAX_STRING_CELLS]
-}
+#define YSI_STRRET_KEYWORD@%0\32; YSI_STRRET_KEYWORD@
+#define __COMPILER_STRING YSI_STRRET_KEYWORD@
+#define strret_%0\32; strret_
+#define str_%0\32; str_
+#define funcid_%0\32; funcid_
 
-new g_StringReturnCache[10][enum_StringReturnData];
+#if !defined strmid
+    native strmid(dest[], const source[], start, end, maxlength=sizeof dest);
+#endif
+
+new YSI_g_StrretCache[YSI_MAX_STRING];
+
+#define YSI_STRRET_KEYWORD@forward%0(%1) strret_%0(%1);str_%0(%1,YSI_g_StaticStrRet)
+#define YSI_DO_FUNCID<%0..%1> {funcid_%0=funcidx(#strret_%0);return str_%0(%1,funcid_%0);}str_%0(%1,YSI_g_StaticStrRet)
+#define YSI_STRRET_KEYWORD@public%0(%1) new funcid_%0;strret_%0(%1)YSI_DO_FUNCID<%0..%1>
+
+#define YSI_STRRET_KEYWORD@return%0; return strmid(YSI_g_StrretCache,%0,0,YSI_MAX_STRING);
+#define YSI_STRRET_KEYWORD@CallLocalFunction(%0,%1,%2)%3; CallLocalFunction(#strret_%0,%1,%2);
+
+#else
+
+// This is much easier to unders
+
+#define YSI_STRRET_KEYWORD@%0\32; YSI_STRRET_KEYWORD@
+#define __COMPILER_STRING YSI_STRRET_KEYWORD@
+
+new YSI_g_StrretCache[YSI_MAX_STRING];
+
+#define YSI_STRRET_KEYWORD@return%0; return strmid(YSI_g_StrretCache,%0,0,YSI_MAX_STRING);
+#define YSI_STRRET_KEYWORD@get_last_return%0(%1) YSI_g_StrretCache
+
+#endif
