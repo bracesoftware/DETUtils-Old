@@ -52,7 +52,7 @@
 #define DETUTILS_VERSION_MAJOR 2
 #define DETUTILS_VERSION_MINOR 0
 #define DETUTILS_VERSION_PATCH 3
-#define DETUTILS_VERSION_RELEASE 5
+#define DETUTILS_VERSION_RELEASE 6
 
 /*
                                                                       
