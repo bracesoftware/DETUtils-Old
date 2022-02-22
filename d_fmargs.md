@@ -4,7 +4,7 @@ Using *d_fmargs.inc* you can easily use specifiers in string-like type arguments
 
 [Go back to home page...](README.md)
 
-# Usage
+## Quick start
 
 - Usage is really basic.
 
@@ -20,7 +20,7 @@ public OnPlayerSpawn(playerid)
 ```
 **TIP**: Function *ReturnPlayerName* is provided by extra library include *d_libtags.inc*.
 
-## Warning
+## Warnings
 
 - If you provide a specifier in a string, but not a value as well, calling the function will crash the server.
 
@@ -40,7 +40,7 @@ public OnPlayerSpawn(playerid)
   return 1;
 }
 ```
-# API ( programming interface )
+## API
 
 Functions which will work like this after including *d_fmargs.inc* are:
 
@@ -80,21 +80,3 @@ SendRconCommand        | - Sends a RCON command to a server. |
 ```pawn
 #define DETUTIS_NO_SSCANF
 ```
-## Messages from creator
-
-### Warnings
-------------------------------------------
-- No warnings - yet.
-
-### Notes
-------------------------------------------
-***Making filterscript with d_fmargs?***
-------------------------------------------
-- Well, I have good news for you, because there is also new filterscript support feature. 
-
-- So, if you're making a filterscript - make sure you use:
-
-```pawn
-#define FILTERSCRIPT
-```
-... before including *d_fmargs*.
