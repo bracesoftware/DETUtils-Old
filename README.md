@@ -133,12 +133,11 @@ If you're facing issues with your code compilation after including the library, 
 
 ### Other contributors:
 
-- Unity
+- No one yet.
 
 ### Thanks to these people for:
 
-- aezzakmi (no GitHub account) - help during development
-- [Unity](https://github.com/kyekalcor) - testing and really minor fixes
+- aezzakmi (no GitHub account) - really productive testing
 - [Y_Less](https://github.com/y-less) & Zeex - fmargs ``#emit`` stuff, d_commands decorator concept
 - [Zeex](https://github.com/zeex) - ZCMD command processor concept
 - Y_Less - code parser, another amazing thing which you can get [here](https://github.com/y-less/code-parse.inc)
