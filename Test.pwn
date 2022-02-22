@@ -3,7 +3,7 @@
 #define DETUTILS_NO_MODULE_WARNINGS
 //#define DETUTILS_DO_LST
 //#define DETUTILS_FILTERSCRIPT_MODE
-#define DETUTILS_ALS_CALL_DEBUG
+//#define DETUTILS_ALS_CALL_DEBUG
 
 #include <a_samp>
 #include "DETUTILS\d_samp"
