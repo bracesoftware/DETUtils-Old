@@ -7,9 +7,6 @@
   anti-cheat system, map editor and many more functions!
 </h4>
 
-* [ ] This is cool!
-* [ ] No it is not.
-
 ### Current library version: `2.0.3`
 
 Hello scripter! Welcome to *open.mp DEntisT's Utilities* (or **detutils** for short) "read me" file. So, now, you may ask about - what's this? Well - in general, this addition to open.mp Standard Scripting package contains libraries that have in-game visible effects and libraries that contain new scripting features. 
