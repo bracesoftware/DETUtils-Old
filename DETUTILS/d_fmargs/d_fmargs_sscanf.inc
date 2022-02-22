@@ -52,7 +52,7 @@
 #define SSCANF_FAIL 0
 #define SSCANF_SUCCESS 1
 
-stock DET__do_sscanf(const source[], dest[][])
+stock DET__do_sscanf(const source[], dest[][], args = 1)
 {
     new 
     	i, 
@@ -61,14 +61,17 @@ stock DET__do_sscanf(const source[], dest[][])
     	len,
     	scount;
     
-    for(new ii; ii < strlen(source); ii++)
+    if(args != 1)
     {
-    	new count = strfind(source, " ", false, ii);
-    	if(count == SSCANF_SUCCESS) scount ++;
-    }
-    if(scount == SSCANF_FAIL)
-    {
-    	return scount;
+	    for(new ii; ii < strlen(source); ii++)
+	    {
+	    	new count = strfind(source, " ", false, ii);
+	    	if(count == SSCANF_SUCCESS) scount ++;
+	    }
+	    if(scount == SSCANF_FAIL)
+	    {
+	    	return scount;
+	    }
     }
     while(i <= strlen(source))
     {
