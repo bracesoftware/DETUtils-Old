@@ -109,10 +109,6 @@ If you're facing issues with your code compilation after including the library, 
 
 - You can get the latest version of Pawn Compiler for SA:MP [here](https://github.com/pawn-lang/compiler/releases)...
 
-### Thanks
-
-- Big thanks to *open.mp* community for helping me during library development.
-
 ## SA:MP DEntisT's Utilities
 
 ### Legal:
@@ -150,4 +146,4 @@ If you're facing issues with your code compilation after including the library, 
 
 ### Contributions
 
-- Just fork the repo, apply your changes and create a pull request!
+- Just fork the repository, apply your wanted changes and create a pull request!
