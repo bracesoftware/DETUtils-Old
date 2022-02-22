@@ -22,19 +22,19 @@ Honestly, this packet of libraries exists for show-off reasons, I made it for my
 ## Documentation
 Below, there is a list of features provided by a certain library.
 - What's d_samp.inc? See [here](d_samp.md)...
-
-- [d_commands.inc](d_commands.md)
-- [d_properties.inc](d_properties.md)
-- [d_fmargs.inc](d_fmargs.md)
-- [d_visual.inc](d_visual.md)
-- [d_anticheat.inc](d_anticheat.md)
-- [d_mapeditor.inc](d_mapeditor.md)
-- [d_filequeries.inc](d_filequeries.md)
-- [d_dmzone.inc](d_dmzone.md)
-- [d_teams.inc](d_teams.md)
-- [d_dialog.inc](d_dialog.md)
-- [d_vars.inc](d_vars.md)
-- [d_als.inc](d_als.md)
+--------------------------------------
+- Command processor with a big amount of features - [d_commands.inc](d_commands.md)
+- Create property entrances, with own and custom interiors - [d_properties.inc](d_properties.md)
+- Copy of `y_va` - [d_fmargs.inc](d_fmargs.md)
+- Generally smaller groups of random features - [d_visual.inc](d_visual.md)
+- Anti cheat system - [d_anticheat.inc](d_anticheat.md)
+- Map editor - [d_mapeditor.inc](d_mapeditor.md)
+- Send file queries, save and load cache during runtime - [d_filequeries.inc](d_filequeries.md)
+- Create deathmatch zones - [d_dmzone.inc](d_dmzone.md)
+- Better teams - [d_teams.inc](d_teams.md)
+- Better dialogs - [d_dialog.inc](d_dialog.md)
+- Completely new variable system - [d_vars.inc](d_vars.md)
+- New ALS hooking system - [d_als.inc](d_als.md)
 
 Documentation contains some extra notes and tips.
 
