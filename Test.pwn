@@ -5,8 +5,6 @@
 //#define DETUTILS_FILTERSCRIPT_MODE
 #define DETUTILS_ALS_CALL_DEBUG
 
-#define YSI_MAX_STRING 256
-
 #include <a_samp>
 #include "DETUTILS\d_samp"
 
@@ -65,14 +63,14 @@ stock void:PWN_WRITE(const file[], const _Log[])
 
 als function OnGameModeInit()
 {
-    CallLocalFunction("LOL", "i", 1);
-    printf("Returned value: `%s`", __COMPILER_STRING get_last_return());
+    //CallLocalFunction("LOL", "i", 1);
+    //printf("Returned value: `%s`", __COMPILER_STRING get_last_return());
     printf("This works! LOL");
     return als break;
 }
-
+/*
 forward LOL(ah);
 public LOL(ah)
 {
     __COMPILER_STRING return "ass";
-}
+}*/

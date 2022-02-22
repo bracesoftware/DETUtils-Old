@@ -35,6 +35,8 @@
     #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
+#include "d_fmargs_sscanf"
+
 /*
                                          
 88                                   88  
