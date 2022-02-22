@@ -27,6 +27,20 @@ keyword   forward  Function(a, const b[], Float:c);
 
 // Actual code:
 
+@command(.type = SLASH_COMMAND) sscanftest(playerid, params[])
+{
+	new id, array[1][3];
+	
+	if(sscanf do(params, array) == SSCANF_FAIL) // If sscanf fails (no spaces)
+	{
+		return SendClientMessage(playerid, -1, "Sscanf failed.");
+	}
+
+	SendClientMessage(playerid, -1, "Sscanf succedeed.");
+
+	return 1;
+}
+
 enum Enums
 {
 	Admin
