@@ -6,30 +6,26 @@
   Addition to open.mp Standard Scripting Library with new stuff,
   anti-cheat system, map editor and many more functions!
 </h4>
-<h2 align = "center">
-  Functions, callbacks, tips and notes
-</h2>
 
-## Current library version: `2.0.3`
+### Current library version: `2.0.3`
 
 Hello scripter! Welcome to *open.mp DEntisT's Utilities* (or **detutils** for short) "read me" file. So, now, you may ask about - what's this? Well - in general, this addition to open.mp Standard Scripting package contains libraries that have in-game visible effects and libraries that contain new scripting features. 
 - Below, you can find information about each library.
 - For better understanding of this, make sure you know Pawn and a_samp - read all the docs [here](https://team.sa-mp.com/wiki-archive.html)...
 
 ## Examples
-
-- [View](https://github.com/DEntis-T/SA-MP-DETUtils/blob/2.x/DETUTILS/d_testing/d_testing_entry.inc) one simple example of script made using **open.mp DETUtils**.
+Honestly, this packet of libraries exists for show-off reasons, I made it for my own satisfication since I have a really big desire to code, so. You can still contribute and use it though. Example:
+- [View code](https://github.com/DEntis-T/SA-MP-DETUtils/blob/2.x/DETUTILS/d_testing/d_testing_entry.inc)
 
 ## Warnings
 1. Always include **DETUtils** last, after all includes.
 2. You'll need to use latest Pawn Community compiler in order to compile everything successfully.
 ## Docs
 Click on blue text to see all information about each feature.
-### Installation
-------------------------------------------
-- Learn more about [installation](d_installation.md)...
-### Libraries
-------------------------------------------
+## Installation
+- Installation is simple, quick and easy - learn more [here](d_installation.md)...
+## Documentation
+Below, there is a list of features provided by a certain library.
 - Learn more about d_samp [here](d_samp.md)...
 ------------------------------------------
 - Learn more: [d_commands.inc](d_commands.md)
@@ -44,13 +40,11 @@ Click on blue text to see all information about each feature.
 - Learn more: [d_dialog.inc](d_dialog.md)
 - Learn more: [d_vars.inc](d_vars.md)
 - Learn more: [d_als.inc](d_als.md)
-
-### Extra bonus
-------------------------------------------
+Documentation contains some extra notes and tips.
 - Read more here: [Extra stuff](d_extra.md)
 - Learn more about internal libraries [here](d_internal.md)...
 ## Tests
-- I regularly make test scripts with all new features I added to the library to ensure everything is working as expected.
+- I regularly make test scripts with all new features I added to the library to ensure everything is working as expected. If not, I write it down in to a test log.
 
 Check out test script here:
 
