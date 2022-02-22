@@ -11,6 +11,8 @@
  *
  */
 
+#endinput
+
 // If you don't use YSI (I actually wrote these!):
 
 #if defined DETUTILS_STRRET_COMPLICATED
@@ -36,7 +38,7 @@ new YSI_g_StrretCache[YSI_MAX_STRING];
 
 #else
 
-// This is much easier to unders
+// This is much easier to understand (but really bad):
 
 #define YSI_STRRET_KEYWORD@%0\32; YSI_STRRET_KEYWORD@
 #define __COMPILER_STRING YSI_STRRET_KEYWORD@
