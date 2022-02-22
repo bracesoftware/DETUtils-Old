@@ -29,9 +29,9 @@ keyword   forward  Function(a, const b[], Float:c);
 
 @command(.type = SLASH_COMMAND) sscanftest(playerid, params[])
 {
-	new id, array[1][3];
+	new id, array[2][3];
 	
-	if(sscanf do(params, array) == SSCANF_FAIL) // If sscanf fails (no spaces)
+	if(sscanf do(params, array, 2) == SSCANF_FAIL) // If sscanf fails (no spaces in a string)
 	{
 		return SendClientMessage(playerid, -1, "Sscanf failed.");
 	}
