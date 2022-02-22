@@ -56,6 +56,30 @@ TextDrawSetString      | - Changes global TextDraw's string. |
 PlayerTextDrawSetString| - Changes player TextDraw's string. |
 SendRconCommand        | - Sends a RCON command to a server. |
 
+## `sscanf`
+- This include also provides a Pawn implementation of `sscanf` functions. Below, you can see an example on how to use these features:
+
+```pawn
+@command(.type = SLASH_COMMAND) sscanftest(playerid, params[])
+{
+	new id, array[2][3];
+	
+	if(sscanf do(params, array) == SSCANF_FAIL) // If sscanf fails (no spaces in a string)
+	{
+		return SendClientMessage(playerid, -1, "Sscanf failed.");
+	}
+
+	SendClientMessage(playerid, -1, "Sscanf succedeed.");
+
+	return 1;
+}
+```
+
+- You can disable these optional `sscanf` features using:
+
+```pawn
+#define DETUTIS_NO_SSCANF
+```
 ## Messages from creator
 
 ### Warnings
