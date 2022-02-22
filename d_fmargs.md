@@ -64,7 +64,7 @@ SendRconCommand        | - Sends a RCON command to a server. |
 {
 	new id, array[2][3];
 	
-	if(sscanf do(params, array) == SSCANF_FAIL) // If sscanf fails (no spaces in a string)
+	if(sscanf do(params, array, 2) == SSCANF_FAIL) // If sscanf fails (no spaces in a string)
 	{
 		return SendClientMessage(playerid, -1, "Sscanf failed.");
 	}
@@ -80,3 +80,10 @@ SendRconCommand        | - Sends a RCON command to a server. |
 ```pawn
 #define DETUTIS_NO_SSCANF
 ```
+Argument explanation:
+```pawn
+sscanf do(source, address, args = 1);
+```
+- `source` is a source string to get data from.
+- `address` is an 2D array to assign data to.
+- `args` is a count of given arguments in a string.
