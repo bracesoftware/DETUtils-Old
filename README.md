@@ -25,7 +25,7 @@ Below, there is a list of features provided by a certain library.
 --------------------------------------
 - Command processor with a big amount of features - [d_commands.inc](d_commands.md)
 - Create property entrances, with own and custom interiors - [d_properties.inc](d_properties.md)
-- Copy of `y_va` - [d_fmargs.inc](d_fmargs.md)
+- Copy of `y_va` and Pawn `sscanf` implementation - [d_fmargs.inc](d_fmargs.md)
 - Generally smaller groups of random features - [d_visual.inc](d_visual.md)
 - Anti cheat system - [d_anticheat.inc](d_anticheat.md)
 - Map editor - [d_mapeditor.inc](d_mapeditor.md)
