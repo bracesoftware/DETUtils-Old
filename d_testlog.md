@@ -63,3 +63,17 @@
 - Everything at a glance! Besides the ``FadePlayerScreen(...)`` TextDraw is not showing, fixing it soon.
 
 ----------------------------------------
+## Test no. 1 - 22 Feb 2022
+
+- Tested by: DEntisT-ofc
+- Version: 2.0.2-R5
+
+## Anti-cheat issues
+
+- Health and armour anti-cheat is not working correctly.
+
+### Fixes
+
+- Everything at a glance!
+
+----------------------------------------
