@@ -21,21 +21,23 @@ Honestly, this packet of libraries exists for show-off reasons, I made it for my
 - Installation is simple, quick and easy - learn more [here](d_installation.md)...
 ## Documentation
 Below, there is a list of features provided by a certain library.
-- Learn more about d_samp [here](d_samp.md)...
-------------------------------------------
-- Learn more: [d_commands.inc](d_commands.md)
-- Learn more: [d_properties.inc](d_properties.md)
-- Learn more: [d_fmargs.inc](d_fmargs.md)
-- Learn more: [d_visual.inc](d_visual.md)
-- Learn more: [d_anticheat.inc](d_anticheat.md)
-- Learn more: [d_mapeditor.inc](d_mapeditor.md)
-- Learn more: [d_filequeries.inc](d_filequeries.md)
-- Learn more: [d_dmzone.inc](d_dmzone.md)
-- Learn more: [d_teams.inc](d_teams.md)
-- Learn more: [d_dialog.inc](d_dialog.md)
-- Learn more: [d_vars.inc](d_vars.md)
-- Learn more: [d_als.inc](d_als.md)
+- What's d_samp.inc? See [here](d_samp.md)...
+
+- [d_commands.inc](d_commands.md)
+- [d_properties.inc](d_properties.md)
+- [d_fmargs.inc](d_fmargs.md)
+- [d_visual.inc](d_visual.md)
+- [d_anticheat.inc](d_anticheat.md)
+- [d_mapeditor.inc](d_mapeditor.md)
+- [d_filequeries.inc](d_filequeries.md)
+- [d_dmzone.inc](d_dmzone.md)
+- [d_teams.inc](d_teams.md)
+- [d_dialog.inc](d_dialog.md)
+- [d_vars.inc](d_vars.md)
+- [d_als.inc](d_als.md)
+
 Documentation contains some extra notes and tips.
+
 - Read more here: [Extra stuff](d_extra.md)
 - Learn more about internal libraries [here](d_internal.md)...
 ## Tests
