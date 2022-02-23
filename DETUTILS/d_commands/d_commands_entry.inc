@@ -420,7 +420,7 @@ public OnDETUtilsInit()
 	#define _ALS_OnDETUtilsInit
 #endif
 
-#define OnDETUtilsInit d_cmd_detutilsinit
+#define OnDETUtilsInit( d_cmd_detutilsinit(
 
 forward d_cmd_detutilsinit();
 
@@ -1523,6 +1523,6 @@ public OnPlayerPassCommandPrefix(playerid, cmdtext[], passedprefix[], expectedpr
 	#define _ALS_OnPlayerPassCommandPrefix
 #endif
 
-#define OnPlayerPassCommandPrefix d_cmd_oppcp
+#define OnPlayerPassCommandPrefix( d_cmd_oppcp(
 
 forward d_cmd_oppcp(playerid, cmdtext[], passedprefix[], expectedprefix[]);

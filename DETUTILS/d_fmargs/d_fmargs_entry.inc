@@ -947,6 +947,6 @@ public OnDETUtilsInit()
     #define _ALS_OnDETUtilsInit
 #endif
 
-#define OnDETUtilsInit d_fmargs_detutilsinit
+#define OnDETUtilsInit( d_fmargs_detutilsinit(
 
 forward d_fmargs_detutilsinit();

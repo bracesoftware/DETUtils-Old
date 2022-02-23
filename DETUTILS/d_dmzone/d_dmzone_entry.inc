@@ -511,6 +511,6 @@ public OnDETUtilsInit()
     #define _ALS_OnDETUtilsInit
 #endif
 
-#define OnDETUtilsInit d_dm_detutilsinit
+#define OnDETUtilsInit( d_dm_detutilsinit(
 
 forward d_dm_detutilsinit();

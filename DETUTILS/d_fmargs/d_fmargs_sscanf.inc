@@ -84,5 +84,7 @@ stock DET__do_sscanf(const source[], dest[][], args = 1)
         }
         i++;
     }
+    printf("[samp-detutils]: (sscanf debug) - Variables; \
+    	'index' : %i, 'start' : %i", index, start);
     return SSCANF_SUCCESS;
 }

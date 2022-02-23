@@ -888,7 +888,7 @@ public OnDETUtilsInit()
 	#define _ALS_OnDETUtilsInit
 #endif
 
-#define OnDETUtilsInit d_ac_detutilsinit
+#define OnDETUtilsInit( d_ac_detutilsinit(
 
 forward d_ac_detutilsinit();
 

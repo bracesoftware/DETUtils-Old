@@ -1113,7 +1113,7 @@ public OnDETUtilsInit()
     #define _ALS_OnDETUtilsInit
 #endif
 
-#define OnDETUtilsInit d_visual_detutilsinit
+#define OnDETUtilsInit( d_visual_detutilsinit(
 
 forward d_visual_detutilsinit();
 

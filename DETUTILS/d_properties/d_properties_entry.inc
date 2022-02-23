@@ -1210,6 +1210,6 @@ public OnDETUtilsInit()
 	#define _ALS_OnDETUtilsInit
 #endif
 
-#define OnDETUtilsInit d_props_detutilsinit
+#define OnDETUtilsInit( d_props_detutilsinit(
 
 forward d_props_detutilsinit();

@@ -227,6 +227,6 @@ public OnDETUtilsInit()
 	#define _ALS_OnDETUtilsInit
 #endif
 
-#define OnDETUtilsInit d_dlg_detutilsinit
+#define OnDETUtilsInit( d_dlg_detutilsinit(
 
 forward d_dlg_detutilsinit();
