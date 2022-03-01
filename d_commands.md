@@ -560,13 +560,13 @@ new slashcmdtype = GetSlashCommandType("some_cool_command_name");
 - ``SLASH_COMMAND_TYPE_FLAGGED`` or ``3`` - returned if the command is a flagged command (aka role command)
 - ``SLASH_COMMAND_TYPE_TEAM`` or `4` - returned if the command is a team command (check `d_teams.inc` docs for more details)
 
-### ``CallCommand``
+### ``BroadcastCommand``
 
-- Function ``CallCommand``, obviously, is used to call a command.
+- Function ``BroadcastCommand``, obviously, is used to call or to broadcast a command.
 - Let's see a small example:
 
 ```pawn
-CallCommand("sayhi", playerid, params); 
+BroadcastCommand(playerid, "sayhi", params); 
 ```
 - So, very simple, this will call a normal **local** command (counts for role commands, admin commants etc).
 
@@ -580,18 +580,18 @@ But, as I mentioned, code above will call a local command, that is why I added *
 
 This code:
 ```pawn
-CallCommand("sayhi", playerid, params); 
+BroadcastCommand(playerid, "sayhi", params);
 ```
 ... is same as this one:
 ```pawn
-CallCommand("sayhi", playerid, params, COMMAND_TYPE_LOCAL); 
+BroadcastCommand(playerid, "sayhi", params, COMMAND_TYPE_LOCAL); 
 ```
 #### ``COMMAND_TYPE_REMOTE``
 
 - This calls the remote commands (commands in all loaded scripts).
 
 ```pawn
-CallCommand("sayhi", playerid, params, COMMAND_TYPE_REMOTE); 
+BroadcastCommand(playerid, "sayhi", params, COMMAND_TYPE_REMOTE); 
 ```
 
 #### ``COMMAND_TYPE_LOCAL_PREFIXED``
@@ -599,7 +599,7 @@ CallCommand("sayhi", playerid, params, COMMAND_TYPE_REMOTE);
 - Slash commands and custom-prefixed commands are totally 'different worlds' - that's why this one exists.
 
 ```pawn
-CallCommand("sayhi", playerid, params, COMMAND_TYPE_LOCAL_PREFIXED); 
+BroadcastCommand(playerid, "sayhi", params, COMMAND_TYPE_LOCAL_PREFIXED); 
 ```
 
 #### ``COMMAND_TYPE_REMOTE_PREFIXED``
@@ -607,7 +607,7 @@ CallCommand("sayhi", playerid, params, COMMAND_TYPE_LOCAL_PREFIXED);
 - Like one above, but for remote prefixed commands, also note that you don't put the prefix in command name parameter.
 
 ```pawn
-CallCommand("sayhi", playerid, params, COMMAND_TYPE_REMOTE_PREFIXED); 
+BroadcastCommand(playerid, "sayhi", params, COMMAND_TYPE_REMOTE_PREFIXED); 
 ```
 ### `GetPlayerChatMode`
 - Used to get player's chat mode.
@@ -618,6 +618,17 @@ CallCommand("sayhi", playerid, params, COMMAND_TYPE_REMOTE_PREFIXED);
 ### `ToggleCommandCaseSensivity`
 
 - This function is currently not working, I mean it is implemented, but is not functional - calling it will do nothing.
+
+### `public` OnCommandBroadcast
+
+- I added this function for debugging purposes.
+
+```pawn
+public OnCommandBroadcast(playerid, cmdtext[], bool:remote, params[], slashtype, bool:customprefixed)
+{
+	return 1;
+}
+```
 
 **Command processing**
 ------------------------------------------
