@@ -13,6 +13,11 @@
 
 #pragma dynamic 215750000
 
+public OnCommandBroadcast(playerid, cmdtext[], bool:remote, params[], slashtype, bool:customprefixed)
+{
+	return 1;
+}
+
  // Dummies:
 
 keyword  public Func()

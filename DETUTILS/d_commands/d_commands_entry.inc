@@ -158,107 +158,6 @@ static Data_g_ChatMode[MAX_PLAYERS];
 
 forward OnCommandStateChange(playerid, cmdtext[], stateid);
 forward OnPrefixedCommandStateChange(playerid, cmdtext[], stateid);
-/*
-stock CallLocalCommand(const command[], const specifiers[], integer, const string[])
-{
-	new command_name[MAX_FUNC_NAME];
-	format
-		(
-			command_name, 
-			MAX_FUNC_NAME, 
-			"cmd_%s", 
-			command
-		)
-	;
-	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - CallLocalCommand called successfully.");
-	#endif
-	return CallLocalFunction
-				(
-					command_name, 
-					specifiers, 
-					integer, 
-					string
-				)
-		;
-}
-
-static Data_g_ChatMode[MAX_PLAYERS];
-
-stock CallRemoteCommand(const command[], const specifiers[], integer, const string[])
-{
-	new command_name[MAX_FUNC_NAME];
-	format
-		(
-			command_name, 
-			MAX_FUNC_NAME, 
-			"cmd_%s", 
-			command
-		)
-	;
-	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - CallRemoteCommand called successfully.");
-	#endif
-	return CallRemoteFunction
-				(
-					command_name, 
-					specifiers, 
-					integer, 
-					string
-				)
-		;
-
-}
-
-stock CallRemotePrefixedCommand(const command[], const specifiers[], integer, const string[])
-{
-	new command_name[MAX_FUNC_NAME];
-	format
-		(
-			command_name, 
-			MAX_FUNC_NAME, 
-			"pc_%s", 
-			command
-		)
-	;
-	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - CallRemoteCommand called successfully.");
-	#endif
-	return CallRemoteFunction
-				(
-					command_name, 
-					specifiers, 
-					integer, 
-					string
-				)
-		;
-
-}
-
-stock CallLocalPrefixedCommand(const command[], const specifiers[], integer, const string[])
-{
-	new command_name[MAX_FUNC_NAME];
-	format
-		(
-			command_name, 
-			MAX_FUNC_NAME, 
-			"pc_%s", 
-			command
-		)
-	;
-	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - CallRemoteCommand called successfully.");
-	#endif
-	return CallLocalFunction
-				(
-					command_name, 
-					specifiers, 
-					integer, 
-					string
-				)
-		;
-
-}*/
 
 #define COMMAND_TYPE_LOCAL 0
 #define COMMAND_TYPE_REMOTE 1
@@ -267,21 +166,21 @@ stock CallLocalPrefixedCommand(const command[], const specifiers[], integer, con
 
 #if defined DETUTILS_OPENMP_COMPAT
 
-	#define Command_Call CallCommand
+	#define Command_Broadcast BroadcastCommand
 
 #endif
 
-#if defined _INC_code_parse_inc
-
-stock CallCommand(const cmdtext[], const playerid, const params[], const type = COMMAND_TYPE_LOCAL)
+stock BroadcastCommand(playerid, const cmdtext[], const params[], type = COMMAND_TYPE_LOCAL)
 {
 	if(type == COMMAND_TYPE_LOCAL)
 	{
 		new command_name[MAX_FUNC_NAME];
 		format(command_name, MAX_FUNC_NAME, "cmd_%s", cmdtext);
 		#if defined detutils_debug
-		printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 0");
+		printf("[samp-detutils]: (debug) - BroadcastCommand called successfully. ID: 0");
 		#endif
+		CallLocalFunction("OnCommandBroadcast", "isisii", 
+			playerid, cmdtext, 0, params, GetSlashCommandType(cmdtext), 0);
 		return CallLocalFunction(command_name, "is", playerid, params);   
 	}
 	if(type == COMMAND_TYPE_REMOTE)
@@ -289,8 +188,10 @@ stock CallCommand(const cmdtext[], const playerid, const params[], const type = 
 		new command_name[MAX_FUNC_NAME];
 		format(command_name, MAX_FUNC_NAME, "cmd_%s", cmdtext);
 		#if defined detutils_debug
-		printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 1");
+		printf("[samp-detutils]: (debug) - BroadcastCommand called successfully. ID: 1");
 		#endif
+		CallLocalFunction("OnCommandBroadcast", "isisii", 
+			playerid, cmdtext, 1, params, GetSlashCommandType(cmdtext), 0);
 		return CallLocalFunction(command_name, "is", playerid, params);   
 	}
 	if(type == COMMAND_TYPE_LOCAL_PREFIXED)
@@ -298,8 +199,10 @@ stock CallCommand(const cmdtext[], const playerid, const params[], const type = 
 		new command_name[MAX_FUNC_NAME];
 		format(command_name, MAX_FUNC_NAME, "pc_%s", cmdtext);
 		#if defined detutils_debug
-		printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 2");
+		printf("[samp-detutils]: (debug) - BroadcastCommand called successfully. ID: 2");
 		#endif
+		CallLocalFunction("OnCommandBroadcast", "isisii", 
+			playerid, cmdtext, 0, params, GetSlashCommandType(cmdtext), 1);
 		return CallLocalFunction(command_name, "is", playerid, params);   
 	}
 	if(type == COMMAND_TYPE_REMOTE_PREFIXED)
@@ -307,63 +210,24 @@ stock CallCommand(const cmdtext[], const playerid, const params[], const type = 
 		new command_name[MAX_FUNC_NAME];
 		format(command_name, MAX_FUNC_NAME, "pc_%s", cmdtext);
 		#if defined detutils_debug
-		printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 3");
+		printf("[samp-detutils]: (debug) - BroadcastCommand called successfully. ID: 3");
 		#endif
+		CallLocalFunction("OnCommandBroadcast", "isisii", 
+			playerid, cmdtext, 1, params, GetSlashCommandType(cmdtext), 1);
 		return CallRemoteFunction(command_name, "is", playerid, params);   
 	}
 	return 1;
 }
-
-#elseif !defined _INC_code_parse_inc
-
-stock CallCommand(const cmdtext[], const playerid, const params[], const type = COMMAND_TYPE_LOCAL)
-{
-	if(type == COMMAND_TYPE_LOCAL)
-	{
-		new command_name[MAX_FUNC_NAME];
-		format(command_name, MAX_FUNC_NAME, "cmd_%s", cmdtext);
-		#if defined detutils_debug
-		printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 0");
-		#endif
-		return CallLocalFunction(command_name, "is", playerid, params);   
-	}
-	if(type == COMMAND_TYPE_REMOTE)
-	{
-		new command_name[MAX_FUNC_NAME];
-		format(command_name, MAX_FUNC_NAME, "cmd_%s", cmdtext);
-		#if defined detutils_debug
-		printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 1");
-		#endif
-		return CallLocalFunction(command_name, "is", playerid, params);   
-	}
-	if(type == COMMAND_TYPE_LOCAL_PREFIXED)
-	{
-		new command_name[MAX_FUNC_NAME];
-		format(command_name, MAX_FUNC_NAME, "pc_%s", cmdtext);
-		#if defined detutils_debug
-		printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 2");
-		#endif
-		return CallLocalFunction(command_name, "is", playerid, params);   
-	}
-	if(type == COMMAND_TYPE_REMOTE_PREFIXED)
-	{
-		new command_name[MAX_FUNC_NAME];
-		format(command_name, MAX_FUNC_NAME, "pc_%s", cmdtext);
-		#if defined detutils_debug
-		printf("[samp-detutils]: (debug) - CallCommand called successfully. ID: 3");
-		#endif
-		return CallRemoteFunction(command_name, "is", playerid, params);   
-	}
-	return 1;
-}
-
-#endif
-
-//#define GetCommandDebugState%1(%2) %1debugged_stateid%2
 
 #if !defined OnPlayerCommandReceived
 
 	forward OnPlayerCommandReceived(playerid, cmdtext[]);
+
+#endif
+
+#if !defined OnCommandBroadcast
+
+	forward OnCommandBroadcast(playerid, cmdtext[], bool:remote, params[], slashtype, bool:customprefixed);
 
 #endif
 
