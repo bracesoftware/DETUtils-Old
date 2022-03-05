@@ -95,7 +95,7 @@ To enable advanced debugging feature, use:
 #define DETUTILS_DEBUG_MODE
 ```
 
-To join Discord server, [click here...](https://discord.gg/samp)
+To join Discord server, [click this link!](https://discord.gg/samp)
 
 **NOTE:** After you enabled advanced debugging, your console may be full with *DETUtils* debug messages - in that case, don't worry.
 
