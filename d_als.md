@@ -30,6 +30,7 @@ als function OnGameModeInit()
 }
 ```
 ## Facts and tips
+### Looping
 - Since this is an actually hook loop, there are `als continue` (or just `1`) and `als break` (or just `0`) return values. If you return `als continue`, the loop through ALS functions will continue, but if you return `als break` the looping through ALS functions will stop.
 
 ```pawn
@@ -37,6 +38,23 @@ als function OnGameModeInit()
 {
     printf("This will break the loop!");
     return als break;
+}
+```
+### Hooking fact
+- You can literally hook anything you want! As you can see, all you need to are `als do` and `als function`.
+- Hooking **y_timers** timers:
+
+```pawn
+task SuperCoolTask[1000]()
+{
+  als do("MyTaskName", "");
+  return 1;
+}
+
+als function MyTaskName()
+{
+  print("MyTaskName called!");
+  return als continue;
 }
 ```
 ## Messages from creator
