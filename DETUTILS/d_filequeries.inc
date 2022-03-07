@@ -11,4 +11,6 @@
  *
  */
 
+#define DETUTILS_LIBVER_FILEQUERIES 1
+
 #include "d_filequeries\d_filequeries_entry"

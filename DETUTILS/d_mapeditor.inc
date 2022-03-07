@@ -11,4 +11,6 @@
  *
  */
 
+#define DETUTILS_LIBVER_MAPEDITOR 1
+
 #include "d_mapeditor\d_mapeditor_entry"

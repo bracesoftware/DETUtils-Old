@@ -11,4 +11,6 @@
  *
  */
 
+#define DETUTILS_LIBVER_ANTICHEAT 1
+
 #include "d_anticheat\d_anticheat_entry"

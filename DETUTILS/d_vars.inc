@@ -11,4 +11,6 @@
  *
  */
 
+#define DETUTILS_LIBVER_VARS 1
+
 #include "d_vars\d_vars_entry"

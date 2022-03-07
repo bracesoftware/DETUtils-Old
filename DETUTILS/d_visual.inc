@@ -11,4 +11,6 @@
  *
  */
 
+#define DETUTILS_LIBVER_VISUAL 1
+
 #include "d_visual\d_visual_entry"

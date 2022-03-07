@@ -24,4 +24,6 @@
 
 #define __DETUTILS_INTERNAL_ALS_INC
 
+#define DETUTILS_LIBVER_ALS 1
+
 #include "d_als\d_als_entry"

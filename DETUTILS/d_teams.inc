@@ -11,4 +11,6 @@
  *
  */
 
+#define DETUTILS_LIBVER_TEAMS 1
+
 #include "d_teams\d_teams_entry"

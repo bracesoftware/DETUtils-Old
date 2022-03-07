@@ -12,8 +12,18 @@
  *
  */
 
+#define __DETUtils 0x203
+#define __DETUtilsRelease 0x7
+
+// The rest of shit
+
+#define @DETUTILSCORE_KWORD__@%0\32; @DETUTILSCORE_KWORD__@
+#define det @DETUTILSCORE_KWORD__@
+
 #define DET_g_%0\32; DET_g_
 #define __DETUTILS_ARRAY..%0,%1,%2; new DET_g_%0[%1][%2];
+
+//#define @DETUTILSCORE_KWORD__@global%0; DET_g_%0;
 
 #if defined A_INTS_COMPATIBILITY_MODE || defined A_CMDS_COMPATIBILITY_MODE
 

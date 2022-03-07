@@ -11,4 +11,6 @@
  *
  */
 
- #include "d_commands\d_commands_entry"
+#define DETUTILS_LIBVER_COMMANDS 1
+
+#include "d_commands\d_commands_entry"
