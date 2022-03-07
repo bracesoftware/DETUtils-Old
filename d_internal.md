@@ -31,5 +31,11 @@ Below, you have a list of all internal files.
 ### d_version.inc
 - Little include used to change library's version, including major release, minor release, patch and `R` marked release (re-release of the same version).
 
+# Facts
+
+## Versions
+
+- There are built-in constant values named `__DETUtils` which is a hex version number, and `__DETUtilsRelease` which is hex release number.
+
 ## Not interested?
 [Go back to home page...](README.md)
