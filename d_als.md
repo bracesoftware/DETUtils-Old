@@ -41,7 +41,7 @@ als function OnGameModeInit()
 }
 ```
 ### Hooking fact
-- You can literally hook anything you want! As you can see, all you need to are `als do` and `als function`.
+- You can literally hook anything you want! As you can see, all you need to do such are `als do` and `als function`.
 - Hooking **y_timers** timers:
 
 ```pawn
