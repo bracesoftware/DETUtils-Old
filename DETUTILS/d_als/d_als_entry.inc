@@ -6,9 +6,8 @@
  *
  *
  *
- * - Library which provides sending
- *   of file queries. Similar concept
- *   of SQL.
+ * - Library which provides 
+ *   a new system of ALS hooking.
  *
  *
  */
