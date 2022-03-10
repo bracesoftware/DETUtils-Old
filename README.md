@@ -35,6 +35,7 @@ Below, there is a list of features provided by a certain library.
 - Better dialogs, faster and easier - [d_dialog.inc](d_dialog.md)
 - Completely new variable system - [d_vars.inc](d_vars.md)
 - New ALS hooking system - [d_als.inc](d_als.md)
+- New `foreach` implementation - [d_foreach.inc](d_foreach.md)
 
 Documentation contains some extra notes and tips.
 
