@@ -13,7 +13,7 @@
 
 #if defined d_init_included
 
-    #endscript
+	#endscript
 
 #endif
 
@@ -25,7 +25,7 @@
 
 #if !defined _inc_a_samp
 
-    #error [samp-detutils]: (error) - You need to have a_samp.inc file in your includes folder.
+	#error [samp-detutils]: (error) - You need to have a_samp.inc file in your includes folder.
 
 #endif
 
@@ -33,7 +33,7 @@
 
 #if defined _d_data_included
 
-    #error [samp-detutils]: (error) - Unusable code reached.
+	#error [samp-detutils]: (error) - Unusable code reached.
 
 #endif
 
@@ -54,61 +54,66 @@ public const detutils_ver = 0x1;
 #define DETUTILS_SCRIPT_DIALOG 9
 #define DETUTILS_SCRIPT_VARS 10
 #define DETUTILS_SCRIPT_ALS 11
+#define DETUTILS_SCRIPT_FOREACH 12
 
 stock void:LoadDETUtilsScript(scriptid)
 {
-    if(scriptid == DETUTILS_SCRIPT_COMMANDS)
-    {
-        print("*** [samp-detutils]: (module) - Loaded: d_commands.inc");
-    }
-    if(scriptid == DETUTILS_SCRIPT_PROPERTIES)
-    {
-        print("*** [samp-detutils]: (module) - Loaded: d_properties.inc");
-    }
-    if(scriptid == DETUTILS_SCRIPT_FMARGS)
-    {
-        print("*** [samp-detutils]: (module) - Loaded: d_fmargs.inc");
-    }
-    if(scriptid == DETUTILS_SCRIPT_VISUAL)
-    {
-        print("*** [samp-detutils]: (module) - Loaded: d_visual.inc");
-    }
-    if(scriptid == DETUTILS_SCRIPT_ANTICHEAT)
-    {
-        print("*** [samp-detutils]: (module) - Loaded: d_anticheat.inc");
-    }
-    if(scriptid == DETUTILS_SCRIPT_MAPEDITOR)
-    {
-        print("*** [samp-detutils]: (module) - Loaded: d_mapeditor.inc");
-    }
-    if(scriptid == DETUTILS_SCRIPT_FILEQUERIES)
-    {
-        print("*** [samp-detutils]: (module) - Loaded: d_filequeries.inc");
-    }
-    if(scriptid == DETUTILS_SCRIPT_DMZONE)
-    {
-        print("*** [samp-detutils]: (module) - Loaded: d_dmzone.inc");
-    }
-    if(scriptid == DETUTILS_SCRIPT_TEAMS)
-    {
-        print("*** [samp-detutils]: (module) - Loaded: d_teams.inc");
-    }
-    if(scriptid == DETUTILS_SCRIPT_DIALOG)
-    {
-        print("*** [samp-detutils]: (module) - Loaded: d_dialog.inc");
-    }
-    if(scriptid == DETUTILS_SCRIPT_VARS)
-    {
-        print("*** [samp-detutils]: (module) - Loaded: d_vars.inc");
-    }
-    if(scriptid == DETUTILS_SCRIPT_ALS)
-    {
-        print("*** [samp-detutils]: (module) - Loaded: d_als.inc");
-    }
+	if(scriptid == DETUTILS_SCRIPT_COMMANDS)
+	{
+		print("*** [samp-detutils]: (module) - Loaded: d_commands.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_PROPERTIES)
+	{
+		print("*** [samp-detutils]: (module) - Loaded: d_properties.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_FMARGS)
+	{
+		print("*** [samp-detutils]: (module) - Loaded: d_fmargs.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_VISUAL)
+	{
+		print("*** [samp-detutils]: (module) - Loaded: d_visual.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_ANTICHEAT)
+	{
+		print("*** [samp-detutils]: (module) - Loaded: d_anticheat.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_MAPEDITOR)
+	{
+		print("*** [samp-detutils]: (module) - Loaded: d_mapeditor.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_FILEQUERIES)
+	{
+		print("*** [samp-detutils]: (module) - Loaded: d_filequeries.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_DMZONE)
+	{
+		print("*** [samp-detutils]: (module) - Loaded: d_dmzone.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_TEAMS)
+	{
+		print("*** [samp-detutils]: (module) - Loaded: d_teams.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_DIALOG)
+	{
+		print("*** [samp-detutils]: (module) - Loaded: d_dialog.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_VARS)
+	{
+		print("*** [samp-detutils]: (module) - Loaded: d_vars.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_ALS)
+	{
+		print("*** [samp-detutils]: (module) - Loaded: d_als.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_FOREACH)
+	{
+		print("*** [samp-detutils]: (module) - Loaded: d_foreach.inc");
+	}
 }
 
 /*
-                                                                      
+																	  
 88888888888                                                           
 88                          ,d                                        
 88                          88                                        
@@ -117,7 +122,7 @@ stock void:LoadDETUtilsScript(scriptid)
 88              )888(       88     88          ,adPPPPP88   `"Y8ba,   
 88            ,d8" "8b,     88,    88          88,    ,88  aa    ]8I  
 88888888888  8P'     `Y8    "Y888  88          `"8bbdP"Y8  `"YbbdP"'  
-                                                                      
+																	  
 
 */
 
@@ -144,72 +149,72 @@ static const DET_g_Version[1][10] = { ""DETUTILS_VERSION_MAJOR"."DETUTILS_VERSIO
 
 static void:LoadDETUtils()
 {
-    new DET_g_Version[26];
-    format(DET_g_Version, sizeof(DET_g_Version), "%i.%i.%i-R%i", 
-        DETUTILS_VERSION_MAJOR, 
-        DETUTILS_VERSION_MINOR, 
-        DETUTILS_VERSION_PATCH,
-        DETUTILS_VERSION_RELEASE);
-    print("                                        ");
-    print("|======================================|");
-    print("                                        ");
-    print("            SA:MP | DETUtils            ");
-    print("        System is now loading...        ");
-    print("                                        ");
-    printf("              Version: %s              ", DET_g_Version);
-    print("                                        ");
-    print("               By: DEntisT              ");
-    print("                                        ");
-    print("|======================================|");
-    print("                                        ");
-    print("                                        ");
-    #if defined DETUTILS_FILTERSCRIPT_MODE
-    print(" SA:MP | DETUtils - Filterscript mode is ON.");
-    #endif
-    #if defined DETUTILS_TESTING_MODE
-    print(" SA:MP | DETUtils - Testing mode is ON.");
-    #endif
-    print("                                        ");
+	new DET_g_Version[26];
+	format(DET_g_Version, sizeof(DET_g_Version), "%i.%i.%i-R%i", 
+		DETUTILS_VERSION_MAJOR, 
+		DETUTILS_VERSION_MINOR, 
+		DETUTILS_VERSION_PATCH,
+		DETUTILS_VERSION_RELEASE);
+	print("                                        ");
+	print("|======================================|");
+	print("                                        ");
+	print("            SA:MP | DETUtils            ");
+	print("        System is now loading...        ");
+	print("                                        ");
+	printf("              Version: %s              ", DET_g_Version);
+	print("                                        ");
+	print("               By: DEntisT              ");
+	print("                                        ");
+	print("|======================================|");
+	print("                                        ");
+	print("                                        ");
+	#if defined DETUTILS_FILTERSCRIPT_MODE
+	print(" SA:MP | DETUtils - Filterscript mode is ON.");
+	#endif
+	#if defined DETUTILS_TESTING_MODE
+	print(" SA:MP | DETUtils - Testing mode is ON.");
+	#endif
+	print("                                        ");
 }
 
 static void:UnloadDETUtils()
 {
-    print("                                        ");
-    print("|======================================|");
-    print("                                        ");
-    print("            SA:MP | DETUtils            ");
-    print("          System is unloading...        ");
-    print("                                        ");
-    print("               By: DEntisT              ");
-    print("                                        ");
-    print("|======================================|");
-    print("                                        ");
-    print("                                        ");
-    #if defined DETUTILS_FILTERSCRIPT_MODE
-    print(" SA:MP | DETUtils - Filterscript mode is OFF.");
-    #endif
-    #if defined DETUTILS_TESTING_MODE
-    print(" SA:MP | DETUtils - Testing mode is OFF.");
-    #endif
-    print("                                        ");
+	print("                                        ");
+	print("|======================================|");
+	print("                                        ");
+	print("            SA:MP | DETUtils            ");
+	print("          System is unloading...        ");
+	print("                                        ");
+	print("               By: DEntisT              ");
+	print("                                        ");
+	print("|======================================|");
+	print("                                        ");
+	print("                                        ");
+	#if defined DETUTILS_FILTERSCRIPT_MODE
+	print(" SA:MP | DETUtils - Filterscript mode is OFF.");
+	#endif
+	#if defined DETUTILS_TESTING_MODE
+	print(" SA:MP | DETUtils - Testing mode is OFF.");
+	#endif
+	print("                                        ");
 }
 
 #if !defined FILTERSCRIPT
 
 public OnGameModeInit()
 {
-    if(funcidx("a_init_OnGameModeInit") != -1)
-    {
-        CallLocalFunction("a_init_OnGameModeInit","");
-    }
-    OnDETUtilsInit();
-    return 1;
+	if(funcidx("a_init_OnGameModeInit") != -1)
+	{
+		CallLocalFunction("a_init_OnGameModeInit","");
+	}
+	OnDETUtilsInit();
+	return 1;
 }
 
 #if defined _ALS_OnGameModeInit
-    #undef OnGameModeInit
+	#undef OnGameModeInit
 #else
-    #define _ALS_OnGameModeInit
+	#define _ALS_OnGameModeInit
 #endif
 
 #define OnGameModeInit a_init_OnGameModeInit
@@ -220,18 +225,18 @@ forward a_init_OnGameModeInit();
 
 public OnGameModeExit()
 {
-    if(funcidx("a_init_OnGameModeExit") != -1)
-    {
-        CallLocalFunction("a_init_OnGameModeExit","");
-    }
-    OnDETUtilsExit();
-    return 1;
+	if(funcidx("a_init_OnGameModeExit") != -1)
+	{
+		CallLocalFunction("a_init_OnGameModeExit","");
+	}
+	OnDETUtilsExit();
+	return 1;
 }
 
 #if defined _ALS_OnGameModeExit
-    #undef OnGameModeExit
+	#undef OnGameModeExit
 #else
-    #define _ALS_OnGameModeExit
+	#define _ALS_OnGameModeExit
 #endif
 
 #define OnGameModeExit a_init_OnGameModeExit
@@ -242,18 +247,18 @@ forward a_init_OnGameModeExit();
 
 public OnFilterScriptInit()
 {
-    if(funcidx("a_init_OnFilterScriptInit") != -1)
-    {
-        CallLocalFunction("a_init_OnFilterScriptInit", "");
-    }
-    OnDETUtilsInit();
-    return 1;
+	if(funcidx("a_init_OnFilterScriptInit") != -1)
+	{
+		CallLocalFunction("a_init_OnFilterScriptInit", "");
+	}
+	OnDETUtilsInit();
+	return 1;
 }
 
 #if defined _ALS_OnFilterScriptInit
-    #undef OnFilterScriptInit
+	#undef OnFilterScriptInit
 #else
-    #define _ALS_OnFilterScriptInit
+	#define _ALS_OnFilterScriptInit
 #endif
 
 #define OnFilterScriptInit a_init_OnFilterScriptInit
@@ -264,18 +269,18 @@ forward a_init_OnFilterScriptInit();
 
 public OnFilterScriptExit()
 {
-    if(funcidx("a_init_OnFilterScriptExit") != -1)
-    {
-        CallLocalFunction("a_init_OnFilterScriptExit","");
-    }
-    OnDETUtilsExit();
-    return 1;
+	if(funcidx("a_init_OnFilterScriptExit") != -1)
+	{
+		CallLocalFunction("a_init_OnFilterScriptExit","");
+	}
+	OnDETUtilsExit();
+	return 1;
 }
 
 #if defined _ALS_OnFilterScriptExit
-    #undef OnFilterScriptExit
+	#undef OnFilterScriptExit
 #else
-    #define _ALS_OnFilterScriptExit
+	#define _ALS_OnFilterScriptExit
 #endif
 
 #define OnFilterScriptExit a_init_OnFilterScriptExit
@@ -289,22 +294,22 @@ forward a_init_OnFilterScriptExit();
 forward OnDETUtilsInit();
 public OnDETUtilsInit()
 {
-    #if defined detutils_debug
-    SendRconCommand("hostname [samp-detutils]: (test) - Server");
-    SetGameModeText("SA:MP | DET-Utils");
-    #endif
-    LoadDETUtils();
-    if(funcidx("a_init_OnDETUtilsInit") != -1)
-    {
-        CallLocalFunction("a_init_OnDETUtilsInit", "");
-    }
-    return 1;
+	#if defined detutils_debug
+	SendRconCommand("hostname [samp-detutils]: (test) - Server");
+	SetGameModeText("SA:MP | DET-Utils");
+	#endif
+	LoadDETUtils();
+	if(funcidx("a_init_OnDETUtilsInit") != -1)
+	{
+		CallLocalFunction("a_init_OnDETUtilsInit", "");
+	}
+	return 1;
 }
 
 #if defined _ALS_OnDETUtilsInit
-    #undef OnDETUtilsInit
+	#undef OnDETUtilsInit
 #else
-    #define _ALS_OnDETUtilsInit
+	#define _ALS_OnDETUtilsInit
 #endif
 
 #define OnDETUtilsInit a_init_OnDETUtilsInit
@@ -314,18 +319,18 @@ forward a_init_OnDETUtilsInit();
 forward OnDETUtilsExit();
 public OnDETUtilsExit()
 {
-    UnloadDETUtils();
-    if(funcidx("a_init_OnDETUtilsExit") != -1)
-    {
-        CallLocalFunction("a_init_OnDETUtilsExit", "");
-    }
-    return 1;
+	UnloadDETUtils();
+	if(funcidx("a_init_OnDETUtilsExit") != -1)
+	{
+		CallLocalFunction("a_init_OnDETUtilsExit", "");
+	}
+	return 1;
 }
 
 #if defined _ALS_OnDETUtilsExit
-    #undef OnDETUtilsExit
+	#undef OnDETUtilsExit
 #else
-    #define _ALS_OnDETUtilsExit
+	#define _ALS_OnDETUtilsExit
 #endif
 
 #define OnDETUtilsExit a_init_OnDETUtilsExit

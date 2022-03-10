@@ -428,11 +428,42 @@ Includes
  	#endif
 
 #endif
+#if !defined DETUTILS_NO_FOREACH
+
+ 	//#warning [samp-detutils]: (includes) - Library 'd_properties' is disabled.
+	#include "d_foreach"
+
+	// Vercheck
+
+	#if !defined DETUTILS_LIBVER_ALS
+		
+		#error [samp-detutils]: (version) - Version not specified.
+	
+	#elseif defined DETUTILS_LIBVER_ALS
+
+		#if DETUTILS_LIBVER_ALS != 1
+
+			#error [samp-detutils]: (version) - 'd_foreach.inc' is outdated.
+
+		#endif
+
+	#endif
+
+#else
+
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [samp-detutils]: (includes) - Library 'd_foreach' is disabled.
+
+ 	#endif
+
+#endif
 
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
  && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_DMZONE && defined DETUTILS_NO_TEAMS \
- && defined DETUTILS_NO_DIALOG && defined DETUTILS_NO_VARS && defined DETUTILS_NO_ALS
+ && defined DETUTILS_NO_DIALOG && defined DETUTILS_NO_VARS && defined DETUTILS_NO_ALS \
+ && defined DETUTILS_NO_FOREACH
 
 	#warning [samp-detutils]: (warning) - All library modules are disabled.
 
