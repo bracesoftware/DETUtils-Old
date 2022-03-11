@@ -56,6 +56,9 @@ iterator remove(MyIterator, 1);
 iterator remove(MyIterator, 1);
 ```
 - This is possible since `iterator (add/remove)` highly rely on the standard `for` loop.
+
+### Iterator cleanup
+- If you want to do an iterator cleanup for any reason, just re-initialize it using `iterator init`.
 ## Messages from creator
 ### Notes
 - No notes yet.
