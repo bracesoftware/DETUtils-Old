@@ -13,6 +13,11 @@ iterator new MyIterator<10>;
 ```pawn
 iter new MyIterator<10>;
 ```
+- Before using an iterator, make sure to initialise it:
+
+```pawn
+iterator init(MyIterator);
+```
 ## API
 
 ## Messages from creator
