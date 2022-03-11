@@ -73,6 +73,11 @@ hook MyTaskName()
   return als continue;
 }
 ```
+- If you wish to, for any reason, you can disable this keyword simply by using:
+
+```pawn
+#define DETUTILS_NO_HOOK_KEYWORD
+```
 ## Messages from creator
 ### Notes
 - No notes.
