@@ -75,7 +75,7 @@ iterator add(MyIterator, 1);
 ```pawn
 iterator remove(MyIterator, 1);
 ```
-- These two are literally the point of this library - add and remove the iteration values. The good thing is that you can add any value to the iterator, because the number between `<` and `>` represents the number of slots. The slot number is actually the size of the iterator, but besides its size any value can be added. So, this code is completely valid even if the size is for example only `10`:
+- These two are literally the point of this library - add and remove the iteration values. The good thing is that you can add any value to the iterator, because the number between `<` and `>` represents the number of slots. The slot number is actually the size of the iterator, but regardless its size any value can be added. So, this code is completely valid even if the size is for example only `10`:
 
 ```pawn
 iterator add(MyIterator, 2437);
