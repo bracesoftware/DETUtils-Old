@@ -18,6 +18,25 @@ iter new MyIterator<10>;
 ```pawn
 iterator init(MyIterator);
 ```
+- After the iterator initialization, it's ready for a proper use - let's continue.
+
+```pawn
+iterator add(MyIterator,1);
+```
+- We added a value `1` to a iterator. So, when we do this:
+
+```pawn
+foreach do(new i : MyIterator)
+{
+  printf("%i", i);
+}
+```
+- The output will be:
+
+```
+1
+```
+
 ## API
 
 ## Messages from creator
