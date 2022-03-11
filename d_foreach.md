@@ -41,6 +41,46 @@ foreach do(new i : MyIterator)
 ```pawn
 iterator remove(MyIterator, 1);
 ```
+## Explanation
+### Declaration
+- So let's firstly explain how `iterator new` works, so:
+```pawn
+iterator new MyIterator<10>;
+```
+- This will declare an iterator, actually this is a macro, so in fact iterators are just arrays. This will code will generate into this:
+```pawn
+enum IteratorData
+{
+  returnvalues[SIZE]
+};
+new IteratorIndex;
+new Iterator[IteratorData];
+```
+- `IteratorData` is an enumerator holding the information about the iterator, `IteratorIndex` is an index of `returnvalues` updated after `iterator add` is used.
+### Initialization
+```pawn
+iterator init(MyIterator);
+```
+- This is REALLY important part, this actually prepares the iterator for it's iteration. If you don't initialize the iterator, your console will be full of zeros if you try to this:
+```pawn
+foreach do(new i : MyIterator)
+{
+  printf("%i", i);
+}
+```
+### Add and remove values
+```pawn
+iterator add(MyIterator, 1);
+```
+```pawn
+iterator remove(MyIterator, 1);
+```
+- These two are literally the point of this library - add and remove the iteration values. The good thing is that you can add any value to the iterator, because the number between `<` and `>` represents the number of slots. The slot number is actually the size of the iterator, but besides its size any value can be added. So, this code is completely valid even if the size is for example only `10`:
+
+```pawn
+iterator add(MyIterator, 2437);
+```
+- Let's explain what `iterator add` does, it just adds the provided number to an index of `returnvalues` in `IteratorData`, that index is already mentioned `IteratorIndex` which is updated itself after the each iterator update. Removing the value is simple - almost the same process, just reversed.
 ## Facts
 ### Same value multiple times
 - This one is completely possible and valid, but to remove the twice-applied value, you'll need logically think - just remove the value twice. So if you did this:
