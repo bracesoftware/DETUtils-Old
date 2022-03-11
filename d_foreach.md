@@ -8,6 +8,11 @@ SA:MP `foreach` - Provides `foreach` and `iterator` keywords to interact with th
 ```pawn
 iterator new MyIterator<10>;
 ```
+- You can use `iter` shortcut too
+
+```pawn
+iter new MyIterator<10>;
+```
 ## API
 
 ## Messages from creator
