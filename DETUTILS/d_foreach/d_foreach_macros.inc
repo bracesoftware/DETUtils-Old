@@ -51,7 +51,7 @@
 #define DETUTILSFOREACH_DO_DECL:#${%0..%1} enum ite_%0{__retvls[%1]};
 #define DETUTILS_ITER__decl:<%0..?||$$|#> new iid_%0;new itr_%0[ite_%0]
 #define DETUTILS_ITER__SIZE:|||%1..$||| sizeof(itr_%1[__retvls])
-#define @d_ADD<%1,%2> itridx%1++,%2=itr_%1[__retvls][itridx%1]
+#define @d_ADD<%1,%2> itridx%1++,%2=itr_%1[__retvls][--itridx%1]
 #define @d_FUNC<%1> itridx%1<iterator sizeof(%1)
 #define @d_NEW<%1> new itridx%1
 #define @d_VAL_C<%1> itr_%1[__retvls][itridx%1]!=-1
