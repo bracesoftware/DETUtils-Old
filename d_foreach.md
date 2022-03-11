@@ -21,7 +21,7 @@ iterator init(MyIterator);
 - After the iterator initialization, it's ready for a proper use - let's continue.
 
 ```pawn
-iterator add(MyIterator,1);
+iterator add(MyIterator, 1);
 ```
 - We added a value `1` to a iterator. So, when we do this:
 
@@ -36,9 +36,26 @@ foreach do(new i : MyIterator)
 ```
 1
 ```
+- To remove a value, use `iterator remove`:
 
-## API
+```pawn
+iterator remove(MyIterator, 1);
+```
+## Facts
+### Same value multiple times
+- This one is completely possible and valid, but to remove the twice-applied value, you'll need logically think - just remove the value twice. So if you did this:
 
+```pawn
+iterator add(MyIterator, 1);
+iterator add(MyIterator, 1);
+```
+- To remove `1` completely, just remove it twice:
+
+```pawn
+iterator remove(MyIterator, 1);
+iterator remove(MyIterator, 1);
+```
+- This is possible since `iterator (add/remove)` highly rely on the standard `for` loop.
 ## Messages from creator
 ### Notes
 ### Warnings
