@@ -143,6 +143,7 @@ If you're facing issues with your code compilation after including the library, 
 - [Zeex](https://github.com/zeex) - ZCMD command processor concept
 - Y_Less - code parser, another amazing thing which you can get [here](https://github.com/y-less/code-parse.inc)
 - Kirima - command guesser, another cool thing you can get [here](https://github.com/se8870/samp-command-guess)
+- Zeex - AMX assembly
 
 ### Contributions
 
