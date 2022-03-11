@@ -57,6 +57,22 @@ als function MyTaskName()
   return als continue;
 }
 ```
+### `hook` keyword
+- Instead of using `als function`, you can simply use `hook`. Which means this will work too:
+
+```pawn
+task SuperCoolTask[1000]()
+{
+  als do("MyTaskName", "");
+  return 1;
+}
+
+hook MyTaskName()
+{
+  print("MyTaskName called!");
+  return als continue;
+}
+```
 ## Messages from creator
 ### Notes
 - No notes.
