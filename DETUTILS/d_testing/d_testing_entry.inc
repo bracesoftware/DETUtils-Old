@@ -62,8 +62,22 @@ als function OnGameModeInit()
 
 @variable( .datatype = INTEGER, .args = {"Variable4", false, false, 0} ) HandlerName4();
 
+iterator new MyIterator<10>;
+
 public OnDETUtilsInit() // This should be the last hook.
 {
+	iterator init(MyIterator);
+
+	iterator add(MyIterator,1);
+	iterator add(MyIterator,3);
+	iterator add(MyIterator,5);
+	iterator add(MyIterator,0);
+
+	foreach do(new i : MyIterator)
+	{
+		printf("%i", i);
+	}
+
 	CallVariableHandler("HandlerName");
 	CallVariableHandler("HandlerName1");
 	CallVariableHandler("HandlerName2");

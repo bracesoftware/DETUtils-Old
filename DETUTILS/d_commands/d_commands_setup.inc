@@ -12,7 +12,7 @@
  */
 
 #if defined _INC_code_parse_inc
-#define D%0)\10; D%0)
+#define SLASH_COMMAND)%0\10; SLASH_COMMAND)
 #define @DETUTILSCMD_BRACKET__$%0$ D%0)
 #define main_%0\32; main_
 // For parsing.

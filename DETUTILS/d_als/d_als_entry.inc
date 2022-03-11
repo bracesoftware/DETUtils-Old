@@ -34,6 +34,13 @@
 
 */
 
+#if !defined DETUTILS_NO_HOOK_KEYWORD
+
+    #define hook \
+        als function
+
+#endif
+
 #if !defined DET_g_Interval
 #define DET_g_Interval 1000
 #endif

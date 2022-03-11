@@ -11,6 +11,8 @@
  *
  */
 
+#include "d_foreach_macros"
+
 /*
                                                                                       
 88b           d88              88                         db         88888888ba   88  
@@ -25,7 +27,71 @@
                                                                                       
 */
 
-#include "d_foreach_macros"
+#if defined __DETUTILS_DEFAULT_ITERATORS
+#if !defined MAX_DIALOGS
+
+	#define MAX_DIALOGS 37000
+
+#endif
+
+// SA:MP iteratorators.
+iterator new Player<MAX_PLAYERS>;
+iterator new NPC<MAX_PLAYERS>;
+
+public OnPlayerConnect(playerid)
+{
+	iterator add(Player, playerid);
+	if(IsPlayerNPC(playerid))
+	{
+		iterator remove(Player, playerid);
+		iterator add(NPC, playerid);
+	}
+	if(funcidx("d_fr_playerconnect") != -1)
+	{
+		CallLocalFunction("d_fr_playerconnect", "i", playerid);
+	}
+	return 1;
+}
+
+#if defined _ALS_OnPlayerConnect
+	#undef OnPlayerConnect
+#else
+	#define _ALS_OnPlayerConnect
+#endif
+
+#define OnPlayerConnect( d_fr_playerconnect(
+
+forward d_fr_playerconnect(playerid);
+
+public OnPlayerDisconnect(playerid, reason)
+{
+	if(!IsPlayerNPC(playerid)) iterator remove(Player, playerid);
+	if(IsPlayerNPC(playerid)) iterator remove(NPC, playerid);
+	if(funcidx("d_fr_playerdisconnect") != -1)
+	{
+		CallLocalFunction("d_fr_playerdisconnect", "ii", playerid, reason);
+	}
+	return 1;
+}
+
+#if defined _ALS_OnPlayerDisconnect
+	#undef OnPlayerDisconnect
+#else
+	#define _ALS_OnPlayerDisconnect
+#endif
+
+#define OnPlayerDisconnect( d_fr_playerdisconnect(
+
+forward d_fr_playerdisconnect(playerid, reason);
+
+iterator new Vehicle<MAX_VEHICLES>;
+iterator new PlayerTextDraw<_:MAX_PLAYER_TEXT_DRAWS>;
+iterator new TextDraw<_:MAX_TEXT_DRAWS>;
+iterator new Object<MAX_OBJECTS>;
+iterator new Menu<_:MAX_MENUS>;
+iterator new Pickup<MAX_PICKUPS>;
+iterator new Dialog<MAX_DIALOGS>;
+#endif
 
 /*
                                                                       
@@ -43,6 +109,19 @@
 
 public OnDETUtilsInit()
 {
+	#if defined __DETUTILS_DEFAULT_ITERATORS
+	// Iterator initialisation is IMPORTANT.
+	iterator init(Player);
+	iterator init(NPC);
+	iterator init(Vehicle);
+	iterator init(PlayerTextDraw);
+	iterator init(TextDraw);
+	iterator init(Object);
+	iterator init(Menu);
+	iterator init(Pickup);
+	iterator init(Dialog);
+	#endif
+
 	#if defined detutils_debug
 	SaveLogIntoFile("detutils_foreach.log", "[samp-detutils]: (debug) - Loading...");
 	SaveLogIntoFile("detutils_foreach.log", "[samp-detutils]: (debug) - Loaded.");
