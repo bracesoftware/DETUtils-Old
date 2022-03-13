@@ -72,6 +72,11 @@ stock cool()
     return @rem(.level = IMPORTANT) : "really cool";;
 }
 ```
+- Anywhere!
+
+```pawn
+#define SUPER_COOL_DEFINE @rem(.level = BUG) : "cool";
+```
 
 # Facts
 
