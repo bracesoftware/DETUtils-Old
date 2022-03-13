@@ -15,6 +15,8 @@
 #define __DETUtils 0x203
 #define __DETUtilsRelease 0x7
 
+#include "d_rem"
+
 // The rest of shit
 
 #define @DETUTILSCORE_KWORD__@%0\32; @DETUTILSCORE_KWORD__@
