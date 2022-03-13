@@ -31,6 +31,29 @@ Below, you have a list of all internal files.
 ### d_version.inc
 - Little include used to change library's version, including major release, minor release, patch and `R` marked release (re-release of the same version).
 
+### d_rem.inc
+- Provides the `@rem` decorator and rem levels: `IMPORTANT`, `NOTE`, `HACK` and `BUG`. View the examples below:
+
+```pawn
+stock Func(args, ...)
+{
+  return ...;
+}
+@rem(.level = BUG) : "This code above may cause bugs!";
+
+#define DISABLE_OPTION 3
+
+@rem(.level = NOTE) : "This code will only work if it is placed before the include import.";
+
+forward public Func(...) return 1;
+
+@rem(.level = HACK) : "This is incredibly nice thing!";
+
+$some_macro<>=#DATA;
+
+@rem(.level = IMPORTANT) : "This is some retarded macro! Don't reuse it!";
+```
+
 # Facts
 
 ## Versions
