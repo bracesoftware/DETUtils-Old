@@ -53,6 +53,25 @@ $some_macro<>=#DATA;
 
 @rem(.level = IMPORTANT) : "This is some retarded macro! Don't reuse it!";
 ```
+- You can use it like this:
+
+```pawn
+als function OnGameModeInit(@rem(.level = BUG) : "cool";)
+{
+    printf("This works! LOL");
+    return als break;
+}
+```
+- Or even as a return or inside a function:
+
+```pawn
+stock cool()
+{
+  	@rem(.level = NOTE) : "note";
+    code;
+    return @rem(.level = IMPORTANT) : "really cool";;
+}
+```
 
 # Facts
 
