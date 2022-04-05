@@ -3,13 +3,13 @@
   <img width="500" align="center" src="detutils.png">
 </p>
 <h4 align = "center">
-  Addition to open.mp Standard Scripting Library with new stuff,
+  Addition to open.mp & Pawn Standard Scripting Library packages with new stuff,
   anti-cheat system, map editor and many more functions!
 </h4>
 
 ### Current library version: `2.0.3`
 
-Hello scripter! Welcome to *open.mp DEntisT's Utilities* (or **detutils** for short) "read me" file. So, now, you may ask about - what's this? Well - in general, this addition to open.mp Standard Scripting package contains libraries that have in-game visible effects and libraries that contain new scripting features. 
+Hello scripter! Welcome to *open.mp & Pawn DEntisT's Utilities* (or **detutils** for short) "read me" file. So, now, you may ask about - what's this? Well - in general, this addition to open.mp Standard Scripting package contains libraries that have in-game visible effects and libraries that contain new scripting features. 
 - Below, you can find information about each library.
 - For better understanding of this, make sure you know Pawn and a_samp - read all the docs [here](https://team.sa-mp.com/wiki-archive.html)...
 
