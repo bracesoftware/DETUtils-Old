@@ -178,5 +178,8 @@ public OnGameModeInit()
 ```
 ## `DestroyQuery`
 - Used to destroy the query and free up space in the slot for another query. Example is shown on ``OnPlayerDisconnect``.
+
+# List of query commands
+- Coming soon! Adding more of them...
 # Messages from creator
 - None currently.
