@@ -458,6 +458,36 @@ Includes
  	#endif
 
 #endif
+#if !defined DETUTILS_NO_TABLES
+
+ 	//#warning [samp-detutils]: (includes) - Library 'd_properties' is disabled.
+	#include "d_tables"
+
+	// Vercheck
+
+	#if !defined DETUTILS_LIBVER_TABLES
+		
+		#error [samp-detutils]: (version) - Version not specified.
+	
+	#elseif defined DETUTILS_LIBVER_TABLES
+
+		#if DETUTILS_LIBVER_TABLES != 1
+
+			#error [samp-detutils]: (version) - 'd_tables.inc' is outdated.
+
+		#endif
+
+	#endif
+
+#else
+
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [samp-detutils]: (includes) - Library 'd_tables' is disabled.
+
+ 	#endif
+
+#endif
 
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \

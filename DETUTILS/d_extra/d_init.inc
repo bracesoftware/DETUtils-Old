@@ -55,6 +55,7 @@ public const detutils_ver = 0x1;
 #define DETUTILS_SCRIPT_VARS 10
 #define DETUTILS_SCRIPT_ALS 11
 #define DETUTILS_SCRIPT_FOREACH 12
+#define DETUTILS_SCRIPT_TABLES 13
 
 stock void:LoadDETUtilsScript(scriptid)
 {
@@ -109,6 +110,10 @@ stock void:LoadDETUtilsScript(scriptid)
 	if(scriptid == DETUTILS_SCRIPT_FOREACH)
 	{
 		print("*** [samp-detutils]: (module) - Loaded: d_foreach.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_TABLES)
+	{
+		print("*** [samp-detutils]: (module) - Loaded: d_tables.inc");
 	}
 }
 

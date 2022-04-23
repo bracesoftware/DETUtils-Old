@@ -6,7 +6,7 @@
  *
  *
  *
- * - Entry files.
+ * - Macros for d_foreach.
  *
  *
  */
