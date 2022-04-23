@@ -493,7 +493,7 @@ Includes
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
  && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_DMZONE && defined DETUTILS_NO_TEAMS \
  && defined DETUTILS_NO_DIALOG && defined DETUTILS_NO_VARS && defined DETUTILS_NO_ALS \
- && defined DETUTILS_NO_FOREACH
+ && defined DETUTILS_NO_FOREACH && defined DETUTILS_NO_TABLES
 
 	#warning [samp-detutils]: (warning) - All library modules are disabled.
 
