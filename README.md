@@ -36,6 +36,7 @@ Below, there is a list of features provided by a certain library.
 - Completely new variable system - [d_vars.inc](d_vars.md)
 - New ALS hooking system - [d_als.inc](d_als.md)
 - New `foreach` implementation - [d_foreach.inc](d_foreach.md)
+- Excel-like management system - [d_tables.inc](d_tables.md)
 
 Documentation contains some extra notes and tips.
 
