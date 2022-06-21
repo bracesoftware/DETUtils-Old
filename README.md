@@ -150,4 +150,4 @@ If you're facing issues with your code compilation after including the library, 
 
 - Just fork the repository, apply your wanted changes and create a pull request!
 
-(c) Copyright - 2022., Elware Corp.
+# © & ® BRACE™
