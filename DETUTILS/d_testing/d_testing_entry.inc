@@ -62,11 +62,11 @@ als function OnGameModeInit()
 
 @variable( .datatype = INTEGER, .args = {"Variable4", false, false, 0} ) HandlerName4();
 
-iterator new MyIterator<10>;
+//iterator new MyIterator<10>;
 
 public OnDETUtilsInit() // This should be the last hook.
 {
-	iterator init(MyIterator);
+	/*iterator init(MyIterator);
 
 	iterator add(MyIterator,1);
 	iterator add(MyIterator,3);
@@ -78,6 +78,9 @@ public OnDETUtilsInit() // This should be the last hook.
 		printf("%i", i);
 	}
 
+	table Create("accounts", 10, 1);
+	table Preview("accounts");
+	*/
 	CallVariableHandler("HandlerName");
 	CallVariableHandler("HandlerName1");
 	CallVariableHandler("HandlerName2");
@@ -1202,6 +1205,10 @@ public OnGameModeInit()
 	CreatePropertyEntranceForTeam("Your Interior", "Amazing people", 825.6589,-1614.8202,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
 	SetPropertyEntranceAngles(GetPropertyIDByName("Your Interior"), 1.0000, 2.0000);
 	CreateDroppedWeapon(30,999,811.1299,-1616.0647,13.5469);
+	table Create("accounts", 10, 2);
+	cell Set("accounts", 4, 0, "4c0r");
+	cell Set("accounts", 4, 1, "4c1r");
+	table Preview("accounts");
 	return 1;
 }
 

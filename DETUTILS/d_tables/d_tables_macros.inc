@@ -35,6 +35,7 @@
 
 #define @DETUTILSTABLES_KWORD__@Create%0(%1) __CreateTable(%1)
 #define @DETUTILSTABLES_KWORD__@Remove%0(%1) __DeleteTable(%1)
+#define @DETUTILSTABLES_KWORD__@Preview%0(%1) __PreviewTable(%1)
 
 #define @DETUTILSTABLES_KWORD__1@Add%0(%1) __CreateColumn(%1)
 #define @DETUTILSTABLES_KWORD__1@Remove%0(%1) __DeleteColumn(%1)
@@ -42,5 +43,5 @@
 #define @DETUTILSTABLES_KWORD__2@Add%0(%1) __CreateRow(%1)
 #define @DETUTILSTABLES_KWORD__2@Remove%0(%1) __DeleteRow(%1)
 
-#define @DETUTILSTABLES_KWORD__@SetValue%0(%1) __SetCellValue(%1)
-#define @DETUTILSTABLES_KWORD__@GetValue%0(%1) __GetCellValue(%1)
+#define @DETUTILSTABLES_KWORD__3@Set%0(%1) __SetCellValue(%1)
+#define @DETUTILSTABLES_KWORD__3@Get%0(%1) __GetCellValue(%1)
