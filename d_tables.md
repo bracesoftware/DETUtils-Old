@@ -11,7 +11,7 @@ SA:MP Tables - Excel-like column, row and cell management system.
 table Create("accounts", 10, 2);
 ```
 
-- Now we didn't really create the table, we just initialized it - or in other words, loaded it. So, we initialized the table `accounts` which currently has 10 useable columns and 2 useable rows. Note that the column and row IDs start from `0`! You could do `cell Set()` even before initializing the table - but the data would not appear on the table preview. Now, let's set the cell values, use the `cell` keyword for that. Do the following:
+- Now we didn't really create the table, we just initialized it - or in other words, loaded it. So, we initialized the table `accounts` which currently has 10 previewable columns and 2 previewable rows. Note that the column and row IDs start from `0`! You could do `cell Set()` even before initializing the table - but the data would not appear on the table preview. Now, let's set the cell values, use the `cell` keyword for that. Do the following:
 
 ```pawn
 cell Set("accounts", 4, 0, "4c0r");
@@ -50,3 +50,5 @@ table Preview("accounts");
 [18:15:27]  
 [18:15:27] =============================================
 ```
+
+- Note that you don't really need to use the initialization function unless you want to preview your table like this. You can set the values for cells without initializing.
