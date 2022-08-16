@@ -37,6 +37,7 @@ Below, there is a list of features provided by a certain library.
 - New ALS hooking system - [d_als.inc](d_als.md)
 - New `foreach` implementation - [d_foreach.inc](d_foreach.md)
 - Excel-like management system - [d_tables.inc](d_tables.md)
+- Extension to Discord Connector plugin - [d_discordutils.inc](d_discordutils.md)
 
 Documentation contains some extra notes and tips.
 
