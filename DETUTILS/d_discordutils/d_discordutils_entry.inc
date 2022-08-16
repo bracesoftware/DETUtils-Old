@@ -6,10 +6,12 @@
  *
  *
  *
- * - An excel-like __table management system.
+ * - An extension to the DCC plugin.
  *
  *
  */
+
+#include "d_discordutils_macros"
 
 /*
                                                                                       
