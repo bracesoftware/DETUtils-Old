@@ -489,6 +489,37 @@ Includes
 
 #endif
 
+#if !defined DETUTILS_NO_DISCORDUTILS
+
+ 	//#warning [samp-detutils]: (includes) - Library 'd_properties' is disabled.
+	#include "d_discordutils"
+
+	// Vercheck
+
+	#if !defined DETUTILS_LIBVER_DISCORDUTILS
+		
+		#error [samp-detutils]: (version) - Version not specified.
+	
+	#elseif defined DETUTILS_LIBVER_DISCORDUTILS
+
+		#if DETUTILS_LIBVER_DISCORDUTILS != 1
+
+			#error [samp-detutils]: (version) - 'd_discordutils.inc' is outdated.
+
+		#endif
+
+	#endif
+
+#else
+
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [samp-detutils]: (includes) - Library 'd_discordutils' is disabled.
+
+ 	#endif
+
+#endif
+
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
  && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_DMZONE && defined DETUTILS_NO_TEAMS \
