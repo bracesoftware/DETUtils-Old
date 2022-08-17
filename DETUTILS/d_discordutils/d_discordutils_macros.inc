@@ -25,6 +25,15 @@
                                                                                       
 */
 
-#define @DETUTILSDCCUTILS_DEC__@%0\32; @DETUTILSDCCUTILS_DEC__@
+#if !defined DETUTILS_CMD_MACROS
 
-#define @discord%0(%1) @DETUTILSDCCUTILS_DEC__@
+#define @DETUTILS_CMD_DEC__@%0\32; @DETUTILS_CMD_DEC__@
+
+#define @command%0(%1.type%2= @DETUTILS_CMD_DEC__@
+
+#endif
+
+#define dccmd_%0\32; dccmd_
+
+#define @DETUTILS_CMD_DEC__@DISCORD_COMMAND%2)%0(%1) \
+	dccmd_%0(%1);public dccmd_%0(%1)

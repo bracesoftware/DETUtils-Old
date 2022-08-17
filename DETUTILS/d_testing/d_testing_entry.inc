@@ -27,6 +27,13 @@ keyword  public Func()
 
 keyword   forward  Function(a, const b[], Float:c);
 
+//test for discord text cmds
+
+@command(.type = DISCORD_COMMAND) dctest(DCC_Guild:guild, DCC_Channel:channel, DCC_Message:message, DCC_User:author, params)
+{
+	DCC_SendChannelMessage(channel, "this fucking works");
+	return 1;
+}
 
 // Actual code:
 

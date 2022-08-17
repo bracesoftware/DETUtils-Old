@@ -11,6 +11,15 @@
  *
  */
 
+#if !defined dcconnector_included
+ 	#warning [samp-detutils]: (warning) - Discord Connector plugin is missing, the 'd_discordutils.inc' library was automatically disabled.
+ 	#endinput
+#endif
+
+#if !defined DISCORD_COMMAND_PREFIX
+ 	#error [samp-detutils]: (error) - Discord Command prefix is not defined. Please do: `#define DISCORD_COMMAND_PREFIX '!'`
+#endif
+
 #include "d_discordutils_macros"
 
 /*
@@ -26,6 +35,48 @@
                                                                                       
                                                                                       
 */
+
+public DCC_OnMessageCreate(DCC_Message:message)
+{
+	new DCC_User:author, 
+		DCC_Channel:channel, 
+		DCC_Guild:guild, 
+		content[1024];
+
+	DCC_GetMessageAuthor(message, author);
+	DCC_GetMessageChannel(message, channel);
+	DCC_GetMessageContent(message, content);
+	DCC_GetChannelGuild(channel, guild);
+
+	if(content[0] == DISCORD_COMMAND_PREFIX)
+	{
+		new i;
+		new split[2][1024];
+		for(i = 0; i < strlen(content); i++)
+		{
+			if(content[i] == ' ')
+			{
+				strmid(split[1], content, i, strlen(content));
+				strmid(split[0], content, 0, i);
+				break;
+			}
+		}
+
+		strdel(split[0], 0, 1); //delete the prefix
+		new cmdfunc[32];
+		format(cmdfunc, sizeof cmdfunc, "dccmd_%s", split[0]);
+
+		CallLocalFunction(cmdfunc, "iiiis", 
+			_:guild, 
+			_:channel, 
+			_:message, 
+			_:author, 
+			split[1]);
+		printf("cmd: %s, params: %s", split[0], split[1]);
+
+	}
+	return 1;
+}
 
 /*
                                                                       
