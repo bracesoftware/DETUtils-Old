@@ -1,5 +1,5 @@
 # d_discorddata.inc
-Discord Data - A library which provides guild, channel, user, message and application data management.
+Discord Data - A library which provides guild, channel, user and application data management.
 
 [Go back to home page...](README.md)
 
