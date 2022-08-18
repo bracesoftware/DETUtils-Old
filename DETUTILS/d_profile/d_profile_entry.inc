@@ -6,21 +6,13 @@
  *
  *
  *
- * - An extension to the DCC plugin.
+ * - A library which is providing the
+ *	 code profiling.
  *
  *
  */
 
-#if !defined dcconnector_included
- 	#warning [samp-detutils]: (warning) - Discord Connector plugin is missing, the 'd_discordutils.inc' library was automatically disabled.
- 	#endinput
-#endif
-
-#if !defined DISCORD_COMMAND_PREFIX
- 	#error [samp-detutils]: (error) - Discord Command prefix is not defined. Please do: `#define DISCORD_COMMAND_PREFIX '!'`
-#endif
-
-#include "d_discordutils_macros"
+#include "d_profile_macros"
 
 /*
                                                                                       
@@ -36,39 +28,8 @@
                                                                                       
 */
 
-public DCC_OnMessageCreate(DCC_Message:message)
-{
-	new DCC_User:author, 
-		DCC_Channel:channel, 
-		DCC_Guild:guild, 
-		content[1024];
-
-	DCC_GetMessageAuthor(message, author);
-	DCC_GetMessageChannel(message, channel);
-	DCC_GetMessageContent(message, content);
-	DCC_GetChannelGuild(channel, guild);
-
-	if(content[0] == DISCORD_COMMAND_PREFIX)
-	{
-		new component[2][1024];
-		sscanf do(content, component, 2); // using d_fmargs.inc
-
-		strdel(component[0], 0, 1); //delete the prefix
-		new cmdname[32];
-		format(cmdname, sizeof cmdname, "dccmd_%s", component[0]);
-
-		CallLocalFunction(cmdname, "iiiis", 
-			_:guild, 
-			_:channel, 
-			_:message, 
-			_:author, 
-			component[1]);
-
-		printf("component[0]: %c, component[1]: %c", component[0], component[1]);
-
-	}
-	return 1;
-}
+new DET_g_ProfilerName[32];
+new DET_g_ProfilerCount;
 
 /*
                                                                       
@@ -87,13 +48,13 @@ public DCC_OnMessageCreate(DCC_Message:message)
 public OnDETUtilsInit()
 {
 	#if defined detutils_debug
-	SaveLogIntoFile("detutils_discordutils.log", "[samp-detutils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_discordutils.log", "[samp-detutils]: (debug) - Loaded.");
+	SaveLogIntoFile("detutils_profile.log", "[samp-detutils]: (debug) - Loading...");
+	SaveLogIntoFile("detutils_profile.log", "[samp-detutils]: (debug) - Loaded.");
 	#endif
-	LoadDETUtilsScript(DETUTILS_SCRIPT_DISCORDUTILS);
-	if(funcidx("d_dcutils_detutilsinit") != -1)
+	LoadDETUtilsScript(DETUTILS_SCRIPT_PROFILE);
+	if(funcidx("d_profile_detutilsinit") != -1)
 	{
-		CallLocalFunction("d_dcutils_detutilsinit", "");
+		CallLocalFunction("d_profile_detutilsinit", "");
 	}
 	return 1;
 }
@@ -104,6 +65,6 @@ public OnDETUtilsInit()
 	#define _ALS_OnDETUtilsInit
 #endif
 
-#define OnDETUtilsInit( d_dcutils_detutilsinit(
+#define OnDETUtilsInit( d_profile_detutilsinit(
 
-forward d_dcutils_detutilsinit();
+forward d_profile_detutilsinit();

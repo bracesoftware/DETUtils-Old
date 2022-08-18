@@ -11,7 +11,7 @@
  *   of 'sscanf'.
  *
  */
-
+ 
 #if defined DETUTIS_NO_SSCANF
 
 	#endinput

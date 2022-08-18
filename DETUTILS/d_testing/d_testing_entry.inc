@@ -36,7 +36,44 @@ keyword   forward  Function(a, const b[], Float:c);
 }
 
 // Actual code:
+@profile(.format = {""}) LOL()
+{
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	printf("This works! LOL");
+	print("some code to get profiled.");
+	@profile(.value = 1) return;
+}
 
+#if !defined DETUTIS_NO_SSCANF
 @command(.type = SLASH_COMMAND) sscanftest(playerid, params[])
 {
 	new id, array[2][3];
@@ -50,7 +87,7 @@ keyword   forward  Function(a, const b[], Float:c);
 
 	return 1;
 }
-
+#endif
 enum Enums
 {
 	Admin
@@ -88,6 +125,7 @@ public OnDETUtilsInit() // This should be the last hook.
 	table Create("accounts", 10, 1);
 	table Preview("accounts");
 	*/
+
 	CallVariableHandler("HandlerName");
 	CallVariableHandler("HandlerName1");
 	CallVariableHandler("HandlerName2");
@@ -123,6 +161,8 @@ public OnDETUtilsInit() // This should be the last hook.
 	print("|=======================================|");
 	print("                                         ");
 	print("                                         ");
+
+	CallProfiler("LOL", "");
 	return 1;
 }
 
