@@ -31,6 +31,7 @@ Libraries whose contain the new language features.
 - New `foreach` implementation - [d_foreach.inc](d_foreach.md)
 - Excel-like management system - [d_tables.inc](d_tables.md)
 - Profile chunks of code - [d_profile.inc](d_profile.md)
+- Automatic and manual timers - [d_timers.inc](d_timers.md)
 
 ### open.mp Libraries
 Libraries whose contain the new open.mp functions and features.
