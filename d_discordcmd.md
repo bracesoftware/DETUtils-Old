@@ -1,5 +1,5 @@
-# d_discordutils.inc
-Discord Utils - A library which is basically an extension to the Discord Connector plugin, providing more functions and callbacks.
+# d_discordcmd.inc
+Discord Commands - A library which provides creation of Discord text and slash commands.
 
 [Go back to home page...](README.md)
 
@@ -13,3 +13,5 @@ Discord Utils - A library which is basically an extension to the Discord Connect
 }
 ```
 - This creates a basic text command.
+
+- Coming soon as the Discord Connector plugin gets an update.
