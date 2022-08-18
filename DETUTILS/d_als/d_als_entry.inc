@@ -37,7 +37,7 @@
 #if !defined DETUTILS_NO_HOOK_KEYWORD
 
     #define hook \
-        als function
+        @als() function
 
 #endif
 
@@ -46,7 +46,8 @@
 #endif
 
 #define @DETUTILSALS_KEYWORD__@%0\32; @DETUTILSALS_KEYWORD__@
-#define als @DETUTILSALS_KEYWORD__@
+#define @als%0(%1) @DETUTILSALS_KEYWORD__@
+#define als @als()
 #define @DET_ALS$
 //#define @DHQS_%0\32; @DHQS_
 #define @DETUTILSALS_KEYWORD__@break (0)
