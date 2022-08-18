@@ -56,9 +56,10 @@ public const detutils_ver = 0x1;
 #define DETUTILS_SCRIPT_ALS 11
 #define DETUTILS_SCRIPT_FOREACH 12
 #define DETUTILS_SCRIPT_TABLES 13
-#define DETUTILS_SCRIPT_DISCORDUTILS 14
+#define DETUTILS_SCRIPT_DISCORDCMD 14
 #define DETUTILS_SCRIPT_PROFILE 15
 #define DETUTILS_SCRIPT_TIMERS 16
+#define DETUTILS_SCRIPT_DISCORDDATA 17
 
 stock void:LoadDETUtilsScript(scriptid)
 {
@@ -118,9 +119,9 @@ stock void:LoadDETUtilsScript(scriptid)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_tables.inc");
 	}
-	if(scriptid == DETUTILS_SCRIPT_DISCORDUTILS)
+	if(scriptid == DETUTILS_SCRIPT_DISCORDCMD)
 	{
-		print("*** [DETUtils]: (module) - Loaded: d_discordutils.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_discordcmd.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_PROFILE)
 	{
@@ -129,6 +130,10 @@ stock void:LoadDETUtilsScript(scriptid)
 	if(scriptid == DETUTILS_SCRIPT_TIMERS)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_timers.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_DISCORDDATA)
+	{
+		print("*** [DETUtils]: (module) - Loaded: d_discorddata.inc");
 	}
 }
 
