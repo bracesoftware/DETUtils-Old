@@ -5,4 +5,29 @@ Pawn Profiling - A library which is which is providing the code profiling macros
 
 ## How to start to use?
 
-- Coming soon...
+- Profiling is a basic process, simply getting how much time it takes to execute a part of certain code. But although it is a simple process, it is hard to get accurate results, because the time it takes to execute the code depends on various factors.
+
+- This is how to make a profiler function, in which you will put code you want to execute:
+```pawn
+profile code Callback(arg)
+{
+	print("some code to get profiled.");
+	profile return 1;
+}
+```
+
+- Let's do an explanation of the stuff above. `profile code` declares a profiling public function, and `profile return` ends the profiling process (ends the profiling timer).
+
+- Though, this is not automatic, so you'll need to run the profiler manually using:
+
+```pawn
+profile CallProfiler("Callback", "i", arg);
+```
+
+- After the profiler is called, you should get the following message in the console:
+
+```
+ [samp-detutils]: (profiling) - Code 'Callback' took 27 ticks to execute.
+```
+
+- Obviously, the ticks the code takes to execute depends on the code you profile.
