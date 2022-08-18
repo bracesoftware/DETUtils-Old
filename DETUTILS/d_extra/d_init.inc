@@ -58,6 +58,7 @@ public const detutils_ver = 0x1;
 #define DETUTILS_SCRIPT_TABLES 13
 #define DETUTILS_SCRIPT_DISCORDUTILS 14
 #define DETUTILS_SCRIPT_PROFILE 15
+#define DETUTILS_SCRIPT_TIMERS 16
 
 stock void:LoadDETUtilsScript(scriptid)
 {
@@ -124,6 +125,10 @@ stock void:LoadDETUtilsScript(scriptid)
 	if(scriptid == DETUTILS_SCRIPT_PROFILE)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_profile.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_TIMERS)
+	{
+		print("*** [DETUtils]: (module) - Loaded: d_timers.inc");
 	}
 }
 
