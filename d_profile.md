@@ -27,7 +27,7 @@ CallProfiler("Callback", "i", arg);
 - After the profiler is called, you should get the following message in the console:
 
 ```
- [samp-detutils]: (profiling) - Code 'Callback' took 27 ticks to execute.
+ [DETUtils]: (profiling) - Code 'Callback' took 27 ticks to execute.
 ```
 
 - Obviously, the ticks the code takes to execute depends on the code you profile.
