@@ -9,19 +9,19 @@ Pawn Profiling - A library which is which is providing the code profiling macros
 
 - This is how to make a profiler function, in which you will put code you want to execute:
 ```pawn
-profile code Callback(arg)
+@profile(.format = {""}) Callback()
 {
 	print("some code to get profiled.");
-	profile return 1;
+	@profile(.value = 1) return;
 }
 ```
 
-- Let's do an explanation of the stuff above. `profile code` declares a profiling public function, and `profile return` ends the profiling process (ends the profiling timer).
+- Let's do an explanation of the stuff above. `@profile(.format = {""}) Callback()` declares a profiling public function, and `@profile(.value = 1) return` ends the profiling process (ends the profiling timer).
 
 - Though, this is not automatic, so you'll need to run the profiler manually using:
 
 ```pawn
-profile CallProfiler("Callback", "i", arg);
+CallProfiler("Callback", "i", arg);
 ```
 
 - After the profiler is called, you should get the following message in the console:
