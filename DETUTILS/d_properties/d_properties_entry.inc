@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -22,7 +22,7 @@
 #tryinclude "d_extra\d_libtags.inc"
 
 #if !defined d_extra_included
-	#error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+	#error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
 #if defined d_properties_included
@@ -131,7 +131,7 @@ new _EntranceTitleShown[MAX_PLAYERS];
 static void:_PropertyLoadingTime(const playerid)
 {
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - tpcll :: Player ( id : %i ) is now controlable.", playerid);
+	printf("[DETUtils]: (debug) - tpcll :: Player ( id : %i ) is now controlable.", playerid);
 	#endif
 	SetTimerEx("_ToggleControllable", 1000, false, "i", playerid);
 }
@@ -350,7 +350,7 @@ public _OnPlayerNearEntrance(playerid)
 			SetCameraBehindPlayer( playerid );
 			
 			#if defined detutils_debug
-			printf("[samp-detutils]: (debug) - nearintcallback :: Player entered the interior with id : %i.", i);
+			printf("[DETUtils]: (debug) - nearintcallback :: Player entered the interior with id : %i.", i);
 			#endif
 
 			TogglePlayerControllable(playerid,false);
@@ -403,7 +403,7 @@ public _OnPlayerNearEntrance(playerid)
 			_PropertyLoadingTime(playerid);
 
 			#if defined detutils_debug
-			printf("[samp-detutils]: (debug) - nearintcallback :: Player exited the interior with id : %i.", i);
+			printf("[DETUtils]: (debug) - nearintcallback :: Player exited the interior with id : %i.", i);
 			#endif
 
 			PropertyActionID = 1;
@@ -429,7 +429,7 @@ public OnPlayerDisconnect(playerid, reason)
 		CallLocalFunction("aint_ALS_OnPlayerDisconnect", "ii", playerid, reason);
 	}
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - playerdiscc :: Player interior data cleared.");
+	printf("[DETUtils]: (debug) - playerdiscc :: Player interior data cleared.");
 	#endif
 	return 1;
 }
@@ -452,7 +452,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		{
 			_OnPlayerNearEntrance(playerid);
 			#if defined detutils_debug
-			printf("[samp-detutils]: (debug) - keystate :: OnPlayerNearEntrance called successfully.");
+			printf("[DETUtils]: (debug) - keystate :: OnPlayerNearEntrance called successfully.");
 			#endif
 		}
 
@@ -482,7 +482,7 @@ forward aint_ALS_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 DETUTILS_DECL__ func:ResetUpdateBool(playerid)
 {
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - keystate :: util function 'ResetUpdateBool' called successfully.");
+	printf("[DETUtils]: (debug) - keystate :: util function 'ResetUpdateBool' called successfully.");
 	#endif
 
 	_EntranceTitleShown[playerid] = 0;
@@ -503,7 +503,7 @@ public OnPlayerUpdate(playerid)
 			
 			_Announcement(playerid, PropertyName);
 			#if defined detutils_debug
-			printf("[samp-detutils]: (debug) - playerupdate :: Gametext shown.");
+			printf("[DETUtils]: (debug) - playerupdate :: Gametext shown.");
 			#endif
 			_EntranceTitleShown[playerid] = 1;
 			_SetTimer("ResetUpdateBool", 10000, false, "i", playerid);
@@ -556,28 +556,28 @@ stock __Create3DLabelAndPickup( // Internal function.
 	#pragma unused label
 	#pragma unused pickup
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - c3dladp :: String checking finished.");
+	printf("[DETUtils]: (debug) - c3dladp :: String checking finished.");
 	#endif
 
 	if(_VirtualWorld < 0)
 		return 0;
 
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - c3dladp :: Virtual world validity checked.");
+	printf("[DETUtils]: (debug) - c3dladp :: Virtual world validity checked.");
 	#endif
 
 	if(_LabelRadius <= 0)
 		return 0;
 
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - c3dladp :: Label visibility radius check finished.");
+	printf("[DETUtils]: (debug) - c3dladp :: Label visibility radius check finished.");
 	#endif
 
 	if(_Pickupid < 0)
 		return 0;
 
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - c3dladp :: Pickup id validity checked.");
+	printf("[DETUtils]: (debug) - c3dladp :: Pickup id validity checked.");
 	#endif
 	#if !defined _DETUTILS_NO_COMMUNITY_COMPILER
 	label = Create3DTextLabel(
@@ -590,7 +590,7 @@ stock __Create3DLabelAndPickup( // Internal function.
 							_VirtualWorld);
 
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - c3dladp :: Created 3d label successfully.");
+	printf("[DETUtils]: (debug) - c3dladp :: Created 3d label successfully.");
 	#endif
 
 	pickup = CreatePickup(
@@ -602,16 +602,16 @@ stock __Create3DLabelAndPickup( // Internal function.
 					_VirtualWorld);
 
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - c3dladp :: Created dynamic pickup successfully.");
+	printf("[DETUtils]: (debug) - c3dladp :: Created dynamic pickup successfully.");
 	#endif
 	#endif
 	#if !defined _DETUTILS_NO_COMMUNITY_COMPILER
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - Operation completed successfully. Error code: ERRNULL");
+	printf("[DETUtils]: (debug) - Operation completed successfully. Error code: ERRNULL");
 	#endif
 	#else
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - Operation completed. Error code: COMPILER_INVALID");
+	printf("[DETUtils]: (debug) - Operation completed. Error code: COMPILER_INVALID");
 	#endif
 	#endif
 	return 1;
@@ -644,19 +644,19 @@ stock CreatePropertyEntrance(
 		{
 			if(g_PropertyData[g_PropertyID][ValidProp] == 0)
 			{
-				printf("[samp-detutils]: (debug) - Property '%s' successfully created, entrance is set to: %f, %f, %f.",
+				printf("[DETUtils]: (debug) - Property '%s' successfully created, entrance is set to: %f, %f, %f.",
 						PropertyName,
 						Float:_xEntrance, 
 						Float:_yEntrance, 
 						Float:_zEntrance);
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - Property created.");
+				printf("[DETUtils]: (debug) - Property created.");
 				#endif
 
 				//g_PropertyID++;
 
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - Property id assigned.");
+				printf("[DETUtils]: (debug) - Property id assigned.");
 				#endif
 
 				strmid(g_PropertyData[g_PropertyID][p_PropertyName], 
@@ -666,17 +666,17 @@ stock CreatePropertyEntrance(
 						255);
 
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - Saved property name.");
+				printf("[DETUtils]: (debug) - Saved property name.");
 				#endif
 
-				printf("[samp-detutils]: (debug) - Property '%s' has an id %d.",PropertyName,g_PropertyID);
+				printf("[DETUtils]: (debug) - Property '%s' has an id %d.",PropertyName,g_PropertyID);
 
 				g_PropertyData[g_PropertyID][p_PropertyEntrance_X] = _xEntrance;
 				g_PropertyData[g_PropertyID][p_PropertyEntrance_Y] = _yEntrance;
 				g_PropertyData[g_PropertyID][p_PropertyEntrance_Z] = _zEntrance;
 
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - Entrance coordinates assigned to property data.");
+				printf("[DETUtils]: (debug) - Entrance coordinates assigned to property data.");
 				#endif
 
 				g_PropertyData[g_PropertyID][p_PropertyExit_X] = _xExit;
@@ -684,7 +684,7 @@ stock CreatePropertyEntrance(
 				g_PropertyData[g_PropertyID][p_PropertyExit_Z] = _zExit;
 
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - Exit coordinates assigned to property data.");
+				printf("[DETUtils]: (debug) - Exit coordinates assigned to property data.");
 				#endif
 
 				g_PropertyData[g_PropertyID][p_PropertyIntid] = _eInteriorid;
@@ -693,13 +693,13 @@ stock CreatePropertyEntrance(
 				g_PropertyData[g_PropertyID][p_PropertyVwid_OUT] = _xVirtualWorldid;
 
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - Virtual world IDs and interior IDs assigned to property data.");
+				printf("[DETUtils]: (debug) - Virtual world IDs and interior IDs assigned to property data.");
 				#endif
 
 				if(Interior != INTERIOR_CUSTOM)
 				{
 					#if defined detutils_debug
-					printf("[samp-detutils]: (debug) - Assigned interior map id to property id : %i", Interior);
+					printf("[DETUtils]: (debug) - Assigned interior map id to property id : %i", Interior);
 					#endif
 
 					if(Interior == INTERIOR_MARKET_247_1)
@@ -739,18 +739,18 @@ stock CreatePropertyEntrance(
 				{
 					new _EntranceLabelString[300];
 					#if defined detutils_debug
-					printf("[samp-detutils]: (debug) - Empty string declared.");
+					printf("[DETUtils]: (debug) - Empty string declared.");
 					#endif
 					format(_EntranceLabelString,sizeof(_EntranceLabelString),"{ffffff}[ %s ]\n{ffffff}Enter here!",PropertyName);
 					#if defined detutils_debug
-					printf("[samp-detutils]: (debug) - Formatted the 3D label string successfully.");
+					printf("[DETUtils]: (debug) - Formatted the 3D label string successfully.");
 					#endif
 					__Create3DLabelAndPickup(_EntranceLabelString, _xEntrance,_yEntrance,_zEntrance, 
 						_xVirtualWorldid, 19133, 3.0, 
 						g_PropertyData[g_PropertyID][p_PropertyLabelID], 
 						g_PropertyData[g_PropertyID][p_PropertyPickupID]);
 					#if defined detutils_debug
-					printf("[samp-detutils]: (debug) - lab :: Created 3D label and pickup on entrance.");
+					printf("[DETUtils]: (debug) - lab :: Created 3D label and pickup on entrance.");
 					#endif
 					__Create3DLabelAndPickup("Exit here!", g_PropertyData[g_PropertyID][p_PropertyExit_X],
 						g_PropertyData[g_PropertyID][p_PropertyExit_Y], 
@@ -759,12 +759,12 @@ stock CreatePropertyEntrance(
 						g_PropertyData[g_PropertyID][p_PropertyLabel], 
 						g_PropertyData[g_PropertyID][p_PropertyPickup]);
 					#if defined detutils_debug
-					printf("[samp-detutils]: (debug) - pick :: Created 3D label and pickup on exit.");
+					printf("[DETUtils]: (debug) - pick :: Created 3D label and pickup on exit.");
 					#endif
 				}
 
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - Internal property data assigned.");
+				printf("[DETUtils]: (debug) - Internal property data assigned.");
 				#endif
 
 				if(funcidx("OnPropertyCreate") != -1)
@@ -773,7 +773,7 @@ stock CreatePropertyEntrance(
 				}
 
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - OnPropertyCreate(propertyid) called.");
+				printf("[DETUtils]: (debug) - OnPropertyCreate(propertyid) called.");
 				#endif
 
 				g_PropertyData[g_PropertyID][ValidProp] = 1;
@@ -826,7 +826,7 @@ stock DestroyPropertyEntrance(const name[])
 			g_PropertyData[i][p_PropertyEntrance_Y] = 0;
 			g_PropertyData[i][p_PropertyEntrance_Z] = 0;
 			#if defined detutils_debug
-			printf("[samp-detutils]: (debug) - dpe :: Destroyed a property entrance ID : %i", i);
+			printf("[DETUtils]: (debug) - dpe :: Destroyed a property entrance ID : %i", i);
 			#endif
 			return 1;
 		}
@@ -864,14 +864,14 @@ stock CreateCustomInterior(
 		#endif
 		return 0;
 	}
-	printf("[samp-detutils]: (debug) - Interior '%s' successfully created, entrance is set to: %f, %f, %f.",
+	printf("[DETUtils]: (debug) - Interior '%s' successfully created, entrance is set to: %f, %f, %f.",
 			PropertyName,
 			Float:_xEntrance, 
 			Float:_yEntrance, 
 			Float:_zEntrance);
 
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - Interior created.");
+	printf("[DETUtils]: (debug) - Interior created.");
 	#endif
 
 	g_PropertyID++;
@@ -883,19 +883,19 @@ stock CreateCustomInterior(
 			255);
 
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - Saved interior name.");
+	printf("[DETUtils]: (debug) - Saved interior name.");
 	#endif
 
-	printf("[samp-detutils]: (debug) - Interior '%s' has an id %d.",PropertyName,g_PropertyID);
+	printf("[DETUtils]: (debug) - Interior '%s' has an id %d.",PropertyName,g_PropertyID);
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - Interior id assigned.");
+	printf("[DETUtils]: (debug) - Interior id assigned.");
 	#endif
 	g_PropertyData[g_PropertyID][p_PropertyEntrance_X] = _xEntrance;
 	g_PropertyData[g_PropertyID][p_PropertyEntrance_Y] = _yEntrance;
 	g_PropertyData[g_PropertyID][p_PropertyEntrance_Z] = _zEntrance;
 
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - Entrance coordinates assigned to interior data.");
+	printf("[DETUtils]: (debug) - Entrance coordinates assigned to interior data.");
 	#endif
 
 	g_PropertyData[g_PropertyID][p_PropertyExit_X] = _xExit;
@@ -903,7 +903,7 @@ stock CreateCustomInterior(
 	g_PropertyData[g_PropertyID][p_PropertyExit_Z] = _zExit;
 
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - Exit coordinates assigned to interior data.");
+	printf("[DETUtils]: (debug) - Exit coordinates assigned to interior data.");
 	#endif
 
 	g_PropertyData[g_PropertyID][p_PropertyIntid] = _eInteriorid;
@@ -912,11 +912,11 @@ stock CreateCustomInterior(
 	g_PropertyData[g_PropertyID][p_PropertyVwid_OUT] = _xVirtualWorldid;
 
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - Virtual world and interiorids assigned to custom interior.");
+	printf("[DETUtils]: (debug) - Virtual world and interiorids assigned to custom interior.");
 	#endif
 
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - Internal interior data assigned.");
+	printf("[DETUtils]: (debug) - Internal interior data assigned.");
 	#endif
 
 	if(funcidx("OnPropertyCreate") != -1)
@@ -925,7 +925,7 @@ stock CreateCustomInterior(
 	}
 
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - OnPropertyCreate(customintid) called.");
+	printf("[DETUtils]: (debug) - OnPropertyCreate(customintid) called.");
 	#endif
 
 	return 1;
@@ -1020,11 +1020,11 @@ stock bool:IsPlayerInProperty(playerid)
 stock ClearPlayerPropertyData(playerid)
 {
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - ClearPlayerPropertyData called successfully.");
+	printf("[DETUtils]: (debug) - ClearPlayerPropertyData called successfully.");
 	#endif
 	g_PlayerProperty[playerid] = -1;
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - ClearPlayerPropertyData action successfully performed.");
+	printf("[DETUtils]: (debug) - ClearPlayerPropertyData action successfully performed.");
 	#endif
 	return 1;
 }
@@ -1038,7 +1038,7 @@ stock ClearPlayerPropertyData(playerid)
 stock GetPropertyCount()
 {
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - GetPropertyCount successfully called.");
+	printf("[DETUtils]: (debug) - GetPropertyCount successfully called.");
 	#endif
 	return DET_g_CreatedProperties;
 }
@@ -1055,7 +1055,7 @@ stock SetPropertyEntranceAngles(
 		Float:_bAngle)
 {
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - Successfully set interior (intid : %i) angles to %f-%f.", 
+	printf("[DETUtils]: (debug) - Successfully set interior (intid : %i) angles to %f-%f.", 
 		_PropertyID, _aAngle, _bAngle);
 	#endif
 	g_PropertyData[_PropertyID][p_PropertyEntrance_A] = _aAngle;
@@ -1173,7 +1173,7 @@ stock SetPlayerProperty(_p_Playerid, pg_PropertyID)
 		return 0;
 
 	#if defined detutils_debug
-	printf("[samp-detutils]: (debug) - Successfully set player's (id : %i) property id to %i.", _p_Playerid, pg_PropertyID);
+	printf("[DETUtils]: (debug) - Successfully set player's (id : %i) property id to %i.", _p_Playerid, pg_PropertyID);
 	#endif
 
 	g_PlayerProperty[_p_Playerid] = pg_PropertyID;
@@ -1193,8 +1193,8 @@ public OnDETUtilsInit()
 {
 	_CreateAnncTextDraws();
 	#if defined detutils_debug
-	SaveLogIntoFile("detutils_properties.log", "[samp-detutils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_properties.log", "[samp-detutils]: (debug) - Loaded.");
+	SaveLogIntoFile("detutils_properties.log", "[DETUtils]: (debug) - Loading...");
+	SaveLogIntoFile("detutils_properties.log", "[DETUtils]: (debug) - Loaded.");
 	#endif
 	LoadDETUtilsScript(DETUTILS_SCRIPT_PROPERTIES);
 	if(funcidx("d_props_detutilsinit") != -1)

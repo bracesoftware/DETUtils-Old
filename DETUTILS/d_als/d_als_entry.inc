@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -15,7 +15,7 @@
 #tryinclude "d_extra\d_libtags.inc"
 
 #if !defined d_extra_included
-    #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+    #error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
 /*
@@ -62,7 +62,7 @@
 
 #define @a_detals$ new funcname[32];for(new hookindex;hookindex<1000;hookindex++){
 #define @b_detals$%0$ format(funcname,32,"@%i@%s",hookindex,%0); \
-printf("[samp-detutils]: (ALS call debug) - Attempted to call: %s", funcname); \
+printf("[DETUtils]: (ALS call debug) - Attempted to call: %s", funcname); \
 if(funcidx(funcname)!= -1){
 #define @c_detals$%0$ if(CallLocalFunction(funcname,%0)==0)break;}
 #define @d_detals$..%0$ %0}%0
@@ -73,7 +73,7 @@ if(funcidx(funcname)!= -1){
     for(new hookindex;hookindex<1000;hookindex++){
 #define @b_detals$%0$ \
         format(funcname,32,"@%i@%s",hookindex,#%0);\
-        printf("[samp-detutils]: (ALS call debug) - Attempted to call: %s", funcname);\
+        printf("[DETUtils]: (ALS call debug) - Attempted to call: %s", funcname);\
         if(funcidx(funcname)!= -1){
 #define @c_detals$%0$ \
         new cllres=CallLocalFunction(funcname,%0);\
@@ -134,8 +134,8 @@ if(funcidx(funcname)!= -1){
 public OnDETUtilsInit()
 {
     #if defined detutils_debug
-    SaveLogIntoFile("detutils_als.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_als.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("detutils_als.log", "[DETUtils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_als.log", "[DETUtils]: (debug) - Loaded.");
     #endif
     LoadDETUtilsScript(DETUTILS_SCRIPT_ALS);
     if(funcidx("d_als_detutilsinit") != -1)
@@ -165,8 +165,8 @@ public OnDETUtilsInit()
     #endif
     
     #if defined detutils_debug
-    SaveLogIntoFile("detutils_als.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_als.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("detutils_als.log", "[DETUtils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_als.log", "[DETUtils]: (debug) - Loaded.");
     #endif
     LoadDETUtilsScript(DETUTILS_SCRIPT_ALS);
 

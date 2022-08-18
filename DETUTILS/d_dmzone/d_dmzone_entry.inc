@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -15,7 +15,7 @@
 #tryinclude "d_extra\d_libtags.inc"
 
 #if !defined d_extra_included
-    #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+    #error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
 /*
@@ -242,7 +242,7 @@ stock AddPlayerToDeathMatchZone(playerid, const name[], spawnid, kitlevel)
 				}
 				else
 				{
-					printf("[samp-detutils]: (dm error) - Invalid kit level; kit level can be 1 .. 10.");
+					printf("[DETUtils]: (dm error) - Invalid kit level; kit level can be 1 .. 10.");
 					return 0;
 				}
 			}
@@ -327,7 +327,7 @@ stock AddPlayerToDeathMatchZone(playerid, const name[], spawnid, kitlevel)
 				}
 				else
 				{
-					printf("[samp-detutils]: (dm error) - Invalid kit level; kit level can be 1 .. 10.");
+					printf("[DETUtils]: (dm error) - Invalid kit level; kit level can be 1 .. 10.");
 					return 0;
 				}
 			}
@@ -412,14 +412,14 @@ stock AddPlayerToDeathMatchZone(playerid, const name[], spawnid, kitlevel)
 				}
 				else
 				{
-					printf("[samp-detutils]: (dm error) - Invalid kit level; kit level can be 1 .. 10.");
+					printf("[DETUtils]: (dm error) - Invalid kit level; kit level can be 1 .. 10.");
 					return 0;
 				}
 			}
 
 			else if(spawnid != 1 && spawnid != 2 && spawnid != 3)
 			{
-				printf("[samp-detutils]: (dm error) - Invalid `spawnid` parameter; `spawnid` can be 1, 2 or 3.");
+				printf("[DETUtils]: (dm error) - Invalid `spawnid` parameter; `spawnid` can be 1, 2 or 3.");
 				return 0;
 			}
 			break;
@@ -494,8 +494,8 @@ forward d_dm_playerdeath(playerid, killerid, reason);
 public OnDETUtilsInit()
 {
     #if defined detutils_debug
-    SaveLogIntoFile("detutils_dmzone.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_dmzone.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("detutils_dmzone.log", "[DETUtils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_dmzone.log", "[DETUtils]: (debug) - Loaded.");
     #endif
     LoadDETUtilsScript(DETUTILS_SCRIPT_DMZONE);
     if(funcidx("d_dm_detutilsinit") != -1)

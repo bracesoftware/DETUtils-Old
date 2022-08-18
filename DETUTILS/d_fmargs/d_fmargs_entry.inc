@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -13,7 +13,7 @@
 
 #if defined _INC_y_va
 
-    #warning [samp-detutils]: (warning) - 'd_fmargs' is not compatible with 'y_va' include.
+    #warning [DETUtils]: (warning) - 'd_fmargs' is not compatible with 'y_va' include.
 
 #endif
 
@@ -32,7 +32,7 @@
 #tryinclude "d_extra\d_libtags.inc"
 
 #if !defined d_extra_included
-    #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+    #error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
 #include "d_fmargs_sscanf"
@@ -78,7 +78,7 @@ stock
 {
     #if defined detutils_debug
     _Functionid = 1;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
@@ -126,7 +126,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 1;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         SendClientMessage
@@ -148,7 +148,7 @@ stock
 {
     #if defined detutils_debug
     _Functionid = 2;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
@@ -195,7 +195,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 2;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return 
         SendClientMessageToAll
@@ -232,7 +232,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 3;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
@@ -298,7 +298,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 3;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         GameTextForPlayer
@@ -337,7 +337,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 4;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
@@ -401,7 +401,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 4;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         GameTextForAll
@@ -430,7 +430,7 @@ stock
 
     #if defined detutils_debug
     _Functionid = 5;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
@@ -493,7 +493,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 5;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     
     textid = TextDrawCreate
@@ -535,7 +535,7 @@ stock
     new PlayerText:textid;
     #if defined detutils_debug
     _Functionid = 6;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
@@ -584,7 +584,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 6;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     
     textid = CreatePlayerTextDraw
@@ -624,7 +624,7 @@ stock
 {
     #if defined detutils_debug
     _Functionid = 7;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
@@ -671,7 +671,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 7;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         TextDrawSetString
@@ -693,7 +693,7 @@ stock
 {
     #if defined detutils_debug
     _Functionid = 8;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
@@ -740,7 +740,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 8;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         PlayerTextDrawSetString
@@ -761,7 +761,7 @@ stock
 {
     #if defined detutils_debug
     _Functionid = 9;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
@@ -821,7 +821,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 9;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         SendRconCommand
@@ -930,8 +930,8 @@ stock
 public OnDETUtilsInit()
 {
     #if defined detutils_debug
-    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_fmargs.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("detutils_fmargs.log", "[DETUtils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_fmargs.log", "[DETUtils]: (debug) - Loaded.");
     #endif
     LoadDETUtilsScript(DETUTILS_SCRIPT_FMARGS);
     if(funcidx("d_fmargs_detutilsinit") != -1)

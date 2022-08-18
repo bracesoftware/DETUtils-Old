@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -25,7 +25,7 @@
 
 #if !defined _inc_a_samp
 
-	#error [samp-detutils]: (error) - You need to have a_samp.inc file in your includes folder.
+	#error [DETUtils]: (error) - You need to have a_samp.inc file in your includes folder.
 
 #endif
 
@@ -33,7 +33,7 @@
 
 #if defined _d_data_included
 
-	#error [samp-detutils]: (error) - Unusable code reached.
+	#error [DETUtils]: (error) - Unusable code reached.
 
 #endif
 
@@ -63,67 +63,67 @@ stock void:LoadDETUtilsScript(scriptid)
 {
 	if(scriptid == DETUTILS_SCRIPT_COMMANDS)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_commands.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_commands.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_PROPERTIES)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_properties.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_properties.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_FMARGS)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_fmargs.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_fmargs.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_VISUAL)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_visual.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_visual.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_ANTICHEAT)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_anticheat.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_anticheat.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_MAPEDITOR)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_mapeditor.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_mapeditor.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_FILEQUERIES)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_filequeries.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_filequeries.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_DMZONE)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_dmzone.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_dmzone.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_TEAMS)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_teams.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_teams.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_DIALOG)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_dialog.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_dialog.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_VARS)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_vars.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_vars.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_ALS)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_als.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_als.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_FOREACH)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_foreach.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_foreach.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_TABLES)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_tables.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_tables.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_DISCORDUTILS)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_discordutils.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_discordutils.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_PROFILE)
 	{
-		print("*** [samp-detutils]: (module) - Loaded: d_profile.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_profile.inc");
 	}
 }
 
@@ -173,7 +173,7 @@ static void:LoadDETUtils()
 	print("                                        ");
 	print("|======================================|");
 	print("                                        ");
-	print("            SA:MP | DETUtils            ");
+	print("                DETUtils                ");
 	print("        System is now loading...        ");
 	print("                                        ");
 	printf("              Version: %s              ", DET_g_Version);
@@ -197,7 +197,7 @@ static void:UnloadDETUtils()
 	print("                                        ");
 	print("|======================================|");
 	print("                                        ");
-	print("            SA:MP | DETUtils            ");
+	print("                DETUtils                ");
 	print("          System is unloading...        ");
 	print("                                        ");
 	print("               By: DEntisT              ");
@@ -310,7 +310,7 @@ forward OnDETUtilsInit();
 public OnDETUtilsInit()
 {
 	#if defined detutils_debug
-	SendRconCommand("hostname [samp-detutils]: (test) - Server");
+	SendRconCommand("hostname [DETUtils]: (test) - Server");
 	SetGameModeText("SA:MP | DET-Utils");
 	#endif
 	LoadDETUtils();

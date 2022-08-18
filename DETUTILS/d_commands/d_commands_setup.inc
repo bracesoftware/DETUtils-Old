@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -54,7 +54,7 @@
 #define DET_PARSE_CACHE
 #endif
 
-#define @DETUTILSCMD_RET_PRINT__@%5@ return printf("*** [samp-detutils]: (cmd parse) - Met an unexpected or unknown argument in \n\
+#define @DETUTILSCMD_RET_PRINT__@%5@ return printf("*** [DETUtils]: (cmd parse) - Met an unexpected or unknown argument in \n\
 													   the command header while parsing.\n\
 													   Command: %s"#%5"\n\
 													   Make sure that your command header looks like this:\n\
@@ -63,7 +63,7 @@
 #define @DETUTILSCMD_PR_CACHE__@%5@%0@%1@%2@%3@%4@ \
 	{                                               \
 		new const DET_PARAM_COUNT=%0+%1+%2+%3+%4;   \
-		printf("*** [samp-detutils]: (cmd parse) - Parsing a command : "#%5" with %i params.", DET_PARAM_COUNT); \
+		printf("*** [DETUtils]: (cmd parse) - Parsing a command : "#%5" with %i params.", DET_PARAM_COUNT); \
 		if(DET_PARAM_COUNT!=2||%2 !=1||%4 !=1){g_PlayerCmdData[p][ParseProcess] = 0; @DETUTILSCMD_RET_PRINT__@%5@ \
 		}                                           \
 		g_PlayerCmdData[p][ParseProcess] = 1; return 1;                                   \
@@ -110,7 +110,7 @@
  arr_%1 != 1
 
 #define DET_PRS_CMDFAIL__$%1$%2$ \
- printf("*** [samp-detutils]: (parse) - Unknown or unexpected arguments met in the command (cmd: %1 | type: %2) \
+ printf("*** [DETUtils]: (parse) - Unknown or unexpected arguments met in the command (cmd: %1 | type: %2) \
 	header while parsing.\n Make sure that your command header looks like this:\n \
 	@command(.type = .., ..) NAME__(playerid, params[]"); 
 
@@ -131,7 +131,7 @@
 	arr_%1 = 0,str_%1 = 0,@DETUTILSCMD_ARG_COUNT__%1 = 0; \
 	prs_%1(%2) {} \
 	main(){if(ref_%1+ext_%1+ arr_%1+str_%1+@DETUTILSCMD_ARG_COUNT__%1 != 2 && @DETUTILSCMD_ARG_COUNT__%1 != 1 && \
-	arr_%1 != 1){printf("*** [samp-detutils]: (parse) - Unknown or unexpected arguments met in the command (cmd: %1 | type: %2) \
+	arr_%1 != 1){printf("*** [DETUtils]: (parse) - Unknown or unexpected arguments met in the command (cmd: %1 | type: %2) \
 	header while parsing.\n Make sure that your command header looks like this:\n \
 	@command(.type = .., ..) NAME__(playerid, params[]");}main_%1();} \
 	#undef main #define main main_%1
@@ -152,7 +152,7 @@
 	FUNC_PARSER(DETUTILSCMD_ARG_COUNT__,ARR:NUM:EXT:STR:REF:)(%1(%2)) \
 	stock ref_%1 = 0,ext_%1 = 0,arr_%1 = 0,str_%1 = 0,num_%1 = 0; \
 	main(){if(ref_%1+ext_%1+arr_%1+str_%1+num_%1 != 2 && @DETUTILSCMD_ARG_COUNT__%1 != 1 && arr_%1 != 1){ \
-	printf("*** [samp-detutils]: (parse) - Unknown or unexpected arguments met in the command (cmd: "#%1" | type: "#%3") header while parsing.\n Make sure that your command header looks like this:\n @command(.type = .., ..) NAME__(playerid, params[]"); \
+	printf("*** [DETUtils]: (parse) - Unknown or unexpected arguments met in the command (cmd: "#%1" | type: "#%3") header while parsing.\n Make sure that your command header looks like this:\n @command(.type = .., ..) NAME__(playerid, params[]"); \
 	}main_%1();} #if defined _ALS_main #undef main #else #define _ALS_main #endif #define main main_%1 %1(%2) 
 
 // REALLY IMPORTANT MACROS:

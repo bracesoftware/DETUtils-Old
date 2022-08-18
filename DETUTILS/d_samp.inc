@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -70,20 +70,20 @@ Includes
 
 #if !defined DETUTILS_NO_PROPERTIES
 
- 	//#warning [samp-detutils]: (includes) - Library 'd_properties' is disabled.
+ 	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
 	#include "d_properties"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_PROPERTIES
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_PROPERTIES
 
 		#if DETUTILS_LIBVER_PROPERTIES != 1
 
-			#error [samp-detutils]: (version) - 'd_properties.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_properties.inc' is outdated.
 
 		#endif
 
@@ -93,27 +93,27 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_properties' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
 
  	#endif
 
 #endif
 #if !defined DETUTILS_NO_COMMANDS
 	
-	//#warning [samp-detutils]: (includes) - Library 'd_commands' is disabled.
+	//#warning [DETUtils]: (includes) - Library 'd_commands' is disabled.
 	#include "d_commands"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_COMMANDS
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_COMMANDS
 
 		#if DETUTILS_LIBVER_COMMANDS != 1
 
-			#error [samp-detutils]: (version) - 'd_commands.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_commands.inc' is outdated.
 
 		#endif
 
@@ -123,27 +123,27 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_commands' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_commands' is disabled.
 
  	#endif
 
 #endif
 #if !defined DETUTILS_NO_FMARGS
 
- 	//#warning [samp-detutils]: (includes) - Library 'd_fmargs' is disabled.
+ 	//#warning [DETUtils]: (includes) - Library 'd_fmargs' is disabled.
 	#include "d_fmargs"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_FMARGS
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_FMARGS
 
 		#if DETUTILS_LIBVER_FMARGS != 1
 
-			#error [samp-detutils]: (version) - 'd_fmargs.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_fmargs.inc' is outdated.
 
 		#endif
 
@@ -153,27 +153,27 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_fmargs' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_fmargs' is disabled.
 
  	#endif
 
 #endif
 #if !defined DETUTILS_NO_VISUAL
 
- 	//#warning [samp-detutils]: (includes) - Library 'd_visual' is disabled.
+ 	//#warning [DETUtils]: (includes) - Library 'd_visual' is disabled.
 	#include "d_visual"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_VISUAL
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_VISUAL
 
 		#if DETUTILS_LIBVER_VISUAL != 1
 
-			#error [samp-detutils]: (version) - 'd_visual.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_visual.inc' is outdated.
 
 		#endif
 
@@ -183,27 +183,27 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_visual' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_visual' is disabled.
 
  	#endif
 
 #endif
 #if !defined DETUTILS_NO_ANTICHEAT
 
- 	//#warning [samp-detutils]: (includes) - Library 'd_anticheat' is disabled.
+ 	//#warning [DETUtils]: (includes) - Library 'd_anticheat' is disabled.
 	#include "d_anticheat"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_ANTICHEAT
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_ANTICHEAT
 
 		#if DETUTILS_LIBVER_ANTICHEAT != 1
 
-			#error [samp-detutils]: (version) - 'd_anticheat.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_anticheat.inc' is outdated.
 
 		#endif
 
@@ -213,27 +213,27 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_anticheat' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_anticheat' is disabled.
 
  	#endif
 
 #endif
 #if !defined DETUTILS_NO_MAPEDITOR
 	
-	//#warning [samp-detutils]: (includes) - Library 'd_mapeditor' is disabled.
+	//#warning [DETUtils]: (includes) - Library 'd_mapeditor' is disabled.
 	#include "d_mapeditor"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_MAPEDITOR
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_MAPEDITOR
 
 		#if DETUTILS_LIBVER_MAPEDITOR != 1
 
-			#error [samp-detutils]: (version) - 'd_mapeditor.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_mapeditor.inc' is outdated.
 
 		#endif
 
@@ -243,27 +243,27 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_mapeditor' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_mapeditor' is disabled.
 
  	#endif
 
 #endif
 #if !defined DETUTILS_NO_FILEQUERIES
 	
-	//#warning [samp-detutils]: (includes) - Library 'd_mapeditor' is disabled.
+	//#warning [DETUtils]: (includes) - Library 'd_mapeditor' is disabled.
 	#include "d_filequeries"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_FILEQUERIES
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_FILEQUERIES
 
 		#if DETUTILS_LIBVER_FILEQUERIES != 1
 
-			#error [samp-detutils]: (version) - 'd_filequeries.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_filequeries.inc' is outdated.
 
 		#endif
 
@@ -273,27 +273,27 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_filequeries' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_filequeries' is disabled.
 
  	#endif
 
 #endif
 #if !defined DETUTILS_NO_DMZONE
 	
-	//#warning [samp-detutils]: (includes) - Library 'd_mapeditor' is disabled.
+	//#warning [DETUtils]: (includes) - Library 'd_mapeditor' is disabled.
 	#include "d_dmzone"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_DMZONE
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_DMZONE
 
 		#if DETUTILS_LIBVER_DMZONE != 1
 
-			#error [samp-detutils]: (version) - 'd_dmzone.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_dmzone.inc' is outdated.
 
 		#endif
 
@@ -303,27 +303,27 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_dmzone' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_dmzone' is disabled.
 
  	#endif
 
 #endif
 #if !defined DETUTILS_NO_TEAMS
 	
-	//#warning [samp-detutils]: (includes) - Library 'd_mapeditor' is disabled.
+	//#warning [DETUtils]: (includes) - Library 'd_mapeditor' is disabled.
 	#include "d_teams"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_TEAMS
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_TEAMS
 
 		#if DETUTILS_LIBVER_TEAMS != 1
 
-			#error [samp-detutils]: (version) - 'd_teams.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_teams.inc' is outdated.
 
 		#endif
 
@@ -333,27 +333,27 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_teams' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_teams' is disabled.
 
  	#endif
 
 #endif
 #if !defined DETUTILS_NO_DIALOG
 	
-	//#warning [samp-detutils]: (includes) - Library 'd_mapeditor' is disabled.
+	//#warning [DETUtils]: (includes) - Library 'd_mapeditor' is disabled.
 	#include "d_dialog"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_DIALOG
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_DIALOG
 
 		#if DETUTILS_LIBVER_DIALOG != 1
 
-			#error [samp-detutils]: (version) - 'd_dialog.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_dialog.inc' is outdated.
 
 		#endif
 
@@ -363,27 +363,27 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_dialog' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_dialog' is disabled.
 
  	#endif
 
 #endif
 #if !defined DETUTILS_NO_VARS
 	
-	//#warning [samp-detutils]: (includes) - Library 'd_mapeditor' is disabled.
+	//#warning [DETUtils]: (includes) - Library 'd_mapeditor' is disabled.
 	#include "d_vars"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_VARS
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_VARS
 
 		#if DETUTILS_LIBVER_VARS != 1
 
-			#error [samp-detutils]: (version) - 'd_vars.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_vars.inc' is outdated.
 
 		#endif
 
@@ -393,27 +393,27 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_vars' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_vars' is disabled.
 
  	#endif
 
 #endif
 #if !defined DETUTILS_NO_ALS
 
- 	//#warning [samp-detutils]: (includes) - Library 'd_properties' is disabled.
+ 	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
 	#include "d_als"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_ALS
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_ALS
 
 		#if DETUTILS_LIBVER_ALS != 1
 
-			#error [samp-detutils]: (version) - 'd_als.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_als.inc' is outdated.
 
 		#endif
 
@@ -423,27 +423,27 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_als' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_als' is disabled.
 
  	#endif
 
 #endif
 #if !defined DETUTILS_NO_FOREACH
 
- 	//#warning [samp-detutils]: (includes) - Library 'd_properties' is disabled.
+ 	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
 	#include "d_foreach"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_ALS
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_ALS
 
 		#if DETUTILS_LIBVER_ALS != 1
 
-			#error [samp-detutils]: (version) - 'd_foreach.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_foreach.inc' is outdated.
 
 		#endif
 
@@ -453,27 +453,27 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_foreach' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_foreach' is disabled.
 
  	#endif
 
 #endif
 #if !defined DETUTILS_NO_TABLES
 
- 	//#warning [samp-detutils]: (includes) - Library 'd_properties' is disabled.
+ 	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
 	#include "d_tables"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_TABLES
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_TABLES
 
 		#if DETUTILS_LIBVER_TABLES != 1
 
-			#error [samp-detutils]: (version) - 'd_tables.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_tables.inc' is outdated.
 
 		#endif
 
@@ -483,7 +483,7 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_tables' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_tables' is disabled.
 
  	#endif
 
@@ -491,20 +491,20 @@ Includes
 
 #if !defined DETUTILS_NO_DISCORDUTILS
 
- 	//#warning [samp-detutils]: (includes) - Library 'd_properties' is disabled.
+ 	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
 	#include "d_discordutils"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_DISCORDUTILS
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_DISCORDUTILS
 
 		#if DETUTILS_LIBVER_DISCORDUTILS != 1
 
-			#error [samp-detutils]: (version) - 'd_discordutils.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_discordutils.inc' is outdated.
 
 		#endif
 
@@ -514,7 +514,7 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_discordutils' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_discordutils' is disabled.
 
  	#endif
 
@@ -522,20 +522,20 @@ Includes
 
 #if !defined DETUTILS_NO_PROFILE
 
- 	//#warning [samp-detutils]: (includes) - Library 'd_properties' is disabled.
+ 	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
 	#include "d_profile"
 
 	// Vercheck
 
 	#if !defined DETUTILS_LIBVER_PROFILE
 		
-		#error [samp-detutils]: (version) - Version not specified.
+		#error [DETUtils]: (version) - Version not specified.
 	
 	#elseif defined DETUTILS_LIBVER_PROFILE
 
 		#if DETUTILS_LIBVER_PROFILE != 1
 
-			#error [samp-detutils]: (version) - 'd_profile.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_profile.inc' is outdated.
 
 		#endif
 
@@ -545,7 +545,7 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (includes) - Library 'd_profile' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_profile' is disabled.
 
  	#endif
 
@@ -558,25 +558,25 @@ Includes
  && defined DETUTILS_NO_FOREACH && defined DETUTILS_NO_TABLES && defined DETUTILS_NO_DISCORDUTILS \
  && defined DETUTILS_NO_PROFILE
 
-	#warning [samp-detutils]: (warning) - All library modules are disabled.
+	#warning [DETUtils]: (warning) - All library modules are disabled.
 
  	#tryinclude "d_extra\d_libtags.inc"
 
 	#if !defined d_extra_included
-	    #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+	    #error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 	#endif
 
 #endif
 
 #if defined DETUTILS_TESTING_MODE && defined DETUTILS_FILTERSCRIPT_MODE
 
- 	#error [samp-detutils]: (mode mismatch) - You can't use DETUTILS_TESTING_MODE and DETUTILS_FILTERSCRIPT_MODE at the same time.
+ 	#error [DETUtils]: (mode mismatch) - You can't use DETUTILS_TESTING_MODE and DETUTILS_FILTERSCRIPT_MODE at the same time.
 
 #endif
 
 #if defined DETUTILS_TESTING_MODE
 
- 	#warning [samp-detutils]: (warning) - testmode :: Testing mode is enabled. Remove `#define DETUTILS_TESTING_MODE` from your code to disable it.
+ 	#warning [DETUtils]: (warning) - testmode :: Testing mode is enabled. Remove `#define DETUTILS_TESTING_MODE` from your code to disable it.
 
  	#include "d_testing\d_testing_entry.inc"
 
@@ -586,15 +586,15 @@ Includes
 
 #if !defined __DETUtils
 
- 	#error [samp-detutils]: (version error) - Version not specified.
+ 	#error [DETUtils]: (version error) - Version not specified.
 
 #endif
 
 #if defined __DETUtils
 
- 	#if __DETUtils != 0x203
+ 	#if __DETUtils != 0x204
 
- 		#error [samp-detutils]: (version mismatch) - Invalid version, 0x203 was expected.
+ 		#error [DETUtils]: (version mismatch) - Invalid version, 0x204 was expected.
 
  	#endif
 
@@ -602,15 +602,15 @@ Includes
 
 #if !defined __DETUtilsRelease
 
- 	#error [samp-detutils]: (release error) - Version release not specified.
+ 	#error [DETUtils]: (release error) - Version release not specified.
 
 #endif
 
 #if defined __DETUtilsRelease
 
- 	#if __DETUtilsRelease != 0x7
+ 	#if __DETUtilsRelease != 0x1
 
- 		#error [samp-detutils]: (release mismatch) - Invalid version, 0x7 was expected.
+ 		#error [DETUtils]: (release mismatch) - Invalid version release, 0x1 was expected.
 
  	#endif
 

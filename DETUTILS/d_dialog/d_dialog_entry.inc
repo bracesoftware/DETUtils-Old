@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -15,7 +15,7 @@
 #tryinclude "d_extra\d_libtags.inc"
 
 #if !defined d_extra_included
-	#error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+	#error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
 /*
@@ -72,7 +72,7 @@ stock ShowDialogForPlayer(playerid, const name[])
 	}
 	else 
 	{
-		printf("[samp-detutils]: (dialog IID) - Invalid dialog : %s", name);
+		printf("[DETUtils]: (dialog IID) - Invalid dialog : %s", name);
 		return 0;
 	}
 	return 1;
@@ -88,7 +88,7 @@ stock GetDialogStyle(const name[])
 	}
 	else 
 	{
-		printf("[samp-detutils]: (dialog IID) - Invalid dialog : %s", name);
+		printf("[DETUtils]: (dialog IID) - Invalid dialog : %s", name);
 		return -1;
 	}
 	return 1;
@@ -98,7 +98,7 @@ stock HideDialogForPlayer(playerid)
 {
 	if(!strcmp(g_PlayerDialogCache[playerid][Dialog], "NO_DIALOG"))
 	{
-		printf("[samp-detutils]: (dialog error) - Unable to hide a dialog 'NO_DIALOG'.");
+		printf("[DETUtils]: (dialog error) - Unable to hide a dialog 'NO_DIALOG'.");
 		return 0;
 	}
 	CallLocalFunction("OnPlayerDialogHide", "is", playerid, g_PlayerDialogCache[playerid][Dialog]);
@@ -128,12 +128,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		case DETUTILS_INTERNAL_DIALOG:
 		{
 			#if defined detutils_debug
-			printf("[samp-detutils]: (debug) - Processing the dialog...");
+			printf("[DETUtils]: (debug) - Processing the dialog...");
 			#endif
 			//new dialog[32];
 			//format(dialog, sizeof dialog, "%s", g_PlayerDialogCache[playerid][Dialog]);
 			#if defined detutils_debug
-			printf("[samp-detutils]: (debug) - Dialog name : %s", 
+			printf("[DETUtils]: (debug) - Dialog name : %s", 
 				g_PlayerDialogCache[playerid][Dialog]);
 			#endif
 			/*if(inputtext[0] != EOS) 
@@ -153,14 +153,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				response, listitem, inputtext);
 			#endif	
 			#if defined detutils_debug
-			printf("[samp-detutils]: (debug) - Called the dialog response function with args: \
+			printf("[DETUtils]: (debug) - Called the dialog response function with args: \
 				playerid : %i | dialog : %s | response : %i | listitem : %i | inputtext : %s",
 				playerid, g_PlayerDialogCache[playerid][Dialog], response, listitem, inputtext);
 			#endif
 			//                                             012345678
 			strmid(g_PlayerDialogCache[playerid][Dialog], "NO_DIALOG", 0, 8);
 			#if defined detutils_debug
-			printf("[samp-detutils]: (debug) - Processing the dialog finished; player's dialog set to '%s'",
+			printf("[DETUtils]: (debug) - Processing the dialog finished; player's dialog set to '%s'",
 				g_PlayerDialogCache[playerid][Dialog]);
 			#endif
 		}
@@ -169,10 +169,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	{
 		//CallLocalFunction("d_dlg_dresponse", "iiiis", playerid, dialogid, response, listitem, inputtext);
 		#if defined detutils_debug
-		printf("[samp-detutils]: (debug) - 'OnDialogResponse(..)' hooked.");
+		printf("[DETUtils]: (debug) - 'OnDialogResponse(..)' hooked.");
 		#endif
 		#if defined d_dlg_dresponse
-		//#warning [samp-detutils]: (warning) - OnDialogResponse is deprecared.
+		//#warning [DETUtils]: (warning) - OnDialogResponse is deprecared.
 		d_dlg_dresponse(playerid, dialogid, response, listitem, inputtext);
 		#endif
 	}
@@ -210,8 +210,8 @@ public OnDETUtilsInit()
 	}
 
 	#if defined detutils_debug
-	SaveLogIntoFile("detutils_dialog.log", "[samp-detutils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_dialog.log", "[samp-detutils]: (debug) - Loaded.");
+	SaveLogIntoFile("detutils_dialog.log", "[DETUtils]: (debug) - Loading...");
+	SaveLogIntoFile("detutils_dialog.log", "[DETUtils]: (debug) - Loaded.");
 	#endif
 	LoadDETUtilsScript(DETUTILS_SCRIPT_DIALOG);
 	if(funcidx("d_dlg_detutilsinit") != -1)

@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -191,8 +191,8 @@ stock __GetCellValue(const __table[], __column, __row)
 public OnDETUtilsInit()
 {
 	#if defined detutils_debug
-	SaveLogIntoFile("detutils_tables.log", "[samp-detutils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_tables.log", "[samp-detutils]: (debug) - Loaded.");
+	SaveLogIntoFile("detutils_tables.log", "[DETUtils]: (debug) - Loading...");
+	SaveLogIntoFile("detutils_tables.log", "[DETUtils]: (debug) - Loaded.");
 	#endif
 	LoadDETUtilsScript(DETUTILS_SCRIPT_TABLES);
 	if(funcidx("d_tab_detutilsinit") != -1)

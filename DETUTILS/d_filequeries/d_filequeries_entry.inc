@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -16,7 +16,7 @@
 #tryinclude "d_extra\d_libtags.inc"
 
 #if !defined d_extra_included
-    #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+    #error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
 /*
@@ -123,7 +123,7 @@ stock CreateQuery(const name[], type, const dir[], const file[])
                     g_QueryCache[DET_QueryID][formatted] = true;
                 }
                 g_QueryCache[DET_QueryID][ValidQuery] = 1;
-                printf("[samp-detutils]: (query created) - \
+                printf("[DETUtils]: (query created) - \
                     Query '%s'[id : %i] with type %i (loc : %s/%s) validated successfully.",
                     name, DET_QueryID, type, dir, file);
                 break;
@@ -149,7 +149,7 @@ stock DestroyQuery(const name[])
             strmid(g_QueryCache[i][QueryDir], "_INVALID_QDIR_", 0, 50);
             strmid(g_QueryCache[i][QueryFile], "_INVALID_QFILE_", 0, 50);
             g_QueryCache[i][QueryType] = INVALID_QUERY_TYPE;
-            printf("[samp-detutils]: (query destroyed) - \
+            printf("[DETUtils]: (query destroyed) - \
                 Destroyed the query '%s' [id : %i] successfully.", name, i);
             return 1;
         }
@@ -198,7 +198,7 @@ stock QueryFileExist(const name[])
         {
             if(g_QueryCache[i][QueryType] != QUERY_TYPE_SAVE)
             {
-                printf("[samp-detutils]: (query error) - \
+                printf("[DETUtils]: (query error) - \
                     Cannot check if the file exists; query is not a SAVE query.");
                 return false;
             }
@@ -236,7 +236,7 @@ stock SendQuery(const name[])
             {
                 if(!strfind("SAVE *", g_QueryCache[i][QueryContent], false))
                 {
-                    printf("[samp-detutils]: (query error) - Expected token 'SAVE *'; but found a query data.");
+                    printf("[DETUtils]: (query error) - Expected token 'SAVE *'; but found a query data.");
                     return 0;
                 }
                 new query[1024];
@@ -262,7 +262,7 @@ stock SendQuery(const name[])
                 fclose(SaveFile);
 
                 format(querylog, sizeof querylog,
-                    "[samp-detutils]: (query sent) - Query type: QUERY_TYPE_SAVE | \
+                    "[DETUtils]: (query sent) - Query type: QUERY_TYPE_SAVE | \
                     Directory: %s | File: %s | Query code: %s", 
                     g_QueryCache[i][QueryDir], 
                     g_QueryCache[i][QueryFile], 
@@ -276,13 +276,13 @@ stock SendQuery(const name[])
             {
                 if(strcmp("LOAD *", g_QueryCache[i][QueryContent], false))
                 {
-                    printf("[samp-detutils]: (query error) - Expected token 'LOAD *'; but found unknown content.");
+                    printf("[DETUtils]: (query error) - Expected token 'LOAD *'; but found unknown content.");
                     return 0;
                 }
                 new loadedquery[128];
                 if(!fexist(dirbose))
                 {
-                    printf("[samp-detutils]: (query error) - \
+                    printf("[DETUtils]: (query error) - \
                         Unable to load a query; file '%s' does not exist.", 
                         dirbose);
                 }
@@ -292,7 +292,7 @@ stock SendQuery(const name[])
                     fread(file, loadedquery);
                     strmid(g_QueryCache[i][LoadedQuery], loadedquery, 0, 
                         sizeof loadedquery);
-                    printf("[samp-detutils]: (query compat) - \
+                    printf("[DETUtils]: (query compat) - \
                         loadedquery : %s, query from cache : %s", loadedquery, g_QueryCache[i][LoadedQuery]);
                     g_QueryCache[i][LoadedContent] = true;
                     fclose(file);
@@ -326,12 +326,12 @@ stock GetLoadedQueryContent(const name[], dests[])
         {
             if(g_QueryCache[i][QueryType] != QUERY_TYPE_LOAD)
             {
-                printf("[samp-detutils]: (query error) - \
+                printf("[DETUtils]: (query error) - \
                     Query is not 'QUERY_TYPE_LOAD'; cannot load query content from file.");
                 return 0;
             }
             else if(g_QueryCache[i][LoadedContent] == false) return 0;
-            printf("[samp-detutils]: (query content) - \
+            printf("[DETUtils]: (query content) - \
                 Returned `%s` as a loaded query.", g_QueryCache[i][LoadedQuery]); 
             return strmid(dests, g_QueryCache[i][LoadedQuery], 0, 1024, 1024);
         }
@@ -372,7 +372,7 @@ stock SetQueryDelimiter(delimiter)
     DET_g_QueryDelimiter = delimiter;
     if(delimiter == '.')
     {
-        printf("[samp-detutils]: (warning) - delimiter :: Delimiter '.' is successfully set; \n\
+        printf("[DETUtils]: (warning) - delimiter :: Delimiter '.' is successfully set; \n\
             though, having a '.' as a delimiter can cause problems while loading float values.");
     }
     return 1;
@@ -395,8 +395,8 @@ stock SetQueryDelimiter(delimiter)
 public OnDETUtilsInit()
 {
     #if defined detutils_debug
-    SaveLogIntoFile("detutils_queries.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_queries.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("detutils_queries.log", "[DETUtils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_queries.log", "[DETUtils]: (debug) - Loaded.");
     #endif
     LoadDETUtilsScript(DETUTILS_SCRIPT_FILEQUERIES);
     if(funcidx("d_fq_detutilsinit") != -1)

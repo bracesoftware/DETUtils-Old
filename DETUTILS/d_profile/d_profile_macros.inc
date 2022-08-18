@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -44,4 +44,4 @@
 	__d_pfunc2%0(%1);public __d_pfunc2%0(%1)
 
 #define @DETUTILSPROFILE_KWORD__@value%0=%1)%2return \
-	printf("[samp-detutils]: (profiling) - Code '%s' took %i ticks to execute.",DET_g_ProfilerName,GetTickCount()-DET_g_ProfilerCount);return %1
+	printf("[DETUtils]: (profiling) - Code '%s' took %i ticks to execute.",DET_g_ProfilerName,GetTickCount()-DET_g_ProfilerCount);return %1

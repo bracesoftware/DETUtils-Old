@@ -1,7 +1,6 @@
 /*
  *
- * SA:MP DEntisT's
- * Utilities
+ * DETUtils
  *
  * - d_rem provides the `@rem`
  *   decorator.

@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -123,8 +123,8 @@ public OnDETUtilsInit()
 	#endif
 
 	#if defined detutils_debug
-	SaveLogIntoFile("detutils_foreach.log", "[samp-detutils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_foreach.log", "[samp-detutils]: (debug) - Loaded.");
+	SaveLogIntoFile("detutils_foreach.log", "[DETUtils]: (debug) - Loading...");
+	SaveLogIntoFile("detutils_foreach.log", "[DETUtils]: (debug) - Loaded.");
 	#endif
 	LoadDETUtilsScript(DETUTILS_SCRIPT_FOREACH);
 	if(funcidx("d_fr_detutilsinit") != -1)

@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -16,7 +16,7 @@
 
 #if !defined _d_cmd_processor_included
 
-    #error [samp-detutils]: (error) - Include 'd_commands' before using 'd_visual' include.
+    #error [DETUtils]: (error) - Include 'd_commands' before using 'd_visual' include.
 
 #endif
 
@@ -24,7 +24,7 @@
 
 #if !defined d_fmargs_included
 
-    #error [samp-detutils]: (error) - Include 'd_fmargs' before using 'd_visual' include.
+    #error [DETUtils]: (error) - Include 'd_fmargs' before using 'd_visual' include.
 
 #endif
 
@@ -43,7 +43,7 @@
 #tryinclude "d_extra\d_libtags.inc"
 
 #if !defined d_extra_included
-    #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+    #error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
 /*
@@ -336,7 +336,7 @@ stock
 {
     #if defined detutils_debug
     _Functionid = 3;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
@@ -402,7 +402,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 3;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         GameTextForPlayer
@@ -432,7 +432,7 @@ stock
 {
     #if defined detutils_debug
     _Functionid = 4;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
     static
         args,
@@ -496,7 +496,7 @@ stock
     }
     #if defined detutils_debug
     _Functionid = 4;
-    printf("[samp-detutils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
     return
         GameTextForAll
@@ -1097,8 +1097,8 @@ public OnDETUtilsInit()
     SetTimer("__Weapon_timer", 1000, true);
     LoadDETUtilsScript(DETUTILS_SCRIPT_VISUAL);
     #if defined detutils_debug
-    SaveLogIntoFile("detutils_visual.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_visual.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("detutils_visual.log", "[DETUtils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_visual.log", "[DETUtils]: (debug) - Loaded.");
     #endif
     if(funcidx("d_visual_detutilsinit") != -1)
     {

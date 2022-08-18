@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -15,7 +15,7 @@
 #tryinclude "d_extra\d_libtags.inc"
 
 #if !defined d_extra_included
-    #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+    #error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
 /*
@@ -164,7 +164,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
                         g_ObjectData[i][ObjectID] = CreateObject(g_ObjectData[i][GtaObjID], x+2, y, z+0.6, 0.0, 0.0, angle);
 
                         format(label_string, sizeof label_string,
-                            "[samp-detutils]: (map editor)\n\nScript object ID: %i\nPosition: %f, %f, %f\nRotation: %f, %f, %f", 
+                            "[DETUtils]: (map editor)\n\nScript object ID: %i\nPosition: %f, %f, %f\nRotation: %f, %f, %f", 
                             i, g_ObjectData[i][Pos][ 0 ], g_ObjectData[i][Pos][ 1 ], g_ObjectData[i][Pos][ 2 ],
                             g_ObjectData[i][RotPos][ 0 ], g_ObjectData[i][RotPos][ 1 ], g_ObjectData[i][RotPos][ 2 ]);
 
@@ -273,7 +273,7 @@ public OnPlayerEditObject(playerid, playerobject, objectid, response,
         new label_string[256];
 
         format(label_string, sizeof label_string,
-            "[samp-detutils]: (map editor)\n\nScript object ID: %i\nPosition: %f, %f, %f\nRotation: %f, %f, %f", 
+            "[DETUtils]: (map editor)\n\nScript object ID: %i\nPosition: %f, %f, %f\nRotation: %f, %f, %f", 
             objid, g_ObjectData[objid][Pos][ 0 ], g_ObjectData[objid][Pos][ 1 ], g_ObjectData[objid][Pos][ 2 ],
             g_ObjectData[objid][RotPos][ 0 ], g_ObjectData[objid][RotPos][ 1 ], g_ObjectData[objid][RotPos][ 2 ]);
 
@@ -382,7 +382,7 @@ stock ShowObjectInfoLabels(worldid)
     for(new id; id < MAX_OBJECTS; id++)
     {
         format(label_string, sizeof label_string,
-        "[samp-detutils]: (map editor)\n\nScript object ID: %i\nPosition: %f, %f, %f\nRotation: %f, %f, %f", 
+        "[DETUtils]: (map editor)\n\nScript object ID: %i\nPosition: %f, %f, %f\nRotation: %f, %f, %f", 
         id, g_ObjectData[id][Pos][ 0 ], g_ObjectData[id][Pos][ 1 ], g_ObjectData[id][Pos][ 2 ],
         g_ObjectData[id][RotPos][ 0 ], g_ObjectData[id][RotPos][ 1 ], g_ObjectData[id][RotPos][ 2 ]);
 
@@ -435,8 +435,8 @@ public d_me_SaveObject(loopid)
 public OnDETUtilsInit()
 {
     #if defined detutils_debug
-    SaveLogIntoFile("detutils_mapeditor.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_mapeditor.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("detutils_mapeditor.log", "[DETUtils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_mapeditor.log", "[DETUtils]: (debug) - Loaded.");
     #endif
     for(new i; i < MAX_OBJECTS; i++) d_me_LoadObjects(i);
     LoadDETUtilsScript(DETUTILS_SCRIPT_MAPEDITOR);

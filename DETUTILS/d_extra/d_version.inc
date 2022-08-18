@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -15,7 +15,7 @@
 #tryinclude "d_extra\d_libtags.inc"
 
 #if !defined d_extra_included
-    #error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+    #error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 #endif
 
@@ -44,15 +44,15 @@
 */
 
 #if __Pawn >= 0x0400
-    #error [samp-detutils]: (error) - Library does not support Pawn 4.0.x yet.
+    #error [DETUtils]: (error) - Library does not support Pawn 4.0.x yet.
 #elseif __Pawn < 0x0300
-    #error [samp-detutils]: (error) - Library does not support Pawn 2.0.x/1.0.x yet.
+    #error [DETUtils]: (error) - Library does not support Pawn 2.0.x/1.0.x yet.
 #endif
 
 #define DETUTILS_VERSION_MAJOR 2
 #define DETUTILS_VERSION_MINOR 0
-#define DETUTILS_VERSION_PATCH 3
-#define DETUTILS_VERSION_RELEASE 7
+#define DETUTILS_VERSION_PATCH 4
+#define DETUTILS_VERSION_RELEASE 1
 
 /*
                                                                       
@@ -85,8 +85,8 @@ static AnnounceLibraryLoaded_version()
 main()
 {
     #if defined detutils_debug
-    SaveLogIntoFile("detutils_version.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_version.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("detutils_version.log", "[DETUtils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_version.log", "[DETUtils]: (debug) - Loaded.");
     #endif
     AnnounceLibraryLoaded_version();
     a_version_main();
@@ -108,8 +108,8 @@ public OnFilterScriptInit()
 {
     AnnounceLibraryLoaded_version();
     #if defined detutils_debug
-    SaveLogIntoFile("detutils_version.log", "[samp-detutils]: (debug) - Loading...");
-    SaveLogIntoFile("detutils_version.log", "[samp-detutils]: (debug) - Loaded.");
+    SaveLogIntoFile("detutils_version.log", "[DETUtils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_version.log", "[DETUtils]: (debug) - Loaded.");
     #endif
     if(funcidx("a_version_OnfsInit") != -1)
     {

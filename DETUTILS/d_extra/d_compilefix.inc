@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -28,7 +28,7 @@
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [samp-detutils]: (warning) - Internal library 'd_compilefix.inc' is disabled.
+ 		#warning [DETUtils]: (warning) - Internal library 'd_compilefix.inc' is disabled.
 
  	#endif
 

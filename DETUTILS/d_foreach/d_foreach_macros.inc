@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -13,7 +13,7 @@
 
 #if defined __DETUTILS_DEFAULT_ITERATORS
 
- 	#error [samp-detutils]: (iter error) - Compile option `__DETUTILS_DEFAULT_ITERATORS` is not available yet.
+ 	#error [DETUtils]: (iter error) - Compile option `__DETUTILS_DEFAULT_ITERATORS` is not available yet.
 
 #endif
 

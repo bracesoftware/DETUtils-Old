@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -12,8 +12,8 @@
  *
  */
 
-#define __DETUtils 0x203
-#define __DETUtilsRelease 0x7
+#define __DETUtils 0x204
+#define __DETUtilsRelease 0x1
 
 #include "d_rem"
 
@@ -35,7 +35,7 @@
 
 #if defined DETUTILS_COMPATIBILITY_MODE || defined detutils_complete_error_boom
 
-	#error [samp-detutils]: (fatal error) - crl :: Stop messing with the core libraries!
+	#error [DETUtils]: (fatal error) - crl :: Stop messing with the core libraries!
 
 #endif
 
@@ -53,7 +53,7 @@
 
 #if !defined __PawnBuild
 
-	#error [samp-detutils]: (fatal error) - DETUtils require community Pawn compiler. Get it from: github.com/pawn-lang/compiler
+	#error [DETUtils]: (fatal error) - DETUtils require community Pawn compiler. Get it from: github.com/pawn-lang/compiler
 
 #endif
 
@@ -89,7 +89,7 @@
 stock d_SendWarningMessage(playerid, const string[])
 {
 	new message[300];
-	format(message, 300, ""COLOUR_GREY"Warning: [samp-detutils]: (debug) - %s", string);
+	format(message, 300, ""COLOUR_GREY"Warning: [DETUtils]: (debug) - %s", string);
 	return SendClientMessage(playerid, -1, message);
 }
 
@@ -99,7 +99,7 @@ stock d_SendWarningMessage(playerid, const string[])
 
 stock _RemID;
 
-#define rem:<%0>; _RemID++; printf("[samp-detutils]: (rem) - Rem called. ID: %i", _RemID);
+#define rem:<%0>; _RemID++; printf("[DETUtils]: (rem) - Rem called. ID: %i", _RemID);
 
 #define MAX_INTERIORS 300
 

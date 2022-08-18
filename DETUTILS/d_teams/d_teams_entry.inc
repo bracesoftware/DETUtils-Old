@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -20,7 +20,7 @@
 #tryinclude "d_extra\d_libtags.inc"
 
 #if !defined d_extra_included
-	#error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+	#error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
 /*
@@ -79,7 +79,7 @@ stock CreateTeam(const name[])
 {
 	if(!strcmp("NO_TEAM", name, false))
 	{
-		printf("[samp-detutils]: (denied) - Permission to create the team 'NO_TEAM' denied.");
+		printf("[DETUtils]: (denied) - Permission to create the team 'NO_TEAM' denied.");
 		return 0;
 	}
 	for(new i = 1;
@@ -95,7 +95,7 @@ stock CreateTeam(const name[])
 			strmid(g_TeamCache[i][TeamName], name, 0, 32);
 			g_TeamCache[i][ValidTeam] = 1;
 			#if defined detutils_debug
-			printf("[samp-detutils]: (team create) - Created a team '%s'.", name);
+			printf("[DETUtils]: (team create) - Created a team '%s'.", name);
 			#endif
 			return 1;
 		}
@@ -113,7 +113,7 @@ stock DeleteTeam(const name[])
 {
 	if(!strcmp("NO_TEAM", name, false))
 	{
-		printf("[samp-detutils]: (denied) - Permission to delete the team 'NO_TEAM' denied.");
+		printf("[DETUtils]: (denied) - Permission to delete the team 'NO_TEAM' denied.");
 		return 0;
 	}
 	for(new i = 1;
@@ -124,7 +124,7 @@ stock DeleteTeam(const name[])
 		{
 			if(g_TeamCache[i][TeamMembers] != 0)
 			{
-				printf("[samp-detutils]: (team error) - Unable to delete a team '%s'; \
+				printf("[DETUtils]: (team error) - Unable to delete a team '%s'; \
 					firstly remove all the players from that team.", name);
 				return 0;
 			}
@@ -133,7 +133,7 @@ stock DeleteTeam(const name[])
 				CallLocalFunction("OnTeamDelete", "is", i, name);
 			}
 			#if defined detutils_debug
-			printf("[samp-detutils]: (team delete) - Deleted a team '%s'.", name);
+			printf("[DETUtils]: (team delete) - Deleted a team '%s'.", name);
 			#endif
 			strmid(g_TeamCache[i][TeamName], "_INVALID_TEAM_NAME_", 0, 32);
 			g_TeamCache[i][ValidTeam] = 0;
@@ -163,7 +163,7 @@ stock AddPlayerToTeam(playerid, const name[])
 			}
 		}
 		#if defined detutils_debug
-			printf("[samp-detutils]: (team set) - Player '%i' added to a team '%s'.", playerid, name);
+			printf("[DETUtils]: (team set) - Player '%i' added to a team '%s'.", playerid, name);
 		#endif
 		strmid(g_PlayerTeamCache[playerid][Team], "NO_TEAM", 0, 32);
 		return 1;
@@ -177,7 +177,7 @@ stock AddPlayerToTeam(playerid, const name[])
 			if(!strcmp(g_TeamCache[i][TeamName], name, false))
 			{
 				#if defined detutils_debug
-				printf("[samp-detutils]: (team set) - Player '%i' added to a team '%s'.", playerid, name);
+				printf("[DETUtils]: (team set) - Player '%i' added to a team '%s'.", playerid, name);
 				#endif
 				g_TeamCache[i][TeamMembers] ++;
 				strmid(g_PlayerTeamCache[playerid][Team], name, 0, 32);
@@ -188,20 +188,20 @@ stock AddPlayerToTeam(playerid, const name[])
 		{
 			// Set the team
 			#if defined detutils_debug
-			printf("[samp-detutils]: (team set) - Player '%i' added to a team '%s'.", playerid, name);
+			printf("[DETUtils]: (team set) - Player '%i' added to a team '%s'.", playerid, name);
 			#endif
 			strmid(g_PlayerTeamCache[playerid][Team], name, 0, 32);
 		}
 		if(tmc > 1) // if more than 1 team
 		{
 			// error
-			printf("[samp-detutils]: (team error) - Team '%s' shadows a team at a preceding level.", name);
+			printf("[DETUtils]: (team error) - Team '%s' shadows a team at a preceding level.", name);
 			return 0;
 		}
 		if(tmc == 0) // if no teams
 		{
 			// Error
-			printf("[samp-detutils]: (team IID) - No such team ('%s') found.", name);
+			printf("[DETUtils]: (team IID) - No such team ('%s') found.", name);
 			return 0;
 		}
 		return 1;*/
@@ -335,19 +335,19 @@ stock CreatePropertyEntranceForTeam(
 			{
 				g_PropertyData[g_PropertyID][p_PropertyTeam] = 1;
 				strmid(g_PropertyData[g_PropertyID][p_PropTeam], teamname, 0, 32);
-				printf("[samp-detutils]: (debug) - Property '%s' successfully created, entrance is set to: %f, %f, %f.",
+				printf("[DETUtils]: (debug) - Property '%s' successfully created, entrance is set to: %f, %f, %f.",
 						PropertyName,
 						Float:_xEntrance, 
 						Float:_yEntrance, 
 						Float:_zEntrance);
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - Property created.");
+				printf("[DETUtils]: (debug) - Property created.");
 				#endif
 
 				//g_PropertyID++;
 
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - Property id assigned.");
+				printf("[DETUtils]: (debug) - Property id assigned.");
 				#endif
 
 				strmid(g_PropertyData[g_PropertyID][p_PropertyName], 
@@ -357,17 +357,17 @@ stock CreatePropertyEntranceForTeam(
 						255);
 
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - Saved property name.");
+				printf("[DETUtils]: (debug) - Saved property name.");
 				#endif
 
-				printf("[samp-detutils]: (debug) - Property '%s' has an id %d.",PropertyName,g_PropertyID);
+				printf("[DETUtils]: (debug) - Property '%s' has an id %d.",PropertyName,g_PropertyID);
 
 				g_PropertyData[g_PropertyID][p_PropertyEntrance_X] = _xEntrance;
 				g_PropertyData[g_PropertyID][p_PropertyEntrance_Y] = _yEntrance;
 				g_PropertyData[g_PropertyID][p_PropertyEntrance_Z] = _zEntrance;
 
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - Entrance coordinates assigned to property data.");
+				printf("[DETUtils]: (debug) - Entrance coordinates assigned to property data.");
 				#endif
 
 				g_PropertyData[g_PropertyID][p_PropertyExit_X] = _xExit;
@@ -375,7 +375,7 @@ stock CreatePropertyEntranceForTeam(
 				g_PropertyData[g_PropertyID][p_PropertyExit_Z] = _zExit;
 
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - Exit coordinates assigned to property data.");
+				printf("[DETUtils]: (debug) - Exit coordinates assigned to property data.");
 				#endif
 
 				g_PropertyData[g_PropertyID][p_PropertyIntid] = _eInteriorid;
@@ -384,13 +384,13 @@ stock CreatePropertyEntranceForTeam(
 				g_PropertyData[g_PropertyID][p_PropertyVwid_OUT] = _xVirtualWorldid;
 
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - Virtual world IDs and interior IDs assigned to property data.");
+				printf("[DETUtils]: (debug) - Virtual world IDs and interior IDs assigned to property data.");
 				#endif
 
 				if(Interior != INTERIOR_CUSTOM)
 				{
 					#if defined detutils_debug
-					printf("[samp-detutils]: (debug) - Assigned interior map id to property id : %i", Interior);
+					printf("[DETUtils]: (debug) - Assigned interior map id to property id : %i", Interior);
 					#endif
 
 					if(Interior == INTERIOR_MARKET_247_1)
@@ -430,18 +430,18 @@ stock CreatePropertyEntranceForTeam(
 				{
 					new _EntranceLabelString[300];
 					#if defined detutils_debug
-					printf("[samp-detutils]: (debug) - Empty string declared.");
+					printf("[DETUtils]: (debug) - Empty string declared.");
 					#endif
 					format(_EntranceLabelString,sizeof(_EntranceLabelString),"{ffffff}[ %s ]\n{ffffff}Enter here!",PropertyName);
 					#if defined detutils_debug
-					printf("[samp-detutils]: (debug) - Formatted the 3D label string successfully.");
+					printf("[DETUtils]: (debug) - Formatted the 3D label string successfully.");
 					#endif
 					__Create3DLabelAndPickup(_EntranceLabelString, _xEntrance,_yEntrance,_zEntrance, 
 						_xVirtualWorldid, 19133, 3.0, 
 						g_PropertyData[g_PropertyID][p_PropertyLabelID], 
 						g_PropertyData[g_PropertyID][p_PropertyPickupID]);
 					#if defined detutils_debug
-					printf("[samp-detutils]: (debug) - lab :: Created 3D label and pickup on entrance.");
+					printf("[DETUtils]: (debug) - lab :: Created 3D label and pickup on entrance.");
 					#endif
 					__Create3DLabelAndPickup("Exit here!", g_PropertyData[g_PropertyID][p_PropertyExit_X],
 						g_PropertyData[g_PropertyID][p_PropertyExit_Y], 
@@ -450,12 +450,12 @@ stock CreatePropertyEntranceForTeam(
 						g_PropertyData[g_PropertyID][p_PropertyLabel], 
 						g_PropertyData[g_PropertyID][p_PropertyPickup]);
 					#if defined detutils_debug
-					printf("[samp-detutils]: (debug) - pick :: Created 3D label and pickup on exit.");
+					printf("[DETUtils]: (debug) - pick :: Created 3D label and pickup on exit.");
 					#endif
 				}
 
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - Internal property data assigned.");
+				printf("[DETUtils]: (debug) - Internal property data assigned.");
 				#endif
 
 				if(funcidx("OnPropertyCreate") != -1)
@@ -464,7 +464,7 @@ stock CreatePropertyEntranceForTeam(
 				}
 
 				#if defined detutils_debug
-				printf("[samp-detutils]: (debug) - OnPropertyCreate(propertyid) called.");
+				printf("[DETUtils]: (debug) - OnPropertyCreate(propertyid) called.");
 				#endif
 
 				g_PropertyData[g_PropertyID][ValidProp] = 1;
@@ -516,8 +516,8 @@ public OnDETUtilsInit()
 	}
 
 	#if defined detutils_debug
-	SaveLogIntoFile("detutils_teams.log", "[samp-detutils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_teams.log", "[samp-detutils]: (debug) - Loaded.");
+	SaveLogIntoFile("detutils_teams.log", "[DETUtils]: (debug) - Loading...");
+	SaveLogIntoFile("detutils_teams.log", "[DETUtils]: (debug) - Loaded.");
 	#endif
 	LoadDETUtilsScript(DETUTILS_SCRIPT_TEAMS);
 	if(funcidx("d_t_detutilsinit") != -1)

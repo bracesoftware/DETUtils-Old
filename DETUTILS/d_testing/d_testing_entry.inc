@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -95,7 +95,7 @@ enum Enums
 
 als function OnGameModeInit()
 {
-    printf("[samp-detutils]: (debug) - Test ALS hook called.");
+    printf("[DETUtils]: (debug) - Test ALS hook called.");
     return als continue;
 }
 
@@ -135,7 +135,7 @@ public OnDETUtilsInit() // This should be the last hook.
 	set Boolean("Variable1", false, 3);
 	set Float("Variable2", 213.21);
 
-	printf("[samp-detutils]: (var info) - Testing variables: %i, %i, %f, %s",
+	printf("[DETUtils]: (var info) - Testing variables: %i, %i, %f, %s",
 		get Integer("Variable"),
 		get Boolean("Variable1", 3),
 		get Float("Variable2"),
@@ -155,7 +155,7 @@ public OnDETUtilsInit() // This should be the last hook.
 	print("                                         ");
 	print("|=======================================|");
 	print("                                         ");
-	print("            SA:MP | DETUtils             ");
+	print("                DETUtils                 ");
 	print("     - Testing mode script loaded. -     ");
 	print("                                         ");
 	print("|=======================================|");

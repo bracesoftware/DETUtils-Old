@@ -1,7 +1,6 @@
 /*
  *
- * SA:MP DEntisT's
- * Utilities
+ * DETUtils
  *
  * - Mainfix provides
  *   the main() in filterscripts
@@ -52,7 +51,7 @@ forward a_mainfix_fsinit();
 main()
 {
 	#if defined DETUTILS_DEBUG_MODE
-    SendRconCommand("hostname [samp-detutils]: (test) - Server");
+    SendRconCommand("hostname [DETUtils]: (test) - Server");
     SetGameModeText("SA:MP | DET-Utils");
     #endif
     a_mainfix_entry();
@@ -71,7 +70,7 @@ main()
 main()
 {
 	#if defined DETUTILS_DEBUG_MODE
-    SendRconCommand("hostname [samp-detutils]: (test) - Server");
+    SendRconCommand("hostname [DETUtils]: (test) - Server");
     SetGameModeText("SA:MP | DET-Utils");
     #endif
     a_mainfix_entry();

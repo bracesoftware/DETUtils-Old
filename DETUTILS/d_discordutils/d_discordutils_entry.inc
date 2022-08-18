@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -12,12 +12,12 @@
  */
 
 #if !defined dcconnector_included
- 	#warning [samp-detutils]: (warning) - Discord Connector plugin is missing, the 'd_discordutils.inc' library was automatically disabled.
+ 	#warning [DETUtils]: (warning) - Discord Connector plugin is missing, the 'd_discordutils.inc' library was automatically disabled.
  	#endinput
 #endif
 
 #if !defined DISCORD_COMMAND_PREFIX
- 	#error [samp-detutils]: (error) - Discord Command prefix is not defined. Please do: `#define DISCORD_COMMAND_PREFIX '!'`
+ 	#error [DETUtils]: (error) - Discord Command prefix is not defined. Please do: `#define DISCORD_COMMAND_PREFIX '!'`
 #endif
 
 #include "d_discordutils_macros"
@@ -64,7 +64,7 @@ public DCC_OnMessageCreate(DCC_Message:message)
 			_:author, 
 			component[1]);
 
-		printf("component[0]: %c, component[1]: %c", component[0], component[1]);
+		//printf("component[0]: %c, component[1]: %c", component[0], component[1]);
 
 	}
 	return 1;
@@ -87,8 +87,8 @@ public DCC_OnMessageCreate(DCC_Message:message)
 public OnDETUtilsInit()
 {
 	#if defined detutils_debug
-	SaveLogIntoFile("detutils_discordutils.log", "[samp-detutils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_discordutils.log", "[samp-detutils]: (debug) - Loaded.");
+	SaveLogIntoFile("detutils_discordutils.log", "[DETUtils]: (debug) - Loading...");
+	SaveLogIntoFile("detutils_discordutils.log", "[DETUtils]: (debug) - Loaded.");
 	#endif
 	LoadDETUtilsScript(DETUTILS_SCRIPT_DISCORDUTILS);
 	if(funcidx("d_dcutils_detutilsinit") != -1)

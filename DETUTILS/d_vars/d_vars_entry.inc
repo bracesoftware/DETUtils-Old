@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -16,7 +16,7 @@
 #tryinclude "d_extra\d_libtags.inc"
 
 #if !defined d_extra_included
-	#error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+	#error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
 // Defining up there for 'strret' thing.
@@ -226,7 +226,7 @@ varfunc DeclareInteger(const name[], multi, constant, constvalue = 0)
 			g_IntCache[i][Multi] = multi;
 			if(constant == 1 && multi == 1)
 			{
-				printf("[samp-detutils]: (var error) - You can't create constant variables with more dimensions.");
+				printf("[DETUtils]: (var error) - You can't create constant variables with more dimensions.");
 				return 0;
 			}
 			if(multi == 1)
@@ -263,7 +263,7 @@ varfunc DeclareBoolean(const name[], multi, constant, bool:constvalue = false)
 			g_BoolCache[i][Multi] = multi;
 			if(constant == 1 && multi == 1)
 			{
-				printf("[samp-detutils]: (var error) - You can't create constant variables with more dimensions.");
+				printf("[DETUtils]: (var error) - You can't create constant variables with more dimensions.");
 				return 0;
 			}
 			if(multi == 1)
@@ -281,7 +281,7 @@ varfunc DeclareBoolean(const name[], multi, constant, bool:constvalue = false)
 			{
 				if(constvalue != false && constvalue != true)
 				{
-					printf("[samp-detutils]: (var error) - Booleans can only have 0 and 1 as values.");
+					printf("[DETUtils]: (var error) - Booleans can only have 0 and 1 as values.");
 					return 0;
 				}
 				g_BoolCache[i][Const] = 1;
@@ -305,7 +305,7 @@ varfunc DeclareFloat(const name[], multi, constant, Float:constvalue = 0.0000)
 			g_FloatCache[i][Multi] = multi;
 			if(constant == 1 && multi == 1)
 			{
-				printf("[samp-detutils]: (var error) - You can't create constant variables with more dimensions.");
+				printf("[DETUtils]: (var error) - You can't create constant variables with more dimensions.");
 				return 0;
 			}
 			if(multi == 1)
@@ -369,7 +369,7 @@ stock __GetIntegerValue(const name[], dimension = -1)
 			{
 				if(dimension == -1)
 				{
-					printf("[samp-detutils]: (var error) - Invalid dimension.");
+					printf("[DETUtils]: (var error) - Invalid dimension.");
 					return 0;
 				}
 				return g_IntCache[i][Dimensions][dimension];
@@ -393,7 +393,7 @@ stock __GetBooleanValue(const name[], dimension = -1)
 			{
 				if(dimension == -1)
 				{
-					printf("[samp-detutils]: (var error) - Invalid dimension.");
+					printf("[DETUtils]: (var error) - Invalid dimension.");
 					return 0;
 				}
 				return g_BoolCache[i][Dimensions][dimension];
@@ -417,7 +417,7 @@ stock Float:__GetFloatValue(const name[], dimension = -1)
 			{
 				if(dimension == -1)
 				{
-					printf("[samp-detutils]: (var error) - Invalid dimension.");
+					printf("[DETUtils]: (var error) - Invalid dimension.");
 					return Float:0;
 				}
 				return g_FloatCache[i][Dimensions][dimension];
@@ -457,14 +457,14 @@ stock __SetIntegerValue(const name[], value, dimension = -1)
 		{
 			if(g_IntCache[i][Const] == 1)
 			{
-				printf("[samp-detutils]: (var error) - Cannot update the constant value of : %s", name);
+				printf("[DETUtils]: (var error) - Cannot update the constant value of : %s", name);
 				return 0;
 			}
 			if(g_IntCache[i][Multi] == 1)
 			{
 				if(dimension == -1)
 				{
-					printf("[samp-detutils]: (var error) - Invalid dimension.");
+					printf("[DETUtils]: (var error) - Invalid dimension.");
 					return 0;
 				}
 				CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_INTEGER, value, dimension);
@@ -490,19 +490,19 @@ stock __SetBooleanValue(const name[], bool:value, dimension = -1)
 		{
 			if(g_BoolCache[i][Const] == 1)
 			{
-				printf("[samp-detutils]: (var error) - Cannot update the constant value of : %s", name);
+				printf("[DETUtils]: (var error) - Cannot update the constant value of : %s", name);
 				return 0;
 			}
 			if(value != false && value != true)
 			{
-				printf("[samp-detutils]: (var error) - Boolean variables can only hold the values of 0 and 1.");
+				printf("[DETUtils]: (var error) - Boolean variables can only hold the values of 0 and 1.");
 				return 0;
 			}
 			if(g_BoolCache[i][Multi] == 1)
 			{
 				if(dimension == -1)
 				{
-					printf("[samp-detutils]: (var error) - Invalid dimension.");
+					printf("[DETUtils]: (var error) - Invalid dimension.");
 					return 0;
 				}
 				CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_BOOLEAN, value, dimension);
@@ -528,14 +528,14 @@ stock __SetFloatValue(const name[], Float:value, dimension = -1)
 		{
 			if(g_FloatCache[i][Const] == 1)
 			{
-				printf("[samp-detutils]: (var error) - Cannot update the constant value of : %s", name);
+				printf("[DETUtils]: (var error) - Cannot update the constant value of : %s", name);
 				return 0;
 			}
 			if(g_FloatCache[i][Multi] == 1)
 			{
 				if(dimension == -1)
 				{
-					printf("[samp-detutils]: (var error) - Invalid dimension.");
+					printf("[DETUtils]: (var error) - Invalid dimension.");
 					return 0;
 				}
 				CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_FLOAT, value, dimension);
@@ -561,7 +561,7 @@ stock __SetStringValue(const name[], const value[])
 		{
 			if(g_StringCache[i][Const] == 1)
 			{
-				printf("[samp-detutils]: (var error) - Cannot update the constant value of : %s", name);
+				printf("[DETUtils]: (var error) - Cannot update the constant value of : %s", name);
 				return 0;
 			}
 			new len = strlen(value);
@@ -596,7 +596,7 @@ stock CreateVariable( // this is deprecated function
 					g_IntCache[i][Multi] = multi;
 					if(constant == 1 && multi == 1)
 					{
-						printf("[samp-detutils]: (var error) - You can't create constant variables with more dimensions.");
+						printf("[DETUtils]: (var error) - You can't create constant variables with more dimensions.");
 						return 0;
 					}
 					if(multi == 1)
@@ -631,7 +631,7 @@ stock CreateVariable( // this is deprecated function
 					g_BoolCache[i][Multi] = multi;
 					if(constant == 1 && multi == 1)
 					{
-						printf("[samp-detutils]: (var error) - You can't create constant variables with more dimensions.");
+						printf("[DETUtils]: (var error) - You can't create constant variables with more dimensions.");
 						return 0;
 					}
 					if(multi == 1)
@@ -649,7 +649,7 @@ stock CreateVariable( // this is deprecated function
 					{
 						if(constvalue != 0 && constvalue != 1)
 						{
-							printf("[samp-detutils]: (var error) - Booleans can only have 0 and 1 as values.");
+							printf("[DETUtils]: (var error) - Booleans can only have 0 and 1 as values.");
 							return 0;
 						}
 						g_BoolCache[i][Const] = 1;
@@ -671,13 +671,13 @@ stock CreateVariable( // this is deprecated function
 					g_StringCache[i][Multi] = multi;
 					if(constant == 1 && multi == 1)
 					{
-						printf("[samp-detutils]: (var error) - You can't create constant variables with more dimensions.");
+						printf("[DETUtils]: (var error) - You can't create constant variables with more dimensions.");
 						return 0;
 					}
 					if(multi == 1)
 					{
 						// There can't be more than a 1 return size for strings :( Pawn limits
-						printf("[samp-detutils]: (string error) - Strings cannot be multidimensional variables.");
+						printf("[DETUtils]: (string error) - Strings cannot be multidimensional variables.");
 						return 0;
 					}
 					else if(multi == 0)
@@ -701,7 +701,7 @@ stock CreateVariable( // this is deprecated function
 					g_FloatCache[i][Multi] = multi;
 					if(constant == 1 && multi == 1)
 					{
-						printf("[samp-detutils]: (var error) - You can't create constant variables with more dimensions.");
+						printf("[DETUtils]: (var error) - You can't create constant variables with more dimensions.");
 						return 0;
 					}
 					if(multi == 1)
@@ -804,8 +804,8 @@ stock __GetStringVarId(const name[])
 public OnDETUtilsInit()
 {
 	#if defined detutils_debug
-	SaveLogIntoFile("detutils_vars.log", "[samp-detutils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_vars.log", "[samp-detutils]: (debug) - Loaded.");
+	SaveLogIntoFile("detutils_vars.log", "[DETUtils]: (debug) - Loading...");
+	SaveLogIntoFile("detutils_vars.log", "[DETUtils]: (debug) - Loaded.");
 	#endif
 	LoadDETUtilsScript(DETUTILS_SCRIPT_VARS);
 	if(funcidx("d_vs_detutilsinit") != -1)
@@ -834,8 +834,8 @@ public OnDETUtilsInit()
         d_vs_detutilsinit();
     #endif
     #if defined detutils_debug
-	SaveLogIntoFile("detutils_vars.log", "[samp-detutils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_vars.log", "[samp-detutils]: (debug) - Loaded.");
+	SaveLogIntoFile("detutils_vars.log", "[DETUtils]: (debug) - Loading...");
+	SaveLogIntoFile("detutils_vars.log", "[DETUtils]: (debug) - Loaded.");
 	#endif
 	LoadDETUtilsScript(DETUTILS_SCRIPT_VARS);
     // Implicitly return the value of the previous call.  This means we can
@@ -951,7 +951,7 @@ stock __LoadIntegerVariable(const name[])
 
 	if(!QueryFileExist(loadquery))
 	{
-		printf("[samp-detutils]: (var error) - Unable to load variable : '%s'; persistent data does not exist.", name);
+		printf("[DETUtils]: (var error) - Unable to load variable : '%s'; persistent data does not exist.", name);
 		DestroyQuery(loadquery);
 		return 0;
 	}
@@ -1073,7 +1073,7 @@ stock __LoadBooleanVariable(const name[])
 
 	if(!QueryFileExist(loadquery))
 	{
-		printf("[samp-detutils]: (var error) - Unable to load variable : '%s'; persistent data does not exist.", name);
+		printf("[DETUtils]: (var error) - Unable to load variable : '%s'; persistent data does not exist.", name);
 		DestroyQuery(loadquery);
 		return 0;
 	}
@@ -1195,7 +1195,7 @@ stock __LoadFloatVariable(const name[])
 
 	if(!QueryFileExist(loadquery))
 	{
-		printf("[samp-detutils]: (var error) - Unable to load variable : '%s'; persistent data does not exist.", name);
+		printf("[DETUtils]: (var error) - Unable to load variable : '%s'; persistent data does not exist.", name);
 		DestroyQuery(loadquery);
 		return 0;
 	}
@@ -1310,7 +1310,7 @@ stock __LoadStringVariable(const name[])
 
 	if(!QueryFileExist(loadquery))
 	{
-		printf("[samp-detutils]: (var error) - Unable to load variable : '%s'; persistent data does not exist.", name);
+		printf("[DETUtils]: (var error) - Unable to load variable : '%s'; persistent data does not exist.", name);
 		DestroyQuery(loadquery);
 		return 0;
 	}

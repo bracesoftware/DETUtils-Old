@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -15,7 +15,7 @@
 #tryinclude "d_extra\d_libtags.inc"
 
 #if !defined d_extra_included
-	#error [samp-detutils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+	#error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
 #if defined d_anticheat_included
@@ -50,7 +50,7 @@ new DET_g_AntiCheatTimer;
 
 #define DETUTILS_AC__%1check:(%0); \
 	if(gAntiCheatToggled == 0) return print(\
-	"[samp-detutils]: (debug) - Function '%0' wasn't executed because anti-cheat system is OFF.");
+	"[DETUtils]: (debug) - Function '%0' wasn't executed because anti-cheat system is OFF.");
 
 // Cheat defines:
 
@@ -146,31 +146,31 @@ public detutils_cheatcheck()
 		if(IsPlayerConnected(i) && i != INVALID_PLAYER_ID)
 		{
 			CheckPlayerMoney(i);
-			printf("[samp-detutils]: (debug) - ac :: Money check performed on %s", ReturnPlayerName(i));
+			printf("[DETUtils]: (debug) - ac :: Money check performed on %s", ReturnPlayerName(i));
 			//sleep(100);
 			CheckPlayerSkin(i);
-			printf("[samp-detutils]: (debug) - ac :: Skin check performed on %s", ReturnPlayerName(i));
+			printf("[DETUtils]: (debug) - ac :: Skin check performed on %s", ReturnPlayerName(i));
 			//sleep(100);
 			CheckPlayerPos(i);
-			printf("[samp-detutils]: (debug) - ac :: Pos check performed on %s", ReturnPlayerName(i));
+			printf("[DETUtils]: (debug) - ac :: Pos check performed on %s", ReturnPlayerName(i));
 			//sleep(100);
 			CheckPlayerPing(i);
-			printf("[samp-detutils]: (debug) - ac :: Ping check performed on %s", ReturnPlayerName(i));
+			printf("[DETUtils]: (debug) - ac :: Ping check performed on %s", ReturnPlayerName(i));
 			//sleep(100);
 			CheckPlayerArmour(i);
-			printf("[samp-detutils]: (debug) - ac :: Armour check performed on %s", ReturnPlayerName(i));
+			printf("[DETUtils]: (debug) - ac :: Armour check performed on %s", ReturnPlayerName(i));
 			//sleep(100);
 			CheckPlayerHealth(i);
-			printf("[samp-detutils]: (debug) - ac :: Health check performed on %s", ReturnPlayerName(i));
+			printf("[DETUtils]: (debug) - ac :: Health check performed on %s", ReturnPlayerName(i));
 			//sleep(100);
 			CheckPlayerSpeed(i);
-			printf("[samp-detutils]: (debug) - ac :: Speed check performed on %s", ReturnPlayerName(i));
+			printf("[DETUtils]: (debug) - ac :: Speed check performed on %s", ReturnPlayerName(i));
 			//sleep(100);
 			CheckPlayerDialog(i);
-			printf("[samp-detutils]: (debug) - ac :: Dialog check performed on %s", ReturnPlayerName(i));
+			printf("[DETUtils]: (debug) - ac :: Dialog check performed on %s", ReturnPlayerName(i));
 			//sleep(100);
 			CheckPlayerMenu(i);
-			printf("[samp-detutils]: (debug) - ac :: Menu check performed on %s", ReturnPlayerName(i));
+			printf("[DETUtils]: (debug) - ac :: Menu check performed on %s", ReturnPlayerName(i));
 		}
 	}
 	return 1;
@@ -871,8 +871,8 @@ public OnDETUtilsInit()
 {
 	DET_g_AntiCheatTimer = SetTimer("detutils_cheatcheck", 60000, true);
 	#if defined detutils_debug
-	SaveLogIntoFile("detutils_anticheat.log", "[samp-detutils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_anticheat.log", "[samp-detutils]: (debug) - Loaded.");
+	SaveLogIntoFile("detutils_anticheat.log", "[DETUtils]: (debug) - Loading...");
+	SaveLogIntoFile("detutils_anticheat.log", "[DETUtils]: (debug) - Loaded.");
 	#endif
 	LoadDETUtilsScript(DETUTILS_SCRIPT_ANTICHEAT);
 	if(funcidx("d_ac_detutilsinit") != -1)

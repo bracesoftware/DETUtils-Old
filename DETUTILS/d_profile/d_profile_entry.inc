@@ -1,6 +1,6 @@
 /*
  * 
- * SA:MP DEntisT's Utilities
+ * DETUtils
  *
  * Since 2019., DEntisT
  *
@@ -48,8 +48,8 @@ new DET_g_ProfilerCount;
 public OnDETUtilsInit()
 {
 	#if defined detutils_debug
-	SaveLogIntoFile("detutils_profile.log", "[samp-detutils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_profile.log", "[samp-detutils]: (debug) - Loaded.");
+	SaveLogIntoFile("detutils_profile.log", "[DETUtils]: (debug) - Loading...");
+	SaveLogIntoFile("detutils_profile.log", "[DETUtils]: (debug) - Loaded.");
 	#endif
 	LoadDETUtilsScript(DETUTILS_SCRIPT_PROFILE);
 	if(funcidx("d_profile_detutilsinit") != -1)
