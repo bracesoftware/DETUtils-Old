@@ -1,4 +1,4 @@
-# [`open.mp DET-Utils | Wiki`](https://github.com/DEntis-T/DETUtils)
+# [`DET-Utils | Wiki`](https://github.com/DEntis-T/DETUtils)
 <p align="center">
   <img width="500" align="center" src="detutils.png">
 </p>
