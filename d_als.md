@@ -1,5 +1,5 @@
 # d_als.inc
-Pawn ALS Hooks - Provides `als` keyword used to create and interact with ALS hooked functons.
+Pawn ALS Hooks - Provides `@als()` decorator used to create and interact with ALS hooked functons.
 
 [Go back to home page...](README.md)
 
@@ -11,33 +11,33 @@ Pawn ALS Hooks - Provides `als` keyword used to create and interact with ALS hoo
 
 public OnGameModeInit()
 {
-  als do("OnGameModeInit", "");
+  @als() do("OnGameModeInit", "");
   return 1;
 }
 
-als function OnGameModeInit()
+@als() function OnGameModeInit()
 {
     printf("1st hook called.");
-    return als continue;
+    return @als() continue;
 }
 
 #include "DETUTILS\d_als"
 
-als function OnGameModeInit()
+@als() function OnGameModeInit()
 {
     printf("Hook 2 called!");
-    return als continue;
+    return @als() break;
 }
 ```
 ## Facts and tips
 ### Looping
-- Since this is an actually hook loop, there are `als continue` (or just `1`) and `als break` (or just `0`) return values. If you return `als continue`, the loop through ALS functions will continue, but if you return `als break` the looping through ALS functions will stop.
+- Since this is an actually hook loop, there are `@als() continue` (or just `1`) and `@als() break` (or just `0`) return values. If you return `@als() continue`, the loop through ALS functions will continue, but if you return `@als() break` the looping through ALS functions will stop.
 
 ```pawn
-als function OnGameModeInit()
+@als() function OnGameModeInit()
 {
     printf("This will break the loop!");
-    return als break;
+    return @als() break;
 }
 ```
 ### Hooking fact
@@ -47,30 +47,30 @@ als function OnGameModeInit()
 ```pawn
 task SuperCoolTask[1000]()
 {
-  als do("MyTaskName", "");
+  @als() do("MyTaskName", "");
   return 1;
 }
 
-als function MyTaskName()
+@als() function MyTaskName()
 {
   print("MyTaskName called!");
-  return als continue;
+  return @als() continue;
 }
 ```
 ### `hook` keyword
-- Instead of using `als function`, you can simply use `hook`. Which means this will work too:
+- Instead of using `@als() function`, you can simply use `hook`. Which means this will work too:
 
 ```pawn
 task SuperCoolTask[1000]()
 {
-  als do("MyTaskName", "");
+  @als() do("MyTaskName", "");
   return 1;
 }
 
 hook MyTaskName()
 {
   print("MyTaskName called!");
-  return als continue;
+  return @als() continue;
 }
 ```
 - If you wish to, for any reason, you can disable this keyword simply by using:
