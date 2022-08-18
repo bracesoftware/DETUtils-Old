@@ -1,4 +1,4 @@
-# [`DET-Utils | Wiki`](https://github.com/DEntis-T/DETUtils)
+# [`DETUtils | Wiki`](https://github.com/DEntis-T/DETUtils)
 <p align="center">
   <img width="500" align="center" src="detutils.png">
 </p>
@@ -6,9 +6,9 @@
   Addition to the Pawn language features, open.mp API and Discord Connector plugin.
 </h4>
 
-### Current library version: `2.0.3`
+### Current library version: `2.0.4-R1`
 
-Hello scripter! Welcome to *Pawn DEntisT's Utilities* (or **detutils** for short) "read me" file. So, now, you may ask about - what's this? Well - in general, this addition to open.mp Standard Scripting package contains libraries that have in-game visible effects and libraries that contain new scripting features. 
+Hello scripter! Welcome to *DEntisT's Utilities* (or **DETUtils** for short) "read me" file. So, now, you may ask about - what's this? Well - in general, this addition to open.mp Standard Scripting package contains libraries that have in-game visible effects and libraries that contain new scripting features. 
 - Below, you can find information about each library.
 - For better understanding of this, make sure you know Pawn and a_samp - read all the docs [here](https://team.sa-mp.com/wiki-archive.html)...
 
