@@ -31,6 +31,7 @@
 #define @d_trpt_%0\32; @d_trpt_
 #define @d_tint_%0\32; @d_tint_
 #define @d_tmr_%0\32; @d_tmr_ 
+#define @d_ret_%0\32; @d_ret_ 
 
 #define DeferTask%0(%1,%2) \
 	SetTimerEx("@d_tmr_"%1,CallLocalFunction("@d_tint_"%1,""),CallLocalFunction("@d_trpt_"%1,""),%2)

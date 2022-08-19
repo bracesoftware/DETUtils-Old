@@ -33,7 +33,7 @@
 */
 
 //guilds
-stock void:DET_GetGuildData_Integer(DCC_Guild:guild, const data_address[], dest)
+stock void:DCC_GetGuildIntegerData(DCC_Guild:guild, const data_address[], dest)
 {
 	new id[DCC_ID_SIZE], returned_data[10], file_name[150];
 	DCC_GetGuildId(guild, id);
@@ -49,7 +49,7 @@ stock void:DET_GetGuildData_Integer(DCC_Guild:guild, const data_address[], dest)
 	}
 }
 
-stock DET_SetGuildData_Integer(DCC_Guild:guild, const data_address[], value)
+stock DCC_SetGuildIntegerData(DCC_Guild:guild, const data_address[], value)
 {
 	new id[DCC_ID_SIZE], saved_data[10], file_name[150];
 	DCC_GetGuildId(guild, id);
@@ -62,7 +62,7 @@ stock DET_SetGuildData_Integer(DCC_Guild:guild, const data_address[], value)
 	return 1;
 }
 
-stock void:DET_GetGuildData_Boolean(DCC_Guild:guild, const data_address[], bool:dest)
+stock void:DCC_GetGuildBooleanData(DCC_Guild:guild, const data_address[], bool:dest)
 {
 	new id[DCC_ID_SIZE], returned_data[10], file_name[150];
 	DCC_GetGuildId(guild, id);
@@ -78,7 +78,7 @@ stock void:DET_GetGuildData_Boolean(DCC_Guild:guild, const data_address[], bool:
 	}
 }
 
-stock DET_SetGuildData_Boolean(DCC_Guild:guild, const data_address[], bool:value)
+stock DCC_SetGuildBooleanData(DCC_Guild:guild, const data_address[], bool:value)
 {
 	new id[DCC_ID_SIZE], saved_data[10], file_name[150];
 	DCC_GetGuildId(guild, id);
@@ -95,7 +95,7 @@ stock DET_SetGuildData_Boolean(DCC_Guild:guild, const data_address[], bool:value
 	return 1;
 }
 
-stock void:DET_GetGuildData_Float(DCC_Guild:guild, const data_address[], Float:dest)
+stock void:DCC_GetGuildFloatData(DCC_Guild:guild, const data_address[], Float:dest)
 {
 	new id[DCC_ID_SIZE], returned_data[10], file_name[150];
 	DCC_GetGuildId(guild, id);
@@ -111,7 +111,7 @@ stock void:DET_GetGuildData_Float(DCC_Guild:guild, const data_address[], Float:d
 	}
 }
 
-stock DET_SetGuildData_Float(DCC_Guild:guild, const data_address[], Float:value)
+stock DCC_SetGuildFloatData(DCC_Guild:guild, const data_address[], Float:value)
 {
 	new id[DCC_ID_SIZE], saved_data[10], file_name[150];
 	DCC_GetGuildId(guild, id);
@@ -124,7 +124,7 @@ stock DET_SetGuildData_Float(DCC_Guild:guild, const data_address[], Float:value)
 	return 1;
 }
 
-stock void:DET_GetGuildData_String(DCC_Guild:guild, const data_address[], dest[], size = sizeof dest)
+stock void:DCC_GetGuildStringData(DCC_Guild:guild, const data_address[], dest[], size = sizeof dest)
 {
 	new id[DCC_ID_SIZE], returned_data[512], file_name[150];
 	DCC_GetGuildId(guild, id);
@@ -140,7 +140,7 @@ stock void:DET_GetGuildData_String(DCC_Guild:guild, const data_address[], dest[]
 	}
 }
 
-stock DET_SetGuildData_String(DCC_Guild:guild, const data_address[], const value[])
+stock DCC_SetGuildStringData(DCC_Guild:guild, const data_address[], const value[])
 {
 	new id[DCC_ID_SIZE], saved_data[512], file_name[150];
 	DCC_GetGuildId(guild, id);
@@ -155,7 +155,7 @@ stock DET_SetGuildData_String(DCC_Guild:guild, const data_address[], const value
 
 //Channels
 
-stock void:DET_GetChannelData_Integer(DCC_Channel:channel, const data_address[], dest)
+stock void:DCC_GetChannelIntegerData(DCC_Channel:channel, const data_address[], dest)
 {
 	new id[DCC_ID_SIZE], returned_data[10], file_name[150];
 	DCC_GetChannelId(channel, id);
@@ -171,7 +171,7 @@ stock void:DET_GetChannelData_Integer(DCC_Channel:channel, const data_address[],
 	}
 }
 
-stock DET_SetChannelData_Integer(DCC_Channel:channel, const data_address[], value)
+stock DCC_SetChannelIntegerData(DCC_Channel:channel, const data_address[], value)
 {
 	new id[DCC_ID_SIZE], saved_data[10], file_name[150];
 	DCC_GetChannelId(channel, id);
@@ -184,7 +184,7 @@ stock DET_SetChannelData_Integer(DCC_Channel:channel, const data_address[], valu
 	return 1;
 }
 
-stock void:DET_GetChannelData_Boolean(DCC_Channel:channel, const data_address[], bool:dest)
+stock void:DCC_GetChannelBooleanData(DCC_Channel:channel, const data_address[], bool:dest)
 {
 	new id[DCC_ID_SIZE], returned_data[10], file_name[150];
 	DCC_GetChannelId(channel, id);
@@ -200,7 +200,7 @@ stock void:DET_GetChannelData_Boolean(DCC_Channel:channel, const data_address[],
 	}
 }
 
-stock DET_SetChannelData_Boolean(DCC_Channel:channel, const data_address[], bool:value)
+stock DCC_SetChannelBooleanData(DCC_Channel:channel, const data_address[], bool:value)
 {
 	new id[DCC_ID_SIZE], saved_data[10], file_name[150];
 	DCC_GetChannelId(channel, id);
@@ -217,7 +217,7 @@ stock DET_SetChannelData_Boolean(DCC_Channel:channel, const data_address[], bool
 	return 1;
 }
 
-stock void:DET_GetChannelData_Float(DCC_Channel:channel, const data_address[], Float:dest)
+stock void:DCC_GetChannelFloatData(DCC_Channel:channel, const data_address[], Float:dest)
 {
 	new id[DCC_ID_SIZE], returned_data[10], file_name[150];
 	DCC_GetChannelId(channel, id);
@@ -233,7 +233,7 @@ stock void:DET_GetChannelData_Float(DCC_Channel:channel, const data_address[], F
 	}
 }
 
-stock DET_SetChannelData_Float(DCC_Channel:channel, const data_address[], Float:value)
+stock DCC_SetChannelFloatData(DCC_Channel:channel, const data_address[], Float:value)
 {
 	new id[DCC_ID_SIZE], saved_data[10], file_name[150];
 	DCC_GetChannelId(channel, id);
@@ -246,7 +246,7 @@ stock DET_SetChannelData_Float(DCC_Channel:channel, const data_address[], Float:
 	return 1;
 }
 
-stock void:DET_GetChannelData_String(DCC_Channel:channel, const data_address[], dest[], size = sizeof dest)
+stock void:DCC_GetChannelStringData(DCC_Channel:channel, const data_address[], dest[], size = sizeof dest)
 {
 	new id[DCC_ID_SIZE], returned_data[512], file_name[150];
 	DCC_GetChannelId(channel, id);
@@ -262,7 +262,7 @@ stock void:DET_GetChannelData_String(DCC_Channel:channel, const data_address[], 
 	}
 }
 
-stock DET_SetChannelData_String(DCC_Channel:channel, const data_address[], const value[])
+stock DCC_SetChannelStringData(DCC_Channel:channel, const data_address[], const value[])
 {
 	new id[DCC_ID_SIZE], saved_data[512], file_name[150];
 	DCC_GetChannelId(channel, id);
@@ -277,7 +277,7 @@ stock DET_SetChannelData_String(DCC_Channel:channel, const data_address[], const
 
 // users
 
-stock void:DET_GetUserData_Integer(DCC_User:user, const data_address[], dest)
+stock void:DCC_GetUserIntegerData(DCC_User:user, const data_address[], dest)
 {
 	new id[DCC_ID_SIZE], returned_data[10], file_name[150];
 	DCC_GetUserId(user, id);
@@ -293,7 +293,7 @@ stock void:DET_GetUserData_Integer(DCC_User:user, const data_address[], dest)
 	}
 }
 
-stock DET_SetUserData_Integer(DCC_User:user, const data_address[], value)
+stock DCC_SetUserIntegerData(DCC_User:user, const data_address[], value)
 {
 	new id[DCC_ID_SIZE], saved_data[10], file_name[150];
 	DCC_GetUserId(user, id);
@@ -306,7 +306,7 @@ stock DET_SetUserData_Integer(DCC_User:user, const data_address[], value)
 	return 1;
 }
 
-stock void:DET_GetUserData_Boolean(DCC_User:user, const data_address[], bool:dest)
+stock void:DCC_GetUserBooleanData(DCC_User:user, const data_address[], bool:dest)
 {
 	new id[DCC_ID_SIZE], returned_data[10], file_name[150];
 	DCC_GetUserId(user, id);
@@ -322,7 +322,7 @@ stock void:DET_GetUserData_Boolean(DCC_User:user, const data_address[], bool:des
 	}
 }
 
-stock DET_SetUserData_Boolean(DCC_User:user, const data_address[], bool:value)
+stock DCC_SetUserBooleanData(DCC_User:user, const data_address[], bool:value)
 {
 	new id[DCC_ID_SIZE], saved_data[10], file_name[150];
 	DCC_GetUserId(user, id);
@@ -339,7 +339,7 @@ stock DET_SetUserData_Boolean(DCC_User:user, const data_address[], bool:value)
 	return 1;
 }
 
-stock void:DET_GetUserData_Float(DCC_User:user, const data_address[], Float:dest)
+stock void:DCC_GetUserFloatData(DCC_User:user, const data_address[], Float:dest)
 {
 	new id[DCC_ID_SIZE], returned_data[10], file_name[150];
 	DCC_GetUserId(user, id);
@@ -355,7 +355,7 @@ stock void:DET_GetUserData_Float(DCC_User:user, const data_address[], Float:dest
 	}
 }
 
-stock DET_SetUserData_Float(DCC_User:user, const data_address[], Float:value)
+stock DCC_SetUserFloatData(DCC_User:user, const data_address[], Float:value)
 {
 	new id[DCC_ID_SIZE], saved_data[10], file_name[150];
 	DCC_GetUserId(user, id);
@@ -368,7 +368,7 @@ stock DET_SetUserData_Float(DCC_User:user, const data_address[], Float:value)
 	return 1;
 }
 
-stock void:DET_GetUserData_String(DCC_User:user, const data_address[], dest[], size = sizeof dest)
+stock void:DCC_GetUserStringData(DCC_User:user, const data_address[], dest[], size = sizeof dest)
 {
 	new id[DCC_ID_SIZE], returned_data[512], file_name[150];
 	DCC_GetUserId(user, id);
@@ -384,7 +384,7 @@ stock void:DET_GetUserData_String(DCC_User:user, const data_address[], dest[], s
 	}
 }
 
-stock DET_SetUserData_String(DCC_User:user, const data_address[], const value[])
+stock DCC_SetUserStringData(DCC_User:user, const data_address[], const value[])
 {
 	new id[DCC_ID_SIZE], saved_data[512], file_name[150];
 	DCC_GetUserId(user, id);
