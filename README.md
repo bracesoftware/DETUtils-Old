@@ -17,53 +17,53 @@ Honestly, this packet of libraries exists for show-off reasons, I made it for my
 - [View code](https://github.com/DEntis-T/SA-MP-DETUtils/blob/2.x/DETUTILS/d_testing/d_testing_entry.inc)
 
 ## Installation
-- Installation is simple, quick and easy - learn more [here](d_installation.md)...
+- Installation is simple, quick and easy - learn more [here](docs/d_installation.md)...
 ## Documentation
 Below, there is a list of features provided by a certain library.
-- What's d_samp.inc? See [here](d_samp.md)...
+- What's d_samp.inc? See [here](docs/d_samp.md)...
 --------------------------------------
 ### Pawn Libraries
 Libraries whose contain the new language features.
 
-- Copy of `y_va` and Pawn `sscanf` implementation - [d_fmargs.inc](d_fmargs.md)
-- Completely new variable system - [d_vars.inc](d_vars.md)
-- New ALS hooking system - [d_als.inc](d_als.md)
-- New `foreach` implementation - [d_foreach.inc](d_foreach.md)
-- Excel-like management system - [d_tables.inc](d_tables.md)
-- Profile chunks of code - [d_profile.inc](d_profile.md)
-- Automatic and manual timers - [d_timers.inc](d_timers.md)
+- Copy of `y_va` and Pawn `sscanf` implementation - [d_fmargs.inc](docs/d_fmargs.md)
+- Completely new variable system - [d_vars.inc](docs/d_vars.md)
+- New ALS hooking system - [d_als.inc](docs/d_als.md)
+- New `foreach` implementation - [d_foreach.inc](docs/d_foreach.md)
+- Excel-like management system - [d_tables.inc](docs/d_tables.md)
+- Profile chunks of code - [d_profile.inc](docs/d_profile.md)
+- Automatic and manual timers - [d_timers.inc](docs/d_timers.md)
 
 ### open.mp Libraries
 Libraries whose contain the new open.mp functions and features.
 
-- Command processor with a big amount of features - [d_commands.inc](d_commands.md)
-- Create property entrances, with own and custom interiors - [d_properties.inc](d_properties.md)
-- Generally smaller groups of random features - [d_visual.inc](d_visual.md)
-- Send file queries, save and load cache during runtime - [d_filequeries.inc](d_filequeries.md)
-- Anti cheat system - [d_anticheat.inc](d_anticheat.md)
-- In-game map editor - [d_mapeditor.inc](d_mapeditor.md)
-- Create deathmatch zones - [d_dmzone.inc](d_dmzone.md)
-- Better teams, provides new functions - [d_teams.inc](d_teams.md)
-- Better dialogs, faster and easier - [d_dialog.inc](d_dialog.md)
+- Command processor with a big amount of features - [d_commands.inc](docs/d_commands.md)
+- Create property entrances, with own and custom interiors - [d_properties.inc](docs/d_properties.md)
+- Generally smaller groups of random features - [d_visual.inc](docs/d_visual.md)
+- Send file queries, save and load cache during runtime - [d_filequeries.inc](docs/d_filequeries.md)
+- Anti cheat system - [d_anticheat.inc](docs/d_anticheat.md)
+- In-game map editor - [d_mapeditor.inc](docs/d_mapeditor.md)
+- Create deathmatch zones - [d_dmzone.inc](docs/d_dmzone.md)
+- Better teams, provides new functions - [d_teams.inc](docs/d_teams.md)
+- Better dialogs, faster and easier - [d_dialog.inc](docs/d_dialog.md)
 
 ### Discord API Libraries
 Libraries whose contain the new functions for Discord bot development - these are extensions to Discord Connector plugin and they require the plugin to work.
 
-- Discord slash commands processor - [d_discordcmd.inc](d_discordcmd.md)
-- Assign, save and load Discord guild, channel, application and user data - [d_discorddata.inc](d_discorddata.md)
+- Discord slash commands processor - [d_discordcmd.inc](docs/d_discordcmd.md)
+- Assign, save and load Discord guild, channel, application and user data - [d_discorddata.inc](docs/d_discorddata.md)
 
 --------------------------------------
 
 Documentation contains some extra notes and tips.
 
-- Read more here: [Extra stuff](d_extra.md)
-- Learn more about internal libraries [here](d_internal.md)...
+- Read more here: [Extra stuff](docs/d_extra.md)
+- Learn more about internal libraries [here](docs/d_internal.md)...
 ## Tests
 - I regularly make test scripts with all new features I added to the library to ensure everything is working as expected. If not, I write it down in to a test log.
 
 Check out test script here:
 
-- [Go to tests...](d_testscript.md)
+- [Go to tests...](docs/d_testscript.md)
 
 - You can also run **DETUtils** test script directly from your includes, just use the definition below before including the libraries.
 ```pawn
@@ -85,7 +85,7 @@ Check out test script here:
 
 ## Limits
 
-- Everything has its limits, so does DETUtils - view them [here](d_limits.md)...
+- Everything has its limits, so does DETUtils - view them [here](docs/d_limits.md)...
 
 ## Beta testing
 
@@ -93,7 +93,7 @@ Check out test script here:
 
 ## Test log
 
-- Recently, I started test logging program in which I log every library issue I spotted during testing. You can check it [here](d_testlog.md)...
+- Recently, I started test logging program in which I log every library issue I spotted during testing. You can check it [here](docs/d_testlog.md)...
 
 ## More languages
 
