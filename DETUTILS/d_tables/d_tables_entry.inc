@@ -130,7 +130,7 @@ stock __PreviewTable(const name[])
 		for(new b; b < (__GetColumnAmount(name)); b++)
 		{
 			format(cellvalue, sizeof cellvalue, 
-				"%s | ", cell Get(name, b, a));
+				"%s | ", @cell() Get(name, b, a));
 			strcat(rowline, cellvalue);
 		}
 		print(rowline);

@@ -12,13 +12,13 @@
  */
 
 #define @DETUTILSTABLES_KWORD__@%0\32; @DETUTILSTABLES_KWORD__@
-#define table @DETUTILSTABLES_KWORD__@
+#define @table%0(%1) @DETUTILSTABLES_KWORD__@
 #define @DETUTILSTABLES_KWORD__1@%0\32; @DETUTILSTABLES_KWORD__1@
-#define column @DETUTILSTABLES_KWORD__1@
+#define @column%0(%1) @DETUTILSTABLES_KWORD__1@
 #define @DETUTILSTABLES_KWORD__2@%0\32; @DETUTILSTABLES_KWORD__2@
-#define datarow @DETUTILSTABLES_KWORD__2@
+#define @datarow%0(%1) @DETUTILSTABLES_KWORD__2@
 #define @DETUTILSTABLES_KWORD__3@%0\32; @DETUTILSTABLES_KWORD__3@
-#define cell @DETUTILSTABLES_KWORD__3@
+#define @cell%0(%1) @DETUTILSTABLES_KWORD__3@
 /*
                                                                                       
 88b           d88              88                         db         88888888ba   88  
