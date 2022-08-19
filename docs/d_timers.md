@@ -28,7 +28,7 @@ Pawn Timers - A library which provides automatic and manual repeatable timers or
 - The example above is a manual timer, it needs to be triggered using a `DeferTask` macrofunction. Example of the function usage is below:
 
 ```pawn
-als function OnGameModeInit()
+@als() function OnGameModeInit()
 {
     DeferTask("ManualTimer", "");
     return als break;
