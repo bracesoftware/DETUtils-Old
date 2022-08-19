@@ -1,6 +1,6 @@
 # [`DETUtils | Wiki`](https://github.com/DEntis-T/DETUtils)
 <p align="center">
-  <img width="500" align="center" src="detutils.png">
+  <img width="500" align="center" src="DETUTILS.png">
 </p>
 <h4 align = "center">
   Addition to the Pawn language features, open.mp API and Discord Connector plugin.
