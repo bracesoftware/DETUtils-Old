@@ -1,5 +1,5 @@
 # d_visual.inc
-- Library or libraries whose contain functions whose provide in-game visible effects.
+open.mp Visual - Library or libraries whose contain functions whose provide in-game visible effects.
 
 [Go back to home page...](README.md)
 
