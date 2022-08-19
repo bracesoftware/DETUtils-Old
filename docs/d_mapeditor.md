@@ -2,11 +2,11 @@
 
 open.mp Map Editor - edit San Andreas yourself in the game
 
-# How to start to use?
+## How to start to use?
 
 - Look at examples below.
 
-# API (programming interface)
+## API (programming interface)
 
 - There are only few functions though. But really important for the system to work, also are really efficient in commands.
 ## `ShowMapEditorMenuToPlayer`
@@ -37,13 +37,13 @@ open.mp Map Editor - edit San Andreas yourself in the game
 }
 ```
 
-# Messages from creator
+## Messages from creator
 
-## Warnings
+### Warnings
 - No warnings yet.
-## Notes
-### Beta version
+### Notes
+#### Beta version
 - This is in beta stage, please, if you find any issues - report them.
 
-### Object saving and loading
+#### Object saving and loading
 - In order to save your work properly, in your server's **scriptfiles** folder, you need to make another folder called **detutils_objects**. In that folder, *-.ini* files with object information and data are saved. Besides that note, you don't need to worry about anything else - objects are automatically loaded and saved.
