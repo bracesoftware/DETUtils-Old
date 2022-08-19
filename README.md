@@ -1,7 +1,7 @@
 <p align="center">
   <img width="500" align="center" src="DETUTILS.png">
 </p>
-<h1 align = "center">Welcome to the <b>DETUtils</b> Wiki</h1>
+<h3 align = "center">Welcome to the <b>DETUtils</b> Wiki</h3>
 <h4 align = "center">
   Addition to the Pawn language features, open.mp API and Discord Connector plugin.
 </h4>
