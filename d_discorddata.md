@@ -26,3 +26,21 @@ So, let's do a slight parameter explanation:
 6. `DataTypeTag` is a Pawn data type tag, it can be: `_:` (nothing) for integers, `bool:` for booleans, `Float:` for floats and `_:` (nothing) for strings - since strings are just arrays - literal strings of integers.
 7. `value` is the value you're assigning.
 8. `dest` is another variable you'll assign the returned data to.
+
+## Examples
+
+- Saving the data.
+```pawn
+new DCC_Guild:my_server = ...;
+new members = 0;
+@discord(.entity = GUILD) GetIntegerData(my_server, "members", members);
+@discord(.entity = GUILD) SetIntegerData(my_server, "members", members + 1);
+```
+
+- Getting the data.
+```pawn
+new DCC_Guild:my_server = ...;
+new members = 0;
+@discord(.entity = GUILD) GetIntegerData(my_server, "members", members);
+// Now you can use `members`.
+```
