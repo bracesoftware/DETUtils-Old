@@ -36,3 +36,10 @@ als function OnGameModeInit()
 ```
 
 - Now every 1 second, the console message `"Manual timer works."` will appear.
+### Killing a timer
+- Well, now you may ask - how to kill this timer. The answer is easy, the same way you did it before.
+
+```pawn
+new task = DeferTask("taskname", "");
+KillTimer(task);
+```
