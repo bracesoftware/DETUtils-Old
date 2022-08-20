@@ -137,10 +137,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				playerid, g_PlayerDialogCache[playerid][Dialog],
 				response, listitem, "emptystring");
 			}*/
-			#if defined OnPlayerDialogResponse
-				OnPlayerDialogResponse(playerid, g_PlayerDialogCache[playerid][Dialog],
+			
+			CallLocalFunction("OnPlayerDialogResponse", "iiiis", 
+				playerid, g_PlayerDialogCache[playerid][Dialog],
 				response, listitem, inputtext);
-			#endif	
+		
 			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - Called the dialog response function with args: \
 				playerid : %i | dialog : %s | response : %i | listitem : %i | inputtext : %s",
@@ -162,7 +163,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		#endif
 		#if defined d_dlg_dresponse
 		//#warning [DETUtils]: (warning) - OnDialogResponse is deprecared.
-		d_dlg_dresponse(playerid, dialogid, response, listitem, inputtext);
+		CallLocalFunction("d_dlg_dresponse", "iiiis", playerid, dialogid, response, listitem, inputtext);
 		#endif
 	}
 	return 1;
