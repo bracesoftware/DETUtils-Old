@@ -10,7 +10,16 @@
  *
  *
  */
- 
+
+// Include guard:
+#if defined DETUTILS_INCLUDED
+
+ 	#endinput
+
+#endif
+
+#define DETUTILS_INCLUDED
+
 #define DETUTILS_COMPAT
 
 
@@ -23,44 +32,21 @@
 
 #tryinclude "d_extra\d_mainfix"
 
-#if defined d_samp_included
-
-    #endinput
-    #endscript
-
-#endif
-
-#define DETUTILS_OPENMP_COMPAT
-
 #if defined DETUTILS_DEBUG_MODE
 
  	#define detutils_debug
 
 #endif
 
-#if defined DETUTILS_COMPATIBILITY_MODE
-
- 	#undef DETUTILS_COMPATIBILITY_MODE
-
-#endif
-
-#if defined detutils_complete_error_boom
-
- 	#undef detutils_complete_error_boom
-
-#endif
-
 #pragma warning disable 203
 
-#if defined FILTERSCRIPT
-
- 	#undef FILTERSCRIPT
-
-#endif
-
-#define d_samp_included
+// Core libraries
 
 #tryinclude "d_extra\d_libtags"
+
+#if !defined d_extra_included
+	#error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+#endif
 
 /*
 

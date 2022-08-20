@@ -12,11 +12,6 @@
  *
  */
 
-#tryinclude "d_extra\d_libtags.inc"
-
-#if !defined d_extra_included
-	#error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
-#endif
 
 /*
 																					  
@@ -49,12 +44,6 @@ enum enum_PlayerDialogData
 new g_PlayerDialogCache[MAX_PLAYERS][enum_PlayerDialogData];
 
 // Functions down there:
-
-#if defined DETUTILS_OPENMP_COMPAT
-
-	#define Dialog_ShowForPlayer ShowDialogForPlayer
-
-#endif
 
 forward OnPlayerDialogReceived(playerid, dialog[]);
 forward OnPlayerDialogResponse(playerid, dialog[], response, listitem, inputtext[]);

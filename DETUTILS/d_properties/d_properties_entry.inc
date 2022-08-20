@@ -13,26 +13,6 @@
  *
  */
 
-#if defined DEV_MODE
-
-#include <a_samp>
-
-#endif
-
-#tryinclude "d_extra\d_libtags.inc"
-
-#if !defined d_extra_included
-	#error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
-#endif
-
-#if defined d_properties_included
-
-	#endinput
-
-#endif
-
-#define d_properties_included
-
 #define DisableDefaultProperties DisableInteriorEnterExits
 
 #if !defined MAX_PROPERTIES
@@ -72,12 +52,6 @@ enum enum_PropertyData
 	p_PropTeam[32]
 	#endif
 };
-
-#if !defined DETUTILS_OPENMP_COMPAT
-
-	#define DETUTILS_OPENMP_COMPAT
-
-#endif
 
 forward OnPropertyCreate(propertyid);
 forward OnPropertyDestroy(propertyid);
@@ -617,12 +591,6 @@ stock __Create3DLabelAndPickup( // Internal function.
 	return 1;
 }
 
-#if defined DETUTILS_OPENMP_COMPAT
-	
-	#define Property_CreateEntrance CreatePropertyEntrance
-
-#endif
-
 stock CreatePropertyEntrance(
 		const PropertyName[], 
 		Float:_xEntrance, 
@@ -800,12 +768,6 @@ stock CreatePropertyEntrance(
 	return 1;
 }
 
-#if defined DETUTILS_OPENMP_COMPAT
-	
-	#define Property_DestroyEntrance DestroyPropertyEntrance
-
-#endif
-
 stock DestroyPropertyEntrance(const name[])
 {
 	for(new i = 1; i < MAX_PROPERTIES; i++)
@@ -935,12 +897,6 @@ stock CreateCustomInterior(
 
 // NORMAL CODE, MAKES SENSE:
 
-#if defined DETUTILS_OPENMP_COMPAT
-
-	#define Property_IsLocked IsPropertyLocked
-
-#endif
-
 stock IsPropertyLocked(propertyid)
 {
 	if(g_PropertyData[propertyid][p_PropertyLocked] == 1)
@@ -953,12 +909,6 @@ stock IsPropertyLocked(propertyid)
 	}
 	return -1;
 }
-
-#if defined DETUTILS_OPENMP_COMPAT
-
-	#define Property_ToggleLocked TogglePropertyLocked
-
-#endif
 
 stock void:TogglePropertyLocked(propertyid, bool:lock)
 {
@@ -978,12 +928,6 @@ stock void:TogglePropertyLocked(propertyid, bool:lock)
 	}
 }
 
-#if defined DETUTILS_OPENMP_COMPAT
-
-	#define Player_GetNearProperty GetNearPropertyEntrance
-
-#endif
-
 stock GetNearPropertyEntrance(playerid)
 {
 	for(new i; i < MAX_PROPERTIES; i++)
@@ -999,23 +943,11 @@ stock GetNearPropertyEntrance(playerid)
 	return 0;
 }
 
-#if defined DETUTILS_OPENMP_COMPAT
-
-	#define Player_IsInProperty IsPlayerInProperty
-
-#endif
-
 stock bool:IsPlayerInProperty(playerid)
 {
 	if(g_PlayerProperty[playerid] == -1) return false;
 	else return true;
 }
-
-#if defined DETUTILS_OPENMP_COMPAT
-
-	#define Player_ClearPropertyData ClearPlayerPropertyData
-
-#endif
 
 stock ClearPlayerPropertyData(playerid)
 {
@@ -1029,12 +961,6 @@ stock ClearPlayerPropertyData(playerid)
 	return 1;
 }
 
-#if defined DETUTILS_OPENMP_COMPAT
-
-	#define GetPropertyCount Property_GetCount
-
-#endif
-
 stock GetPropertyCount()
 {
 	#if defined detutils_debug
@@ -1042,12 +968,6 @@ stock GetPropertyCount()
 	#endif
 	return DET_g_CreatedProperties;
 }
-
-#if defined DETUTILS_OPENMP_COMPAT
-
-	#define Property_SetEntranceAngles SetPropertyEntranceAngles
-
-#endif
 
 stock SetPropertyEntranceAngles(
 		const _PropertyID,
@@ -1106,12 +1026,6 @@ forward a_props_playerspawn(playerid);
 
 forward OnPropertyActionPerformed(playerid, propertyid, actionid);
 
-#if defined DETUTILS_OPENMP_COMPAT
-
-	#define Property_GetName GetPropertyName
-
-#endif
-
 stock GetPropertyName(PropertyID)
 {
 	//#if defined detutils_complete_error_boom
@@ -1123,12 +1037,6 @@ stock GetPropertyName(PropertyID)
 	//#endif
 	//return g_PropertyData[PropertyID][p_PropertyName];
 }
-
-#if defined DETUTILS_OPENMP_COMPAT
-
-	#define Property_GetIDByName GetPropertyIDByName
-
-#endif
 
 stock GetPropertyIDByName(const PropertyName[])
 {
@@ -1144,29 +1052,6 @@ stock GetPropertyIDByName(const PropertyName[])
 	return 0;
 }
 
-#if defined detutils_complete_error_boom
-
-#define public%3OnPropertyActionPerformed%2(%0,%1) \
-	forward int_%0(%1); \
-	public int_%0(%1)
-
-
-#endif
-
-#if defined detutils_complete_error_boom
-
-#define INTERIOR__%0(%1) \
-	forward int_%0(%1,_Actionid); \
-	public int_%0(%1,_Actionid)
-
-#endif
-
-#if defined DETUTILS_OPENMP_COMPAT
-
-	#define Player_SetProperty SetPlayerProperty
-
-#endif
-
 stock SetPlayerProperty(_p_Playerid, pg_PropertyID)
 {
 	if(pg_PropertyID < -1)
@@ -1179,13 +1064,6 @@ stock SetPlayerProperty(_p_Playerid, pg_PropertyID)
 	g_PlayerProperty[_p_Playerid] = pg_PropertyID;
 	return 1;
 }
-
-#if defined detutils_complete_error_boom
-
-#define IsInteriorActionPerformed(%0) \
-	(_Actionid == %0) >>> data * plus / Check;
-
-#endif
 
 // Actually extra.
 
