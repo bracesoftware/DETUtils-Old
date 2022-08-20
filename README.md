@@ -36,6 +36,7 @@ Libraries whose contain the new language features.
 ### open.mp Libraries
 Libraries whose contain the new open.mp functions and features.
 
+- Edit player SA:MP server permissions - [d_permissions.inc](docs/d_permissions.md) 
 - Command processor with a big amount of features - [d_commands.inc](docs/d_commands.md)
 - Create property entrances, with own and custom interiors - [d_properties.inc](docs/d_properties.md)
 - Generally smaller groups of random features - [d_visual.inc](docs/d_visual.md)
