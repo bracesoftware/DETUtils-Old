@@ -15,13 +15,14 @@ Hello scripter! Welcome to *DEntisT's Utilities* (or **DETUtils** for short) "re
 ## Examples
 Honestly, this packet of libraries exists for show-off reasons, I made it for my own satisfication since I have a really big desire to code, so. You can still contribute and use it though. Example:
 - [View code](https://github.com/DEntis-T/SA-MP-DETUtils/blob/2.x/DETUTILS/d_testing/d_testing_entry.inc)
-
+--------------------------------------
 ## Installation
 - Installation is simple, quick and easy - learn more [here](docs/d_installation.md)...
 ## Documentation
-Below, there is a list of features provided by a certain library.
-- What's d_samp.inc? See [here](docs/d_samp.md)...
---------------------------------------
+Below is a list of all the libraries provided by the DETUtils pack. They're all optional unless they're used internally, in that case you'll get a warning.
+
+- Entry point from which everything is included - [detutils.inc](docs/detutils.md)
+
 ### Pawn Libraries
 Libraries whose contain the new language features.
 
