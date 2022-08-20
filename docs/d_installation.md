@@ -1,24 +1,20 @@
 # Library installation
-
-- How to install SA:MP | DET Utilities on my server?
-------------------------------------------
-Let's find out.
  
  [Go back to home page...](README.md)
  
- ## Two ways of installation
- 
- ### With *sampctl*
+ ## With *sampctl*
  ------------------------------------------
  Simply install to your project and begin using the library:
  
  ```bat
- sampctl package install DEntis-T/SA-MP-DETUtils
+ sampctl package install DEntis-T/DETUtils
  ```
  
- ### Manual install
+ ## Manual install
  ------------------------------------------
  Download all files from *master* branch and extract them to your *pawno\includes* folder.
+
+# STUFF BELOW IS ABOUT TO BE MOVED
 
 ## How to use?
 
