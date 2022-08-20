@@ -131,7 +131,6 @@ if(funcidx(funcname)!= -1){
 
 */
 
-#if defined DETUTILS_OLD_HOOK
 public OnDETUtilsInit()
 {
     #if defined detutils_debug
@@ -155,7 +154,7 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit( d_als_detutilsinit(
 
 forward d_als_detutilsinit();
-#endif
+
 /*
 public OnDETUtilsInit()
 {

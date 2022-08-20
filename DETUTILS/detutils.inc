@@ -10,9 +10,9 @@
  *
  *
  */
-
-#define DETUTILS_OLD_HOOK
+ 
 #define DETUTILS_COMPAT
+
 
 // ENTRY POINT TO FIX main() NOT BEING CALLED IN FILTERSCRIPTS
 #if defined FILTERSCRIPT
