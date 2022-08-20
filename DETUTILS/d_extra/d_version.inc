@@ -49,10 +49,13 @@
     #error [DETUtils]: (error) - Library does not support Pawn 2.0.x/1.0.x yet.
 #endif
 
+#define __DETUtils 0x205
+#define __DETUtilsRelease 0x1
+
 #define DETUTILS_VERSION_MAJOR 2
 #define DETUTILS_VERSION_MINOR 0
-#define DETUTILS_VERSION_PATCH 4
-#define DETUTILS_VERSION_RELEASE 2
+#define DETUTILS_VERSION_PATCH 5
+#define DETUTILS_VERSION_RELEASE 1
 
 /*
                                                                       

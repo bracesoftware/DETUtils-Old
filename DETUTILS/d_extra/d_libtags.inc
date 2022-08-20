@@ -12,9 +12,6 @@
  *
  */
 
-#define __DETUtils 0x204
-#define __DETUtilsRelease 0x1
-
 #include "d_rem"
 
 // The rest of shit

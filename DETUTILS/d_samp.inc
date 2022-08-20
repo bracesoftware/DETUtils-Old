@@ -649,7 +649,8 @@ Includes
  && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_DMZONE && defined DETUTILS_NO_TEAMS \
  && defined DETUTILS_NO_DIALOG && defined DETUTILS_NO_VARS && defined DETUTILS_NO_ALS \
  && defined DETUTILS_NO_FOREACH && defined DETUTILS_NO_TABLES && defined DETUTILS_NO_DISCORDCMD \
- && defined DETUTILS_NO_PROFILE && defined DETUTILS_NO_TIMERS && defined DETUTILS_NO_DISCORDDATA
+ && defined DETUTILS_NO_PROFILE && defined DETUTILS_NO_TIMERS && defined DETUTILS_NO_DISCORDDATA \
+ && defined DETUTILS_NO_PERMISSIONS
 
 	#warning [DETUtils]: (warning) - All library modules are disabled.
 
@@ -685,7 +686,7 @@ Includes
 
 #if defined __DETUtils
 
- 	#if __DETUtils != 0x204
+ 	#if __DETUtils != 0x205
 
  		#error [DETUtils]: (version mismatch) - Invalid version, 0x204 was expected.
 
