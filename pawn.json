@@ -1,6 +1,11 @@
 {
 	"user": "DEntis-T",
-	"repo": "SA-MP-DETUtils",
-	"dependencies": ["pawn-lang/samp-stdlib"],
-	"contributors": ["DEntis-T", "KyeKalcor"]
+	"repo": "DETUtils",
+	"dependencies": [
+		"pawn-lang/samp-stdlib",
+		"pawn-lang/samp-stdlib"
+	],
+	"contributors": [
+		"DEntis-T"
+	]
 }
