@@ -12,7 +12,7 @@
  */
 
 
-#include "d_extra\d_funcgen"
+#include "d_core\d_funcgen"
 
 // After funcgen is included,
 // we include the entry point.

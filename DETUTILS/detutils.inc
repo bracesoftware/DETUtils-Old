@@ -30,7 +30,7 @@
 
 #endif
 
-#tryinclude "d_extra\d_mainfix"
+#tryinclude "d_core\d_mainfix"
 
 #if defined DETUTILS_DEBUG_MODE
 
@@ -42,10 +42,10 @@
 
 // Core libraries
 
-#tryinclude "d_extra\d_libtags"
+#tryinclude "d_core\d_libtags"
 
 #if !defined d_extra_included
-	#error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
+	#error [DETUtils]: (error) - You are missing "d_core\d_libtags.inc" in your "include\DETUTILS" folder.
 #endif
 
 /*
