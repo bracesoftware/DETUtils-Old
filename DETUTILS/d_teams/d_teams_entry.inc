@@ -82,7 +82,7 @@ stock CreateTeam(const name[])
 			}
 			strmid(g_TeamCache[i][TeamName], name, 0, 32);
 			g_TeamCache[i][ValidTeam] = 1;
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (team create) - Created a team '%s'.", name);
 			#endif
 			return 1;
@@ -114,7 +114,7 @@ stock DeleteTeam(const name[])
 			{
 				CallLocalFunction("OnTeamDelete", "is", i, name);
 			}
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (team delete) - Deleted a team '%s'.", name);
 			#endif
 			strmid(g_TeamCache[i][TeamName], "_INVALID_TEAM_NAME_", 0, 32);
@@ -138,7 +138,7 @@ stock AddPlayerToTeam(playerid, const name[])
 				g_TeamCache[i][TeamMembers] --;
 			}
 		}
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (team set) - Player '%i' added to a team '%s'.", playerid, name);
 		#endif
 		strmid(g_PlayerTeamCache[playerid][Team], "NO_TEAM", 0, 32);
@@ -152,7 +152,7 @@ stock AddPlayerToTeam(playerid, const name[])
 		{
 			if(!strcmp(g_TeamCache[i][TeamName], name, false))
 			{
-				#if defined detutils_debug
+				#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (team set) - Player '%i' added to a team '%s'.", playerid, name);
 				#endif
 				g_TeamCache[i][TeamMembers] ++;
@@ -163,7 +163,7 @@ stock AddPlayerToTeam(playerid, const name[])
 		if(tmc == 1) // If there is an one team with that name, 
 		{
 			// Set the team
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (team set) - Player '%i' added to a team '%s'.", playerid, name);
 			#endif
 			strmid(g_PlayerTeamCache[playerid][Team], name, 0, 32);
@@ -303,13 +303,13 @@ stock CreatePropertyEntranceForTeam(
 						Float:_xEntrance, 
 						Float:_yEntrance, 
 						Float:_zEntrance);
-				#if defined detutils_debug
+				#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - Property created.");
 				#endif
 
 				//g_PropertyID++;
 
-				#if defined detutils_debug
+				#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - Property id assigned.");
 				#endif
 
@@ -319,7 +319,7 @@ stock CreatePropertyEntranceForTeam(
 						strlen(PropertyName), 
 						255);
 
-				#if defined detutils_debug
+				#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - Saved property name.");
 				#endif
 
@@ -329,7 +329,7 @@ stock CreatePropertyEntranceForTeam(
 				g_PropertyData[g_PropertyID][p_PropertyEntrance_Y] = _yEntrance;
 				g_PropertyData[g_PropertyID][p_PropertyEntrance_Z] = _zEntrance;
 
-				#if defined detutils_debug
+				#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - Entrance coordinates assigned to property data.");
 				#endif
 
@@ -337,7 +337,7 @@ stock CreatePropertyEntranceForTeam(
 				g_PropertyData[g_PropertyID][p_PropertyExit_Y] = _yExit;
 				g_PropertyData[g_PropertyID][p_PropertyExit_Z] = _zExit;
 
-				#if defined detutils_debug
+				#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - Exit coordinates assigned to property data.");
 				#endif
 
@@ -346,13 +346,13 @@ stock CreatePropertyEntranceForTeam(
 				g_PropertyData[g_PropertyID][p_PropertyVwid] = _eVirtualWorldid;
 				g_PropertyData[g_PropertyID][p_PropertyVwid_OUT] = _xVirtualWorldid;
 
-				#if defined detutils_debug
+				#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - Virtual world IDs and interior IDs assigned to property data.");
 				#endif
 
 				if(Interior != INTERIOR_CUSTOM)
 				{
-					#if defined detutils_debug
+					#if defined DETUTILS_DEBUG_MODE
 					printf("[DETUtils]: (debug) - Assigned interior map id to property id : %i", Interior);
 					#endif
 
@@ -392,18 +392,18 @@ stock CreatePropertyEntranceForTeam(
 				if(Labels == true)
 				{
 					new _EntranceLabelString[300];
-					#if defined detutils_debug
+					#if defined DETUTILS_DEBUG_MODE
 					printf("[DETUtils]: (debug) - Empty string declared.");
 					#endif
 					format(_EntranceLabelString,sizeof(_EntranceLabelString),"{ffffff}[ %s ]\n{ffffff}Enter here!",PropertyName);
-					#if defined detutils_debug
+					#if defined DETUTILS_DEBUG_MODE
 					printf("[DETUtils]: (debug) - Formatted the 3D label string successfully.");
 					#endif
 					__Create3DLabelAndPickup(_EntranceLabelString, _xEntrance,_yEntrance,_zEntrance, 
 						_xVirtualWorldid, 19133, 3.0, 
 						g_PropertyData[g_PropertyID][p_PropertyLabelID], 
 						g_PropertyData[g_PropertyID][p_PropertyPickupID]);
-					#if defined detutils_debug
+					#if defined DETUTILS_DEBUG_MODE
 					printf("[DETUtils]: (debug) - lab :: Created 3D label and pickup on entrance.");
 					#endif
 					__Create3DLabelAndPickup("Exit here!", g_PropertyData[g_PropertyID][p_PropertyExit_X],
@@ -412,12 +412,12 @@ stock CreatePropertyEntranceForTeam(
 						_eVirtualWorldid, 19133, 3.0,
 						g_PropertyData[g_PropertyID][p_PropertyLabel], 
 						g_PropertyData[g_PropertyID][p_PropertyPickup]);
-					#if defined detutils_debug
+					#if defined DETUTILS_DEBUG_MODE
 					printf("[DETUtils]: (debug) - pick :: Created 3D label and pickup on exit.");
 					#endif
 				}
 
-				#if defined detutils_debug
+				#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - Internal property data assigned.");
 				#endif
 
@@ -426,7 +426,7 @@ stock CreatePropertyEntranceForTeam(
 					CallLocalFunction("OnPropertyCreate", "i", g_PropertyID);
 				}
 
-				#if defined detutils_debug
+				#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - OnPropertyCreate(propertyid) called.");
 				#endif
 
@@ -438,7 +438,7 @@ stock CreatePropertyEntranceForTeam(
 			{
 				if(DET_g_CreatedProperties == MAX_PROPERTIES)
 				{
-					#if defined detutils_debug
+					#if defined DETUTILS_DEBUG_MODE
 					for(new i = 0; i < MAX_PLAYERS; i++)
 					{
 						if(i != INVALID_PLAYER_ID)
@@ -478,7 +478,7 @@ public OnDETUtilsInit()
 		strmid(g_PlayerTeamCache[i][Team], "NO_TEAM", 0, 32);
 	}
 
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	SaveLogIntoFile("detutils_teams.log", "[DETUtils]: (debug) - Loading...");
 	SaveLogIntoFile("detutils_teams.log", "[DETUtils]: (debug) - Loaded.");
 	#endif

@@ -334,7 +334,7 @@ stock SetQueryDelimiter(delimiter)
 
 public OnDETUtilsInit()
 {
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE_MODE
     SaveLogIntoFile("detutils_queries.log", "[DETUtils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_queries.log", "[DETUtils]: (debug) - Loaded.");
     #endif

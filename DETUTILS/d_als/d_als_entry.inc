@@ -133,7 +133,7 @@ if(funcidx(funcname)!= -1){
 
 public OnDETUtilsInit()
 {
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     SaveLogIntoFile("detutils_als.log", "[DETUtils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_als.log", "[DETUtils]: (debug) - Loaded.");
     #endif
@@ -164,7 +164,7 @@ public OnDETUtilsInit()
         d_als_detutilsinit();
     #endif
     
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     SaveLogIntoFile("detutils_als.log", "[DETUtils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_als.log", "[DETUtils]: (debug) - Loaded.");
     #endif

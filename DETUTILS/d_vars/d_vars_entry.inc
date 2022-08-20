@@ -802,7 +802,7 @@ stock __GetStringVarId(const name[])
 
 public OnDETUtilsInit()
 {
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	SaveLogIntoFile("detutils_vars.log", "[DETUtils]: (debug) - Loading...");
 	SaveLogIntoFile("detutils_vars.log", "[DETUtils]: (debug) - Loaded.");
 	#endif
@@ -832,7 +832,7 @@ public OnDETUtilsInit()
     #if defined d_vs_detutilsinit
         d_vs_detutilsinit();
     #endif
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
 	SaveLogIntoFile("detutils_vars.log", "[DETUtils]: (debug) - Loading...");
 	SaveLogIntoFile("detutils_vars.log", "[DETUtils]: (debug) - Loaded.");
 	#endif

@@ -57,7 +57,7 @@ stock void:LoadDETUtilsAutomaticTimers()
 public OnDETUtilsInit()
 {
 	LoadDETUtilsAutomaticTimers();
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	SaveLogIntoFile("detutils_timers.log", "[DETUtils]: (debug) - Loading...");
 	SaveLogIntoFile("detutils_timers.log", "[DETUtils]: (debug) - Loaded.");
 	#endif

@@ -47,7 +47,7 @@ new DET_g_ProfilerCount;
 
 public OnDETUtilsInit()
 {
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	SaveLogIntoFile("detutils_profile.log", "[DETUtils]: (debug) - Loading...");
 	SaveLogIntoFile("detutils_profile.log", "[DETUtils]: (debug) - Loaded.");
 	#endif

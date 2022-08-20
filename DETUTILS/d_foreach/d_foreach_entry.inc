@@ -122,7 +122,7 @@ public OnDETUtilsInit()
 	iterator init(Dialog);
 	#endif
 
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	SaveLogIntoFile("detutils_foreach.log", "[DETUtils]: (debug) - Loading...");
 	SaveLogIntoFile("detutils_foreach.log", "[DETUtils]: (debug) - Loaded.");
 	#endif

@@ -190,7 +190,7 @@ stock __GetCellValue(const __table[], __column, __row)
 
 public OnDETUtilsInit()
 {
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	SaveLogIntoFile("detutils_tables.log", "[DETUtils]: (debug) - Loading...");
 	SaveLogIntoFile("detutils_tables.log", "[DETUtils]: (debug) - Loaded.");
 	#endif

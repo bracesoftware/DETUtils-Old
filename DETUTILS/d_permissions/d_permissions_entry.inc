@@ -155,7 +155,7 @@ forward d_perm_ondialogresp(playerid, dialogid, response, listitem, inputtext[])
 
 public OnDETUtilsInit()
 {
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	SaveLogIntoFile("detutils_permissions.log", "[DETUtils]: (debug) - Loading...");
 	SaveLogIntoFile("detutils_permissions.log", "[DETUtils]: (debug) - Loaded.");
 	#endif

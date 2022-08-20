@@ -64,8 +64,9 @@ public DCC_OnMessageCreate(DCC_Message:message)
 			_:author, 
 			component[1]);
 
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - cmdinfo :: Command function: '%s' : command arguments: '%s'", cmdname, component[1]);
-
+		#endif
 	}
 	return 1;
 }
@@ -86,7 +87,7 @@ public DCC_OnMessageCreate(DCC_Message:message)
 
 public OnDETUtilsInit()
 {
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	SaveLogIntoFile("detutils_discordcmd.log", "[DETUtils]: (debug) - Loading...");
 	SaveLogIntoFile("detutils_discordcmd.log", "[DETUtils]: (debug) - Loaded.");
 	#endif

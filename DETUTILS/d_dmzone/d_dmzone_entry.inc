@@ -12,11 +12,6 @@
  *
  */
 
-#tryinclude "d_extra\d_libtags.inc"
-
-#if !defined d_extra_included
-    #error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
-#endif
 
 /*
 
@@ -493,7 +488,7 @@ forward d_dm_playerdeath(playerid, killerid, reason);
 
 public OnDETUtilsInit()
 {
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     SaveLogIntoFile("detutils_dmzone.log", "[DETUtils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_dmzone.log", "[DETUtils]: (debug) - Loaded.");
     #endif

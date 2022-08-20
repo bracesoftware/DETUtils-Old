@@ -306,7 +306,7 @@ stock
     {Float,_}:...
 )
 {
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 3;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
@@ -372,7 +372,7 @@ stock
         
         #emit RETN
     }
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 3;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
@@ -402,7 +402,7 @@ stock
     {Float,_}:...
 )
 {
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 4;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
@@ -466,7 +466,7 @@ stock
         
         #emit RETN
     }
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 4;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
@@ -757,7 +757,7 @@ stock CreateDroppedWeapon( p_WeapID, p_WeapAmmo, Float:__Weapon_pos_x, Float:__W
 {
     if(_CreatedDroppedGuns == MAX_DROPPED_GUNS)
     {
-        #if defined detutils_debug
+        #if defined DETUTILS_DEBUG_MODE
         for(new i = 0; i < MAX_PLAYERS; i++)
         {
             if(i != INVALID_PLAYER_ID)
@@ -800,7 +800,7 @@ stock d_v_SetPlayerSpecialAction(playerid, actionid)
     {
         if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT) return 1;
         
-        #if defined detutils_debug
+        #if defined DETUTILS_DEBUG_MODE
         if(__WeaponTimer_var[playerid] != 0) return d_SendWarningMessage(playerid, DETUTILS_TEXT_CMD_TIMER);
         #else
         if(__WeaponTimer_var[playerid] != 0) return 1;
@@ -1038,7 +1038,7 @@ public OnDETUtilsInit()
 {
     SetTimer("__Weapon_timer", 1000, true);
     LoadDETUtilsScript(DETUTILS_SCRIPT_VISUAL);
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     SaveLogIntoFile("detutils_visual.log", "[DETUtils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_visual.log", "[DETUtils]: (debug) - Loaded.");
     #endif
@@ -1086,7 +1086,7 @@ command throwgun( playerid, params[] )
 {
     if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT) return 1;
     
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     if(__WeaponTimer_var[playerid] != 0) return d_SendWarningMessage(playerid, DETUTILS_TEXT_CMD_TIMER);
     #else
     if(__WeaponTimer_var[playerid] != 0) return 1;
@@ -1193,7 +1193,7 @@ COMMAND__ throwgun( playerid, params[] )
 {
     if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT) return 1;
     
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     if(__WeaponTimer_var[playerid] != 0) return d_SendWarningMessage(playerid, "The player tried to use the command but the timer was not over yet.");
     #else
     if(__WeaponTimer_var[playerid] != 0) return 1;

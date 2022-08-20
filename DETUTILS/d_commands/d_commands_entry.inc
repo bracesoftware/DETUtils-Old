@@ -51,12 +51,6 @@
 
 #endif
 
-#tryinclude "d_extra\d_libtags.inc"
-
-#if !defined d_extra_included
-	#error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
-#endif
-
 /*
 
 																			   
@@ -71,14 +65,6 @@
 																			   
 																			   
 */
-
-// For naming compatibility
-
-#if !defined DETUTILS_OPENMP_COMPAT
-
-	#define DETUTILS_OPENMP_COMPAT
-
-#endif
 
 #define DET_MAX_CMD 10000
 
@@ -124,12 +110,6 @@ new g_PlayerCmdData[MAX_PLAYERS][enum_PlayerCmdData];
 																					  
 */
 
-#if defined DETUTILS_OPENMP_COMPAT
-
-	#define Command_GetSlashType GetSlashCommandType
-
-#endif
-
 stock GetSlashCommandType(const cmdtext[])
 {
 	new cmdname[MAX_FUNC_NAME];
@@ -164,19 +144,13 @@ forward OnPrefixedCommandStateChange(playerid, cmdtext[], stateid);
 #define COMMAND_TYPE_LOCAL_PREFIXED 2
 #define COMMAND_TYPE_REMOTE_PREFIXED 3
 
-#if defined DETUTILS_OPENMP_COMPAT
-
-	#define Command_Broadcast BroadcastCommand
-
-#endif
-
 stock BroadcastCommand(playerid, const cmdtext[], const params[], type = COMMAND_TYPE_LOCAL)
 {
 	if(type == COMMAND_TYPE_LOCAL)
 	{
 		new command_name[MAX_FUNC_NAME];
 		format(command_name, MAX_FUNC_NAME, "cmd_%s", cmdtext);
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - BroadcastCommand called successfully. ID: 0");
 		#endif
 		CallLocalFunction("OnCommandBroadcast", "isisii", 
@@ -187,7 +161,7 @@ stock BroadcastCommand(playerid, const cmdtext[], const params[], type = COMMAND
 	{
 		new command_name[MAX_FUNC_NAME];
 		format(command_name, MAX_FUNC_NAME, "cmd_%s", cmdtext);
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - BroadcastCommand called successfully. ID: 1");
 		#endif
 		CallLocalFunction("OnCommandBroadcast", "isisii", 
@@ -198,7 +172,7 @@ stock BroadcastCommand(playerid, const cmdtext[], const params[], type = COMMAND
 	{
 		new command_name[MAX_FUNC_NAME];
 		format(command_name, MAX_FUNC_NAME, "pc_%s", cmdtext);
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - BroadcastCommand called successfully. ID: 2");
 		#endif
 		CallLocalFunction("OnCommandBroadcast", "isisii", 
@@ -209,7 +183,7 @@ stock BroadcastCommand(playerid, const cmdtext[], const params[], type = COMMAND
 	{
 		new command_name[MAX_FUNC_NAME];
 		format(command_name, MAX_FUNC_NAME, "pc_%s", cmdtext);
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - BroadcastCommand called successfully. ID: 3");
 		#endif
 		CallLocalFunction("OnCommandBroadcast", "isisii", 
@@ -265,7 +239,7 @@ public OnDETUtilsInit()
 {
 	_IsOnCmdRValid = funcidx("OnPlayerCommandReceived") != -1;
 	_IsOnCmdPValid = funcidx("OnPlayerCommandPerformed") != -1;
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	printf("[DETUtils]: (debug) - ongminit :: Commands loading finished.");
 	SaveLogIntoFile("detutils_commands.log", "[DETUtils]: (debug) - Loading...");
 	SaveLogIntoFile("detutils_commands.log", "[DETUtils]: (debug) - Loaded.");
@@ -293,7 +267,7 @@ main()
 {
 	_IsOnCmdRValid = funcidx("OnPlayerCommandReceived") != -1;
 	_IsOnCmdPValid = funcidx("OnPlayerCommandPerformed") != -1;
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	printf("[DETUtils]: (debug) - ongminit :: Commands loading finished.");
 	SaveLogIntoFile("detutils_commands.log", "[DETUtils]: (debug) - Loading...");
 	SaveLogIntoFile("detutils_commands.log", "[DETUtils]: (debug) - Loaded.");
@@ -320,7 +294,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 		playerid, 
 		cmdtext))
 	{
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned 1.");
 		#endif
 		return 1;
@@ -335,7 +309,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 		_CommandDebugFunc[MAX_FUNC_NAME],
 		DET_ParseFunc[MAX_FUNC_NAME];
 
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	printf("[DETUtils]: (debug) - opct :: Successfully declared variables.");
 	#endif
 
@@ -344,7 +318,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 		_ClassicFunctionName[position-1] = tolower(cmdtext[position]);
 	}
 
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	printf("[DETUtils]: (debug) - opct :: cmdtext[] validated.");
 	#endif
 	
@@ -354,7 +328,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 
 	printf("*** [DETUtils]: (cmd parse) - Calling parse function: '%s'", DET_ParseFunc);
 
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	printf("[DETUtils]: (debug) - opct :: Formatted function strings successfully.");
 	#endif
 
@@ -364,7 +338,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 	{
 		if(funcidx(_CommandDebugFunc) != -1)
 		{
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opct :: Command processing stopped : %s didn't return 1.",DET_ParseFunc);
 			#endif
 			CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_STOPPED);
@@ -377,7 +351,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 		CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_RECEIVED);
 	}
 
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	printf("[DETUtils]: (debug) - opct :: Called custom debug function : %s.", _CommandDebugFunc);
 	#endif
 
@@ -388,14 +362,14 @@ public OnPlayerCommandText(playerid, cmdtext[])
 		CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_READY);
 	}
 
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	printf("[DETUtils]: (debug) - opct :: position variable validated.");
 	#endif
 	if (!cmdtext[position])
 	{
 		if (_IsOnCmdPValid)
 		{
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 1");
 			#endif
 				if(funcidx(_CommandDebugFunc) != -1)
@@ -416,7 +390,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 					CallLocalFunction(_ClassicFunctionName, "is", playerid, cmd));
 					#endif
 		}
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		if(funcidx(_CommandDebugFunc) != -1)
 		{
 			CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
@@ -431,7 +405,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 	}
 	if (_IsOnCmdPValid)
 	{
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 3");
 		#endif
 			if(funcidx(_CommandDebugFunc) != -1)
@@ -455,7 +429,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 
 	if (funcidx("a_OnPlayerCommandText") != -1)
 	{
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned its hook call.");
 		#endif
 		CallLocalFunction("a_OnPlayerCommandText", 
@@ -578,7 +552,7 @@ public OnPlayerText(playerid, text[])
 				playerid, text, prx, expcprx
 			) != 1)
 			{
-				#if defined detutils_debug
+				#if defined DETUTILS_DEBUG_MODE
 					printf("[DETUtils]: (debug) - opt :: Passed prefix returned 0");
 				#endif
 				if(funcidx(_CommandDebugFunc) != -1)
@@ -589,7 +563,7 @@ public OnPlayerText(playerid, text[])
 			}
 		}
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: PrxFuncName: %s / CmdFuncName: %s / Passed prefix: %s", 
 				PrxFuncName, CmdFuncName, g_PlayerCmdData[playerid][PassedPrefix]);
 		#endif
@@ -659,7 +633,7 @@ public OnPlayerText(playerid, text[])
 
 		if(funcidx("a_cmd_OnPlayerText") != -1)
 		{
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned its hook call.");
 			#endif
 			CallLocalFunction("a_cmd_OnPlayerText", "is", playerid, text);
@@ -672,7 +646,7 @@ public OnPlayerText(playerid, text[])
 			playerid, 
 			text))
 		{
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned 1.");
 			#endif
 			return 1;
@@ -683,7 +657,7 @@ public OnPlayerText(playerid, text[])
 			_Prefix[MAX_FUNC_NAME],
 			_FunctionName[MAX_FUNC_NAME];
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared variables!");
 		#endif
 
@@ -692,7 +666,7 @@ public OnPlayerText(playerid, text[])
 			_FunctionName[position-1] = tolower(text[position]);
 		}
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) validated text[] and position;.");
 			#endif
 
@@ -701,7 +675,7 @@ public OnPlayerText(playerid, text[])
 
 		strdel(_Prefix, 0, 1);
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) generated cmd_prx funcname.");
 			#endif
 
@@ -710,7 +684,7 @@ public OnPlayerText(playerid, text[])
 		
 		strdel(_FunctionName, 3, 4);
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) generated cmd funcname.");
 			#endif
 
@@ -719,7 +693,7 @@ public OnPlayerText(playerid, text[])
 			position++;
 		}
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) position ++");
 			#endif
 
@@ -727,28 +701,28 @@ public OnPlayerText(playerid, text[])
 		{
 			if(_IsOnCmdPValid)
 			{
-				#if defined detutils_debug
+				#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 0");
 				#endif
 				return CallLocalFunction("OnPrefixedCommandPerformed", 
 							"isi", playerid, text, 
 							CallLocalFunction(_FunctionName, "is", playerid, "\1"));
 			}
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 1");
 				#endif
 			return CallLocalFunction(_FunctionName, "is", playerid, "\1");
 		}
 		if(_IsOnCmdPValid)
 		{
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 2");
 				#endif
 			return CallLocalFunction("OnPrefixedCommandPerformed", 
 					"isi", playerid, text, 
 					CallLocalFunction(_FunctionName, "is", playerid, text[position]));
 		}
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 3");
 				#endif
 		return CallLocalFunction(_FunctionName, "is", playerid, text[position]);
@@ -764,7 +738,7 @@ public OnPlayerText(playerid, text[])
 			playerid, 
 			text))
 		{
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned 1.");
 			#endif
 			return 1;
@@ -787,7 +761,7 @@ public OnPlayerText(playerid, text[])
 			CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_RECEIVED);
 		}
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared variables!");
 		#endif
 
@@ -814,7 +788,7 @@ public OnPlayerText(playerid, text[])
 		format(_FunctionName, sizeof(_FunctionName),
 			"pc_%s", text);
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) string formattion finished.");
 		#endif
 
@@ -829,13 +803,13 @@ public OnPlayerText(playerid, text[])
 		
 		strdel(_PrefixFuncName, 4, 5);
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) called strdel func.");
 		#endif
 
 		new _ActPrefix[MAX_FUNC_NAME];
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared active_prefix variable!");
 		#endif
 
@@ -843,13 +817,13 @@ public OnPlayerText(playerid, text[])
 		{
 			format(_ActPrefix, sizeof(_ActPrefix), "%s", CallLocalFunction(_PrefixFuncName, ""));
 
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) formatted active prefix var.");
 			#endif
 		}
 		else if(funcidx(_PrefixFuncName) == -1)
 		{
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: Prefix function name for command %s doesn't exist.", text);
 			#endif
 			new textmsg[256];
@@ -867,12 +841,12 @@ public OnPlayerText(playerid, text[])
 
 		if(!strcmp(g_PlayerCmdData[playerid][PassedPrefix], l_CommandPrefix, false)) // for some reason, text[0] was returning a whole string ???
 		{
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) performed if-pattern check.");
 			printf("[DETUtils]: (debug) - opt :: _ActPrefix: %s / text[0]: %s", g_PlayerCmdData[playerid][PassedPrefix], l_CommandPrefix);
 			#endif
 			strdel(_FunctionName, 3, 4);
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) called strdel func. ID: 1");
 			#endif
 
@@ -887,18 +861,18 @@ public OnPlayerText(playerid, text[])
 
 			strdel(_FunctionName, _nullpos, sizeof _FunctionName);
 
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: Command parameters var : %s", _CommandParameters);
 			#endif
 			*/
 		
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: _PrefixFuncName: %s / _FunctionName: %s", _PrefixFuncName, _FunctionName);
 			#endif
 
 			if(funcidx("OnPrefixedCommandPerformed") != -1)
 			{
-				#if defined detutils_debug
+				#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 0");
 				#endif
 				CallLocalFunction("OnPrefixedCommandPerformed", 
@@ -911,7 +885,7 @@ public OnPlayerText(playerid, text[])
 				}
 				return 0;
 			}
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 1");
 			#endif
 			CallLocalFunction(_FunctionName, "iss", playerid, text);
@@ -926,7 +900,7 @@ public OnPlayerText(playerid, text[])
 	{
 		if(funcidx("a_cmd_OnPlayerText") != -1)
 		{
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned its hook call.");
 			#endif
 			CallLocalFunction("a_cmd_OnPlayerText", "is", playerid, text);
@@ -944,7 +918,7 @@ public OnPlayerText(playerid, text[])
 
 		if(funcidx("a_cmd_OnPlayerText") != -1)
 		{
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned its hook call.");
 			#endif
 			CallLocalFunction("a_cmd_OnPlayerText", "is", playerid, text);
@@ -957,7 +931,7 @@ public OnPlayerText(playerid, text[])
 			playerid, 
 			text))
 		{
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned 1.");
 			#endif
 			return 1;
@@ -968,7 +942,7 @@ public OnPlayerText(playerid, text[])
 			_Prefix[MAX_FUNC_NAME],
 			_FunctionName[MAX_FUNC_NAME];
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared variables!");
 		#endif
 
@@ -977,7 +951,7 @@ public OnPlayerText(playerid, text[])
 			_FunctionName[position-1] = tolower(text[position]);
 		}
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) validated text[] and position;.");
 			#endif
 
@@ -986,7 +960,7 @@ public OnPlayerText(playerid, text[])
 
 		strdel(_Prefix, 0, 1);
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) generated cmd_prx funcname.");
 			#endif
 
@@ -995,7 +969,7 @@ public OnPlayerText(playerid, text[])
 		
 		strdel(_FunctionName, 3, 4);
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) generated cmd funcname.");
 			#endif
 
@@ -1004,7 +978,7 @@ public OnPlayerText(playerid, text[])
 			position++;
 		}
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) position ++");
 			#endif
 
@@ -1012,28 +986,28 @@ public OnPlayerText(playerid, text[])
 		{
 			if(_IsOnCmdPValid)
 			{
-				#if defined detutils_debug
+				#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 0");
 				#endif
 				return CallLocalFunction("OnPrefixedCommandPerformed", 
 							"isi", playerid, text, 
 							CallLocalFunction(_FunctionName, "is", playerid, "\1"));
 			}
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 1");
 				#endif
 			return CallLocalFunction(_FunctionName, "is", playerid, "\1");
 		}
 		if(_IsOnCmdPValid)
 		{
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 2");
 				#endif
 			return CallLocalFunction("OnPrefixedCommandPerformed", 
 					"isi", playerid, text, 
 					CallLocalFunction(_FunctionName, "is", playerid, text[position]));
 		}
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 3");
 				#endif
 		return CallLocalFunction(_FunctionName, "is", playerid, text[position]);
@@ -1049,7 +1023,7 @@ public OnPlayerText(playerid, text[])
 			playerid, 
 			text))
 		{
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned 1.");
 			#endif
 			return 1;
@@ -1072,7 +1046,7 @@ public OnPlayerText(playerid, text[])
 			CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_RECEIVED);
 		}
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared variables!");
 		#endif
 
@@ -1099,7 +1073,7 @@ public OnPlayerText(playerid, text[])
 		format(_FunctionName, sizeof(_FunctionName),
 			"pc_%s", text);
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) string formattion finished.");
 		#endif
 
@@ -1114,19 +1088,19 @@ public OnPlayerText(playerid, text[])
 		
 		strdel(_PrefixFuncName, 4, 5);
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) called strdel func.");
 		#endif
 
 		new _ActPrefix[MAX_FUNC_NAME];
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared active prefix variable!");
 		#endif
 
 		format(_ActPrefix, sizeof(_ActPrefix), CallLocalFunction(_PrefixFuncName, ""));
 
-		#if defined detutils_debug
+		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) formatted active prefix var.");
 		#endif
 
@@ -1137,11 +1111,11 @@ public OnPlayerText(playerid, text[])
 
 		if(!strcmp(_ActPrefix, text[0]))
 		{
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) performed if-pattern check.");
 			#endif
 			strdel(_FunctionName, 3, 4);
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) called strdel func. ID: 1");
 			#endif
 
@@ -1164,14 +1138,14 @@ public OnPlayerText(playerid, text[])
 				_FunctionName[_nullpos+5],
 				_FunctionName[_nullpos+6]);
 
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: Command parameters var : %s", _CommandParameters);
 			#endif
 			//strdel(_FunctionName, _nullpos, sizeof _FunctionName);
 		
 			if(_IsOnCmdPValid)
 			{
-				#if defined detutils_debug
+				#if defined DETUTILS_DEBUG_MODE
 				printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 0");
 				#endif
 				CallLocalFunction("OnPrefixedCommandPerformed", 
@@ -1184,7 +1158,7 @@ public OnPlayerText(playerid, text[])
 				}
 				return 0;
 			}
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 1");
 			#endif
 			CallLocalFunction(_FunctionName, "iss", playerid, text);
@@ -1199,7 +1173,7 @@ public OnPlayerText(playerid, text[])
 	{
 		if(funcidx("a_cmd_OnPlayerText") != -1)
 		{
-			#if defined detutils_debug
+			#if defined DETUTILS_DEBUG_MODE
 			printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned its hook call.");
 			#endif
 			CallLocalFunction("a_cmd_OnPlayerText", "is", playerid, text);

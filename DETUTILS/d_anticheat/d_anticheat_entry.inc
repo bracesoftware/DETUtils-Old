@@ -12,20 +12,6 @@
  *
  */
 
-#tryinclude "d_extra\d_libtags.inc"
-
-#if !defined d_extra_included
-	#error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
-#endif
-
-#if defined d_anticheat_included
-	
-	#endinput
-
-#endif
-
-#define d_anticheat_included
-
 /*
 
 																					  
@@ -270,7 +256,7 @@ public OnPlayerSpawn(playerid)
 
 forward d_ac_onplayerspawn(playerid);
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 
 #if !defined DIALOG_ID_ACSTATS
 
@@ -870,7 +856,7 @@ stock CheckPlayerSpeed(playerid)
 public OnDETUtilsInit()
 {
 	DET_g_AntiCheatTimer = SetTimer("detutils_cheatcheck", 60000, true);
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	SaveLogIntoFile("detutils_anticheat.log", "[DETUtils]: (debug) - Loading...");
 	SaveLogIntoFile("detutils_anticheat.log", "[DETUtils]: (debug) - Loaded.");
 	#endif

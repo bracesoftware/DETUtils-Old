@@ -17,24 +17,6 @@
 
 #endif
 
-#if defined DEV_MODE
-
-#include <a_samp>
-
-#endif
-
-#if defined d_fmargs_included
-    #endinput
-#endif
-
-#define d_fmargs_included
-
-#tryinclude "d_extra\d_libtags.inc"
-
-#if !defined d_extra_included
-    #error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
-#endif
-
 #include "d_fmargs_sscanf"
 
 /*
@@ -76,7 +58,7 @@ stock
     @DETUTILSFMARGS_TAGS__:...
 )
 {
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 1;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
@@ -124,7 +106,7 @@ stock
         #emit SCTRL 4
         #emit RETN
     }
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 1;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
@@ -146,7 +128,7 @@ stock
     @DETUTILSFMARGS_TAGS__:...
 )
 {
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 2;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
@@ -193,7 +175,7 @@ stock
         #emit SCTRL 4
         #emit RETN
     }
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 2;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
@@ -230,7 +212,7 @@ stock
         CallLocalFunction("OnPlayerScreenUpdate", "ii", i, 4);
         SetTimerEx("OnPlayerScreenUpdate", time, false, "ii", i, 5);
     }
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 3;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
@@ -296,7 +278,7 @@ stock
         
         #emit RETN
     }
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 3;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
@@ -335,7 +317,7 @@ stock
             SetTimerEx("OnPlayerScreenUpdate", time, false, "ii", i, 5);
         }
     }
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 4;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
@@ -399,7 +381,7 @@ stock
         
         #emit RETN
     }
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 4;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
@@ -428,7 +410,7 @@ stock
 {
     new Text:textid;
 
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 5;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
@@ -491,7 +473,7 @@ stock
         #emit SCTRL 4
         #emit RETN
     }
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 5;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
@@ -533,7 +515,7 @@ stock
 )
 {
     new PlayerText:textid;
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 6;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
@@ -582,7 +564,7 @@ stock
         #emit SCTRL 4
         #emit RETN
     }
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 6;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
@@ -622,7 +604,7 @@ stock
     @DETUTILSFMARGS_TAGS__:...
 )
 {
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 7;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
@@ -669,7 +651,7 @@ stock
         #emit SCTRL 4
         #emit RETN
     }
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 7;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
@@ -691,7 +673,7 @@ stock
     @DETUTILSFMARGS_TAGS__:...
 )
 {
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 8;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
@@ -738,7 +720,7 @@ stock
         #emit SCTRL 4
         #emit RETN
     }
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 8;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
@@ -759,7 +741,7 @@ stock
     @DETUTILSFMARGS_TAGS__:...
 )
 {
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 9;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
@@ -819,7 +801,7 @@ stock
         
         #emit RETN
     }
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     _Functionid = 9;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
     #endif
@@ -929,7 +911,7 @@ stock
 
 public OnDETUtilsInit()
 {
-    #if defined detutils_debug
+    #if defined DETUTILS_DEBUG_MODE
     SaveLogIntoFile("detutils_fmargs.log", "[DETUtils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_fmargs.log", "[DETUtils]: (debug) - Loaded.");
     #endif
