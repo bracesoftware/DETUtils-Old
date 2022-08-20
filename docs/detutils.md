@@ -10,4 +10,6 @@ DETUtils Entry Point - The main file which is included in order to use the DETUt
 #include <DETUTILS\detutils>
 ```
 
-- MORE DOCS COMING LATER
+- Before including the entry point, you can define some compile-time options in order to configure the DETUtils libraries the way you want to.
+
+## Compile-time options
