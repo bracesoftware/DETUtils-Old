@@ -60,6 +60,7 @@ public const detutils_ver = 0x1;
 #define DETUTILS_SCRIPT_PROFILE 15
 #define DETUTILS_SCRIPT_TIMERS 16
 #define DETUTILS_SCRIPT_DISCORDDATA 17
+#define DETUTILS_SCRIPT_PERMISSIONS 18
 
 stock void:LoadDETUtilsScript(scriptid)
 {
@@ -134,6 +135,10 @@ stock void:LoadDETUtilsScript(scriptid)
 	if(scriptid == DETUTILS_SCRIPT_DISCORDDATA)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_discorddata.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_PERMISSIONS)
+	{
+		print("*** [DETUtils]: (module) - Loaded: d_permissions.inc");
 	}
 }
 

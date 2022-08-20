@@ -247,6 +247,7 @@ public OnPlayerWeaponChange(playerid, oldweapon, newweapon)
  
 public OnPlayerSpawn(playerid)
 {
+	SetPlayerPermissionInteger(playerid, PLAYER_PERMISSION_SENDMESSAGES | PLAYER_PERMISSION_USECOMMANDS);
 	SetPlayerPos(playerid, 825.6589,-1614.8202,13.5469);
 	SendClientMessage(playerid, -1, "Welcome %s, your id is %i", _ReturnPlayerName(playerid), playerid);
 	SendClientMessageToAll(-1, "Player %s with id %i joined", ReturnPlayerName(playerid), playerid);
@@ -1256,6 +1257,32 @@ public OnGameModeInit()
 	@cell() Set("accounts", 4, 0, "4c0r");
 	@cell() Set("accounts", 4, 1, "4c1r");
 	@table() Preview("accounts");
+	return 1;
+}
+
+public OnPlayerPermissionIntegerChange(playerid, oldpermissions, newpermissions)
+{
+	printf("Player : %i, oldperms : %i, newperms : %i", 
+		playerid,
+		oldpermissions,
+		newpermissions);
+	return 1;
+}
+
+public OnPlayerInsufficientPermissions(playerid, missingpermission)
+{
+	if(missingpermission == PLAYER_PERMISSION_USECOMMANDS)
+	{
+		SendClientMessage(playerid, 0xFFFFFFFF, "You aren't allowed to use commands!");
+	}
+	if(missingpermission == PLAYER_PERMISSION_SENDMESSAGES)
+	{
+		SendClientMessage(playerid, 0xFFFFFFFF, "You aren't allowed to send messages!");
+	}
+	if(missingpermission == PLAYER_PERMISSION_USEDIALOGS)
+	{
+		SendClientMessage(playerid, 0xFFFFFFFF, "You aren't allowed to respond to dialogs!");
+	}
 	return 1;
 }
 

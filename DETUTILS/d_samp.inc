@@ -68,6 +68,37 @@ Includes
 
 */
 
+#if !defined DETUTILS_NO_PERMISSIONS
+
+ 	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
+	#include "d_permissions"
+
+	// Vercheck
+
+	#if !defined DETUTILS_LIBVER_PERMISSIONS
+		
+		#error [DETUtils]: (version) - Version not specified.
+	
+	#elseif defined DETUTILS_LIBVER_PERMISSIONS
+
+		#if DETUTILS_LIBVER_PERMISSIONS != 1
+
+			#error [DETUtils]: (version) - 'd_permissions.inc' is outdated.
+
+		#endif
+
+	#endif
+
+#else
+
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [DETUtils]: (includes) - Library 'd_permissions' is disabled.
+
+ 	#endif
+
+#endif
+
 #if !defined DETUTILS_NO_PROPERTIES
 
  	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
