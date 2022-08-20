@@ -32,12 +32,6 @@
 
 #tryinclude "d_core\d_mainfix"
 
-#if defined DETUTILS_DEBUG_MODE
-
- 	#define detutils_debug
-
-#endif
-
 #pragma warning disable 203
 
 // Core libraries
@@ -693,5 +687,11 @@ Includes
  		#error [DETUtils]: (release mismatch) - Invalid version release, 0x1 was expected.
 
  	#endif
+
+#endif
+
+#if defined detutils_debug
+
+ 	#error [DETUtils]: (symbol deprecated) - Symbol 'detutils_debug' is deprecated and defining it does nothing.
 
 #endif

@@ -62,7 +62,7 @@
 
 #include "d_init.inc"
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 
 	#pragma warning disable 231
 

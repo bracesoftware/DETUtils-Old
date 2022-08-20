@@ -13,12 +13,6 @@
  *
  */
 
-#tryinclude "d_extra\d_libtags.inc"
-
-#if !defined d_extra_included
-	#error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
-#endif
-
 // Defining up there for 'strret' thing.
 #define MAX_STRING_CELLS 1024
 

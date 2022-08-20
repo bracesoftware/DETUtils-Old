@@ -39,15 +39,9 @@
 
 #endif
 
-#if defined detutils_sscanf
+#if defined @deprecated_sscanf__
 
-#undef detutils_sscanf
-
-#endif
-
-#if defined DEV_MODE
-
-#include <a_samp>
+#undef @deprecated_sscanf__
 
 #endif
 
@@ -376,7 +370,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 				{
 					CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
 				}
-					#if !defined detutils_sscanf
+					#if !defined @deprecated_sscanf__
 					return CallLocalFunction("OnPlayerCommandPerformed", 
 					"isi", 
 					playerid, 
@@ -397,7 +391,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 		}
 		printf("[DETUtils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 2");
 		#endif
-		#if !defined detutils_sscanf
+		#if !defined @deprecated_sscanf__
 		return CallLocalFunction(_ClassicFunctionName, "is", playerid, "\1");
 		#else
 		return CallLocalFunction(_ClassicFunctionName, "is", playerid, cmd);
@@ -412,7 +406,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 			{
 				CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
 			}
-				#if !defined detutils_sscanf
+				#if !defined @deprecated_sscanf__
 			return CallLocalFunction("OnPlayerCommandPerformed", 
 				"isi", 
 				playerid, 

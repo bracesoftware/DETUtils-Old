@@ -324,7 +324,7 @@ forward a_init_OnFilterScriptExit();
 forward OnDETUtilsInit();
 public OnDETUtilsInit()
 {
-	#if defined detutils_debug
+	#if defined DETUTILS_DEBUG_MODE
 	SendRconCommand("hostname [DETUtils]: (test) - Server");
 	SetGameModeText("SA:MP | DET-Utils");
 	#endif

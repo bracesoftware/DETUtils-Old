@@ -30,7 +30,7 @@
 #define @1@%0\32; @1@
 #define @DETUTILSFUNCGEN$%1..%2$ @1@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '1'.
 #endif
 
@@ -45,7 +45,7 @@
 #define @2@%0\32; @2@
 #define @DETUTILSFUNCGEN$%1..%2$ @2@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '2'.
 #endif
 
@@ -59,7 +59,7 @@
 #define @3@%0\32; @3@
 #define @DETUTILSFUNCGEN$%1..%2$ @3@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '3'.
 #endif
 
@@ -73,7 +73,7 @@
 #define @4@%0\32; @4@
 #define @DETUTILSFUNCGEN$%1..%2$ @4@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '4'.
 #endif
 
@@ -87,7 +87,7 @@
 #define @5@%0\32; @5@
 #define @DETUTILSFUNCGEN$%1..%2$ @5@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '5'.
 #endif
 
@@ -101,7 +101,7 @@
 #define @6@%0\32; @6@
 #define @DETUTILSFUNCGEN$%1..%2$ @6@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '6'.
 #endif
 
@@ -115,7 +115,7 @@
 #define @7@%0\32; @7@
 #define @DETUTILSFUNCGEN$%1..%2$ @7@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '7'.
 #endif
 
@@ -129,7 +129,7 @@
 #define @8@%0\32; @8@
 #define @DETUTILSFUNCGEN$%1..%2$ @8@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '8'.
 #endif
 
@@ -143,7 +143,7 @@
 #define @9@%0\32; @9@
 #define @DETUTILSFUNCGEN$%1..%2$ @9@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '9'.
 #endif
 
@@ -157,7 +157,7 @@
 #define @10@%0\32; @10@
 #define @DETUTILSFUNCGEN$%1..%2$ @10@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '10'.
 #endif
 
@@ -171,7 +171,7 @@
 #define @11@%0\32; @11@
 #define @DETUTILSFUNCGEN$%1..%2$ @11@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '11'.
 #endif
 
@@ -185,7 +185,7 @@
 #define @12@%0\32; @12@
 #define @DETUTILSFUNCGEN$%1..%2$ @12@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '12'.
 #endif
 
@@ -199,7 +199,7 @@
 #define @13@%0\32; @13@
 #define @DETUTILSFUNCGEN$%1..%2$ @13@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '13'.
 #endif
 
@@ -213,7 +213,7 @@
 #define @14@%0\32; @14@
 #define @DETUTILSFUNCGEN$%1..%2$ @14@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '14'.
 #endif
 
@@ -227,7 +227,7 @@
 #define @15@%0\32; @15@
 #define @DETUTILSFUNCGEN$%1..%2$ @15@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '15'.
 #endif
 
@@ -241,7 +241,7 @@
 #define @16@%0\32; @16@
 #define @DETUTILSFUNCGEN$%1..%2$ @16@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '16'.
 #endif
 
@@ -255,7 +255,7 @@
 #define @17@%0\32; @17@
 #define @DETUTILSFUNCGEN$%1..%2$ @17@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '17'.
 #endif
 
@@ -269,7 +269,7 @@
 #define @18@%0\32; @18@
 #define @DETUTILSFUNCGEN$%1..%2$ @18@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '18'.
 #endif
 
@@ -283,7 +283,7 @@
 #define @19@%0\32; @19@
 #define @DETUTILSFUNCGEN$%1..%2$ @19@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '19'.
 #endif
 
@@ -297,7 +297,7 @@
 #define @20@%0\32; @20@
 #define @DETUTILSFUNCGEN$%1..%2$ @20@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '20'.
 #endif
 
@@ -311,7 +311,7 @@
 #define @21@%0\32; @21@
 #define @DETUTILSFUNCGEN$%1..%2$ @21@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '21'.
 #endif
 
@@ -325,7 +325,7 @@
 #define @22@%0\32; @22@
 #define @DETUTILSFUNCGEN$%1..%2$ @22@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '22'.
 #endif
 
@@ -339,7 +339,7 @@
 #define @23@%0\32; @23@
 #define @DETUTILSFUNCGEN$%1..%2$ @23@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '23'.
 #endif
 
@@ -353,7 +353,7 @@
 #define @24@%0\32; @24@
 #define @DETUTILSFUNCGEN$%1..%2$ @24@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '24'.
 #endif
 
@@ -367,7 +367,7 @@
 #define @25@%0\32; @25@
 #define @DETUTILSFUNCGEN$%1..%2$ @25@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '25'.
 #endif
 
@@ -381,7 +381,7 @@
 #define @26@%0\32; @26@
 #define @DETUTILSFUNCGEN$%1..%2$ @26@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '26'.
 #endif
 
@@ -395,7 +395,7 @@
 #define @27@%0\32; @27@
 #define @DETUTILSFUNCGEN$%1..%2$ @27@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '27'.
 #endif
 
@@ -409,7 +409,7 @@
 #define @28@%0\32; @28@
 #define @DETUTILSFUNCGEN$%1..%2$ @28@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '28'.
 #endif
 
@@ -423,7 +423,7 @@
 #define @29@%0\32; @29@
 #define @DETUTILSFUNCGEN$%1..%2$ @29@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '29'.
 #endif
 
@@ -437,7 +437,7 @@
 #define @30@%0\32; @30@
 #define @DETUTILSFUNCGEN$%1..%2$ @30@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '30'.
 #endif
 
@@ -451,7 +451,7 @@
 #define @31@%0\32; @31@
 #define @DETUTILSFUNCGEN$%1..%2$ @31@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '31'.
 #endif
 
@@ -465,7 +465,7 @@
 #define @32@%0\32; @32@
 #define @DETUTILSFUNCGEN$%1..%2$ @32@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '32'.
 #endif
 
@@ -479,7 +479,7 @@
 #define @33@%0\32; @33@
 #define @DETUTILSFUNCGEN$%1..%2$ @33@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '33'.
 #endif
 
@@ -493,7 +493,7 @@
 #define @34@%0\32; @34@
 #define @DETUTILSFUNCGEN$%1..%2$ @34@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '34'.
 #endif
 
@@ -507,7 +507,7 @@
 #define @35@%0\32; @35@
 #define @DETUTILSFUNCGEN$%1..%2$ @35@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '35'.
 #endif
 
@@ -521,7 +521,7 @@
 #define @36@%0\32; @36@
 #define @DETUTILSFUNCGEN$%1..%2$ @36@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '36'.
 #endif
 
@@ -535,7 +535,7 @@
 #define @37@%0\32; @37@
 #define @DETUTILSFUNCGEN$%1..%2$ @37@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '37'.
 #endif
 
@@ -549,7 +549,7 @@
 #define @38@%0\32; @38@
 #define @DETUTILSFUNCGEN$%1..%2$ @38@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '38'.
 #endif
 
@@ -563,7 +563,7 @@
 #define @39@%0\32; @39@
 #define @DETUTILSFUNCGEN$%1..%2$ @39@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '39'.
 #endif
 
@@ -577,7 +577,7 @@
 #define @40@%0\32; @40@
 #define @DETUTILSFUNCGEN$%1..%2$ @40@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '40'.
 #endif
 
@@ -591,7 +591,7 @@
 #define @41@%0\32; @41@
 #define @DETUTILSFUNCGEN$%1..%2$ @41@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '41'.
 #endif
 
@@ -605,7 +605,7 @@
 #define @42@%0\32; @42@
 #define @DETUTILSFUNCGEN$%1..%2$ @42@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '42'.
 #endif
 
@@ -619,7 +619,7 @@
 #define @43@%0\32; @43@
 #define @DETUTILSFUNCGEN$%1..%2$ @43@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '43'.
 #endif
 
@@ -633,7 +633,7 @@
 #define @44@%0\32; @44@
 #define @DETUTILSFUNCGEN$%1..%2$ @44@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '44'.
 #endif
 
@@ -647,7 +647,7 @@
 #define @45@%0\32; @45@
 #define @DETUTILSFUNCGEN$%1..%2$ @45@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '45'.
 #endif
 
@@ -661,7 +661,7 @@
 #define @46@%0\32; @46@
 #define @DETUTILSFUNCGEN$%1..%2$ @46@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '46'.
 #endif
 
@@ -675,7 +675,7 @@
 #define @47@%0\32; @47@
 #define @DETUTILSFUNCGEN$%1..%2$ @47@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '47'.
 #endif
 
@@ -689,7 +689,7 @@
 #define @48@%0\32; @48@
 #define @DETUTILSFUNCGEN$%1..%2$ @48@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '48'.
 #endif
 
@@ -703,7 +703,7 @@
 #define @49@%0\32; @49@
 #define @DETUTILSFUNCGEN$%1..%2$ @49@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '49'.
 #endif
 
@@ -717,7 +717,7 @@
 #define @50@%0\32; @50@
 #define @DETUTILSFUNCGEN$%1..%2$ @50@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '50'.
 #endif
 
@@ -731,7 +731,7 @@
 #define @51@%0\32; @51@
 #define @DETUTILSFUNCGEN$%1..%2$ @51@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '51'.
 #endif
 
@@ -745,7 +745,7 @@
 #define @52@%0\32; @52@
 #define @DETUTILSFUNCGEN$%1..%2$ @52@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '52'.
 #endif
 
@@ -759,7 +759,7 @@
 #define @53@%0\32; @53@
 #define @DETUTILSFUNCGEN$%1..%2$ @53@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '53'.
 #endif
 
@@ -773,7 +773,7 @@
 #define @54@%0\32; @54@
 #define @DETUTILSFUNCGEN$%1..%2$ @54@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '54'.
 #endif
 
@@ -787,7 +787,7 @@
 #define @55@%0\32; @55@
 #define @DETUTILSFUNCGEN$%1..%2$ @55@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '55'.
 #endif
 
@@ -801,7 +801,7 @@
 #define @56@%0\32; @56@
 #define @DETUTILSFUNCGEN$%1..%2$ @56@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '56'.
 #endif
 
@@ -815,7 +815,7 @@
 #define @57@%0\32; @57@
 #define @DETUTILSFUNCGEN$%1..%2$ @57@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '57'.
 #endif
 
@@ -829,7 +829,7 @@
 #define @58@%0\32; @58@
 #define @DETUTILSFUNCGEN$%1..%2$ @58@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '58'.
 #endif
 
@@ -843,7 +843,7 @@
 #define @59@%0\32; @59@
 #define @DETUTILSFUNCGEN$%1..%2$ @59@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '59'.
 #endif
 
@@ -857,7 +857,7 @@
 #define @60@%0\32; @60@
 #define @DETUTILSFUNCGEN$%1..%2$ @60@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '60'.
 #endif
 
@@ -871,7 +871,7 @@
 #define @61@%0\32; @61@
 #define @DETUTILSFUNCGEN$%1..%2$ @61@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '61'.
 #endif
 
@@ -885,7 +885,7 @@
 #define @62@%0\32; @62@
 #define @DETUTILSFUNCGEN$%1..%2$ @62@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '62'.
 #endif
 
@@ -899,7 +899,7 @@
 #define @63@%0\32; @63@
 #define @DETUTILSFUNCGEN$%1..%2$ @63@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '63'.
 #endif
 
@@ -913,7 +913,7 @@
 #define @64@%0\32; @64@
 #define @DETUTILSFUNCGEN$%1..%2$ @64@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '64'.
 #endif
 
@@ -927,7 +927,7 @@
 #define @65@%0\32; @65@
 #define @DETUTILSFUNCGEN$%1..%2$ @65@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '65'.
 #endif
 
@@ -941,7 +941,7 @@
 #define @66@%0\32; @66@
 #define @DETUTILSFUNCGEN$%1..%2$ @66@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '66'.
 #endif
 
@@ -955,7 +955,7 @@
 #define @67@%0\32; @67@
 #define @DETUTILSFUNCGEN$%1..%2$ @67@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '67'.
 #endif
 
@@ -969,7 +969,7 @@
 #define @68@%0\32; @68@
 #define @DETUTILSFUNCGEN$%1..%2$ @68@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '68'.
 #endif
 
@@ -983,7 +983,7 @@
 #define @69@%0\32; @69@
 #define @DETUTILSFUNCGEN$%1..%2$ @69@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '69'.
 #endif
 
@@ -997,7 +997,7 @@
 #define @70@%0\32; @70@
 #define @DETUTILSFUNCGEN$%1..%2$ @70@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '70'.
 #endif
 
@@ -1011,7 +1011,7 @@
 #define @71@%0\32; @71@
 #define @DETUTILSFUNCGEN$%1..%2$ @71@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '71'.
 #endif
 
@@ -1025,7 +1025,7 @@
 #define @72@%0\32; @72@
 #define @DETUTILSFUNCGEN$%1..%2$ @72@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '72'.
 #endif
 
@@ -1039,7 +1039,7 @@
 #define @73@%0\32; @73@
 #define @DETUTILSFUNCGEN$%1..%2$ @73@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '73'.
 #endif
 
@@ -1053,7 +1053,7 @@
 #define @74@%0\32; @74@
 #define @DETUTILSFUNCGEN$%1..%2$ @74@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '74'.
 #endif
 
@@ -1067,7 +1067,7 @@
 #define @75@%0\32; @75@
 #define @DETUTILSFUNCGEN$%1..%2$ @75@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '75'.
 #endif
 
@@ -1081,7 +1081,7 @@
 #define @76@%0\32; @76@
 #define @DETUTILSFUNCGEN$%1..%2$ @76@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '76'.
 #endif
 
@@ -1095,7 +1095,7 @@
 #define @77@%0\32; @77@
 #define @DETUTILSFUNCGEN$%1..%2$ @77@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '77'.
 #endif
 
@@ -1109,7 +1109,7 @@
 #define @78@%0\32; @78@
 #define @DETUTILSFUNCGEN$%1..%2$ @78@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '78'.
 #endif
 
@@ -1123,7 +1123,7 @@
 #define @79@%0\32; @79@
 #define @DETUTILSFUNCGEN$%1..%2$ @79@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '79'.
 #endif
 
@@ -1137,7 +1137,7 @@
 #define @80@%0\32; @80@
 #define @DETUTILSFUNCGEN$%1..%2$ @80@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '80'.
 #endif
 
@@ -1151,7 +1151,7 @@
 #define @81@%0\32; @81@
 #define @DETUTILSFUNCGEN$%1..%2$ @81@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '81'.
 #endif
 
@@ -1165,7 +1165,7 @@
 #define @82@%0\32; @82@
 #define @DETUTILSFUNCGEN$%1..%2$ @82@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '82'.
 #endif
 
@@ -1179,7 +1179,7 @@
 #define @83@%0\32; @83@
 #define @DETUTILSFUNCGEN$%1..%2$ @83@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '83'.
 #endif
 
@@ -1193,7 +1193,7 @@
 #define @84@%0\32; @84@
 #define @DETUTILSFUNCGEN$%1..%2$ @84@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '84'.
 #endif
 
@@ -1207,7 +1207,7 @@
 #define @85@%0\32; @85@
 #define @DETUTILSFUNCGEN$%1..%2$ @85@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '85'.
 #endif
 
@@ -1221,7 +1221,7 @@
 #define @86@%0\32; @86@
 #define @DETUTILSFUNCGEN$%1..%2$ @86@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '86'.
 #endif
 
@@ -1235,7 +1235,7 @@
 #define @87@%0\32; @87@
 #define @DETUTILSFUNCGEN$%1..%2$ @87@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '87'.
 #endif
 
@@ -1249,7 +1249,7 @@
 #define @88@%0\32; @88@
 #define @DETUTILSFUNCGEN$%1..%2$ @88@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '88'.
 #endif
 
@@ -1263,7 +1263,7 @@
 #define @89@%0\32; @89@
 #define @DETUTILSFUNCGEN$%1..%2$ @89@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '89'.
 #endif
 
@@ -1277,7 +1277,7 @@
 #define @90@%0\32; @90@
 #define @DETUTILSFUNCGEN$%1..%2$ @90@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '90'.
 #endif
 
@@ -1291,7 +1291,7 @@
 #define @91@%0\32; @91@
 #define @DETUTILSFUNCGEN$%1..%2$ @91@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '91'.
 #endif
 
@@ -1305,7 +1305,7 @@
 #define @92@%0\32; @92@
 #define @DETUTILSFUNCGEN$%1..%2$ @92@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '92'.
 #endif
 
@@ -1319,7 +1319,7 @@
 #define @93@%0\32; @93@
 #define @DETUTILSFUNCGEN$%1..%2$ @93@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '93'.
 #endif
 
@@ -1333,7 +1333,7 @@
 #define @94@%0\32; @94@
 #define @DETUTILSFUNCGEN$%1..%2$ @94@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '94'.
 #endif
 
@@ -1347,7 +1347,7 @@
 #define @95@%0\32; @95@
 #define @DETUTILSFUNCGEN$%1..%2$ @95@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '95'.
 #endif
 
@@ -1361,7 +1361,7 @@
 #define @96@%0\32; @96@
 #define @DETUTILSFUNCGEN$%1..%2$ @96@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '96'.
 #endif
 
@@ -1375,7 +1375,7 @@
 #define @97@%0\32; @97@
 #define @DETUTILSFUNCGEN$%1..%2$ @97@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '97'.
 #endif
 
@@ -1389,7 +1389,7 @@
 #define @98@%0\32; @98@
 #define @DETUTILSFUNCGEN$%1..%2$ @98@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '98'.
 #endif
 
@@ -1403,7 +1403,7 @@
 #define @99@%0\32; @99@
 #define @DETUTILSFUNCGEN$%1..%2$ @99@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '99'.
 #endif
 
@@ -1417,7 +1417,7 @@
 #define @100@%0\32; @100@
 #define @DETUTILSFUNCGEN$%1..%2$ @100@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '100'.
 #endif
 
@@ -1431,7 +1431,7 @@
 #define @101@%0\32; @101@
 #define @DETUTILSFUNCGEN$%1..%2$ @101@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '101'.
 #endif
 
@@ -1445,7 +1445,7 @@
 #define @102@%0\32; @102@
 #define @DETUTILSFUNCGEN$%1..%2$ @102@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '102'.
 #endif
 
@@ -1459,7 +1459,7 @@
 #define @103@%0\32; @103@
 #define @DETUTILSFUNCGEN$%1..%2$ @103@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '103'.
 #endif
 
@@ -1473,7 +1473,7 @@
 #define @104@%0\32; @104@
 #define @DETUTILSFUNCGEN$%1..%2$ @104@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '104'.
 #endif
 
@@ -1487,7 +1487,7 @@
 #define @105@%0\32; @105@
 #define @DETUTILSFUNCGEN$%1..%2$ @105@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '105'.
 #endif
 
@@ -1501,7 +1501,7 @@
 #define @106@%0\32; @106@
 #define @DETUTILSFUNCGEN$%1..%2$ @106@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '106'.
 #endif
 
@@ -1515,7 +1515,7 @@
 #define @107@%0\32; @107@
 #define @DETUTILSFUNCGEN$%1..%2$ @107@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '107'.
 #endif
 
@@ -1529,7 +1529,7 @@
 #define @108@%0\32; @108@
 #define @DETUTILSFUNCGEN$%1..%2$ @108@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '108'.
 #endif
 
@@ -1543,7 +1543,7 @@
 #define @109@%0\32; @109@
 #define @DETUTILSFUNCGEN$%1..%2$ @109@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '109'.
 #endif
 
@@ -1557,7 +1557,7 @@
 #define @110@%0\32; @110@
 #define @DETUTILSFUNCGEN$%1..%2$ @110@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '110'.
 #endif
 
@@ -1571,7 +1571,7 @@
 #define @111@%0\32; @111@
 #define @DETUTILSFUNCGEN$%1..%2$ @111@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '111'.
 #endif
 
@@ -1585,7 +1585,7 @@
 #define @112@%0\32; @112@
 #define @DETUTILSFUNCGEN$%1..%2$ @112@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '112'.
 #endif
 
@@ -1599,7 +1599,7 @@
 #define @113@%0\32; @113@
 #define @DETUTILSFUNCGEN$%1..%2$ @113@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '113'.
 #endif
 
@@ -1613,7 +1613,7 @@
 #define @114@%0\32; @114@
 #define @DETUTILSFUNCGEN$%1..%2$ @114@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '114'.
 #endif
 
@@ -1627,7 +1627,7 @@
 #define @115@%0\32; @115@
 #define @DETUTILSFUNCGEN$%1..%2$ @115@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '115'.
 #endif
 
@@ -1641,7 +1641,7 @@
 #define @116@%0\32; @116@
 #define @DETUTILSFUNCGEN$%1..%2$ @116@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '116'.
 #endif
 
@@ -1655,7 +1655,7 @@
 #define @117@%0\32; @117@
 #define @DETUTILSFUNCGEN$%1..%2$ @117@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '117'.
 #endif
 
@@ -1669,7 +1669,7 @@
 #define @118@%0\32; @118@
 #define @DETUTILSFUNCGEN$%1..%2$ @118@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '118'.
 #endif
 
@@ -1683,7 +1683,7 @@
 #define @119@%0\32; @119@
 #define @DETUTILSFUNCGEN$%1..%2$ @119@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '119'.
 #endif
 
@@ -1697,7 +1697,7 @@
 #define @120@%0\32; @120@
 #define @DETUTILSFUNCGEN$%1..%2$ @120@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '120'.
 #endif
 
@@ -1711,7 +1711,7 @@
 #define @121@%0\32; @121@
 #define @DETUTILSFUNCGEN$%1..%2$ @121@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '121'.
 #endif
 
@@ -1725,7 +1725,7 @@
 #define @122@%0\32; @122@
 #define @DETUTILSFUNCGEN$%1..%2$ @122@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '122'.
 #endif
 
@@ -1739,7 +1739,7 @@
 #define @123@%0\32; @123@
 #define @DETUTILSFUNCGEN$%1..%2$ @123@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '123'.
 #endif
 
@@ -1753,7 +1753,7 @@
 #define @124@%0\32; @124@
 #define @DETUTILSFUNCGEN$%1..%2$ @124@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '124'.
 #endif
 
@@ -1767,7 +1767,7 @@
 #define @125@%0\32; @125@
 #define @DETUTILSFUNCGEN$%1..%2$ @125@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '125'.
 #endif
 
@@ -1781,7 +1781,7 @@
 #define @126@%0\32; @126@
 #define @DETUTILSFUNCGEN$%1..%2$ @126@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '126'.
 #endif
 
@@ -1795,7 +1795,7 @@
 #define @127@%0\32; @127@
 #define @DETUTILSFUNCGEN$%1..%2$ @127@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '127'.
 #endif
 
@@ -1809,7 +1809,7 @@
 #define @128@%0\32; @128@
 #define @DETUTILSFUNCGEN$%1..%2$ @128@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '128'.
 #endif
 
@@ -1823,7 +1823,7 @@
 #define @129@%0\32; @129@
 #define @DETUTILSFUNCGEN$%1..%2$ @129@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '129'.
 #endif
 
@@ -1837,7 +1837,7 @@
 #define @130@%0\32; @130@
 #define @DETUTILSFUNCGEN$%1..%2$ @130@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '130'.
 #endif
 
@@ -1851,7 +1851,7 @@
 #define @131@%0\32; @131@
 #define @DETUTILSFUNCGEN$%1..%2$ @131@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '131'.
 #endif
 
@@ -1865,7 +1865,7 @@
 #define @132@%0\32; @132@
 #define @DETUTILSFUNCGEN$%1..%2$ @132@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '132'.
 #endif
 
@@ -1879,7 +1879,7 @@
 #define @133@%0\32; @133@
 #define @DETUTILSFUNCGEN$%1..%2$ @133@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '133'.
 #endif
 
@@ -1893,7 +1893,7 @@
 #define @134@%0\32; @134@
 #define @DETUTILSFUNCGEN$%1..%2$ @134@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '134'.
 #endif
 
@@ -1907,7 +1907,7 @@
 #define @135@%0\32; @135@
 #define @DETUTILSFUNCGEN$%1..%2$ @135@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '135'.
 #endif
 
@@ -1921,7 +1921,7 @@
 #define @136@%0\32; @136@
 #define @DETUTILSFUNCGEN$%1..%2$ @136@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '136'.
 #endif
 
@@ -1935,7 +1935,7 @@
 #define @137@%0\32; @137@
 #define @DETUTILSFUNCGEN$%1..%2$ @137@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '137'.
 #endif
 
@@ -1949,7 +1949,7 @@
 #define @138@%0\32; @138@
 #define @DETUTILSFUNCGEN$%1..%2$ @138@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '138'.
 #endif
 
@@ -1963,7 +1963,7 @@
 #define @139@%0\32; @139@
 #define @DETUTILSFUNCGEN$%1..%2$ @139@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '139'.
 #endif
 
@@ -1977,7 +1977,7 @@
 #define @140@%0\32; @140@
 #define @DETUTILSFUNCGEN$%1..%2$ @140@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '140'.
 #endif
 
@@ -1991,7 +1991,7 @@
 #define @141@%0\32; @141@
 #define @DETUTILSFUNCGEN$%1..%2$ @141@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '141'.
 #endif
 
@@ -2005,7 +2005,7 @@
 #define @142@%0\32; @142@
 #define @DETUTILSFUNCGEN$%1..%2$ @142@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '142'.
 #endif
 
@@ -2019,7 +2019,7 @@
 #define @143@%0\32; @143@
 #define @DETUTILSFUNCGEN$%1..%2$ @143@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '143'.
 #endif
 
@@ -2033,7 +2033,7 @@
 #define @144@%0\32; @144@
 #define @DETUTILSFUNCGEN$%1..%2$ @144@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '144'.
 #endif
 
@@ -2047,7 +2047,7 @@
 #define @145@%0\32; @145@
 #define @DETUTILSFUNCGEN$%1..%2$ @145@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '145'.
 #endif
 
@@ -2061,7 +2061,7 @@
 #define @146@%0\32; @146@
 #define @DETUTILSFUNCGEN$%1..%2$ @146@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '146'.
 #endif
 
@@ -2075,7 +2075,7 @@
 #define @147@%0\32; @147@
 #define @DETUTILSFUNCGEN$%1..%2$ @147@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '147'.
 #endif
 
@@ -2089,7 +2089,7 @@
 #define @148@%0\32; @148@
 #define @DETUTILSFUNCGEN$%1..%2$ @148@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '148'.
 #endif
 
@@ -2103,7 +2103,7 @@
 #define @149@%0\32; @149@
 #define @DETUTILSFUNCGEN$%1..%2$ @149@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '149'.
 #endif
 
@@ -2117,7 +2117,7 @@
 #define @150@%0\32; @150@
 #define @DETUTILSFUNCGEN$%1..%2$ @150@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '150'.
 #endif
 
@@ -2131,7 +2131,7 @@
 #define @151@%0\32; @151@
 #define @DETUTILSFUNCGEN$%1..%2$ @151@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '151'.
 #endif
 
@@ -2145,7 +2145,7 @@
 #define @152@%0\32; @152@
 #define @DETUTILSFUNCGEN$%1..%2$ @152@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '152'.
 #endif
 
@@ -2159,7 +2159,7 @@
 #define @153@%0\32; @153@
 #define @DETUTILSFUNCGEN$%1..%2$ @153@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '153'.
 #endif
 
@@ -2173,7 +2173,7 @@
 #define @154@%0\32; @154@
 #define @DETUTILSFUNCGEN$%1..%2$ @154@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '154'.
 #endif
 
@@ -2187,7 +2187,7 @@
 #define @155@%0\32; @155@
 #define @DETUTILSFUNCGEN$%1..%2$ @155@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '155'.
 #endif
 
@@ -2201,7 +2201,7 @@
 #define @156@%0\32; @156@
 #define @DETUTILSFUNCGEN$%1..%2$ @156@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '156'.
 #endif
 
@@ -2215,7 +2215,7 @@
 #define @157@%0\32; @157@
 #define @DETUTILSFUNCGEN$%1..%2$ @157@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '157'.
 #endif
 
@@ -2229,7 +2229,7 @@
 #define @158@%0\32; @158@
 #define @DETUTILSFUNCGEN$%1..%2$ @158@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '158'.
 #endif
 
@@ -2243,7 +2243,7 @@
 #define @159@%0\32; @159@
 #define @DETUTILSFUNCGEN$%1..%2$ @159@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '159'.
 #endif
 
@@ -2257,7 +2257,7 @@
 #define @160@%0\32; @160@
 #define @DETUTILSFUNCGEN$%1..%2$ @160@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '160'.
 #endif
 
@@ -2271,7 +2271,7 @@
 #define @161@%0\32; @161@
 #define @DETUTILSFUNCGEN$%1..%2$ @161@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '161'.
 #endif
 
@@ -2285,7 +2285,7 @@
 #define @162@%0\32; @162@
 #define @DETUTILSFUNCGEN$%1..%2$ @162@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '162'.
 #endif
 
@@ -2299,7 +2299,7 @@
 #define @163@%0\32; @163@
 #define @DETUTILSFUNCGEN$%1..%2$ @163@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '163'.
 #endif
 
@@ -2313,7 +2313,7 @@
 #define @164@%0\32; @164@
 #define @DETUTILSFUNCGEN$%1..%2$ @164@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '164'.
 #endif
 
@@ -2327,7 +2327,7 @@
 #define @165@%0\32; @165@
 #define @DETUTILSFUNCGEN$%1..%2$ @165@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '165'.
 #endif
 
@@ -2341,7 +2341,7 @@
 #define @166@%0\32; @166@
 #define @DETUTILSFUNCGEN$%1..%2$ @166@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '166'.
 #endif
 
@@ -2355,7 +2355,7 @@
 #define @167@%0\32; @167@
 #define @DETUTILSFUNCGEN$%1..%2$ @167@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '167'.
 #endif
 
@@ -2369,7 +2369,7 @@
 #define @168@%0\32; @168@
 #define @DETUTILSFUNCGEN$%1..%2$ @168@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '168'.
 #endif
 
@@ -2383,7 +2383,7 @@
 #define @169@%0\32; @169@
 #define @DETUTILSFUNCGEN$%1..%2$ @169@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '169'.
 #endif
 
@@ -2397,7 +2397,7 @@
 #define @170@%0\32; @170@
 #define @DETUTILSFUNCGEN$%1..%2$ @170@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '170'.
 #endif
 
@@ -2411,7 +2411,7 @@
 #define @171@%0\32; @171@
 #define @DETUTILSFUNCGEN$%1..%2$ @171@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '171'.
 #endif
 
@@ -2425,7 +2425,7 @@
 #define @172@%0\32; @172@
 #define @DETUTILSFUNCGEN$%1..%2$ @172@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '172'.
 #endif
 
@@ -2439,7 +2439,7 @@
 #define @173@%0\32; @173@
 #define @DETUTILSFUNCGEN$%1..%2$ @173@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '173'.
 #endif
 
@@ -2453,7 +2453,7 @@
 #define @174@%0\32; @174@
 #define @DETUTILSFUNCGEN$%1..%2$ @174@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '174'.
 #endif
 
@@ -2467,7 +2467,7 @@
 #define @175@%0\32; @175@
 #define @DETUTILSFUNCGEN$%1..%2$ @175@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '175'.
 #endif
 
@@ -2481,7 +2481,7 @@
 #define @176@%0\32; @176@
 #define @DETUTILSFUNCGEN$%1..%2$ @176@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '176'.
 #endif
 
@@ -2495,7 +2495,7 @@
 #define @177@%0\32; @177@
 #define @DETUTILSFUNCGEN$%1..%2$ @177@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '177'.
 #endif
 
@@ -2509,7 +2509,7 @@
 #define @178@%0\32; @178@
 #define @DETUTILSFUNCGEN$%1..%2$ @178@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '178'.
 #endif
 
@@ -2523,7 +2523,7 @@
 #define @179@%0\32; @179@
 #define @DETUTILSFUNCGEN$%1..%2$ @179@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '179'.
 #endif
 
@@ -2537,7 +2537,7 @@
 #define @180@%0\32; @180@
 #define @DETUTILSFUNCGEN$%1..%2$ @180@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '180'.
 #endif
 
@@ -2551,7 +2551,7 @@
 #define @181@%0\32; @181@
 #define @DETUTILSFUNCGEN$%1..%2$ @181@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '181'.
 #endif
 
@@ -2565,7 +2565,7 @@
 #define @182@%0\32; @182@
 #define @DETUTILSFUNCGEN$%1..%2$ @182@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '182'.
 #endif
 
@@ -2579,7 +2579,7 @@
 #define @183@%0\32; @183@
 #define @DETUTILSFUNCGEN$%1..%2$ @183@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '183'.
 #endif
 
@@ -2593,7 +2593,7 @@
 #define @184@%0\32; @184@
 #define @DETUTILSFUNCGEN$%1..%2$ @184@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '184'.
 #endif
 
@@ -2607,7 +2607,7 @@
 #define @185@%0\32; @185@
 #define @DETUTILSFUNCGEN$%1..%2$ @185@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '185'.
 #endif
 
@@ -2621,7 +2621,7 @@
 #define @186@%0\32; @186@
 #define @DETUTILSFUNCGEN$%1..%2$ @186@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '186'.
 #endif
 
@@ -2635,7 +2635,7 @@
 #define @187@%0\32; @187@
 #define @DETUTILSFUNCGEN$%1..%2$ @187@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '187'.
 #endif
 
@@ -2649,7 +2649,7 @@
 #define @188@%0\32; @188@
 #define @DETUTILSFUNCGEN$%1..%2$ @188@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '188'.
 #endif
 
@@ -2663,7 +2663,7 @@
 #define @189@%0\32; @189@
 #define @DETUTILSFUNCGEN$%1..%2$ @189@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '189'.
 #endif
 
@@ -2677,7 +2677,7 @@
 #define @190@%0\32; @190@
 #define @DETUTILSFUNCGEN$%1..%2$ @190@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '190'.
 #endif
 
@@ -2691,7 +2691,7 @@
 #define @191@%0\32; @191@
 #define @DETUTILSFUNCGEN$%1..%2$ @191@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '191'.
 #endif
 
@@ -2705,7 +2705,7 @@
 #define @192@%0\32; @192@
 #define @DETUTILSFUNCGEN$%1..%2$ @192@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '192'.
 #endif
 
@@ -2719,7 +2719,7 @@
 #define @193@%0\32; @193@
 #define @DETUTILSFUNCGEN$%1..%2$ @193@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '193'.
 #endif
 
@@ -2733,7 +2733,7 @@
 #define @194@%0\32; @194@
 #define @DETUTILSFUNCGEN$%1..%2$ @194@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '194'.
 #endif
 
@@ -2747,7 +2747,7 @@
 #define @195@%0\32; @195@
 #define @DETUTILSFUNCGEN$%1..%2$ @195@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '195'.
 #endif
 
@@ -2761,7 +2761,7 @@
 #define @196@%0\32; @196@
 #define @DETUTILSFUNCGEN$%1..%2$ @196@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '196'.
 #endif
 
@@ -2775,7 +2775,7 @@
 #define @197@%0\32; @197@
 #define @DETUTILSFUNCGEN$%1..%2$ @197@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '197'.
 #endif
 
@@ -2789,7 +2789,7 @@
 #define @198@%0\32; @198@
 #define @DETUTILSFUNCGEN$%1..%2$ @198@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '198'.
 #endif
 
@@ -2803,7 +2803,7 @@
 #define @199@%0\32; @199@
 #define @DETUTILSFUNCGEN$%1..%2$ @199@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '199'.
 #endif
 
@@ -2817,7 +2817,7 @@
 #define @200@%0\32; @200@
 #define @DETUTILSFUNCGEN$%1..%2$ @200@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '200'.
 #endif
 
@@ -2831,7 +2831,7 @@
 #define @201@%0\32; @201@
 #define @DETUTILSFUNCGEN$%1..%2$ @201@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '201'.
 #endif
 
@@ -2845,7 +2845,7 @@
 #define @202@%0\32; @202@
 #define @DETUTILSFUNCGEN$%1..%2$ @202@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '202'.
 #endif
 
@@ -2859,7 +2859,7 @@
 #define @203@%0\32; @203@
 #define @DETUTILSFUNCGEN$%1..%2$ @203@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '203'.
 #endif
 
@@ -2873,7 +2873,7 @@
 #define @204@%0\32; @204@
 #define @DETUTILSFUNCGEN$%1..%2$ @204@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '204'.
 #endif
 
@@ -2887,7 +2887,7 @@
 #define @205@%0\32; @205@
 #define @DETUTILSFUNCGEN$%1..%2$ @205@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '205'.
 #endif
 
@@ -2901,7 +2901,7 @@
 #define @206@%0\32; @206@
 #define @DETUTILSFUNCGEN$%1..%2$ @206@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '206'.
 #endif
 
@@ -2915,7 +2915,7 @@
 #define @207@%0\32; @207@
 #define @DETUTILSFUNCGEN$%1..%2$ @207@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '207'.
 #endif
 
@@ -2929,7 +2929,7 @@
 #define @208@%0\32; @208@
 #define @DETUTILSFUNCGEN$%1..%2$ @208@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '208'.
 #endif
 
@@ -2943,7 +2943,7 @@
 #define @209@%0\32; @209@
 #define @DETUTILSFUNCGEN$%1..%2$ @209@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '209'.
 #endif
 
@@ -2957,7 +2957,7 @@
 #define @210@%0\32; @210@
 #define @DETUTILSFUNCGEN$%1..%2$ @210@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '210'.
 #endif
 
@@ -2971,7 +2971,7 @@
 #define @211@%0\32; @211@
 #define @DETUTILSFUNCGEN$%1..%2$ @211@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '211'.
 #endif
 
@@ -2985,7 +2985,7 @@
 #define @212@%0\32; @212@
 #define @DETUTILSFUNCGEN$%1..%2$ @212@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '212'.
 #endif
 
@@ -2999,7 +2999,7 @@
 #define @213@%0\32; @213@
 #define @DETUTILSFUNCGEN$%1..%2$ @213@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '213'.
 #endif
 
@@ -3013,7 +3013,7 @@
 #define @214@%0\32; @214@
 #define @DETUTILSFUNCGEN$%1..%2$ @214@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '214'.
 #endif
 
@@ -3027,7 +3027,7 @@
 #define @215@%0\32; @215@
 #define @DETUTILSFUNCGEN$%1..%2$ @215@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '215'.
 #endif
 
@@ -3041,7 +3041,7 @@
 #define @216@%0\32; @216@
 #define @DETUTILSFUNCGEN$%1..%2$ @216@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '216'.
 #endif
 
@@ -3055,7 +3055,7 @@
 #define @217@%0\32; @217@
 #define @DETUTILSFUNCGEN$%1..%2$ @217@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '217'.
 #endif
 
@@ -3069,7 +3069,7 @@
 #define @218@%0\32; @218@
 #define @DETUTILSFUNCGEN$%1..%2$ @218@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '218'.
 #endif
 
@@ -3083,7 +3083,7 @@
 #define @219@%0\32; @219@
 #define @DETUTILSFUNCGEN$%1..%2$ @219@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '219'.
 #endif
 
@@ -3097,7 +3097,7 @@
 #define @220@%0\32; @220@
 #define @DETUTILSFUNCGEN$%1..%2$ @220@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '220'.
 #endif
 
@@ -3111,7 +3111,7 @@
 #define @221@%0\32; @221@
 #define @DETUTILSFUNCGEN$%1..%2$ @221@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '221'.
 #endif
 
@@ -3125,7 +3125,7 @@
 #define @222@%0\32; @222@
 #define @DETUTILSFUNCGEN$%1..%2$ @222@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '222'.
 #endif
 
@@ -3139,7 +3139,7 @@
 #define @223@%0\32; @223@
 #define @DETUTILSFUNCGEN$%1..%2$ @223@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '223'.
 #endif
 
@@ -3153,7 +3153,7 @@
 #define @224@%0\32; @224@
 #define @DETUTILSFUNCGEN$%1..%2$ @224@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '224'.
 #endif
 
@@ -3167,7 +3167,7 @@
 #define @225@%0\32; @225@
 #define @DETUTILSFUNCGEN$%1..%2$ @225@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '225'.
 #endif
 
@@ -3181,7 +3181,7 @@
 #define @226@%0\32; @226@
 #define @DETUTILSFUNCGEN$%1..%2$ @226@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '226'.
 #endif
 
@@ -3195,7 +3195,7 @@
 #define @227@%0\32; @227@
 #define @DETUTILSFUNCGEN$%1..%2$ @227@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '227'.
 #endif
 
@@ -3209,7 +3209,7 @@
 #define @228@%0\32; @228@
 #define @DETUTILSFUNCGEN$%1..%2$ @228@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '228'.
 #endif
 
@@ -3223,7 +3223,7 @@
 #define @229@%0\32; @229@
 #define @DETUTILSFUNCGEN$%1..%2$ @229@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '229'.
 #endif
 
@@ -3237,7 +3237,7 @@
 #define @230@%0\32; @230@
 #define @DETUTILSFUNCGEN$%1..%2$ @230@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '230'.
 #endif
 
@@ -3251,7 +3251,7 @@
 #define @231@%0\32; @231@
 #define @DETUTILSFUNCGEN$%1..%2$ @231@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '231'.
 #endif
 
@@ -3265,7 +3265,7 @@
 #define @232@%0\32; @232@
 #define @DETUTILSFUNCGEN$%1..%2$ @232@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '232'.
 #endif
 
@@ -3279,7 +3279,7 @@
 #define @233@%0\32; @233@
 #define @DETUTILSFUNCGEN$%1..%2$ @233@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '233'.
 #endif
 
@@ -3293,7 +3293,7 @@
 #define @234@%0\32; @234@
 #define @DETUTILSFUNCGEN$%1..%2$ @234@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '234'.
 #endif
 
@@ -3307,7 +3307,7 @@
 #define @235@%0\32; @235@
 #define @DETUTILSFUNCGEN$%1..%2$ @235@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '235'.
 #endif
 
@@ -3321,7 +3321,7 @@
 #define @236@%0\32; @236@
 #define @DETUTILSFUNCGEN$%1..%2$ @236@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '236'.
 #endif
 
@@ -3335,7 +3335,7 @@
 #define @237@%0\32; @237@
 #define @DETUTILSFUNCGEN$%1..%2$ @237@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '237'.
 #endif
 
@@ -3349,7 +3349,7 @@
 #define @238@%0\32; @238@
 #define @DETUTILSFUNCGEN$%1..%2$ @238@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '238'.
 #endif
 
@@ -3363,7 +3363,7 @@
 #define @239@%0\32; @239@
 #define @DETUTILSFUNCGEN$%1..%2$ @239@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '239'.
 #endif
 
@@ -3377,7 +3377,7 @@
 #define @240@%0\32; @240@
 #define @DETUTILSFUNCGEN$%1..%2$ @240@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '240'.
 #endif
 
@@ -3391,7 +3391,7 @@
 #define @241@%0\32; @241@
 #define @DETUTILSFUNCGEN$%1..%2$ @241@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '241'.
 #endif
 
@@ -3405,7 +3405,7 @@
 #define @242@%0\32; @242@
 #define @DETUTILSFUNCGEN$%1..%2$ @242@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '242'.
 #endif
 
@@ -3419,7 +3419,7 @@
 #define @243@%0\32; @243@
 #define @DETUTILSFUNCGEN$%1..%2$ @243@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '243'.
 #endif
 
@@ -3433,7 +3433,7 @@
 #define @244@%0\32; @244@
 #define @DETUTILSFUNCGEN$%1..%2$ @244@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '244'.
 #endif
 
@@ -3447,7 +3447,7 @@
 #define @245@%0\32; @245@
 #define @DETUTILSFUNCGEN$%1..%2$ @245@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '245'.
 #endif
 
@@ -3461,7 +3461,7 @@
 #define @246@%0\32; @246@
 #define @DETUTILSFUNCGEN$%1..%2$ @246@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '246'.
 #endif
 
@@ -3475,7 +3475,7 @@
 #define @247@%0\32; @247@
 #define @DETUTILSFUNCGEN$%1..%2$ @247@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '247'.
 #endif
 
@@ -3489,7 +3489,7 @@
 #define @248@%0\32; @248@
 #define @DETUTILSFUNCGEN$%1..%2$ @248@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '248'.
 #endif
 
@@ -3503,7 +3503,7 @@
 #define @249@%0\32; @249@
 #define @DETUTILSFUNCGEN$%1..%2$ @249@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '249'.
 #endif
 
@@ -3517,7 +3517,7 @@
 #define @250@%0\32; @250@
 #define @DETUTILSFUNCGEN$%1..%2$ @250@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '250'.
 #endif
 
@@ -3531,7 +3531,7 @@
 #define @251@%0\32; @251@
 #define @DETUTILSFUNCGEN$%1..%2$ @251@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '251'.
 #endif
 
@@ -3545,7 +3545,7 @@
 #define @252@%0\32; @252@
 #define @DETUTILSFUNCGEN$%1..%2$ @252@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '252'.
 #endif
 
@@ -3559,7 +3559,7 @@
 #define @253@%0\32; @253@
 #define @DETUTILSFUNCGEN$%1..%2$ @253@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '253'.
 #endif
 
@@ -3573,7 +3573,7 @@
 #define @254@%0\32; @254@
 #define @DETUTILSFUNCGEN$%1..%2$ @254@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '254'.
 #endif
 
@@ -3587,7 +3587,7 @@
 #define @255@%0\32; @255@
 #define @DETUTILSFUNCGEN$%1..%2$ @255@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '255'.
 #endif
 
@@ -3601,7 +3601,7 @@
 #define @256@%0\32; @256@
 #define @DETUTILSFUNCGEN$%1..%2$ @256@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '256'.
 #endif
 
@@ -3615,7 +3615,7 @@
 #define @257@%0\32; @257@
 #define @DETUTILSFUNCGEN$%1..%2$ @257@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '257'.
 #endif
 
@@ -3629,7 +3629,7 @@
 #define @258@%0\32; @258@
 #define @DETUTILSFUNCGEN$%1..%2$ @258@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '258'.
 #endif
 
@@ -3643,7 +3643,7 @@
 #define @259@%0\32; @259@
 #define @DETUTILSFUNCGEN$%1..%2$ @259@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '259'.
 #endif
 
@@ -3657,7 +3657,7 @@
 #define @260@%0\32; @260@
 #define @DETUTILSFUNCGEN$%1..%2$ @260@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '260'.
 #endif
 
@@ -3671,7 +3671,7 @@
 #define @261@%0\32; @261@
 #define @DETUTILSFUNCGEN$%1..%2$ @261@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '261'.
 #endif
 
@@ -3685,7 +3685,7 @@
 #define @262@%0\32; @262@
 #define @DETUTILSFUNCGEN$%1..%2$ @262@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '262'.
 #endif
 
@@ -3699,7 +3699,7 @@
 #define @263@%0\32; @263@
 #define @DETUTILSFUNCGEN$%1..%2$ @263@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '263'.
 #endif
 
@@ -3713,7 +3713,7 @@
 #define @264@%0\32; @264@
 #define @DETUTILSFUNCGEN$%1..%2$ @264@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '264'.
 #endif
 
@@ -3727,7 +3727,7 @@
 #define @265@%0\32; @265@
 #define @DETUTILSFUNCGEN$%1..%2$ @265@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '265'.
 #endif
 
@@ -3741,7 +3741,7 @@
 #define @266@%0\32; @266@
 #define @DETUTILSFUNCGEN$%1..%2$ @266@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '266'.
 #endif
 
@@ -3755,7 +3755,7 @@
 #define @267@%0\32; @267@
 #define @DETUTILSFUNCGEN$%1..%2$ @267@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '267'.
 #endif
 
@@ -3769,7 +3769,7 @@
 #define @268@%0\32; @268@
 #define @DETUTILSFUNCGEN$%1..%2$ @268@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '268'.
 #endif
 
@@ -3783,7 +3783,7 @@
 #define @269@%0\32; @269@
 #define @DETUTILSFUNCGEN$%1..%2$ @269@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '269'.
 #endif
 
@@ -3797,7 +3797,7 @@
 #define @270@%0\32; @270@
 #define @DETUTILSFUNCGEN$%1..%2$ @270@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '270'.
 #endif
 
@@ -3811,7 +3811,7 @@
 #define @271@%0\32; @271@
 #define @DETUTILSFUNCGEN$%1..%2$ @271@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '271'.
 #endif
 
@@ -3825,7 +3825,7 @@
 #define @272@%0\32; @272@
 #define @DETUTILSFUNCGEN$%1..%2$ @272@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '272'.
 #endif
 
@@ -3839,7 +3839,7 @@
 #define @273@%0\32; @273@
 #define @DETUTILSFUNCGEN$%1..%2$ @273@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '273'.
 #endif
 
@@ -3853,7 +3853,7 @@
 #define @274@%0\32; @274@
 #define @DETUTILSFUNCGEN$%1..%2$ @274@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '274'.
 #endif
 
@@ -3867,7 +3867,7 @@
 #define @275@%0\32; @275@
 #define @DETUTILSFUNCGEN$%1..%2$ @275@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '275'.
 #endif
 
@@ -3881,7 +3881,7 @@
 #define @276@%0\32; @276@
 #define @DETUTILSFUNCGEN$%1..%2$ @276@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '276'.
 #endif
 
@@ -3895,7 +3895,7 @@
 #define @277@%0\32; @277@
 #define @DETUTILSFUNCGEN$%1..%2$ @277@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '277'.
 #endif
 
@@ -3909,7 +3909,7 @@
 #define @278@%0\32; @278@
 #define @DETUTILSFUNCGEN$%1..%2$ @278@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '278'.
 #endif
 
@@ -3923,7 +3923,7 @@
 #define @279@%0\32; @279@
 #define @DETUTILSFUNCGEN$%1..%2$ @279@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '279'.
 #endif
 
@@ -3937,7 +3937,7 @@
 #define @280@%0\32; @280@
 #define @DETUTILSFUNCGEN$%1..%2$ @280@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '280'.
 #endif
 
@@ -3951,7 +3951,7 @@
 #define @281@%0\32; @281@
 #define @DETUTILSFUNCGEN$%1..%2$ @281@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '281'.
 #endif
 
@@ -3965,7 +3965,7 @@
 #define @282@%0\32; @282@
 #define @DETUTILSFUNCGEN$%1..%2$ @282@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '282'.
 #endif
 
@@ -3979,7 +3979,7 @@
 #define @283@%0\32; @283@
 #define @DETUTILSFUNCGEN$%1..%2$ @283@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '283'.
 #endif
 
@@ -3993,7 +3993,7 @@
 #define @284@%0\32; @284@
 #define @DETUTILSFUNCGEN$%1..%2$ @284@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '284'.
 #endif
 
@@ -4007,7 +4007,7 @@
 #define @285@%0\32; @285@
 #define @DETUTILSFUNCGEN$%1..%2$ @285@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '285'.
 #endif
 
@@ -4021,7 +4021,7 @@
 #define @286@%0\32; @286@
 #define @DETUTILSFUNCGEN$%1..%2$ @286@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '286'.
 #endif
 
@@ -4035,7 +4035,7 @@
 #define @287@%0\32; @287@
 #define @DETUTILSFUNCGEN$%1..%2$ @287@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '287'.
 #endif
 
@@ -4049,7 +4049,7 @@
 #define @288@%0\32; @288@
 #define @DETUTILSFUNCGEN$%1..%2$ @288@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '288'.
 #endif
 
@@ -4063,7 +4063,7 @@
 #define @289@%0\32; @289@
 #define @DETUTILSFUNCGEN$%1..%2$ @289@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '289'.
 #endif
 
@@ -4077,7 +4077,7 @@
 #define @290@%0\32; @290@
 #define @DETUTILSFUNCGEN$%1..%2$ @290@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '290'.
 #endif
 
@@ -4091,7 +4091,7 @@
 #define @291@%0\32; @291@
 #define @DETUTILSFUNCGEN$%1..%2$ @291@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '291'.
 #endif
 
@@ -4105,7 +4105,7 @@
 #define @292@%0\32; @292@
 #define @DETUTILSFUNCGEN$%1..%2$ @292@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '292'.
 #endif
 
@@ -4119,7 +4119,7 @@
 #define @293@%0\32; @293@
 #define @DETUTILSFUNCGEN$%1..%2$ @293@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '293'.
 #endif
 
@@ -4133,7 +4133,7 @@
 #define @294@%0\32; @294@
 #define @DETUTILSFUNCGEN$%1..%2$ @294@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '294'.
 #endif
 
@@ -4147,7 +4147,7 @@
 #define @295@%0\32; @295@
 #define @DETUTILSFUNCGEN$%1..%2$ @295@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '295'.
 #endif
 
@@ -4161,7 +4161,7 @@
 #define @296@%0\32; @296@
 #define @DETUTILSFUNCGEN$%1..%2$ @296@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '296'.
 #endif
 
@@ -4175,7 +4175,7 @@
 #define @297@%0\32; @297@
 #define @DETUTILSFUNCGEN$%1..%2$ @297@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '297'.
 #endif
 
@@ -4189,7 +4189,7 @@
 #define @298@%0\32; @298@
 #define @DETUTILSFUNCGEN$%1..%2$ @298@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '298'.
 #endif
 
@@ -4203,7 +4203,7 @@
 #define @299@%0\32; @299@
 #define @DETUTILSFUNCGEN$%1..%2$ @299@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '299'.
 #endif
 
@@ -4217,7 +4217,7 @@
 #define @300@%0\32; @300@
 #define @DETUTILSFUNCGEN$%1..%2$ @300@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '300'.
 #endif
 
@@ -4231,7 +4231,7 @@
 #define @301@%0\32; @301@
 #define @DETUTILSFUNCGEN$%1..%2$ @301@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '301'.
 #endif
 
@@ -4245,7 +4245,7 @@
 #define @302@%0\32; @302@
 #define @DETUTILSFUNCGEN$%1..%2$ @302@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '302'.
 #endif
 
@@ -4259,7 +4259,7 @@
 #define @303@%0\32; @303@
 #define @DETUTILSFUNCGEN$%1..%2$ @303@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '303'.
 #endif
 
@@ -4273,7 +4273,7 @@
 #define @304@%0\32; @304@
 #define @DETUTILSFUNCGEN$%1..%2$ @304@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '304'.
 #endif
 
@@ -4287,7 +4287,7 @@
 #define @305@%0\32; @305@
 #define @DETUTILSFUNCGEN$%1..%2$ @305@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '305'.
 #endif
 
@@ -4301,7 +4301,7 @@
 #define @306@%0\32; @306@
 #define @DETUTILSFUNCGEN$%1..%2$ @306@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '306'.
 #endif
 
@@ -4315,7 +4315,7 @@
 #define @307@%0\32; @307@
 #define @DETUTILSFUNCGEN$%1..%2$ @307@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '307'.
 #endif
 
@@ -4329,7 +4329,7 @@
 #define @308@%0\32; @308@
 #define @DETUTILSFUNCGEN$%1..%2$ @308@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '308'.
 #endif
 
@@ -4343,7 +4343,7 @@
 #define @309@%0\32; @309@
 #define @DETUTILSFUNCGEN$%1..%2$ @309@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '309'.
 #endif
 
@@ -4357,7 +4357,7 @@
 #define @310@%0\32; @310@
 #define @DETUTILSFUNCGEN$%1..%2$ @310@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '310'.
 #endif
 
@@ -4371,7 +4371,7 @@
 #define @311@%0\32; @311@
 #define @DETUTILSFUNCGEN$%1..%2$ @311@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '311'.
 #endif
 
@@ -4385,7 +4385,7 @@
 #define @312@%0\32; @312@
 #define @DETUTILSFUNCGEN$%1..%2$ @312@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '312'.
 #endif
 
@@ -4399,7 +4399,7 @@
 #define @313@%0\32; @313@
 #define @DETUTILSFUNCGEN$%1..%2$ @313@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '313'.
 #endif
 
@@ -4413,7 +4413,7 @@
 #define @314@%0\32; @314@
 #define @DETUTILSFUNCGEN$%1..%2$ @314@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '314'.
 #endif
 
@@ -4427,7 +4427,7 @@
 #define @315@%0\32; @315@
 #define @DETUTILSFUNCGEN$%1..%2$ @315@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '315'.
 #endif
 
@@ -4441,7 +4441,7 @@
 #define @316@%0\32; @316@
 #define @DETUTILSFUNCGEN$%1..%2$ @316@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '316'.
 #endif
 
@@ -4455,7 +4455,7 @@
 #define @317@%0\32; @317@
 #define @DETUTILSFUNCGEN$%1..%2$ @317@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '317'.
 #endif
 
@@ -4469,7 +4469,7 @@
 #define @318@%0\32; @318@
 #define @DETUTILSFUNCGEN$%1..%2$ @318@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '318'.
 #endif
 
@@ -4483,7 +4483,7 @@
 #define @319@%0\32; @319@
 #define @DETUTILSFUNCGEN$%1..%2$ @319@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '319'.
 #endif
 
@@ -4497,7 +4497,7 @@
 #define @320@%0\32; @320@
 #define @DETUTILSFUNCGEN$%1..%2$ @320@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '320'.
 #endif
 
@@ -4511,7 +4511,7 @@
 #define @321@%0\32; @321@
 #define @DETUTILSFUNCGEN$%1..%2$ @321@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '321'.
 #endif
 
@@ -4525,7 +4525,7 @@
 #define @322@%0\32; @322@
 #define @DETUTILSFUNCGEN$%1..%2$ @322@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '322'.
 #endif
 
@@ -4539,7 +4539,7 @@
 #define @323@%0\32; @323@
 #define @DETUTILSFUNCGEN$%1..%2$ @323@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '323'.
 #endif
 
@@ -4553,7 +4553,7 @@
 #define @324@%0\32; @324@
 #define @DETUTILSFUNCGEN$%1..%2$ @324@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '324'.
 #endif
 
@@ -4567,7 +4567,7 @@
 #define @325@%0\32; @325@
 #define @DETUTILSFUNCGEN$%1..%2$ @325@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '325'.
 #endif
 
@@ -4581,7 +4581,7 @@
 #define @326@%0\32; @326@
 #define @DETUTILSFUNCGEN$%1..%2$ @326@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '326'.
 #endif
 
@@ -4595,7 +4595,7 @@
 #define @327@%0\32; @327@
 #define @DETUTILSFUNCGEN$%1..%2$ @327@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '327'.
 #endif
 
@@ -4609,7 +4609,7 @@
 #define @328@%0\32; @328@
 #define @DETUTILSFUNCGEN$%1..%2$ @328@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '328'.
 #endif
 
@@ -4623,7 +4623,7 @@
 #define @329@%0\32; @329@
 #define @DETUTILSFUNCGEN$%1..%2$ @329@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '329'.
 #endif
 
@@ -4637,7 +4637,7 @@
 #define @330@%0\32; @330@
 #define @DETUTILSFUNCGEN$%1..%2$ @330@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '330'.
 #endif
 
@@ -4651,7 +4651,7 @@
 #define @331@%0\32; @331@
 #define @DETUTILSFUNCGEN$%1..%2$ @331@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '331'.
 #endif
 
@@ -4665,7 +4665,7 @@
 #define @332@%0\32; @332@
 #define @DETUTILSFUNCGEN$%1..%2$ @332@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '332'.
 #endif
 
@@ -4679,7 +4679,7 @@
 #define @333@%0\32; @333@
 #define @DETUTILSFUNCGEN$%1..%2$ @333@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '333'.
 #endif
 
@@ -4693,7 +4693,7 @@
 #define @334@%0\32; @334@
 #define @DETUTILSFUNCGEN$%1..%2$ @334@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '334'.
 #endif
 
@@ -4707,7 +4707,7 @@
 #define @335@%0\32; @335@
 #define @DETUTILSFUNCGEN$%1..%2$ @335@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '335'.
 #endif
 
@@ -4721,7 +4721,7 @@
 #define @336@%0\32; @336@
 #define @DETUTILSFUNCGEN$%1..%2$ @336@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '336'.
 #endif
 
@@ -4735,7 +4735,7 @@
 #define @337@%0\32; @337@
 #define @DETUTILSFUNCGEN$%1..%2$ @337@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '337'.
 #endif
 
@@ -4749,7 +4749,7 @@
 #define @338@%0\32; @338@
 #define @DETUTILSFUNCGEN$%1..%2$ @338@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '338'.
 #endif
 
@@ -4763,7 +4763,7 @@
 #define @339@%0\32; @339@
 #define @DETUTILSFUNCGEN$%1..%2$ @339@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '339'.
 #endif
 
@@ -4777,7 +4777,7 @@
 #define @340@%0\32; @340@
 #define @DETUTILSFUNCGEN$%1..%2$ @340@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '340'.
 #endif
 
@@ -4791,7 +4791,7 @@
 #define @341@%0\32; @341@
 #define @DETUTILSFUNCGEN$%1..%2$ @341@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '341'.
 #endif
 
@@ -4805,7 +4805,7 @@
 #define @342@%0\32; @342@
 #define @DETUTILSFUNCGEN$%1..%2$ @342@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '342'.
 #endif
 
@@ -4819,7 +4819,7 @@
 #define @343@%0\32; @343@
 #define @DETUTILSFUNCGEN$%1..%2$ @343@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '343'.
 #endif
 
@@ -4833,7 +4833,7 @@
 #define @344@%0\32; @344@
 #define @DETUTILSFUNCGEN$%1..%2$ @344@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '344'.
 #endif
 
@@ -4847,7 +4847,7 @@
 #define @345@%0\32; @345@
 #define @DETUTILSFUNCGEN$%1..%2$ @345@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '345'.
 #endif
 
@@ -4861,7 +4861,7 @@
 #define @346@%0\32; @346@
 #define @DETUTILSFUNCGEN$%1..%2$ @346@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '346'.
 #endif
 
@@ -4875,7 +4875,7 @@
 #define @347@%0\32; @347@
 #define @DETUTILSFUNCGEN$%1..%2$ @347@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '347'.
 #endif
 
@@ -4889,7 +4889,7 @@
 #define @348@%0\32; @348@
 #define @DETUTILSFUNCGEN$%1..%2$ @348@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '348'.
 #endif
 
@@ -4903,7 +4903,7 @@
 #define @349@%0\32; @349@
 #define @DETUTILSFUNCGEN$%1..%2$ @349@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '349'.
 #endif
 
@@ -4917,7 +4917,7 @@
 #define @350@%0\32; @350@
 #define @DETUTILSFUNCGEN$%1..%2$ @350@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '350'.
 #endif
 
@@ -4931,7 +4931,7 @@
 #define @351@%0\32; @351@
 #define @DETUTILSFUNCGEN$%1..%2$ @351@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '351'.
 #endif
 
@@ -4945,7 +4945,7 @@
 #define @352@%0\32; @352@
 #define @DETUTILSFUNCGEN$%1..%2$ @352@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '352'.
 #endif
 
@@ -4959,7 +4959,7 @@
 #define @353@%0\32; @353@
 #define @DETUTILSFUNCGEN$%1..%2$ @353@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '353'.
 #endif
 
@@ -4973,7 +4973,7 @@
 #define @354@%0\32; @354@
 #define @DETUTILSFUNCGEN$%1..%2$ @354@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '354'.
 #endif
 
@@ -4987,7 +4987,7 @@
 #define @355@%0\32; @355@
 #define @DETUTILSFUNCGEN$%1..%2$ @355@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '355'.
 #endif
 
@@ -5001,7 +5001,7 @@
 #define @356@%0\32; @356@
 #define @DETUTILSFUNCGEN$%1..%2$ @356@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '356'.
 #endif
 
@@ -5015,7 +5015,7 @@
 #define @357@%0\32; @357@
 #define @DETUTILSFUNCGEN$%1..%2$ @357@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '357'.
 #endif
 
@@ -5029,7 +5029,7 @@
 #define @358@%0\32; @358@
 #define @DETUTILSFUNCGEN$%1..%2$ @358@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '358'.
 #endif
 
@@ -5043,7 +5043,7 @@
 #define @359@%0\32; @359@
 #define @DETUTILSFUNCGEN$%1..%2$ @359@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '359'.
 #endif
 
@@ -5057,7 +5057,7 @@
 #define @360@%0\32; @360@
 #define @DETUTILSFUNCGEN$%1..%2$ @360@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '360'.
 #endif
 
@@ -5071,7 +5071,7 @@
 #define @361@%0\32; @361@
 #define @DETUTILSFUNCGEN$%1..%2$ @361@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '361'.
 #endif
 
@@ -5085,7 +5085,7 @@
 #define @362@%0\32; @362@
 #define @DETUTILSFUNCGEN$%1..%2$ @362@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '362'.
 #endif
 
@@ -5099,7 +5099,7 @@
 #define @363@%0\32; @363@
 #define @DETUTILSFUNCGEN$%1..%2$ @363@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '363'.
 #endif
 
@@ -5113,7 +5113,7 @@
 #define @364@%0\32; @364@
 #define @DETUTILSFUNCGEN$%1..%2$ @364@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '364'.
 #endif
 
@@ -5127,7 +5127,7 @@
 #define @365@%0\32; @365@
 #define @DETUTILSFUNCGEN$%1..%2$ @365@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '365'.
 #endif
 
@@ -5141,7 +5141,7 @@
 #define @366@%0\32; @366@
 #define @DETUTILSFUNCGEN$%1..%2$ @366@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '366'.
 #endif
 
@@ -5155,7 +5155,7 @@
 #define @367@%0\32; @367@
 #define @DETUTILSFUNCGEN$%1..%2$ @367@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '367'.
 #endif
 
@@ -5169,7 +5169,7 @@
 #define @368@%0\32; @368@
 #define @DETUTILSFUNCGEN$%1..%2$ @368@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '368'.
 #endif
 
@@ -5183,7 +5183,7 @@
 #define @369@%0\32; @369@
 #define @DETUTILSFUNCGEN$%1..%2$ @369@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '369'.
 #endif
 
@@ -5197,7 +5197,7 @@
 #define @370@%0\32; @370@
 #define @DETUTILSFUNCGEN$%1..%2$ @370@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '370'.
 #endif
 
@@ -5211,7 +5211,7 @@
 #define @371@%0\32; @371@
 #define @DETUTILSFUNCGEN$%1..%2$ @371@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '371'.
 #endif
 
@@ -5225,7 +5225,7 @@
 #define @372@%0\32; @372@
 #define @DETUTILSFUNCGEN$%1..%2$ @372@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '372'.
 #endif
 
@@ -5239,7 +5239,7 @@
 #define @373@%0\32; @373@
 #define @DETUTILSFUNCGEN$%1..%2$ @373@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '373'.
 #endif
 
@@ -5253,7 +5253,7 @@
 #define @374@%0\32; @374@
 #define @DETUTILSFUNCGEN$%1..%2$ @374@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '374'.
 #endif
 
@@ -5267,7 +5267,7 @@
 #define @375@%0\32; @375@
 #define @DETUTILSFUNCGEN$%1..%2$ @375@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '375'.
 #endif
 
@@ -5281,7 +5281,7 @@
 #define @376@%0\32; @376@
 #define @DETUTILSFUNCGEN$%1..%2$ @376@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '376'.
 #endif
 
@@ -5295,7 +5295,7 @@
 #define @377@%0\32; @377@
 #define @DETUTILSFUNCGEN$%1..%2$ @377@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '377'.
 #endif
 
@@ -5309,7 +5309,7 @@
 #define @378@%0\32; @378@
 #define @DETUTILSFUNCGEN$%1..%2$ @378@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '378'.
 #endif
 
@@ -5323,7 +5323,7 @@
 #define @379@%0\32; @379@
 #define @DETUTILSFUNCGEN$%1..%2$ @379@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '379'.
 #endif
 
@@ -5337,7 +5337,7 @@
 #define @380@%0\32; @380@
 #define @DETUTILSFUNCGEN$%1..%2$ @380@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '380'.
 #endif
 
@@ -5351,7 +5351,7 @@
 #define @381@%0\32; @381@
 #define @DETUTILSFUNCGEN$%1..%2$ @381@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '381'.
 #endif
 
@@ -5365,7 +5365,7 @@
 #define @382@%0\32; @382@
 #define @DETUTILSFUNCGEN$%1..%2$ @382@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '382'.
 #endif
 
@@ -5379,7 +5379,7 @@
 #define @383@%0\32; @383@
 #define @DETUTILSFUNCGEN$%1..%2$ @383@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '383'.
 #endif
 
@@ -5393,7 +5393,7 @@
 #define @384@%0\32; @384@
 #define @DETUTILSFUNCGEN$%1..%2$ @384@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '384'.
 #endif
 
@@ -5407,7 +5407,7 @@
 #define @385@%0\32; @385@
 #define @DETUTILSFUNCGEN$%1..%2$ @385@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '385'.
 #endif
 
@@ -5421,7 +5421,7 @@
 #define @386@%0\32; @386@
 #define @DETUTILSFUNCGEN$%1..%2$ @386@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '386'.
 #endif
 
@@ -5435,7 +5435,7 @@
 #define @387@%0\32; @387@
 #define @DETUTILSFUNCGEN$%1..%2$ @387@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '387'.
 #endif
 
@@ -5449,7 +5449,7 @@
 #define @388@%0\32; @388@
 #define @DETUTILSFUNCGEN$%1..%2$ @388@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '388'.
 #endif
 
@@ -5463,7 +5463,7 @@
 #define @389@%0\32; @389@
 #define @DETUTILSFUNCGEN$%1..%2$ @389@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '389'.
 #endif
 
@@ -5477,7 +5477,7 @@
 #define @390@%0\32; @390@
 #define @DETUTILSFUNCGEN$%1..%2$ @390@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '390'.
 #endif
 
@@ -5491,7 +5491,7 @@
 #define @391@%0\32; @391@
 #define @DETUTILSFUNCGEN$%1..%2$ @391@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '391'.
 #endif
 
@@ -5505,7 +5505,7 @@
 #define @392@%0\32; @392@
 #define @DETUTILSFUNCGEN$%1..%2$ @392@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '392'.
 #endif
 
@@ -5519,7 +5519,7 @@
 #define @393@%0\32; @393@
 #define @DETUTILSFUNCGEN$%1..%2$ @393@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '393'.
 #endif
 
@@ -5533,7 +5533,7 @@
 #define @394@%0\32; @394@
 #define @DETUTILSFUNCGEN$%1..%2$ @394@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '394'.
 #endif
 
@@ -5547,7 +5547,7 @@
 #define @395@%0\32; @395@
 #define @DETUTILSFUNCGEN$%1..%2$ @395@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '395'.
 #endif
 
@@ -5561,7 +5561,7 @@
 #define @396@%0\32; @396@
 #define @DETUTILSFUNCGEN$%1..%2$ @396@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '396'.
 #endif
 
@@ -5575,7 +5575,7 @@
 #define @397@%0\32; @397@
 #define @DETUTILSFUNCGEN$%1..%2$ @397@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '397'.
 #endif
 
@@ -5589,7 +5589,7 @@
 #define @398@%0\32; @398@
 #define @DETUTILSFUNCGEN$%1..%2$ @398@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '398'.
 #endif
 
@@ -5603,7 +5603,7 @@
 #define @399@%0\32; @399@
 #define @DETUTILSFUNCGEN$%1..%2$ @399@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '399'.
 #endif
 
@@ -5617,7 +5617,7 @@
 #define @400@%0\32; @400@
 #define @DETUTILSFUNCGEN$%1..%2$ @400@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '400'.
 #endif
 
@@ -5631,7 +5631,7 @@
 #define @401@%0\32; @401@
 #define @DETUTILSFUNCGEN$%1..%2$ @401@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '401'.
 #endif
 
@@ -5645,7 +5645,7 @@
 #define @402@%0\32; @402@
 #define @DETUTILSFUNCGEN$%1..%2$ @402@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '402'.
 #endif
 
@@ -5659,7 +5659,7 @@
 #define @403@%0\32; @403@
 #define @DETUTILSFUNCGEN$%1..%2$ @403@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '403'.
 #endif
 
@@ -5673,7 +5673,7 @@
 #define @404@%0\32; @404@
 #define @DETUTILSFUNCGEN$%1..%2$ @404@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '404'.
 #endif
 
@@ -5687,7 +5687,7 @@
 #define @405@%0\32; @405@
 #define @DETUTILSFUNCGEN$%1..%2$ @405@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '405'.
 #endif
 
@@ -5701,7 +5701,7 @@
 #define @406@%0\32; @406@
 #define @DETUTILSFUNCGEN$%1..%2$ @406@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '406'.
 #endif
 
@@ -5715,7 +5715,7 @@
 #define @407@%0\32; @407@
 #define @DETUTILSFUNCGEN$%1..%2$ @407@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '407'.
 #endif
 
@@ -5729,7 +5729,7 @@
 #define @408@%0\32; @408@
 #define @DETUTILSFUNCGEN$%1..%2$ @408@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '408'.
 #endif
 
@@ -5743,7 +5743,7 @@
 #define @409@%0\32; @409@
 #define @DETUTILSFUNCGEN$%1..%2$ @409@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '409'.
 #endif
 
@@ -5757,7 +5757,7 @@
 #define @410@%0\32; @410@
 #define @DETUTILSFUNCGEN$%1..%2$ @410@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '410'.
 #endif
 
@@ -5771,7 +5771,7 @@
 #define @411@%0\32; @411@
 #define @DETUTILSFUNCGEN$%1..%2$ @411@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '411'.
 #endif
 
@@ -5785,7 +5785,7 @@
 #define @412@%0\32; @412@
 #define @DETUTILSFUNCGEN$%1..%2$ @412@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '412'.
 #endif
 
@@ -5799,7 +5799,7 @@
 #define @413@%0\32; @413@
 #define @DETUTILSFUNCGEN$%1..%2$ @413@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '413'.
 #endif
 
@@ -5813,7 +5813,7 @@
 #define @414@%0\32; @414@
 #define @DETUTILSFUNCGEN$%1..%2$ @414@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '414'.
 #endif
 
@@ -5827,7 +5827,7 @@
 #define @415@%0\32; @415@
 #define @DETUTILSFUNCGEN$%1..%2$ @415@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '415'.
 #endif
 
@@ -5841,7 +5841,7 @@
 #define @416@%0\32; @416@
 #define @DETUTILSFUNCGEN$%1..%2$ @416@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '416'.
 #endif
 
@@ -5855,7 +5855,7 @@
 #define @417@%0\32; @417@
 #define @DETUTILSFUNCGEN$%1..%2$ @417@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '417'.
 #endif
 
@@ -5869,7 +5869,7 @@
 #define @418@%0\32; @418@
 #define @DETUTILSFUNCGEN$%1..%2$ @418@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '418'.
 #endif
 
@@ -5883,7 +5883,7 @@
 #define @419@%0\32; @419@
 #define @DETUTILSFUNCGEN$%1..%2$ @419@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '419'.
 #endif
 
@@ -5897,7 +5897,7 @@
 #define @420@%0\32; @420@
 #define @DETUTILSFUNCGEN$%1..%2$ @420@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '420'.
 #endif
 
@@ -5911,7 +5911,7 @@
 #define @421@%0\32; @421@
 #define @DETUTILSFUNCGEN$%1..%2$ @421@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '421'.
 #endif
 
@@ -5925,7 +5925,7 @@
 #define @422@%0\32; @422@
 #define @DETUTILSFUNCGEN$%1..%2$ @422@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '422'.
 #endif
 
@@ -5939,7 +5939,7 @@
 #define @423@%0\32; @423@
 #define @DETUTILSFUNCGEN$%1..%2$ @423@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '423'.
 #endif
 
@@ -5953,7 +5953,7 @@
 #define @424@%0\32; @424@
 #define @DETUTILSFUNCGEN$%1..%2$ @424@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '424'.
 #endif
 
@@ -5967,7 +5967,7 @@
 #define @425@%0\32; @425@
 #define @DETUTILSFUNCGEN$%1..%2$ @425@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '425'.
 #endif
 
@@ -5981,7 +5981,7 @@
 #define @426@%0\32; @426@
 #define @DETUTILSFUNCGEN$%1..%2$ @426@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '426'.
 #endif
 
@@ -5995,7 +5995,7 @@
 #define @427@%0\32; @427@
 #define @DETUTILSFUNCGEN$%1..%2$ @427@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '427'.
 #endif
 
@@ -6009,7 +6009,7 @@
 #define @428@%0\32; @428@
 #define @DETUTILSFUNCGEN$%1..%2$ @428@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '428'.
 #endif
 
@@ -6023,7 +6023,7 @@
 #define @429@%0\32; @429@
 #define @DETUTILSFUNCGEN$%1..%2$ @429@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '429'.
 #endif
 
@@ -6037,7 +6037,7 @@
 #define @430@%0\32; @430@
 #define @DETUTILSFUNCGEN$%1..%2$ @430@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '430'.
 #endif
 
@@ -6051,7 +6051,7 @@
 #define @431@%0\32; @431@
 #define @DETUTILSFUNCGEN$%1..%2$ @431@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '431'.
 #endif
 
@@ -6065,7 +6065,7 @@
 #define @432@%0\32; @432@
 #define @DETUTILSFUNCGEN$%1..%2$ @432@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '432'.
 #endif
 
@@ -6079,7 +6079,7 @@
 #define @433@%0\32; @433@
 #define @DETUTILSFUNCGEN$%1..%2$ @433@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '433'.
 #endif
 
@@ -6093,7 +6093,7 @@
 #define @434@%0\32; @434@
 #define @DETUTILSFUNCGEN$%1..%2$ @434@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '434'.
 #endif
 
@@ -6107,7 +6107,7 @@
 #define @435@%0\32; @435@
 #define @DETUTILSFUNCGEN$%1..%2$ @435@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '435'.
 #endif
 
@@ -6121,7 +6121,7 @@
 #define @436@%0\32; @436@
 #define @DETUTILSFUNCGEN$%1..%2$ @436@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '436'.
 #endif
 
@@ -6135,7 +6135,7 @@
 #define @437@%0\32; @437@
 #define @DETUTILSFUNCGEN$%1..%2$ @437@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '437'.
 #endif
 
@@ -6149,7 +6149,7 @@
 #define @438@%0\32; @438@
 #define @DETUTILSFUNCGEN$%1..%2$ @438@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '438'.
 #endif
 
@@ -6163,7 +6163,7 @@
 #define @439@%0\32; @439@
 #define @DETUTILSFUNCGEN$%1..%2$ @439@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '439'.
 #endif
 
@@ -6177,7 +6177,7 @@
 #define @440@%0\32; @440@
 #define @DETUTILSFUNCGEN$%1..%2$ @440@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '440'.
 #endif
 
@@ -6191,7 +6191,7 @@
 #define @441@%0\32; @441@
 #define @DETUTILSFUNCGEN$%1..%2$ @441@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '441'.
 #endif
 
@@ -6205,7 +6205,7 @@
 #define @442@%0\32; @442@
 #define @DETUTILSFUNCGEN$%1..%2$ @442@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '442'.
 #endif
 
@@ -6219,7 +6219,7 @@
 #define @443@%0\32; @443@
 #define @DETUTILSFUNCGEN$%1..%2$ @443@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '443'.
 #endif
 
@@ -6233,7 +6233,7 @@
 #define @444@%0\32; @444@
 #define @DETUTILSFUNCGEN$%1..%2$ @444@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '444'.
 #endif
 
@@ -6247,7 +6247,7 @@
 #define @445@%0\32; @445@
 #define @DETUTILSFUNCGEN$%1..%2$ @445@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '445'.
 #endif
 
@@ -6261,7 +6261,7 @@
 #define @446@%0\32; @446@
 #define @DETUTILSFUNCGEN$%1..%2$ @446@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '446'.
 #endif
 
@@ -6275,7 +6275,7 @@
 #define @447@%0\32; @447@
 #define @DETUTILSFUNCGEN$%1..%2$ @447@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '447'.
 #endif
 
@@ -6289,7 +6289,7 @@
 #define @448@%0\32; @448@
 #define @DETUTILSFUNCGEN$%1..%2$ @448@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '448'.
 #endif
 
@@ -6303,7 +6303,7 @@
 #define @449@%0\32; @449@
 #define @DETUTILSFUNCGEN$%1..%2$ @449@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '449'.
 #endif
 
@@ -6317,7 +6317,7 @@
 #define @450@%0\32; @450@
 #define @DETUTILSFUNCGEN$%1..%2$ @450@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '450'.
 #endif
 
@@ -6331,7 +6331,7 @@
 #define @451@%0\32; @451@
 #define @DETUTILSFUNCGEN$%1..%2$ @451@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '451'.
 #endif
 
@@ -6345,7 +6345,7 @@
 #define @452@%0\32; @452@
 #define @DETUTILSFUNCGEN$%1..%2$ @452@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '452'.
 #endif
 
@@ -6359,7 +6359,7 @@
 #define @453@%0\32; @453@
 #define @DETUTILSFUNCGEN$%1..%2$ @453@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '453'.
 #endif
 
@@ -6373,7 +6373,7 @@
 #define @454@%0\32; @454@
 #define @DETUTILSFUNCGEN$%1..%2$ @454@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '454'.
 #endif
 
@@ -6387,7 +6387,7 @@
 #define @455@%0\32; @455@
 #define @DETUTILSFUNCGEN$%1..%2$ @455@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '455'.
 #endif
 
@@ -6401,7 +6401,7 @@
 #define @456@%0\32; @456@
 #define @DETUTILSFUNCGEN$%1..%2$ @456@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '456'.
 #endif
 
@@ -6415,7 +6415,7 @@
 #define @457@%0\32; @457@
 #define @DETUTILSFUNCGEN$%1..%2$ @457@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '457'.
 #endif
 
@@ -6429,7 +6429,7 @@
 #define @458@%0\32; @458@
 #define @DETUTILSFUNCGEN$%1..%2$ @458@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '458'.
 #endif
 
@@ -6443,7 +6443,7 @@
 #define @459@%0\32; @459@
 #define @DETUTILSFUNCGEN$%1..%2$ @459@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '459'.
 #endif
 
@@ -6457,7 +6457,7 @@
 #define @460@%0\32; @460@
 #define @DETUTILSFUNCGEN$%1..%2$ @460@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '460'.
 #endif
 
@@ -6471,7 +6471,7 @@
 #define @461@%0\32; @461@
 #define @DETUTILSFUNCGEN$%1..%2$ @461@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '461'.
 #endif
 
@@ -6485,7 +6485,7 @@
 #define @462@%0\32; @462@
 #define @DETUTILSFUNCGEN$%1..%2$ @462@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '462'.
 #endif
 
@@ -6499,7 +6499,7 @@
 #define @463@%0\32; @463@
 #define @DETUTILSFUNCGEN$%1..%2$ @463@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '463'.
 #endif
 
@@ -6513,7 +6513,7 @@
 #define @464@%0\32; @464@
 #define @DETUTILSFUNCGEN$%1..%2$ @464@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '464'.
 #endif
 
@@ -6527,7 +6527,7 @@
 #define @465@%0\32; @465@
 #define @DETUTILSFUNCGEN$%1..%2$ @465@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '465'.
 #endif
 
@@ -6541,7 +6541,7 @@
 #define @466@%0\32; @466@
 #define @DETUTILSFUNCGEN$%1..%2$ @466@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '466'.
 #endif
 
@@ -6555,7 +6555,7 @@
 #define @467@%0\32; @467@
 #define @DETUTILSFUNCGEN$%1..%2$ @467@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '467'.
 #endif
 
@@ -6569,7 +6569,7 @@
 #define @468@%0\32; @468@
 #define @DETUTILSFUNCGEN$%1..%2$ @468@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '468'.
 #endif
 
@@ -6583,7 +6583,7 @@
 #define @469@%0\32; @469@
 #define @DETUTILSFUNCGEN$%1..%2$ @469@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '469'.
 #endif
 
@@ -6597,7 +6597,7 @@
 #define @470@%0\32; @470@
 #define @DETUTILSFUNCGEN$%1..%2$ @470@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '470'.
 #endif
 
@@ -6611,7 +6611,7 @@
 #define @471@%0\32; @471@
 #define @DETUTILSFUNCGEN$%1..%2$ @471@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '471'.
 #endif
 
@@ -6625,7 +6625,7 @@
 #define @472@%0\32; @472@
 #define @DETUTILSFUNCGEN$%1..%2$ @472@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '472'.
 #endif
 
@@ -6639,7 +6639,7 @@
 #define @473@%0\32; @473@
 #define @DETUTILSFUNCGEN$%1..%2$ @473@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '473'.
 #endif
 
@@ -6653,7 +6653,7 @@
 #define @474@%0\32; @474@
 #define @DETUTILSFUNCGEN$%1..%2$ @474@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '474'.
 #endif
 
@@ -6667,7 +6667,7 @@
 #define @475@%0\32; @475@
 #define @DETUTILSFUNCGEN$%1..%2$ @475@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '475'.
 #endif
 
@@ -6681,7 +6681,7 @@
 #define @476@%0\32; @476@
 #define @DETUTILSFUNCGEN$%1..%2$ @476@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '476'.
 #endif
 
@@ -6695,7 +6695,7 @@
 #define @477@%0\32; @477@
 #define @DETUTILSFUNCGEN$%1..%2$ @477@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '477'.
 #endif
 
@@ -6709,7 +6709,7 @@
 #define @478@%0\32; @478@
 #define @DETUTILSFUNCGEN$%1..%2$ @478@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '478'.
 #endif
 
@@ -6723,7 +6723,7 @@
 #define @479@%0\32; @479@
 #define @DETUTILSFUNCGEN$%1..%2$ @479@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '479'.
 #endif
 
@@ -6737,7 +6737,7 @@
 #define @480@%0\32; @480@
 #define @DETUTILSFUNCGEN$%1..%2$ @480@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '480'.
 #endif
 
@@ -6751,7 +6751,7 @@
 #define @481@%0\32; @481@
 #define @DETUTILSFUNCGEN$%1..%2$ @481@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '481'.
 #endif
 
@@ -6765,7 +6765,7 @@
 #define @482@%0\32; @482@
 #define @DETUTILSFUNCGEN$%1..%2$ @482@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '482'.
 #endif
 
@@ -6779,7 +6779,7 @@
 #define @483@%0\32; @483@
 #define @DETUTILSFUNCGEN$%1..%2$ @483@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '483'.
 #endif
 
@@ -6793,7 +6793,7 @@
 #define @484@%0\32; @484@
 #define @DETUTILSFUNCGEN$%1..%2$ @484@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '484'.
 #endif
 
@@ -6807,7 +6807,7 @@
 #define @485@%0\32; @485@
 #define @DETUTILSFUNCGEN$%1..%2$ @485@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '485'.
 #endif
 
@@ -6821,7 +6821,7 @@
 #define @486@%0\32; @486@
 #define @DETUTILSFUNCGEN$%1..%2$ @486@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '486'.
 #endif
 
@@ -6835,7 +6835,7 @@
 #define @487@%0\32; @487@
 #define @DETUTILSFUNCGEN$%1..%2$ @487@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '487'.
 #endif
 
@@ -6849,7 +6849,7 @@
 #define @488@%0\32; @488@
 #define @DETUTILSFUNCGEN$%1..%2$ @488@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '488'.
 #endif
 
@@ -6863,7 +6863,7 @@
 #define @489@%0\32; @489@
 #define @DETUTILSFUNCGEN$%1..%2$ @489@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '489'.
 #endif
 
@@ -6877,7 +6877,7 @@
 #define @490@%0\32; @490@
 #define @DETUTILSFUNCGEN$%1..%2$ @490@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '490'.
 #endif
 
@@ -6891,7 +6891,7 @@
 #define @491@%0\32; @491@
 #define @DETUTILSFUNCGEN$%1..%2$ @491@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '491'.
 #endif
 
@@ -6905,7 +6905,7 @@
 #define @492@%0\32; @492@
 #define @DETUTILSFUNCGEN$%1..%2$ @492@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '492'.
 #endif
 
@@ -6919,7 +6919,7 @@
 #define @493@%0\32; @493@
 #define @DETUTILSFUNCGEN$%1..%2$ @493@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '493'.
 #endif
 
@@ -6933,7 +6933,7 @@
 #define @494@%0\32; @494@
 #define @DETUTILSFUNCGEN$%1..%2$ @494@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '494'.
 #endif
 
@@ -6947,7 +6947,7 @@
 #define @495@%0\32; @495@
 #define @DETUTILSFUNCGEN$%1..%2$ @495@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '495'.
 #endif
 
@@ -6961,7 +6961,7 @@
 #define @496@%0\32; @496@
 #define @DETUTILSFUNCGEN$%1..%2$ @496@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '496'.
 #endif
 
@@ -6975,7 +6975,7 @@
 #define @497@%0\32; @497@
 #define @DETUTILSFUNCGEN$%1..%2$ @497@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '497'.
 #endif
 
@@ -6989,7 +6989,7 @@
 #define @498@%0\32; @498@
 #define @DETUTILSFUNCGEN$%1..%2$ @498@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '498'.
 #endif
 
@@ -7003,7 +7003,7 @@
 #define @499@%0\32; @499@
 #define @DETUTILSFUNCGEN$%1..%2$ @499@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '499'.
 #endif
 
@@ -7017,7 +7017,7 @@
 #define @500@%0\32; @500@
 #define @DETUTILSFUNCGEN$%1..%2$ @500@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '500'.
 #endif
 
@@ -7031,7 +7031,7 @@
 #define @501@%0\32; @501@
 #define @DETUTILSFUNCGEN$%1..%2$ @501@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '501'.
 #endif
 
@@ -7045,7 +7045,7 @@
 #define @502@%0\32; @502@
 #define @DETUTILSFUNCGEN$%1..%2$ @502@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '502'.
 #endif
 
@@ -7059,7 +7059,7 @@
 #define @503@%0\32; @503@
 #define @DETUTILSFUNCGEN$%1..%2$ @503@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '503'.
 #endif
 
@@ -7073,7 +7073,7 @@
 #define @504@%0\32; @504@
 #define @DETUTILSFUNCGEN$%1..%2$ @504@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '504'.
 #endif
 
@@ -7087,7 +7087,7 @@
 #define @505@%0\32; @505@
 #define @DETUTILSFUNCGEN$%1..%2$ @505@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '505'.
 #endif
 
@@ -7101,7 +7101,7 @@
 #define @506@%0\32; @506@
 #define @DETUTILSFUNCGEN$%1..%2$ @506@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '506'.
 #endif
 
@@ -7115,7 +7115,7 @@
 #define @507@%0\32; @507@
 #define @DETUTILSFUNCGEN$%1..%2$ @507@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '507'.
 #endif
 
@@ -7129,7 +7129,7 @@
 #define @508@%0\32; @508@
 #define @DETUTILSFUNCGEN$%1..%2$ @508@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '508'.
 #endif
 
@@ -7143,7 +7143,7 @@
 #define @509@%0\32; @509@
 #define @DETUTILSFUNCGEN$%1..%2$ @509@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '509'.
 #endif
 
@@ -7157,7 +7157,7 @@
 #define @510@%0\32; @510@
 #define @DETUTILSFUNCGEN$%1..%2$ @510@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '510'.
 #endif
 
@@ -7171,7 +7171,7 @@
 #define @511@%0\32; @511@
 #define @DETUTILSFUNCGEN$%1..%2$ @511@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '511'.
 #endif
 
@@ -7185,7 +7185,7 @@
 #define @512@%0\32; @512@
 #define @DETUTILSFUNCGEN$%1..%2$ @512@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '512'.
 #endif
 
@@ -7199,7 +7199,7 @@
 #define @513@%0\32; @513@
 #define @DETUTILSFUNCGEN$%1..%2$ @513@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '513'.
 #endif
 
@@ -7213,7 +7213,7 @@
 #define @514@%0\32; @514@
 #define @DETUTILSFUNCGEN$%1..%2$ @514@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '514'.
 #endif
 
@@ -7227,7 +7227,7 @@
 #define @515@%0\32; @515@
 #define @DETUTILSFUNCGEN$%1..%2$ @515@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '515'.
 #endif
 
@@ -7241,7 +7241,7 @@
 #define @516@%0\32; @516@
 #define @DETUTILSFUNCGEN$%1..%2$ @516@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '516'.
 #endif
 
@@ -7255,7 +7255,7 @@
 #define @517@%0\32; @517@
 #define @DETUTILSFUNCGEN$%1..%2$ @517@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '517'.
 #endif
 
@@ -7269,7 +7269,7 @@
 #define @518@%0\32; @518@
 #define @DETUTILSFUNCGEN$%1..%2$ @518@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '518'.
 #endif
 
@@ -7283,7 +7283,7 @@
 #define @519@%0\32; @519@
 #define @DETUTILSFUNCGEN$%1..%2$ @519@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '519'.
 #endif
 
@@ -7297,7 +7297,7 @@
 #define @520@%0\32; @520@
 #define @DETUTILSFUNCGEN$%1..%2$ @520@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '520'.
 #endif
 
@@ -7311,7 +7311,7 @@
 #define @521@%0\32; @521@
 #define @DETUTILSFUNCGEN$%1..%2$ @521@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '521'.
 #endif
 
@@ -7325,7 +7325,7 @@
 #define @522@%0\32; @522@
 #define @DETUTILSFUNCGEN$%1..%2$ @522@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '522'.
 #endif
 
@@ -7339,7 +7339,7 @@
 #define @523@%0\32; @523@
 #define @DETUTILSFUNCGEN$%1..%2$ @523@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '523'.
 #endif
 
@@ -7353,7 +7353,7 @@
 #define @524@%0\32; @524@
 #define @DETUTILSFUNCGEN$%1..%2$ @524@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '524'.
 #endif
 
@@ -7367,7 +7367,7 @@
 #define @525@%0\32; @525@
 #define @DETUTILSFUNCGEN$%1..%2$ @525@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '525'.
 #endif
 
@@ -7381,7 +7381,7 @@
 #define @526@%0\32; @526@
 #define @DETUTILSFUNCGEN$%1..%2$ @526@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '526'.
 #endif
 
@@ -7395,7 +7395,7 @@
 #define @527@%0\32; @527@
 #define @DETUTILSFUNCGEN$%1..%2$ @527@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '527'.
 #endif
 
@@ -7409,7 +7409,7 @@
 #define @528@%0\32; @528@
 #define @DETUTILSFUNCGEN$%1..%2$ @528@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '528'.
 #endif
 
@@ -7423,7 +7423,7 @@
 #define @529@%0\32; @529@
 #define @DETUTILSFUNCGEN$%1..%2$ @529@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '529'.
 #endif
 
@@ -7437,7 +7437,7 @@
 #define @530@%0\32; @530@
 #define @DETUTILSFUNCGEN$%1..%2$ @530@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '530'.
 #endif
 
@@ -7451,7 +7451,7 @@
 #define @531@%0\32; @531@
 #define @DETUTILSFUNCGEN$%1..%2$ @531@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '531'.
 #endif
 
@@ -7465,7 +7465,7 @@
 #define @532@%0\32; @532@
 #define @DETUTILSFUNCGEN$%1..%2$ @532@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '532'.
 #endif
 
@@ -7479,7 +7479,7 @@
 #define @533@%0\32; @533@
 #define @DETUTILSFUNCGEN$%1..%2$ @533@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '533'.
 #endif
 
@@ -7493,7 +7493,7 @@
 #define @534@%0\32; @534@
 #define @DETUTILSFUNCGEN$%1..%2$ @534@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '534'.
 #endif
 
@@ -7507,7 +7507,7 @@
 #define @535@%0\32; @535@
 #define @DETUTILSFUNCGEN$%1..%2$ @535@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '535'.
 #endif
 
@@ -7521,7 +7521,7 @@
 #define @536@%0\32; @536@
 #define @DETUTILSFUNCGEN$%1..%2$ @536@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '536'.
 #endif
 
@@ -7535,7 +7535,7 @@
 #define @537@%0\32; @537@
 #define @DETUTILSFUNCGEN$%1..%2$ @537@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '537'.
 #endif
 
@@ -7549,7 +7549,7 @@
 #define @538@%0\32; @538@
 #define @DETUTILSFUNCGEN$%1..%2$ @538@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '538'.
 #endif
 
@@ -7563,7 +7563,7 @@
 #define @539@%0\32; @539@
 #define @DETUTILSFUNCGEN$%1..%2$ @539@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '539'.
 #endif
 
@@ -7577,7 +7577,7 @@
 #define @540@%0\32; @540@
 #define @DETUTILSFUNCGEN$%1..%2$ @540@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '540'.
 #endif
 
@@ -7591,7 +7591,7 @@
 #define @541@%0\32; @541@
 #define @DETUTILSFUNCGEN$%1..%2$ @541@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '541'.
 #endif
 
@@ -7605,7 +7605,7 @@
 #define @542@%0\32; @542@
 #define @DETUTILSFUNCGEN$%1..%2$ @542@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '542'.
 #endif
 
@@ -7619,7 +7619,7 @@
 #define @543@%0\32; @543@
 #define @DETUTILSFUNCGEN$%1..%2$ @543@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '543'.
 #endif
 
@@ -7633,7 +7633,7 @@
 #define @544@%0\32; @544@
 #define @DETUTILSFUNCGEN$%1..%2$ @544@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '544'.
 #endif
 
@@ -7647,7 +7647,7 @@
 #define @545@%0\32; @545@
 #define @DETUTILSFUNCGEN$%1..%2$ @545@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '545'.
 #endif
 
@@ -7661,7 +7661,7 @@
 #define @546@%0\32; @546@
 #define @DETUTILSFUNCGEN$%1..%2$ @546@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '546'.
 #endif
 
@@ -7675,7 +7675,7 @@
 #define @547@%0\32; @547@
 #define @DETUTILSFUNCGEN$%1..%2$ @547@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '547'.
 #endif
 
@@ -7689,7 +7689,7 @@
 #define @548@%0\32; @548@
 #define @DETUTILSFUNCGEN$%1..%2$ @548@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '548'.
 #endif
 
@@ -7703,7 +7703,7 @@
 #define @549@%0\32; @549@
 #define @DETUTILSFUNCGEN$%1..%2$ @549@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '549'.
 #endif
 
@@ -7717,7 +7717,7 @@
 #define @550@%0\32; @550@
 #define @DETUTILSFUNCGEN$%1..%2$ @550@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '550'.
 #endif
 
@@ -7731,7 +7731,7 @@
 #define @551@%0\32; @551@
 #define @DETUTILSFUNCGEN$%1..%2$ @551@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '551'.
 #endif
 
@@ -7745,7 +7745,7 @@
 #define @552@%0\32; @552@
 #define @DETUTILSFUNCGEN$%1..%2$ @552@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '552'.
 #endif
 
@@ -7759,7 +7759,7 @@
 #define @553@%0\32; @553@
 #define @DETUTILSFUNCGEN$%1..%2$ @553@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '553'.
 #endif
 
@@ -7773,7 +7773,7 @@
 #define @554@%0\32; @554@
 #define @DETUTILSFUNCGEN$%1..%2$ @554@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '554'.
 #endif
 
@@ -7787,7 +7787,7 @@
 #define @555@%0\32; @555@
 #define @DETUTILSFUNCGEN$%1..%2$ @555@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '555'.
 #endif
 
@@ -7801,7 +7801,7 @@
 #define @556@%0\32; @556@
 #define @DETUTILSFUNCGEN$%1..%2$ @556@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '556'.
 #endif
 
@@ -7815,7 +7815,7 @@
 #define @557@%0\32; @557@
 #define @DETUTILSFUNCGEN$%1..%2$ @557@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '557'.
 #endif
 
@@ -7829,7 +7829,7 @@
 #define @558@%0\32; @558@
 #define @DETUTILSFUNCGEN$%1..%2$ @558@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '558'.
 #endif
 
@@ -7843,7 +7843,7 @@
 #define @559@%0\32; @559@
 #define @DETUTILSFUNCGEN$%1..%2$ @559@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '559'.
 #endif
 
@@ -7857,7 +7857,7 @@
 #define @560@%0\32; @560@
 #define @DETUTILSFUNCGEN$%1..%2$ @560@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '560'.
 #endif
 
@@ -7871,7 +7871,7 @@
 #define @561@%0\32; @561@
 #define @DETUTILSFUNCGEN$%1..%2$ @561@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '561'.
 #endif
 
@@ -7885,7 +7885,7 @@
 #define @562@%0\32; @562@
 #define @DETUTILSFUNCGEN$%1..%2$ @562@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '562'.
 #endif
 
@@ -7899,7 +7899,7 @@
 #define @563@%0\32; @563@
 #define @DETUTILSFUNCGEN$%1..%2$ @563@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '563'.
 #endif
 
@@ -7913,7 +7913,7 @@
 #define @564@%0\32; @564@
 #define @DETUTILSFUNCGEN$%1..%2$ @564@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '564'.
 #endif
 
@@ -7927,7 +7927,7 @@
 #define @565@%0\32; @565@
 #define @DETUTILSFUNCGEN$%1..%2$ @565@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '565'.
 #endif
 
@@ -7941,7 +7941,7 @@
 #define @566@%0\32; @566@
 #define @DETUTILSFUNCGEN$%1..%2$ @566@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '566'.
 #endif
 
@@ -7955,7 +7955,7 @@
 #define @567@%0\32; @567@
 #define @DETUTILSFUNCGEN$%1..%2$ @567@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '567'.
 #endif
 
@@ -7969,7 +7969,7 @@
 #define @568@%0\32; @568@
 #define @DETUTILSFUNCGEN$%1..%2$ @568@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '568'.
 #endif
 
@@ -7983,7 +7983,7 @@
 #define @569@%0\32; @569@
 #define @DETUTILSFUNCGEN$%1..%2$ @569@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '569'.
 #endif
 
@@ -7997,7 +7997,7 @@
 #define @570@%0\32; @570@
 #define @DETUTILSFUNCGEN$%1..%2$ @570@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '570'.
 #endif
 
@@ -8011,7 +8011,7 @@
 #define @571@%0\32; @571@
 #define @DETUTILSFUNCGEN$%1..%2$ @571@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '571'.
 #endif
 
@@ -8025,7 +8025,7 @@
 #define @572@%0\32; @572@
 #define @DETUTILSFUNCGEN$%1..%2$ @572@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '572'.
 #endif
 
@@ -8039,7 +8039,7 @@
 #define @573@%0\32; @573@
 #define @DETUTILSFUNCGEN$%1..%2$ @573@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '573'.
 #endif
 
@@ -8053,7 +8053,7 @@
 #define @574@%0\32; @574@
 #define @DETUTILSFUNCGEN$%1..%2$ @574@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '574'.
 #endif
 
@@ -8067,7 +8067,7 @@
 #define @575@%0\32; @575@
 #define @DETUTILSFUNCGEN$%1..%2$ @575@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '575'.
 #endif
 
@@ -8081,7 +8081,7 @@
 #define @576@%0\32; @576@
 #define @DETUTILSFUNCGEN$%1..%2$ @576@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '576'.
 #endif
 
@@ -8095,7 +8095,7 @@
 #define @577@%0\32; @577@
 #define @DETUTILSFUNCGEN$%1..%2$ @577@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '577'.
 #endif
 
@@ -8109,7 +8109,7 @@
 #define @578@%0\32; @578@
 #define @DETUTILSFUNCGEN$%1..%2$ @578@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '578'.
 #endif
 
@@ -8123,7 +8123,7 @@
 #define @579@%0\32; @579@
 #define @DETUTILSFUNCGEN$%1..%2$ @579@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '579'.
 #endif
 
@@ -8137,7 +8137,7 @@
 #define @580@%0\32; @580@
 #define @DETUTILSFUNCGEN$%1..%2$ @580@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '580'.
 #endif
 
@@ -8151,7 +8151,7 @@
 #define @581@%0\32; @581@
 #define @DETUTILSFUNCGEN$%1..%2$ @581@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '581'.
 #endif
 
@@ -8165,7 +8165,7 @@
 #define @582@%0\32; @582@
 #define @DETUTILSFUNCGEN$%1..%2$ @582@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '582'.
 #endif
 
@@ -8179,7 +8179,7 @@
 #define @583@%0\32; @583@
 #define @DETUTILSFUNCGEN$%1..%2$ @583@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '583'.
 #endif
 
@@ -8193,7 +8193,7 @@
 #define @584@%0\32; @584@
 #define @DETUTILSFUNCGEN$%1..%2$ @584@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '584'.
 #endif
 
@@ -8207,7 +8207,7 @@
 #define @585@%0\32; @585@
 #define @DETUTILSFUNCGEN$%1..%2$ @585@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '585'.
 #endif
 
@@ -8221,7 +8221,7 @@
 #define @586@%0\32; @586@
 #define @DETUTILSFUNCGEN$%1..%2$ @586@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '586'.
 #endif
 
@@ -8235,7 +8235,7 @@
 #define @587@%0\32; @587@
 #define @DETUTILSFUNCGEN$%1..%2$ @587@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '587'.
 #endif
 
@@ -8249,7 +8249,7 @@
 #define @588@%0\32; @588@
 #define @DETUTILSFUNCGEN$%1..%2$ @588@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '588'.
 #endif
 
@@ -8263,7 +8263,7 @@
 #define @589@%0\32; @589@
 #define @DETUTILSFUNCGEN$%1..%2$ @589@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '589'.
 #endif
 
@@ -8277,7 +8277,7 @@
 #define @590@%0\32; @590@
 #define @DETUTILSFUNCGEN$%1..%2$ @590@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '590'.
 #endif
 
@@ -8291,7 +8291,7 @@
 #define @591@%0\32; @591@
 #define @DETUTILSFUNCGEN$%1..%2$ @591@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '591'.
 #endif
 
@@ -8305,7 +8305,7 @@
 #define @592@%0\32; @592@
 #define @DETUTILSFUNCGEN$%1..%2$ @592@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '592'.
 #endif
 
@@ -8319,7 +8319,7 @@
 #define @593@%0\32; @593@
 #define @DETUTILSFUNCGEN$%1..%2$ @593@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '593'.
 #endif
 
@@ -8333,7 +8333,7 @@
 #define @594@%0\32; @594@
 #define @DETUTILSFUNCGEN$%1..%2$ @594@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '594'.
 #endif
 
@@ -8347,7 +8347,7 @@
 #define @595@%0\32; @595@
 #define @DETUTILSFUNCGEN$%1..%2$ @595@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '595'.
 #endif
 
@@ -8361,7 +8361,7 @@
 #define @596@%0\32; @596@
 #define @DETUTILSFUNCGEN$%1..%2$ @596@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '596'.
 #endif
 
@@ -8375,7 +8375,7 @@
 #define @597@%0\32; @597@
 #define @DETUTILSFUNCGEN$%1..%2$ @597@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '597'.
 #endif
 
@@ -8389,7 +8389,7 @@
 #define @598@%0\32; @598@
 #define @DETUTILSFUNCGEN$%1..%2$ @598@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '598'.
 #endif
 
@@ -8403,7 +8403,7 @@
 #define @599@%0\32; @599@
 #define @DETUTILSFUNCGEN$%1..%2$ @599@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '599'.
 #endif
 
@@ -8417,7 +8417,7 @@
 #define @600@%0\32; @600@
 #define @DETUTILSFUNCGEN$%1..%2$ @600@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '600'.
 #endif
 
@@ -8431,7 +8431,7 @@
 #define @601@%0\32; @601@
 #define @DETUTILSFUNCGEN$%1..%2$ @601@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '601'.
 #endif
 
@@ -8445,7 +8445,7 @@
 #define @602@%0\32; @602@
 #define @DETUTILSFUNCGEN$%1..%2$ @602@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '602'.
 #endif
 
@@ -8459,7 +8459,7 @@
 #define @603@%0\32; @603@
 #define @DETUTILSFUNCGEN$%1..%2$ @603@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '603'.
 #endif
 
@@ -8473,7 +8473,7 @@
 #define @604@%0\32; @604@
 #define @DETUTILSFUNCGEN$%1..%2$ @604@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '604'.
 #endif
 
@@ -8487,7 +8487,7 @@
 #define @605@%0\32; @605@
 #define @DETUTILSFUNCGEN$%1..%2$ @605@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '605'.
 #endif
 
@@ -8501,7 +8501,7 @@
 #define @606@%0\32; @606@
 #define @DETUTILSFUNCGEN$%1..%2$ @606@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '606'.
 #endif
 
@@ -8515,7 +8515,7 @@
 #define @607@%0\32; @607@
 #define @DETUTILSFUNCGEN$%1..%2$ @607@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '607'.
 #endif
 
@@ -8529,7 +8529,7 @@
 #define @608@%0\32; @608@
 #define @DETUTILSFUNCGEN$%1..%2$ @608@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '608'.
 #endif
 
@@ -8543,7 +8543,7 @@
 #define @609@%0\32; @609@
 #define @DETUTILSFUNCGEN$%1..%2$ @609@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '609'.
 #endif
 
@@ -8557,7 +8557,7 @@
 #define @610@%0\32; @610@
 #define @DETUTILSFUNCGEN$%1..%2$ @610@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '610'.
 #endif
 
@@ -8571,7 +8571,7 @@
 #define @611@%0\32; @611@
 #define @DETUTILSFUNCGEN$%1..%2$ @611@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '611'.
 #endif
 
@@ -8585,7 +8585,7 @@
 #define @612@%0\32; @612@
 #define @DETUTILSFUNCGEN$%1..%2$ @612@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '612'.
 #endif
 
@@ -8599,7 +8599,7 @@
 #define @613@%0\32; @613@
 #define @DETUTILSFUNCGEN$%1..%2$ @613@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '613'.
 #endif
 
@@ -8613,7 +8613,7 @@
 #define @614@%0\32; @614@
 #define @DETUTILSFUNCGEN$%1..%2$ @614@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '614'.
 #endif
 
@@ -8627,7 +8627,7 @@
 #define @615@%0\32; @615@
 #define @DETUTILSFUNCGEN$%1..%2$ @615@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '615'.
 #endif
 
@@ -8641,7 +8641,7 @@
 #define @616@%0\32; @616@
 #define @DETUTILSFUNCGEN$%1..%2$ @616@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '616'.
 #endif
 
@@ -8655,7 +8655,7 @@
 #define @617@%0\32; @617@
 #define @DETUTILSFUNCGEN$%1..%2$ @617@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '617'.
 #endif
 
@@ -8669,7 +8669,7 @@
 #define @618@%0\32; @618@
 #define @DETUTILSFUNCGEN$%1..%2$ @618@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '618'.
 #endif
 
@@ -8683,7 +8683,7 @@
 #define @619@%0\32; @619@
 #define @DETUTILSFUNCGEN$%1..%2$ @619@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '619'.
 #endif
 
@@ -8697,7 +8697,7 @@
 #define @620@%0\32; @620@
 #define @DETUTILSFUNCGEN$%1..%2$ @620@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '620'.
 #endif
 
@@ -8711,7 +8711,7 @@
 #define @621@%0\32; @621@
 #define @DETUTILSFUNCGEN$%1..%2$ @621@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '621'.
 #endif
 
@@ -8725,7 +8725,7 @@
 #define @622@%0\32; @622@
 #define @DETUTILSFUNCGEN$%1..%2$ @622@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '622'.
 #endif
 
@@ -8739,7 +8739,7 @@
 #define @623@%0\32; @623@
 #define @DETUTILSFUNCGEN$%1..%2$ @623@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '623'.
 #endif
 
@@ -8753,7 +8753,7 @@
 #define @624@%0\32; @624@
 #define @DETUTILSFUNCGEN$%1..%2$ @624@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '624'.
 #endif
 
@@ -8767,7 +8767,7 @@
 #define @625@%0\32; @625@
 #define @DETUTILSFUNCGEN$%1..%2$ @625@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '625'.
 #endif
 
@@ -8781,7 +8781,7 @@
 #define @626@%0\32; @626@
 #define @DETUTILSFUNCGEN$%1..%2$ @626@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '626'.
 #endif
 
@@ -8795,7 +8795,7 @@
 #define @627@%0\32; @627@
 #define @DETUTILSFUNCGEN$%1..%2$ @627@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '627'.
 #endif
 
@@ -8809,7 +8809,7 @@
 #define @628@%0\32; @628@
 #define @DETUTILSFUNCGEN$%1..%2$ @628@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '628'.
 #endif
 
@@ -8823,7 +8823,7 @@
 #define @629@%0\32; @629@
 #define @DETUTILSFUNCGEN$%1..%2$ @629@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '629'.
 #endif
 
@@ -8837,7 +8837,7 @@
 #define @630@%0\32; @630@
 #define @DETUTILSFUNCGEN$%1..%2$ @630@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '630'.
 #endif
 
@@ -8851,7 +8851,7 @@
 #define @631@%0\32; @631@
 #define @DETUTILSFUNCGEN$%1..%2$ @631@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '631'.
 #endif
 
@@ -8865,7 +8865,7 @@
 #define @632@%0\32; @632@
 #define @DETUTILSFUNCGEN$%1..%2$ @632@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '632'.
 #endif
 
@@ -8879,7 +8879,7 @@
 #define @633@%0\32; @633@
 #define @DETUTILSFUNCGEN$%1..%2$ @633@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '633'.
 #endif
 
@@ -8893,7 +8893,7 @@
 #define @634@%0\32; @634@
 #define @DETUTILSFUNCGEN$%1..%2$ @634@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '634'.
 #endif
 
@@ -8907,7 +8907,7 @@
 #define @635@%0\32; @635@
 #define @DETUTILSFUNCGEN$%1..%2$ @635@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '635'.
 #endif
 
@@ -8921,7 +8921,7 @@
 #define @636@%0\32; @636@
 #define @DETUTILSFUNCGEN$%1..%2$ @636@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '636'.
 #endif
 
@@ -8935,7 +8935,7 @@
 #define @637@%0\32; @637@
 #define @DETUTILSFUNCGEN$%1..%2$ @637@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '637'.
 #endif
 
@@ -8949,7 +8949,7 @@
 #define @638@%0\32; @638@
 #define @DETUTILSFUNCGEN$%1..%2$ @638@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '638'.
 #endif
 
@@ -8963,7 +8963,7 @@
 #define @639@%0\32; @639@
 #define @DETUTILSFUNCGEN$%1..%2$ @639@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '639'.
 #endif
 
@@ -8977,7 +8977,7 @@
 #define @640@%0\32; @640@
 #define @DETUTILSFUNCGEN$%1..%2$ @640@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '640'.
 #endif
 
@@ -8991,7 +8991,7 @@
 #define @641@%0\32; @641@
 #define @DETUTILSFUNCGEN$%1..%2$ @641@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '641'.
 #endif
 
@@ -9005,7 +9005,7 @@
 #define @642@%0\32; @642@
 #define @DETUTILSFUNCGEN$%1..%2$ @642@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '642'.
 #endif
 
@@ -9019,7 +9019,7 @@
 #define @643@%0\32; @643@
 #define @DETUTILSFUNCGEN$%1..%2$ @643@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '643'.
 #endif
 
@@ -9033,7 +9033,7 @@
 #define @644@%0\32; @644@
 #define @DETUTILSFUNCGEN$%1..%2$ @644@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '644'.
 #endif
 
@@ -9047,7 +9047,7 @@
 #define @645@%0\32; @645@
 #define @DETUTILSFUNCGEN$%1..%2$ @645@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '645'.
 #endif
 
@@ -9061,7 +9061,7 @@
 #define @646@%0\32; @646@
 #define @DETUTILSFUNCGEN$%1..%2$ @646@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '646'.
 #endif
 
@@ -9075,7 +9075,7 @@
 #define @647@%0\32; @647@
 #define @DETUTILSFUNCGEN$%1..%2$ @647@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '647'.
 #endif
 
@@ -9089,7 +9089,7 @@
 #define @648@%0\32; @648@
 #define @DETUTILSFUNCGEN$%1..%2$ @648@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '648'.
 #endif
 
@@ -9103,7 +9103,7 @@
 #define @649@%0\32; @649@
 #define @DETUTILSFUNCGEN$%1..%2$ @649@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '649'.
 #endif
 
@@ -9117,7 +9117,7 @@
 #define @650@%0\32; @650@
 #define @DETUTILSFUNCGEN$%1..%2$ @650@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '650'.
 #endif
 
@@ -9131,7 +9131,7 @@
 #define @651@%0\32; @651@
 #define @DETUTILSFUNCGEN$%1..%2$ @651@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '651'.
 #endif
 
@@ -9145,7 +9145,7 @@
 #define @652@%0\32; @652@
 #define @DETUTILSFUNCGEN$%1..%2$ @652@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '652'.
 #endif
 
@@ -9161,7 +9161,7 @@
 #define @0@%0\32; @0@
 #define @DETUTILSFUNCGEN$%1..%2$ @0@%1(%2)
 
-#if defined detutils_debug
+#if defined DETUTILS_DEBUG_MODE
 #warning [DETUtils]: (debug) - DETUTILSFUNCGEN_INDEX__ is '0'.
 #endif
 

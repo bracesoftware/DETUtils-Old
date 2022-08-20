@@ -50,7 +50,7 @@ forward a_mainfix_fsinit();
 
 main()
 {
-	#if defined DETUTILS_DEBUG_MODE
+	#if defined DETUTILS_DEBUG_MODE_MODE
     SendRconCommand("hostname [DETUtils]: (test) - Server");
     SetGameModeText("SA:MP | DET-Utils");
     #endif
@@ -69,7 +69,7 @@ main()
 /*
 main()
 {
-	#if defined DETUTILS_DEBUG_MODE
+	#if defined DETUTILS_DEBUG_MODE_MODE
     SendRconCommand("hostname [DETUtils]: (test) - Server");
     SetGameModeText("SA:MP | DET-Utils");
     #endif
