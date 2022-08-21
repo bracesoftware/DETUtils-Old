@@ -21,6 +21,8 @@
 #define DETUTILS_INCLUDED
 
 
+static lol;
+
 // ENTRY POINT TO FIX main() NOT BEING CALLED IN FILTERSCRIPTS
 #if defined FILTERSCRIPT
 

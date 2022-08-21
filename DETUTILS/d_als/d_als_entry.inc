@@ -47,7 +47,13 @@
 
 #define @DETUTILSALS_KEYWORD__@%0\32; @DETUTILSALS_KEYWORD__@
 #define @als%0(%1) @DETUTILSALS_KEYWORD__@
-#define als @als()
+        
+#if defined DETUTILS_COMPAT
+
+    #define als @als()
+
+#endif
+
 #define @DET_ALS$
 //#define @DHQS_%0\32; @DHQS_
 #define @DETUTILSALS_KEYWORD__@break (0)
