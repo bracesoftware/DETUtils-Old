@@ -1,5 +1,5 @@
 # d_dialog.inc
-open.mp Dialogs - Create dialogs using `@dialog` decorator and show them to players.
+SA:MP Dialogs - Create dialogs using `@dialog` decorator and show them to players.
 
 [Go back to home page...](README.md)
 ## How to start to use?
