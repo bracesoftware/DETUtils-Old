@@ -63,7 +63,7 @@ stock void:SaveDETUtilsLog(const message[])
 		day, month, year, 
 		second, minutes, day2, message);
 
-	new File:LogFile = fopen("../detutils.log", io_append);
+	new File:LogFile = fopen("detutils.log", io_append);
 
 	fwrite(LogFile, formatted_message);
 
