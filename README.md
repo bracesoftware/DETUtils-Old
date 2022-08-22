@@ -35,7 +35,7 @@ Libraries whose contain the new language features.
 - Automatic and manual timers - [d_timers.inc](docs/d_timers.md)
 - New callback system - [d_events.inc](docs/d_events.md)
 
-### open.mp Libraries
+### SA:MP Libraries
 Libraries whose contain the new open.mp functions and features.
 
 - Edit player SA:MP server permissions - [d_permissions.inc](docs/d_permissions.md) 
