@@ -1,5 +1,5 @@
 # d_commands.inc
-open.mp Commands - a "built-in" fast and easy way to create commands.
+SA:MP Commands - a "built-in" fast and easy way to create commands.
 
 [Go back to home page...](README.md)
 
