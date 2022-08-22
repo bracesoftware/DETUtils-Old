@@ -58,3 +58,15 @@ CallEvent("LocalEvent" , "");
 CallEvent("GlobalEvent", "");
 ```
 - Using this in any file will work and will print the `Debug2` messages in the console.
+
+## API
+
+### `CallEvent`
+
+- This is a macrofunction which, obviously, calls an event. Nota that this is a MACRO, and thus the first argument is NOT a string but just a part of macro definition. Which means that this will not work:
+
+```pawn
+new funcname[32];
+format(funcname, sizeof funcname, "somename");
+CallEvent(funcname, "", ...);
+```
