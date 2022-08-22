@@ -1,5 +1,5 @@
 # d_filequeries.inc
-open.mp File Queries - save cache and load it during the run-time. Manage persistent data with completely new and different API.
+SA:MP File Queries - save cache and load it during the run-time. Manage persistent data with completely new and different API.
 
 [Go back to home page...](README.md)
 
