@@ -730,7 +730,7 @@ Includes
 
  	#if __DETUtils != 0x205
 
- 		#error [DETUtils]: (version mismatch) - Invalid version, 0x204 was expected.
+ 		#error [DETUtils]: (version mismatch) - Invalid version, 0x205 was expected.
 
  	#endif
 
@@ -744,9 +744,9 @@ Includes
 
 #if defined __DETUtilsRelease
 
- 	#if __DETUtilsRelease != 0x1
+ 	#if __DETUtilsRelease != 0x2
 
- 		#error [DETUtils]: (release mismatch) - Invalid version release, 0x1 was expected.
+ 		#error [DETUtils]: (release mismatch) - Invalid version release, 0x2 was expected.
 
  	#endif
 
