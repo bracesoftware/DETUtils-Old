@@ -39,8 +39,36 @@
 
 #include "d_version"
 #include "d_text"
+#include "d_errors"
 
-public const detutils_ver = 0x1;
+//public const detutils_ver = 0x1;
+
+stock void:SaveDETUtilsLog(const message[]) 
+{
+	new formatted_message[ 128 ], 
+		second, 
+		minutes, 
+		day2, 
+		day, 
+		year, 
+		month;
+
+	getdate(year, month, day);
+
+	gettime(second, minutes, day2);
+	
+	format(formatted_message, 
+		sizeof formatted_message, 
+		"%d:%d:%d | %d:%d:%d @ %s\r\n", 
+		day, month, year, 
+		second, minutes, day2, message);
+
+	new File:LogFile = fopen("../detutils.log", io_append);
+
+	fwrite(LogFile, formatted_message);
+
+	fclose(LogFile);
+}
 
 #define DETUTILS_SCRIPT_COMMANDS 0
 #define DETUTILS_SCRIPT_PROPERTIES 1
@@ -61,84 +89,109 @@ public const detutils_ver = 0x1;
 #define DETUTILS_SCRIPT_TIMERS 16
 #define DETUTILS_SCRIPT_DISCORDDATA 17
 #define DETUTILS_SCRIPT_PERMISSIONS 18
+#define DETUTILS_SCRIPT_EVENTS 19
 
 stock void:LoadDETUtilsScript(scriptid)
 {
 	if(scriptid == DETUTILS_SCRIPT_COMMANDS)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_commands.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_commands.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_PROPERTIES)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_properties.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_properties.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_FMARGS)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_fmargs.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_fmargs.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_VISUAL)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_visual.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_visual.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_ANTICHEAT)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_anticheat.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_anticheat.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_MAPEDITOR)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_mapeditor.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_mapeditor.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_FILEQUERIES)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_filequeries.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_filequeries.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_DMZONE)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_dmzone.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_dmzone.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_TEAMS)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_teams.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_teams.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_DIALOG)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_dialog.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_dialog.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_VARS)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_vars.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_vars.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_ALS)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_als.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_als.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_FOREACH)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_foreach.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_foreach.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_TABLES)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_tables.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_tables.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_DISCORDCMD)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_discordcmd.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_discordcmd.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_PROFILE)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_profile.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_profile.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_TIMERS)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_timers.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_timers.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_DISCORDDATA)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_discorddata.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_discorddata.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_PERMISSIONS)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_permissions.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_permissions.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_EVENTS)
+	{
+		print("*** [DETUtils]: (module) - Loaded: d_events.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_events.inc");
 	}
 }
 

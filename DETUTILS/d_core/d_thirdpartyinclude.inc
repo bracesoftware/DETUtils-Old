@@ -16,11 +16,7 @@
 #if !defined _INC_code_parse_inc
 
     #warning [DETUtils]: (warning) - Missing code parser for Pawn function analysing.
-
-#elseif defined _INC_code_parse_inc
-
-    #include "d_codeparse"
-
+ 
 #endif
 
 #endif

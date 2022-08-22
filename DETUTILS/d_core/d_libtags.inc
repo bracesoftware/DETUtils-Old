@@ -289,64 +289,14 @@ stock bool:ArePlayerPedAnimsUsed()
 
 stock _ReturnPlayerName(id) 
 {
-	new _PlayerName[ MAX_PLAYER_NAME ];
-	
-	GetPlayerName( id, _PlayerName, sizeof _PlayerName);
-	return _PlayerName;
+	new player_name[MAX_PLAYER_NAME];
+	GetPlayerName(id, player_name, sizeof player_name);
+	return player_name;
 }
 
-new _g_Shifthour, _g_Timeshift = 0;
-
-static stock _FixHourData(_f_Hour)
+stock SaveLogIntoFile(const filename[], const message[]) 
 {
-	_f_Hour = _g_Timeshift+_f_Hour;
-
-	if(_f_Hour < 0)
-	{
-		_f_Hour = _f_Hour+24;
-	}
-	else if(_f_Hour > 23)
-	{
-		_f_Hour = _f_Hour-24;
-	}
-	_g_Shifthour = _f_Hour;
 	return 1;
-}
-
-stock void:SaveLogIntoFile( const _FileName[], const _Log[]) 
-{
-	new _Entry[ 128 ], 
-		_sec, 
-		_minutes, 
-		_data, 
-		_day, 
-		_year, 
-		_month;
-
-	getdate( _year, _month, _day );
-
-	gettime( _sec, _minutes, _data );
-
-	_FixHourData( _sec );
-
-	_sec = _g_Shifthour;
-	
-	format( _Entry, sizeof( _Entry ), 
-		"%d/%d/%d | %d/%d/%d | %s\r\n", 
-		_day, _month, _year, 
-		_sec, _minutes, _data, _Log );
-
-	new File:_File;
-	_File = fopen( _FileName, io_append );
-
-	fwrite( _File, _Entry );
-
-	fclose( _File );
-}
-
-stock void:_SetTag( const _FileName[], const _TagName[] )
-{
-	SaveLogIntoFile(_FileName,_TagName);
 }
 
 stock strtok(const string[], &index, delimiter = ' ') {

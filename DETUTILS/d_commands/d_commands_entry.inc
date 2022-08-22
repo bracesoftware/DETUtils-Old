@@ -108,7 +108,11 @@ stock GetSlashCommandType(const cmdtext[])
 {
 	new cmdname[MAX_FUNC_NAME];
 	format(cmdname, sizeof cmdname, "cty_%s", cmdtext);
-	if(funcidx(cmdname) == -1) return INVALID_SLASH_COMMAND_TYPE; 
+	if(funcidx(cmdname) == -1)
+	{
+		AnnounceDETUtilsError(DETUTILS_ERROR_1, cmdtext);
+		return INVALID_SLASH_COMMAND_TYPE;
+	} 
 	// If slash command does not exist or command is not slash command (above)
 	return CallLocalFunction(cmdname, "");
 }
@@ -147,6 +151,10 @@ stock BroadcastCommand(playerid, const cmdtext[], const params[], type = COMMAND
 		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - BroadcastCommand called successfully. ID: 0");
 		#endif
+		if(funcidx(command_name) == -1)
+		{
+			AnnounceDETUtilsError(DETUTILS_ERROR_1, cmdtext);
+		}
 		CallLocalFunction("OnCommandBroadcast", "isisii", 
 			playerid, cmdtext, 0, params, GetSlashCommandType(cmdtext), 0);
 		return CallLocalFunction(command_name, "is", playerid, params);   
@@ -158,9 +166,13 @@ stock BroadcastCommand(playerid, const cmdtext[], const params[], type = COMMAND
 		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - BroadcastCommand called successfully. ID: 1");
 		#endif
+		if(funcidx(command_name) == -1)
+		{
+			AnnounceDETUtilsError(DETUTILS_ERROR_1, cmdtext);
+		}
 		CallLocalFunction("OnCommandBroadcast", "isisii", 
 			playerid, cmdtext, 1, params, GetSlashCommandType(cmdtext), 0);
-		return CallLocalFunction(command_name, "is", playerid, params);   
+		return CallRemoteFunction(command_name, "is", playerid, params);   
 	}
 	if(type == COMMAND_TYPE_LOCAL_PREFIXED)
 	{
@@ -169,6 +181,10 @@ stock BroadcastCommand(playerid, const cmdtext[], const params[], type = COMMAND
 		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - BroadcastCommand called successfully. ID: 2");
 		#endif
+		if(funcidx(command_name) == -1)
+		{
+			AnnounceDETUtilsError(DETUTILS_ERROR_3, cmdtext);
+		}
 		CallLocalFunction("OnCommandBroadcast", "isisii", 
 			playerid, cmdtext, 0, params, GetSlashCommandType(cmdtext), 1);
 		return CallLocalFunction(command_name, "is", playerid, params);   
@@ -180,6 +196,10 @@ stock BroadcastCommand(playerid, const cmdtext[], const params[], type = COMMAND
 		#if defined DETUTILS_DEBUG_MODE
 		printf("[DETUtils]: (debug) - BroadcastCommand called successfully. ID: 3");
 		#endif
+		if(funcidx(command_name) == -1)
+		{
+			AnnounceDETUtilsError(DETUTILS_ERROR_3, cmdtext);
+		}
 		CallLocalFunction("OnCommandBroadcast", "isisii", 
 			playerid, cmdtext, 1, params, GetSlashCommandType(cmdtext), 1);
 		return CallRemoteFunction(command_name, "is", playerid, params);   
@@ -1322,6 +1342,10 @@ stock GetPlayerChatMode(playerid)
 
 stock void:SetPlayerChatMode(playerid, chatmode)
 {
+	if(chatmode != 0 && chatmode != 1)
+	{
+		AnnounceDETUtilsError(DETUTILS_ERROR_2, cmdtext);
+	}
 	if(chatmode == CHAT_MODE_PLAIN_TEXT_MESSAGES)
 	{
 		Data_g_ChatMode[playerid] = 0;
