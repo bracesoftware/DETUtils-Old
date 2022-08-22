@@ -63,7 +63,7 @@ CallEvent("GlobalEvent", "");
 
 ### `CallEvent`
 
-- This is a macrofunction which, obviously, calls an event. Nota that this is a MACRO, and thus the first argument is NOT a string but just a part of macro definition. Which means that this will not work:
+- This is a macrofunction which, obviously, calls an event. Note that this is a MACRO, and thus the first argument is NOT a string but just a part of macro definition. Which means that this will not work:
 
 ```pawn
 new funcname[32];
