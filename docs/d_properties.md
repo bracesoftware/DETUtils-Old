@@ -1,5 +1,5 @@
 # d_properties.inc
-open.mp Properties - an easy way to create custom properties.
+SA:MP Properties - an easy way to create custom properties.
 
 [Go back to home page...](README.md)
 
