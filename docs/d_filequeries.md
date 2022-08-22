@@ -3,7 +3,7 @@ SA:MP File Queries - save cache and load it during the run-time. Manage persiste
 
 [Go back to home page...](README.md)
 
-# How to start to use?
+## How to start to use?
 - Let's make an user system! I will show the procedure step by step. But before we continue, seriously important clarification - in this user system, password hashing was not implemented which is seriously NOT recommended. Always hash your passwords!
 
 1. Declare an enumerator for player cache:
@@ -115,12 +115,12 @@ public OnPlayerDisconnect(playerid, reason)
     return 1;
 }
 ```
-# API
+## API
 - Below, you can take look at all of the functions provided by the include.
 
-## ``ParseQueryContent``
+### ``ParseQueryContent``
 - Used to parse the string containing the file data previously saved by the SAVE query. Example is shown above.
-## Callback - ``OnFileQuerySend``
+### Callback - ``OnFileQuerySend``
 - Mainly used for debugging purposes.
 ```pawn
 public OnFileQuerySend(directory[], file[], query[], type) 
@@ -138,28 +138,28 @@ public OnFileQuerySend(directory[], file[], query[], type)
 }
 ```
 
-## ``CreateQuery``
+### ``CreateQuery``
 - Used to create the query, example is shown above.
 
-## ``FormatQuery``
+### ``FormatQuery``
 - Used to format the query, example is also shown above.
 
-## ``QueryFileExist``
+### ``QueryFileExist``
 - Used to check if the query file (file which contains the data) exists - example is shown above.
 
-## ``SendQuery``
+### ``SendQuery``
 - Used to send a specific query.
 
-## ``GetLoadedQueryContent``
+### ``GetLoadedQueryContent``
 - Used to get the loaded content from a file after the LOAD query was sent, the content is not returned directly but stored in the another variable.
 
-## ``GetLastQueryType``
+### ``GetLastQueryType``
 - Get the type of a last query sent.
 
 ```pawn
 static type = GetLastQueryType();
 ```
-## ``SetQueryDelimiter``
+### ``SetQueryDelimiter``
 - Used to set the query string delimiter, used by the parser function. By default, delimiter is `,`.
 ```pawn
 format(query, 1024, "SAVE * %s,%i,%i", 
@@ -176,10 +176,10 @@ public OnGameModeInit()
     return 1;
 }
 ```
-## `DestroyQuery`
+### `DestroyQuery`
 - Used to destroy the query and free up space in the slot for another query. Example is shown on ``OnPlayerDisconnect``.
 
-# List of query commands
+## List of query commands
 - Coming soon! Adding more of them...
-# Messages from creator
+## Messages from creator
 - None currently.
