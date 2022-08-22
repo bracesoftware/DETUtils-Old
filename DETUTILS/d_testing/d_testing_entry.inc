@@ -35,6 +35,18 @@ keyword   forward  Function(a, const b[], Float:c);
 	return 1;
 }
 
+@event(.type = LOCAL) LocalEvent()
+{
+    print("Local event called.");
+    return 1;
+}
+
+@event(.type = GLOBAL) GlobalEvent()
+{
+    print("Global event called.");
+    return 1;
+}
+
 // Actual code:
 @profile(.format = {""}) LOL()
 {

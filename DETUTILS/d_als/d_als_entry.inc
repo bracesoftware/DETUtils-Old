@@ -12,12 +12,9 @@
  *
  */
 
-#tryinclude "d_extra\d_libtags.inc"
-
-#if !defined d_extra_included
-    #error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
-#endif
-
+#define @DETUTILSALS_KEYWORD__@%0\32; @DETUTILSALS_KEYWORD__@
+#define @als%0(%1) @DETUTILSALS_KEYWORD__@
+ 
 /*
 
                                                                                       
@@ -44,9 +41,6 @@
 #if !defined DET_g_Interval
 #define DET_g_Interval 1000
 #endif
-
-#define @DETUTILSALS_KEYWORD__@%0\32; @DETUTILSALS_KEYWORD__@
-#define @als%0(%1) @DETUTILSALS_KEYWORD__@
         
 #if defined DETUTILS_COMPAT
 
