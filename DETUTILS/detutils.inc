@@ -655,13 +655,44 @@ Includes
 
 #endif
 
+#if !defined DETUTILS_NO_PAWNPDK
+
+ 	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
+	#include "d_pawnpdk"
+
+	// Vercheck
+
+	#if !defined DETUTILS_LIBVER_PAWNPDK
+		
+		#error [DETUtils]: (version) - Version not specified.
+	
+	#elseif defined DETUTILS_LIBVER_PAWNPDK
+
+		#if DETUTILS_LIBVER_PAWNPDK != 1
+
+			#error [DETUtils]: (version) - 'd_pawnpdk.inc' is outdated.
+
+		#endif
+
+	#endif
+
+#else
+
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [DETUtils]: (includes) - Library 'd_pawnpdk' is disabled.
+
+ 	#endif
+
+#endif
+
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
  && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_DMZONE && defined DETUTILS_NO_TEAMS \
  && defined DETUTILS_NO_DIALOG && defined DETUTILS_NO_VARS && defined DETUTILS_NO_ALS \
  && defined DETUTILS_NO_FOREACH && defined DETUTILS_NO_TABLES && defined DETUTILS_NO_DISCORDCMD \
  && defined DETUTILS_NO_PROFILE && defined DETUTILS_NO_TIMERS && defined DETUTILS_NO_DISCORDDATA \
- && defined DETUTILS_NO_PERMISSIONS && defined DETUTILS_NO_EVENTS
+ && defined DETUTILS_NO_PERMISSIONS && defined DETUTILS_NO_EVENTS && defined DETUTILS_NO_PAWNPDK
 
 	#warning [DETUtils]: (warning) - All library modules are disabled.
 
