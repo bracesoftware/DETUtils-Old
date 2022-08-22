@@ -34,6 +34,7 @@ Libraries whose contain the new language features.
 - Profile chunks of code - [d_profile.inc](docs/d_profile.md)
 - Automatic and manual timers - [d_timers.inc](docs/d_timers.md)
 - New callback system - [d_events.inc](docs/d_events.md)
+- A set of macros whose allow you to write SA:MP "plugins" in Pawn - [d_pawnpdk.inc](docs/d_pawnpdk.md)
 
 ### SA:MP Libraries
 Libraries whose contain the new open.mp functions and features.
