@@ -6,7 +6,7 @@
   Addition to the Pawn language features, open.mp API and Discord Connector plugin.
 </h4>
 
-### Current library version: `2.0.5-R1`
+### Current library version: `2.0.5-R2`
 
 Hello scripter! Welcome to *DEntisT's Utilities* (or **DETUtils** for short) "read me" file. So, now, you may ask about - what's this? Well - in general, this addition to open.mp Standard Scripting package contains libraries that have in-game visible effects and libraries that contain new scripting features. 
 - Below, you can find information about each library.
