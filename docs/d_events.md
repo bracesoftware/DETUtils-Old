@@ -22,7 +22,7 @@ Pawn Events - Provides the new `@event` callback which is now a replacement for 
 
 ```pawn
 // file1.pwn
-CallEvent(LocalEvent, "LocalEvent" , "");
+CallEvent("LocalEvent" , "");
 ```
 
 - After you start the compiled script, you should see this in the console:
@@ -36,7 +36,7 @@ Debug
 ```pawn
 // It was previously used only in file1.pwn
 // file2.pwn
-CallEvent(LocalEvent, "LocalEvent" , "");
+CallEvent("LocalEvent" , "");
 ```
 
 - Your code will get compiled, but you won't see any messages in the console which is not the case with global events.
@@ -55,6 +55,6 @@ CallEvent(LocalEvent, "LocalEvent" , "");
 - This is a global event, and its usage isn't limited to a single file.
 
 ```pawn
-CallEvent(GlobalEvent, "GlobalEvent", "");
+CallEvent("GlobalEvent", "");
 ```
 - Using this in any file will work and will print the `Debug2` messages in the console.
