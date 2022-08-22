@@ -4,8 +4,8 @@
 ## Include documentation
 Below, you have a list of all internal files.
 
-### d_codeparse.inc
-- Useless file.
+### d_errors.inc
+- The internal library DETUtils libraries use to log runtime errors that occured unexpectedly.
 
 ### d_compilefix.inc
 - Using DETUtils sometimes requires extra compiler options, these are enabled in there.
