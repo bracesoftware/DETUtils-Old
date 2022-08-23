@@ -12,8 +12,9 @@
  *
  */
 
-#include "d_als_macros"
-
+#define @DETUTILSALS_KEYWORD__@%0\32; @DETUTILSALS_KEYWORD__@
+#define @als%0(%1) @DETUTILSALS_KEYWORD__@
+ 
 /*
 
                                                                                       
@@ -30,7 +31,91 @@
 
 */
 
-#include "d_als_impl"
+#if !defined DETUTILS_NO_HOOK_KEYWORD
+
+    #define hook \
+        @als() function
+
+#endif
+
+#if !defined DET_g_Interval
+#define DET_g_Interval 1000
+#endif
+        
+#if defined DETUTILS_COMPAT
+
+    #define als @als()
+
+#endif
+
+#define @DET_ALS$
+//#define @DHQS_%0\32; @DHQS_
+#define @DETUTILSALS_KEYWORD__@break (0)
+#define @DETUTILSALS_KEYWORD__@continue (1)
+/*
+#define @DETUTILSALS_KEYWORD__@sleep (2)
+#define @DETUTILSALS_KEYWORD__@if%0(%1sleep%3(%4)%2) if(@DHQS_%4==1)
+#define @DETUTILSALS_KEYWORD__@init%0; new @DHQS_%0;
+*/
+#define @DETUTILSALS_KEYWORD__@function%1(%2) @DET_ALS$ @DETUTILSFUNCGEN$%1..%2$;@DETUTILSFUNCGEN$%1..%2$
+
+#if defined DETUTILS_ALS_CALL_DEBUG
+
+#define @a_detals$ new funcname[32];for(new hookindex;hookindex<1000;hookindex++){
+#define @b_detals$%0$ format(funcname,32,"@%i@%s",hookindex,%0); \
+printf("[DETUtils]: (ALS call debug) - Attempted to call: %s", funcname); \
+if(funcidx(funcname)!= -1){
+#define @c_detals$%0$ if(CallLocalFunction(funcname,%0)==0)break;}
+#define @d_detals$..%0$ %0}%0
+
+/*
+#define @a_detals$ \
+    new funcname[32];\
+    for(new hookindex;hookindex<1000;hookindex++){
+#define @b_detals$%0$ \
+        format(funcname,32,"@%i@%s",hookindex,#%0);\
+        printf("[DETUtils]: (ALS call debug) - Attempted to call: %s", funcname);\
+        if(funcidx(funcname)!= -1){
+#define @c_detals$%0$ \
+        new cllres=CallLocalFunction(funcname,%0);\
+        if(cllres==0)break;
+#define @c_detals_extra$%0..%1$ \
+        else if(cllres==2){ \
+            format(funcname,32,"@%i@%s",hookindex+1,#%0);\
+            SetTimerEx(funcname,DET_g_Interval,false,%1); break;}}
+#define @d_detals$..%0$ %0}%0
+*/
+#else // If debug is disabled!
+/*
+#define @a_detals$ \
+    new funcname[32];\
+    for(new hookindex;hookindex<1000;hookindex++){
+#define @b_detals$%0$ \
+        format(funcname,32,"@%i@%s",hookindex,#%0);\
+        if(funcidx(funcname)!= -1){
+#define @c_detals$%0$ \
+        new cllres=CallLocalFunction(funcname,%0);\
+        if(cllres==0)break;
+#define @c_detals_extra$%0..%1$ \
+        else if(cllres==2){ \
+            format(funcname,32,"@%i@%s",hookindex+1,#%0);\
+            SetTimerEx(funcname,DET_g_Interval,false,%1); break;}}
+#define @d_detals$..%0$ %0}%0
+*/
+
+#define @a_detals$ new @DET_ALS$ funcname[32];for(new hookindex;hookindex<1000;hookindex++){
+#define @b_detals$%0$ @DET_ALS$ format(funcname,32,"@%i@%s",hookindex,%0);if(funcidx(funcname)!= -1){
+#define @c_detals$%0$ @DET_ALS$ if(CallLocalFunction(funcname,%0)==0)break;}
+#define @d_detals$..%0$ %0}%0
+
+#endif
+/*
+#define @DETUTILSALS_KEYWORD__@do%1(%0,%2)%4; \
+    @a_detals$ @b_detals$%0$ @c_detals$%2$ @c_detals_extra$%0..%2$ @d_detals$..%4$
+*/
+
+#define @DETUTILSALS_KEYWORD__@do%1(%0,%2)%4; \
+    @DET_ALS$ @a_detals$ @DET_ALS$ @b_detals$%0$ @DET_ALS$ @c_detals$%2$ @DET_ALS$ @d_detals$..%4$
 
 /*
                                                                       
