@@ -90,7 +90,6 @@ stock void:SaveDETUtilsLog(const message[])
 #define DETUTILS_SCRIPT_DISCORDDATA 17
 #define DETUTILS_SCRIPT_PERMISSIONS 18
 #define DETUTILS_SCRIPT_EVENTS 19
-#define DETUTILS_SCRIPT_PAWNPDK 20
 
 stock void:LoadDETUtilsScript(scriptid)
 {
@@ -193,11 +192,6 @@ stock void:LoadDETUtilsScript(scriptid)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_events.inc");
 		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_events.inc");
-	}
-	if(scriptid == DETUTILS_SCRIPT_PAWNPDK)
-	{
-		print("*** [DETUtils]: (module) - Loaded: d_pawnpdk.inc");
-		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_pawnpdk.inc");
 	}
 }
 
