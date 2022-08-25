@@ -78,7 +78,7 @@ SendRconCommand        | - Sends a RCON command to a server. |
 - You can disable these optional `sscanf` features using:
 
 ```pawn
-#define DETUTIS_NO_SSCANF
+#define DETUTILS_NO_SSCANF
 ```
 Argument explanation:
 ```pawn
