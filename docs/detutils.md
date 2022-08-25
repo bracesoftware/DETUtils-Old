@@ -83,3 +83,10 @@ DETUtils Entry Point - The main file which is included in order to use the DETUt
 ```pawn
 #define DETUTILS_NO_ALS
 ```
+### `DETUTIS_NO_SSCANF`
+
+- By default, DETUtils package entry includes its own `sscanf` implementation, you can disable it with:
+
+```pawn
+#define DETUTIS_NO_SSCANF
+```
