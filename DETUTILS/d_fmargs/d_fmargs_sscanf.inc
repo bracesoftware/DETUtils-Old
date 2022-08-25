@@ -12,7 +12,7 @@
  *
  */
  
-#if defined DETUTIS_NO_SSCANF
+#if defined DETUTILS_NO_SSCANF
 
 	#endinput
 

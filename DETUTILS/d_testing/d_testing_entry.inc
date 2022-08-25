@@ -85,7 +85,7 @@ keyword   forward  Function(a, const b[], Float:c);
 	@profile(.value = 1) return;
 }
 
-#if !defined DETUTIS_NO_SSCANF
+#if !defined DETUTILS_NO_SSCANF
 @command(.type = SLASH_COMMAND) sscanftest(playerid, params[])
 {
 	new id, array[2][3];
