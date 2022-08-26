@@ -1,5 +1,5 @@
 # d_visual.inc
-SA:MP Visual - Library or libraries whose contain functions whose provide in-game visible effects.
+SA:MP Visual - Library or libraries whose contain functions whose provide in-game visible effects such as weapon features and deathmatch zones!
 
 [Go back to home page...](README.md)
 
@@ -214,3 +214,7 @@ public OnPlayerScoreSniperHeadshot(playerid, killedid)
     return 1;
 }
 ```
+
+### `d_visual_dmzones.inc`
+
+- Read more about it [here](d_dmzone.md)!
