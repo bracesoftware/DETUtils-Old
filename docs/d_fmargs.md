@@ -4,7 +4,7 @@ Pawn FuncArgs - Using *d_fmargs.inc* you can easily use specifiers in string-lik
 
 [Go back to home page...](README.md)
 
-## Quick start
+## How to start to use?
 
 - Usage is really basic.
 
@@ -20,7 +20,7 @@ public OnPlayerSpawn(playerid)
 ```
 **TIP**: Function *ReturnPlayerName* is provided by extra library include *d_libtags.inc*.
 
-## Warnings
+### Warning!
 
 - If you provide a specifier in a string, but not a value as well, calling the function will crash the server.
 
