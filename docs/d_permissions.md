@@ -8,31 +8,23 @@ SA:MP Permissions - Control your players with new permissions, now with *d_permi
 
 - All of the player permissions are off by default. To give the player certain permissions to do certain things, you need to use `SetPlayerPermissionInteger`.
 
-- These are currently available permissions:
+## List of permissions
+These are currently available permissions:
+
+### `DEFAULT_PLAYER_PERMISSIONS`
+- The default SA:MP player permissions!
 
 ### `PLAYER_PERMISSION_SENDMESSAGES`
-
 - Toggles the player's ability to send messages in the chat.
 
 ### `PLAYER_PERMISSION_USECOMMANDS`
-
 - Toggles the player's ability to use all of the server commands!
 
 ### `PLAYER_PERMISSION_USEDIALOGS`
-
 - Toggles the player's ability to respond to dialogs.
 
 ### `PLAYER_PERMISSION_USEVEHICLES`
-
 - Toggles the player's ability to enter vehicles.
-
-- There is also a definition for the default player permissions. It is:
-
-```pawn
-#define DEFAULT_PLAYER_PERMISSIONS \
- (PLAYER_PERMISSION_SENDMESSAGES | PLAYER_PERMISSION_USECOMMANDS | PLAYER_PERMISSION_USEDIALOGS | PLAYER_PERMISSION_USEVEHICLES)
- 
-```
 
 - You can change player's permission anytime using the following function!
 
