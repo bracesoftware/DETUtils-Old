@@ -12,11 +12,12 @@
  */
 
 #define DEFAULT_PLAYER_PERMISSIONS \
- (PLAYER_PERMISSION_SENDMESSAGES | PLAYER_PERMISSION_USECOMMANDS | PLAYER_PERMISSION_USEDIALOGS)
+ (PLAYER_PERMISSION_SENDMESSAGES | PLAYER_PERMISSION_USECOMMANDS | PLAYER_PERMISSION_USEDIALOGS | PLAYER_PERMISSION_USEVEHICLES)
 
 #define PLAYER_PERMISSION_SENDMESSAGES 0x1
 #define PLAYER_PERMISSION_USECOMMANDS 0x2
 #define PLAYER_PERMISSION_USEDIALOGS 0x4
+#define PLAYER_PERMISSION_USEVEHICLES 0x8
 
 new DET_g_PlayerPermissions[MAX_PLAYERS];
 
@@ -138,6 +139,39 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 #define OnDialogResponse( d_perm_ondialogresp(
 
 forward d_perm_ondialogresp(playerid, dialogid, response, listitem, inputtext[]);
+
+// USEVEHICLES
+
+public OnPlayerUpdate(playerid)
+{
+	if(IsPlayerInAnyVehicle(playerid))
+	{
+		if(!(PLAYER_PERMISSION_USEVEHICLES & DET_g_PlayerPermissions[playerid]))
+		{
+			CallLocalFunction("OnPlayerInsufficientPermissions",
+				"ii",
+				playerid,
+				PLAYER_PERMISSION_USEVEHICLES);
+			RemovePlayerFromVehicle(playerid);
+			return 0;
+		}
+	}
+	if(funcidx("d_perm_playerupdate") != -1)
+	{
+		CallLocalFunction("d_perm_playerupdate", "i", playerid);
+	}
+	return 1;
+}
+
+#if defined _ALS_OnPlayerUpdate
+	#undef OnPlayerUpdate
+#else
+	#define _ALS_OnPlayerUpdate
+#endif
+
+#define OnPlayerUpdate( d_perm_playerupdate(
+
+forward d_perm_playerupdate(playerid);
 
 /*
                                                                       
