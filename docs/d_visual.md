@@ -217,4 +217,4 @@ public OnPlayerScoreSniperHeadshot(playerid, killedid)
 
 ### `d_visual_dmzones.inc`
 
-- Read more about it [here](d_dmzone.md)!
+- `d_visual_dmzones` is a `d_visual` "module" which provides the deathmatch zone creation and management. Read more about it [here](d_dmzone.md)!
