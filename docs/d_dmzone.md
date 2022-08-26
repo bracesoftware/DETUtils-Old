@@ -1,4 +1,4 @@
-# d_dmzone.inc
+# d_visual_dmzones.inc
 SA:MP DeathMatch Zones - Provides the creation of deathmatch zones, adding and removing players from deathmatch zones.
 
 [Go back to home page...](README.md)
