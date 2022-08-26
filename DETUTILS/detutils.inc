@@ -20,9 +20,6 @@
 
 #define DETUTILS_INCLUDED
 
-
-static lol;
-
 // ENTRY POINT TO FIX main() NOT BEING CALLED IN FILTERSCRIPTS
 #if defined FILTERSCRIPT
 
@@ -32,6 +29,7 @@ static lol;
 
 #tryinclude "d_core\d_mainfix"
 
+// FIX "SYMBOL NEVER USED WARNINGS"
 #pragma warning disable 203
 
 // Core libraries
@@ -285,36 +283,6 @@ Includes
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
  		#warning [DETUtils]: (includes) - Library 'd_filequeries' is disabled.
-
- 	#endif
-
-#endif
-#if !defined DETUTILS_NO_DMZONE
-	
-	//#warning [DETUtils]: (includes) - Library 'd_mapeditor' is disabled.
-	#include "d_dmzone"
-
-	// Vercheck
-
-	#if !defined DETUTILS_LIBVER_DMZONE
-		
-		#error [DETUtils]: (version) - Version not specified.
-	
-	#elseif defined DETUTILS_LIBVER_DMZONE
-
-		#if DETUTILS_LIBVER_DMZONE != 1
-
-			#error [DETUtils]: (version) - 'd_dmzone.inc' is outdated.
-
-		#endif
-
-	#endif
-
-#else
-
- 	#if !defined DETUTILS_NO_MODULE_WARNINGS
-
- 		#warning [DETUtils]: (includes) - Library 'd_dmzone' is disabled.
 
  	#endif
 
@@ -657,7 +625,7 @@ Includes
 
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
- && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_DMZONE && defined DETUTILS_NO_TEAMS \
+ && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_TEAMS \
  && defined DETUTILS_NO_DIALOG && defined DETUTILS_NO_VARS && defined DETUTILS_NO_ALS \
  && defined DETUTILS_NO_FOREACH && defined DETUTILS_NO_TABLES && defined DETUTILS_NO_DISCORDCMD \
  && defined DETUTILS_NO_PROFILE && defined DETUTILS_NO_TIMERS && defined DETUTILS_NO_DISCORDDATA \
@@ -697,9 +665,9 @@ Includes
 
 #if defined __DETUtils
 
- 	#if __DETUtils != 0x205
+ 	#if __DETUtils != 0x206
 
- 		#error [DETUtils]: (version mismatch) - Invalid version, 0x205 was expected.
+ 		#error [DETUtils]: (version mismatch) - Invalid version, 0x206 was expected.
 
  	#endif
 
@@ -713,9 +681,9 @@ Includes
 
 #if defined __DETUtilsRelease
 
- 	#if __DETUtilsRelease != 0x2
+ 	#if __DETUtilsRelease != 0x1
 
- 		#error [DETUtils]: (release mismatch) - Invalid version release, 0x2 was expected.
+ 		#error [DETUtils]: (release mismatch) - Invalid version release, 0x1 was expected.
 
  	#endif
 
@@ -724,5 +692,13 @@ Includes
 #if defined detutils_debug
 
  	#error [DETUtils]: (symbol deprecated) - Symbol 'detutils_debug' is deprecated and defining it does nothing.
+
+#endif
+
+// After all the checks passed
+
+#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 	#warning [DETUtils]: (2.0.6-R1) - Codebase successfully loaded.
 
 #endif

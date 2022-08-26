@@ -77,7 +77,7 @@ stock void:SaveDETUtilsLog(const message[])
 #define DETUTILS_SCRIPT_ANTICHEAT 4
 #define DETUTILS_SCRIPT_FILEQUERIES 5
 #define DETUTILS_SCRIPT_MAPEDITOR 6
-#define DETUTILS_SCRIPT_DMZONE 7
+// slot 7 missing here
 #define DETUTILS_SCRIPT_TEAMS 8
 #define DETUTILS_SCRIPT_DIALOG 9
 #define DETUTILS_SCRIPT_VARS 10
@@ -127,11 +127,6 @@ stock void:LoadDETUtilsScript(scriptid)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_filequeries.inc");
 		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_filequeries.inc");
-	}
-	if(scriptid == DETUTILS_SCRIPT_DMZONE)
-	{
-		print("*** [DETUtils]: (module) - Loaded: d_dmzone.inc");
-		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_dmzone.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_TEAMS)
 	{
