@@ -26,7 +26,6 @@ Below is a list of all the libraries provided by the DETUtils package. They're a
 ### Pawn Libraries
 Libraries whose contain the new language features.
 
-- Rewrite of `y_va` and Pawn `sscanf` implementation - [d_fmargs.inc](docs/d_fmargs.md)
 - Completely new variable system - [d_vars.inc](docs/d_vars.md)
 - New ALS hooking system - [d_als.inc](docs/d_als.md)
 - New `foreach` implementation - [d_foreach.inc](docs/d_foreach.md)
@@ -34,6 +33,7 @@ Libraries whose contain the new language features.
 - Profile chunks of code - [d_profile.inc](docs/d_profile.md)
 - Automatic and manual timers - [d_timers.inc](docs/d_timers.md)
 - New callback system - [d_events.inc](docs/d_events.md)
+- Rewrite of `y_va` and Pawn `sscanf` implementation - [d_fmargs.inc](docs/d_fmargs.md)
 
 ### SA:MP Libraries
 Libraries whose contain the new open.mp functions and features.
