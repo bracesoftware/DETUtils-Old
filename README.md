@@ -51,8 +51,7 @@ Libraries whose contain the new open.mp functions and features.
 ### Discord API Libraries
 Libraries whose contain the new functions for Discord bot development - these are extensions to Discord Connector plugin and they require the plugin to work.
 
-- Discord slash commands processor - [d_discordcmd.inc](docs/d_discordcmd.md)
-- Assign, save and load Discord guild, channel, application and user data - [d_discorddata.inc](docs/d_discorddata.md)
+- Addition to the Discord Connector plugin - [d_discordcmd.inc](docs/d_discordcmd.md)
 
 --------------------------------------
 
