@@ -1,6 +1,7 @@
 #define DETUTILS_DEBUG_MODE
 #define DETUTILS_TESTING_MODE
 #define DETUTILS_NO_MODULE_WARNINGS
+#define DETUTILS_COMPAT
 //#define DETUTILS_DO_LST
 //#define DETUTILS_FILTERSCRIPT_MODE
 #define DETUTILS_ALS_CALL_DEBUG
@@ -9,7 +10,8 @@
 
 #include "../include/discord-connector"
 #define DISCORD_COMMAND_PREFIX '!'
-#include "../detutils/DETUTILS\d_samp"
+#include "../detutils/DETUTILS\detutils"
+#include "../detutils/DETUTILS\detutils"
 
 main(){}
 
@@ -32,6 +34,8 @@ new timer;
 
 @task(.type = AUTOMATIC, .interval = 1000) AutomaticTimer()
 {
+    CallEvent("GlobalEvent" ,"");
+    CallEvent("LocalEvent" , "");
     print("Automatic timer works.");
     return 1;
 }
