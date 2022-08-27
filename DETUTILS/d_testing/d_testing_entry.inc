@@ -1219,7 +1219,7 @@ public OnDeathMatchZoneDestroy(zoneid, zonename[])
 	return 1;
 }
 
-@command(.type = TEAM_COMMAND, .team = "Amazing people") amiamazing(playerid, params[])
+@command(.type = FACTION_COMMAND, .faction = "Amazing people") amiamazing(playerid, params[])
 {
 	SendClientMessage(playerid, -1, "You are amazing!");
 	return 1;
@@ -1228,14 +1228,14 @@ public OnDeathMatchZoneDestroy(zoneid, zonename[])
 @command(.type = SLASH_COMMAND) joinamazing(playerid, params[])
 {
 	SendClientMessage(playerid, -1, "You're now amazing.");
-	AddPlayerToTeam(playerid, "Amazing people");
+	SetPlayerFaction(playerid, "Amazing people");
 	return 1;
 }
 
 @command(.type = SLASH_COMMAND) quitamazing(playerid, params[])
 {
 	SendClientMessage(playerid, -1, "You aren't amazing anymore.");
-	AddPlayerToTeam(playerid, "NO_TEAM");
+	SetPlayerFaction(playerid, "NO_FACTION");
 	return 1;
 }
 
@@ -1244,7 +1244,7 @@ public OnGameModeInit()
 	@als() do("OnGameModeInit", "");
 	AddStaticVehicle(560, 844.7139,-1614.3539,13.5391,316.9723, 25, 23);
 	CreateDeathMatchZone("Insane DeathMatch", 844.7139,-1614.3539,13.5391, 825.6589,-1614.8202,13.5469, 811.1299,-1616.0647,13.5469);
-	CreateTeam("Amazing people");
+	CreateFaction("Amazing people");
 	teleportmenu = CreateMenu("Teleportmenu", 2, 200.0, 100.0, 150.0, 150.0);
 	AddMenuItem(teleportmenu, 0, "LS");
 	AddMenuItem(teleportmenu, 0, "LS");
@@ -1262,7 +1262,7 @@ public OnGameModeInit()
 	UsePlayerPedAnims();
 	DisableDefaultProperties();
 	CreatePropertyEntrance("24/7 Market", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_MARKET_247_1);
-	CreatePropertyEntranceForTeam("Your Interior", "Amazing people", 825.6589,-1614.8202,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
+	CreateFactionPropertyEntrance("Your Interior", "Amazing people", 825.6589,-1614.8202,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
 	SetPropertyEntranceAngles(GetPropertyIDByName("Your Interior"), 1.0000, 2.0000);
 	CreateDroppedWeapon(30,999,811.1299,-1616.0647,13.5469);
 	@table() Create("accounts", 10, 2);
@@ -1298,15 +1298,15 @@ public OnPlayerInsufficientPermissions(playerid, missingpermission)
 	return 1;
 }
 
-public OnTeamCreate(teamid, teamname[])
+public OnFactionCreate(factionid, factionname[])
 {
-	printf("Team '%s'[%i] created.", teamname, teamid);
+	printf("Faction '%s'[%i] created.", factionname, factionid);
 	return 1;
 }
 
-public OnTeamDelete(teamid, teamname[])
+public OnFactionDelete(factionid, factionname[])
 {
-	printf("Team '%s'[%i] deleted.", teamname, teamid);
+	printf("Faction '%s'[%i] deleted.", factionname, factionid);
 	return 1;
 }
 

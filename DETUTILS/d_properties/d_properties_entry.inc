@@ -48,8 +48,8 @@ enum enum_PropertyData
 
 	p_PropertyLocked
 	#if !defined DETUTILS_NO_TEAMS
-	,p_PropertyTeam,
-	p_PropTeam[32]
+	,p_PropertyFaction,
+	p_PropFaction[32]
 	#endif
 };
 
@@ -254,23 +254,23 @@ _OnPlayerNearEntrance(playerid);
 
 #if !defined DETUTILS_NO_TEAMS
 
-#define MAX_TEAMS 256
+#define MAX_FACTIONS 256
 
-enum enum_TeamData
+enum enum_FactionData
 {
-	ValidTeam,
-	TeamName[32],
-	TeamMembers
+	ValidFaction,
+	FactionName[32],
+	FactionMembers
 }
 
-new g_TeamCache[MAX_TEAMS][enum_TeamData];
+new DET_g_FactionCache[MAX_FACTIONS][enum_FactionData];
 
-enum enum_PlayerTeamData
+enum enum_PlayerFactionData
 {
-	Team[32]
+	Faction[32]
 }
 
-new g_PlayerTeamCache[MAX_PLAYERS][enum_PlayerTeamData];
+new DET_g_PlayerFactionCache[MAX_PLAYERS][enum_PlayerFactionData];
 
 #endif
 
@@ -288,9 +288,9 @@ public _OnPlayerNearEntrance(playerid)
 		{
 			#if !defined DETUTILS_NO_TEAMS
 				
-				if(g_PropertyData[i][p_PropertyTeam] == 1)
+				if(g_PropertyData[i][p_PropertyFaction] == 1)
 				{
-					if(strcmp(g_PlayerTeamCache[playerid][Team], g_PropertyData[i][p_PropTeam]))
+					if(strcmp(DET_g_PlayerFactionCache[playerid][Faction], g_PropertyData[i][p_PropFaction]))
 					{
 						return SendClientMessage(playerid, -1, DETUTILS_TEXT_TEAMPROP_LOCK);
 					}
@@ -344,9 +344,9 @@ public _OnPlayerNearEntrance(playerid)
 		{
 			#if !defined DETUTILS_NO_TEAMS
 				
-				if(g_PropertyData[i][p_PropertyTeam] == 1)
+				if(g_PropertyData[i][p_PropertyFaction] == 1)
 				{
-					if(strcmp(g_PlayerTeamCache[playerid][Team], g_PropertyData[i][p_PropTeam]))
+					if(strcmp(DET_g_PlayerFactionCache[playerid][Faction], g_PropertyData[i][p_PropFaction]))
 					{
 						return SendClientMessage(playerid, -1, DETUTILS_TEXT_TEAMPROP_LOCK);
 					}

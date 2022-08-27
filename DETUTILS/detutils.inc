@@ -294,22 +294,22 @@ Includes
 
 #endif
 /* =============================================================== */
-#if !defined DETUTILS_NO_TEAMS
+#if !defined DETUTILS_NO_FACTIONS
 	
 	//#warning [DETUtils]: (includes) - Library 'd_mapeditor' is disabled.
-	#include "d_teams"
+	#include "d_factions"
 
 	// Vercheck
 
-	#if !defined DETUTILS_LIBVER_TEAMS
+	#if !defined DETUTILS_LIBVER_FACTIONS
 		
 		#error [DETUtils]: (version) - Version not specified.
 	
-	#elseif defined DETUTILS_LIBVER_TEAMS
+	#elseif defined DETUTILS_LIBVER_FACTIONS
 
-		#if DETUTILS_LIBVER_TEAMS != 1
+		#if DETUTILS_LIBVER_FACTIONS != 1
 
-			#error [DETUtils]: (version) - 'd_teams.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_factions.inc' is outdated.
 
 		#endif
 
@@ -319,7 +319,7 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [DETUtils]: (includes) - Library 'd_teams' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_factions' is disabled.
 
  	#endif
 
@@ -606,7 +606,7 @@ Includes
 /* =============================================================== */
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
- && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_TEAMS \
+ && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_FACTIONS \
  && defined DETUTILS_NO_DIALOG && defined DETUTILS_NO_VARS && defined DETUTILS_NO_ALS \
  && defined DETUTILS_NO_FOREACH && defined DETUTILS_NO_TABLES \
  && defined DETUTILS_NO_PROFILE && defined DETUTILS_NO_TIMERS && defined DETUTILS_NO_DISCORDAPI \

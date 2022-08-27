@@ -78,7 +78,7 @@ stock void:SaveDETUtilsLog(const message[])
 #define DETUTILS_SCRIPT_FILEQUERIES 5
 #define DETUTILS_SCRIPT_MAPEDITOR 6
 #define DETUTILS_SCRIPT_DISCORDAPI 7
-#define DETUTILS_SCRIPT_TEAMS 8
+#define DETUTILS_SCRIPT_FACTIONS 8
 #define DETUTILS_SCRIPT_DIALOG 9
 #define DETUTILS_SCRIPT_VARS 10
 #define DETUTILS_SCRIPT_ALS 11
@@ -128,10 +128,10 @@ stock void:LoadDETUtilsScript(scriptid)
 		print("*** [DETUtils]: (module) - Loaded: d_filequeries.inc");
 		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_filequeries.inc");
 	}
-	if(scriptid == DETUTILS_SCRIPT_TEAMS)
+	if(scriptid == DETUTILS_SCRIPT_FACTIONS)
 	{
-		print("*** [DETUtils]: (module) - Loaded: d_teams.inc");
-		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_teams.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_factions.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_factions.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_DIALOG)
 	{
