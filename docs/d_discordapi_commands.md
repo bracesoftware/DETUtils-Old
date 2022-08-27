@@ -1,7 +1,7 @@
-# d_discordcmd.inc
+# d_discordapi_commands.inc
 Discord Commands - A library which provides creation of Discord text and slash commands.
 
-[Go back to home page...](README.md)
+[Go back to home page...](d_discordapi.md)
 
 ## How to start to use?
 ### Commands
