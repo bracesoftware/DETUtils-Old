@@ -1,23 +1,23 @@
-# d_teams.inc
-SA:MP Teams - Create teams, add or remove players from them, enable friendly fire for deathmatch zones, create team commands and team properties.
+# d_factions.inc
+SA:MP Factions - Create factions, add or remove players from them, enable friendly fire for deathmatch zones, create faction commands and faction properties.
 
 [Go back to home page...](README.md)
 ## How to start to use?
 - Start to use by creating a team.
 ```pawn
-CreateTeam("Amazing people");
+CreateFaction("Amazing people");
 ```
-- After you've created a team, add the player to that team.
+- After you've created a faction, add the player to that faction.
 
 ```pawn
-@command(.type = SLASH_COMMAND) joinamazing(playerid, params[])
+@command(.type = FACTION_COMMAND) joinamazing(playerid, params[])
 {
     SendClientMessage(playerid, -1, "You're now amazing.");
-    AddPlayerToTeam(playerid, "Amazing people");
+    AddPlayerToFaction(playerid, "Amazing people");
     return 1;
 }
 ```
-- You can create a normal slash command so the player can join the team at anytime. To remove a player from a team, use a same function.
+- You can create a normal slash command so the player can join the faction at anytime. To remove a player from a faction, use a same function.
 
 ```pawn
 @command(.type = SLASH_COMMAND) quitamazing(playerid, params[])
