@@ -6,10 +6,28 @@
  *
  *
  *
- * - Macros for d_discordutils.inc
+ * - An extension to the DCC plugin.
  *
  *
  */
+
+// commands
+
+
+#if !defined DETUTILS_CMD_MACROS
+
+#define @DETUTILS_CMD_DEC__@%0\32; @DETUTILS_CMD_DEC__@
+
+#define @command%0(%1.type%2= @DETUTILS_CMD_DEC__@
+
+#endif
+
+#define dccmd_%0\32; dccmd_
+
+#define @DETUTILS_CMD_DEC__@DISCORD_COMMAND%2)%0(%1) \
+	dccmd_%0(%1);public dccmd_%0(%1)
+
+// data
 
 #if defined DETUTILS_BUGZ_LOL
 #define @DETUTILSDCDATA_DEC__@%0\32; @DETUTILSDCDATA_DEC__@
@@ -18,20 +36,6 @@
 
 #define DCC_%0\32; DCC_
 #define @discord%0(%1) DCC_
-
-/*
-                                                                                      
-88b           d88              88                         db         88888888ba   88  
-888b         d888              ""                        d88b        88      "8b  88  
-88`8b       d8'88                                       d8'`8b       88      ,8P  88  
-88 `8b     d8' 88  ,adPPYYba,  88  8b,dPPYba,          d8'  `8b      88aaaaaa8P'  88  
-88  `8b   d8'  88  ""     `Y8  88  88P'   `"8a        d8YaaaaY8b     88""""""'    88  
-88   `8b d8'   88  ,adPPPPP88  88  88       88       d8""""""""8b    88           88  
-88    `888'    88  88,    ,88  88  88       88      d8'        `8b   88           88  
-88     `8'     88  `"8bbdP"Y8  88  88       88     d8'          `8b  88           88  
-                                                                                      
-                                                                                      
-*/
 
 #if defined DETUTILS_BUGZ_LOL
 #define @DETUTILSDCDATA_DEC__@GUILD%0)%1SetIntegerData(%2) \

@@ -12,15 +12,11 @@
  */
 
 #if !defined dcconnector_included
- 	#warning [DETUtils]: (warning) - Discord Connector plugin is missing, the 'd_discordcmd.inc' library was automatically disabled.
+ 	#warning [DETUtils]: (warning) - Discord Connector plugin is missing, the 'd_discordapi.inc' library was automatically disabled.
  	#endinput
 #endif
 
-#if !defined DISCORD_COMMAND_PREFIX
- 	#error [DETUtils]: (error) - Discord Command prefix is not defined. Please do: `#define DISCORD_COMMAND_PREFIX '!'`
-#endif
-
-#include "d_discordcmd_macros"
+#include "d_discordapi_macros"
 
 /*
                                                                                       
@@ -36,40 +32,8 @@
                                                                                       
 */
 
-public DCC_OnMessageCreate(DCC_Message:message)
-{
-	new DCC_User:author, 
-		DCC_Channel:channel, 
-		DCC_Guild:guild, 
-		content[1024];
-
-	DCC_GetMessageAuthor(message, author);
-	DCC_GetMessageChannel(message, channel);
-	DCC_GetMessageContent(message, content);
-	DCC_GetChannelGuild(channel, guild);
-
-	if(content[0] == DISCORD_COMMAND_PREFIX)
-	{
-		new component[2][1024];
-		sscanf do(content, component, 2); // using d_fmargs.inc
-
-		strdel(component[0], 0, 1); //delete the prefix
-		new cmdname[32];
-		format(cmdname, sizeof cmdname, "dccmd_%s", component[0]);
-
-		CallLocalFunction(cmdname, "iiiis", 
-			_:guild, 
-			_:channel, 
-			_:message, 
-			_:author, 
-			component[1]);
-
-		#if defined DETUTILS_DEBUG_MODE
-		printf("[DETUtils]: (debug) - cmdinfo :: Command function: '%s' : command arguments: '%s'", cmdname, component[1]);
-		#endif
-	}
-	return 1;
-}
+#include "d_discordapi_commands"
+#include "d_discordapi_data"
 
 /*
                                                                       
@@ -87,14 +51,10 @@ public DCC_OnMessageCreate(DCC_Message:message)
 
 public OnDETUtilsInit()
 {
-	#if defined DETUTILS_DEBUG_MODE
-	SaveLogIntoFile("detutils_discordcmd.log", "[DETUtils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_discordcmd.log", "[DETUtils]: (debug) - Loaded.");
-	#endif
-	LoadDETUtilsScript(DETUTILS_SCRIPT_DISCORDCMD);
-	if(funcidx("d_dcutils_detutilsinit") != -1)
+	LoadDETUtilsScript(DETUTILS_SCRIPT_DISCORDAPI);
+	if(funcidx("d_dcapi_detutilsinit") != -1)
 	{
-		CallLocalFunction("d_dcutils_detutilsinit", "");
+		CallLocalFunction("d_dcapi_detutilsinit", "");
 	}
 	return 1;
 }
@@ -105,6 +65,6 @@ public OnDETUtilsInit()
 	#define _ALS_OnDETUtilsInit
 #endif
 
-#define OnDETUtilsInit( d_dcutils_detutilsinit(
+#define OnDETUtilsInit( d_dcapi_detutilsinit(
 
-forward d_dcutils_detutilsinit();
+forward d_dcapi_detutilsinit();

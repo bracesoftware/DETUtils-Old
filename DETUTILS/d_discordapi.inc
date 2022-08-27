@@ -11,6 +11,6 @@
  *
  */
 
-#define DETUTILS_LIBVER_DISCORDDATA 1
+#define DETUTILS_LIBVER_DISCORDAPI 1
 
-#include "d_discorddata\d_discorddata_entry"
+#include "d_discordapi\d_discordapi_entry"

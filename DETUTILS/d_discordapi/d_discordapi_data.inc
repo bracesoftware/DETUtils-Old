@@ -11,13 +11,6 @@
  *
  */
 
-#if !defined dcconnector_included
- 	#warning [DETUtils]: (warning) - Discord Connector plugin is missing, the 'd_discorddata.inc' library was automatically disabled.
- 	#endinput
-#endif
-
-#include "d_discorddata_macros"
-
 /*
                                                                                       
 88b           d88              88                         db         88888888ba   88  
@@ -396,41 +389,3 @@ stock DCC_SetUserStringData(DCC_User:user, const data_address[], const value[])
 	fclose(file2);
 	return 1;
 }
-
-/*
-                                                                      
-88888888888                                                           
-88                          ,d                                        
-88                          88                                        
-88aaaaa      8b,     ,d8  MM88MMM  8b,dPPYba,  ,adPPYYba,  ,adPPYba,  
-88"""""       `Y8, ,8P'     88     88P'   "Y8  ""     `Y8  I8[    ""  
-88              )888(       88     88          ,adPPPPP88   `"Y8ba,   
-88            ,d8" "8b,     88,    88          88,    ,88  aa    ]8I  
-88888888888  8P'     `Y8    "Y888  88          `"8bbdP"Y8  `"YbbdP"'  
-                                                                      
-
-*/
-
-public OnDETUtilsInit()
-{
-	#if defined DETUTILS_DEBUG_MODE
-	SaveLogIntoFile("detutils_discorddata.log", "[DETUtils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_discorddata.log", "[DETUtils]: (debug) - Loaded.");
-	#endif
-	LoadDETUtilsScript(DETUTILS_SCRIPT_DISCORDDATA);
-	if(funcidx("d_dcutils2_detutilsinit") != -1)
-	{
-		CallLocalFunction("d_dcutils2_detutilsinit", "");
-	}
-	return 1;
-}
-
-#if defined _ALS_OnDETUtilsInit
-	#undef OnDETUtilsInit
-#else
-	#define _ALS_OnDETUtilsInit
-#endif
-
-#define OnDETUtilsInit( d_dcutils2_detutilsinit(
-
-forward d_dcutils2_detutilsinit();
