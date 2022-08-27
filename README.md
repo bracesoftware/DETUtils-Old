@@ -45,7 +45,7 @@ Libraries whose contain the new open.mp functions and features.
 - Send file queries, save and load cache during runtime - [d_filequeries.inc](docs/d_filequeries.md)
 - Anti cheat system - [d_anticheat.inc](docs/d_anticheat.md)
 - In-game map editor - [d_mapeditor.inc](docs/d_mapeditor.md)
-- Better teams, provides new functions - [d_teams.inc](docs/d_teams.md)
+- Player factions (groups of players) made easy - [d_factions.inc](docs/d_factions.md)
 - Better dialogs, faster and easier - [d_dialog.inc](docs/d_dialog.md)
 
 ### Discord API Libraries
