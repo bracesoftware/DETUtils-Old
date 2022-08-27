@@ -77,17 +77,17 @@ stock void:SaveDETUtilsLog(const message[])
 #define DETUTILS_SCRIPT_ANTICHEAT 4
 #define DETUTILS_SCRIPT_FILEQUERIES 5
 #define DETUTILS_SCRIPT_MAPEDITOR 6
-// slot 7 missing here
+#define DETUTILS_SCRIPT_DISCORDAPI 7
 #define DETUTILS_SCRIPT_TEAMS 8
 #define DETUTILS_SCRIPT_DIALOG 9
 #define DETUTILS_SCRIPT_VARS 10
 #define DETUTILS_SCRIPT_ALS 11
 #define DETUTILS_SCRIPT_FOREACH 12
 #define DETUTILS_SCRIPT_TABLES 13
-#define DETUTILS_SCRIPT_DISCORDCMD 14
+// slot 14 missing here
 #define DETUTILS_SCRIPT_PROFILE 15
 #define DETUTILS_SCRIPT_TIMERS 16
-#define DETUTILS_SCRIPT_DISCORDDATA 17
+// slot 17 missing here
 #define DETUTILS_SCRIPT_PERMISSIONS 18
 #define DETUTILS_SCRIPT_EVENTS 19
 
@@ -158,10 +158,10 @@ stock void:LoadDETUtilsScript(scriptid)
 		print("*** [DETUtils]: (module) - Loaded: d_tables.inc");
 		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_tables.inc");
 	}
-	if(scriptid == DETUTILS_SCRIPT_DISCORDCMD)
+	if(scriptid == DETUTILS_SCRIPT_DISCORDAPI)
 	{
-		print("*** [DETUtils]: (module) - Loaded: d_discordcmd.inc");
-		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_discordcmd.inc");
+		print("*** [DETUtils]: (module) - Loaded: d_discordapi.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_discordapi.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_PROFILE)
 	{
@@ -172,11 +172,6 @@ stock void:LoadDETUtilsScript(scriptid)
 	{
 		print("*** [DETUtils]: (module) - Loaded: d_timers.inc");
 		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_timers.inc");
-	}
-	if(scriptid == DETUTILS_SCRIPT_DISCORDDATA)
-	{
-		print("*** [DETUtils]: (module) - Loaded: d_discorddata.inc");
-		SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_discorddata.inc");
 	}
 	if(scriptid == DETUTILS_SCRIPT_PERMISSIONS)
 	{

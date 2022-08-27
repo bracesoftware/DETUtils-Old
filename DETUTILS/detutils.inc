@@ -76,7 +76,7 @@ Includes
  	#endif
 
 #endif
-
+/* =============================================================== */
 #if !defined DETUTILS_NO_PROPERTIES
 
  	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
@@ -107,6 +107,7 @@ Includes
  	#endif
 
 #endif
+/* =============================================================== */
 #if !defined DETUTILS_NO_COMMANDS
 	
 	//#warning [DETUtils]: (includes) - Library 'd_commands' is disabled.
@@ -137,6 +138,7 @@ Includes
  	#endif
 
 #endif
+/* =============================================================== */
 #if !defined DETUTILS_NO_FMARGS
 
  	//#warning [DETUtils]: (includes) - Library 'd_fmargs' is disabled.
@@ -167,6 +169,7 @@ Includes
  	#endif
 
 #endif
+/* =============================================================== */
 #if !defined DETUTILS_NO_VISUAL
 
  	//#warning [DETUtils]: (includes) - Library 'd_visual' is disabled.
@@ -197,6 +200,7 @@ Includes
  	#endif
 
 #endif
+/* =============================================================== */
 #if !defined DETUTILS_NO_ANTICHEAT
 
  	//#warning [DETUtils]: (includes) - Library 'd_anticheat' is disabled.
@@ -227,6 +231,7 @@ Includes
  	#endif
 
 #endif
+/* =============================================================== */
 #if !defined DETUTILS_NO_MAPEDITOR
 	
 	//#warning [DETUtils]: (includes) - Library 'd_mapeditor' is disabled.
@@ -257,6 +262,7 @@ Includes
  	#endif
 
 #endif
+/* =============================================================== */
 #if !defined DETUTILS_NO_FILEQUERIES
 	
 	//#warning [DETUtils]: (includes) - Library 'd_mapeditor' is disabled.
@@ -287,6 +293,7 @@ Includes
  	#endif
 
 #endif
+/* =============================================================== */
 #if !defined DETUTILS_NO_TEAMS
 	
 	//#warning [DETUtils]: (includes) - Library 'd_mapeditor' is disabled.
@@ -317,6 +324,7 @@ Includes
  	#endif
 
 #endif
+/* =============================================================== */
 #if !defined DETUTILS_NO_DIALOG
 	
 	//#warning [DETUtils]: (includes) - Library 'd_mapeditor' is disabled.
@@ -347,6 +355,7 @@ Includes
  	#endif
 
 #endif
+/* =============================================================== */
 #if !defined DETUTILS_NO_VARS
 	
 	//#warning [DETUtils]: (includes) - Library 'd_mapeditor' is disabled.
@@ -377,6 +386,7 @@ Includes
  	#endif
 
 #endif
+/* =============================================================== */
 #if !defined DETUTILS_NO_ALS
 
  	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
@@ -407,6 +417,7 @@ Includes
  	#endif
 
 #endif
+/* =============================================================== */
 #if !defined DETUTILS_NO_FOREACH
 
  	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
@@ -437,6 +448,7 @@ Includes
  	#endif
 
 #endif
+/* =============================================================== */
 #if !defined DETUTILS_NO_TABLES
 
  	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
@@ -467,23 +479,23 @@ Includes
  	#endif
 
 #endif
-
-#if !defined DETUTILS_NO_DISCORDCMD
+/* =============================================================== */
+#if !defined DETUTILS_NO_DISCORDAPI
 
  	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
-	#include "d_discordcmd"
+	#include "d_discordapi"
 
 	// Vercheck
 
-	#if !defined DETUTILS_LIBVER_DISCORDCMD
+	#if !defined DETUTILS_LIBVER_DISCORDAPI
 		
 		#error [DETUtils]: (version) - Version not specified.
 	
-	#elseif defined DETUTILS_LIBVER_DISCORDCMD
+	#elseif defined DETUTILS_LIBVER_DISCORDAPI
 
-		#if DETUTILS_LIBVER_DISCORDCMD != 1
+		#if DETUTILS_LIBVER_DISCORDAPI != 1
 
-			#error [DETUtils]: (version) - 'd_discordcmd.inc' is outdated.
+			#error [DETUtils]: (version) - 'd_discordapi.inc' is outdated.
 
 		#endif
 
@@ -493,12 +505,12 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [DETUtils]: (includes) - Library 'd_discordcmd' is disabled.
+ 		#warning [DETUtils]: (includes) - Library 'd_discordapi' is disabled.
 
  	#endif
 
 #endif
-
+/* =============================================================== */
 #if !defined DETUTILS_NO_PROFILE
 
  	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
@@ -529,7 +541,7 @@ Includes
  	#endif
 
 #endif
-
+/* =============================================================== */
 #if !defined DETUTILS_NO_TIMERS
 
  	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
@@ -560,38 +572,7 @@ Includes
  	#endif
 
 #endif
-
-#if !defined DETUTILS_NO_DISCORDDATA
-
- 	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
-	#include "d_discorddata"
-
-	// Vercheck
-
-	#if !defined DETUTILS_LIBVER_DISCORDDATA
-		
-		#error [DETUtils]: (version) - Version not specified.
-	
-	#elseif defined DETUTILS_LIBVER_DISCORDDATA
-
-		#if DETUTILS_LIBVER_DISCORDDATA != 1
-
-			#error [DETUtils]: (version) - 'd_discorddata.inc' is outdated.
-
-		#endif
-
-	#endif
-
-#else
-
- 	#if !defined DETUTILS_NO_MODULE_WARNINGS
-
- 		#warning [DETUtils]: (includes) - Library 'd_discorddata' is disabled.
-
- 	#endif
-
-#endif
-
+/* =============================================================== */
 #if !defined DETUTILS_NO_EVENTS
 
  	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
@@ -622,13 +603,13 @@ Includes
  	#endif
 
 #endif
-
+/* =============================================================== */
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
  && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_TEAMS \
  && defined DETUTILS_NO_DIALOG && defined DETUTILS_NO_VARS && defined DETUTILS_NO_ALS \
- && defined DETUTILS_NO_FOREACH && defined DETUTILS_NO_TABLES && defined DETUTILS_NO_DISCORDCMD \
- && defined DETUTILS_NO_PROFILE && defined DETUTILS_NO_TIMERS && defined DETUTILS_NO_DISCORDDATA \
+ && defined DETUTILS_NO_FOREACH && defined DETUTILS_NO_TABLES \
+ && defined DETUTILS_NO_PROFILE && defined DETUTILS_NO_TIMERS && defined DETUTILS_NO_DISCORDAPI \
  && defined DETUTILS_NO_PERMISSIONS && defined DETUTILS_NO_EVENTS
 
 	#warning [DETUtils]: (warning) - All library modules are disabled.
