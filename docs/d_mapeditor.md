@@ -9,7 +9,7 @@ SA:MP Map Editor - edit San Andreas yourself in the game
 ## API (programming interface)
 
 - There are only few functions though. But really important for the system to work, also are really efficient in commands.
-## `ShowMapEditorMenuToPlayer`
+### `ShowMapEditorMenuToPlayer`
 - Shows player a dialog with map editor options.
 ```pawn
 @command(.type = SLASH_COMMAND) mapeditor(playerid, params[]) 
@@ -18,7 +18,7 @@ SA:MP Map Editor - edit San Andreas yourself in the game
     return 1;
 }
 ```
-## `ShowObjectInfoLabels`
+### `ShowObjectInfoLabels`
 - Used to show everyone on the server, in the specified virtual world, object info labels. They contain info about object's ID, object's rotation offset and object's **x, y and z** coordinates!
 ```pawn
 @command(.type = SLASH_COMMAND) labelon(playerid, params[])
@@ -27,7 +27,7 @@ SA:MP Map Editor - edit San Andreas yourself in the game
     return 1;
 }
 ```
-## `HideObjectInfoLabels`
+### `HideObjectInfoLabels`
 - Used to hide object info labels.
 ```pawn
 @command(.type = SLASH_COMMAND) labeloff(playerid, params[])
