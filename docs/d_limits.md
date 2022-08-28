@@ -10,11 +10,8 @@
 
 Check [open.mp official resources site](https://open.mp/docs/scripting/resources/limits) for more information about SA:MP limits!
 
-# ``d_samp.inc`` includes
+# ``detutils.inc`` includes
 Check all limits below:
-## d_anticheat.inc
-
-- No limits at the moment.
 
 ## d_commands.inc
 
@@ -31,7 +28,7 @@ Include code:
 ### Maximum prefix length
 Include code:
 ```pawn
-decl Prefix:qmark = "?";
+#define MAX_PREFIX_LENGTH 1
 ```
 - Unfortunately, prefix can only contain 1 character.
 
@@ -58,10 +55,6 @@ Include code:
 ```
 - This limits the number of file queries that can be created. That's why I recomment to DELETE the player file queries when player disconnects.
 
-## d_fmargs.inc
-
-- No limits at the moment.
-
 ## d_properties.inc
 
 ### Maximum number of created properties
@@ -73,7 +66,7 @@ Include code:
 
 #endif
 ```
-- This limits the maximum number of custom properties that can be created, if you attempt to create a property with ID 301, function will return **0** - also if you have **detutils_debug** enabled, server will get an ingame warning which tells everyone on the server that maximum number of created properties has been reached.
+- This limits the maximum number of custom properties that can be created, if you attempt to create a property with ID 301, function will return **0** - also if you have **DETUTILS_DEBUG_MODE** enabled, server will get an ingame warning which tells everyone on the server that maximum number of created properties has been reached.
 
 ## d_visual.inc
 
@@ -87,7 +80,7 @@ Include code:
 #endif
 ```
 
-- This limits the maximum number of created dropped gun objects. If you attempt to create a dropped gun with an ID 2001, function will return **0** - also if you have **detutils_debug** enabled, server will get an ingame warning which tells everyone on the server that maximum number of created dropped gun objects has been reached.
+- This limits the maximum number of created dropped gun objects. If you attempt to create a dropped gun with an ID 2001, function will return **0** - also if you have **DETUTILS_DEBUG_MODE** enabled, server will get an ingame warning which tells everyone on the server that maximum number of created dropped gun objects has been reached.
 
 ## d_mapeditor.inc
 ### Maximum objects
@@ -98,11 +91,11 @@ Include code:
 
 - This limits the maximum number of created objects on the server. This is also a SA:MP limit.
 
-## d_teams.inc
-### Maximum objects
+## d_faction.inc
+### Maximum factions
 Include code:
 ```pawn
-#define MAX_TEAMS 256
+#define MAX_FACTIONS 256
 ```
 
-- This limits the maximum number of created teams on the server.
+- This limits the maximum number of created factions on the server.
