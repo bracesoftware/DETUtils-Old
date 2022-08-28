@@ -53,7 +53,7 @@ CreateFactionPropertyEntrance("Your Interior", "Amazing people", 825.6589,-1614.
 - Including `d_factions` will give you new **faction permissions**. When a faction permission is set, all of the certain faction members will have THOSE permissions. Modifying permissions for a player which is in a faction will not work. Note that faction permission features will be only possible if `d_permissions` is included. You can modify permissions only for factions using:
 
 ```pawn
-SetFactionMemberPermissionInteger("Amazing people", DEFAULT_PLAYER_PERMISSIONS);
+SetFactionPermissionInteger("Amazing people", DEFAULT_PLAYER_PERMISSIONS);
 ```
 
 ### Functions
