@@ -77,6 +77,15 @@ GetFactionMemberCount("Amazing people");
 ### `SetPlayerFaction`
 - Set the player's current faction.
 
+### `GetPlayerFaction`
+- Get the player's faction.
+
+```pawn
+new faction[32];
+GetPlayerFaction(playerid, faction);
+// Now you're supposed to use the "faction" string
+```
+
 ### `CreateFactionPropertyEntrance`
 - Create a property for a certain faction. Note that this works ONLY if the file `d_properties.inc` is included.
 
