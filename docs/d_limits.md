@@ -32,16 +32,6 @@ Include code:
 ```
 - Unfortunately, prefix can only contain 1 character.
 
-
-## d_dmzone.inc
-
-### Maximum number of DM zones
-Include code:
-```pawn
-#define MAX_DM_ZONES 1000
-```
-- This limits the number of DM zones that can be created.
-
 ## d_filequeries.inc
 
 ### Maximum number of file queries
@@ -81,6 +71,14 @@ Include code:
 ```
 
 - This limits the maximum number of created dropped gun objects. If you attempt to create a dropped gun with an ID 2001, function will return **0** - also if you have **DETUTILS_DEBUG_MODE** enabled, server will get an ingame warning which tells everyone on the server that maximum number of created dropped gun objects has been reached.
+
+### Maximum number of DM zones
+Include code:
+```pawn
+#define MAX_DM_ZONES 1000
+```
+- This limits the number of DM zones that can be created.
+
 
 ## d_mapeditor.inc
 ### Maximum objects
