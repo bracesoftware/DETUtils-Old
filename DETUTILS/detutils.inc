@@ -662,9 +662,9 @@ Includes
 
 #if defined __DETUtilsRelease
 
- 	#if __DETUtilsRelease != 0x1
+ 	#if __DETUtilsRelease != 0x2
 
- 		#error [DETUtils]: (release mismatch) - Invalid version release, 0x1 was expected.
+ 		#error [DETUtils]: (release mismatch) - Invalid version release, 0x2 was expected.
 
  	#endif
 

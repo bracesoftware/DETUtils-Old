@@ -259,7 +259,7 @@ public OnPlayerWeaponChange(playerid, oldweapon, newweapon)
  
 public OnPlayerSpawn(playerid)
 {
-	SetPlayerPermissionInteger(playerid, PLAYER_PERMISSION_SENDMESSAGES | PLAYER_PERMISSION_USECOMMANDS);
+	SetPlayerPermissionInteger(playerid, DEFAULT_PLAYER_PERMISSIONS);
 	SetPlayerPos(playerid, 825.6589,-1614.8202,13.5469);
 	SendClientMessage(playerid, -1, "Welcome %s, your id is %i", _ReturnPlayerName(playerid), playerid);
 	SendClientMessageToAll(-1, "Player %s with id %i joined", ReturnPlayerName(playerid), playerid);
@@ -1294,6 +1294,10 @@ public OnPlayerInsufficientPermissions(playerid, missingpermission)
 	if(missingpermission == PLAYER_PERMISSION_USEDIALOGS)
 	{
 		SendClientMessage(playerid, 0xFFFFFFFF, "You aren't allowed to respond to dialogs!");
+	}
+	if(missingpermission == PLAYER_PERMISSION_USEVEHICLES)
+	{
+		SendClientMessage(playerid, 0xFFFFFFFF, "You aren't allowed to use vehicles!");
 	}
 	return 1;
 }

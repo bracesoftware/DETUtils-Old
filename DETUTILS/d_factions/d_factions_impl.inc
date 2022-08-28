@@ -17,6 +17,12 @@
  *
  */
 
+#if !defined DETUTILS_NO_PERMISSIONS
+
+ 	#include "d_factions_permissions"
+
+#endif
+
 /*
 																					  
 88b           d88              88                         db         88888888ba   88  
@@ -162,6 +168,12 @@ stock SetPlayerFaction(playerid, const name[])
 		}
 	}
 	return 0;
+}
+
+stock GetPlayerFaction(playerid, name[], size = sizeof name)
+{
+	format(name, size, DET_g_PlayerFactionCache[playerid][Faction]);
+	return 1;
 }
 
 stock GetFactionMemberCount(const name[])
