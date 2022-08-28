@@ -687,3 +687,13 @@ Includes
  	#endif
 
 #endif
+
+#if !defined __SAMPStdLib
+
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [DETUtils]: (samp stdlib) - It is recommended to use the SA:MP standard library package modified by the SA:MP API team. You can get it at: github.com/samp-api/samp-stdlib
+
+ 	#endif
+
+#endif

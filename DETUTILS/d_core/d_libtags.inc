@@ -299,6 +299,8 @@ stock SaveLogIntoFile(const filename[], const message[])
 	return 1;
 }
 
+#if !defined __SAMPStdLib
+
 stock strtok(const string[], &index, delimiter = ' ') {
 	new length = strlen(string);
 	while ((index < length) && (string[index] <= delimiter)) {
@@ -331,3 +333,5 @@ stock strrest(const string[], &index)
 	result[index - offset] = EOS;
 	return result;
 }
+
+#endif
