@@ -680,6 +680,10 @@ Includes
 
 #if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 	#warning [DETUtils]: (2.0.6-R1) - Codebase successfully loaded.
+ 	#if __DETUtilsBeta == 1
+
+ 		#warning [DETUtils]: (2.0.6-R2) - Codebase is currently under the beta development. Please open an issue on github.com/samp-api/detutils in case of bugs.
+
+ 	#endif
 
 #endif
