@@ -31,7 +31,7 @@ Pawn Timers - A library which provides automatic and manual repeatable timers or
 @als() function OnGameModeInit()
 {
     DeferTask("ManualTimer", "");
-    return als break;
+    return @als() break;
 }
 ```
 
