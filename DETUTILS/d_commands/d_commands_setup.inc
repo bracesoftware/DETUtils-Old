@@ -225,7 +225,7 @@ main()
 #define SLASH_COMMAND_TYPE_ALIAS 1
 #define SLASH_COMMAND_TYPE_ADMIN 2
 #define SLASH_COMMAND_TYPE_FLAGGED 3
-#define SLASH_COMMAND_TYPE_TEAM 4
+#define SLASH_COMMAND_TYPE_FACTION 4
 #define SLASH_COMMAND_TYPE_DELAYED 5
 #define DETUTILSCMD_TYPESET__$|<%0>,%1| cty_%0();public cty_%0(){return %1;}
 
@@ -239,9 +239,9 @@ main()
 DETUTILSCMD_TYPESET__$|<%0>,SLASH_COMMAND_TYPE_NORMAL| DETUTILSCMD_DECL_CMD__<%0|%1>
 #define @DETUTILSCMD_IMPORTANT__HACK__
 
-#if !defined DETUTILS_NO_TEAMS
+#if !defined DETUTILS_NO_FACTIONS
 #define @DETUTILSCMD_TEAMS_DECL__|%0..%1,%7| cmd_%0(%1,%7[]);public cmd_%0(%1,%7[])
-#define @DETUTILSCMD_TEAMS_CHECK__:{%1..|%2|..%0,%7} {if(!strcmp(g_PlayerTeamCache[%1][Team],%2,false)) \
+#define @DETUTILSCMD_TEAMS_CHECK__:{%1..|%2|..%0,%7} {if(!strcmp(DET_g_PlayerFactionCache[%1][Faction],%2,false)) \
 return CallLocalFunction("cmdf_"#%0,"is",%1,%7);return 0;}
 #define @DETUTILSCMD_TEAMS_CALL___:|||%0|%1..%7| cmdf_%0(%1,%7[]);public cmdf_%0(%1,%7[])
 #endif

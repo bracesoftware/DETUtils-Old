@@ -6,7 +6,7 @@
   Addition to the Pawn language features, open.mp API and Discord Connector plugin.
 </h4>
 
-### Current library version: `2.0.6-R1`
+### Current library version: `2.0.6-R2`
 
 Hello scripter! Welcome to *DEntisT's Utilities* (or **DETUtils** for short) "read me" file. So, now, you may ask about - what's this? Well - in general, this addition to open.mp Standard Scripting package contains libraries that have in-game visible effects and libraries that contain new scripting features. 
 - Below, you can find information about each library.
@@ -45,7 +45,7 @@ Libraries whose contain the new open.mp functions and features.
 - Send file queries, save and load cache during runtime - [d_filequeries.inc](docs/d_filequeries.md)
 - Anti cheat system - [d_anticheat.inc](docs/d_anticheat.md)
 - In-game map editor - [d_mapeditor.inc](docs/d_mapeditor.md)
-- Better teams, provides new functions - [d_teams.inc](docs/d_teams.md)
+- Player factions (groups of players) made easy - [d_factions.inc](docs/d_factions.md)
 - Better dialogs, faster and easier - [d_dialog.inc](docs/d_dialog.md)
 
 ### Discord API Libraries

@@ -7,7 +7,7 @@
  *
  *
  * - Library which provides
- *   creation of teams, adding
+ *   creation of factions, adding
  *   and removing players from them.
  *
  * - Also extends the features of
@@ -16,6 +16,12 @@
  *
  *
  */
+
+#if !defined DETUTILS_NO_PERMISSIONS
+
+ 	#include "d_factions_permissions"
+
+#endif
 
 /*
 																					  
@@ -33,57 +39,57 @@
 
 #if !defined DETUTILS_NO_COMMANDS
 
-#define @DETUTILS_CMD_DEC__@TEAM_COMMAND%6,%5.team%3=%2)%0(%1,%7[%8]%9) DETUTILSCMD_TYPESET__$|<%0>,SLASH_COMMAND_TYPE_TEAM| \
+#define @DETUTILS_CMD_DEC__@FACTION_COMMAND%6,%5.faction%3=%2)%0(%1,%7[%8]%9) DETUTILSCMD_TYPESET__$|<%0>,SLASH_COMMAND_TYPE_FACTION| \
 	@DETUTILSCMD_TEAMS_DECL__|%0..%1,%7| @DETUTILSCMD_TEAMS_CHECK__:{%1..|%2|..%0,%7} @DETUTILSCMD_TEAMS_CALL___:|||%0|%1..%7|
 
 #endif
 
 #if defined DETUTILS_NO_PROPERTIES
 
-#define MAX_TEAMS 256
+#define MAX_FACTIONS 256
 
-enum enum_TeamData
+enum enum_FactionData
 {
-	ValidTeam,
-	TeamName[32],
-	TeamMembers
+	ValidFaction,
+	FactionName[32],
+	FactionMembers
 }
 
-new g_TeamCache[MAX_TEAMS][enum_TeamData];
+new DET_g_FactionCache[MAX_FACTIONS][enum_FactionData];
 
-enum enum_PlayerTeamData
+enum enum_PlayerFactionData
 {
-	Team[32]
+	Faction[32]
 }
 
-new g_PlayerTeamCache[MAX_PLAYERS][enum_PlayerTeamData];
+new DET_DET_g_PlayerFactionCache[MAX_PLAYERS][enum_PlayerFactionData];
 
 #endif
 
-forward OnTeamCreate(teamid, teamname[]);
-forward OnTeamDelete(teamid, teamname[]);
+forward OnFactionCreate(factionid, factionname[]);
+forward OnFactionDelete(factionid, factionname[]);
 
-stock CreateTeam(const name[])
+stock CreateFaction(const name[])
 {
-	if(!strcmp("NO_TEAM", name, false))
+	if(!strcmp("NO_FACTION", name, false))
 	{
-		printf("[DETUtils]: (denied) - Permission to create the team 'NO_TEAM' denied.");
+		printf("[DETUtils]: (denied) - Permission to create the faction 'NO_FACTION' denied.");
 		return 0;
 	}
 	for(new i = 1;
-		i < MAX_TEAMS;
+		i < MAX_FACTIONS;
 		i++)
 	{
-		if(g_TeamCache[i][ValidTeam] == 0)
+		if(DET_g_FactionCache[i][ValidFaction] == 0)
 		{
-			if(funcidx("OnTeamCreate") != -1)
+			if(funcidx("OnFactionCreate") != -1)
 			{
-				CallLocalFunction("OnTeamCreate", "is", i, name);
+				CallLocalFunction("OnFactionCreate", "is", i, name);
 			}
-			strmid(g_TeamCache[i][TeamName], name, 0, 32);
-			g_TeamCache[i][ValidTeam] = 1;
+			strmid(DET_g_FactionCache[i][FactionName], name, 0, 32);
+			DET_g_FactionCache[i][ValidFaction] = 1;
 			#if defined DETUTILS_DEBUG_MODE
-			printf("[DETUtils]: (team create) - Created a team '%s'.", name);
+			printf("[DETUtils]: (faction create) - Created a faction '%s'.", name);
 			#endif
 			return 1;
 		}
@@ -91,109 +97,94 @@ stock CreateTeam(const name[])
 	return 0;
 }
 
-stock DeleteTeam(const name[])
+stock DeleteFaction(const name[])
 {
-	if(!strcmp("NO_TEAM", name, false))
+	if(!strcmp("NO_FACTION", name, false))
 	{
-		printf("[DETUtils]: (denied) - Permission to delete the team 'NO_TEAM' denied.");
+		printf("[DETUtils]: (denied) - Permission to delete the faction 'NO_FACTION' denied.");
 		return 0;
 	}
 	for(new i = 1;
-		i < MAX_TEAMS;
+		i < MAX_FACTIONS;
 		i++)
 	{
-		if(!strcmp(g_TeamCache[i][TeamName], name, false))
+		if(!strcmp(DET_g_FactionCache[i][FactionName], name, false))
 		{
-			if(g_TeamCache[i][TeamMembers] != 0)
+			if(DET_g_FactionCache[i][FactionMembers] != 0)
 			{
-				printf("[DETUtils]: (team error) - Unable to delete a team '%s'; \
-					firstly remove all the players from that team.", name);
+				printf("[DETUtils]: (faction error) - Unable to delete a faction '%s'; \
+					firstly remove all the players from that faction.", name);
 				return 0;
 			}
-			if(funcidx("OnTeamDelete") != -1)
+			if(funcidx("OnFactionDelete") != -1)
 			{
-				CallLocalFunction("OnTeamDelete", "is", i, name);
+				CallLocalFunction("OnFactionDelete", "is", i, name);
 			}
 			#if defined DETUTILS_DEBUG_MODE
-			printf("[DETUtils]: (team delete) - Deleted a team '%s'.", name);
+			printf("[DETUtils]: (faction delete) - Deleted a faction '%s'.", name);
 			#endif
-			strmid(g_TeamCache[i][TeamName], "_INVALID_TEAM_NAME_", 0, 32);
-			g_TeamCache[i][ValidTeam] = 0;
+			strmid(DET_g_FactionCache[i][FactionName], "__INVALID_FACTION_NAME", 0, 32);
+			DET_g_FactionCache[i][ValidFaction] = 0;
 			return 1;
 		}
 	}
 	return 0;
 }
 
-stock AddPlayerToTeam(playerid, const name[])
+stock SetPlayerFaction(playerid, const name[])
 {
-	if(!strcmp(name, "NO_TEAM", false)) // If the team is 'NO_TEAM', set player's team to nothing.
+	if(!strcmp(name, "NO_FACTION", false)) // If the faction is 'NO_FACTION', set player's faction to nothing.
 	{
 		for(new i = 1;
-			i < MAX_TEAMS;
+			i < MAX_FACTIONS;
 			i++)
 		{
-			if(!strcmp(g_TeamCache[i][TeamName], g_PlayerTeamCache[playerid][Team], false))
+			if(!strcmp(DET_g_FactionCache[i][FactionName], DET_g_PlayerFactionCache[playerid][Faction], false))
 			{
-				g_TeamCache[i][TeamMembers] --;
+				DET_g_FactionCache[i][FactionMembers] --;
 			}
 		}
 		#if defined DETUTILS_DEBUG_MODE
-			printf("[DETUtils]: (team set) - Player '%i' added to a team '%s'.", playerid, name);
+			printf("[DETUtils]: (faction set) - Player '%i' added to a faction '%s'.", playerid, name);
 		#endif
-		strmid(g_PlayerTeamCache[playerid][Team], "NO_TEAM", 0, 32);
+		strmid(DET_g_PlayerFactionCache[playerid][Faction], "NO_FACTION", 0, 32);
 		return 1;
 	}
 	else
 	{
 		for(new i = 1;
-			i < MAX_TEAMS;
+			i < MAX_FACTIONS;
 			i++)
 		{
-			if(!strcmp(g_TeamCache[i][TeamName], name, false))
+			if(!strcmp(DET_g_FactionCache[i][FactionName], name, false))
 			{
 				#if defined DETUTILS_DEBUG_MODE
-				printf("[DETUtils]: (team set) - Player '%i' added to a team '%s'.", playerid, name);
+				printf("[DETUtils]: (faction set) - Player '%i' added to a faction '%s'.", playerid, name);
 				#endif
-				g_TeamCache[i][TeamMembers] ++;
-				strmid(g_PlayerTeamCache[playerid][Team], name, 0, 32);
+				DET_g_FactionCache[i][FactionMembers] ++;
+				strmid(DET_g_PlayerFactionCache[playerid][Faction], name, 0, 32);
 				return 1;
 			}
-		}/*
-		if(tmc == 1) // If there is an one team with that name, 
-		{
-			// Set the team
-			#if defined DETUTILS_DEBUG_MODE
-			printf("[DETUtils]: (team set) - Player '%i' added to a team '%s'.", playerid, name);
-			#endif
-			strmid(g_PlayerTeamCache[playerid][Team], name, 0, 32);
 		}
-		if(tmc > 1) // if more than 1 team
-		{
-			// error
-			printf("[DETUtils]: (team error) - Team '%s' shadows a team at a preceding level.", name);
-			return 0;
-		}
-		if(tmc == 0) // if no teams
-		{
-			// Error
-			printf("[DETUtils]: (team IID) - No such team ('%s') found.", name);
-			return 0;
-		}
-		return 1;*/
 	}
 	return 0;
 }
 
-stock GetTeamMemberCount(const name[])
+stock GetPlayerFaction(playerid, name[], size = sizeof name)
+{
+	format(name, size, DET_g_PlayerFactionCache[playerid][Faction]);
+	return 1;
+}
+
+stock GetFactionMemberCount(const name[])
 {
 	for(new i = 1;
-		i < MAX_TEAMS;
+		i < MAX_FACTIONS;
 		i++)
 	{
-		if(!strcmp(g_TeamCache[i][TeamName], name, false))
+		if(!strcmp(DET_g_FactionCache[i][FactionName], name, false))
 		{
-			return g_TeamCache[i][TeamMembers];
+			return DET_g_FactionCache[i][FactionMembers];
 		}
 	}
 	return 0;
@@ -208,8 +199,8 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 	new Float:locHealth, Float:locArmour;
 	GetPlayerHealth(playerid, locHealth);
 	GetPlayerArmour(playerid, locArmour);
-	if(strcmp(g_PlayerTeamCache[playerid][Team], 
-		g_PlayerTeamCache[damagedid][Team],
+	if(strcmp(DET_g_PlayerFactionCache[playerid][Faction], 
+		DET_g_PlayerFactionCache[damagedid][Faction],
 		false))
 	{
 		if(bodypart == 9 && weaponid == 34)
@@ -251,9 +242,9 @@ forward d_visual_Onpgd(playerid, damagedid, Float:amount, weaponid, bodypart);
 // When player disconnects.
 public OnPlayerDisconnect(playerid, reason)
 {
-	// Set the internal team when player disconnects...
-	//strmid(g_PlayerTeamCache[playerid][Team], "NO_TEAM", 0, 32);
-	AddPlayerToTeam(playerid, "NO_TEAM");
+	// Set the internal faction when player disconnects...
+	//strmid(DET_g_PlayerFactionCache[playerid][Faction], "NO_FACTION", 0, 32);
+	SetPlayerFaction(playerid, "NO_FACTION");
 
 	if(funcidx("d_t_disconnect") != -1)
 	{
@@ -274,9 +265,9 @@ forward d_t_disconnect(playerid, reason);
 
 #if !defined DETUTILS_NO_PROPERTIES
 
-stock CreatePropertyEntranceForTeam(
+stock CreateFactionPropertyEntrance(
 		const PropertyName[],
-		const teamname[], 
+		const factionname[], 
 		Float:_xEntrance, 
 		Float:_yEntrance, 
 		Float:_zEntrance,  
@@ -296,8 +287,8 @@ stock CreatePropertyEntranceForTeam(
 		{
 			if(g_PropertyData[g_PropertyID][ValidProp] == 0)
 			{
-				g_PropertyData[g_PropertyID][p_PropertyTeam] = 1;
-				strmid(g_PropertyData[g_PropertyID][p_PropTeam], teamname, 0, 32);
+				g_PropertyData[g_PropertyID][p_PropertyFaction] = 1;
+				strmid(g_PropertyData[g_PropertyID][p_PropFaction], factionname, 0, 32);
 				printf("[DETUtils]: (debug) - Property '%s' successfully created, entrance is set to: %f, %f, %f.",
 						PropertyName,
 						Float:_xEntrance, 
@@ -455,47 +446,3 @@ stock CreatePropertyEntranceForTeam(
 }
 
 #endif
-
-/*
-																	  
-88888888888                                                           
-88                          ,d                                        
-88                          88                                        
-88aaaaa      8b,     ,d8  MM88MMM  8b,dPPYba,  ,adPPYYba,  ,adPPYba,  
-88"""""       `Y8, ,8P'     88     88P'   "Y8  ""     `Y8  I8[    ""  
-88              )888(       88     88          ,adPPPPP88   `"Y8ba,   
-88            ,d8" "8b,     88,    88          88,    ,88  aa    ]8I  
-88888888888  8P'     `Y8    "Y888  88          `"8bbdP"Y8  `"YbbdP"'  
-																	  
-*/
-
-public OnDETUtilsInit()
-{
-	// For all the players:
-	for(new i; i < MAX_PLAYERS; i++)
-	{
-		// Set the internal team...
-		strmid(g_PlayerTeamCache[i][Team], "NO_TEAM", 0, 32);
-	}
-
-	#if defined DETUTILS_DEBUG_MODE
-	SaveLogIntoFile("detutils_teams.log", "[DETUtils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_teams.log", "[DETUtils]: (debug) - Loaded.");
-	#endif
-	LoadDETUtilsScript(DETUTILS_SCRIPT_TEAMS);
-	if(funcidx("d_t_detutilsinit") != -1)
-	{
-		CallLocalFunction("d_t_detutilsinit", "");
-	}
-	return 1;
-}
-
-#if defined _ALS_OnDETUtilsInit
-	#undef OnDETUtilsInit
-#else
-	#define _ALS_OnDETUtilsInit
-#endif
-
-#define OnDETUtilsInit( d_t_detutilsinit(
-
-forward d_t_detutilsinit();

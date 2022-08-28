@@ -11,6 +11,6 @@
  *
  */
 
-#define DETUTILS_LIBVER_TEAMS 1
+#define DETUTILS_LIBVER_FACTIONS 1
 
-#include "d_teams\d_teams_entry"
+#include "d_factions\d_factions_entry"
