@@ -9,11 +9,11 @@
 
 #include <a_samp>
 
-#include <DETUTILS\detutils>
+#include "DETUTILS\detutils"
 
 main(){}
 
-#include <DETUTILS\d_als>
+#include "DETUTILS\d_als"
 
 new timer;
 
