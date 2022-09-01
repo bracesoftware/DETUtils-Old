@@ -36,7 +36,10 @@ stock void:LoadDETUtilsAutomaticTimers()
 	{
 		format(taskfunc, sizeof taskfunc, "@%i@d_timerid", i);
 		format(intervalfunc, sizeof intervalfunc, "@%i@d_t_int", i);
-		SetTimer(taskfunc, CallLocalFunction(intervalfunc, ""), true);
+		if(funcidx(taskfunc) != -1)
+		{
+			SetTimer(taskfunc, CallLocalFunction(intervalfunc, ""), true);
+		}
 	}
 }
 
