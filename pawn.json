@@ -5,7 +5,8 @@
 		"pawn-lang/pawn-stdlib",
 		"pawn-lang/samp-stdlib",
 		"se8870/samp-command-guess",
-		"Y-Less/code-parse.inc"
+		"Y-Less/code-parse.inc",
+		"samp-api/DETUtils"
 	],
 	"entry": "DETUTILS_TESTS.pwn",
 	"output": "DETUTILS_TESTS.amx",
