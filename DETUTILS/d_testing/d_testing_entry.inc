@@ -29,11 +29,13 @@ keyword   forward  Function(a, const b[], Float:c);
 
 //test for discord text cmds
 
+#if !defined DETUTILS_NO_DISCORDAPI
 @command(.type = DISCORD_COMMAND) dctest(DCC_Guild:guild, DCC_Channel:channel, DCC_Message:message, DCC_User:author, params)
 {
 	DCC_SendChannelMessage(channel, "this fucking works");
 	return 1;
 }
+#endif
 
 @event(.type = LOCAL) LocalEvent()
 {
@@ -1245,6 +1247,7 @@ public OnGameModeInit()
 	AddStaticVehicle(560, 844.7139,-1614.3539,13.5391,316.9723, 25, 23);
 	CreateDeathMatchZone("Insane DeathMatch", 844.7139,-1614.3539,13.5391, 825.6589,-1614.8202,13.5469, 811.1299,-1616.0647,13.5469);
 	CreateFaction("Amazing people");
+	SetFactionPermissionInteger("Amazing people", DEFAULT_PLAYER_PERMISSIONS);
 	teleportmenu = CreateMenu("Teleportmenu", 2, 200.0, 100.0, 150.0, 150.0);
 	AddMenuItem(teleportmenu, 0, "LS");
 	AddMenuItem(teleportmenu, 0, "LS");
@@ -1386,6 +1389,7 @@ DETUTILS Command:tp(playerid, params[])
 
 public OnPlayerConnect(playerid)
 {
+	SetPlayerPermissionInteger(playerid, DEFAULT_PLAYER_PERMISSIONS);
 	if(!IsPlayerUsingAndroidClient(playerid)) return SendClientMessage(playerid, -1, "You're using a computer to play SA:MP, great!");
 	SetSpawnInfo(playerid, 0, 0, 811.1299,-1616.0647,13.5469, 0, 0,0,0,0,0,0);
 	//SpawnPlayer(playerid);
