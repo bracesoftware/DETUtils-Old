@@ -8,7 +8,7 @@
 		"Y-Less/code-parse.inc"
 	],
 	"entry": "DETUTILS_TESTS.pwn",
-	"output": "DETUTILS_TESTS.amx"
+	"output": "DETUTILS_TESTS.amx",
 	"contributors": [
 		"DEntis-T"
 	]
