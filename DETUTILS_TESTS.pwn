@@ -13,7 +13,9 @@
 
 main(){}
 
-//#include "DETUTILS\d_als"
+#if defined DETUTILS_ADVANCED_TESTS_LOL
+
+#include "DETUTILS\d_als"
 
 new timer;
 
@@ -50,3 +52,5 @@ new timer;
 @rem(.level = IMPORTANT) : "lmao";
 
 new static stock const a;
+
+#endif
