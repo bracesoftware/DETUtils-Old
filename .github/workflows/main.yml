@@ -1,10 +1,10 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: sampctl autobuild
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "2.x" branch
+  # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
     branches: [ "master" ]
   pull_request:
@@ -22,9 +22,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
+      - uses: AGraber/sampctl-action@v1
+      - run: sampctl p build --forceEnsure
 
-      # Runs a single command using the runners shell
-      - name: Pawn Compiler 3.10.10
-        run: echo Pawn Compiler 3.10.10
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build-artifact
+          path: gamemodes/output.amx
+          retention-days: 1
