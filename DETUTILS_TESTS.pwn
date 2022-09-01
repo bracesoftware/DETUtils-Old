@@ -13,7 +13,7 @@
 
 main(){}
 
-#include "DETUTILS\d_als"
+//#include "DETUTILS\d_als"
 
 new timer;
 
