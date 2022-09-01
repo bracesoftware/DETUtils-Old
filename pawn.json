@@ -2,9 +2,10 @@
 	"user": "samp-api",
 	"repo": "DETUtils",
 	"dependencies": [
-		"pawn-lang/pawn-stdlib"
+		"pawn-lang/pawn-stdlib",
 		"pawn-lang/samp-stdlib",
-		"se8870/samp-command-guess"
+		"se8870/samp-command-guess",
+		"Y-Less/code-parse"
 	],
 	"contributors": [
 		"DEntis-T"
