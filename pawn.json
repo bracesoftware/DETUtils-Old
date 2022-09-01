@@ -2,6 +2,7 @@
 	"user": "samp-api",
 	"repo": "DETUtils",
 	"dependencies": [
+		"pawn-lang/pawn-stdlib"
 		"pawn-lang/samp-stdlib",
 		"se8870/samp-command-guess"
 	],
