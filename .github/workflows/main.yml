@@ -29,5 +29,5 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: build-artifact
-          path: 
+          path: tests/artifacts/build.amx
           retention-days: 1
