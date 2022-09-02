@@ -16,5 +16,5 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: DETUtils_Build_Test
-          path: DETUtils_tests.amx
+          path: artifacts/DETUtils_tests.amx
           retention-days: 1
