@@ -71,6 +71,10 @@ Check out test script here:
 #define DETUTILS_TESTING_MODE
 ```
 > As I mentioned, `DETUTILS_TESTING_MODE` flag will enable the test script automatically.
+
+## Test artifacts
+- You can go to [GitHub Actions](https://github.com/samp-api/DETUtils/actions) page for this repository, select the latest workflow run from the list and download the **sampctl** auto-build artifact.
+
 ## Filterscripts
 - If you're making a filterscript using the *DETUtils* includes, make sure to enable the `DETUTILS_FILTERSCRIPT_MODE` flag.
 
