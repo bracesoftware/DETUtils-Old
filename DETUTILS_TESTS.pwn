@@ -8,6 +8,7 @@
 #define DETUTILS_ALS_CALL_DEBUG
 
 #include <a_samp>
+#include <discord-connector.inc.in>
 
 #include "DETUTILS\detutils"
 
