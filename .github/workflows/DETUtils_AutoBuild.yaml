@@ -1,5 +1,4 @@
-# build name
-name: DETUtils - sampctl autobuild
+name: DETUtils - sampctl test build
 on:
   push:
     branches: [ "master" ]
@@ -17,5 +16,5 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: DETUtils_Build_Test
-          path: tests/artifacts/build.amx
+          path: DETUtils_tests.amx
           retention-days: 1
