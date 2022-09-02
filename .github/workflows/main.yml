@@ -28,6 +28,6 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: build-artifact
+          name: DETUtils_Build_Test
           path: tests/artifacts/build.amx
           retention-days: 1
