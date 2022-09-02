@@ -8,7 +8,9 @@
 #define DETUTILS_ALS_CALL_DEBUG
 
 #include <a_samp>
-#include <discord-connector.inc.in>
+// Because the standard "discord-connector.inc.in" cannot
+// be included.
+#include "dependencies\discord-connector.inc"
 
 #include "DETUTILS\detutils"
 
