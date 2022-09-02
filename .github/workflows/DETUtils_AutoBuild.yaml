@@ -1,0 +1,21 @@
+# build name
+name: DETUtils - sampctl autobuild
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: AGraber/sampctl-action@v1
+      - run: sampctl package build --forceEnsure
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: DETUtils_Build_Test
+          path: tests/artifacts/build.amx
+          retention-days: 1
