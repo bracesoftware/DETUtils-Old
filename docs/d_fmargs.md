@@ -1,6 +1,6 @@
 # d_fmargs.inc
 
-Pawn FuncArgs - Using *d_fmargs.inc* you can easily use specifiers in string-like type arguments of various SA:MP functions.
+Pawn FuncArgs - Using `d_fmargs` you can easily use specifiers in string-like type arguments of various SA:MP functions.
 
 [Go back to home page...](README.md)
 
@@ -20,41 +20,23 @@ public OnPlayerSpawn(playerid)
 ```
 **TIP**: Function *ReturnPlayerName* is provided by extra library include *d_libtags.inc*.
 
-### Warning!
-
-- If you provide a specifier in a string, but not a value as well, calling the function will crash the server.
-
-Bad code:
-```pawn
-public OnPlayerSpawn(playerid)
-{
-  SendClientMessage(playerid, -1, "You are spawned, %s."); // this crashes the server
-  return 1;
-}
-```
-Good code:
-```pawn
-public OnPlayerSpawn(playerid)
-{
-  SendClientMessage(playerid, -1, "You are spawned, %s.", ReturnPlayerName(playerid));
-  return 1;
-}
-```
 ## API
 
-Functions which will work like this after including *d_fmargs.inc* are:
+Functions whose will work like this after including `detutils` are:
 
 | SA:MP functions      | Description                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------ |
-SendClientMessage      | - Sends a message to certain client. |
-SendClientMessageToAll | - Sends a message to all players (clients). | 
-GameTextForPlayer      | - Shows a GameText to certain player. |
-GameTextForAll         | - Shows a GameText to all players. |
-TextDrawCreate         | - Creates a global TextDraw. |
-CreatePlayerTextDraw   | - Creates a player TextDraw. |
-TextDrawSetString      | - Changes global TextDraw's string. |
-PlayerTextDrawSetString| - Changes player TextDraw's string. |
-SendRconCommand        | - Sends a RCON command to a server. |
+SendClientMessage      | Sends a message to certain client. |
+SendClientMessageToAll | Sends a message to all players (clients). | 
+GameTextForPlayer      | Shows a GameText to certain player. |
+GameTextForAll         | Shows a GameText to all players. |
+TextDrawCreate         | Creates a global TextDraw. |
+CreatePlayerTextDraw   | Creates a player TextDraw. |
+TextDrawSetString      | Changes global TextDraw's string. |
+PlayerTextDrawSetString| Changes player TextDraw's string. |
+SendRconCommand        | Sends a RCON command to a server. |
+Update3DTextLabelText  | Updates the 3D text label text.   |
+UpdatePlayer3DTextLabelText | Updates the player 3D text label text. |
 
 ## `sscanf`
 - This include also provides a Pawn implementation of `sscanf` functions. Below, you can see an example on how to use these features:
