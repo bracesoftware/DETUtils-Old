@@ -71,8 +71,7 @@ sscanf do(source, address, args = 1);
 - `args` is a count of given arguments in a string.
 
 ## `DETUTILS_FMARGS_FUNCREPLACE`
-This is a compile-time option which tells DETUtils to hook the **fmargs** functions or not. This is really important to note because it:
-- limits the function input only to one line, which means this is impossible to do:
+This is a compile-time option which tells DETUtils to hook the **fmargs** functions or not. This is really important to note because it limits the function input only to one line, which means this is impossible to do:
 
 ```pawn
 SendClientMessage(
@@ -80,12 +79,6 @@ SendClientMessage(
 	-1,
 	"Message.")
 	;
-```
-- disables the ability of using constants in string arguments, which means this will give a argument mismatch error:
-
-```pawn
-#define MY_CONSTANT "My message!"
-SendClientMessage(playerid, -1, MY_CONSTANT);
 ```
 `DETUTILS_FMARGS_FUNCREPLACE` is enabled using:
 ```pawn
