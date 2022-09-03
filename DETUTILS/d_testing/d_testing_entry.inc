@@ -255,7 +255,7 @@ public OnPlayerWeaponChange(playerid, oldweapon, newweapon)
 	{
 		format(newweap, sizeof newweap, "none");
 	}
-	SendClientMessage(playerid, -1, "You changed your weapon from %s to %s.", oldweap, newweap);
+	fmargs_SendClientMessage(playerid, -1, "You changed your weapon from %s to %s.", oldweap, newweap);
 	return 1;
 }
  
@@ -263,12 +263,12 @@ public OnPlayerSpawn(playerid)
 {
 	SetPlayerPermissionInteger(playerid, DEFAULT_PLAYER_PERMISSIONS);
 	SetPlayerPos(playerid, 825.6589,-1614.8202,13.5469);
-	SendClientMessage(playerid, -1, "Welcome %s, your id is %i", _ReturnPlayerName(playerid), playerid);
-	SendClientMessageToAll(-1, "Player %s with id %i joined", ReturnPlayerName(playerid), playerid);
+	fmargs_SendClientMessage(playerid, -1, "Welcome %s, your id is %i", _ReturnPlayerName(playerid), playerid);
+	fmargs_SendClientMessageToAll(-1, "Player %s with id %i joined", ReturnPlayerName(playerid), playerid);
 	GivePlayerMoney(playerid, 10364);
 	SetPlayerSkin(playerid, 70);
 	GivePlayerWeapon(playerid, 24, 999);
-	GameTextForPlayer(playerid, "You spawned, %s!", 4000, 1, ReturnPlayerName(playerid));
+	fmargs_GameTextForPlayer(playerid, "You spawned, %s!", 4000, 1, ReturnPlayerName(playerid));
 	return 1;
 }
 
@@ -327,7 +327,7 @@ public OnPlayerSpawn(playerid)
 
 	if(strlen(parameters) == 0) return SendClientMessage(playerid, 0xFFFFFFFF, "Usage: /typecheck <cmdname>");
 
-	SendClientMessage(playerid, -1, "Command: %s | Slash command type: %i", cmdname, GetSlashCommandType(cmdname));
+	fmargs_SendClientMessage(playerid, -1, "Command: %s | Slash command type: %i", cmdname, GetSlashCommandType(cmdname));
 	return 1;
 }
 
@@ -341,21 +341,19 @@ public OnPlayerSpawn(playerid)
 
 public OnPlayerDialogReceived(playerid, dialog[])
 {
-	SendClientMessage(playerid, -1, "You received dialog '%s'", dialog);
+	fmargs_SendClientMessage(playerid, -1, "You received dialog '%s'", dialog);
 	return 1;
 }
 
 public OnPlayerDialogHide(playerid, dialog[])
 {
-	SendClientMessage(playerid, -1, "'%s' hidden.", dialog);
+	fmargs_SendClientMessage(playerid, -1, "'%s' hidden.", dialog);
 	return 1;
 }
 
 public OnPlayerDialogResponse(playerid, dialog[], response, listitem, inputtext[])
 {
-	SendClientMessage(playerid, -1, 
-		"You responded to dialog '%s', response: %i, listitem: %i, inputtext: %i", 
-		dialog, response, listitem, inputtext);
+	fmargs_SendClientMessage(playerid, -1, "You responded to dialog '%s', response: %i, listitem: %i, inputtext: %i", dialog, response, listitem, inputtext);
 	return 1;
 }
 
@@ -497,9 +495,7 @@ DETUTILS CommandAlias:tagt(playerid,params[]) = tagtest;
 CMD:cmd(playerid,params[])
 {
 	SendClientMessage(playerid, -1, "CMD: command worked.");
-	SendClientMessage(playerid, -1,
-	"{ffffff}This is white and {%06x}this is the %s's color!", 
-	GetPlayerColor(playerid) >>> 8, ReturnPlayerName(playerid));
+	SendClientMessage(playerid, -1, "{ffffff}This is white and {%06x}this is the %s's color!", GetPlayerColor(playerid) >>> 8, ReturnPlayerName(playerid));
 	return 1;
 }
 
@@ -1536,13 +1532,11 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
 	}
 	else if(actionid == PROPERTY_ACTION_LOCK)
 	{
-		SendClientMessageToAll(-1, "Property %s [%i] is now locked!", 
-			GetPropertyName(propertyid), GetPropertyIDByName(GetPropertyName(propertyid)));
+		SendClientMessageToAll(-1, "Property %s [%i] is now locked!", GetPropertyName(propertyid), GetPropertyIDByName(GetPropertyName(propertyid)));
 	}
 	else if(actionid == PROPERTY_ACTION_LOCK)
 	{
-		SendClientMessageToAll(-1, "Property %s [%i] is now unlocked!", 
-			GetPropertyName(propertyid), GetPropertyIDByName(GetPropertyName(propertyid)));
+		SendClientMessageToAll(-1, "Property %s [%i] is now unlocked!", GetPropertyName(propertyid), GetPropertyIDByName(GetPropertyName(propertyid)));
 	}
 	return 0;
 }

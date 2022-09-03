@@ -32,24 +32,26 @@ native DET_n_Func6(Text3D:id, color, text[]) = Update3DTextLabelText;
 native DET_n_Func7(playerid, PlayerText3D:id, color, text[]) = UpdatePlayer3DTextLabelText;
 
 // Macro versions (compatible with JIT):
-#define fmargs_SendClientMessage%4(%1,%2,%3) \
-format(DET_g_pClientMessage[%1],DETUTILS_FMARGS_MAX_STRING,%3)&&DET_n_Func1(%1,%3,DET_g_pClientMessage[%1])
-#define fmargs_SendClientMessageToAll%4(%1,%2) \
+#define fmargs_SendClientMessage(%1,%2,%3) \
+format(DET_g_pClientMessage[%1],DETUTILS_FMARGS_MAX_STRING,%3)&&DET_n_Func1(%1,%2,DET_g_pClientMessage[%1])
+#define fmargs_SendClientMessageToAll(%1,%2) \
 format(DET_g_ClientMessage,DETUTILS_FMARGS_MAX_STRING,%2)&&DET_n_Func2(%1,DET_g_ClientMessage)
-#define fmargs_TextDrawSetString%4(%1,%2) \
+
+#define fmargs_TextDrawSetString(%1,%2) \
 format(DET_g_TDTextString,DETUTILS_FMARGS_MAX_STRING,%2)&&DET_n_Func3(%1,DET_g_TDTextString)
-#define fmargs_PlayerTextDrawSetString%4(%0,%1,%2) \
+#define fmargs_PlayerTextDrawSetString(%0,%1,%2) \
 format(DET_g_pTDTextString[%0],DETUTILS_FMARGS_MAX_STRING,%2)&&DET_n_Func4(%0,%1,DET_g_pTDTextString[%0])
-#define fmargs_SendRconCommand%4(%0) \
+
+#define fmargs_SendRconCommand(%0) \
 format(DET_g_RconCommand,DETUTILS_FMARGS_MAX_STRING,%0)&&DET_n_Func5(DET_g_RconCommand)
-#define fmargs_Update3DTextLabelText%4(%1,%2,%3) \
+
+#define fmargs_Update3DTextLabelText(%1,%2,%3) \
 format(DET_g_3DLabelText,DETUTILS_FMARGS_MAX_STRING,%3)&&DET_n_Func6(%1,%2,DET_g_3DLabelText)
-#define fmargs_UpdatePlayer3DTextLabelText%4(%0,%1,%2,%3) \
+#define fmargs_UpdatePlayer3DTextLabelText(%0,%1,%2,%3) \
 format(DET_g_p3DLabelText[%0],DETUTILS_FMARGS_MAX_STRING,%3)&&DET_n_Func7(%1,%2,DET_g_p3DLabelText[%0])
 
 // Function versions:
 
-#if defined detutils_complete_error_boom
 stock fmargs_GameTextForPlayer(playerid,const unformatted_text[],duration,style,@DETUTILSFMARGS_TAGS__:...)
 {
 	new time = duration;
@@ -323,8 +325,10 @@ stock PlayerText:fmargs_CreatePlayerTextDraw(i,Float:x,Float:y,const _StringArgs
 	g_PlayerTextDrawData[textid][Valid] = 1;
 	return textid;
 }
-#endif
+
 // Hooks:
+
+#if defined DETUTILS_FMARGS_FUNCREPLACE
 
 #if defined _ALS_SendClientMessage
 	#undef SendClientMessage
@@ -413,3 +417,5 @@ stock PlayerText:fmargs_CreatePlayerTextDraw(i,Float:x,Float:y,const _StringArgs
 #endif
 
 #define UpdatePlayer3DTextLabelText fmargs_UpdatePlayer3DTextLabelText
+
+#endif
