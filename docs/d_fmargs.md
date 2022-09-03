@@ -71,7 +71,7 @@ sscanf do(source, address, args = 1);
 - `args` is a count of given arguments in a string.
 
 ## `DETUTILS_FMARGS_FUNCREPLACE`
-This is a compile-time option which tells DETUtils to hook the **fmargs** functions or not. This is really important to note because it limits the function input only to one line, which means this is impossible to do:
+- This is a compile-time option which tells DETUtils to hook the **fmargs** functions or not. This is really important to note because it limits the function input only to one line, which means this is impossible to do:
 
 ```pawn
 SendClientMessage(
@@ -80,12 +80,14 @@ SendClientMessage(
 	"Message.")
 	;
 ```
-`DETUTILS_FMARGS_FUNCREPLACE` is enabled using:
+- `DETUTILS_FMARGS_FUNCREPLACE` is enabled using:
 ```pawn
 #define DETUTILS_FMARGS_FUNCREPLACE
 ```
-In case you don't want it, you can still use `d_fmargs` by adding `fmargs_` prefix before using the function:
+- In case you don't want it, you can still use `d_fmargs` by adding `fmargs_` prefix before using the function:
 ```pawn
 fmargs_SendClientMessage(playerid, -1, "Format %i!", somearg);
 ```
-Meanwhile, the standard `SendClientMessage` will work just fine.
+- Meanwhile, the standard `SendClientMessage` will work just fine without any changes.
+### Note
+- You'll still be able to use `fmargs`-prefixed functions even with `DETUTILS_FMARGS_FUNCREPLACE` enabled.
