@@ -22,24 +22,34 @@ new DET_g_RconCommand[DETUTILS_FMARGS_MAX_STRING];
 new DET_g_3DLabelText[DETUTILS_FMARGS_MAX_STRING];
 new DET_g_p3DLabelText[MAX_PLAYERS][DETUTILS_FMARGS_MAX_STRING];
 
+// Natives:
+native DET_n_Func1(playerid, color, const text[]) = SendClientMessage;
+native DET_n_Func2(color, const message[]) = SendClientMessageToAll;
+native DET_n_Func3(Text:text, string[]) = TextDrawSetString;
+native DET_n_Func4(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
+native DET_n_Func5(command[]) = SendRconCommand;
+native DET_n_Func6(Text3D:id, color, text[]) = Update3DTextLabelText;
+native DET_n_Func7(playerid, PlayerText3D:id, color, text[]) = UpdatePlayer3DTextLabelText;
+
 // Macro versions (compatible with JIT):
 #define fmargs_SendClientMessage%4(%1,%2,%3) \
-format(DET_g_pClientMessage[%1],DETUTILS_FMARGS_MAX_STRING,%3),SendClientMessage(%1,%3,DET_g_pClientMessage[%1])
+format(DET_g_pClientMessage[%1],DETUTILS_FMARGS_MAX_STRING,%3)&&DET_n_Func1(%1,%3,DET_g_pClientMessage[%1])
 #define fmargs_SendClientMessageToAll%4(%1,%2) \
-format(DET_g_ClientMessage,DETUTILS_FMARGS_MAX_STRING,%2),SendClientMessageToAll(%1,DET_g_ClientMessage)
+format(DET_g_ClientMessage,DETUTILS_FMARGS_MAX_STRING,%2)&&DET_n_Func2(%1,DET_g_ClientMessage)
 #define fmargs_TextDrawSetString%4(%1,%2) \
-format(DET_g_TDTextString,DETUTILS_FMARGS_MAX_STRING,%2),TextDrawSetString(%1,DET_g_TDTextString)
+format(DET_g_TDTextString,DETUTILS_FMARGS_MAX_STRING,%2)&&DET_n_Func3(%1,DET_g_TDTextString)
 #define fmargs_PlayerTextDrawSetString%4(%0,%1,%2) \
-format(DET_g_pTDTextString[%0],DETUTILS_FMARGS_MAX_STRING,%2),TextDrawSetString(%0,%1,DET_g_pTDTextString[%0])
+format(DET_g_pTDTextString[%0],DETUTILS_FMARGS_MAX_STRING,%2)&&DET_n_Func4(%0,%1,DET_g_pTDTextString[%0])
 #define fmargs_SendRconCommand%4(%0) \
-format(DET_g_RconCommand,DETUTILS_FMARGS_MAX_STRING,%0),SendRconCommand(DET_g_RconCommand)
+format(DET_g_RconCommand,DETUTILS_FMARGS_MAX_STRING,%0)&&DET_n_Func5(DET_g_RconCommand)
 #define fmargs_Update3DTextLabelText%4(%1,%2,%3) \
-format(DET_g_3DLabelText,DETUTILS_FMARGS_MAX_STRING,%3),Update3DTextLabelText(%1,%2,DET_g_3DLabelText)
+format(DET_g_3DLabelText,DETUTILS_FMARGS_MAX_STRING,%3)&&DET_n_Func6(%1,%2,DET_g_3DLabelText)
 #define fmargs_UpdatePlayer3DTextLabelText%4(%0,%1,%2,%3) \
-format(DET_g_p3DLabelText[%0],DETUTILS_FMARGS_MAX_STRING,%3),UpdatePlayer3DTextLabelText(%1,%2,DET_g_p3DLabelText[%0])
+format(DET_g_p3DLabelText[%0],DETUTILS_FMARGS_MAX_STRING,%3)&&DET_n_Func7(%1,%2,DET_g_p3DLabelText[%0])
 
 // Function versions:
 
+#if defined detutils_complete_error_boom
 stock fmargs_GameTextForPlayer(playerid,const unformatted_text[],duration,style,@DETUTILSFMARGS_TAGS__:...)
 {
 	new time = duration;
@@ -313,7 +323,7 @@ stock PlayerText:fmargs_CreatePlayerTextDraw(i,Float:x,Float:y,const _StringArgs
 	g_PlayerTextDrawData[textid][Valid] = 1;
 	return textid;
 }
-
+#endif
 // Hooks:
 
 #if defined _ALS_SendClientMessage

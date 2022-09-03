@@ -18,6 +18,7 @@
 #endif
 
 #include "d_fmargs_sscanf"
+#include "d_fmargs_impl"
 
 /*
                                          
@@ -44,8 +45,6 @@ enum enum_TextDrawData
 
 new g_TextDrawData[MAX_TEXT_DRAWS][enum_TextDrawData];
 new g_PlayerTextDrawData[MAX_TEXT_DRAWS][enum_TextDrawData];
-
-#include "d_fmargs_impl"
 
 /*
                                                                       
