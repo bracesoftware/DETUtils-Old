@@ -6,7 +6,6 @@ SA:MP Commands - a "built-in" fast and easy way to create commands.
 ## How to start to use?
 
 ### Command declaration
-------------------------------------------
 To declare a command, you need to use ``@command`` decorator. This way of command declaration is MAINLY supported and regularly updated.
 
 Let's see how it works:
@@ -58,7 +57,6 @@ I know it is a subtle difference, but an important one.
 - Parsing in Pawn is function analysing using Pawn preprocessor macros. There is a lot of such macros in the ``d_commands_setup`` and ``d_commands_macros`` (though in their defense, writing macros to do the parsing within the compiler limitations is VERY hard). Said Y_Less. Read more about parsing in ``d_commands`` [here](d_cmdparsing.md).
 
 ### Bonus
------------------------------------------
 
 - More command declaration styles for backwards compatibility... No parsing there, if you add extra arguments - nothing will happen.
 - Let's take a look:
@@ -108,7 +106,6 @@ cmd:cmd(playerid, params[])
 ```
 
 ### Command aliasing
-------------------------------------------
 There is also way to declare alias of a specific command.
 
 ```pawn
@@ -130,7 +127,6 @@ DETUTILS CommandAlias:mycmd(playerid, params[]) = mycommand;
 ```
 
 ### Command debugging
-------------------------------------------
 There is also a way to debug commands!
 
 Advanced debugging can be done using ``OnCommandStateChange`` and ``OnPrefixedCommandStateChange`` - depends on command type.
@@ -153,7 +149,6 @@ public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid)
 }
 ```
 ### Debug states
-------------------------------------------
 - For advanced debugging, one ``print`` isn't enough - right? That is why I added command debug states. Command debug is called 3 times after player submits to execute a command, so there are three debug states.
 
 - Debug states:
@@ -165,7 +160,6 @@ public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid)
 - ``COMMAND_DEBUG_STATE_STOPPED`` - explanation shown some scrolls below
 
 **How to use states?**
-------------------------------------------
 - To use states, you need to use **publics shown above**. Here's how to do it:
 
 ```pawn
@@ -212,7 +206,6 @@ public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid)
 }
 ```
 ### Delayed commands
-------------------------------------------
 - Create delayed commands!
 
 ```pawn
@@ -223,7 +216,6 @@ public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid)
 }
 ```
 ### Admin commands
-------------------------------------------
 *d_commands* also lets you to create admin commands.
 
 ```pawn
@@ -266,7 +258,6 @@ DETUTILS AdminCommand:admincheck(playerid,params[])
 **INFO**: If player is not logged in as RCON administrator, function will return *false* (0) and send client message saying: **"SERVER: Unknown command."**
 
 ### Commands with custom prefix
-------------------------------------------
 *d_commands* also arrive with brand new system with custom-prefixed commands.
 
 ```pawn
@@ -431,7 +422,6 @@ public OnPrefixedCommandStateChange(playerid, cmdtext[], stateid)
 ```
 
 ### Commands with custom permissions
-------------------------------------------
 
 ### OUTDATED!
 
@@ -631,7 +621,6 @@ public OnCommandBroadcast(playerid, cmdtext[], bool:remote, params[], slashtype,
 ```
 
 **Command processing**
-------------------------------------------
 A simple script:
 
 ```pawn
@@ -675,19 +664,19 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 ```
 
 ## Messages from creator
-------------------------------------------
+
 ### Warnings
-------------------------------------------
+
 1. Make sure that whenever you create commands using the ``command`` keyword, the command name does not contain capital letters. Otherwise, unfortunately - server will recognize the command as unknown. But - this does not need to make you sad because this type of commands are not case-sensitive.
 2. Custom-prefixed commands are case-sensitive. Also, command names can contain capital letters.
 3. ``params[]`` custom-prefixed command parameter won't work with *sscanf*. The parameter is here to follow normal command standards and can be used like a *local* string variable.
 
 ### Notes
-------------------------------------------
+
 ***Backwards compatibility***
 - d_commands also have backwards compatibility, incase you are upgrading from iZCMD/ZCMD, the ``CMD:`` keyword will still work as nothing changed. But, I still recommend creating your future commands using methods shown in tutorials and examples above.
 - Also, ``YCMD:`` and ``COMMAND:`` keywords will work.
-------------------------------------------
+
 ***Making filterscript with d_commands?***
 
 - Well, I have good news for you, because there is also new filterscript support feature. 
