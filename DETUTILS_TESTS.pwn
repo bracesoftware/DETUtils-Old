@@ -7,6 +7,7 @@
 //#define DETUTILS_NO_DISCORDAPI
 #define DETUTILS_ALS_CALL_DEBUG
 #define DISCORD_COMMAND_PREFIX '!'
+#define DETUTILS_FMARGS_FUNCREPLACE
 
 #include <a_samp>
 // Because the standard "discord-connector.inc.in" cannot
