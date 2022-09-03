@@ -10,13 +10,13 @@ SA:MP AntiCheat - basic anti-cheating system used to fight off the most famous h
 
 | SA:MP functions      | Anti-Cheat function   | Description                                                        |
 | -------------------- | -----------------------|------------------------------------------------------------------- |
-| GivePlayerMoney      | saves the money variable        | - Gives a player certain amount of money.                          |
-| SetPlayerSkin        | saves the skin id          | - Sets a certain skin for a certain player.                        |
-| SetPlayerPos         | saves player's position    | - Sets player's position.             |
-| SetPlayerHealth      | saves player's health | - Sets player's health.         |
-| SetPlayerArmour      | saves player's armour | - Sets player's armour.         |
-| ShowPlayerDialog     | saves player's dialog ID shown | - Shows dialog to player.         |
-| ShowMenuForPlayer    | saves player's shown menu ID | - Shows a menu for player. |
+| GivePlayerMoney      | saves the money variable        | Gives a player certain amount of money.                          |
+| SetPlayerSkin        | saves the skin id          | Sets a certain skin for a certain player.                        |
+| SetPlayerPos         | saves player's position    | Sets player's position.             |
+| SetPlayerHealth      | saves player's health | Sets player's health.         |
+| SetPlayerArmour      | saves player's armour | Sets player's armour.         |
+| ShowPlayerDialog     | saves player's dialog ID shown | Shows dialog to player.         |
+| ShowMenuForPlayer    | saves player's shown menu ID | Shows a menu for player. |
 
 ## API (programming interface)
 
