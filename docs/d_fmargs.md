@@ -69,3 +69,30 @@ sscanf do(source, address, args = 1);
 - `source` is a source string to get data from.
 - `address` is an 2D array to assign data to.
 - `args` is a count of given arguments in a string.
+
+## `DETUTILS_FMARGS_FUNCREPLACE`
+This is a compile-time option which tells DETUtils to hook the **fmargs** functions or not. This is really important to note because it:
+- limits the function input only to one line, which means this is impossible to do:
+
+```pawn
+SendClientMessage(
+	playerid,
+	-1,
+	"Message.")
+	;
+```
+- disables the ability of using constants in string arguments, which means this will give a argument mismatch error:
+
+```pawn
+#define MY_CONSTANT "My message!"
+SendClientMessage(playerid, -1, MY_CONSTANT);
+```
+`DETUTILS_FMARGS_FUNCREPLACE` is enabled using:
+```pawn
+#define DETUTILS_FMARGS_FUNCREPLACE
+```
+In case you don't want it, you can still use `d_fmargs` by adding `fmargs_` prefix before using the function:
+```pawn
+fmargs_SendClientMessage(playerid, -1, "Format %i!", somearg);
+```
+Meanwhile, the standard `SendClientMessage` will work just fine.
