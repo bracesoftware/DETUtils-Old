@@ -68,3 +68,25 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit( d_profile_detutilsinit(
 
 forward d_profile_detutilsinit();
+
+// cleanup
+
+public OnDETUtilsExit()
+{
+    UnloadDETUtilsScript(DETUTILS_SCRIPT_PROFILE);
+    if(funcidx("d_profile_detutilsexit") != -1)
+    {
+        CallLocalFunction("d_profile_detutilsexit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsExit
+    #undef OnDETUtilsExit
+#else
+    #define _ALS_OnDETUtilsExit
+#endif
+
+#define OnDETUtilsExit( d_profile_detutilsexit(
+
+forward d_profile_detutilsexit();

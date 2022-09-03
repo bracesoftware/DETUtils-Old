@@ -1328,3 +1328,25 @@ stock __LoadStringVariable(const name[])
 }
 
 #endif
+
+// cleanup
+
+public OnDETUtilsExit()
+{
+    UnloadDETUtilsScript(DETUTILS_SCRIPT_VARS);
+    if(funcidx("d_vars_detutilsexit") != -1)
+    {
+        CallLocalFunction("d_vars_detutilsexit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsExit
+    #undef OnDETUtilsExit
+#else
+    #define _ALS_OnDETUtilsExit
+#endif
+
+#define OnDETUtilsExit( d_vars_detutilsexit(
+
+forward d_vars_detutilsexit();

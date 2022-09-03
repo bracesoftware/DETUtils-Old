@@ -72,3 +72,25 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit( d_factions_detutilsinit(
 
 forward d_factions_detutilsinit();
+
+// cleanup
+
+public OnDETUtilsExit()
+{
+    UnloadDETUtilsScript(DETUTILS_SCRIPT_FACTIONS);
+    if(funcidx("d_factions_detutilsexit") != -1)
+    {
+        CallLocalFunction("d_factions_detutilsexit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsExit
+    #undef OnDETUtilsExit
+#else
+    #define _ALS_OnDETUtilsExit
+#endif
+
+#define OnDETUtilsExit( d_factions_detutilsexit(
+
+forward d_factions_detutilsexit();

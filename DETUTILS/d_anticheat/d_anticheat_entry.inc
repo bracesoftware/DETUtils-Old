@@ -881,6 +881,7 @@ forward d_ac_detutilsinit();
 public OnDETUtilsExit()
 {
 	KillTimer(DET_g_AntiCheatTimer);
+	UnloadDETUtilsScript(DETUTILS_SCRIPT_ANTICHEAT);
 	if(funcidx("d_ac_detutilsexit") != -1)
 	{
 		CallLocalFunction("d_ac_detutilsexit", "");

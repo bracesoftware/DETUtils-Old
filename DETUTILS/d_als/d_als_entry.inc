@@ -70,6 +70,28 @@ public OnDETUtilsInit()
 
 forward d_als_detutilsinit();
 
+// cleanup
+
+public OnDETUtilsExit()
+{
+    UnloadDETUtilsScript(DETUTILS_SCRIPT_ALS);
+    if(funcidx("d_als_detutilsexit") != -1)
+    {
+        CallLocalFunction("d_als_detutilsexit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsExit
+    #undef OnDETUtilsExit
+#else
+    #define _ALS_OnDETUtilsExit
+#endif
+
+#define OnDETUtilsExit( d_als_detutilsexit(
+
+forward d_als_detutilsexit();
+
 /*
 public OnDETUtilsInit()
 {

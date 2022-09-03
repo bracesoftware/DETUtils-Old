@@ -185,6 +185,100 @@ stock void:LoadDETUtilsScript(scriptid)
 	}
 }
 
+stock void:UnloadDETUtilsScript(scriptid)
+{
+	if(scriptid == DETUTILS_SCRIPT_COMMANDS)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_commands.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_commands.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_PROPERTIES)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_properties.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_properties.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_FMARGS)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_fmargs.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_fmargs.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_VISUAL)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_visual.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_visual.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_ANTICHEAT)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_anticheat.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_anticheat.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_MAPEDITOR)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_mapeditor.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_mapeditor.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_FILEQUERIES)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_filequeries.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_filequeries.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_FACTIONS)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_factions.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_factions.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_DIALOG)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_dialog.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_dialog.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_VARS)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_vars.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_vars.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_ALS)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_als.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_als.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_FOREACH)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_foreach.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_foreach.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_TABLES)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_tables.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_tables.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_DISCORDAPI)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_discordapi.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_discordapi.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_PROFILE)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_profile.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_profile.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_TIMERS)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_timers.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_timers.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_PERMISSIONS)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_permissions.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_permissions.inc");
+	}
+	if(scriptid == DETUTILS_SCRIPT_EVENTS)
+	{
+		print("*** [DETUtils]: (module) - Unloaded: d_events.inc");
+		SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_events.inc");
+	}
+}
+
 /*
 																	  
 88888888888                                                           

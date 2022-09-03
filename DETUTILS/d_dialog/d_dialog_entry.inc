@@ -220,3 +220,25 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit( d_dlg_detutilsinit(
 
 forward d_dlg_detutilsinit();
+
+// cleanup
+
+public OnDETUtilsExit()
+{
+    UnloadDETUtilsScript(DETUTILS_SCRIPT_DIALOG);
+    if(funcidx("d_dlg_detutilsexit") != -1)
+    {
+        CallLocalFunction("d_dlg_detutilsexit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsExit
+    #undef OnDETUtilsExit
+#else
+    #define _ALS_OnDETUtilsExit
+#endif
+
+#define OnDETUtilsExit( d_dlg_detutilsexit(
+
+forward d_dlg_detutilsexit();

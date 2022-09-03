@@ -355,3 +355,25 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit( d_fq_detutilsinit(
 
 forward d_fq_detutilsinit();
+
+// cleanup
+
+public OnDETUtilsExit()
+{
+    UnloadDETUtilsScript(DETUTILS_SCRIPT_FILEQUERIES);
+    if(funcidx("d_fq_detutilsexit") != -1)
+    {
+        CallLocalFunction("d_fq_detutilsexit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsExit
+    #undef OnDETUtilsExit
+#else
+    #define _ALS_OnDETUtilsExit
+#endif
+
+#define OnDETUtilsExit( d_fq_detutilsexit(
+
+forward d_fq_detutilsexit();

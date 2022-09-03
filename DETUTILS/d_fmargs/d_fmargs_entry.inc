@@ -932,3 +932,25 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit( d_fmargs_detutilsinit(
 
 forward d_fmargs_detutilsinit();
+
+// cleanup
+
+public OnDETUtilsExit()
+{
+    UnloadDETUtilsScript(DETUTILS_SCRIPT_FMARGS);
+    if(funcidx("d_fmargs_detutilsexit") != -1)
+    {
+        CallLocalFunction("d_fmargs_detutilsexit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsExit
+    #undef OnDETUtilsExit
+#else
+    #define _ALS_OnDETUtilsExit
+#endif
+
+#define OnDETUtilsExit( d_fmargs_detutilsexit(
+
+forward d_fmargs_detutilsexit();

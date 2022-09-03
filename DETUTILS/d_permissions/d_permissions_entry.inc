@@ -210,3 +210,23 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit( d_perm_detutilsinit(
 
 forward d_perm_detutilsinit();
+
+public OnDETUtilsExit()
+{
+	UnloadDETUtilsScript(DETUTILS_SCRIPT_PERMISSIONS);
+	if(funcidx("d_perm_detutilsexit") != -1)
+	{
+		CallLocalFunction("d_perm_detutilsexit", "");
+	}
+	return 1;
+}
+
+#if defined _ALS_OnDETUtilsExit
+	#undef OnDETUtilsExit
+#else
+	#define _ALS_OnDETUtilsExit
+#endif
+
+#define OnDETUtilsExit( d_perm_detutilsexit(
+
+forward d_perm_detutilsexit();

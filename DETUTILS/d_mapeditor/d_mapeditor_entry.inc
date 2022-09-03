@@ -450,3 +450,25 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit( d_me_detutilsinit(
 
 forward d_me_detutilsinit();
+
+// cleanup
+
+public OnDETUtilsExit()
+{
+    UnloadDETUtilsScript(DETUTILS_SCRIPT_MAPEDITOR);
+    if(funcidx("d_me_detutilsexit") != -1)
+    {
+        CallLocalFunction("d_me_detutilsexit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsExit
+    #undef OnDETUtilsExit
+#else
+    #define _ALS_OnDETUtilsExit
+#endif
+
+#define OnDETUtilsExit( d_me_detutilsexit(
+
+forward d_me_detutilsexit();

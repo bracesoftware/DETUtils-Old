@@ -90,3 +90,25 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit( d_events_detutilsinit(
 
 forward d_events_detutilsinit();
+
+// cleanup
+
+public OnDETUtilsExit()
+{
+    UnloadDETUtilsScript(DETUTILS_SCRIPT_EVENTS);
+    if(funcidx("d_events_detutilsexit") != -1)
+    {
+        CallLocalFunction("d_events_detutilsexit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsExit
+    #undef OnDETUtilsExit
+#else
+    #define _ALS_OnDETUtilsExit
+#endif
+
+#define OnDETUtilsExit( d_events_detutilsexit(
+
+forward d_events_detutilsexit();

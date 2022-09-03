@@ -68,3 +68,25 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit( d_dcapi_detutilsinit(
 
 forward d_dcapi_detutilsinit();
+
+// cleanup
+
+public OnDETUtilsExit()
+{
+    UnloadDETUtilsScript(DETUTILS_SCRIPT_DISCORDAPI);
+    if(funcidx("d_dcapi_detutilsexit") != -1)
+    {
+        CallLocalFunction("d_dcapi_detutilsexit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsExit
+    #undef OnDETUtilsExit
+#else
+    #define _ALS_OnDETUtilsExit
+#endif
+
+#define OnDETUtilsExit( d_dcapi_detutilsexit(
+
+forward d_dcapi_detutilsexit();

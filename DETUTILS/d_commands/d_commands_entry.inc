@@ -276,6 +276,29 @@ public OnDETUtilsInit()
 
 forward d_cmd_detutilsinit();
 
+
+// cleanup:
+
+public OnDETUtilsExit()
+{
+	UnloadDETUtilsScript(DETUTILS_SCRIPT_COMMANDS);
+	if(funcidx("d_cmd_detutilsexit") != -1)
+	{
+		CallLocalFunction("d_cmd_detutilsexit", "");
+	}
+	return 1;
+}
+
+#if defined _ALS_OnDETUtilsExit
+	#undef OnDETUtilsExit
+#else
+	#define _ALS_OnDETUtilsExit
+#endif
+
+#define OnDETUtilsExit( d_cmd_detutilsexit(
+
+forward d_cmd_detutilsexit();
+
 /*
 main()
 {

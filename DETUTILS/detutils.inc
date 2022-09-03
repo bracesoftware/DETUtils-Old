@@ -662,9 +662,9 @@ Includes
 
 #if defined __DETUtilsRelease
 
- 	#if __DETUtilsRelease != 0x2
+ 	#if __DETUtilsRelease != 0x3
 
- 		#error [DETUtils]: (release mismatch) - Invalid version release, 0x2 was expected.
+ 		#error [DETUtils]: (release mismatch) - Invalid version release, 0x3 was expected.
 
  	#endif
 
@@ -682,7 +682,7 @@ Includes
 
  	#if __DETUtilsBeta == 1
 
- 		#warning [DETUtils]: (2.0.6-R2) - Codebase is currently under the beta development. Please open an issue on github.com/samp-api/detutils in case of bugs.
+ 		#warning [DETUtils]: (2.0.6-R3) - Codebase is currently under the beta development. Please open an issue on github.com/samp-api/detutils in case of bugs.
 
  	#endif
 

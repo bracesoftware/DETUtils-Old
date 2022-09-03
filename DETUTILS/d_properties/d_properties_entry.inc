@@ -1091,3 +1091,23 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit( d_props_detutilsinit(
 
 forward d_props_detutilsinit();
+
+public OnDETUtilsExit()
+{
+	UnloadDETUtilsScript(DETUTILS_SCRIPT_PROPERTIES);
+	if(funcidx("d_props_detutilsexit") != -1)
+	{
+		CallLocalFunction("d_props_detutilsexit", "");
+	}
+	return 1;
+}
+
+#if defined _ALS_OnDETUtilsExit
+	#undef OnDETUtilsExit
+#else
+	#define _ALS_OnDETUtilsExit
+#endif
+
+#define OnDETUtilsExit( d_props_detutilsexit(
+
+forward d_props_detutilsexit();

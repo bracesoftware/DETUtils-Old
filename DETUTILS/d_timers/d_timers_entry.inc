@@ -81,3 +81,25 @@ public OnDETUtilsInit()
 #define OnDETUtilsInit( d_timers_detutilsinit(
 
 forward d_timers_detutilsinit();
+
+// cleanup
+
+public OnDETUtilsExit()
+{
+    UnloadDETUtilsScript(DETUTILS_SCRIPT_TIMERS);
+    if(funcidx("d_timers_detutilsexit") != -1)
+    {
+        CallLocalFunction("d_timers_detutilsexit", "");
+    }
+    return 1;
+}
+
+#if defined _ALS_OnDETUtilsExit
+    #undef OnDETUtilsExit
+#else
+    #define _ALS_OnDETUtilsExit
+#endif
+
+#define OnDETUtilsExit( d_timers_detutilsexit(
+
+forward d_timers_detutilsexit();
