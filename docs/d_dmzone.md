@@ -59,7 +59,7 @@ public OnDeathMatchZoneDestroy(zoneid, zonename[])
 - Add the player to certain deathmatch zone with a specific weapon set level.
 
 ```pawn
-@command(.type = SLASH_COMMAND) dmleave(playerid, params[])
+@command(.type = SLASH_COMMAND) dmjoin(playerid, params[])
 {
     AddPlayerToDeathMatchZone(playerid, "Insane DeathMatch", 1, 10);
     return 1;
