@@ -6,7 +6,6 @@ SA:MP Properties - an easy way to create custom properties.
 ## How to start to use?
 
 ### Property creation
-------------------------------------------
 To create a property with *d_properties*, make sure you use *CreatePropertyEntrance* function.
 
 Let's see how it works:
@@ -58,11 +57,11 @@ DestroyPropertyEntrance("Property Name");
 **WARNING**: Make sure to provide valid ``INTERIOR_(...)`` ID when creating a property.
 
 ### Property debugging
-------------------------------------------
+
 - Whenever *CreatePropertyEntrance* is called, it automatically sends debug messages in the console.
 
 ### Property callbacks
-------------------------------------------
+
 #### ``public`` OnPropertyCreate
 
 - Called whenever property is created. Example:
@@ -295,11 +294,11 @@ if(IsPropertyLocked(propertyid)) { SendClientMessage(playerid, -1, "Sorry, %s! T
 ## Messages from creator
 
 ### Warnings
-------------------------------------------
+
 - No warnings - yet.
 
 ### Notes
-------------------------------------------
+
 
 ***Making filterscript with d_properties?***
 
