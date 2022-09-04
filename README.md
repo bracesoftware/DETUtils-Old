@@ -36,7 +36,7 @@ Libraries whose contain the new language features.
 - Rewrite of `y_va` and Pawn `sscanf` implementation - [d_fmargs.inc](docs/d_fmargs.md)
 
 ### SA:MP Libraries
-Libraries whose contain the new open.mp functions and features.
+Libraries whose contain the new SA:MP functions and features.
 
 - Edit player SA:MP server permissions - [d_permissions.inc](docs/d_permissions.md) 
 - Command processor with a big amount of features - [d_commands.inc](docs/d_commands.md)
