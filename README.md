@@ -46,7 +46,7 @@ Libraries whose contain the new SA:MP functions and features.
 | [d_commands.inc](docs/d_commands.md) | Command processor with a big amount of features. |
 | [d_properties.inc](docs/d_properties.md) | Create property entrances, with own and custom interiors. |
 | [d_visual.inc](docs/d_visual.md) | Generally smaller groups of random visual features. |
-| d_filequeries.inc](docs/d_filequeries.md) | Send file queries, save and load cache during runtime. |
+| [d_filequeries.inc](docs/d_filequeries.md) | Send file queries, save and load cache during runtime. |
 | [d_anticheat.inc](docs/d_anticheat.md) | Anti cheat system. |
 | [d_mapeditor.inc](docs/d_mapeditor.md) | In-game map editor. |
 | [d_factions.inc](docs/d_factions.md) | Player factions (groups of players) made easy. |
