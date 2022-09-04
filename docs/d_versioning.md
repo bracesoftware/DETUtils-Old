@@ -12,7 +12,7 @@
 
 - So, you were enjoying your **0.0.2-R1** and unfortunately found a bug - you got it fixed - what you do? Increase the release number. So: **0.0.2-R2**. Straight to the point.
 
-- Time is passing and you're maintaining your code and you came up to **0.0.9-R1**. What you do? You set the patch number and release number back to zero, and set the minor update number to **1**. So, version of your code is: **0.1.0-R1**. Same is with major updates, once you reach minor update 9, you should not go to 10, but go to major update **1**.
+- Time is passing and you're maintaining your code and you came up to **0.0.9-R1**. What you do? You set the patch number back to zero and release number back to one, and set the minor update number to **1**. So, version of your code is: **0.1.0-R1**. Same is with major updates, once you reach minor update 9, you should not go to 10, but go to major update **1**.
 
 So basically it all goes like this:
 - 0.0.1-R1
