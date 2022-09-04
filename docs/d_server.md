@@ -8,3 +8,34 @@ SA:MP Server - Generally server-related functions in one library.
 ```pawn
 if(ArePlayerPedAnimsUsed()) printf("Player ped anims are used.");
 ```
+### public `OnPlayerClientCheckReceived`
+```pawn
+public OnPlayerClientCheckReceived(playerid, type, memaddr, memoffset, bytecount)
+{
+	printf("Client check on player id %i started.", playerid);
+	return 1;
+}
+```
+- This callback is called whenever a client check on a certain player starts to perform.
+
+### `IsPlayerUsingPCClient`
+- Checks if the player is using a standard PC client.
+
+### `IsPlayerUsingAndroidClient`
+- Checks if the player is using an Android client.
+
+### `GetPlayerClient`
+- Returns a player client ID.
+
+```c
+#define PLAYER_CLIENT_UNKNOWN -1
+#define PLAYER_CLIENT_ANDROID 0
+#define PLAYER_CLIENT_PC 1
+```
+
+## Notes
+- You can disable Android check features by using:
+
+```pawn
+#define DETUTILS_NO_ANDROID_CHECK
+```
