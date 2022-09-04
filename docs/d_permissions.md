@@ -26,6 +26,9 @@ These are currently available permissions:
 ### `PLAYER_PERMISSION_USEVEHICLES`
 - Toggles the player's ability to enter vehicles.
 
+### `PLAYER_PERMISSION_BUNNYHOP`
+- Toggles the player's ability to do a bunny hop - or use `KEY_JUMP` and `KEY_SPRINT` at the same time.
+
 ## API
 ### `SetPlayerPermissionInteger`
 - You can change player's permission anytime using the following function!
