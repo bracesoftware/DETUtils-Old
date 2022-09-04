@@ -47,6 +47,7 @@ Libraries whose contain the new SA:MP functions and features.
 - In-game map editor - [d_mapeditor.inc](docs/d_mapeditor.md)
 - Player factions (groups of players) made easy - [d_factions.inc](docs/d_factions.md)
 - Better dialogs, faster and easier - [d_dialog.inc](docs/d_dialog.md)
+- Generally server-related functions - [d_server.inc](docs/d_server.md)
 
 ### Discord API Libraries
 Libraries whose contain the new functions for Discord bot development - these are extensions to Discord Connector plugin and they require the plugin to work.
