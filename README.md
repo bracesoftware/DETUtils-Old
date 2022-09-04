@@ -40,21 +40,25 @@ Libraries whose contain the new language features.
 ### SA:MP Libraries
 Libraries whose contain the new SA:MP functions and features.
 
-- Edit player SA:MP server permissions - [d_permissions.inc](docs/d_permissions.md) 
-- Command processor with a big amount of features - [d_commands.inc](docs/d_commands.md)
-- Create property entrances, with own and custom interiors - [d_properties.inc](docs/d_properties.md)
-- Generally smaller groups of random features - [d_visual.inc](docs/d_visual.md)
-- Send file queries, save and load cache during runtime - [d_filequeries.inc](docs/d_filequeries.md)
-- Anti cheat system - [d_anticheat.inc](docs/d_anticheat.md)
-- In-game map editor - [d_mapeditor.inc](docs/d_mapeditor.md)
-- Player factions (groups of players) made easy - [d_factions.inc](docs/d_factions.md)
-- Better dialogs, faster and easier - [d_dialog.inc](docs/d_dialog.md)
-- Generally server-related functions - [d_server.inc](docs/d_server.md)
+| Library      | Description                                                                                |
+| -------------------- | ------------------------------------------------------------------------------------------ |
+| [d_permissions.inc](docs/d_permissions.md)  | Edit player SA:MP server permissions. |
+| [d_commands.inc](docs/d_commands.md) | Command processor with a big amount of features. |
+| [d_properties.inc](docs/d_properties.md) | Create property entrances, with own and custom interiors. |
+| [d_visual.inc](docs/d_visual.md) | Generally smaller groups of random visual features. |
+| d_filequeries.inc](docs/d_filequeries.md) | Send file queries, save and load cache during runtime. |
+| [d_anticheat.inc](docs/d_anticheat.md) | Anti cheat system. |
+| [d_mapeditor.inc](docs/d_mapeditor.md) | In-game map editor. |
+| [d_factions.inc](docs/d_factions.md) | Player factions (groups of players) made easy. |
+| [d_dialog.inc](docs/d_dialog.md) | Better dialogs, faster and easier. |
+| [d_server.inc](docs/d_server.md) | Generally server-related functions. |
 
 ### Discord API Libraries
 Libraries whose contain the new functions for Discord bot development - these are extensions to Discord Connector plugin and they require the plugin to work.
 
-- Addition to the Discord Connector plugin - [d_discordapi.inc](docs/d_discordapi.md)
+| Library      | Description                                                                                |
+| -------------------- | ------------------------------------------------------------------------------------------ |
+| [d_discordapi.inc](docs/d_discordapi.md) | Addition to the Discord Connector plugin. |
 
 --------------------------------------
 
