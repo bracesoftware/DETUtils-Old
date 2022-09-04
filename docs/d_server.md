@@ -39,3 +39,20 @@ public OnPlayerClientCheckReceived(playerid, type, memaddr, memoffset, bytecount
 ```pawn
 #define DETUTILS_NO_ANDROID_CHECK
 ```
+
+### public `OnPlayerClientCheckPerformed`
+- Called after the client check was performed.
+```pawn
+public OnPlayerClientCheckPerformed(playerid, actionid, memaddr, retndata)
+{
+	if(IsPlayerUsingAndroidClient(playerid))
+	{
+		SendClientMessage(playerid, -1, "You are using an Android client!");
+	}
+	if(IsPlayerUsingPCClient(playerid))
+	{
+		SendClientMessage(playerid, -1, "You are using an PC client!");
+	}
+	return 1;
+}
+```
