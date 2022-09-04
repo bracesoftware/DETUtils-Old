@@ -26,14 +26,16 @@ Below is a list of all the libraries provided by the DETUtils package. They're a
 ### Pawn Libraries
 Libraries whose contain the new language features.
 
-- Completely new variable system - [d_vars.inc](docs/d_vars.md)
-- New ALS hooking system - [d_als.inc](docs/d_als.md)
-- New `foreach` implementation - [d_foreach.inc](docs/d_foreach.md)
-- Excel-like management system - [d_tables.inc](docs/d_tables.md)
-- Profile chunks of code - [d_profile.inc](docs/d_profile.md)
-- Automatic and manual timers - [d_timers.inc](docs/d_timers.md)
-- New callback system - [d_events.inc](docs/d_events.md)
-- Rewrite of `y_va` and Pawn `sscanf` implementation - [d_fmargs.inc](docs/d_fmargs.md)
+| Library | Description |
+---------------------------------
+| [d_vars.inc](docs/d_vars.md) | A completely new variable system. |
+| [d_als.inc](docs/d_als.md) | New ALS hooking system. |
+| [d_foreach.inc](docs/d_foreach.md) | New `foreach` implementation. |
+| [d_tables.inc](docs/d_tables.md) | Excel-like table management system. |
+| [d_profile.inc](docs/d_profile.md) | Profile chunks of code. |
+| [d_timers.inc](docs/d_timers.md) | Automatic and manual timers. |
+| [d_events.inc](docs/d_events.md) | A new callback system. |
+| [d_fmargs.inc](docs/d_fmargs.md) | A rewrite of `y_va` and Pawn `sscanf` implementation. |
 
 ### SA:MP Libraries
 Libraries whose contain the new SA:MP functions and features.
