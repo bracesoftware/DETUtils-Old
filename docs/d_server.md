@@ -32,14 +32,6 @@ public OnPlayerClientCheckReceived(playerid, type, memaddr, memoffset, bytecount
 #define PLAYER_CLIENT_ANDROID 0
 #define PLAYER_CLIENT_PC 1
 ```
-
-## Notes
-- You can disable Android check features by using:
-
-```pawn
-#define DETUTILS_NO_ANDROID_CHECK
-```
-
 ### public `OnPlayerClientCheckPerformed`
 - Called after the client check was performed.
 ```pawn
@@ -55,4 +47,11 @@ public OnPlayerClientCheckPerformed(playerid, actionid, memaddr, retndata)
 	}
 	return 1;
 }
+```
+
+## Notes
+- You can disable Android check features by using:
+
+```pawn
+#define DETUTILS_NO_ANDROID_CHECK
 ```
