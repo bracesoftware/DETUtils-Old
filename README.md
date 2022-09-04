@@ -26,8 +26,8 @@ Below is a list of all the libraries provided by the DETUtils package. They're a
 ### Pawn Libraries
 Libraries whose contain the new language features.
 
-| Library | Description |
----------------------------------
+| Library      | Description                                                                                |
+| -------------------- | ------------------------------------------------------------------------------------------ |
 | [d_vars.inc](docs/d_vars.md) | A completely new variable system. |
 | [d_als.inc](docs/d_als.md) | New ALS hooking system. |
 | [d_foreach.inc](docs/d_foreach.md) | New `foreach` implementation. |
