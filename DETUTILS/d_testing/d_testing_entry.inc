@@ -120,22 +120,9 @@ enum Enums
 
 @variable( .datatype = INTEGER, .args = {"Variable4", false, false, 0} ) HandlerName4();
 
-//iterator new MyIterator<10>;
-
 public OnDETUtilsInit() // This should be the last hook.
 {
-	/*iterator init(MyIterator);
-
-	iterator add(MyIterator,1);
-	iterator add(MyIterator,3);
-	iterator add(MyIterator,5);
-	iterator add(MyIterator,0);
-
-	foreach do(new i : MyIterator)
-	{
-		printf("%i", i);
-	}
-
+	/*
 	table Create("accounts", 10, 1);
 	table Preview("accounts");
 	*/
@@ -1243,7 +1230,7 @@ public OnGameModeInit()
 	AddStaticVehicle(560, 844.7139,-1614.3539,13.5391,316.9723, 25, 23);
 	CreateDeathMatchZone("Insane DeathMatch", 844.7139,-1614.3539,13.5391, 825.6589,-1614.8202,13.5469, 811.1299,-1616.0647,13.5469);
 	CreateFaction("Amazing people");
-	SetFactionPermissionInteger("Amazing people", DEFAULT_PLAYER_PERMISSIONS);
+	SetFactionPermissionInteger("Amazing people", PLAYER_PERMISSION_USEVEHICLES | PLAYER_PERMISSION_USECOMMANDS);
 	teleportmenu = CreateMenu("Teleportmenu", 2, 200.0, 100.0, 150.0, 150.0);
 	AddMenuItem(teleportmenu, 0, "LS");
 	AddMenuItem(teleportmenu, 0, "LS");

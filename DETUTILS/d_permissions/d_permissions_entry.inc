@@ -12,12 +12,15 @@
  */
 
 #define DEFAULT_PLAYER_PERMISSIONS \
- (PLAYER_PERMISSION_SENDMESSAGES | PLAYER_PERMISSION_USECOMMANDS | PLAYER_PERMISSION_USEDIALOGS | PLAYER_PERMISSION_USEVEHICLES)
+ (PLAYER_PERMISSION_SENDMESSAGES | PLAYER_PERMISSION_USECOMMANDS | \
+	PLAYER_PERMISSION_USEDIALOGS | PLAYER_PERMISSION_USEVEHICLES | \ 
+	PLAYER_PERMISSION_BUNNYHOP)
 
 #define PLAYER_PERMISSION_SENDMESSAGES 0x1
 #define PLAYER_PERMISSION_USECOMMANDS 0x2
 #define PLAYER_PERMISSION_USEDIALOGS 0x4
 #define PLAYER_PERMISSION_USEVEHICLES 0x8
+#define PLAYER_PERMISSION_BUNNYHOP 0x10
 
 new DET_g_PlayerPermissions[MAX_PLAYERS];
 
@@ -25,7 +28,7 @@ forward OnPlayerPermissionIntegerChange(playerid, oldpermissions, newpermissions
 forward OnPlayerInsufficientPermissions(playerid, missingpermission);
 
 /*
-                                                                                      
+																					  
 88b           d88              88                         db         88888888ba   88  
 888b         d888              ""                        d88b        88      "8b  88  
 88`8b       d8'88                                       d8'`8b       88      ,8P  88  
@@ -34,8 +37,8 @@ forward OnPlayerInsufficientPermissions(playerid, missingpermission);
 88   `8b d8'   88  ,adPPPPP88  88  88       88       d8""""""""8b    88           88  
 88    `888'    88  88,    ,88  88  88       88      d8'        `8b   88           88  
 88     `8'     88  `"8bbdP"Y8  88  88       88     d8'          `8b  88           88  
-                                                                                      
-                                                                                      
+																					  
+																					  
 */
 
 stock SetPlayerPermissionInteger(playerid, permissions)
@@ -173,8 +176,49 @@ public OnPlayerUpdate(playerid)
 
 forward d_perm_playerupdate(playerid);
 
+// BUNNYHOP
+
+public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
+{
+	if(!(PLAYER_PERMISSION_BUNNYHOP & DET_g_PlayerPermissions[playerid]))
+	{
+		if(!IsPlayerInAnyVehicle(playerid) && newkeys & KEY_JUMP && oldkeys & KEY_SPRINT)
+		{
+			CallLocalFunction("OnPlayerInsufficientPermissions",
+				"ii",
+				playerid,
+				PLAYER_PERMISSION_BUNNYHOP);
+
+			TogglePlayerControllable(playerid, false);
+			SetTimerEx("d_perms_playercontrol", 1000, false, "i", playerid);
+			return 1;
+		}
+	}
+	if(funcidx("d_perm_keystatechange") != -1)
+	{
+		CallLocalFunction("d_perm_keystatechange", "iii", playerid, newkeys, oldkeys);
+	}
+	return 1;
+}
+
+forward d_perms_playercontrol(playerid);
+public d_perms_playercontrol(playerid)
+{
+	return TogglePlayerControllable(playerid, true);
+}
+
+#if defined _ALS_OnPlayerKeyStateChange
+	#undef OnPlayerKeyStateChange
+#else
+	#define _ALS_OnPlayerKeyStateChange
+#endif
+
+#define OnPlayerKeyStateChange( d_perm_keystatechange(
+
+forward d_perm_keystatechange(playerid, newkeys, oldkeys);
+
 /*
-                                                                      
+																	  
 88888888888                                                           
 88                          ,d                                        
 88                          88                                        
@@ -183,7 +227,7 @@ forward d_perm_playerupdate(playerid);
 88              )888(       88     88          ,adPPPPP88   `"Y8ba,   
 88            ,d8" "8b,     88,    88          88,    ,88  aa    ]8I  
 88888888888  8P'     `Y8    "Y888  88          `"8bbdP"Y8  `"YbbdP"'  
-                                                                      
+																	  
 
 */
 
