@@ -50,7 +50,7 @@ public OnPlayerClientCheckPerformed(playerid, actionid, memaddr, retndata)
 ```
 
 # `d_server_colours`
-- An extra `d_server` library - read more about it [here](d_server_colours.inc).
+- An extra `d_server` library - read more about it [here](d_server_colours.md).
 
 ## Notes
 - You can disable Android check features by using:
