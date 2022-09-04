@@ -1501,12 +1501,25 @@ public OnPlayerDisconnect(playerid, reason)
 
 */
 
-public OnPlayerClientCheckReceived(playerid)
+public OnPlayerClientCheckReceived(playerid, type, memaddr, memoffset, bytecount)
 {
 	printf("Successfully performed client check on player id %i.", playerid);
 	return 1;
 }
- 
+
+public OnPlayerClientCheckPerformed(playerid, actionid, memaddr, retndata)
+{
+	if(IsPlayerUsingAndroidClient(playerid))
+	{
+		SendClientMessage(playerid, -1, "You are using an Android client!");
+	}
+	if(IsPlayerUsingPCClient(playerid))
+	{
+		SendClientMessage(playerid, -1, "You are using an PC client!");
+	}
+	return 1;
+}
+
 public OnPropertyActionPerformed(playerid, propertyid, actionid)
 {
 	new string[256];

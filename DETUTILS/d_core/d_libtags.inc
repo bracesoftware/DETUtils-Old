@@ -159,89 +159,6 @@ stock _GlobalFileName[MAX_PLAYERS][MAX_PLAYER_NAME];
 
 new const _g_Script = 0;
 
-static _g_Client[MAX_PLAYERS];
-
-#if !defined DETUTILS_NO_ANDROID_CHECK
-
-#if !defined SendClientCheck
-
-	native SendClientCheck(playerid, type, memAddr, memOffset, byteCount);
-
-#endif
-
-
-#if defined OnPlayerClientCheckReceived
-
-	forward OnPlayerClientCheckReceived(playerid);
-
-#endif
-
-public OnPlayerConnect(playerid)
-{
-	_g_Client[playerid] = 0;
-	SendClientCheck(playerid, 0x48, 0, 0, 2);
-	if(funcidx("OnPlayerClientCheckReceived") != -1)
-	{
-		CallLocalFunction("OnPlayerClientCheckReceived", "i", playerid);
-	}
-	if(funcidx("a_lib_OnPlayerConnect") != -1)
-	{
-		#if defined a_lib_OnPlayerConnect
-		a_lib_OnPlayerConnect(playerid);
-		#endif
-	}
-	return 1;
-}
-
-forward OnClientCheckResponse(playerid, actionid, memaddr, retndata);
-
-public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
-{
-	if(actionid == 0x48)
-	{
-		_g_Client[playerid] = 1;
-	}
-	if(funcidx("a_lib_OnClientCheckResponse") != -1)
-	{
-		CallLocalFunction("a_lib_OnClientCheckResponse", "iiii", playerid, actionid, memaddr, retndata);
-	}
-	return 1;
-}
-
-#if defined _ALS_OnPlayerConnect
-	#undef OnPlayerConnect
-#else
-	#define _ALS_OnPlayerConnect
-#endif
-
-#define OnPlayerConnect a_lib_OnPlayerConnect
-
-forward a_lib_OnPlayerConnect(playerid);
-
-#if defined _ALS_OnClientCheckResponse
-	#undef OnClientCheckResponse
-#else
-	#define _ALS_OnClientCheckResponse
-#endif
-
-#define OnClientCheckResponse a_lib_OnClientCheckResponse
-
-forward a_lib_OnClientCheckResponse(playerid, actionid, memaddr, retndata);
-
-stock bool:IsPlayerUsingPCClient(playerid)
-{
-	if(_g_Client[playerid] == 1) return true;
-	return false;
-}
-
-stock bool:IsPlayerUsingAndroidClient(playerid)
-{
-	if(_g_Client[playerid] == 0) return true;
-	return false;
-}
-
-#endif
-
 /*
 																	  
 88888888888                                                           
@@ -265,27 +182,6 @@ stock HidePlayerDialog(playerid)
 }
 
 #endif
-
-new bool:g_PlayerPedAnims = false;
-
-stock d_lib_UsePlayerPedAnims()
-{
-	g_PlayerPedAnims = true;
-	return UsePlayerPedAnims();
-}
-
-stock bool:ArePlayerPedAnimsUsed()
-{
-	return g_PlayerPedAnims;
-}
-
-#if defined _ALS_UsePlayerPedAnims
-	#undef UsePlayerPedAnims
-#else
-	#define _ALS_UsePlayerPedAnims
-#endif
-
-#define UsePlayerPedAnims d_lib_UsePlayerPedAnims
 
 stock _ReturnPlayerName(id) 
 {

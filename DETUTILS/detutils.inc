@@ -604,9 +604,40 @@ Includes
 
 #endif
 /* =============================================================== */
+#if !defined DETUTILS_NO_SERVER
+
+ 	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
+	#include "d_server"
+
+	// Vercheck
+
+	#if !defined DETUTILS_LIBVER_SERVER
+		
+		#error [DETUtils]: (version) - Version not specified.
+	
+	#elseif defined DETUTILS_LIBVER_SERVER
+
+		#if DETUTILS_LIBVER_SERVER != 1
+
+			#error [DETUtils]: (version) - 'd_server.inc' is outdated.
+
+		#endif
+
+	#endif
+
+#else
+
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [DETUtils]: (includes) - Library 'd_server' is disabled.
+
+ 	#endif
+
+#endif
+/* =============================================================== */
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
- && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_FACTIONS \
+ && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_FACTIONS && defined DETUTILS_NO_SERVER \
  && defined DETUTILS_NO_DIALOG && defined DETUTILS_NO_VARS && defined DETUTILS_NO_ALS \
  && defined DETUTILS_NO_FOREACH && defined DETUTILS_NO_TABLES \
  && defined DETUTILS_NO_PROFILE && defined DETUTILS_NO_TIMERS && defined DETUTILS_NO_DISCORDAPI \
@@ -646,9 +677,9 @@ Includes
 
 #if defined __DETUtils
 
- 	#if __DETUtils != 0x206
+ 	#if __DETUtils != 0x207
 
- 		#error [DETUtils]: (version mismatch) - Invalid version, 0x206 was expected.
+ 		#error [DETUtils]: (version mismatch) - Invalid version, 0x207 was expected.
 
  	#endif
 
@@ -662,9 +693,9 @@ Includes
 
 #if defined __DETUtilsRelease
 
- 	#if __DETUtilsRelease != 0x3
+ 	#if __DETUtilsRelease != 0x1
 
- 		#error [DETUtils]: (release mismatch) - Invalid version release, 0x3 was expected.
+ 		#error [DETUtils]: (release mismatch) - Invalid version release, 0x1 was expected.
 
  	#endif
 
@@ -682,7 +713,7 @@ Includes
 
  	#if __DETUtilsBeta == 1
 
- 		#warning [DETUtils]: (2.0.6-R3) - Codebase is currently under the beta development. Please open an issue on github.com/samp-api/detutils in case of bugs.
+ 		#warning [DETUtils]: (beta) - Codebase is currently under the beta development. Please open an issue on github.com/samp-api/detutils in case of bugs.
 
  	#endif
 
