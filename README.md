@@ -100,6 +100,10 @@ Check out test script here:
 
 - Recently, I started test logging program in which I log every library issue I spotted during testing. You can check it [here](docs/d_testlog.md)...
 
+## Versioning
+
+- Read more about DETUtils versioning system [here](docs/d_versioning.md)...
+
 ## More languages
 
 - English isn't the only language on the planet though, that's why I started language contribution program. I started it by making another library's core include called **d_text.inc** in which are all strings located. Your job as a language contributor is to simply translate it!
