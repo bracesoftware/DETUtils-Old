@@ -93,3 +93,6 @@ DETUtils Entry Point - The main file which is included in order to use the DETUt
 
 ### `DETUTILS_FMARGS_FUNCREPLACE`
 - Read more about this compile-time option [here](d_fmargs.md).
+
+### `DETUTILS_NO_ANDROID_CHECK`
+- Disables the `d_server` Android client check features.
