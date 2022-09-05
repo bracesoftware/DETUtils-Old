@@ -11,23 +11,14 @@ SA:MP Permissions - Control your players with new permissions, now with *d_permi
 ## List of permissions
 These are currently available permissions:
 
-### `DEFAULT_PLAYER_PERMISSIONS`
-- The default SA:MP player permissions!
-
-### `PLAYER_PERMISSION_SENDMESSAGES`
-- Toggles the player's ability to send messages in the chat.
-
-### `PLAYER_PERMISSION_USECOMMANDS`
-- Toggles the player's ability to use all of the server commands!
-
-### `PLAYER_PERMISSION_USEDIALOGS`
-- Toggles the player's ability to respond to dialogs.
-
-### `PLAYER_PERMISSION_USEVEHICLES`
-- Toggles the player's ability to enter vehicles.
-
-### `PLAYER_PERMISSION_BUNNYHOP`
-- Toggles the player's ability to do a bunny hop - or use `KEY_JUMP` and `KEY_SPRINT` at the same time.
+| Permission | Description |
+|--------------------------------------|------------------------------------|
+| `DEFAULT_PLAYER_PERMISSIONS` | The default SA:MP player permissions! |
+| `PLAYER_PERMISSION_SENDMESSAGES` | Toggles the player's ability to send messages in the chat. |
+| `PLAYER_PERMISSION_USECOMMANDS` | Toggles the player's ability to use all of the server commands! |
+| `PLAYER_PERMISSION_USEDIALOGS` | Toggles the player's ability to respond to dialogs. |
+| `PLAYER_PERMISSION_USEVEHICLES` | Toggles the player's ability to enter vehicles. |
+| `PLAYER_PERMISSION_BUNNYHOP` | Toggles the player's ability to enter vehicles. |
 
 ## API
 ### `SetPlayerPermissionInteger`
