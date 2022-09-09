@@ -43,7 +43,7 @@ public OnPlayerClientCheckPerformed(playerid, actionid, memaddr, retndata)
 	}
 	if(IsPlayerUsingPCClient(playerid))
 	{
-		SendClientMessage(playerid, -1, "You are using an PC client!");
+		SendClientMessage(playerid, -1, "You are using a PC client!");
 	}
 	return 1;
 }
