@@ -87,7 +87,7 @@ stock void:SaveDETUtilsLog(const message[])
 #define DETUTILS_SCRIPT_SERVER 14
 #define DETUTILS_SCRIPT_PROFILE 15
 #define DETUTILS_SCRIPT_TIMERS 16
-// slot 17 missing here
+#define DETUTILS_SCRIPT_TOML 17
 #define DETUTILS_SCRIPT_PERMISSIONS 18
 #define DETUTILS_SCRIPT_EVENTS 19
 
@@ -188,6 +188,11 @@ stock void:LoadDETUtilsScript(scriptid)
         print("*** [DETUtils]: (module) - Loaded: d_server.inc");
         SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_server.inc");
     }
+    if(scriptid == DETUTILS_SCRIPT_TOML)
+    {
+        print("*** [DETUtils]: (module) - Loaded: d_toml.inc");
+        SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_toml.inc");
+    }
 }
 
 stock void:UnloadDETUtilsScript(scriptid)
@@ -286,6 +291,11 @@ stock void:UnloadDETUtilsScript(scriptid)
     {
         print("*** [DETUtils]: (module) - Unloaded: d_server.inc");
         SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_server.inc");
+    }
+    if(scriptid == DETUTILS_SCRIPT_TOML)
+    {
+        print("*** [DETUtils]: (module) - Unloaded: d_toml.inc");
+        SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_toml.inc");
     }
 }
 

@@ -635,11 +635,42 @@ Includes
 
 #endif
 /* =============================================================== */
+#if !defined DETUTILS_NO_TOML
+
+ 	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
+	#include "d_toml"
+
+	// Vercheck
+
+	#if !defined DETUTILS_LIBVER_TOML
+		
+		#error [DETUtils]: (version) - Version not specified.
+	
+	#elseif defined DETUTILS_LIBVER_TOML
+
+		#if DETUTILS_LIBVER_TOML != 1
+
+			#error [DETUtils]: (version) - 'd_toml.inc' is outdated.
+
+		#endif
+
+	#endif
+
+#else
+
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [DETUtils]: (includes) - Library 'd_toml' is disabled.
+
+ 	#endif
+
+#endif
+/* =============================================================== */
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
  && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_FACTIONS && defined DETUTILS_NO_SERVER \
  && defined DETUTILS_NO_DIALOG && defined DETUTILS_NO_VARS && defined DETUTILS_NO_ALS \
- && defined DETUTILS_NO_FOREACH && defined DETUTILS_NO_TABLES \
+ && defined DETUTILS_NO_FOREACH && defined DETUTILS_NO_TABLES && defined DETUTILS_NO_TOML \
  && defined DETUTILS_NO_PROFILE && defined DETUTILS_NO_TIMERS && defined DETUTILS_NO_DISCORDAPI \
  && defined DETUTILS_NO_PERMISSIONS && defined DETUTILS_NO_EVENTS
 
