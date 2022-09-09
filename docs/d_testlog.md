@@ -79,8 +79,8 @@
 ----------------------------------------
 ## Test no. 1 - 9 Sep 2022
 
-- Tested by: DEntisT-ofc
-- Version: 2.0.2-R5
+- Tested by: DEntisT
+- Version: 2.0.7-R1
 
 ## Anti-cheat issues
 
