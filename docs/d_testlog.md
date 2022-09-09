@@ -80,7 +80,7 @@
 ## Test no. 1 - 9 Sep 2022
 
 - Tested by: DEntisT
-- Version: 2.0.7-R1
+- Version: 2.0.7-R1-pre
 
 ## Anti-cheat issues
 
@@ -93,5 +93,21 @@
 ### Fixes
 
 - Everything at a glance!
+
+----------------------------------------
+## Test no. 2 - 9 Sep 2022
+
+- Tested by: DEntisT
+- Version: 2.0.7-R1-pre
+
+## Anti-cheat issues
+
+- Health and armour anti-cheat is not working correctly.
+
+
+### Fixes
+
+- Everything at a glance!
+- Previously mentioned crashes are fixed.
 
 ----------------------------------------
