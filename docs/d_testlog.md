@@ -77,3 +77,21 @@
 - Everything at a glance!
 
 ----------------------------------------
+## Test no. 1 - 9 Sep 2022
+
+- Tested by: DEntisT-ofc
+- Version: 2.0.2-R5
+
+## Anti-cheat issues
+
+- Health and armour anti-cheat is not working correctly.
+
+## Server crashes
+
+- Unexpected and unknown crashes are occuring. They weren't a thing a week ago.
+
+### Fixes
+
+- Everything at a glance!
+
+----------------------------------------
