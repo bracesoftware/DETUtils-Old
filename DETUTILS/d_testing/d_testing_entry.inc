@@ -1372,34 +1372,42 @@ DETUTILS Command:tp(playerid, params[])
 
 public OnPlayerConnect(playerid)
 {
+	print("TESTING ONPC 1 CALLED");
 	SetPlayerPermissionInteger(playerid, DEFAULT_PLAYER_PERMISSIONS);
-	if(!IsPlayerUsingAndroidClient(playerid)) return SendClientMessage(playerid, -1, "You're using a computer to play SA:MP, great!");
+	//if(!IsPlayerUsingAndroidClient(playerid)) return SendClientMessage(playerid, -1, "You're using a computer to play SA:MP, great!");
 	SetSpawnInfo(playerid, 0, 0, 811.1299,-1616.0647,13.5469, 0, 0,0,0,0,0,0);
 	//SpawnPlayer(playerid);
+	print("TESTING ONPC 2 CALLED");
 	new LoadQuery[32], SaveQuery[32], file[32];
 	format(LoadQuery, 32, "%s_LOAD", ReturnPlayerName(playerid));
 	format(SaveQuery, 32, "%s_SAVE", ReturnPlayerName(playerid));
 	format(file, 32, "%s.ini", ReturnPlayerName(playerid));
+	print("TESTING ONPC 3 CALLED");
 	CreateQuery(SaveQuery, QUERY_TYPE_SAVE, "Users", file); // Create a query which will save cache
 	CreateQuery(LoadQuery, QUERY_TYPE_LOAD, "Users", file); // Create a query which will load data
-	
+	print("TESTING ONPC 4 CALLED");
 	if(QueryFileExist(SaveQuery)) // Check if the query file exists.... (Users/DEntisT.ini)
 	{
 		new content[1024]; // var in which the content will be stored
 		FormatQuery(LoadQuery, "LOAD *"); // format the file query
 		SendQuery(LoadQuery); // send it
+		print("TESTING ONPC 5 CALLED");
 		GetLoadedQueryContent(LoadQuery, content); // After the LOAD query was sent, we need to get the content of the data.
 		SendClientMessage(playerid, -1, "Loaded query file content: %s", content); // For debugging purposes
 		new array[3][64]; // declare this array for PARSING
+		print("TESTING ONPC 6 CALLED");
 		ParseQueryContent(content, array); // Parse the content
+		print("TESTING ONPC 7 CALLED");
 		strmid(PlayerCache[playerid][password], array[0]); // Get the password 
 		PlayerCache[playerid][money] = strval(array[1]); // Get the money
 		PlayerCache[playerid][admin] = strval(array[2]); // Get the admin boolean
+		print("TESTING ONPC 8 CALLED");
 		ShowPlayerDialog(playerid, 100, DIALOG_STYLE_INPUT, 
 			"Login", "Please log in. Password:", "OK","Cancel"); // Show the login dialog
 	}
 	else if(!QueryFileExist(SaveQuery)) // If the player is not registered.
 	{
+		print("TESTING ONPC 9 CALLED");
 		ShowPlayerDialog(playerid, 101, DIALOG_STYLE_INPUT, 
 			"Register", "Please register. Wanted password:", "OK","Cancel"); // show the register dialog
 	}
@@ -1414,6 +1422,7 @@ public OnFileQuerySend(directory[], file[], query[], type)
 
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
+	print("TESTING DIALOG RESP CALLED");
 	new SaveQuery[32];
 	format(SaveQuery, 32, "%s_SAVE", ReturnPlayerName(playerid));
 	if(dialogid == 100) // Check if it is login dialog
@@ -1452,6 +1461,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 public OnPlayerDisconnect(playerid, reason)
 {
+	print("TESTING DISCONNECT CALLED");
 	new SaveQuery[32];
 	format(SaveQuery, 32, "%s_SAVE", ReturnPlayerName(playerid));
 	new LoadQuery[32];

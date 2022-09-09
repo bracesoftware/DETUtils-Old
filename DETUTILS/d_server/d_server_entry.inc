@@ -95,9 +95,7 @@ public OnPlayerConnect(playerid)
 	SendClientCheck(playerid, 0x48, 0, 0, 2);
 	if(funcidx("d_svr_OnPlayerConnect") != -1)
 	{
-		#if defined d_svr_OnPlayerConnect
-		d_svr_OnPlayerConnect(playerid);
-		#endif
+		CallLocalFunction("d_svr_OnPlayerConnect", "i", playerid);
 	}
 	return 1;
 }
