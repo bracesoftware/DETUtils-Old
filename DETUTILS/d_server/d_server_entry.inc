@@ -91,7 +91,7 @@ forward OnPlayerClientCheckPerformed(playerid, actionid, memaddr, retndata);
 
 public OnPlayerConnect(playerid)
 {
-	DET_g_Client[playerid] = 0;
+	DET_g_Client[playerid] = PLAYER_CLIENT_UNKNOWN;
 	SendClientCheck(playerid, 0x48, 0, 0, 2);
 	if(funcidx("d_svr_OnPlayerConnect") != -1)
 	{
@@ -119,7 +119,14 @@ public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
 {
 	if(actionid == 0x48)
 	{
-		DET_g_Client[playerid] = 1;
+		if(memaddr == 0) 
+		{
+			DET_g_Client[playerid] = PLAYER_CLIENT_ANDROID;
+		}
+		else if(memaddr != 0)
+		{
+			DET_g_Client[playerid] = PLAYER_CLIENT_PC;
+		}
 	}
 	if(funcidx("OnPlayerClientCheckPerformed") != -1)
 	{

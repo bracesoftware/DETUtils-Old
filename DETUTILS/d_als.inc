@@ -18,7 +18,7 @@
 
 #if defined __DETUTILS_INTERNAL_ALS_INC
 
- 	#endinput
+    #endinput
 
 #endif
 

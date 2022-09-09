@@ -26,13 +26,13 @@
 
 #if defined A_INTS_COMPATIBILITY_MODE || defined A_CMDS_COMPATIBILITY_MODE
 
-	#define DETUTILS_COMPATIBILITY_MODE
+    #define DETUTILS_COMPATIBILITY_MODE
 
 #endif
 
 #if defined DETUTILS_COMPATIBILITY_MODE || defined detutils_complete_error_boom
 
-	#error [DETUtils]: (fatal error) - crl :: Stop messing with the core libraries!
+    #error [DETUtils]: (fatal error) - crl :: Stop messing with the core libraries!
 
 #endif
 
@@ -43,19 +43,19 @@
 
 #if !defined DETUTILS_NO_COMPILEFIX
 
-	#include "d_compilefix" // Add compile options
+    #include "d_compilefix" // Add compile options
 
 #endif//#include "d_funcgen"
 #include "d_thirdpartyinclude" //_INC_code_parse_inc
 
 #if !defined __PawnBuild
 
-	#error [DETUtils]: (fatal error) - DETUtils require community Pawn compiler. Get it from: github.com/pawn-lang/compiler
+    #error [DETUtils]: (fatal error) - DETUtils require community Pawn compiler. Get it from: github.com/pawn-lang/compiler
 
 #endif
 
 #if defined d_extra_included
-	#endinput
+    #endinput
 #endif
 
 #define d_extra_included
@@ -64,12 +64,12 @@
 
 #if defined DETUTILS_DEBUG_MODE
 
-	#pragma warning disable 231
+    #pragma warning disable 231
 
 #endif
 
 /*
-												
+                                                
 88888888ba,                                     
 88      `"8b                 ,d                 
 88        `8b                88                 
@@ -78,16 +78,16 @@
 88         8P  ,adPPPPP88    88     ,adPPPPP88  
 88      .a8P   88,    ,88    88,    88,    ,88  
 88888888Y"'    `"8bbdP"Y8    "Y888  `"8bbdP"Y8  
-												
+                                                
 */
 
 #define COLOUR_GREY "{B9C9BF}"
 
 stock d_SendWarningMessage(playerid, const string[])
 {
-	new message[300];
-	format(message, 300, ""COLOUR_GREY"Warning: [DETUtils]: (debug) - %s", string);
-	return SendClientMessage(playerid, -1, message);
+    new message[300];
+    format(message, 300, ""COLOUR_GREY"Warning: [DETUtils]: (debug) - %s", string);
+    return SendClientMessage(playerid, -1, message);
 }
 
 #define detutils_visual_TRUE
@@ -126,27 +126,27 @@ new Text:g_AnnouncementUsebox;
 
 stock _CallFunction(const func[], const spec[], id)
 {
-	new funcname[100];
-	format(funcname, 100, "DETUTILS@%s", func);
-	return CallLocalFunction(funcname, spec, id);
+    new funcname[100];
+    format(funcname, 100, "DETUTILS@%s", func);
+    return CallLocalFunction(funcname, spec, id);
 }
 
 stock _SetTimer(const func[], delay, bool:a, const spec[], id)
 {
-	new funcname[100];
-	format(funcname, 100, "DETUTILS@%s", func);
-	return SetTimerEx(funcname, delay, a, spec, id);
+    new funcname[100];
+    format(funcname, 100, "DETUTILS@%s", func);
+    return SetTimerEx(funcname, delay, a, spec, id);
 }
 
 #if !defined OnPlayerCommandReceived
 
-	forward OnPlayerCommandReceived(playerid, cmdtext[]);
+    forward OnPlayerCommandReceived(playerid, cmdtext[]);
 
 #endif
 
 #if !defined OnPlayerCommandPerformed
 
-	forward OnPlayerCommandPerformed(playerid, cmdtext[], success);
+    forward OnPlayerCommandPerformed(playerid, cmdtext[], success);
 
 #endif
 
@@ -155,12 +155,12 @@ stock _Functionid;
 stock _GlobalFileName[MAX_PLAYERS][MAX_PLAYER_NAME];
 
 #define _FormatPlayerDatabaseFileName(%0) \
-	format(_GlobalFileName[%0],MAX_PLAYER_NAME,"%s.ini",ReturnPlayerName(%0))
+    format(_GlobalFileName[%0],MAX_PLAYER_NAME,"%s.ini",ReturnPlayerName(%0))
 
 new const _g_Script = 0;
 
 /*
-																	  
+                                                                      
 88888888888                                                           
 88                          ,d                                        
 88                          88                                        
@@ -169,7 +169,7 @@ new const _g_Script = 0;
 88              )888(       88     88          ,adPPPPP88   `"Y8ba,   
 88            ,d8" "8b,     88,    88          88,    ,88  aa    ]8I  
 88888888888  8P'     `Y8    "Y888  88          `"8bbdP"Y8  `"YbbdP"'  
-																	  
+                                                                      
 
 */
 
@@ -177,57 +177,57 @@ new const _g_Script = 0;
 
 stock HidePlayerDialog(playerid)
 {
-	ShowPlayerDialog(playerid, -1, 1, @DETUTILSSTRING_NULL__4);
-	return 1;
+    ShowPlayerDialog(playerid, -1, 1, @DETUTILSSTRING_NULL__4);
+    return 1;
 }
 
 #endif
 
 stock _ReturnPlayerName(id) 
 {
-	new player_name[MAX_PLAYER_NAME];
-	GetPlayerName(id, player_name, sizeof player_name);
-	return player_name;
+    new player_name[MAX_PLAYER_NAME];
+    GetPlayerName(id, player_name, sizeof player_name);
+    return player_name;
 }
 
 stock SaveLogIntoFile(const filename[], const message[]) 
 {
-	return 1;
+    return 1;
 }
 
 #if !defined __SAMPStdLib
 
 stock strtok(const string[], &index, delimiter = ' ') {
-	new length = strlen(string);
-	while ((index < length) && (string[index] <= delimiter)) {
-		index++;
-	}
-	new offset = index;
-	new result[128];
-	while ((index < length) && (string[index] > delimiter) && ((index - offset) < (sizeof(result) - 1))) {
-		result[index - offset] = string[index];
-		index++;
-	}
-	result[index - offset] = EOS;
-	return result;
+    new length = strlen(string);
+    while ((index < length) && (string[index] <= delimiter)) {
+        index++;
+    }
+    new offset = index;
+    new result[128];
+    while ((index < length) && (string[index] > delimiter) && ((index - offset) < (sizeof(result) - 1))) {
+        result[index - offset] = string[index];
+        index++;
+    }
+    result[index - offset] = EOS;
+    return result;
 }
 
 stock strrest(const string[], &index)
 {
-	new length = strlen(string);
-	while ((index < length) && (string[index] <= ' '))
-	{
-		index++;
-	}
-	new offset = index;
-	new result[128];
-	while ((index < length) && ((index - offset) < (sizeof(result) - 1)))
-	{
-		result[index - offset] = string[index];
-		index++;
-	}
-	result[index - offset] = EOS;
-	return result;
+    new length = strlen(string);
+    while ((index < length) && (string[index] <= ' '))
+    {
+        index++;
+    }
+    new offset = index;
+    new result[128];
+    while ((index < length) && ((index - offset) < (sizeof(result) - 1)))
+    {
+        result[index - offset] = string[index];
+        index++;
+    }
+    result[index - offset] = EOS;
+    return result;
 }
 
 #endif

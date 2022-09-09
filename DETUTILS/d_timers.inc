@@ -19,7 +19,7 @@
 
 #if defined __DETUTILS_INTERNAL_TIMERS_INC
 
- 	#endinput
+    #endinput
 
 #endif
 

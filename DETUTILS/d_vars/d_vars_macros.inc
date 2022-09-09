@@ -48,16 +48,16 @@
 //varfunc DeclareString(const name[], constant, const constvalue[])
 
 #define @DETUTILSVARS_DECORT__@INTEGER%1,%2.args%3=%4{%5}%6)%0(%7); \
-	@DETVAR_%0();@DETVAR_%0() {return DET_gV_DeclareInteger(%5);}
+    @DETVAR_%0();@DETVAR_%0() {return DET_gV_DeclareInteger(%5);}
 
 #define @DETUTILSVARS_DECORT__@BOOLEAN%1,%2.args%3=%4{%5}%6)%0(%7); \
-	@DETVAR_%0();@DETVAR_%0() {return DET_gV_DeclareBoolean(%5);}
+    @DETVAR_%0();@DETVAR_%0() {return DET_gV_DeclareBoolean(%5);}
 
 #define @DETUTILSVARS_DECORT__@FLOAT%1,%2.args%3=%4{%5}%6)%0(%7); \
-	@DETVAR_%0();@DETVAR_%0() {return DET_gV_DeclareFloat(%5);}
+    @DETVAR_%0();@DETVAR_%0() {return DET_gV_DeclareFloat(%5);}
 
 #define @DETUTILSVARS_DECORT__@STRING%1,%2.args%3=%4{%5}%6)%0(%7); \
-	@DETVAR_%0();@DETVAR_%0() {return DET_gV_DeclareString(%5);}
+    @DETVAR_%0();@DETVAR_%0() {return DET_gV_DeclareString(%5);}
 
 // get Integer("Variable");
 #define @DETUTILSVARS_GET__@Integer%1(%0) __GetIntegerValue(%0)

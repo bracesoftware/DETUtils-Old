@@ -12,7 +12,7 @@
  */
 
 #if !defined DISCORD_COMMAND_PREFIX
- 	#error [DETUtils]: (error) - Discord Command prefix is not defined. Please do: `#define DISCORD_COMMAND_PREFIX '!'`
+    #error [DETUtils]: (error) - Discord Command prefix is not defined. Please do: `#define DISCORD_COMMAND_PREFIX '!'`
 #endif
 
 /*
@@ -31,35 +31,35 @@
 
 public DCC_OnMessageCreate(DCC_Message:message)
 {
-	new DCC_User:author, 
-		DCC_Channel:channel, 
-		DCC_Guild:guild, 
-		content[1024];
+    new DCC_User:author, 
+        DCC_Channel:channel, 
+        DCC_Guild:guild, 
+        content[1024];
 
-	DCC_GetMessageAuthor(message, author);
-	DCC_GetMessageChannel(message, channel);
-	DCC_GetMessageContent(message, content);
-	DCC_GetChannelGuild(channel, guild);
+    DCC_GetMessageAuthor(message, author);
+    DCC_GetMessageChannel(message, channel);
+    DCC_GetMessageContent(message, content);
+    DCC_GetChannelGuild(channel, guild);
 
-	if(content[0] == DISCORD_COMMAND_PREFIX)
-	{
-		new component[2][1024];
-		sscanf do(content, component, 2); // using d_fmargs.inc
+    if(content[0] == DISCORD_COMMAND_PREFIX)
+    {
+        new component[2][1024];
+        sscanf do(content, component, 2); // using d_fmargs.inc
 
-		strdel(component[0], 0, 1); //delete the prefix
-		new cmdname[32];
-		format(cmdname, sizeof cmdname, "dccmd_%s", component[0]);
+        strdel(component[0], 0, 1); //delete the prefix
+        new cmdname[32];
+        format(cmdname, sizeof cmdname, "dccmd_%s", component[0]);
 
-		CallLocalFunction(cmdname, "iiiis", 
-			_:guild, 
-			_:channel, 
-			_:message, 
-			_:author, 
-			component[1]);
+        CallLocalFunction(cmdname, "iiiis", 
+            _:guild, 
+            _:channel, 
+            _:message, 
+            _:author, 
+            component[1]);
 
-		#if defined DETUTILS_DEBUG_MODE
-		printf("[DETUtils]: (debug) - cmdinfo :: Command function: '%s' : command arguments: '%s'", cmdname, component[1]);
-		#endif
-	}
-	return 1;
+        #if defined DETUTILS_DEBUG_MODE
+        printf("[DETUtils]: (debug) - cmdinfo :: Command function: '%s' : command arguments: '%s'", cmdname, component[1]);
+        #endif
+    }
+    return 1;
 }

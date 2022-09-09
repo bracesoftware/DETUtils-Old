@@ -12,8 +12,8 @@
  */
 
 #if !defined dcconnector_included
- 	#warning [DETUtils]: (warning) - Discord Connector plugin is missing, the 'd_discordapi.inc' library was automatically disabled.
- 	#endinput
+    #warning [DETUtils]: (warning) - Discord Connector plugin is missing, the 'd_discordapi.inc' library was automatically disabled.
+    #endinput
 #endif
 
 #include "d_discordapi_macros"
@@ -51,18 +51,18 @@
 
 public OnDETUtilsInit()
 {
-	LoadDETUtilsScript(DETUTILS_SCRIPT_DISCORDAPI);
-	if(funcidx("d_dcapi_detutilsinit") != -1)
-	{
-		CallLocalFunction("d_dcapi_detutilsinit", "");
-	}
-	return 1;
+    LoadDETUtilsScript(DETUTILS_SCRIPT_DISCORDAPI);
+    if(funcidx("d_dcapi_detutilsinit") != -1)
+    {
+        CallLocalFunction("d_dcapi_detutilsinit", "");
+    }
+    return 1;
 }
 
 #if defined _ALS_OnDETUtilsInit
-	#undef OnDETUtilsInit
+    #undef OnDETUtilsInit
 #else
-	#define _ALS_OnDETUtilsInit
+    #define _ALS_OnDETUtilsInit
 #endif
 
 #define OnDETUtilsInit( d_dcapi_detutilsinit(

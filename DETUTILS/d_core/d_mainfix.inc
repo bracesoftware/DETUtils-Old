@@ -13,7 +13,7 @@
 
 #if defined d_mainfix_included
 
- 	#endscript
+    #endscript
 
 #endif
 
@@ -29,7 +29,7 @@ Code
 
 public OnFilterScriptInit()
 {
-	main();
+    main();
     if(funcidx("a_mainfix_fsinit") != -1)
     {
         CallLocalFunction("a_mainfix_fsinit", "");
@@ -50,7 +50,7 @@ forward a_mainfix_fsinit();
 
 main()
 {
-	#if defined DETUTILS_DEBUG_MODE_MODE
+    #if defined DETUTILS_DEBUG_MODE_MODE
     SendRconCommand("hostname [DETUtils]: (test) - Server");
     SetGameModeText("SA:MP | DET-Utils");
     #endif
@@ -69,7 +69,7 @@ main()
 /*
 main()
 {
-	#if defined DETUTILS_DEBUG_MODE_MODE
+    #if defined DETUTILS_DEBUG_MODE_MODE
     SendRconCommand("hostname [DETUtils]: (test) - Server");
     SetGameModeText("SA:MP | DET-Utils");
     #endif

@@ -30,7 +30,7 @@
 #if defined __DETUTILS_DEFAULT_ITERATORS
 #if !defined MAX_DIALOGS
 
-	#define MAX_DIALOGS 37000
+    #define MAX_DIALOGS 37000
 
 #endif
 
@@ -40,23 +40,23 @@ iterator new NPC<MAX_PLAYERS>;
 
 public OnPlayerConnect(playerid)
 {
-	iterator add(Player, playerid);
-	if(IsPlayerNPC(playerid))
-	{
-		iterator remove(Player, playerid);
-		iterator add(NPC, playerid);
-	}
-	if(funcidx("d_fr_playerconnect") != -1)
-	{
-		CallLocalFunction("d_fr_playerconnect", "i", playerid);
-	}
-	return 1;
+    iterator add(Player, playerid);
+    if(IsPlayerNPC(playerid))
+    {
+        iterator remove(Player, playerid);
+        iterator add(NPC, playerid);
+    }
+    if(funcidx("d_fr_playerconnect") != -1)
+    {
+        CallLocalFunction("d_fr_playerconnect", "i", playerid);
+    }
+    return 1;
 }
 
 #if defined _ALS_OnPlayerConnect
-	#undef OnPlayerConnect
+    #undef OnPlayerConnect
 #else
-	#define _ALS_OnPlayerConnect
+    #define _ALS_OnPlayerConnect
 #endif
 
 #define OnPlayerConnect( d_fr_playerconnect(
@@ -65,19 +65,19 @@ forward d_fr_playerconnect(playerid);
 
 public OnPlayerDisconnect(playerid, reason)
 {
-	if(!IsPlayerNPC(playerid)) iterator remove(Player, playerid);
-	if(IsPlayerNPC(playerid)) iterator remove(NPC, playerid);
-	if(funcidx("d_fr_playerdisconnect") != -1)
-	{
-		CallLocalFunction("d_fr_playerdisconnect", "ii", playerid, reason);
-	}
-	return 1;
+    if(!IsPlayerNPC(playerid)) iterator remove(Player, playerid);
+    if(IsPlayerNPC(playerid)) iterator remove(NPC, playerid);
+    if(funcidx("d_fr_playerdisconnect") != -1)
+    {
+        CallLocalFunction("d_fr_playerdisconnect", "ii", playerid, reason);
+    }
+    return 1;
 }
 
 #if defined _ALS_OnPlayerDisconnect
-	#undef OnPlayerDisconnect
+    #undef OnPlayerDisconnect
 #else
-	#define _ALS_OnPlayerDisconnect
+    #define _ALS_OnPlayerDisconnect
 #endif
 
 #define OnPlayerDisconnect( d_fr_playerdisconnect(
@@ -109,35 +109,35 @@ iterator new Dialog<MAX_DIALOGS>;
 
 public OnDETUtilsInit()
 {
-	#if defined __DETUTILS_DEFAULT_ITERATORS
-	// Iterator initialisation is IMPORTANT.
-	iterator init(Player);
-	iterator init(NPC);
-	iterator init(Vehicle);
-	iterator init(PlayerTextDraw);
-	iterator init(TextDraw);
-	iterator init(Object);
-	iterator init(Menu);
-	iterator init(Pickup);
-	iterator init(Dialog);
-	#endif
+    #if defined __DETUTILS_DEFAULT_ITERATORS
+    // Iterator initialisation is IMPORTANT.
+    iterator init(Player);
+    iterator init(NPC);
+    iterator init(Vehicle);
+    iterator init(PlayerTextDraw);
+    iterator init(TextDraw);
+    iterator init(Object);
+    iterator init(Menu);
+    iterator init(Pickup);
+    iterator init(Dialog);
+    #endif
 
-	#if defined DETUTILS_DEBUG_MODE
-	SaveLogIntoFile("detutils_foreach.log", "[DETUtils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_foreach.log", "[DETUtils]: (debug) - Loaded.");
-	#endif
-	LoadDETUtilsScript(DETUTILS_SCRIPT_FOREACH);
-	if(funcidx("d_fr_detutilsinit") != -1)
-	{
-		CallLocalFunction("d_fr_detutilsinit", "");
-	}
-	return 1;
+    #if defined DETUTILS_DEBUG_MODE
+    SaveLogIntoFile("detutils_foreach.log", "[DETUtils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_foreach.log", "[DETUtils]: (debug) - Loaded.");
+    #endif
+    LoadDETUtilsScript(DETUTILS_SCRIPT_FOREACH);
+    if(funcidx("d_fr_detutilsinit") != -1)
+    {
+        CallLocalFunction("d_fr_detutilsinit", "");
+    }
+    return 1;
 }
 
 #if defined _ALS_OnDETUtilsInit
-	#undef OnDETUtilsInit
+    #undef OnDETUtilsInit
 #else
-	#define _ALS_OnDETUtilsInit
+    #define _ALS_OnDETUtilsInit
 #endif
 
 #define OnDETUtilsInit( d_fr_detutilsinit(

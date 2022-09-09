@@ -34,12 +34,12 @@
 #define @d_ret_%0\32; @d_ret_ 
 
 #define DeferTask%0(%1,%2) \
-	SetTimerEx("@d_tmr_"%1,CallLocalFunction("@d_tint_"%1,""),CallLocalFunction("@d_trpt_"%1,""),%2)
+    SetTimerEx("@d_tmr_"%1,CallLocalFunction("@d_tint_"%1,""),CallLocalFunction("@d_trpt_"%1,""),%2)
 
 #define @DETUTILSTIMERS_KWORD__@AUTOMATIC%0,%3.interval%4=%5)%1(%2) \
-	@DETUTILSFUNCGEN$d_t_int..%2$;@DETUTILSFUNCGEN$d_t_int..%2$ return %5;\
-	@DETUTILSFUNCGEN$d_timerid..%2$;@DETUTILSFUNCGEN$d_timerid..%2$
+    @DETUTILSFUNCGEN$d_t_int..%2$;@DETUTILSFUNCGEN$d_t_int..%2$ return %5;\
+    @DETUTILSFUNCGEN$d_timerid..%2$;@DETUTILSFUNCGEN$d_timerid..%2$
 
 #define @DETUTILSTIMERS_KWORD__@MANUAL%0,%3.interval%4=%5,%6.repeating%7=%8)%1(%2) \
-	@d_trpt_%1();@d_trpt_%1() return %8;@d_tint_%1();@d_tint_%1() return %5; \
-	@d_tmr_%1(%2);@d_tmr_%1(%2)
+    @d_trpt_%1();@d_trpt_%1() return %8;@d_tint_%1();@d_tint_%1() return %5; \
+    @d_tmr_%1(%2);@d_tmr_%1(%2)

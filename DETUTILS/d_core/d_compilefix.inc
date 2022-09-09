@@ -14,22 +14,22 @@
 
 #if !defined DETUTILS_NO_COMPILE_FIX
 
- 	// THIS IS REALLY IMPORTANT!
- 	// NOTE: This is a HACK, don't remove this:
-	#pragma option -;+
+    // THIS IS REALLY IMPORTANT!
+    // NOTE: This is a HACK, don't remove this:
+    #pragma option -;+
 
- 	#if defined DETUTILS_DO_LST
+    #if defined DETUTILS_DO_LST
 
- 		#pragma option -l
+        #pragma option -l
 
- 	#endif
+    #endif
 
 #elseif defined DETUTILS_NO_COMPILE_FIX
 
- 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+    #if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [DETUtils]: (warning) - Internal library 'd_compilefix.inc' is disabled.
+        #warning [DETUtils]: (warning) - Internal library 'd_compilefix.inc' is disabled.
 
- 	#endif
+    #endif
 
 #endif

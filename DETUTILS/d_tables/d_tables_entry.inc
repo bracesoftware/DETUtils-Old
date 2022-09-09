@@ -33,7 +33,7 @@ Simple preview
 
 Preview of: test
 ----------------------------------
-	Dentist | Bozo | xd
+    Dentist | Bozo | xd
 ----------------------------------
 money | 1000 | 1000 | 1000
 ----------------------------------
@@ -46,132 +46,132 @@ pw | retardedcosmos | ahahahah | ex
 
 stock __SetColumnAmount(const __table[], value)
 {
-	new file_name[150], valstring[50];
-	valstr(valstring, value);
-	format(file_name, sizeof file_name,"columnnum_%s.ini", __table);
-	new File: file2 = fopen(file_name, io_write);
-	fwrite(file2, valstring);
-	fclose(file2);
-	return 1;
+    new file_name[150], valstring[50];
+    valstr(valstring, value);
+    format(file_name, sizeof file_name,"columnnum_%s.ini", __table);
+    new File: file2 = fopen(file_name, io_write);
+    fwrite(file2, valstring);
+    fclose(file2);
+    return 1;
 }
 
 stock __SetRowAmount(const __table[], value)
 {
-	new file_name[150], valstring[50];
-	valstr(valstring, value);
-	format(file_name, sizeof file_name,"rownum_%s.ini", __table);
-	new File: file2 = fopen(file_name, io_write);
-	fwrite(file2, valstring);
-	fclose(file2);
-	return 1;
+    new file_name[150], valstring[50];
+    valstr(valstring, value);
+    format(file_name, sizeof file_name,"rownum_%s.ini", __table);
+    new File: file2 = fopen(file_name, io_write);
+    fwrite(file2, valstring);
+    fclose(file2);
+    return 1;
 }
 
 stock __GetColumnAmount(const __table[])
 {
-	new file_name[150];
-	format(file_name, sizeof file_name,
-		"columnnum_%s.ini", __table);
-	new returnstring[128];
-	format(returnstring, sizeof returnstring, "0");
-	if(!fexist(file_name)) return strval(returnstring);
-	new File: file = fopen(file_name, io_read);
-	if (file)
-	{
-		fread(file, returnstring);
+    new file_name[150];
+    format(file_name, sizeof file_name,
+        "columnnum_%s.ini", __table);
+    new returnstring[128];
+    format(returnstring, sizeof returnstring, "0");
+    if(!fexist(file_name)) return strval(returnstring);
+    new File: file = fopen(file_name, io_read);
+    if (file)
+    {
+        fread(file, returnstring);
 
-		fclose(file);
+        fclose(file);
 
-		return strval(returnstring);
-	}
-	return strval(returnstring);
+        return strval(returnstring);
+    }
+    return strval(returnstring);
 }
 
 stock __GetRowAmount(const __table[])
 {
-	new file_name[150];
-	format(file_name, sizeof file_name,
-		"rownum_%s.ini", __table);
-	new returnstring[128];
-	format(returnstring, sizeof returnstring, "0");
-	if(!fexist(file_name)) return strval(returnstring);
-	new File: file = fopen(file_name, io_read);
-	if (file)
-	{
-		fread(file, returnstring);
+    new file_name[150];
+    format(file_name, sizeof file_name,
+        "rownum_%s.ini", __table);
+    new returnstring[128];
+    format(returnstring, sizeof returnstring, "0");
+    if(!fexist(file_name)) return strval(returnstring);
+    new File: file = fopen(file_name, io_read);
+    if (file)
+    {
+        fread(file, returnstring);
 
-		fclose(file);
+        fclose(file);
 
-		return strval(returnstring);
-	}
-	return strval(returnstring);
+        return strval(returnstring);
+    }
+    return strval(returnstring);
 }
 
 stock __CreateTable(const name[], columns, rows)
 {
-	__SetColumnAmount(name, columns);
-	__SetRowAmount(name, rows);
-	return 1;
+    __SetColumnAmount(name, columns);
+    __SetRowAmount(name, rows);
+    return 1;
 }
 
 stock __PreviewTable(const name[])
 {
-	// a = rows
-	// b = columns
-	print("=============================================");
-	print(" ");
-	print(" ");
-	printf("TABLE PREVIEW | Previewing: %s", name);
-	print(" ");
-	print(" ");
-	new rowline[1024], cellvalue[50];
-	for(new a; a < (__GetRowAmount(name)); a++)
-	{
-		format(rowline, sizeof rowline, "ROW: %i | ", a);
-		for(new b; b < (__GetColumnAmount(name)); b++)
-		{
-			format(cellvalue, sizeof cellvalue, 
-				"%s | ", @cell() Get(name, b, a));
-			strcat(rowline, cellvalue);
-		}
-		print(rowline);
-		strdel(rowline, 0, sizeof rowline);
-	}
-	print(" ");
-	print(" ");
-	print("=============================================");
-	return 1;
+    // a = rows
+    // b = columns
+    print("=============================================");
+    print(" ");
+    print(" ");
+    printf("TABLE PREVIEW | Previewing: %s", name);
+    print(" ");
+    print(" ");
+    new rowline[1024], cellvalue[50];
+    for(new a; a < (__GetRowAmount(name)); a++)
+    {
+        format(rowline, sizeof rowline, "ROW: %i | ", a);
+        for(new b; b < (__GetColumnAmount(name)); b++)
+        {
+            format(cellvalue, sizeof cellvalue, 
+                "%s | ", @cell() Get(name, b, a));
+            strcat(rowline, cellvalue);
+        }
+        print(rowline);
+        strdel(rowline, 0, sizeof rowline);
+    }
+    print(" ");
+    print(" ");
+    print("=============================================");
+    return 1;
 }
 
 stock __SetCellValue(const __table[], __column, __row, const value[])
 {
-	new file_name[150];
-	format(file_name, sizeof file_name,
-		"cell_%s_%i_%i.ini", 
-		__table, __column, __row);
-	new File: file2 = fopen(file_name, io_write);
-	fwrite(file2, value);
-	fclose(file2);
-	return 1;
+    new file_name[150];
+    format(file_name, sizeof file_name,
+        "cell_%s_%i_%i.ini", 
+        __table, __column, __row);
+    new File: file2 = fopen(file_name, io_write);
+    fwrite(file2, value);
+    fclose(file2);
+    return 1;
 }
 
 stock __GetCellValue(const __table[], __column, __row)
 {
-	new file_name[150];
-	format(file_name, sizeof file_name,
-		"cell_%s_%i_%i.ini", __table, __column, __row);
-	new returnstring[128];
-	format(returnstring, sizeof returnstring, "(empty)");
-	if(!fexist(file_name)) return returnstring;
-	new File: file = fopen(file_name, io_read);
-	if (file)
-	{
-		fread(file, returnstring);
+    new file_name[150];
+    format(file_name, sizeof file_name,
+        "cell_%s_%i_%i.ini", __table, __column, __row);
+    new returnstring[128];
+    format(returnstring, sizeof returnstring, "(empty)");
+    if(!fexist(file_name)) return returnstring;
+    new File: file = fopen(file_name, io_read);
+    if (file)
+    {
+        fread(file, returnstring);
 
-		fclose(file);
+        fclose(file);
 
-		return returnstring;
-	}
-	return returnstring;
+        return returnstring;
+    }
+    return returnstring;
 }
 
 /*
@@ -190,22 +190,22 @@ stock __GetCellValue(const __table[], __column, __row)
 
 public OnDETUtilsInit()
 {
-	#if defined DETUTILS_DEBUG_MODE
-	SaveLogIntoFile("detutils_tables.log", "[DETUtils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_tables.log", "[DETUtils]: (debug) - Loaded.");
-	#endif
-	LoadDETUtilsScript(DETUTILS_SCRIPT_TABLES);
-	if(funcidx("d_tab_detutilsinit") != -1)
-	{
-		CallLocalFunction("d_tab_detutilsinit", "");
-	}
-	return 1;
+    #if defined DETUTILS_DEBUG_MODE
+    SaveLogIntoFile("detutils_tables.log", "[DETUtils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_tables.log", "[DETUtils]: (debug) - Loaded.");
+    #endif
+    LoadDETUtilsScript(DETUTILS_SCRIPT_TABLES);
+    if(funcidx("d_tab_detutilsinit") != -1)
+    {
+        CallLocalFunction("d_tab_detutilsinit", "");
+    }
+    return 1;
 }
 
 #if defined _ALS_OnDETUtilsInit
-	#undef OnDETUtilsInit
+    #undef OnDETUtilsInit
 #else
-	#define _ALS_OnDETUtilsInit
+    #define _ALS_OnDETUtilsInit
 #endif
 
 #define OnDETUtilsInit( d_tab_detutilsinit(

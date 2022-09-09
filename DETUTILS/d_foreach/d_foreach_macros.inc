@@ -13,7 +13,7 @@
 
 #if defined __DETUTILS_DEFAULT_ITERATORS
 
- 	#error [DETUtils]: (iter error) - Compile option `__DETUTILS_DEFAULT_ITERATORS` is not available yet.
+    #error [DETUtils]: (iter error) - Compile option `__DETUTILS_DEFAULT_ITERATORS` is not available yet.
 
 #endif
 

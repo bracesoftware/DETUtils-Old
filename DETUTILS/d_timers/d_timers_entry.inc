@@ -7,7 +7,7 @@
  *
  *
  * - A library which is providing the
- *	 automatic and manual timers.
+ *   automatic and manual timers.
  *
  *
  */
@@ -30,17 +30,17 @@
 
 stock void:LoadDETUtilsAutomaticTimers()
 {
-	new intervalfunc[32];
-	new taskfunc[32];
-	for(new i; i < 1000; i++)
-	{
-		format(taskfunc, sizeof taskfunc, "@%i@d_timerid", i);
-		format(intervalfunc, sizeof intervalfunc, "@%i@d_t_int", i);
-		if(funcidx(taskfunc) != -1)
-		{
-			SetTimer(taskfunc, CallLocalFunction(intervalfunc, ""), true);
-		}
-	}
+    new intervalfunc[32];
+    new taskfunc[32];
+    for(new i; i < 1000; i++)
+    {
+        format(taskfunc, sizeof taskfunc, "@%i@d_timerid", i);
+        format(intervalfunc, sizeof intervalfunc, "@%i@d_t_int", i);
+        if(funcidx(taskfunc) != -1)
+        {
+            SetTimer(taskfunc, CallLocalFunction(intervalfunc, ""), true);
+        }
+    }
 }
 
 /*
@@ -59,23 +59,23 @@ stock void:LoadDETUtilsAutomaticTimers()
 
 public OnDETUtilsInit()
 {
-	LoadDETUtilsAutomaticTimers();
-	#if defined DETUTILS_DEBUG_MODE
-	SaveLogIntoFile("detutils_timers.log", "[DETUtils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_timers.log", "[DETUtils]: (debug) - Loaded.");
-	#endif
-	LoadDETUtilsScript(DETUTILS_SCRIPT_TIMERS);
-	if(funcidx("d_timers_detutilsinit") != -1)
-	{
-		CallLocalFunction("d_timers_detutilsinit", "");
-	}
-	return 1;
+    LoadDETUtilsAutomaticTimers();
+    #if defined DETUTILS_DEBUG_MODE
+    SaveLogIntoFile("detutils_timers.log", "[DETUtils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_timers.log", "[DETUtils]: (debug) - Loaded.");
+    #endif
+    LoadDETUtilsScript(DETUTILS_SCRIPT_TIMERS);
+    if(funcidx("d_timers_detutilsinit") != -1)
+    {
+        CallLocalFunction("d_timers_detutilsinit", "");
+    }
+    return 1;
 }
 
 #if defined _ALS_OnDETUtilsInit
-	#undef OnDETUtilsInit
+    #undef OnDETUtilsInit
 #else
-	#define _ALS_OnDETUtilsInit
+    #define _ALS_OnDETUtilsInit
 #endif
 
 #define OnDETUtilsInit( d_timers_detutilsinit(

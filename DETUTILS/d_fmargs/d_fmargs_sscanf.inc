@@ -14,20 +14,20 @@
  
 #if defined DETUTILS_NO_SSCANF
 
-	#endinput
+    #endinput
 
 #endif
 
 #if !defined DETUTILS_SSCANF_DELIMITER
 
- 	#define DETUTILS_SSCANF_DELIMITER ' '
+    #define DETUTILS_SSCANF_DELIMITER ' '
 
 #endif
 
 #define SSCANF_INCLUDED
 
 /*
-										 
+                                         
 88                                   88  
 88                                   88  
 88                                   88  
@@ -55,23 +55,23 @@
 stock DET__do_sscanf(const source[], dest[][], args = 1)
 {
     new 
-    	i, 
-    	start,
-    	index,
-    	len,
-    	scount;
+        i, 
+        start,
+        index,
+        len,
+        scount;
     
     if(args != 1)
     {
-	    for(new ii; ii < strlen(source); ii++)
-	    {
-	    	new count = strfind(source, " ", false, ii);
-	    	if(count == SSCANF_SUCCESS) scount ++;
-	    }
-	    if(scount == SSCANF_FAIL)
-	    {
-	    	return scount;
-	    }
+        for(new ii; ii < strlen(source); ii++)
+        {
+            new count = strfind(source, " ", false, ii);
+            if(count == SSCANF_SUCCESS) scount ++;
+        }
+        if(scount == SSCANF_FAIL)
+        {
+            return scount;
+        }
     }
     while(i <= strlen(source))
     {
@@ -86,7 +86,7 @@ stock DET__do_sscanf(const source[], dest[][], args = 1)
     }
     #if defined DETUTILS_DEBUG_MODE
     printf("[DETUtils]: (sscanf debug) - Variables; \
-    	'index' : %i, 'start' : %i", index, start);
+        'index' : %i, 'start' : %i", index, start);
     #endif
     return SSCANF_SUCCESS;
 }

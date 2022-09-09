@@ -25,7 +25,7 @@
 #define dccmd_%0\32; dccmd_
 
 #define @DETUTILS_CMD_DEC__@DISCORD_COMMAND%2)%0(%1) \
-	dccmd_%0(%1);public dccmd_%0(%1)
+    dccmd_%0(%1);public dccmd_%0(%1)
 
 // data
 

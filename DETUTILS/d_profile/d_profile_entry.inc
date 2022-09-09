@@ -7,7 +7,7 @@
  *
  *
  * - A library which is providing the
- *	 code profiling.
+ *   code profiling.
  *
  *
  */
@@ -47,22 +47,22 @@ new DET_g_ProfilerCount;
 
 public OnDETUtilsInit()
 {
-	#if defined DETUTILS_DEBUG_MODE
-	SaveLogIntoFile("detutils_profile.log", "[DETUtils]: (debug) - Loading...");
-	SaveLogIntoFile("detutils_profile.log", "[DETUtils]: (debug) - Loaded.");
-	#endif
-	LoadDETUtilsScript(DETUTILS_SCRIPT_PROFILE);
-	if(funcidx("d_profile_detutilsinit") != -1)
-	{
-		CallLocalFunction("d_profile_detutilsinit", "");
-	}
-	return 1;
+    #if defined DETUTILS_DEBUG_MODE
+    SaveLogIntoFile("detutils_profile.log", "[DETUtils]: (debug) - Loading...");
+    SaveLogIntoFile("detutils_profile.log", "[DETUtils]: (debug) - Loaded.");
+    #endif
+    LoadDETUtilsScript(DETUTILS_SCRIPT_PROFILE);
+    if(funcidx("d_profile_detutilsinit") != -1)
+    {
+        CallLocalFunction("d_profile_detutilsinit", "");
+    }
+    return 1;
 }
 
 #if defined _ALS_OnDETUtilsInit
-	#undef OnDETUtilsInit
+    #undef OnDETUtilsInit
 #else
-	#define _ALS_OnDETUtilsInit
+    #define _ALS_OnDETUtilsInit
 #endif
 
 #define OnDETUtilsInit( d_profile_detutilsinit(

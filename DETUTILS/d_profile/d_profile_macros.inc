@@ -37,11 +37,11 @@
 #define CallProfiler%0(%1,%2) CallLocalFunction("__d_pfunc"%1,%2)
 
 #define @DETUTILSPROFILE_KWORD__@format%2=%3{%4}%5)%0(%1) \
-	__d_pfunc%0(%1);public __d_pfunc%0(%1){ \
-		format(DET_g_ProfilerName,sizeof DET_g_ProfilerName,#%0); \
-		DET_g_ProfilerCount = GetTickCount(); \
-		return CallLocalFunction("__d_pfunc2"#%0, %4);} \
-	__d_pfunc2%0(%1);public __d_pfunc2%0(%1)
+    __d_pfunc%0(%1);public __d_pfunc%0(%1){ \
+        format(DET_g_ProfilerName,sizeof DET_g_ProfilerName,#%0); \
+        DET_g_ProfilerCount = GetTickCount(); \
+        return CallLocalFunction("__d_pfunc2"#%0, %4);} \
+    __d_pfunc2%0(%1);public __d_pfunc2%0(%1)
 
 #define @DETUTILSPROFILE_KWORD__@value%0=%1)%2return \
-	printf("[DETUtils]: (profiling) - Code '%s' took %i ticks to execute.",DET_g_ProfilerName,GetTickCount()-DET_g_ProfilerCount);return %1
+    printf("[DETUtils]: (profiling) - Code '%s' took %i ticks to execute.",DET_g_ProfilerName,GetTickCount()-DET_g_ProfilerCount);return %1
