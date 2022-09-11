@@ -26,7 +26,7 @@ tomlcreate("file"); // this creates the file: file.toml
 
 - The content of `file.toml` should be:
 
-```
+```toml
 [toml]
 
 ```
