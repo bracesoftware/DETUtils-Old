@@ -1,6 +1,8 @@
 # d_toml.inc
 SA:MP TOML - Save, load and manage TOML files using the Pawn API.
 
+[Go back to the home page...](../README.md)
+
 ## How to start to use?
 NOTE: Function names start with lowercase letters.
 ### Management functions
