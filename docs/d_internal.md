@@ -1,5 +1,5 @@
 # Internal libraries
-- Bunch of libraries in `d_extra` whose provide various stuff and are included everywhere.
+- Bunch of libraries in `d_core` whose provide various stuff and are included everywhere.
 
 ## Include documentation
 Below, you have a list of all internal files.
