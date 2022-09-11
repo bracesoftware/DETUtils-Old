@@ -83,7 +83,7 @@ new Float:coords = tomlgetfloat("file", "coords");
 ```toml
 [toml]
 
-msg=string
+msg="string"
 ```
 
 ```pawn
