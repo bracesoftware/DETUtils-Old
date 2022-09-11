@@ -27,3 +27,111 @@
                                                                                       
 
 */
+
+// fwrite
+new tomlcontent2[4096];
+stock __tomlset(const filename[], const key[], const value[])
+{
+    new newfilename[64];
+    if(!tomlexist(filename)) return 0;
+    format(newfilename, sizeof newfilename, "%s.toml", filename);
+    new File:file = fopen(newfilename);
+    #if defined DETUTILS_DEBUG_MODE
+    printf("[DETUtils]: (parse) - toml :: %s%s", 
+        file ? "Successfully opened : " : "Failed to open : ", newfilename);
+    #endif
+    new parse[2][256];
+    new linestr[512];
+    if(file)
+    {
+        format(linestr, sizeof linestr, "%s=%s", key, value);
+        fwrite(file, linestr);
+        fwrite(file, "\r\n");
+        #if defined DETUTILS_DEBUG_MODE
+        printf("[DETUtils]: (parse) - toml :: Value of '%s' updated to '%s'.", parse[0], value);
+        #endif
+        fclose(file);
+        return 1;
+    }
+    fclose(file);
+    return 0;
+}
+
+// "set" functions
+stock tomlsetint(const filename[], const key[], value)
+{
+    new tomlvalue[256];
+    format(tomlvalue, sizeof tomlvalue, "%i", value);
+    return __tomlset(filename, key, tomlvalue);
+}
+
+stock tomlsetbool(const filename[], const key[], bool:value)
+{
+    new tomlvalue[256];
+    format(tomlvalue, sizeof tomlvalue, "%s", value ? "true" : "false");
+    return __tomlset(filename, key, tomlvalue);
+}
+
+stock tomlsetfloat(const filename[], const key[], Float:value)
+{
+    new tomlvalue[256];
+    format(tomlvalue, sizeof tomlvalue, "%f", value);
+    return __tomlset(filename, key, tomlvalue);
+}
+
+stock tomlsetstr(const filename[], const key[], const value[])
+{
+    return __tomlset(filename, key, value);
+}
+
+stock tomlwritecomment(const filename[], const comment[])
+{
+    new newfilename[64];
+    if(!tomlexist(filename)) return 0;
+    format(newfilename, sizeof newfilename, "%s.toml", filename);
+    new File:file = fopen(newfilename);
+    #if defined DETUTILS_DEBUG_MODE
+    printf("[DETUtils]: (comment) - toml :: %s%s", 
+        file ? "Successfully opened : " : "Failed to open : ", newfilename);
+    #endif
+    new linestr[512];
+    if(file)
+    {
+        format(linestr, sizeof linestr, "# %s", comment);
+        fwrite(file, linestr);
+        fwrite(file, "\r\n");
+        #if defined DETUTILS_DEBUG_MODE
+        printf("[DETUtils]: (comment) - toml :: Successfully wrote comment : '%s'.", comment);
+        #endif
+        fclose(file);
+        return 1;
+    }
+    fclose(file);
+    return 0;
+}
+
+stock tomlwritetable(const filename[], const table[])
+{
+    new newfilename[64];
+    if(!tomlexist(filename)) return 0;
+    format(newfilename, sizeof newfilename, "%s.toml", filename);
+    new File:file = fopen(newfilename);
+    #if defined DETUTILS_DEBUG_MODE
+    printf("[DETUtils]: (table) - toml :: %s%s", 
+        file ? "Successfully opened : " : "Failed to open : ", newfilename);
+    #endif
+    new linestr[512];
+    if(file)
+    {
+        format(linestr, sizeof linestr, "[%s]", table);
+        fwrite(file, linestr);
+        fwrite(file, "\r\n");
+        #if defined DETUTILS_DEBUG_MODE
+        printf("[DETUtils]: (table) - toml :: Successfully wrote table : '%s'.", table);
+        #endif
+        fclose(file);
+        return 1;
+    }
+    fclose(file);
+    return 0;
+}

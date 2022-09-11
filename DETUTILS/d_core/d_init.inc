@@ -90,6 +90,7 @@ stock void:SaveDETUtilsLog(const message[])
 #define DETUTILS_SCRIPT_TOML 17
 #define DETUTILS_SCRIPT_PERMISSIONS 18
 #define DETUTILS_SCRIPT_EVENTS 19
+#define DETUTILS_SCRIPT_YAML 20
 
 stock void:LoadDETUtilsScript(scriptid)
 {
@@ -192,6 +193,11 @@ stock void:LoadDETUtilsScript(scriptid)
     {
         print("*** [DETUtils]: (module) - Loaded: d_toml.inc");
         SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_toml.inc");
+    }
+    if(scriptid == DETUTILS_SCRIPT_YAML)
+    {
+        print("*** [DETUtils]: (module) - Loaded: d_yaml.inc");
+        SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_yaml.inc");
     }
 }
 
@@ -296,6 +302,11 @@ stock void:UnloadDETUtilsScript(scriptid)
     {
         print("*** [DETUtils]: (module) - Unloaded: d_toml.inc");
         SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_toml.inc");
+    }
+    if(scriptid == DETUTILS_SCRIPT_YAML)
+    {
+        print("*** [DETUtils]: (module) - Unloaded: d_yaml.inc");
+        SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_yaml.inc");
     }
 }
 
