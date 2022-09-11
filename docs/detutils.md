@@ -96,3 +96,10 @@ DETUtils Entry Point - The main file which is included in order to use the DETUt
 
 ### `DETUTILS_NO_ANDROID_CHECK`
 - Disables the `d_server` Android client check features.
+
+### `DETUTILS_STATIC_MODE`
+- Makes almost all of internal definitions inaccessible by other third-party includes.
+
+```pawn
+#define DETUTILS_STATIC_MODE
+```
