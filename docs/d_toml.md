@@ -140,3 +140,17 @@ tomlwritecomment("file", "This is a comment.");
 [toml]
 # This is a comment.
 ```
+
+### `tomlwritetable`
+- Write a TOML table.
+
+```pawn
+tomlwritetable("file", "test.table");
+```
+
+- Your TOML should look like this:
+
+```toml
+[toml]
+[test.table]
+```
