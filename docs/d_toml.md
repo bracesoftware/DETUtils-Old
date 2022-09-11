@@ -3,6 +3,46 @@ SA:MP TOML - Save, load and manage TOML files using the Pawn API.
 
 [Go back to the home page...](../README.md)
 
+## Example
+- For the impatient:
+
+**script.pwn**
+```pawn
+tomlremove("test");
+printf("TOML test.toml exists : %i", tomlexist("test"));
+tomlcreate("test");
+tomlwritecomment("test", "This is a comment.");
+tomlsetint("test", "int", 1);
+tomlsetbool("test", "bool", false);
+tomlsetfloat("test", "float", 0.1);
+tomlsetstr("test", "string", "Hello World.");
+tomlwritetable("test", "test.table");
+printf("TOML test.toml exists : %i", tomlexist("test"));
+printf("TOML val 'int' is : '%i'", tomlgetint("test", "int"));
+printf("TOML val 'bool' is : '%i'", tomlgetbool("test", "bool"));
+printf("TOML val 'float' is : '%f'", tomlgetfloat("test", "float"));
+printf("TOML val 'string' is : '%s'", tomlgetstr("test", "string"));
+```
+**test.toml**
+```toml
+[toml]
+# This is a comment.
+int=1
+bool=false
+float=0.100000
+string="Hello World."
+[test.table]
+```
+**Console output:**
+```
+TOML test.toml exists : 0
+TOML test.toml exists : 1
+TOML val 'int' is : '1'
+TOML val 'bool' is : '0'
+TOML val 'float' is : '0.100000'
+TOML val 'string' is : 'Hello World.'
+```
+
 ## How to start to use?
 NOTE: Function names start with lowercase letters.
 ### Management functions
