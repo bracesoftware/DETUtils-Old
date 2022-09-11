@@ -28,6 +28,28 @@
 
 */
 
+stock __parsetomlline(const source[], dest[][])
+{
+    new 
+        i, 
+        start,
+        index,
+        len;
+
+    while(i <= strlen(source))
+    {
+        if(source[i] == '=' || i == strlen(source))
+        {
+            len = strmid(dest[index], source, start, i, 128);
+            dest[index][len] = 0;
+            start = i+1;
+            index++;
+        }
+        i++;
+    }
+    return 1;
+}
+
 #include "d_toml_impl"
 #include "d_toml_save"
 
