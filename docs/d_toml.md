@@ -125,3 +125,12 @@ tomlsetfloat("file", "coords", 24.36);
 ```pawn
 tomlsetstr("file", "msg", "Hello World.");
 ```
+
+## Extras
+- Extra functions.
+### `tomlwritecomment`
+- Write a TOML comment.
+
+```pawn
+tomlwritecomment("file", "This is a comment.");
+```
