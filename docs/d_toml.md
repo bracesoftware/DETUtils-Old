@@ -6,7 +6,7 @@ SA:MP TOML - Save, load and manage TOML files using the Pawn API.
 ## Example
 - For the impatient:
 
-**script.pwn**
+**`script.pwn`**
 ```pawn
 tomlremove("test");
 printf("TOML test.toml exists : %i", tomlexist("test"));
@@ -23,7 +23,7 @@ printf("TOML val 'bool' is : '%i'", tomlgetbool("test", "bool"));
 printf("TOML val 'float' is : '%f'", tomlgetfloat("test", "float"));
 printf("TOML val 'string' is : '%s'", tomlgetstr("test", "string"));
 ```
-**test.toml**
+**`test.toml`**
 ```toml
 [toml]
 # This is a comment.
