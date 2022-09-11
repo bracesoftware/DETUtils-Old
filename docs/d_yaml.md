@@ -69,8 +69,7 @@ yamlcreate("file"); // this creates the file: file.yaml
 - The content of `file.yaml` should be:
 
 ```yaml
-
-
+# yaml
 ```
 ### "Get" functions
 - Used to get key values.
