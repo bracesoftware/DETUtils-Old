@@ -66,7 +66,7 @@ Libraries whose provide storing (saving), loading and managing persistent data o
 | -------------------- | ------------------------------------------------------------------------------------------ |
 | [d_filequeries.inc](docs/d_filequeries.md) | Send file queries, save and load cache during runtime. |
 | [d_toml.inc](docs/d_toml.md) | Save, load and manage TOML files. |
-
+| [d_yaml.inc](docs/d_yaml.md) | Save, load and manage YAML files. |
 
 --------------------------------------
 
