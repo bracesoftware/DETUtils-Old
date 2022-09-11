@@ -16,7 +16,6 @@ yamlsetint("test", "int", 1);
 yamlsetbool("test", "bool", false);
 yamlsetfloat("test", "float", 0.1);
 yamlsetstr("test", "string", "Hello World.");
-yamlwritetable("test", "test.table");
 printf("YAML test.yaml exists : %i", yamlexist("test"));
 printf("YAML val 'int' is : '%i'", yamlgetint("test", "int"));
 printf("YAML val 'bool' is : '%i'", yamlgetbool("test", "bool"));
