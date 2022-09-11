@@ -16,3 +16,17 @@ tomlexist("file"); // checks for file: file.toml
 ```pawn
 tomlremove("file"); // removes the file: file.toml
 ```
+
+### `tomlcreate`
+- This obviously creates a TOML file.
+
+```pawn
+tomlcreate("file"); // this creates the file: file.toml
+```
+
+- The content of `file.toml` should be:
+
+```
+[toml]
+
+```
