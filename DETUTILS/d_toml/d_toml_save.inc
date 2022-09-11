@@ -32,20 +32,23 @@
 new tomlcontent2[4096];
 stock __tomlset(const filename[], const key[], const value[])
 {
-    new newfilename[64];
+    new newfilename[64], linestr[512];
     format(newfilename, sizeof newfilename, "%s.toml", filename);
-    if(!tomlexist(newfilename)) return 0;
     new File:file = fopen(newfilename, io_append);
+    
     #if defined DETUTILS_DEBUG_MODE
-    printf("[DETUtils]: (parse) - toml :: %s%s", 
+        printf("[DETUtils]: (parse) - toml :: %s%s", 
         file ? "Successfully opened : " : "Failed to open : ", newfilename);
+    
     #endif
-    new linestr[512];
+
     format(linestr, sizeof linestr, "%s=%s\r\n", key, value);
     fwrite(file, linestr);
+
     #if defined DETUTILS_DEBUG_MODE
-    printf("[DETUtils]: (parse) - toml :: Value of '%s' updated to '%s'.", key, value);
+        printf("[DETUtils]: (parse) - toml :: Value of '%s' updated to '%s'.", key, value);
     #endif
+
     fclose(file);
     return 1;
 }
@@ -74,7 +77,9 @@ stock tomlsetfloat(const filename[], const key[], Float:value)
 
 stock tomlsetstr(const filename[], const key[], const value[])
 {
-    return __tomlset(filename, key, value);
+    new tomlvalue[256];
+    format(tomlvalue, sizeof tomlvalue, "\"%s\"", value);
+    return __tomlset(filename, key, tomlvalue);
 }
 
 stock tomlwritecomment(const filename[], const comment[])
