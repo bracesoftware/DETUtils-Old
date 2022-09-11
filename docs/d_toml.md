@@ -90,3 +90,36 @@ msg="string"
 SendClientMessage(playerid, -1, tomlgetstr("file", "msg"));
 ```
 - Player will receive a message saying `"string"`.
+
+### "Set" functions
+- Used to get key values.
+
+### `tomlsetint`
+- Set a integer key.
+
+```pawn
+tomlsetint("file", "adminlvl", 1);
+```
+
+### `tomlsetbool`
+- Set a boolean key.
+
+
+```pawn
+tomlsetbool("file", "player", true);
+```
+
+### `tomlsetfloat`
+- Set a float key.
+
+```pawn
+tomlsetfloat("file", "coords", 24.36);
+```
+
+
+### `tomlsetstr`
+- Set a string key.
+
+```pawn
+tomlsetstr("file", "msg", "Hello World.");
+```
