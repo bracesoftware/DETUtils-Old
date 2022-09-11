@@ -31,7 +31,6 @@ int: 1
 bool: false
 float: 0.100000
 string: Hello World.
-[test.table]
 ```
 **Console output:**
 ```
