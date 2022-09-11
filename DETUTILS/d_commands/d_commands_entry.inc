@@ -132,7 +132,7 @@ stock ToggleCommandCaseSensivity(bool:toggle)
     return 1;
 }
 
-static Data_g_ChatMode[MAX_PLAYERS];
+__DETUTILS_STATIC new Data_g_ChatMode[MAX_PLAYERS];
 
 forward OnCommandStateChange(playerid, cmdtext[], stateid);
 forward OnPrefixedCommandStateChange(playerid, cmdtext[], stateid);
@@ -245,7 +245,7 @@ stock BroadcastCommand(playerid, const cmdtext[], const params[], type = COMMAND
                         88               
 */
 
-static
+__DETUTILS_STATIC new
         bool:_IsOnCmdRValid = false,
         bool:_IsOnCmdPValid = false;
 
@@ -781,7 +781,7 @@ public OnPlayerText(playerid, text[])
             return 1;
         }
 
-        static 
+        __DETUTILS_STATIC new 
             _pos,
             _FunctionName[MAX_FUNC_NAME],
             _PrefixFuncName[MAX_FUNC_NAME],
@@ -1066,7 +1066,7 @@ public OnPlayerText(playerid, text[])
             return 1;
         }
 
-        static 
+        __DETUTILS_STATIC new 
             _pos,
             _FunctionName[MAX_FUNC_NAME],
             _PrefixFuncName[MAX_FUNC_NAME],
@@ -1296,7 +1296,7 @@ COMMAND__ chatmode(playerid, params[])
     return 0;
 }
 
-static stock _ClearChatModeData(playerid)
+__DETUTILS_STATIC stock _ClearChatModeData(playerid)
 {
     return Data_g_ChatMode[playerid] = 0;
 }

@@ -58,7 +58,7 @@ stock ShowMapEditorMenuToPlayer(playerid)
     return 1;
 }
 
-static stock d_me_GetNearestObject(playerid)
+__DETUTILS_STATIC stock d_me_GetNearestObject(playerid)
 {
     for(new i; i < MAX_OBJECTS; i++)
     {
@@ -321,7 +321,7 @@ public OnGameModeInit()
 
 forward d_me_gminit();*/
 
-static d_me_SplitString(const strsrc[], strdest[][], delimiter)
+__DETUTILS_STATIC d_me_SplitString(const strsrc[], strdest[][], delimiter)
 {
     new i, li;
     new aNum;
@@ -344,7 +344,7 @@ static d_me_SplitString(const strsrc[], strdest[][], delimiter)
     native Float:floatstr(const string[]);
 #endif
 
-static d_me_LoadObjects(id)
+__DETUTILS_STATIC d_me_LoadObjects(id)
 {
     new d_ArrayCoordinates[19][64],file_name[100];
     format(file_name, sizeof file_name,

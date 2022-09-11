@@ -53,7 +53,7 @@ new DET_g_AntiCheatTimer;
 
 // Functions:
 
-static stock d_ac_IsPlayerNearSprunk(playerid)
+__DETUTILS_STATIC stock d_ac_IsPlayerNearSprunk(playerid)
 {
     if(IsPlayerInRangeOfPoint(playerid, 4, -2420.219, 984.578, 44.297)) return 1;
     else if(IsPlayerInRangeOfPoint(playerid, 4, -2420.180, 985.945, 44.297)) return 1;
@@ -813,7 +813,7 @@ stock CheckPlayerArmour(playerid)
 
 // SPEED HACK ANTI-CHEAT:
 
-static bool:d_ac_aerovehicle(vehid)
+__DETUTILS_STATIC bool:d_ac_aerovehicle(vehid)
 {
     switch(GetVehicleModel(vehid))
     {

@@ -304,7 +304,7 @@ stock
     _Functionid = 3;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
-    static
+    __DETUTILS_STATIC new
         args,
         
         start,
@@ -400,7 +400,7 @@ stock
     _Functionid = 4;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
-    static
+    __DETUTILS_STATIC new
         args,
         
         start,
@@ -548,7 +548,7 @@ enum d_PlayerWeapInfo
 
 new d_PlayerWeaponInfo[MAX_PLAYERS][d_PlayerWeapInfo];
 
-static void:PreloadAnimationLibrary(playerid, const animlib[])
+__DETUTILS_STATIC void:PreloadAnimationLibrary(playerid, const animlib[])
 {
     ApplyAnimation(playerid, animlib, "null", 0.0, 0, 0, 0, 0, 0, 1);
 }
@@ -735,7 +735,7 @@ forward d_v_playerupdate(playerid);
 
 // - Commands - //
 
-static stock __WeaponTimer_var[MAX_PLAYERS];
+__DETUTILS_STATIC stock __WeaponTimer_var[MAX_PLAYERS];
 
 #if !defined MAX_DROPPED_GUNS
 

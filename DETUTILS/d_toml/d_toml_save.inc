@@ -33,28 +33,21 @@ new tomlcontent2[4096];
 stock __tomlset(const filename[], const key[], const value[])
 {
     new newfilename[64];
-    if(!tomlexist(filename)) return 0;
     format(newfilename, sizeof newfilename, "%s.toml", filename);
-    new File:file = fopen(newfilename);
+    if(!tomlexist(newfilename)) return 0;
+    new File:file = fopen(newfilename, io_append);
     #if defined DETUTILS_DEBUG_MODE
     printf("[DETUtils]: (parse) - toml :: %s%s", 
         file ? "Successfully opened : " : "Failed to open : ", newfilename);
     #endif
-    new parse[2][256];
     new linestr[512];
-    if(file)
-    {
-        format(linestr, sizeof linestr, "%s=%s", key, value);
-        fwrite(file, linestr);
-        fwrite(file, "\r\n");
-        #if defined DETUTILS_DEBUG_MODE
-        printf("[DETUtils]: (parse) - toml :: Value of '%s' updated to '%s'.", parse[0], value);
-        #endif
-        fclose(file);
-        return 1;
-    }
+    format(linestr, sizeof linestr, "%s=%s\r\n", key, value);
+    fwrite(file, linestr);
+    #if defined DETUTILS_DEBUG_MODE
+    printf("[DETUtils]: (parse) - toml :: Value of '%s' updated to '%s'.", key, value);
+    #endif
     fclose(file);
-    return 0;
+    return 1;
 }
 
 // "set" functions
@@ -89,7 +82,7 @@ stock tomlwritecomment(const filename[], const comment[])
     new newfilename[64];
     if(!tomlexist(filename)) return 0;
     format(newfilename, sizeof newfilename, "%s.toml", filename);
-    new File:file = fopen(newfilename);
+    new File:file = fopen(newfilename, io_append);
     #if defined DETUTILS_DEBUG_MODE
     printf("[DETUtils]: (comment) - toml :: %s%s", 
         file ? "Successfully opened : " : "Failed to open : ", newfilename);
@@ -115,7 +108,7 @@ stock tomlwritetable(const filename[], const table[])
     new newfilename[64];
     if(!tomlexist(filename)) return 0;
     format(newfilename, sizeof newfilename, "%s.toml", filename);
-    new File:file = fopen(newfilename);
+    new File:file = fopen(newfilename, io_append);
     #if defined DETUTILS_DEBUG_MODE
     printf("[DETUtils]: (table) - toml :: %s%s", 
         file ? "Successfully opened : " : "Failed to open : ", newfilename);

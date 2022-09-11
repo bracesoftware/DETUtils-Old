@@ -102,7 +102,7 @@ new _EntranceTitleShown[MAX_PLAYERS];
 #define PROPERTY_ACTION_LOCK 2
 #define PROPERTY_ACTION_UNLOCK 3
 
-static void:_PropertyLoadingTime(const playerid)
+__DETUTILS_STATIC void:_PropertyLoadingTime(const playerid)
 {
     #if defined DETUTILS_DEBUG_MODE
     printf("[DETUtils]: (debug) - tpcll :: Player ( id : %i ) is now controlable.", playerid);
@@ -110,9 +110,9 @@ static void:_PropertyLoadingTime(const playerid)
     SetTimerEx("_ToggleControllable", 1000, false, "i", playerid);
 }
 
-static g_HideAnnouncement[MAX_PLAYERS];
+__DETUTILS_STATIC new g_HideAnnouncement[MAX_PLAYERS];
 
-static _Announcement(playerid, const _Message[])
+__DETUTILS_STATIC stock _Announcement(playerid, const _Message[])
 {
     new c_Message[300];
 

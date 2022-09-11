@@ -41,6 +41,17 @@
 #include "d_text"
 #include "d_errors"
 
+//DETUTILS_STATIC_MODE
+
+#define __DETUTILS_STATIC
+
+#if defined DETUTILS_STATIC_MODE
+
+    #undef __DETUTILS_STATIC
+    #define __DETUTILS_STATIC static
+
+#endif
+
 //public const detutils_ver = 0x1;
 
 stock void:SaveDETUtilsLog(const message[]) 
@@ -341,11 +352,11 @@ stock void:UnloadDETUtilsScript(scriptid)
 
 #if defined detutils_complete_error_boom
 
-static const DET_g_Version[1][10] = { ""DETUTILS_VERSION_MAJOR"."DETUTILS_VERSION_MINOR"."DETUTILS_VERSION_PATCH"" };
+__DETUTILS_STATIC const DET_g_Version[1][10] = { ""DETUTILS_VERSION_MAJOR"."DETUTILS_VERSION_MINOR"."DETUTILS_VERSION_PATCH"" };
 
 #endif
 
-static void:LoadDETUtils()
+__DETUTILS_STATIC void:LoadDETUtils()
 {
     new DET_g_Version[26];
     format(DET_g_Version, sizeof(DET_g_Version), "%i.%i.%i-R%i", 
@@ -375,7 +386,7 @@ static void:LoadDETUtils()
     print("                                        ");
 }
 
-static void:UnloadDETUtils()
+__DETUTILS_STATIC void:UnloadDETUtils()
 {
     print("                                        ");
     print("|======================================|");

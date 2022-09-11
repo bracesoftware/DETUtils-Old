@@ -82,7 +82,7 @@ enum enum_QueryData
 
 new g_QueryCache[MAX_FILE_QUERIES][enum_QueryData];
 
-static stock gDET_QueryID = 0;
+__DETUTILS_STATIC stock gDET_QueryID = 0;
 
 stock CreateQuery(const name[], type, const dir[], const file[])
 {

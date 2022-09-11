@@ -729,6 +729,12 @@ Includes
 
 #endif
 
+#if defined DETUTILS_STATIC_MODE && !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 	#warning [DETUtils]: (warning) - staticmode :: Static mode is enabled. Remove `#define DETUTILS_STATIC_MODE` from your code to disable it.
+
+#endif
+
 // Version check and release check
 
 #if !defined __DETUtils

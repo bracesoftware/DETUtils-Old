@@ -64,7 +64,7 @@ stock fmargs_GameTextForPlayer(playerid,const unformatted_text[],duration,style,
     _Functionid = 3;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
-    static
+    __DETUTILS_STATIC new
         args,
         start,
         end,
@@ -116,7 +116,7 @@ stock fmargs_GameTextForAll(const unformatted_text[], duration,style,@DETUTILSFM
     _Functionid = 4;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
-    static
+    __DETUTILS_STATIC new
         args,
         start,
         end,
@@ -163,7 +163,7 @@ stock Text:fmargs_TextDrawCreate(Float:x,Float:y,const _StringArgs[],@DETUTILSFM
     _Functionid = 5;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
-    static
+    __DETUTILS_STATIC new
         args,
         start,
         end,
@@ -248,7 +248,7 @@ stock PlayerText:fmargs_CreatePlayerTextDraw(i,Float:x,Float:y,const _StringArgs
     _Functionid = 6;
     printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
     #endif
-    static
+    __DETUTILS_STATIC new
         args,
         start,
         end,
