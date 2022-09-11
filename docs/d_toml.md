@@ -134,3 +134,9 @@ tomlsetstr("file", "msg", "Hello World.");
 ```pawn
 tomlwritecomment("file", "This is a comment.");
 ```
+- Your TOML should look like this:
+
+```toml
+[toml]
+# This is a comment.
+```
