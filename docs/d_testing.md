@@ -20,8 +20,7 @@ Output:
 [19:51:49] [Info]                                         
 [19:51:49] [Info] |======================================|
 [19:51:49] [Info]                                         
-[19:51:49] [Info]                                         
-[19:51:49] [Info]                                         
+[19:51:49] [Info]                                                                               
 [19:51:49] [Info]                                         
 [19:51:49] [Info] *** [DETUtils]: (testing) - init :: Testing a module: d_testing.inc [3]
 [19:51:49] [Info]                                         
