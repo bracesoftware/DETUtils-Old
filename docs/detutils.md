@@ -103,6 +103,3 @@ DETUtils Entry Point - The main file which is included in order to use the DETUt
 ```pawn
 #define DETUTILS_STATIC_MODE
 ```
-
-### `DETUTILS_FREEZE_COMPILER`
-- This literally freezes the compiler. `DETUTILS_FREEZE_COMPILER` can be really useful (if you hide it somewhere) in case you're giving your script to strangers for testing. It literally removes all of the Pawn syntax and injects random macros into your code on compile-time which freezes and even crashes the compiler on earlier versions.
