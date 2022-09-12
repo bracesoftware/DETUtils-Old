@@ -26,10 +26,10 @@ printf("YAML val 'string' is : '%s'", yamlgetstr("test", "string"));
 ```yaml
 
 # This is a comment.
-int: 1
-bool: false
-float: 0.100000
-string: Hello World.
+int:1
+bool:false
+float:0.100000
+string:Hello World.
 ```
 **Console output:**
 ```
@@ -80,7 +80,7 @@ yamlcreate("file"); // this creates the file: file.yaml
 ```yaml
 
 
-adminlvl: 0
+adminlvl:0
 ```
 
 ```pawn
@@ -94,7 +94,7 @@ new admin = yamlgetint("file", "adminlvl");
 ```yaml
 
 
-player: false
+player:false
 ```
 
 ```pawn
@@ -108,7 +108,7 @@ new player = yamlgetbool("file", "player");
 ```yaml
 
 
-coords: 23.73
+coords:23.73
 ```
 
 ```pawn
@@ -122,7 +122,7 @@ new Float:coords = yamlgetfloat("file", "coords");
 ```yaml
 
 
-msg: string
+msg:string
 ```
 
 ```pawn
