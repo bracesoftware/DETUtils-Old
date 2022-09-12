@@ -42,7 +42,7 @@ stock __yamlset(const filename[], const key[], const value[])
     
     #endif
 
-    format(linestr, sizeof linestr, "%s: %s\r\n", key, value);
+    format(linestr, sizeof linestr, "%s:%s\r\n", key, value);
     fwrite(file, linestr);
 
     #if defined DETUTILS_DEBUG_MODE

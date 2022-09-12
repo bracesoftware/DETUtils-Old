@@ -94,8 +94,9 @@ stock __tomlget(const filename[], const key[])
             format(ret, sizeof ret, "%s", parse[1]);
             for(new i; i < strlen(ret); i++)
             {
-                if(ret[i] == '\n') ret[i] = 0;
-                if(ret[i] == '\r') ret[i] = 0;
+                if(ret[i] == '\n') strdel(ret, i, i + 1);
+                if(ret[i] == '\r') strdel(ret, i, i + 1);
+                if(ret[i] == '\"') strdel(ret, i, i + 1);
             }
             fclose(file);
             return ret;
@@ -132,13 +133,4 @@ stock Float:tomlgetfloat(const filename[], const key[])
     return floatstr(__tomlget(filename, key));
 }
 
-stock tomlgetstr(const filename[], const key[])
-{
-    new ret[256];
-    format(ret, sizeof ret, __tomlget(filename, key));
-    for(new i; i < strlen(ret); i++)
-    {
-        if(ret[i] == '\"') ret[i] = 0;
-    }
-    return ret;
-}
+#define tomlgetstr __tomlget
