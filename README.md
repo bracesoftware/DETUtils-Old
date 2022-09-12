@@ -36,6 +36,7 @@ Libraries whose contain the new language features.
 | [d_timers.inc](docs/d_timers.md) | Automatic and manual timers. |
 | [d_events.inc](docs/d_events.md) | A new callback system. |
 | [d_fmargs.inc](docs/d_fmargs.md) | A rewrite of `y_va` and Pawn `sscanf` implementation. |
+| [d_testing.inc](docs/d_testing.md) | Provides fast and easy way of testing. |
 
 ### SA:MP Libraries
 Libraries whose contain the new SA:MP functions and features.
