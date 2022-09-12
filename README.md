@@ -68,12 +68,26 @@ Libraries whose provide storing (saving), loading and managing persistent data o
 | [d_toml.inc](docs/d_toml.md) | Save, load and manage TOML files. |
 | [d_yaml.inc](docs/d_yaml.md) | Save, load and manage YAML files. |
 
+### Internal (`d_core`) libraries
+
+| Library      | Description                                                                                |
+| -------------------- | ------------------------------------------------------------------------------------------ |
+| d_errors.inc | The internal library other DETUtils libraries use to log runtime errors that occured unexpectedly. |
+| d_compilefix.inc | Using DETUtils sometimes requires extra compiler options, those are enabled in there. |
+| d_funcgen.inc | Used to generate function names for `d_als`, `d_timers` and `d_testing`! |
+| d_init.inc | Used for library initialisation. |
+| d_libtags.inc | Entry point for all of these. |
+| d_mainfix.inc | Provides a little fix where `main` function is not getting called in filterscripts! |
+| d_text.inc | In this file, all of strings used in the libraries are defined. |
+| d_thirdpartyinclude.inc | Using DETUtils requires some extra libraries, this include is here to manage that! |
+| d_version.inc | Little include used to change library's version, including major release, minor release, patch and `R` marked release (re-release of the same version). There are also built-in constant values named `__DETUtils` which is a hex version number, and `__DETUtilsRelease` which is hex release number. |
+| [d_rem.inc](docs/d_rem.md) | Provides the `@rem` decorator and rem levels: `IMPORTANT`, `NOTE`, `HACK` and `BUG`. |
+
 --------------------------------------
 
 Documentation contains some extra notes and tips.
 
 - Read more here: [Extra stuff](docs/d_extra.md)
-- Learn more about internal libraries [here](docs/d_internal.md)...
 ## Tests
 - I regularly make test scripts with all new features I added to the library to ensure everything is working as expected. If not, I write it down in to a test log.
 
