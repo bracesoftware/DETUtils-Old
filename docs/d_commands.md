@@ -620,7 +620,8 @@ public OnCommandBroadcast(playerid, cmdtext[], bool:remote, params[], slashtype,
 }
 ```
 
-**Command processing**
+#### **Command processing**
+
 A simple script:
 
 ```pawn
