@@ -697,6 +697,37 @@ Includes
 
 #endif
 /* =============================================================== */
+#if !defined DETUTILS_NO_TESTING
+
+ 	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
+	#include "d_testing"
+
+	// Vercheck
+
+	#if !defined DETUTILS_LIBVER_TESTING
+		
+		#error [DETUtils]: (version) - Version not specified.
+	
+	#elseif defined DETUTILS_LIBVER_TESTING
+
+		#if DETUTILS_LIBVER_TESTING != 1
+
+			#error [DETUtils]: (version) - 'd_testing.inc' is outdated.
+
+		#endif
+
+	#endif
+
+#else
+
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [DETUtils]: (includes) - Library 'd_testing' is disabled (not the DETUTILS_TESTING_MODE).
+
+ 	#endif
+
+#endif
+/* =============================================================== */
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
  && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_FACTIONS && defined DETUTILS_NO_SERVER \
@@ -725,7 +756,7 @@ Includes
 
  	#warning [DETUtils]: (warning) - testmode :: Testing mode is enabled. Remove `#define DETUTILS_TESTING_MODE` from your code to disable it.
 
- 	#include "d_testing\d_testing_entry.inc"
+ 	#include "d_testing\d_testing_internal.inc"
 
 #endif
 
