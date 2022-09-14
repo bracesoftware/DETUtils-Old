@@ -607,7 +607,17 @@ BroadcastCommand(playerid, "sayhi", params, COMMAND_TYPE_REMOTE_PREFIXED);
 
 ### `ToggleCommandCaseSensivity`
 
-- This function is currently not working, I mean it is implemented, but is not functional - calling it will do nothing.
+- Let's say that you've created a command named `test`. To run it, of course, you'd input `/test` and press enter - the command works! But, what happens if we input `/TEST` or `/TesT` - the command will still work. **`d_commands`** is here to regulate that.
+
+```pawn
+public OnGameModeInit()
+{
+	ToggleCommandCaseSensivity(true);
+	return 1;
+}
+```
+
+- This code will make that `test` command works only when it's used as `/test`, otherwise, the processor won't even process the command.
 
 ### `public` OnCommandBroadcast
 
