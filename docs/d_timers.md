@@ -6,6 +6,8 @@ Pawn Timers - A library which provides automatic and manual repeatable timers or
 ## How to start to use?
 
 - This library provides an usage of a `@task` decorator, with which you can create either automatic or manual timers. Examples of declaring both types of timers are below.
+ 
+### Automatic timers
 
 ```pawn
 @task(.type = AUTOMATIC, .interval = 1000) AutomaticTimer()
@@ -15,7 +17,9 @@ Pawn Timers - A library which provides automatic and manual repeatable timers or
 }
 ```
 
-- This timer will run itself when the code loads, so every 1 second - a message `"Automatic timer works."` in console will appear.
+- This timer will run itself when the code loads (it's deferred inside `OnDETUtilsInit`), so every 1 second - a message `"Automatic timer works."` in console will appear.
+
+### Manual timers
 
 ```pawn
 @task(.type = MANUAL, .interval = 1000, .repeating = true) ManualTimer()
