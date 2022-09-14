@@ -5,9 +5,7 @@
 
 ## Handy features
 - Read information about each feature below.
-### API ( programming interface )
-#### **String functions**
-------------------------------------------
+### **String functions**
 #### strtok
 - **SA:MP DET-Utils** provides few new functions which are *extensions* to standard Pawn and SA:MP libraries.
 
@@ -55,71 +53,3 @@ public OnPlayerCommandText(playerid, cmdtext[])
 }
 ```
 **NOTE**: This code is the code from *gl_chat.pwn* originally written by SA-MP team.
-#### **SA:MP function extensions**
-------------------------------------------
-#### ArePlayerPedAnimsUsed
-- Used to check are player ped anims used in the gamemode.
-
-```pawn
-decl Command:cjanims(playerid, params[])
-{
-	if(ArePlayerPedAnimsUsed()) return true;
-	else return false;
-	return 1;
-}
-```
-
-#### **Loop**
-------------------------------------------
-#### until(...)
-- **SA:MP DET-Utils** also provides new loop known as *until* loop.
-- Example:
-```pawn
-command untiltest(playerid, params[])
-{
-    new i;
-    until(i = 50)
-    {
-        i++;
-    }
-    SendClientMessage(playerid, -1, "i is now 50.");
-    return 1;
-}
-```
-
-#### **Client Check Features**
-------------------------------------------
-#### IsPlayerUsingPCClient
-- This function checks if is player using PC to play SA:MP.
-
-- Example:
-
-```php
-if(IsPlayerUsingPCClient(playerid)) return SendClientMessage(playerid, -1, "Welcome to server.);
-```
-
-- So, if player is using original client client message saying **"Welcome to server."** will appear.
-
-#### IsPlayerUsingAndroidClient
-
-- Opposite of previous one.
-
-```php
-if(IsPlayerUsingAndroidClient(playerid)) return Ban(playerid);
-```
-
-**NOTE**: Android SA-MP client is not legal at the moment, so I recommend banning its users.
-
-#### ``public`` OnPlayerClientCheckReceived
-
-- Called when client check is started.
-
-- Example:
-
-```php
-public OnPlayerClientCheckReceived(playerid)
-{
-  printf("Performing client check on player id %i...", playerid);
-  return 1;
-}
-```
