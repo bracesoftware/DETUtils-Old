@@ -117,19 +117,15 @@ stock GetSlashCommandType(const cmdtext[])
     return CallLocalFunction(cmdname, "");
 }
 
-DETUTILS_DECL__ var:g_CaseSensivity<> = 0;
-
 stock ToggleCommandCaseSensivity(bool:toggle)
 {
-    if(toggle == true)
-    {
-        DETUTILS@g_CaseSensivity = 1;
-    }
-    else if(toggle == false)
-    {
-        DETUTILS@g_CaseSensivity = 0;
-    }
-    return 1;
+    DET_g_CaseSensivity = toggle;
+    return toggle;
+}
+
+stock AreCommandsCaseSensitive()
+{
+    return DET_g_CaseSensivity;
 }
 
 __DETUTILS_STATIC new Data_g_ChatMode[MAX_PLAYERS];
@@ -342,8 +338,8 @@ public OnPlayerCommandText(playerid, cmdtext[])
     cmd = strtok(cmdtext, idx);
     new
         position,
-        _ClassicFunctionName[MAX_FUNC_NAME],
-        _CommandDebugFunc[MAX_FUNC_NAME],
+        DET_ClassicFunctionName[MAX_FUNC_NAME],
+        DET_CommandDebugFunc[MAX_FUNC_NAME],
         DET_ParseFunc[MAX_FUNC_NAME];
 
     #if defined DETUTILS_DEBUG_MODE
@@ -352,16 +348,23 @@ public OnPlayerCommandText(playerid, cmdtext[])
 
     while (cmdtext[++position] > ' ')
     {
-        _ClassicFunctionName[position-1] = tolower(cmdtext[position]);
+        if(DET_g_CaseSensivity == 0)
+        {
+            DET_ClassicFunctionName[position-1] = tolower(cmdtext[position]);
+        }
+        else if(DET_g_CaseSensivity == 1)
+        {
+            DET_ClassicFunctionName[position-1] = cmdtext[position];
+        }
     }
 
     #if defined DETUTILS_DEBUG_MODE
     printf("[DETUtils]: (debug) - opct :: cmdtext[] validated.");
     #endif
     
-    format(_CommandDebugFunc, sizeof(_CommandDebugFunc), "%s", "OnCommandStateChange");
-    format(DET_ParseFunc, sizeof(DET_ParseFunc), "P@_%s", _ClassicFunctionName);
-    format(_ClassicFunctionName, sizeof(_ClassicFunctionName), "cmd_%s", _ClassicFunctionName);
+    format(DET_CommandDebugFunc, sizeof(DET_CommandDebugFunc), "%s", "OnCommandStateChange");
+    format(DET_ParseFunc, sizeof(DET_ParseFunc), "P@_%s", DET_ClassicFunctionName);
+    format(DET_ClassicFunctionName, sizeof(DET_ClassicFunctionName), "cmd_%s", DET_ClassicFunctionName);
 
     printf("*** [DETUtils]: (cmd parse) - Calling parse function: '%s'", DET_ParseFunc);
 
@@ -373,30 +376,30 @@ public OnPlayerCommandText(playerid, cmdtext[])
 
     if(g_PlayerCmdData[playerid][ParseProcess] == 0)
     {
-        if(funcidx(_CommandDebugFunc) != -1)
+        if(funcidx(DET_CommandDebugFunc) != -1)
         {
             #if defined DETUTILS_DEBUG_MODE
             printf("[DETUtils]: (debug) - opct :: Command processing stopped : %s didn't return 1.",DET_ParseFunc);
             #endif
-            CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_STOPPED);
+            CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_STOPPED);
         }
         return 0;
     }
 
-    if(funcidx(_CommandDebugFunc) != -1)
+    if(funcidx(DET_CommandDebugFunc) != -1)
     {
-        CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_RECEIVED);
+        CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_RECEIVED);
     }
 
     #if defined DETUTILS_DEBUG_MODE
-    printf("[DETUtils]: (debug) - opct :: Called custom debug function : %s.", _CommandDebugFunc);
+    printf("[DETUtils]: (debug) - opct :: Called custom debug function : %s.", DET_CommandDebugFunc);
     #endif
 
     while (cmdtext[position] == ' ') position++;
 
-    if(funcidx(_CommandDebugFunc) != -1)
+    if(funcidx(DET_CommandDebugFunc) != -1)
     {
-        CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_READY);
+        CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_READY);
     }
 
     #if defined DETUTILS_DEBUG_MODE
@@ -409,35 +412,35 @@ public OnPlayerCommandText(playerid, cmdtext[])
             #if defined DETUTILS_DEBUG_MODE
                 printf("[DETUtils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 1");
             #endif
-                if(funcidx(_CommandDebugFunc) != -1)
+                if(funcidx(DET_CommandDebugFunc) != -1)
                 {
-                    CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
+                    CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
                 }
                     #if !defined @deprecated_sscanf__
                     return CallLocalFunction("OnPlayerCommandPerformed", 
                     "isi", 
                     playerid, 
                     cmdtext,
-                    CallLocalFunction(_ClassicFunctionName, "is", playerid, "\1"));
+                    CallLocalFunction(DET_ClassicFunctionName, "is", playerid, "\1"));
                     #else
                     return CallLocalFunction("OnPlayerCommandPerformed", 
                     "isi", 
                     playerid, 
                     cmdtext,
-                    CallLocalFunction(_ClassicFunctionName, "is", playerid, cmd));
+                    CallLocalFunction(DET_ClassicFunctionName, "is", playerid, cmd));
                     #endif
         }
         #if defined DETUTILS_DEBUG_MODE
-        if(funcidx(_CommandDebugFunc) != -1)
+        if(funcidx(DET_CommandDebugFunc) != -1)
         {
-            CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
+            CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
         }
         printf("[DETUtils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 2");
         #endif
         #if !defined @deprecated_sscanf__
-        return CallLocalFunction(_ClassicFunctionName, "is", playerid, "\1");
+        return CallLocalFunction(DET_ClassicFunctionName, "is", playerid, "\1");
         #else
-        return CallLocalFunction(_ClassicFunctionName, "is", playerid, cmd);
+        return CallLocalFunction(DET_ClassicFunctionName, "is", playerid, cmd);
         #endif
     }
     if (_IsOnCmdPValid)
@@ -445,22 +448,22 @@ public OnPlayerCommandText(playerid, cmdtext[])
         #if defined DETUTILS_DEBUG_MODE
         printf("[DETUtils]: (debug) - opct :: OnPlayerCommandText(playerid, cmdtext[]) returned function call. ID: 3");
         #endif
-            if(funcidx(_CommandDebugFunc) != -1)
+            if(funcidx(DET_CommandDebugFunc) != -1)
             {
-                CallLocalFunction(_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
+                CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, cmdtext, COMMAND_DEBUG_STATE_PERFORMED);
             }
                 #if !defined @deprecated_sscanf__
             return CallLocalFunction("OnPlayerCommandPerformed", 
                 "isi", 
                 playerid, 
                 cmdtext, 
-                CallLocalFunction(_ClassicFunctionName, "is", playerid, cmdtext[position]));
+                CallLocalFunction(DET_ClassicFunctionName, "is", playerid, cmdtext[position]));
                 #else
             return CallLocalFunction("OnPlayerCommandPerformed", 
                 "isi", 
                 playerid, 
                 cmdtext, 
-                CallLocalFunction(_ClassicFunctionName, "is", playerid, cmd));
+                CallLocalFunction(DET_ClassicFunctionName, "is", playerid, cmd));
                 #endif
     }
 
@@ -475,7 +478,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
             cmdtext);
     }
 
-    return CallLocalFunction(_ClassicFunctionName, "is", playerid, cmdtext[position]);
+    return CallLocalFunction(DET_ClassicFunctionName, "is", playerid, cmdtext[position]);
 }
 
 #if defined _ALS_OnPlayerCommandText
@@ -520,15 +523,15 @@ public OnPlayerText(playerid, text[])
             CallLocalFunction("OnPrefixedCommandReceived", "is", playerid, text);
         }
         
-        new _CommandDebugFunc[32];
+        new DET_CommandDebugFunc[32];
 
-        format(_CommandDebugFunc,
-            sizeof(_CommandDebugFunc), 
+        format(DET_CommandDebugFunc,
+            sizeof(DET_CommandDebugFunc), 
             "OnPrefixedCommandStateChange");
 
-        if(funcidx(_CommandDebugFunc) != -1)
+        if(funcidx(DET_CommandDebugFunc) != -1)
         {
-            CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_RECEIVED);
+            CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_RECEIVED);
         }
 
         new PrxFuncName[32], CmdFuncName[32], len;
@@ -592,9 +595,9 @@ public OnPlayerText(playerid, text[])
                 #if defined DETUTILS_DEBUG_MODE
                     printf("[DETUtils]: (debug) - opt :: Passed prefix returned 0");
                 #endif
-                if(funcidx(_CommandDebugFunc) != -1)
+                if(funcidx(DET_CommandDebugFunc) != -1)
                 {
-                    CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_STOPPED);
+                    CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_STOPPED);
                 }
                 return 0;
             }
@@ -609,18 +612,18 @@ public OnPlayerText(playerid, text[])
 
         if(len < 1)
         {
-            if(funcidx(_CommandDebugFunc) != -1)
+            if(funcidx(DET_CommandDebugFunc) != -1)
             {
-                CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_INVALID);
+                CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_INVALID);
             }
         }
 
         if(g_PlayerCmdData[playerid][PassedPrefix][0] == text[0])
         //if(strcmp(g_PlayerCmdData[playerid][PassedPrefix], text[0], false))
         {
-            if(funcidx(_CommandDebugFunc) != -1)
+            if(funcidx(DET_CommandDebugFunc) != -1)
             {
-                CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_READY);
+                CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_READY);
             }
 
             CallLocalFunction(CmdFuncName, "is", playerid, text);
@@ -630,17 +633,17 @@ public OnPlayerText(playerid, text[])
                 CallLocalFunction("OnPrefixedCommandPerformed", "isi", playerid, text, 1);
             }
 
-            if(funcidx(_CommandDebugFunc) != -1)
+            if(funcidx(DET_CommandDebugFunc) != -1)
             {
-                CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
+                CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
             }
             return 1;
         }
         else
         {
-            if(funcidx(_CommandDebugFunc) != -1)
+            if(funcidx(DET_CommandDebugFunc) != -1)
             {
-                CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
+                CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
             }
 
             if(funcidx("OnPrefixedCommandPerformed") != -1)
@@ -785,17 +788,17 @@ public OnPlayerText(playerid, text[])
             _pos,
             _FunctionName[MAX_FUNC_NAME],
             _PrefixFuncName[MAX_FUNC_NAME],
-            _CommandDebugFunc[32];
+            DET_CommandDebugFunc[32];
             //_CommandParameters[64],
             //_nullpos;
 
-        format(_CommandDebugFunc,
-            sizeof(_CommandDebugFunc), 
+        format(DET_CommandDebugFunc,
+            sizeof(DET_CommandDebugFunc), 
             "OnPrefixedCommandStateChange");
 
-        if(funcidx(_CommandDebugFunc) != -1)
+        if(funcidx(DET_CommandDebugFunc) != -1)
         {
-            CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_RECEIVED);
+            CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_RECEIVED);
         }
 
         #if defined DETUTILS_DEBUG_MODE
@@ -868,9 +871,9 @@ public OnPlayerText(playerid, text[])
             d_SendWarningMessage(playerid, textmsg); 
         }
 
-        if(funcidx(_CommandDebugFunc) != -1)
+        if(funcidx(DET_CommandDebugFunc) != -1)
         {
-            CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_READY);
+            CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_READY);
         }
 
         new l_CommandPrefix[1];
@@ -916,9 +919,9 @@ public OnPlayerText(playerid, text[])
                     "isi", playerid, text, 
                     CallLocalFunction(_FunctionName, "iss", playerid, text));
 
-                if(funcidx(_CommandDebugFunc) != -1)
+                if(funcidx(DET_CommandDebugFunc) != -1)
                 {
-                    CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
+                    CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
                 }
                 return 0;
             }
@@ -926,9 +929,9 @@ public OnPlayerText(playerid, text[])
             printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 1");
             #endif
             CallLocalFunction(_FunctionName, "iss", playerid, text);
-            if(funcidx(_CommandDebugFunc) != -1)
+            if(funcidx(DET_CommandDebugFunc) != -1)
             {
-                CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
+                CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
             }
             return 0;
         }
@@ -1070,17 +1073,17 @@ public OnPlayerText(playerid, text[])
             _pos,
             _FunctionName[MAX_FUNC_NAME],
             _PrefixFuncName[MAX_FUNC_NAME],
-            _CommandDebugFunc[32],
+            DET_CommandDebugFunc[32],
             _CommandParameters[64],
             _nullpos;
 
-        format(_CommandDebugFunc,
-            sizeof(_CommandDebugFunc), 
+        format(DET_CommandDebugFunc,
+            sizeof(DET_CommandDebugFunc), 
             "OnPrefixedCommandStateChange");
 
-        if(funcidx(_CommandDebugFunc) != -1)
+        if(funcidx(DET_CommandDebugFunc) != -1)
         {
-            CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_RECEIVED);
+            CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_RECEIVED);
         }
 
         #if defined DETUTILS_DEBUG_MODE
@@ -1141,9 +1144,9 @@ public OnPlayerText(playerid, text[])
         printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) formatted active prefix var.");
         #endif
 
-        if(funcidx(_CommandDebugFunc) != -1)
+        if(funcidx(DET_CommandDebugFunc) != -1)
         {
-            CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_READY);
+            CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_READY);
         }
 
         if(!strcmp(_ActPrefix, text[0]))
@@ -1189,9 +1192,9 @@ public OnPlayerText(playerid, text[])
                     "isi", playerid, text, 
                     CallLocalFunction(_FunctionName, "iss", playerid, text));
 
-                if(funcidx(_CommandDebugFunc) != -1)
+                if(funcidx(DET_CommandDebugFunc) != -1)
                 {
-                    CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
+                    CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
                 }
                 return 0;
             }
@@ -1199,9 +1202,9 @@ public OnPlayerText(playerid, text[])
             printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) returned function call. ID: 1");
             #endif
             CallLocalFunction(_FunctionName, "iss", playerid, text);
-            if(funcidx(_CommandDebugFunc) != -1)
+            if(funcidx(DET_CommandDebugFunc) != -1)
             {
-                CallLocalFunction(_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
+                CallLocalFunction(DET_CommandDebugFunc, "isi", playerid, text, COMMAND_DEBUG_STATE_PERFORMED);
             }
             return 0;
         }

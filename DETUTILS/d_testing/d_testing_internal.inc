@@ -13,6 +13,16 @@
 
 #pragma dynamic 215750000
 
+@command(.type = SLASH_COMMAND) cs(playerid, params[])
+{
+	if(AreCommandsCaseSensitive())
+		ToggleCommandCaseSensivity(false);
+	else if(!AreCommandsCaseSensitive())
+		ToggleCommandCaseSensivity(true);
+	fmargs_SendClientMessage(playerid, -1, "Command sensivity : %i", AreCommandsCaseSensitive());
+	return 1;
+}
+
 public OnCommandBroadcast(playerid, cmdtext[], bool:remote, params[], slashtype, bool:customprefixed)
 {
 	return 1;

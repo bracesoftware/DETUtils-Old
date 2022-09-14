@@ -36,6 +36,9 @@
 
 */
 
+// Case sensivity.
+new DET_g_CaseSensivity;
+
 // All for parsing!
 
 #pragma warning disable 217 // Warning 217 is kind of annoying.
