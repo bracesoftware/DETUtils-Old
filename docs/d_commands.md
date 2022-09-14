@@ -627,6 +627,20 @@ public OnGameModeInit()
 new sensitive = AreCommandsCaseSensitive();
 ```
 
+... or:
+
+```pawn
+@command(.type = SLASH_COMMAND) cs(playerid, params[])
+{
+	if(AreCommandsCaseSensitive())
+		ToggleCommandCaseSensivity(false);
+	else if(!AreCommandsCaseSensitive())
+		ToggleCommandCaseSensivity(true);
+	fmargs_SendClientMessage(playerid, -1, "Command sensivity : %i", AreCommandsCaseSensitive());
+	return 1;
+}
+```
+
 ### `public` OnCommandBroadcast
 
 - I added this function for debugging purposes.
