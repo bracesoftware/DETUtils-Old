@@ -69,6 +69,8 @@ Libraries whose provide storing (saving), loading and managing persistent data o
 | [d_toml.inc](docs/d_toml.md) | Save, load and manage TOML files. |
 | [d_yaml.inc](docs/d_yaml.md) | Save, load and manage YAML files. |
 
+--------------------------------------
+
 ### Internal (`d_core`) libraries
 
 | Library      | Description                                                                                |
