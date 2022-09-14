@@ -619,6 +619,14 @@ public OnGameModeInit()
 
 - This code will make that `test` command works only when it's used as `/test`, otherwise, the processor won't even process the command.
 
+### `AreCommandsCaseSensitive`
+
+- Checks if commands are case-sensitive.
+
+```pawn
+new sensitive = AreCommandsCaseSensitive();
+```
+
 ### `public` OnCommandBroadcast
 
 - I added this function for debugging purposes.
