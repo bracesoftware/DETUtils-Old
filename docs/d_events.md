@@ -70,3 +70,12 @@ new funcname[32];
 format(funcname, sizeof funcname, "somename");
 CallEvent(funcname, "", ...);
 ```
+
+## Extended API
+- `d_events` extends the functionality of `d_dialog`, `d_properties` and `d_commands.`
+
+### Dialog events
+
+### Property events
+
+### Command events
