@@ -147,6 +147,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
                 playerid : %i | dialog : %s | response : %i | listitem : %i | inputtext : %s",
                 playerid, g_PlayerDialogCache[playerid][Dialog], response, listitem, inputtext);
             #endif
+
+            #if !defined DETUTILS_NO_EVENTS
+            new dialogevent[32];
+            format(dialogevent, sizeof dialogevent, "dle_%s", g_PlayerDialogCache[playerid][Dialog]);
+            if(funcidx(dialogevent) != -1)
+            {
+                return CallLocalFunction(dialogevent, "iiis",
+                    playerid,
+                    response,
+                    listitem,
+                    inputtext);
+            }
+            #endif
             //                                             012345678
             strmid(g_PlayerDialogCache[playerid][Dialog], "NO_DIALOG", 0, 8);
             #if defined DETUTILS_DEBUG_MODE

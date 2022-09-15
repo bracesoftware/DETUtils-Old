@@ -47,6 +47,15 @@ new DET_g_ProfilerCount;
 
 public OnDETUtilsInit()
 {
+    print("                                        ");
+    print("|======================================|");
+    print("                                        ");
+    print("                DETUtils                ");
+    print("     Profiler loaded successfully...    ");
+    print("                                        ");
+    print("|======================================|");
+    print("                                        ");
+    print("                                        ");
     #if defined DETUTILS_DEBUG_MODE
     SaveLogIntoFile("detutils_profile.log", "[DETUtils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_profile.log", "[DETUtils]: (debug) - Loaded.");
@@ -73,6 +82,15 @@ forward d_profile_detutilsinit();
 
 public OnDETUtilsExit()
 {
+    print("                                        ");
+    print("|======================================|");
+    print("                                        ");
+    print("                DETUtils                ");
+    print("    Profiler unloaded successfully...   ");
+    print("                                        ");
+    print("|======================================|");
+    print("                                        ");
+    print("                                        ");
     UnloadDETUtilsScript(DETUTILS_SCRIPT_PROFILE);
     if(funcidx("d_profile_detutilsexit") != -1)
     {

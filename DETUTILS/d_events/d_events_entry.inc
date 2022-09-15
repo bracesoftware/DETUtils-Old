@@ -57,6 +57,12 @@
         CallLocalFunction("@evnt_"#%1,%3);if(evnttype_%1()==1)CallLocalFunction("@evnt_"#%1,%3)
 
 
+#if !defined DETUTILS_NO_DIALOGS
+
+    #include "d_events_dialogs"
+
+#endif
+
 /*
                                                                       
 88888888888                                                           
