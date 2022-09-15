@@ -18,6 +18,15 @@ SA:MP Dialogs - Create dialogs using `@dialog` decorator and show them to player
     return 1;
 }
 ```
+### `.args`
+Dialog arguments, they go like this:
+
+- `event` - event which gets called when a player responds to dialog.
+- `title` - title of a dialog box.
+- `message` - a message, a list or a tablist, depends on a `.type`.
+- `response1` - "`false`" response
+- `response2` - "`true`" response
+
 ## API
 ### Dialog types
 ---------------------------------
