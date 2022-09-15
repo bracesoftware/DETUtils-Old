@@ -6,7 +6,7 @@ SA:MP Dialogs - Create dialogs using `@dialog` decorator and show them to player
 - Start by declaring a dialog.
 
 ```pawn
-@dialog( .type = MESSAGE_BOX, .args = {"Hi", "Hello!", "OK", "NO"} ) HiDialog(playerid);
+@dialog( .type = MESSAGE_BOX, .args = {"", "Hi", "Hello!", "OK", "NO"} ) HiDialog(playerid);
 ```
 
 - Show the dialog to a player.
@@ -24,7 +24,7 @@ SA:MP Dialogs - Create dialogs using `@dialog` decorator and show them to player
 - Dialog styles are now dialog types.
 
 ```pawn
-@dialog( .type = MESSAGE_BOX, .args = {"Hi", "Hello!", "OK", "NO"} ) HiDialog(playerid);
+@dialog( .type = MESSAGE_BOX, .args = {"", "Hi", "Hello!", "OK", "NO"} ) HiDialog(playerid);
 ```
 So, instead of just `MESSAGE_BOX`, you can use following types:
 
@@ -91,6 +91,9 @@ HideDialogForPlayer(playerid);
 ```pawn
 GetPlayerDialog(playerid);
 ```
+### Dialog events
+---------------------------------------
+- Read more [here](d_events.md).
 ## Messages from creator
 ### Warnings
 ### Notes
