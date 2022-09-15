@@ -76,6 +76,16 @@ CallEvent(funcname, "", ...);
 
 ### Dialog events
 
+```pawn
+@dialog(.type = MESSAGE_BOX, .args = {"HiEvent", "Hi", "Hello!", "OK", "NO"}) HiDialog(playerid);
+
+@event(.type = DIALOG_EVENT) HiEvent(playerid, response, listitem, inputtext[])
+{
+	SendClientMessage(playerid, -1, "Hi again from HiEvent!");
+    return 1;
+}
+```
+
 ### Property events
 
 ### Command events
