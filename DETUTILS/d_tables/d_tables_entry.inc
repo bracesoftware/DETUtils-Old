@@ -44,7 +44,7 @@ pw | retardedcosmos | ahahahah | ex
 
 */
 
-stock __SetColumnAmount(const __table[], value)
+stock setcolumnamount(const __table[], value)
 {
     new file_name[150], valstring[50];
     valstr(valstring, value);
@@ -55,7 +55,7 @@ stock __SetColumnAmount(const __table[], value)
     return 1;
 }
 
-stock __SetRowAmount(const __table[], value)
+stock setrowamount(const __table[], value)
 {
     new file_name[150], valstring[50];
     valstr(valstring, value);
@@ -66,7 +66,7 @@ stock __SetRowAmount(const __table[], value)
     return 1;
 }
 
-stock __GetColumnAmount(const __table[])
+stock getcolumnamount(const __table[])
 {
     new file_name[150];
     format(file_name, sizeof file_name,
@@ -86,7 +86,7 @@ stock __GetColumnAmount(const __table[])
     return strval(returnstring);
 }
 
-stock __GetRowAmount(const __table[])
+stock getrowamount(const __table[])
 {
     new file_name[150];
     format(file_name, sizeof file_name,
@@ -106,14 +106,14 @@ stock __GetRowAmount(const __table[])
     return strval(returnstring);
 }
 
-stock __CreateTable(const name[], columns, rows)
+stock tablecreate(const name[], columns, rows)
 {
-    __SetColumnAmount(name, columns);
-    __SetRowAmount(name, rows);
+    setcolumnamount(name, columns);
+    setrowamount(name, rows);
     return 1;
 }
 
-stock __PreviewTable(const name[])
+stock previewtable(const name[])
 {
     // a = rows
     // b = columns
@@ -142,7 +142,7 @@ stock __PreviewTable(const name[])
     return 1;
 }
 
-stock __SetCellValue(const __table[], __column, __row, const value[])
+stock setcellvalue(const __table[], __column, __row, const value[])
 {
     new file_name[150];
     format(file_name, sizeof file_name,
@@ -154,7 +154,7 @@ stock __SetCellValue(const __table[], __column, __row, const value[])
     return 1;
 }
 
-stock __GetCellValue(const __table[], __column, __row)
+stock getcellvalue(const __table[], __column, __row)
 {
     new file_name[150];
     format(file_name, sizeof file_name,

@@ -11,6 +11,7 @@
  *
  */
 
+#if defined detutils_complete_error_boom
 #define @DETUTILSTABLES_KWORD__@%0\32; @DETUTILSTABLES_KWORD__@
 #define @table%0(%1) @DETUTILSTABLES_KWORD__@
 #define @DETUTILSTABLES_KWORD__1@%0\32; @DETUTILSTABLES_KWORD__1@
@@ -19,6 +20,8 @@
 #define @datarow%0(%1) @DETUTILSTABLES_KWORD__2@
 #define @DETUTILSTABLES_KWORD__3@%0\32; @DETUTILSTABLES_KWORD__3@
 #define @cell%0(%1) @DETUTILSTABLES_KWORD__3@
+#endif
+
 /*
                                                                                       
 88b           d88              88                         db         88888888ba   88  
@@ -33,6 +36,7 @@
                                                                                       
 */
 
+#if defined detutils_complete_error_boom
 #define @DETUTILSTABLES_KWORD__@Create%0(%1) __CreateTable(%1)
 #define @DETUTILSTABLES_KWORD__@Remove%0(%1) __DeleteTable(%1)
 #define @DETUTILSTABLES_KWORD__@Preview%0(%1) __PreviewTable(%1)
@@ -45,3 +49,14 @@
 
 #define @DETUTILSTABLES_KWORD__3@Set%0(%1) __SetCellValue(%1)
 #define @DETUTILSTABLES_KWORD__3@Get%0(%1) __GetCellValue(%1)
+
+#define tablecreate __CreateTable
+#define tabledelete __DeleteTable
+#define previewtable __PreviewTable
+#define columncreate __CreateColumn
+#define columndelete __DeleteColumn
+#define rowcreate __CreateRow
+#define rowdelete __DeleteRow
+#define setcellvalue __SetCellValue
+#define getcellvalue __GetCellValue
+#endif
