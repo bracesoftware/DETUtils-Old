@@ -168,7 +168,7 @@ If you're facing issues with your code compilation after including the library, 
 
 - You can get the latest version of Pawn Compiler for SA:MP [here](https://github.com/pawn-lang/compiler/releases)...
 
-## SA:MP DEntisT's Utilities
+## DEntisT's Utilities
 
 ### Legal:
 
