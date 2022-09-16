@@ -103,3 +103,10 @@ DETUtils Entry Point - The main file which is included in order to use the DETUt
 ```pawn
 #define DETUTILS_STATIC_MODE
 ```
+
+### `DETUTILS_DO_LST`
+- Basically, does the same thing as:
+
+```pawn
+#pragma option -l
+```
