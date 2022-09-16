@@ -107,3 +107,5 @@ public Func()
 - Whenever the player leaves or enters a property, he will receive a message saying `PropertyEvent works!`.
 
 ### Command events
+
+- These aren't functional yet.
