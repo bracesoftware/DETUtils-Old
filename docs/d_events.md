@@ -86,6 +86,24 @@ CallEvent(funcname, "", ...);
 }
 ```
 
+- Whenever the player responds to a `d_dialog` dialog, he will receive a message saying `Hi again from HiEvent!`.
+
 ### Property events
+
+```pawn
+public Func()
+{
+	CreatePropertyEntrance("24/7 Market", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_MARKET_247_1, .event = "PropertyEvent");
+	return 1;
+}
+
+@event(.type = PROPERTY_EVENT) PropertyEvent(playerid, propertyid, actionid)
+{
+    SendClientMessage(playerid, -1, "PropertyEvent works!");
+    return 1;
+}
+```
+
+- Whenever the player leaves or enters a property, he will receive a message saying `PropertyEvent works!`.
 
 ### Command events
