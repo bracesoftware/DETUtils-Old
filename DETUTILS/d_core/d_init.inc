@@ -389,12 +389,15 @@ __DETUTILS_STATIC void:LoadDETUtils()
     print("                                        ");
     print("                                        ");
     #if defined DETUTILS_FILTERSCRIPT_MODE
-    print(" SA:MP | DETUtils - Filterscript mode is ON.");
+    print(">> SYSTEM | DETUtils - Filterscript mode is ON.");
     #endif
     #if defined DETUTILS_TESTING_MODE
-    print(" SA:MP | DETUtils - Testing mode is ON.");
+    print(">> SYSTEM | DETUtils - Testing mode is ON.");
     #endif
     print("                                        ");
+    #if __DETUtilsBeta == 1
+    print("*** [DETUtils]: (beta) - Note that this version is a beta release, which means that this release doesn't represent the final quality of the version.");
+    #endif
 }
 
 __DETUTILS_STATIC void:UnloadDETUtils()
@@ -411,12 +414,15 @@ __DETUTILS_STATIC void:UnloadDETUtils()
     print("                                        ");
     print("                                        ");
     #if defined DETUTILS_FILTERSCRIPT_MODE
-    print(" SA:MP | DETUtils - Filterscript mode is OFF.");
+    print(">> SYSTEM | DETUtils - Filterscript mode is OFF.");
     #endif
     #if defined DETUTILS_TESTING_MODE
-    print(" SA:MP | DETUtils - Testing mode is OFF.");
+    print(">> SYSTEM | DETUtils - Testing mode is OFF.");
     #endif
     print("                                        ");
+    #if __DETUtilsBeta == 1
+    print("*** [DETUtils]: (beta) - Note that this version is a beta release, which means that this release doesn't represent the final quality of the version.");
+    #endif
 }
 
 #if !defined FILTERSCRIPT
