@@ -52,3 +52,10 @@ previewtable("accounts");
 ```
 
 - Note that you don't really need to use the initialization function unless you want to preview your table like this. You can set the values for cells without initializing.
+
+### Getting values
+- Use the `getcellvalue` function.
+
+```pawn
+getcellvalue(table[], column, row);
+```
