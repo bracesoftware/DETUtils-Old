@@ -39,7 +39,7 @@ public OnGameModeInit()
 ... all parameters:
 
 ```pawn
-native CreatePropertyEntrance(const name[], Float:x1, Float:y1, Float:z1, interiorid, worldid, bool:labels = false, interior = INTERIOR_CUSTOM, Float:x2 = 0.000, Float:y2 = 0.000, Float:z2 = 0.000, interiorid2 = 0, worldid2 = 0);
+native CreatePropertyEntrance(const name[], Float:x1, Float:y1, Float:z1, interiorid, worldid, bool:labels = false, interior = INTERIOR_CUSTOM, Float:x2 = 0.000, Float:y2 = 0.000, Float:z2 = 0.000, interiorid2 = 0, worldid2 = 0, const event = "");
 ```
 
 ### Property deletion
@@ -59,6 +59,10 @@ DestroyPropertyEntrance("Property Name");
 ### Property debugging
 
 - Whenever *CreatePropertyEntrance* is called, it automatically sends debug messages in the console.
+
+### Property events
+
+- Read more about this topic [here](d_events.md)...
 
 ### Property callbacks
 
