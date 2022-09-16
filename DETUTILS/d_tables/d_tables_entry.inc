@@ -124,13 +124,13 @@ stock previewtable(const name[])
     print(" ");
     print(" ");
     new rowline[1024], cellvalue[50];
-    for(new a; a < (__GetRowAmount(name)); a++)
+    for(new a; a < (getrowamount(name)); a++)
     {
         format(rowline, sizeof rowline, "ROW: %i | ", a);
-        for(new b; b < (__GetColumnAmount(name)); b++)
+        for(new b; b < (getcolumnamount(name)); b++)
         {
             format(cellvalue, sizeof cellvalue, 
-                "%s | ", @cell() Get(name, b, a));
+                "%s | ", getcellvalue(name, b, a));
             strcat(rowline, cellvalue);
         }
         print(rowline);

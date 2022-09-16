@@ -1296,10 +1296,10 @@ public OnGameModeInit()
         0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1, .event = "PropertyEvent2");
     SetPropertyEntranceAngles(GetPropertyIDByName("Your Interior"), 1.0000, 2.0000);
     CreateDroppedWeapon(30,999,811.1299,-1616.0647,13.5469);
-    @table() Create("accounts", 10, 2);
-    @cell() Set("accounts", 4, 0, "4c0r");
-    @cell() Set("accounts", 4, 1, "4c1r");
-    @table() Preview("accounts");
+    tablecreate("accounts", 10, 2);
+    setcellvalue("accounts", 4, 0, "4c0r");
+    setcellvalue("accounts", 4, 1, "4c1r");
+    previewtable("accounts");
     return 1;
 }
 
