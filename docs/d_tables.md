@@ -5,34 +5,34 @@ Pawn Tables - Excel-like column, row and cell management system.
 
 ## How to start to use?
 
-- The usage of this library is really simple. Firstly, let's use a `@table()` decorator to initialize the table!
+- The usage of this library is really simple. Firstly, let's use a `tablecreate` function to initialize the table!
 
 ```pawn
-@table() Create("accounts", 10, 2);
+tablecreate("accounts", 10, 2);
 ```
 
-- Now we didn't really create the table, we just initialized it - or in other words, loaded it. So, we initialized the table `accounts` which currently has 10 previewable columns and 2 previewable rows. Note that the column and row IDs start from `0`! You could do `@cell() Set()` even before initializing the table - but the data would not appear on the table preview. Now, let's set the cell values, use the `@cell()` decorator for that. Do the following:
+- Now we didn't really create the table, we just initialized it - or in other words, loaded it. So, we initialized the table `accounts` which currently has 10 previewable columns and 2 previewable rows. Note that the column and row IDs start from `0`! You could do `setcellvalue` even before initializing the table - but the data would not appear on the table preview. Now, let's set the cell values, use the `setcellvalue` function for that. Do the following:
 
 ```pawn
-@cell() Set("accounts", 4, 0, "4c0r");
-@cell() Set("accounts", 4, 1, "4c1r");
+setcellvalue("accounts", 4, 0, "4c0r");
+setcellvalue("accounts", 4, 1, "4c1r");
 ```
 
-- In first line, we set a cell value `4c0r` for a cell located in column 4 and row 0, and in the second line - we set a cell value `4c1r` for a cell located in column 4 and row 1. After we set the values, we can display the table. Use `@table()` decorator again!
+- In first line, we set a cell value `4c0r` for a cell located in column 4 and row 0, and in the second line - we set a cell value `4c1r` for a cell located in column 4 and row 1. After we set the values, we can display the table. Use `previewtable` function now!
 
 ```pawn
-@table() Preview("accounts");
+previewtable("accounts");
 ```
 
 - Make sure your code looks like this:
 
 ```pawn
-@table() Create("accounts", 10, 2);
+tablecreate("accounts", 10, 2);
 
-@cell() Set("accounts", 4, 0, "4c0r");
-@cell() Set("accounts", 4, 1, "4c1r");
+setcellvalue("accounts", 4, 0, "4c0r");
+setcellvalue("accounts", 4, 1, "4c1r");
 
-@table() Preview("accounts");
+previewtable("accounts");
 ```
 
 - After we execute the script, the output should be the following text:
