@@ -12,6 +12,13 @@
  *
  */
 
+#if !defined DETUTILS_NO_EVENTS
+
+    new 
+        DET_g_DialogParser[MAX_PLAYERS],
+        DET_g_PlayerEventPrs[MAX_PLAYERS][32];
+
+#endif
 
 /*
                                                                                       
@@ -149,10 +156,36 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
             #endif
 
             #if !defined DETUTILS_NO_EVENTS
-            new dialogevent[32];
+            new 
+                dialogevent[32], 
+                dialogparser[32],
+                dialogparseevent[32];
+
             format(dialogevent, sizeof dialogevent, "dle_%s", g_PlayerDialogCache[playerid][Dialog]);
-            if(funcidx(dialogevent) != -1)
+            format(dialogparseevent, sizeof dialogparseevent, "dlp_%s", g_PlayerDialogCache[playerid][Dialog]);
+            CallLocalFunction(dialogparseevent, "i", playerid);
+            format(dialogparser, sizeof dialogparser, "@dlgp_%s", DET_g_PlayerEventPrs[playerid]);
+            CallLocalFunction(dialogparser, "i", playerid);
+            if(funcidx(dialogparser) == -1)
             {
+                #if defined DETUTILS_DEBUG_MODE
+                printf("[DETUtils]: (debug) - parsefunc :: Parser function '%s' doesn't exist.", dialogparser);
+                #endif
+            }
+            if(funcidx(dialogparser) != -1)
+            {
+                #if defined DETUTILS_DEBUG_MODE
+                printf("[DETUtils]: (debug) - parsefunc :: Calling a dialog parser function '%s'...", dialogparser);
+                #endif
+            }
+            if(funcidx(dialogevent) != -1 && DET_g_DialogParser[playerid] == 1)
+            {
+                #if defined DETUTILS_DEBUG_MODE
+                printf("[DETUtils]: (debug) - check :: dialogparser : '%s', DET_g_DialogParser[%i] : %i", 
+                    dialogparser,
+                    playerid,
+                    DET_g_DialogParser[playerid]); // was before i added the dialogparser == 1 condition
+                #endif
                 return CallLocalFunction(dialogevent, "iiis",
                     playerid,
                     response,
@@ -161,7 +194,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
             }
             #endif
             //                                             012345678
-            strmid(g_PlayerDialogCache[playerid][Dialog], "NO_DIALOG", 0, 8);
+            strmid(g_PlayerDialogCache[playerid][Dialog], "NO_DIALOG", 0, 9);
             #if defined DETUTILS_DEBUG_MODE
             printf("[DETUtils]: (debug) - Processing the dialog finished; player's dialog set to '%s'",
                 g_PlayerDialogCache[playerid][Dialog]);

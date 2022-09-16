@@ -335,6 +335,34 @@ public OnPlayerSpawn(playerid)
     SendClientMessage(playerid, -1, "Hi again from HiEvent!");
     return 1;
 }
+//
+@dialog(.type = MESSAGE_BOX, .args = {"ParseEvent", "PARSE", "This is parser thing", "Parse", "Parse"}) ParseDialog(playerid);
+
+@event(.type = DIALOG_EVENT) ParseEvent(playerid, listitem, inputtext[])
+{
+    SendClientMessage(playerid, -1, "Hi again from ParseEvent!");
+    return 1;
+}
+
+@command(.type = SLASH_COMMAND) dialogparsetest(playerid, params[]) 
+{
+    ShowDialogForPlayer(playerid, "ParseDialog");
+    return 1;
+}
+
+//
+@event(.type = PROPERTY_EVENT) PropertyEvent(playerid, propertyid, actionid)
+{
+    SendClientMessage(playerid, -1, "PropertyEvent works!");
+    return 1;
+}
+
+@event(.type = PROPERTY_EVENT) PropertyEvent2(playerid, extra, Float:propertyid, actionid)
+{
+    // This doesn't work.
+    SendClientMessage(playerid, -1, "PropertyEvent2 works!");
+    return 1;
+}
 
 @command(.type = SLASH_COMMAND) dialogtest(playerid, params[]) 
 {
@@ -1263,8 +1291,9 @@ public OnGameModeInit()
     AddMenuItem(teleportmenu, 1, "Come-a-Lot");
     UsePlayerPedAnims();
     DisableDefaultProperties();
-    CreatePropertyEntrance("24/7 Market", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_MARKET_247_1);
-    CreateFactionPropertyEntrance("Your Interior", "Amazing people", 825.6589,-1614.8202,13.5469, 0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1);
+    CreatePropertyEntrance("24/7 Market", 811.1299,-1616.0647,13.5469, 0, 0, true, INTERIOR_MARKET_247_1, .event = "PropertyEvent");
+    CreateFactionPropertyEntrance("Your Interior", "Amazing people", 825.6589,-1614.8202,13.5469,
+        0, 0, true, INTERIOR_CUSTOM, 0.0000, 0.0000, 4.0000, 1, 1, .event = "PropertyEvent2");
     SetPropertyEntranceAngles(GetPropertyIDByName("Your Interior"), 1.0000, 2.0000);
     CreateDroppedWeapon(30,999,811.1299,-1616.0647,13.5469);
     @table() Create("accounts", 10, 2);
@@ -1541,7 +1570,7 @@ public OnPropertyActionPerformed(playerid, propertyid, actionid)
         format(string, 256, "You entered %s, %s. Property id: %i [%i]", 
             GetPropertyName(propertyid),
             ReturnPlayerName(playerid), 
-            GetPropertyIDByName(g_PropertyData[propertyid][p_PropertyName]), // to ensure this also works
+            GetPropertyIDByName(DET_g_PropertyData[propertyid][p_PropertyName]), // to ensure this also works
             propertyid);
         SendClientMessage(playerid, -1, string);
         return 1;

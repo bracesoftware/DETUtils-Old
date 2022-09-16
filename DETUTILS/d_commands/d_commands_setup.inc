@@ -59,14 +59,14 @@ new DET_g_CaseSensivity;
 
 #define @DETUTILSCMD_RET_PRINT__@%5@ return printf("*** [DETUtils]: (cmd parse) - Met an unexpected or unknown argument in \n\
                                                        the command header while parsing.\n\
-                                                       Command: %s"#%5"\n\
+                                                       Command: '"#%5"'\n\
                                                        Make sure that your command header looks like this:\n\
                                                        @command(...) CMD_NAME__(playerid, params[]) {...}\n\n\n");
 
 #define @DETUTILSCMD_PR_CACHE__@%5@%0@%1@%2@%3@%4@ \
     {                                               \
         new const DET_PARAM_COUNT=%0+%1+%2+%3+%4;   \
-        printf("*** [DETUtils]: (cmd parse) - Parsing a command : "#%5" with %i params.", DET_PARAM_COUNT); \
+        printf("*** [DETUtils]: (cmd parse) - Parsing a command : '"#%5"' with %i parameters.", DET_PARAM_COUNT); \
         if(DET_PARAM_COUNT!=2||%2 !=1||%4 !=1){g_PlayerCmdData[p][ParseProcess] = 0; @DETUTILSCMD_RET_PRINT__@%5@ \
         }                                           \
         g_PlayerCmdData[p][ParseProcess] = 1; return 1;                                   \

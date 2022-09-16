@@ -63,6 +63,18 @@
 
 #endif
 
+#if !defined DETUTILS_NO_COMMANDS
+
+    #include "d_events_commands"
+
+#endif
+
+#if !defined DETUTILS_NO_PROPERTIES
+
+    #include "d_events_properties"
+
+#endif
+
 /*
                                                                       
 88888888888                                                           

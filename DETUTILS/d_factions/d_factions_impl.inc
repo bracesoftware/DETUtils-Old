@@ -279,16 +279,17 @@ stock CreateFactionPropertyEntrance(
         Float:_yExit = 0.000, 
         Float:_zExit = 0.000, 
         _eInteriorid = 0,
-        _eVirtualWorldid = 0)
+        _eVirtualWorldid = 0,
+        const event[] = "")
 {
     for(new g_PropertyID = 1; 
         g_PropertyID < MAX_PROPERTIES; 
         g_PropertyID++)
         {
-            if(g_PropertyData[g_PropertyID][ValidProp] == 0)
+            if(DET_g_PropertyData[g_PropertyID][ValidProp] == 0)
             {
-                g_PropertyData[g_PropertyID][p_PropertyFaction] = 1;
-                strmid(g_PropertyData[g_PropertyID][p_PropFaction], factionname, 0, 32);
+                DET_g_PropertyData[g_PropertyID][p_PropertyFaction] = 1;
+                strmid(DET_g_PropertyData[g_PropertyID][p_PropFaction], factionname, 0, 32);
                 printf("[DETUtils]: (debug) - Property '%s' successfully created, entrance is set to: %f, %f, %f.",
                         PropertyName,
                         Float:_xEntrance, 
@@ -304,7 +305,7 @@ stock CreateFactionPropertyEntrance(
                 printf("[DETUtils]: (debug) - Property id assigned.");
                 #endif
 
-                strmid(g_PropertyData[g_PropertyID][p_PropertyName], 
+                strmid(DET_g_PropertyData[g_PropertyID][p_PropertyName], 
                         PropertyName, 
                         0, 
                         strlen(PropertyName), 
@@ -316,26 +317,26 @@ stock CreateFactionPropertyEntrance(
 
                 printf("[DETUtils]: (debug) - Property '%s' has an id %d.",PropertyName,g_PropertyID);
 
-                g_PropertyData[g_PropertyID][p_PropertyEntrance_X] = _xEntrance;
-                g_PropertyData[g_PropertyID][p_PropertyEntrance_Y] = _yEntrance;
-                g_PropertyData[g_PropertyID][p_PropertyEntrance_Z] = _zEntrance;
+                DET_g_PropertyData[g_PropertyID][p_PropertyEntrance_X] = _xEntrance;
+                DET_g_PropertyData[g_PropertyID][p_PropertyEntrance_Y] = _yEntrance;
+                DET_g_PropertyData[g_PropertyID][p_PropertyEntrance_Z] = _zEntrance;
 
                 #if defined DETUTILS_DEBUG_MODE
                 printf("[DETUtils]: (debug) - Entrance coordinates assigned to property data.");
                 #endif
 
-                g_PropertyData[g_PropertyID][p_PropertyExit_X] = _xExit;
-                g_PropertyData[g_PropertyID][p_PropertyExit_Y] = _yExit;
-                g_PropertyData[g_PropertyID][p_PropertyExit_Z] = _zExit;
+                DET_g_PropertyData[g_PropertyID][p_PropertyExit_X] = _xExit;
+                DET_g_PropertyData[g_PropertyID][p_PropertyExit_Y] = _yExit;
+                DET_g_PropertyData[g_PropertyID][p_PropertyExit_Z] = _zExit;
 
                 #if defined DETUTILS_DEBUG_MODE
                 printf("[DETUtils]: (debug) - Exit coordinates assigned to property data.");
                 #endif
 
-                g_PropertyData[g_PropertyID][p_PropertyIntid] = _eInteriorid;
-                g_PropertyData[g_PropertyID][p_PropertyIntid_OUT] = _xInteriorid;
-                g_PropertyData[g_PropertyID][p_PropertyVwid] = _eVirtualWorldid;
-                g_PropertyData[g_PropertyID][p_PropertyVwid_OUT] = _xVirtualWorldid;
+                DET_g_PropertyData[g_PropertyID][p_PropertyIntid] = _eInteriorid;
+                DET_g_PropertyData[g_PropertyID][p_PropertyIntid_OUT] = _xInteriorid;
+                DET_g_PropertyData[g_PropertyID][p_PropertyVwid] = _eVirtualWorldid;
+                DET_g_PropertyData[g_PropertyID][p_PropertyVwid_OUT] = _xVirtualWorldid;
 
                 #if defined DETUTILS_DEBUG_MODE
                 printf("[DETUtils]: (debug) - Virtual world IDs and interior IDs assigned to property data.");
@@ -349,14 +350,14 @@ stock CreateFactionPropertyEntrance(
 
                     if(Interior == INTERIOR_MARKET_247_1)
                     {
-                        g_PropertyData[g_PropertyID][p_PropertyIntid] = 17;
-                        g_PropertyData[g_PropertyID][p_PropertyVwid] = 17;
+                        DET_g_PropertyData[g_PropertyID][p_PropertyIntid] = 17;
+                        DET_g_PropertyData[g_PropertyID][p_PropertyVwid] = 17;
                         _eInteriorid = 17;
                         _eVirtualWorldid = 17;
 
-                        g_PropertyData[g_PropertyID][p_PropertyExit_X] = -25.884498;
-                        g_PropertyData[g_PropertyID][p_PropertyExit_Y] = -185.868988;
-                        g_PropertyData[g_PropertyID][p_PropertyExit_Z] = 1003.546875;
+                        DET_g_PropertyData[g_PropertyID][p_PropertyExit_X] = -25.884498;
+                        DET_g_PropertyData[g_PropertyID][p_PropertyExit_Y] = -185.868988;
+                        DET_g_PropertyData[g_PropertyID][p_PropertyExit_Z] = 1003.546875;
                     }
                     if(Interior == INTERIOR_MARKET_247_2)
                     {
@@ -392,17 +393,17 @@ stock CreateFactionPropertyEntrance(
                     #endif
                     __Create3DLabelAndPickup(_EntranceLabelString, _xEntrance,_yEntrance,_zEntrance, 
                         _xVirtualWorldid, 19133, 3.0, 
-                        g_PropertyData[g_PropertyID][p_PropertyLabelID], 
-                        g_PropertyData[g_PropertyID][p_PropertyPickupID]);
+                        DET_g_PropertyData[g_PropertyID][p_PropertyLabelID], 
+                        DET_g_PropertyData[g_PropertyID][p_PropertyPickupID]);
                     #if defined DETUTILS_DEBUG_MODE
                     printf("[DETUtils]: (debug) - lab :: Created 3D label and pickup on entrance.");
                     #endif
-                    __Create3DLabelAndPickup("Exit here!", g_PropertyData[g_PropertyID][p_PropertyExit_X],
-                        g_PropertyData[g_PropertyID][p_PropertyExit_Y], 
-                        g_PropertyData[g_PropertyID][p_PropertyExit_Z], 
+                    __Create3DLabelAndPickup("Exit here!", DET_g_PropertyData[g_PropertyID][p_PropertyExit_X],
+                        DET_g_PropertyData[g_PropertyID][p_PropertyExit_Y], 
+                        DET_g_PropertyData[g_PropertyID][p_PropertyExit_Z], 
                         _eVirtualWorldid, 19133, 3.0,
-                        g_PropertyData[g_PropertyID][p_PropertyLabel], 
-                        g_PropertyData[g_PropertyID][p_PropertyPickup]);
+                        DET_g_PropertyData[g_PropertyID][p_PropertyLabel], 
+                        DET_g_PropertyData[g_PropertyID][p_PropertyPickup]);
                     #if defined DETUTILS_DEBUG_MODE
                     printf("[DETUtils]: (debug) - pick :: Created 3D label and pickup on exit.");
                     #endif
@@ -421,7 +422,11 @@ stock CreateFactionPropertyEntrance(
                 printf("[DETUtils]: (debug) - OnPropertyCreate(propertyid) called.");
                 #endif
 
-                g_PropertyData[g_PropertyID][ValidProp] = 1;
+                #if !defined DETUTILS_NO_EVENTS
+                    strmid(DET_g_PropertyData[g_PropertyID][p_Event], event, 0, 32);
+                #endif
+
+                DET_g_PropertyData[g_PropertyID][ValidProp] = 1;
                 DET_g_CreatedProperties ++;
                 break;
             }

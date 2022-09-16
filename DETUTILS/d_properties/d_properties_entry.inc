@@ -46,12 +46,20 @@ enum enum_PropertyData
     Text3D:p_PropertyLabel,
     Text3D:p_PropertyLabelID,
 
+    p_Event[32],
+
     p_PropertyLocked
-    #if !defined DETUTILS_NO_TEAMS
+    #if !defined DETUTILS_NO_FACTIONS
     ,p_PropertyFaction,
     p_PropFaction[32]
     #endif
 };
+
+#if !defined DETUTILS_NO_EVENTS
+
+    new DET_g_PropertyParser[MAX_PLAYERS];
+
+#endif
 
 forward OnPropertyCreate(propertyid);
 forward OnPropertyDestroy(propertyid);
@@ -60,7 +68,7 @@ forward OnPlayerExitProperty(playerid);
 
 new g_PlayerProperty[MAX_PLAYERS];
 
-new g_PropertyData[MAX_PROPERTIES][enum_PropertyData];
+new DET_g_PropertyData[MAX_PROPERTIES][enum_PropertyData];
 
 new DET_g_CreatedProperties;
 
@@ -69,7 +77,7 @@ new _EntranceTitleShown[MAX_PLAYERS];
 // Interior IDs:
 
 #define DETUTILS_PROP_PARAMS__(%0,%1,%2,%3); \
-    g_PropertyData[g_PropertyID][p_PropertyIntid] = %3;g_PropertyData[g_PropertyID][p_PropertyVwid] = %3;_eInteriorid = %3; _eVirtualWorldid = %3;g_PropertyData[g_PropertyID][p_PropertyExit_X] = %0;g_PropertyData[g_PropertyID][p_PropertyExit_Y] = %1;g_PropertyData[g_PropertyID][p_PropertyExit_Z] = %3;
+    DET_g_PropertyData[g_PropertyID][p_PropertyIntid] = %3;DET_g_PropertyData[g_PropertyID][p_PropertyVwid] = %3;_eInteriorid = %3; _eVirtualWorldid = %3;DET_g_PropertyData[g_PropertyID][p_PropertyExit_X] = %0;DET_g_PropertyData[g_PropertyID][p_PropertyExit_Y] = %1;DET_g_PropertyData[g_PropertyID][p_PropertyExit_Z] = %3;
 
 #define INTERIOR_CUSTOM         -1
 #define INTERIOR_MARKET_247_1    0
@@ -252,7 +260,7 @@ forward a_props_OnplayerSpawn(playerid);
 
 _OnPlayerNearEntrance(playerid);
 
-#if !defined DETUTILS_NO_TEAMS
+#if !defined DETUTILS_NO_FACTIONS
 
 #define MAX_FACTIONS 256
 
@@ -276,51 +284,53 @@ new DET_g_PlayerFactionCache[MAX_PLAYERS][enum_PlayerFactionData];
 
 public _OnPlayerNearEntrance(playerid)
 {
-    //new PropertyFuncName[100];
-    new PropertyActionID;
+    new 
+        PropertyActionID, 
+        DET_l_PropertyEvent[32],
+        DET_l_PropertyParseFunc[32];
     
     for(new i; i < MAX_PROPERTIES; i++)
     {
-        if( IsPlayerInRangeOfPoint( playerid, 1.5, g_PropertyData[ i ][p_PropertyEntrance_X], \
-        g_PropertyData[ i ][p_PropertyEntrance_Y], g_PropertyData[ i ][p_PropertyEntrance_Z]) \
-        && GetPlayerVirtualWorld( playerid ) == g_PropertyData[ i ][p_PropertyVwid_OUT] \
+        if( IsPlayerInRangeOfPoint( playerid, 1.5, DET_g_PropertyData[ i ][p_PropertyEntrance_X], 
+        DET_g_PropertyData[ i ][p_PropertyEntrance_Y], DET_g_PropertyData[ i ][p_PropertyEntrance_Z]) 
+        && GetPlayerVirtualWorld( playerid ) == DET_g_PropertyData[ i ][p_PropertyVwid_OUT] 
         && !IsPlayerInAnyVehicle( playerid ))
         {
-            #if !defined DETUTILS_NO_TEAMS
+            #if !defined DETUTILS_NO_FACTIONS
                 
-                if(g_PropertyData[i][p_PropertyFaction] == 1)
+                if(DET_g_PropertyData[i][p_PropertyFaction] == 1)
                 {
-                    if(strcmp(DET_g_PlayerFactionCache[playerid][Faction], g_PropertyData[i][p_PropFaction]))
+                    if(strcmp(DET_g_PlayerFactionCache[playerid][Faction], DET_g_PropertyData[i][p_PropFaction]))
                     {
                         return SendClientMessage(playerid, -1, DETUTILS_TEXT_TEAMPROP_LOCK);
                     }
                 }
             
             #endif
-            if(g_PropertyData[i][p_PropertyLocked] == 1)
+            if(DET_g_PropertyData[i][p_PropertyLocked] == 1)
             {
                 return SendClientMessage(playerid, -1, DETUTILS_TEXT_PROP_LOCK);
             }
 
             PropertyActionID = 0;
             /*format(PropertyFuncName,sizeof(PropertyFuncName),
-                "OnPropertyActionPerformed",g_PropertyData[ i ][p_PropertyName]);*/
+                "OnPropertyActionPerformed",DET_g_PropertyData[ i ][p_PropertyName]);*/
 
             if(funcidx("OnPropertyActionPerformed") != -1) CallLocalFunction("OnPropertyActionPerformed",
                                                                 "iii",playerid,i,PropertyActionID);
 
-            SetPlayerInterior( playerid, g_PropertyData[ i ][p_PropertyIntid] );
-            SetPlayerVirtualWorld( playerid, g_PropertyData[ i ][p_PropertyVwid] );
+            SetPlayerInterior( playerid, DET_g_PropertyData[ i ][p_PropertyIntid] );
+            SetPlayerVirtualWorld( playerid, DET_g_PropertyData[ i ][p_PropertyVwid] );
             
             #if defined DETUTILS_NO_ANTICHEAT
             SetPlayerPos
             #else
             d_ac_SetPlayerPos
             #endif
-            ( playerid, g_PropertyData[ i ][p_PropertyExit_X], g_PropertyData[ i ][p_PropertyExit_Y], \
-            g_PropertyData[ i ][p_PropertyExit_Z] );
+            ( playerid, DET_g_PropertyData[ i ][p_PropertyExit_X], DET_g_PropertyData[ i ][p_PropertyExit_Y], 
+            DET_g_PropertyData[ i ][p_PropertyExit_Z] );
             
-            SetPlayerFacingAngle( playerid, g_PropertyData[ i ][p_PropertyExit_A] );
+            SetPlayerFacingAngle( playerid, DET_g_PropertyData[ i ][p_PropertyExit_A] );
             SetCameraBehindPlayer( playerid );
             
             #if defined DETUTILS_DEBUG_MODE
@@ -336,40 +346,55 @@ public _OnPlayerNearEntrance(playerid)
             
             if(funcidx("OnPlayerEnterProperty") != -1)
                 CallLocalFunction("OnPlayerEnterProperty", "i", playerid);
-            
+
+            // Events and parsing.
+
+            format(DET_l_PropertyEvent,
+                sizeof DET_l_PropertyEvent,
+                "@prpe_%s", DET_g_PropertyData[i][p_Event]);
+
+            format(DET_l_PropertyParseFunc, sizeof DET_l_PropertyParseFunc,
+                "@prpp_%s", DET_g_PropertyData[i][p_Event]);
+
+            CallLocalFunction(DET_l_PropertyParseFunc, "i", playerid);
+
+            if(funcidx(DET_l_PropertyEvent) != -1 && DET_g_PropertyParser[playerid] == 1)
+            {
+                CallLocalFunction(DET_l_PropertyEvent, "iii", playerid, i, PropertyActionID);
+            }
         }
-        else if( IsPlayerInRangeOfPoint( playerid, 1.5, g_PropertyData[ i ][p_PropertyExit_X], \
-        g_PropertyData[ i ][p_PropertyExit_Y], g_PropertyData[ i ][p_PropertyExit_Z]) && \
-        GetPlayerVirtualWorld( playerid ) == g_PropertyData[ i ][p_PropertyVwid])
+        else if( IsPlayerInRangeOfPoint( playerid, 1.5, DET_g_PropertyData[ i ][p_PropertyExit_X], 
+        DET_g_PropertyData[ i ][p_PropertyExit_Y], DET_g_PropertyData[ i ][p_PropertyExit_Z]) && 
+        GetPlayerVirtualWorld( playerid ) == DET_g_PropertyData[ i ][p_PropertyVwid])
         {
-            #if !defined DETUTILS_NO_TEAMS
+            #if !defined DETUTILS_NO_FACTIONS
                 
-                if(g_PropertyData[i][p_PropertyFaction] == 1)
+                if(DET_g_PropertyData[i][p_PropertyFaction] == 1)
                 {
-                    if(strcmp(DET_g_PlayerFactionCache[playerid][Faction], g_PropertyData[i][p_PropFaction]))
+                    if(strcmp(DET_g_PlayerFactionCache[playerid][Faction], DET_g_PropertyData[i][p_PropFaction]))
                     {
                         return SendClientMessage(playerid, -1, DETUTILS_TEXT_TEAMPROP_LOCK);
                     }
                 }
             
             #endif
-            if(g_PropertyData[i][p_PropertyLocked] == 1)
+            if(DET_g_PropertyData[i][p_PropertyLocked] == 1)
             {
                 return SendClientMessage(playerid, -1, DETUTILS_TEXT_PROP_LOCK);
             }
 
-            SetPlayerVirtualWorld( playerid, g_PropertyData[ i ][p_PropertyVwid_OUT] );
-            SetPlayerInterior( playerid, g_PropertyData[ i ][p_PropertyIntid_OUT] );
+            SetPlayerVirtualWorld( playerid, DET_g_PropertyData[ i ][p_PropertyVwid_OUT] );
+            SetPlayerInterior( playerid, DET_g_PropertyData[ i ][p_PropertyIntid_OUT] );
             
             #if defined DETUTILS_NO_ANTICHEAT
             SetPlayerPos
             #else
             d_ac_SetPlayerPos
             #endif
-            ( playerid, g_PropertyData[ i ][p_PropertyEntrance_X], g_PropertyData[ i ][p_PropertyEntrance_Y], \
-            g_PropertyData[ i ][p_PropertyEntrance_Z] );
+            ( playerid, DET_g_PropertyData[ i ][p_PropertyEntrance_X], DET_g_PropertyData[ i ][p_PropertyEntrance_Y], \
+            DET_g_PropertyData[ i ][p_PropertyEntrance_Z] );
             
-            SetPlayerFacingAngle( playerid, g_PropertyData[ i ][p_PropertyEntrance_A] );
+            SetPlayerFacingAngle( playerid, DET_g_PropertyData[ i ][p_PropertyEntrance_A] );
             SetCameraBehindPlayer( playerid );
 
             TogglePlayerControllable(playerid,false);
@@ -382,7 +407,7 @@ public _OnPlayerNearEntrance(playerid)
 
             PropertyActionID = 1;
             /*format(PropertyFuncName,sizeof(PropertyFuncName),
-                "OnPropertyActionPerformed",g_PropertyData[ i ][p_PropertyName]);*/
+                "OnPropertyActionPerformed",DET_g_PropertyData[ i ][p_PropertyName]);*/
 
             if(funcidx("OnPropertyActionPerformed") != -1) CallLocalFunction("OnPropertyActionPerformed","iii",playerid,i,PropertyActionID);
 
@@ -390,6 +415,22 @@ public _OnPlayerNearEntrance(playerid)
             
             if(funcidx("OnPlayerExitProperty") != -1)
                 CallLocalFunction("OnPlayerExitProperty", "i", playerid);
+
+            // Events and parsing.
+
+            format(DET_l_PropertyEvent,
+                sizeof DET_l_PropertyEvent,
+                "@prpe_%s", DET_g_PropertyData[i][p_Event]);
+
+            format(DET_l_PropertyParseFunc, sizeof DET_l_PropertyParseFunc,
+                "@prpp_%s", DET_g_PropertyData[i][p_Event]);
+
+            CallLocalFunction(DET_l_PropertyParseFunc, "i", playerid);
+
+            if(funcidx(DET_l_PropertyEvent) != -1 && DET_g_PropertyParser[playerid] == 1)
+            {
+                CallLocalFunction(DET_l_PropertyEvent, "iii", playerid, i, PropertyActionID);
+            }
         }
     }
     return 1;
@@ -467,13 +508,13 @@ public OnPlayerUpdate(playerid)
 {
     for(new i; i < MAX_PROPERTIES; i++)
     {
-        if( IsPlayerInRangeOfPoint( playerid, 1.5, g_PropertyData[ i ][p_PropertyEntrance_X], \
-        g_PropertyData[ i ][p_PropertyEntrance_Y], g_PropertyData[ i ][p_PropertyEntrance_Z]) \
-        && GetPlayerVirtualWorld( playerid ) == g_PropertyData[ i ][p_PropertyVwid_OUT] \
+        if( IsPlayerInRangeOfPoint( playerid, 1.5, DET_g_PropertyData[ i ][p_PropertyEntrance_X], \
+        DET_g_PropertyData[ i ][p_PropertyEntrance_Y], DET_g_PropertyData[ i ][p_PropertyEntrance_Z]) \
+        && GetPlayerVirtualWorld( playerid ) == DET_g_PropertyData[ i ][p_PropertyVwid_OUT] \
         && !IsPlayerInAnyVehicle( playerid ) && _EntranceTitleShown[playerid] != 1)
         {
             new PropertyName[100];
-            format(PropertyName,sizeof(PropertyName),DETUTILS_TEXT_PROPERTY_NAME,g_PropertyData[ i ][ p_PropertyName ]);
+            format(PropertyName,sizeof(PropertyName),DETUTILS_TEXT_PROPERTY_NAME,DET_g_PropertyData[ i ][ p_PropertyName ]);
             
             _Announcement(playerid, PropertyName);
             #if defined DETUTILS_DEBUG_MODE
@@ -604,13 +645,14 @@ stock CreatePropertyEntrance(
         Float:_yExit = 0.000, 
         Float:_zExit = 0.000, 
         _eInteriorid = 0,
-        _eVirtualWorldid = 0)
+        _eVirtualWorldid = 0,
+        const event[] = "")
 {
     for(new g_PropertyID = 1; 
         g_PropertyID < MAX_PROPERTIES; 
         g_PropertyID++)
         {
-            if(g_PropertyData[g_PropertyID][ValidProp] == 0)
+            if(DET_g_PropertyData[g_PropertyID][ValidProp] == 0)
             {
                 printf("[DETUtils]: (debug) - Property '%s' successfully created, entrance is set to: %f, %f, %f.",
                         PropertyName,
@@ -627,7 +669,7 @@ stock CreatePropertyEntrance(
                 printf("[DETUtils]: (debug) - Property id assigned.");
                 #endif
 
-                strmid(g_PropertyData[g_PropertyID][p_PropertyName], 
+                strmid(DET_g_PropertyData[g_PropertyID][p_PropertyName], 
                         PropertyName, 
                         0, 
                         strlen(PropertyName), 
@@ -639,26 +681,26 @@ stock CreatePropertyEntrance(
 
                 printf("[DETUtils]: (debug) - Property '%s' has an id %d.",PropertyName,g_PropertyID);
 
-                g_PropertyData[g_PropertyID][p_PropertyEntrance_X] = _xEntrance;
-                g_PropertyData[g_PropertyID][p_PropertyEntrance_Y] = _yEntrance;
-                g_PropertyData[g_PropertyID][p_PropertyEntrance_Z] = _zEntrance;
+                DET_g_PropertyData[g_PropertyID][p_PropertyEntrance_X] = _xEntrance;
+                DET_g_PropertyData[g_PropertyID][p_PropertyEntrance_Y] = _yEntrance;
+                DET_g_PropertyData[g_PropertyID][p_PropertyEntrance_Z] = _zEntrance;
 
                 #if defined DETUTILS_DEBUG_MODE
                 printf("[DETUtils]: (debug) - Entrance coordinates assigned to property data.");
                 #endif
 
-                g_PropertyData[g_PropertyID][p_PropertyExit_X] = _xExit;
-                g_PropertyData[g_PropertyID][p_PropertyExit_Y] = _yExit;
-                g_PropertyData[g_PropertyID][p_PropertyExit_Z] = _zExit;
+                DET_g_PropertyData[g_PropertyID][p_PropertyExit_X] = _xExit;
+                DET_g_PropertyData[g_PropertyID][p_PropertyExit_Y] = _yExit;
+                DET_g_PropertyData[g_PropertyID][p_PropertyExit_Z] = _zExit;
 
                 #if defined DETUTILS_DEBUG_MODE
                 printf("[DETUtils]: (debug) - Exit coordinates assigned to property data.");
                 #endif
 
-                g_PropertyData[g_PropertyID][p_PropertyIntid] = _eInteriorid;
-                g_PropertyData[g_PropertyID][p_PropertyIntid_OUT] = _xInteriorid;
-                g_PropertyData[g_PropertyID][p_PropertyVwid] = _eVirtualWorldid;
-                g_PropertyData[g_PropertyID][p_PropertyVwid_OUT] = _xVirtualWorldid;
+                DET_g_PropertyData[g_PropertyID][p_PropertyIntid] = _eInteriorid;
+                DET_g_PropertyData[g_PropertyID][p_PropertyIntid_OUT] = _xInteriorid;
+                DET_g_PropertyData[g_PropertyID][p_PropertyVwid] = _eVirtualWorldid;
+                DET_g_PropertyData[g_PropertyID][p_PropertyVwid_OUT] = _xVirtualWorldid;
 
                 #if defined DETUTILS_DEBUG_MODE
                 printf("[DETUtils]: (debug) - Virtual world IDs and interior IDs assigned to property data.");
@@ -672,14 +714,14 @@ stock CreatePropertyEntrance(
 
                     if(Interior == INTERIOR_MARKET_247_1)
                     {
-                        g_PropertyData[g_PropertyID][p_PropertyIntid] = 17;
-                        g_PropertyData[g_PropertyID][p_PropertyVwid] = 17;
+                        DET_g_PropertyData[g_PropertyID][p_PropertyIntid] = 17;
+                        DET_g_PropertyData[g_PropertyID][p_PropertyVwid] = 17;
                         _eInteriorid = 17;
                         _eVirtualWorldid = 17;
 
-                        g_PropertyData[g_PropertyID][p_PropertyExit_X] = -25.884498;
-                        g_PropertyData[g_PropertyID][p_PropertyExit_Y] = -185.868988;
-                        g_PropertyData[g_PropertyID][p_PropertyExit_Z] = 1003.546875;
+                        DET_g_PropertyData[g_PropertyID][p_PropertyExit_X] = -25.884498;
+                        DET_g_PropertyData[g_PropertyID][p_PropertyExit_Y] = -185.868988;
+                        DET_g_PropertyData[g_PropertyID][p_PropertyExit_Z] = 1003.546875;
                     }
                     if(Interior == INTERIOR_MARKET_247_2)
                     {
@@ -715,17 +757,17 @@ stock CreatePropertyEntrance(
                     #endif
                     __Create3DLabelAndPickup(_EntranceLabelString, _xEntrance,_yEntrance,_zEntrance, 
                         _xVirtualWorldid, 19133, 3.0, 
-                        g_PropertyData[g_PropertyID][p_PropertyLabelID], 
-                        g_PropertyData[g_PropertyID][p_PropertyPickupID]);
+                        DET_g_PropertyData[g_PropertyID][p_PropertyLabelID], 
+                        DET_g_PropertyData[g_PropertyID][p_PropertyPickupID]);
                     #if defined DETUTILS_DEBUG_MODE
                     printf("[DETUtils]: (debug) - lab :: Created 3D label and pickup on entrance.");
                     #endif
-                    __Create3DLabelAndPickup("Exit here!", g_PropertyData[g_PropertyID][p_PropertyExit_X],
-                        g_PropertyData[g_PropertyID][p_PropertyExit_Y], 
-                        g_PropertyData[g_PropertyID][p_PropertyExit_Z], 
+                    __Create3DLabelAndPickup("Exit here!", DET_g_PropertyData[g_PropertyID][p_PropertyExit_X],
+                        DET_g_PropertyData[g_PropertyID][p_PropertyExit_Y], 
+                        DET_g_PropertyData[g_PropertyID][p_PropertyExit_Z], 
                         _eVirtualWorldid, 19133, 3.0,
-                        g_PropertyData[g_PropertyID][p_PropertyLabel], 
-                        g_PropertyData[g_PropertyID][p_PropertyPickup]);
+                        DET_g_PropertyData[g_PropertyID][p_PropertyLabel], 
+                        DET_g_PropertyData[g_PropertyID][p_PropertyPickup]);
                     #if defined DETUTILS_DEBUG_MODE
                     printf("[DETUtils]: (debug) - pick :: Created 3D label and pickup on exit.");
                     #endif
@@ -744,7 +786,11 @@ stock CreatePropertyEntrance(
                 printf("[DETUtils]: (debug) - OnPropertyCreate(propertyid) called.");
                 #endif
 
-                g_PropertyData[g_PropertyID][ValidProp] = 1;
+                #if !defined DETUTILS_NO_EVENTS
+                    strmid(DET_g_PropertyData[g_PropertyID][p_Event], event, 0, 32);
+                #endif
+
+                DET_g_PropertyData[g_PropertyID][ValidProp] = 1;
                 DET_g_CreatedProperties ++;
                 break;
             }
@@ -772,21 +818,21 @@ stock DestroyPropertyEntrance(const name[])
 {
     for(new i = 1; i < MAX_PROPERTIES; i++)
     {
-        if(!strcmp(g_PropertyData[i][p_PropertyName], name, false))
+        if(!strcmp(DET_g_PropertyData[i][p_PropertyName], name, false))
         {
             CallLocalFunction("OnPropertyDestroy", "i", i);
-            g_PropertyData[i][ValidProp] = 0;
+            DET_g_PropertyData[i][ValidProp] = 0;
             DET_g_CreatedProperties --;
-            Delete3DTextLabel(g_PropertyData[i][p_PropertyLabelID]);
-            Delete3DTextLabel(g_PropertyData[i][p_PropertyLabel]);
-            DestroyPickup(g_PropertyData[i][p_PropertyPickupID]);
-            DestroyPickup(g_PropertyData[i][p_PropertyPickup]);
-            g_PropertyData[i][p_PropertyExit_X] = 0;
-            g_PropertyData[i][p_PropertyExit_Y] = 0;
-            g_PropertyData[i][p_PropertyExit_Z] = 0;
-            g_PropertyData[i][p_PropertyEntrance_X] = 0;
-            g_PropertyData[i][p_PropertyEntrance_Y] = 0;
-            g_PropertyData[i][p_PropertyEntrance_Z] = 0;
+            Delete3DTextLabel(DET_g_PropertyData[i][p_PropertyLabelID]);
+            Delete3DTextLabel(DET_g_PropertyData[i][p_PropertyLabel]);
+            DestroyPickup(DET_g_PropertyData[i][p_PropertyPickupID]);
+            DestroyPickup(DET_g_PropertyData[i][p_PropertyPickup]);
+            DET_g_PropertyData[i][p_PropertyExit_X] = 0;
+            DET_g_PropertyData[i][p_PropertyExit_Y] = 0;
+            DET_g_PropertyData[i][p_PropertyExit_Z] = 0;
+            DET_g_PropertyData[i][p_PropertyEntrance_X] = 0;
+            DET_g_PropertyData[i][p_PropertyEntrance_Y] = 0;
+            DET_g_PropertyData[i][p_PropertyEntrance_Z] = 0;
             #if defined DETUTILS_DEBUG_MODE
             printf("[DETUtils]: (debug) - dpe :: Destroyed a property entrance ID : %i", i);
             #endif
@@ -838,7 +884,7 @@ stock CreateCustomInterior(
 
     g_PropertyID++;
 
-    strmid(g_PropertyData[g_PropertyID][p_PropertyName], 
+    strmid(DET_g_PropertyData[g_PropertyID][p_PropertyName], 
             PropertyName, 
             0, 
             strlen(PropertyName), 
@@ -852,26 +898,26 @@ stock CreateCustomInterior(
     #if defined DETUTILS_DEBUG_MODE
     printf("[DETUtils]: (debug) - Interior id assigned.");
     #endif
-    g_PropertyData[g_PropertyID][p_PropertyEntrance_X] = _xEntrance;
-    g_PropertyData[g_PropertyID][p_PropertyEntrance_Y] = _yEntrance;
-    g_PropertyData[g_PropertyID][p_PropertyEntrance_Z] = _zEntrance;
+    DET_g_PropertyData[g_PropertyID][p_PropertyEntrance_X] = _xEntrance;
+    DET_g_PropertyData[g_PropertyID][p_PropertyEntrance_Y] = _yEntrance;
+    DET_g_PropertyData[g_PropertyID][p_PropertyEntrance_Z] = _zEntrance;
 
     #if defined DETUTILS_DEBUG_MODE
     printf("[DETUtils]: (debug) - Entrance coordinates assigned to interior data.");
     #endif
 
-    g_PropertyData[g_PropertyID][p_PropertyExit_X] = _xExit;
-    g_PropertyData[g_PropertyID][p_PropertyExit_Y] = _yExit;
-    g_PropertyData[g_PropertyID][p_PropertyExit_Z] = _zExit;
+    DET_g_PropertyData[g_PropertyID][p_PropertyExit_X] = _xExit;
+    DET_g_PropertyData[g_PropertyID][p_PropertyExit_Y] = _yExit;
+    DET_g_PropertyData[g_PropertyID][p_PropertyExit_Z] = _zExit;
 
     #if defined DETUTILS_DEBUG_MODE
     printf("[DETUtils]: (debug) - Exit coordinates assigned to interior data.");
     #endif
 
-    g_PropertyData[g_PropertyID][p_PropertyIntid] = _eInteriorid;
-    g_PropertyData[g_PropertyID][p_PropertyIntid_OUT] = _xInteriorid;
-    g_PropertyData[g_PropertyID][p_PropertyVwid] = _eVirtualWorldid;
-    g_PropertyData[g_PropertyID][p_PropertyVwid_OUT] = _xVirtualWorldid;
+    DET_g_PropertyData[g_PropertyID][p_PropertyIntid] = _eInteriorid;
+    DET_g_PropertyData[g_PropertyID][p_PropertyIntid_OUT] = _xInteriorid;
+    DET_g_PropertyData[g_PropertyID][p_PropertyVwid] = _eVirtualWorldid;
+    DET_g_PropertyData[g_PropertyID][p_PropertyVwid_OUT] = _xVirtualWorldid;
 
     #if defined DETUTILS_DEBUG_MODE
     printf("[DETUtils]: (debug) - Virtual world and interiorids assigned to custom interior.");
@@ -899,11 +945,11 @@ stock CreateCustomInterior(
 
 stock IsPropertyLocked(propertyid)
 {
-    if(g_PropertyData[propertyid][p_PropertyLocked] == 1)
+    if(DET_g_PropertyData[propertyid][p_PropertyLocked] == 1)
     {
         return 1;
     }
-    else if(g_PropertyData[propertyid][p_PropertyLocked] == 0)
+    else if(DET_g_PropertyData[propertyid][p_PropertyLocked] == 0)
     {
         return 0;
     }
@@ -917,14 +963,14 @@ stock void:TogglePropertyLocked(propertyid, bool:lock)
         if(funcidx("OnPropertyActionPerformed") != -1) 
             CallLocalFunction("OnPropertyActionPerformed",
             "iii",INVALID_PLAYER_ID,propertyid,PROPERTY_ACTION_LOCK);
-        g_PropertyData[propertyid][p_PropertyLocked] = 1;
+        DET_g_PropertyData[propertyid][p_PropertyLocked] = 1;
     }
     else if(lock == false)
     {
         if(funcidx("OnPropertyActionPerformed") != -1) 
             CallLocalFunction("OnPropertyActionPerformed",
             "iii",INVALID_PLAYER_ID,propertyid,PROPERTY_ACTION_UNLOCK);
-        g_PropertyData[propertyid][p_PropertyLocked] = 0;
+        DET_g_PropertyData[propertyid][p_PropertyLocked] = 0;
     }
 }
 
@@ -932,9 +978,9 @@ stock GetNearPropertyEntrance(playerid)
 {
     for(new i; i < MAX_PROPERTIES; i++)
     {
-        if( IsPlayerInRangeOfPoint( playerid, 3.0, g_PropertyData[ i ][p_PropertyEntrance_X], \
-        g_PropertyData[ i ][p_PropertyEntrance_Y], g_PropertyData[ i ][p_PropertyEntrance_Z]) \
-        && GetPlayerVirtualWorld( playerid ) == g_PropertyData[ i ][p_PropertyVwid_OUT] \
+        if( IsPlayerInRangeOfPoint( playerid, 3.0, DET_g_PropertyData[ i ][p_PropertyEntrance_X], \
+        DET_g_PropertyData[ i ][p_PropertyEntrance_Y], DET_g_PropertyData[ i ][p_PropertyEntrance_Z]) \
+        && GetPlayerVirtualWorld( playerid ) == DET_g_PropertyData[ i ][p_PropertyVwid_OUT] \
         && !IsPlayerInAnyVehicle( playerid ))
         {
             return i;
@@ -978,8 +1024,8 @@ stock SetPropertyEntranceAngles(
     printf("[DETUtils]: (debug) - Successfully set interior (intid : %i) angles to %f-%f.", 
         _PropertyID, _aAngle, _bAngle);
     #endif
-    g_PropertyData[_PropertyID][p_PropertyEntrance_A] = _aAngle;
-    g_PropertyData[_PropertyID][p_PropertyExit_A] = _bAngle;
+    DET_g_PropertyData[_PropertyID][p_PropertyEntrance_A] = _aAngle;
+    DET_g_PropertyData[_PropertyID][p_PropertyExit_A] = _bAngle;
     return 1;
 }
 
@@ -1031,11 +1077,11 @@ stock GetPropertyName(PropertyID)
     //#if defined detutils_complete_error_boom
     new f_PropertyName[256];
 
-    strcat(f_PropertyName, g_PropertyData[PropertyID][p_PropertyName]);
+    strcat(f_PropertyName, DET_g_PropertyData[PropertyID][p_PropertyName]);
 
     return f_PropertyName;
     //#endif
-    //return g_PropertyData[PropertyID][p_PropertyName];
+    //return DET_g_PropertyData[PropertyID][p_PropertyName];
 }
 
 stock GetPropertyIDByName(const PropertyName[])
@@ -1044,7 +1090,7 @@ stock GetPropertyIDByName(const PropertyName[])
         PropertyCount < MAX_PROPERTIES; 
         PropertyCount++)
     {
-        if(!strcmp(g_PropertyData[PropertyCount][p_PropertyName], PropertyName))
+        if(!strcmp(DET_g_PropertyData[PropertyCount][p_PropertyName], PropertyName))
         {
             return PropertyCount;
         }
