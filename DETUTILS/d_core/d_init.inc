@@ -409,6 +409,8 @@ __DETUTILS_STATIC void:LoadDETUtils()
     #if __DETUtilsBeta == 1
     print("*** [DETUtils]: (beta) - Note that this version is a beta release, which means that this release doesn't represent the final quality of the version.");
     #endif
+    print("                                        ");
+    print("                                        ");
 }
 
 __DETUTILS_STATIC void:UnloadDETUtils()
@@ -434,6 +436,8 @@ __DETUTILS_STATIC void:UnloadDETUtils()
     #if __DETUtilsBeta == 1
     print("*** [DETUtils]: (beta) - Note that this version is a beta release, which means that this release doesn't represent the final quality of the version.");
     #endif
+    print("                                        ");
+    print("                                        ");
 }
 
 #if !defined FILTERSCRIPT

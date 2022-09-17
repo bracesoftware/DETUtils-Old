@@ -192,24 +192,30 @@ stock AddPlayerToRace(playerid, const name[])
     return 0;
 }
 
-stock RemovePlayerFromRace(playerid, const name[])
+stock RemovePlayerFromRace(playerid)
 {
     if(DET_g_PlayerRaceId[playerid] == -1) return 0;
-    for(new i; i < MAX_RACES; i++)
+    
+    new raceid = DET_g_PlayerRaceId[playerid];
+
+    DET_g_RaceData[raceid][Players]--;
+    DET_g_RaceData[raceid][FinishedPlayers]++;
+    DET_g_PlayerRaceId[playerid] = -1;
+
+    TogglePlayerControllable(playerid, true);
+    SpawnPlayer(playerid);
+    DisablePlayerRaceCheckpoint(playerid);
+
+    CallLocalFunction("OnPlayerLeaveRace", "is", playerid, DET_g_RaceData[raceid][Name]);
+
+    if(DET_g_RaceData[raceid][FinishedPlayers] == DET_g_RaceData[raceid][MaxPlayers] && 
+    DET_g_RaceData[raceid][Players] == 0) // If they're the last player...
     {
-        if(!strcmp(name, DET_g_RaceData[i][Name]) && DET_g_RaceData[i][Valid] == 1)
-        {
-            DET_g_RaceData[i][Players]--;
-            DET_g_PlayerRaceId[playerid] = -1;
-
-            TogglePlayerControllable(playerid, true);
-            SpawnPlayer(playerid);
-
-            CallLocalFunction("OnPlayerLeaveRace", "is", playerid, name);
-            return 1;
-        }
+        DET_g_RaceData[raceid][Ended] = true; // Race ends.
+        CallLocalFunction("OnRaceFinish", "s", 
+            DET_g_RaceData[raceid][Name]);
     }
-    return 0;
+    return 1;
 }
 
 stock StartRace(const name[])

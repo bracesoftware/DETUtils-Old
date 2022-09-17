@@ -65,8 +65,8 @@ public OnRaceStart(racename[])
 
 public OnRaceFinish(racename[])
 {
-    DestroyRace(racename);
     fmargs_SendClientMessageToAll(-1, "Race %s finished", racename);
+    DestroyRace(racename);
     return 1;
 }
 
@@ -75,6 +75,12 @@ public OnRaceFinish(racename[])
     CreateRace("My race", 1, 811.1299,-1616.0647,13.5469,825.6589,-1614.8202,13.5469);
     AddPlayerToRace(playerid, "My race");
     StartRace("My race");
+    return 1;
+}
+
+@command(.type = SLASH_COMMAND) leaverace(playerid, params[])
+{
+    RemovePlayerFromRace(playerid);
     return 1;
 }
 
