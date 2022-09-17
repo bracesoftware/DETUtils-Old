@@ -484,7 +484,7 @@ stock
 
 forward OnPlayerScoreSniperHeadshot(playerid, killedid);
 
-#if defined DETUTILS_NO_TEAMS
+#if defined DETUTILS_NO_FACTIONS
 
 public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 {

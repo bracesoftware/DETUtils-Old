@@ -14,13 +14,15 @@
 #define DEFAULT_PLAYER_PERMISSIONS \
  (PLAYER_PERMISSION_SENDMESSAGES | PLAYER_PERMISSION_USECOMMANDS | \
     PLAYER_PERMISSION_USEDIALOGS | PLAYER_PERMISSION_USEVEHICLES | \ 
-    PLAYER_PERMISSION_BUNNYHOP)
+    PLAYER_PERMISSION_BUNNYHOP | PLAYER_PERMISSION_USEWEAPONS)
 
-#define PLAYER_PERMISSION_SENDMESSAGES 0x1
-#define PLAYER_PERMISSION_USECOMMANDS 0x2
-#define PLAYER_PERMISSION_USEDIALOGS 0x4
-#define PLAYER_PERMISSION_USEVEHICLES 0x8
-#define PLAYER_PERMISSION_BUNNYHOP 0x10
+#define PLAYER_PERMISSION_SENDMESSAGES      0x1
+#define PLAYER_PERMISSION_USECOMMANDS       0x2
+#define PLAYER_PERMISSION_USEDIALOGS        0x4
+#define PLAYER_PERMISSION_USEVEHICLES       0x8
+#define PLAYER_PERMISSION_BUNNYHOP          0x10
+#define PLAYER_PERMISSION_CBUG              0x20 // We don't want this in DEFAULT_PLAYER_PERMISSIONS.
+#define PLAYER_PERMISSION_USEWEAPONS        0x40
 
 new DET_g_PlayerPermissions[MAX_PLAYERS];
 
@@ -155,7 +157,21 @@ public OnPlayerUpdate(playerid)
                 "ii",
                 playerid,
                 PLAYER_PERMISSION_USEVEHICLES);
-            RemovePlayerFromVehicle(playerid);
+            
+            RemovePlayerFromVehicle(playerid); // Remove the player from the vehicle.
+            return 0;
+        }
+    }
+    if(GetPlayerWeapon(playerid) != -1 || GetPlayerWeapon(playerid) != 0)
+    {
+        if(!(PLAYER_PERMISSION_USEWEAPONS & DET_g_PlayerPermissions[playerid]))
+        {
+            CallLocalFunction("OnPlayerInsufficientPermissions",
+                "ii",
+                playerid,
+                PLAYER_PERMISSION_USEWEAPONS);
+            
+            ResetPlayerWeapons(playerid); // Reset all of the weapons because we don't want them.
             return 0;
         }
     }
@@ -176,7 +192,7 @@ public OnPlayerUpdate(playerid)
 
 forward d_perm_playerupdate(playerid);
 
-// BUNNYHOP
+// BUNNYHOP, CBUG
 
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
@@ -188,6 +204,21 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
                 "ii",
                 playerid,
                 PLAYER_PERMISSION_BUNNYHOP);
+
+            TogglePlayerControllable(playerid, false);
+            SetTimerEx("d_perms_playercontrol", 1000, false, "i", playerid);
+            return 1;
+        }
+    }
+    if(!(PLAYER_PERMISSION_CBUG & DET_g_PlayerPermissions[playerid]))
+    {
+        if((newkeys & KEY_FIRE) && (oldkeys & KEY_CROUCH) || 
+            (newkeys & KEY_CROUCH) && (oldkeys & KEY_FIRE))
+        {
+            CallLocalFunction("OnPlayerInsufficientPermissions",
+                "ii",
+                playerid,
+                PLAYER_PERMISSION_CBUG);
 
             TogglePlayerControllable(playerid, false);
             SetTimerEx("d_perms_playercontrol", 1000, false, "i", playerid);
