@@ -130,6 +130,6 @@ public OnRaceStart(racename[])
 ```pawn
 public OnRaceFinish(racename[])
 {
-  return 1;
+    return 1;
 }
 ```
