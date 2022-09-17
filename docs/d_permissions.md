@@ -19,6 +19,8 @@ These are currently available permissions:
 | `PLAYER_PERMISSION_USEDIALOGS` | Toggles the player's ability to respond to dialogs. |
 | `PLAYER_PERMISSION_USEVEHICLES` | Toggles the player's ability to enter vehicles. |
 | `PLAYER_PERMISSION_BUNNYHOP` | Toggles the player's ability to press `KEY_JUMP` and `KEY_SPRINT` at the same time. |
+| `PLAYER_PERMISSION_CBUG` | Toggles the player's ability to exploit the C-bug! (Note that this permission isn't included within `DEFAULT_PLAYER_PERMISSIONS` as we don't want players to exploit bugs.) |
+| `PLAYER_PERMISSION_USEWEAPONS` | Toggles the player's ability to use weapons - if the player attempts to have a weapon without a permission, all of his weapons will get resetted. |
 
 ## API
 ### `SetPlayerPermissionInteger`
