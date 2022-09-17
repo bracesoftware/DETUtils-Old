@@ -19,6 +19,8 @@
 #define set @DETUTILSVARS_SET__@
 #define @DETUTILSVARS_GET__@%0\32; @DETUTILSVARS_GET__@
 #define get @DETUTILSVARS_GET__@
+#define @DETUTILSVARS_RENAME__@%0\32; @DETUTILSVARS_RENAME__@
+#define rename @DETUTILSVARS_RENAME__@
 #define @DETVAR_%0\32; @DETVAR_
 
 #if !defined DETUTILS_NO_FILEQUERIES
@@ -65,7 +67,7 @@
 #define @DETUTILSVARS_GET__@Boolean%1(%0) __GetBooleanValue(%0)
 // get Float("Variable");
 #define @DETUTILSVARS_GET__@Float%1(%0) __GetFloatValue(%0)
-// get Integer("Variable");
+// get String("Variable");
 #define @DETUTILSVARS_GET__@String%1(%0) __GetStringValue(%0)
 
 // set Integer("Variable");
@@ -74,7 +76,7 @@
 #define @DETUTILSVARS_SET__@Boolean%1(%0) __SetBooleanValue(%0)
 // set Float("Variable");
 #define @DETUTILSVARS_SET__@Float%1(%0) __SetFloatValue(%0)
-// set Integer("Variable");
+// set String("Variable");
 #define @DETUTILSVARS_SET__@String%1(%0) __SetStringValue(%0)
 
 // delete Integer("Variable");
@@ -83,8 +85,17 @@
 #define @DETUTILSVARS_DEL__@Boolean%1(%0) __DeleteBooleanVariable(%0)
 // delete Float("Variable");
 #define @DETUTILSVARS_DEL__@Float%1(%0) __DeleteFloatVariable(%0)
-// delete Integer("Variable");
+// delete String("Variable");
 #define @DETUTILSVARS_DEL__@String%1(%0) __DeleteStringVariable(%0)
+
+// rename Integer("Variable", "Int");
+#define @DETUTILSVARS_RENAME__@Integer%1(%0) __RenameIntegerVariable(%0)
+// rename Boolean("Variable", "Bool");
+#define @DETUTILSVARS_RENAME__@Boolean%1(%0) __RenameBooleanVariable(%0)
+// rename Float("Variable", "Float");
+#define @DETUTILSVARS_RENAME__@Float%1(%0) __RenameFloatVariable(%0)
+// rename String("Variable", "String");
+#define @DETUTILSVARS_RENAME__@String%1(%0) __RenameStringVariable(%0)
 
 #if !defined DETUTILS_NO_FILEQUERIES
 
@@ -94,7 +105,7 @@
 #define @DETUTILSVARS_SAVE__@Boolean%1(%0) __SaveBooleanVariable(%0)
 // save Float("Variable");
 #define @DETUTILSVARS_SAVE__@Float%1(%0) __SaveFloatVariable(%0)
-// save Integer("Variable");
+// save String("Variable");
 #define @DETUTILSVARS_SAVE__@String%1(%0) __SaveStringVariable(%0)
 
 // load Integer("Variable");
@@ -103,7 +114,7 @@
 #define @DETUTILSVARS_LOAD__@Boolean%1(%0) __LoadBooleanVariable(%0)
 // load Float("Variable");
 #define @DETUTILSVARS_LOAD__@Float%1(%0) __LoadFloatVariable(%0)
-// load Integer("Variable");
+// load String("Variable");
 #define @DETUTILSVARS_LOAD__@String%1(%0) __LoadStringVariable(%0)
 
 #endif

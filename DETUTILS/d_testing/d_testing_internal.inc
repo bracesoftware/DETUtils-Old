@@ -202,7 +202,7 @@ public OnDETUtilsInit() // This should be the last hook.
     set Boolean("Variable1", false, 3);
     set Float("Variable2", 213.21);
 
-    printf("[DETUtils]: (var info) - Testing variables: %i, %i, %f, %s",
+    printf("[DETUtils]: (var info) - Testing variables x1: %i, %i, %f, %s",
         get Integer("Variable"),
         get Boolean("Variable1", 3),
         get Float("Variable2"),
@@ -212,6 +212,23 @@ public OnDETUtilsInit() // This should be the last hook.
     set Integer("Variable4", 172364);
     save Integer("Variable4");
     load Integer("Variable4");
+
+    rename Integer("Variable", "Integer");
+    rename Boolean("Variable1", "Boolean");
+    rename Float("Variable2", "Float");
+    rename String("Variable3", "String");
+
+    printf("[DETUtils]: (var info) - Testing variables x2: %i, %i, %f, %s",
+        get Integer("Variable"),
+        get Boolean("Variable1", 3),
+        get Float("Variable2"),
+        get String("Variable3"));
+
+    printf("[DETUtils]: (var info) - Testing variables x3: %i, %i, %f, %s",
+        get Integer("Integer"),
+        get Boolean("Boolean", 3),
+        get Float("Float"),
+        get String("String"));
 
     delete Integer("Variable");
     delete Boolean("Variable1");

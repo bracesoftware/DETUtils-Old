@@ -69,7 +69,7 @@ enum enum_IntVarData
     Dimensions[MAX_VAR_DIMENSIONS]
 }
 
-new g_IntCache[MAX_INTEGER_VARS][enum_IntVarData];
+new DET_g_IntegerCache[MAX_INTEGER_VARS][enum_IntVarData];
 
 // Booleans:
 
@@ -85,7 +85,7 @@ enum enum_BoolVarData
     Dimensions[MAX_VAR_DIMENSIONS]
 }
 
-new g_BoolCache[MAX_BOOLEAN_VARS][enum_BoolVarData];
+new DET_g_BoolCache[MAX_BOOLEAN_VARS][enum_BoolVarData];
 
 // Strings:
 
@@ -100,7 +100,7 @@ enum enum_StringData
     ReturnVal[MAX_STRING_CELLS]
 }
 
-new g_StringCache[MAX_STRINGS][enum_StringData];
+new DET_g_StringCache[MAX_STRINGS][enum_StringData];
 
 // Floats:
 
@@ -116,7 +116,7 @@ enum enum_FloatData
     Float:Dimensions[MAX_VAR_DIMENSIONS]
 }
 
-new g_FloatCache[MAX_FLOAT_VARS][enum_FloatData];
+new DET_g_FloatCache[MAX_FLOAT_VARS][enum_FloatData];
 
 stock CallVariableHandler(const name[])
 {
@@ -136,15 +136,15 @@ stock __DeleteIntegerVariable(const name[])
 {
     for(new i; i < MAX_INTEGER_VARS; i++)
     {
-        if(!strcmp(g_IntCache[i][IntName], name, false))
+        if(!strcmp(DET_g_IntegerCache[i][IntName], name, false))
         {
-            strmid(g_IntCache[i][IntName], " ", 0, 1);
-            g_IntCache[i][Valid] = 0;
+            strmid(DET_g_IntegerCache[i][IntName], " ", 0, 1);
+            DET_g_IntegerCache[i][Valid] = 0;
             for(new x; x < MAX_VAR_DIMENSIONS; x++)
             {
-                g_IntCache[i][Dimensions][x] = 0;
+                DET_g_IntegerCache[i][Dimensions][x] = 0;
             }
-            g_IntCache[i][ReturnVal] = 0;
+            DET_g_IntegerCache[i][ReturnVal] = 0;
             CallLocalFunction("OnVariableDelete", "si", name, VARIABLE_TYPE_INTEGER);
             return 1;
         }
@@ -156,15 +156,15 @@ stock __DeleteBooleanVariable(const name[])
 {
     for(new i; i < MAX_BOOLEAN_VARS; i++)
     {
-        if(!strcmp(g_BoolCache[i][BoolName], name, false))
+        if(!strcmp(DET_g_BoolCache[i][BoolName], name, false))
         {
-            strmid(g_BoolCache[i][BoolName], " ", 0, 1);
-            g_BoolCache[i][Valid] = 0;
+            strmid(DET_g_BoolCache[i][BoolName], " ", 0, 1);
+            DET_g_BoolCache[i][Valid] = 0;
             for(new x; x < MAX_VAR_DIMENSIONS; x++)
             {
-                g_BoolCache[i][Dimensions][x] = false;
+                DET_g_BoolCache[i][Dimensions][x] = false;
             }
-            g_BoolCache[i][ReturnVal] = false;
+            DET_g_BoolCache[i][ReturnVal] = false;
             CallLocalFunction("OnVariableDelete", "si", name, VARIABLE_TYPE_BOOLEAN);
             return 1;
         }
@@ -176,15 +176,15 @@ stock __DeleteFloatVariable(const name[])
 {
     for(new i; i < MAX_FLOAT_VARS; i++)
     {
-        if(!strcmp(g_FloatCache[i][FloatName], name, false))
+        if(!strcmp(DET_g_FloatCache[i][FloatName], name, false))
         {
-            strmid(g_FloatCache[i][FloatName], " ", 0, 1);
-            g_FloatCache[i][Valid] = 0;
+            strmid(DET_g_FloatCache[i][FloatName], " ", 0, 1);
+            DET_g_FloatCache[i][Valid] = 0;
             for(new x; x < MAX_VAR_DIMENSIONS; x++)
             {
-                g_FloatCache[i][Dimensions][x] = Float:0;
+                DET_g_FloatCache[i][Dimensions][x] = Float:0;
             }
-            g_FloatCache[i][ReturnVal] = Float:0;
+            DET_g_FloatCache[i][ReturnVal] = Float:0;
             CallLocalFunction("OnVariableDelete", "si", name, VARIABLE_TYPE_FLOAT);
             return 1;
         }
@@ -196,12 +196,66 @@ stock __DeleteStringVariable(const name[])
 {
     for(new i; i < MAX_STRING_VARS; i++)
     {
-        if(!strcmp(g_StringCache[i][StringName], name, false))
+        if(!strcmp(DET_g_StringCache[i][StringName], name, false))
         {
-            strmid(g_StringCache[i][ReturnVal], " ", 0, 1);
-            strmid(g_StringCache[i][StringName], " ", 0, 1);
-            g_StringCache[i][Valid] = 0;
+            strmid(DET_g_StringCache[i][ReturnVal], " ", 0, 1);
+            strmid(DET_g_StringCache[i][StringName], " ", 0, 1);
+            DET_g_StringCache[i][Valid] = 0;
             CallLocalFunction("OnVariableDelete", "si", name, VARIABLE_TYPE_STRING);
+            return 1;
+        }
+    }
+    return 0;
+}
+
+// RENAME FUNCS:
+
+stock __RenameIntegerVariable(const oldname[], const newname[])
+{
+    for(new i; i < MAX_INTEGER_VARS; i++)
+    {
+        if(!strcmp(DET_g_IntegerCache[i][IntName], oldname, false))
+        {
+            strmid(DET_g_IntegerCache[i][IntName], newname, 0, 32);
+            return 1;
+        }
+    }
+    return 0;
+}
+
+stock __RenameBooleanVariable(const oldname[], const newname[])
+{
+    for(new i; i < MAX_BOOLEAN_VARS; i++)
+    {
+        if(!strcmp(DET_g_BoolCache[i][BoolName], oldname, false))
+        {
+            strmid(DET_g_BoolCache[i][BoolName], newname, 0, 32);
+            return 1;
+        }
+    }
+    return 0;
+}
+
+stock __RenameFloatVariable(const oldname[], const newname[])
+{
+    for(new i; i < MAX_FLOAT_VARS; i++)
+    {
+        if(!strcmp(DET_g_FloatCache[i][FloatName], oldname, false))
+        {
+            strmid(DET_g_FloatCache[i][FloatName], newname, 0, 32);
+            return 1;
+        }
+    }
+    return 0;
+}
+
+stock __RenameStringVariable(const oldname[], const newname[])
+{
+    for(new i; i < MAX_STRING_VARS; i++)
+    {
+        if(!strcmp(DET_g_StringCache[i][StringName], oldname, false))
+        {
+            strmid(DET_g_StringCache[i][StringName], newname, 0, 32);
             return 1;
         }
     }
@@ -214,10 +268,10 @@ varfunc DeclareInteger(const name[], multi, constant, constvalue = 0)
 {
     for(new i; i < MAX_INTEGER_VARS; i++)
     {
-        if(g_IntCache[i][Valid] == 0)
+        if(DET_g_IntegerCache[i][Valid] == 0)
         {
-            strmid(g_IntCache[i][IntName], name, 0, 32);
-            g_IntCache[i][Multi] = multi;
+            strmid(DET_g_IntegerCache[i][IntName], name, 0, 32);
+            DET_g_IntegerCache[i][Multi] = multi;
             if(constant == 1 && multi == 1)
             {
                 printf("[DETUtils]: (var error) - You can't create constant variables with more dimensions.");
@@ -227,20 +281,20 @@ varfunc DeclareInteger(const name[], multi, constant, constvalue = 0)
             {
                 for(new x; x < MAX_VAR_DIMENSIONS; x++)
                 {
-                    g_IntCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
+                    DET_g_IntegerCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
                 }
             }
             else if(multi == 0)
             {
-                g_IntCache[i][ReturnVal] = 0; // Initialize the single return size.
+                DET_g_IntegerCache[i][ReturnVal] = 0; // Initialize the single return size.
             }
             if(constant == 1)
             {
-                g_IntCache[i][Const] = 1;
-                g_IntCache[i][ReturnVal] = constvalue;
+                DET_g_IntegerCache[i][Const] = 1;
+                DET_g_IntegerCache[i][ReturnVal] = constvalue;
             }
             CallLocalFunction("OnVariableCreate", "si", name, VARIABLE_TYPE_INTEGER);
-            g_IntCache[i][Valid] = 1;
+            DET_g_IntegerCache[i][Valid] = 1;
             return 1;
         }   
     }
@@ -251,10 +305,10 @@ varfunc DeclareBoolean(const name[], multi, constant, bool:constvalue = false)
 {
     for(new i; i < MAX_BOOLEAN_VARS; i++)
     {
-        if(g_BoolCache[i][Valid] == 0)
+        if(DET_g_BoolCache[i][Valid] == 0)
         {
-            strmid(g_BoolCache[i][BoolName], name, 0, 32);
-            g_BoolCache[i][Multi] = multi;
+            strmid(DET_g_BoolCache[i][BoolName], name, 0, 32);
+            DET_g_BoolCache[i][Multi] = multi;
             if(constant == 1 && multi == 1)
             {
                 printf("[DETUtils]: (var error) - You can't create constant variables with more dimensions.");
@@ -264,12 +318,12 @@ varfunc DeclareBoolean(const name[], multi, constant, bool:constvalue = false)
             {
                 for(new x; x < MAX_VAR_DIMENSIONS; x++)
                 {
-                    g_BoolCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
+                    DET_g_BoolCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
                 }
             }
             else if(multi == 0)
             {
-                g_BoolCache[i][ReturnVal] = false; // Initialize the single return size.
+                DET_g_BoolCache[i][ReturnVal] = false; // Initialize the single return size.
             }
             if(constant == 1)
             {
@@ -278,11 +332,11 @@ varfunc DeclareBoolean(const name[], multi, constant, bool:constvalue = false)
                     printf("[DETUtils]: (var error) - Booleans can only have 0 and 1 as values.");
                     return 0;
                 }
-                g_BoolCache[i][Const] = 1;
-                g_BoolCache[i][ReturnVal] = constvalue;
+                DET_g_BoolCache[i][Const] = 1;
+                DET_g_BoolCache[i][ReturnVal] = constvalue;
             }
             CallLocalFunction("OnVariableCreate", "si", name, VARIABLE_TYPE_BOOLEAN);
-            g_BoolCache[i][Valid] = 1;
+            DET_g_BoolCache[i][Valid] = 1;
             return 1;
         }   
     }
@@ -293,10 +347,10 @@ varfunc DeclareFloat(const name[], multi, constant, Float:constvalue = 0.0000)
 {
     for(new i; i < MAX_FLOAT_VARS; i++)
     {
-        if(g_FloatCache[i][Valid] == 0)
+        if(DET_g_FloatCache[i][Valid] == 0)
         {
-            strmid(g_FloatCache[i][FloatName], name, 0, 32);
-            g_FloatCache[i][Multi] = multi;
+            strmid(DET_g_FloatCache[i][FloatName], name, 0, 32);
+            DET_g_FloatCache[i][Multi] = multi;
             if(constant == 1 && multi == 1)
             {
                 printf("[DETUtils]: (var error) - You can't create constant variables with more dimensions.");
@@ -306,20 +360,20 @@ varfunc DeclareFloat(const name[], multi, constant, Float:constvalue = 0.0000)
             {
                 for(new x; x < MAX_VAR_DIMENSIONS; x++)
                 {
-                    g_FloatCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
+                    DET_g_FloatCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
                 }
             }
             else if(multi == 0)
             {
-                g_FloatCache[i][ReturnVal] = 0; // Initialize the single return size.
+                DET_g_FloatCache[i][ReturnVal] = 0; // Initialize the single return size.
             }
             if(constant == 1)
             {
-                g_FloatCache[i][Const] = 1;
-                g_FloatCache[i][ReturnVal] = constvalue;
+                DET_g_FloatCache[i][Const] = 1;
+                DET_g_FloatCache[i][ReturnVal] = constvalue;
             }
             CallLocalFunction("OnVariableCreate", "si", name, VARIABLE_TYPE_FLOAT);
-            g_FloatCache[i][Valid] = 1;
+            DET_g_FloatCache[i][Valid] = 1;
             return 1;
         }   
     }
@@ -330,21 +384,21 @@ varfunc DeclareString(const name[], constant, const constvalue[])
 {
     for(new i; i < MAX_STRINGS; i++)
     {
-        if(g_StringCache[i][Valid] == 0)
+        if(DET_g_StringCache[i][Valid] == 0)
         {
             new len = strlen(constvalue);
-            strmid(g_StringCache[i][StringName], name, 0, 32);
+            strmid(DET_g_StringCache[i][StringName], name, 0, 32);
             if(constant == 1)
             {
-                strmid(g_StringCache[i][ReturnVal], constvalue, 0, len);
-                g_StringCache[i][Const] = 1;
+                strmid(DET_g_StringCache[i][ReturnVal], constvalue, 0, len);
+                DET_g_StringCache[i][Const] = 1;
             }
             else if(constant == 0)
             {
-                strmid(g_StringCache[i][ReturnVal], constvalue, 0, len);
+                strmid(DET_g_StringCache[i][ReturnVal], constvalue, 0, len);
             }
             CallLocalFunction("OnVariableCreate", "si", name, VARIABLE_TYPE_STRING);
-            g_StringCache[i][Valid] = 1;
+            DET_g_StringCache[i][Valid] = 1;
             return 1;
         }   
     }
@@ -357,20 +411,20 @@ stock __GetIntegerValue(const name[], dimension = -1)
 {
     for(new i; i < MAX_INTEGER_VARS; i++)
     {
-        if(!strcmp(g_IntCache[i][IntName], name, false))
+        if(!strcmp(DET_g_IntegerCache[i][IntName], name, false))
         {
-            if(g_IntCache[i][Multi] == 1)
+            if(DET_g_IntegerCache[i][Multi] == 1)
             {
                 if(dimension == -1)
                 {
                     printf("[DETUtils]: (var error) - Invalid dimension.");
                     return 0;
                 }
-                return g_IntCache[i][Dimensions][dimension];
+                return DET_g_IntegerCache[i][Dimensions][dimension];
             }
-            else if(g_IntCache[i][Multi] == 0)
+            else if(DET_g_IntegerCache[i][Multi] == 0)
             {
-                return g_IntCache[i][ReturnVal];
+                return DET_g_IntegerCache[i][ReturnVal];
             }
         }
     }
@@ -381,20 +435,20 @@ stock __GetBooleanValue(const name[], dimension = -1)
 {
     for(new i; i < MAX_BOOLEAN_VARS; i++)
     {
-        if(!strcmp(g_BoolCache[i][BoolName], name, false))
+        if(!strcmp(DET_g_BoolCache[i][BoolName], name, false))
         {
-            if(g_BoolCache[i][Multi] == 1)
+            if(DET_g_BoolCache[i][Multi] == 1)
             {
                 if(dimension == -1)
                 {
                     printf("[DETUtils]: (var error) - Invalid dimension.");
                     return 0;
                 }
-                return g_BoolCache[i][Dimensions][dimension];
+                return DET_g_BoolCache[i][Dimensions][dimension];
             }
-            else if(g_BoolCache[i][Multi] == 0)
+            else if(DET_g_BoolCache[i][Multi] == 0)
             {
-                return g_BoolCache[i][ReturnVal];
+                return DET_g_BoolCache[i][ReturnVal];
             }
         }
     }
@@ -405,20 +459,20 @@ stock Float:__GetFloatValue(const name[], dimension = -1)
 {
     for(new i; i < MAX_FLOAT_VARS; i++)
     {
-        if(!strcmp(g_FloatCache[i][FloatName], name, false))
+        if(!strcmp(DET_g_FloatCache[i][FloatName], name, false))
         {
-            if(g_FloatCache[i][Multi] == 1)
+            if(DET_g_FloatCache[i][Multi] == 1)
             {
                 if(dimension == -1)
                 {
                     printf("[DETUtils]: (var error) - Invalid dimension.");
                     return Float:0;
                 }
-                return g_FloatCache[i][Dimensions][dimension];
+                return DET_g_FloatCache[i][Dimensions][dimension];
             }
-            else if(g_FloatCache[i][Multi] == 0)
+            else if(DET_g_FloatCache[i][Multi] == 0)
             {
-                return g_FloatCache[i][ReturnVal];
+                return DET_g_FloatCache[i][ReturnVal];
             }
         }
     }
@@ -432,9 +486,9 @@ stock __GetStringValue(const name[])
             
     for(new i; i < MAX_STRING_VARS; i++)
     {
-        if(!strcmp(g_StringCache[i][StringName], name, false))
+        if(!strcmp(DET_g_StringCache[i][StringName], name, false))
         {
-            format(ret, 1024, "%s", g_StringCache[i][ReturnVal]);
+            format(ret, 1024, "%s", DET_g_StringCache[i][ReturnVal]);
             return ret;
         }
     }
@@ -447,14 +501,14 @@ stock __SetIntegerValue(const name[], value, dimension = -1)
 {
     for(new i; i < MAX_INTEGER_VARS; i++)
     {
-        if(!strcmp(g_IntCache[i][IntName], name, false))
+        if(!strcmp(DET_g_IntegerCache[i][IntName], name, false))
         {
-            if(g_IntCache[i][Const] == 1)
+            if(DET_g_IntegerCache[i][Const] == 1)
             {
                 printf("[DETUtils]: (var error) - Cannot update the constant value of : %s", name);
                 return 0;
             }
-            if(g_IntCache[i][Multi] == 1)
+            if(DET_g_IntegerCache[i][Multi] == 1)
             {
                 if(dimension == -1)
                 {
@@ -462,13 +516,13 @@ stock __SetIntegerValue(const name[], value, dimension = -1)
                     return 0;
                 }
                 CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_INTEGER, value, dimension);
-                g_IntCache[i][Dimensions][dimension] = value;
+                DET_g_IntegerCache[i][Dimensions][dimension] = value;
                 return 1;
             }
-            else if(g_IntCache[i][Multi] == 0)
+            else if(DET_g_IntegerCache[i][Multi] == 0)
             {
                 CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_INTEGER, value, dimension);
-                g_IntCache[i][ReturnVal] = value;
+                DET_g_IntegerCache[i][ReturnVal] = value;
                 return 1;
             }
         }
@@ -480,9 +534,9 @@ stock __SetBooleanValue(const name[], bool:value, dimension = -1)
 {
     for(new i; i < MAX_BOOLEAN_VARS; i++)
     {
-        if(!strcmp(g_BoolCache[i][BoolName], name, false))
+        if(!strcmp(DET_g_BoolCache[i][BoolName], name, false))
         {
-            if(g_BoolCache[i][Const] == 1)
+            if(DET_g_BoolCache[i][Const] == 1)
             {
                 printf("[DETUtils]: (var error) - Cannot update the constant value of : %s", name);
                 return 0;
@@ -492,7 +546,7 @@ stock __SetBooleanValue(const name[], bool:value, dimension = -1)
                 printf("[DETUtils]: (var error) - Boolean variables can only hold the values of 0 and 1.");
                 return 0;
             }
-            if(g_BoolCache[i][Multi] == 1)
+            if(DET_g_BoolCache[i][Multi] == 1)
             {
                 if(dimension == -1)
                 {
@@ -500,13 +554,13 @@ stock __SetBooleanValue(const name[], bool:value, dimension = -1)
                     return 0;
                 }
                 CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_BOOLEAN, value, dimension);
-                g_BoolCache[i][Dimensions][dimension] = value;
+                DET_g_BoolCache[i][Dimensions][dimension] = value;
                 return true;
             }
-            else if(g_BoolCache[i][Multi] == 0)
+            else if(DET_g_BoolCache[i][Multi] == 0)
             {
                 CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_BOOLEAN, value, dimension);
-                g_BoolCache[i][ReturnVal] = value;
+                DET_g_BoolCache[i][ReturnVal] = value;
                 return true;
             }
         }
@@ -518,14 +572,14 @@ stock __SetFloatValue(const name[], Float:value, dimension = -1)
 {
     for(new i; i < MAX_FLOAT_VARS; i++)
     {
-        if(!strcmp(g_FloatCache[i][FloatName], name, false))
+        if(!strcmp(DET_g_FloatCache[i][FloatName], name, false))
         {
-            if(g_FloatCache[i][Const] == 1)
+            if(DET_g_FloatCache[i][Const] == 1)
             {
                 printf("[DETUtils]: (var error) - Cannot update the constant value of : %s", name);
                 return 0;
             }
-            if(g_FloatCache[i][Multi] == 1)
+            if(DET_g_FloatCache[i][Multi] == 1)
             {
                 if(dimension == -1)
                 {
@@ -533,13 +587,13 @@ stock __SetFloatValue(const name[], Float:value, dimension = -1)
                     return 0;
                 }
                 CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_FLOAT, value, dimension);
-                g_FloatCache[i][Dimensions][dimension] = value;
+                DET_g_FloatCache[i][Dimensions][dimension] = value;
                 return 1;
             }
-            else if(g_FloatCache[i][Multi] == 0)
+            else if(DET_g_FloatCache[i][Multi] == 0)
             {
                 CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_FLOAT, value, dimension);
-                g_FloatCache[i][ReturnVal] = value;
+                DET_g_FloatCache[i][ReturnVal] = value;
                 return 1;
             }
         }
@@ -551,15 +605,15 @@ stock __SetStringValue(const name[], const value[])
 {           
     for(new i; i < MAX_STRING_VARS; i++)
     {
-        if(!strcmp(g_StringCache[i][StringName], name, false))
+        if(!strcmp(DET_g_StringCache[i][StringName], name, false))
         {
-            if(g_StringCache[i][Const] == 1)
+            if(DET_g_StringCache[i][Const] == 1)
             {
                 printf("[DETUtils]: (var error) - Cannot update the constant value of : %s", name);
                 return 0;
             }
             new len = strlen(value);
-            strmid(g_StringCache[i][ReturnVal], value, 0, len);
+            strmid(DET_g_StringCache[i][ReturnVal], value, 0, len);
             CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_STRING, 0, -1);
             return 1;
         }
@@ -584,10 +638,10 @@ stock CreateVariable( // this is deprecated function
             // Integers.
             for(new i; i < MAX_INTEGER_VARS; i++)
             {
-                if(g_IntCache[i][Valid] == 0)
+                if(DET_g_IntegerCache[i][Valid] == 0)
                 {
-                    strmid(g_IntCache[i][IntName], name, 0, 32);
-                    g_IntCache[i][Multi] = multi;
+                    strmid(DET_g_IntegerCache[i][IntName], name, 0, 32);
+                    DET_g_IntegerCache[i][Multi] = multi;
                     if(constant == 1 && multi == 1)
                     {
                         printf("[DETUtils]: (var error) - You can't create constant variables with more dimensions.");
@@ -597,19 +651,19 @@ stock CreateVariable( // this is deprecated function
                     {
                         for(new x; x < MAX_VAR_DIMENSIONS; x++)
                         {
-                            g_IntCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
+                            DET_g_IntegerCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
                         }
                     }
                     else if(multi == 0)
                     {
-                        g_IntCache[i][ReturnVal] = 0; // Initialize the single return size.
+                        DET_g_IntegerCache[i][ReturnVal] = 0; // Initialize the single return size.
                     }
                     if(constant == 1)
                     {
-                        g_IntCache[i][Const] = 1;
-                        g_IntCache[i][ReturnVal] = constvalue;
+                        DET_g_IntegerCache[i][Const] = 1;
+                        DET_g_IntegerCache[i][ReturnVal] = constvalue;
                     }
-                    g_IntCache[i][Valid] = 1;
+                    DET_g_IntegerCache[i][Valid] = 1;
                     return 1;
                 }   
             }
@@ -619,10 +673,10 @@ stock CreateVariable( // this is deprecated function
             // Booleans.
             for(new i; i < MAX_BOOLEAN_VARS; i++)
             {
-                if(g_BoolCache[i][Valid] == 0)
+                if(DET_g_BoolCache[i][Valid] == 0)
                 {
-                    strmid(g_BoolCache[i][BoolName], name, 0, 32);
-                    g_BoolCache[i][Multi] = multi;
+                    strmid(DET_g_BoolCache[i][BoolName], name, 0, 32);
+                    DET_g_BoolCache[i][Multi] = multi;
                     if(constant == 1 && multi == 1)
                     {
                         printf("[DETUtils]: (var error) - You can't create constant variables with more dimensions.");
@@ -632,12 +686,12 @@ stock CreateVariable( // this is deprecated function
                     {
                         for(new x; x < MAX_VAR_DIMENSIONS; x++)
                         {
-                            g_BoolCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
+                            DET_g_BoolCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
                         }
                     }
                     else if(multi == 0)
                     {
-                        g_BoolCache[i][ReturnVal] = 0; // Initialize the single return size.
+                        DET_g_BoolCache[i][ReturnVal] = 0; // Initialize the single return size.
                     }
                     if(constant == 1)
                     {
@@ -646,10 +700,10 @@ stock CreateVariable( // this is deprecated function
                             printf("[DETUtils]: (var error) - Booleans can only have 0 and 1 as values.");
                             return 0;
                         }
-                        g_BoolCache[i][Const] = 1;
-                        g_BoolCache[i][ReturnVal] = constvalue;
+                        DET_g_BoolCache[i][Const] = 1;
+                        DET_g_BoolCache[i][ReturnVal] = constvalue;
                     }
-                    g_BoolCache[i][Valid] = 1;
+                    DET_g_BoolCache[i][Valid] = 1;
                     return 1;
                 }   
             }
@@ -659,10 +713,10 @@ stock CreateVariable( // this is deprecated function
             // Strings.
             for(new i; i < MAX_STRINGS; i++)
             {
-                if(g_StringCache[i][Valid] == 0)
+                if(DET_g_StringCache[i][Valid] == 0)
                 {
-                    strmid(g_IntCache[i][FloatName], name, 0, 32);
-                    g_StringCache[i][Multi] = multi;
+                    strmid(DET_g_IntegerCache[i][FloatName], name, 0, 32);
+                    DET_g_StringCache[i][Multi] = multi;
                     if(constant == 1 && multi == 1)
                     {
                         printf("[DETUtils]: (var error) - You can't create constant variables with more dimensions.");
@@ -676,9 +730,9 @@ stock CreateVariable( // this is deprecated function
                     }
                     else if(multi == 0)
                     {
-                        g_StringCache[i][ReturnVal] = 0; // Initialize the single return size.
+                        DET_g_StringCache[i][ReturnVal] = 0; // Initialize the single return size.
                     }
-                    g_StringCache[i][Valid] = 1;
+                    DET_g_StringCache[i][Valid] = 1;
                     return 1;
                 }   
             }
@@ -689,10 +743,10 @@ stock CreateVariable( // this is deprecated function
             // Floats / real numbers.
             for(new i; i < MAX_FLOAT_VARS; i++)
             {
-                if(g_FloatCache[i][Valid] == 0)
+                if(DET_g_FloatCache[i][Valid] == 0)
                 {
-                    strmid(g_FloatCache[i][FloatName], name, 0, 32);
-                    g_FloatCache[i][Multi] = multi;
+                    strmid(DET_g_FloatCache[i][FloatName], name, 0, 32);
+                    DET_g_FloatCache[i][Multi] = multi;
                     if(constant == 1 && multi == 1)
                     {
                         printf("[DETUtils]: (var error) - You can't create constant variables with more dimensions.");
@@ -702,19 +756,19 @@ stock CreateVariable( // this is deprecated function
                     {
                         for(new x; x < MAX_VAR_DIMENSIONS; x++)
                         {
-                            g_FloatCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
+                            DET_g_FloatCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
                         }
                     }
                     else if(multi == 0)
                     {
-                        g_FloatCache[i][ReturnVal] = 0; // Initialize the single return size.
+                        DET_g_FloatCache[i][ReturnVal] = 0; // Initialize the single return size.
                     }
                     if(constant == 1)
                     {
-                        g_FloatCache[i][Const] = 1;
-                        g_FloatCache[i][ReturnVal] = constvalue;
+                        DET_g_FloatCache[i][Const] = 1;
+                        DET_g_FloatCache[i][ReturnVal] = constvalue;
                     }
-                    g_FloatCache[i][Valid] = 1;
+                    DET_g_FloatCache[i][Valid] = 1;
                     return 1;
                 }   
             }
@@ -731,7 +785,7 @@ stock __GetIntegerVarId(const name[])
         i < MAX_INTEGER_VARS; 
         i++)
     {
-        if(!strcmp(g_IntCache[i][IntName], name))
+        if(!strcmp(DET_g_IntegerCache[i][IntName], name))
         {
             return i;
         }
@@ -745,7 +799,7 @@ stock __GetBoolVarId(const name[])
         i < MAX_BOOLEAN_VARS; 
         i++)
     {
-        if(!strcmp(g_BoolCache[i][BoolName], name))
+        if(!strcmp(DET_g_BoolCache[i][BoolName], name))
         {
             return i;
         }
@@ -759,7 +813,7 @@ stock __GetFloatVarId(const name[])
         i < MAX_FLOAT_VARS; 
         i++)
     {
-        if(!strcmp(g_FloatCache[i][FloatName], name))
+        if(!strcmp(DET_g_FloatCache[i][FloatName], name))
         {
             return i;
         }
@@ -773,7 +827,7 @@ stock __GetStringVarId(const name[])
         i < MAX_STRING_VARS; 
         i++)
     {
-        if(!strcmp(g_StringCache[i][StringName], name))
+        if(!strcmp(DET_g_StringCache[i][StringName], name))
         {
             return i;
         }
@@ -869,7 +923,7 @@ stock __SaveIntegerVariable(const name[])
 {
     for(new i; i < MAX_INTEGER_VARS; i++)
     {
-        if(!strcmp(g_IntCache[i][IntName], name, false))
+        if(!strcmp(DET_g_IntegerCache[i][IntName], name, false))
         {
             new 
                 savequeryfile[32], 
@@ -882,15 +936,15 @@ stock __SaveIntegerVariable(const name[])
 
             CreateQuery(savequery, QUERY_TYPE_SAVE, "d_vars_cache", savequeryfile);
             format(query, sizeof query, "SAVE * %i,%i,%i,%s,%i", 
-                g_IntCache[i][Valid],
-                g_IntCache[i][Multi],
-                g_IntCache[i][Const],
-                g_IntCache[i][IntName],
-                g_IntCache[i][ReturnVal]);
+                DET_g_IntegerCache[i][Valid],
+                DET_g_IntegerCache[i][Multi],
+                DET_g_IntegerCache[i][Const],
+                DET_g_IntegerCache[i][IntName],
+                DET_g_IntegerCache[i][ReturnVal]);
 
             for(new x; x < MAX_VAR_DIMENSIONS; x++)
             {
-                format(dquery, sizeof dquery, ",%i", g_IntCache[i][Dimensions][x]);
+                format(dquery, sizeof dquery, ",%i", DET_g_IntegerCache[i][Dimensions][x]);
                 strcat(query, dquery);
             }
 
@@ -958,14 +1012,14 @@ stock __LoadIntegerVariable(const name[])
     DET_gV_DeclareInteger(name, false, false, 0);
     new id = __GetIntegerVarId(name);
 
-    g_IntCache[id][Valid] = strval(address[0]);
-    g_IntCache[id][Multi] = strval(address[1]);
-    g_IntCache[id][Const] = strval(address[2]);
+    DET_g_IntegerCache[id][Valid] = strval(address[0]);
+    DET_g_IntegerCache[id][Multi] = strval(address[1]);
+    DET_g_IntegerCache[id][Const] = strval(address[2]);
     // We skip 3 since it is name.
-    g_IntCache[id][ReturnVal] = strval(address[4]);
+    DET_g_IntegerCache[id][ReturnVal] = strval(address[4]);
     for(new i; i < MAX_VAR_DIMENSIONS; i++)
     {
-        g_IntCache[id][Dimensions][i] = strval(address[i+5]);
+        DET_g_IntegerCache[id][Dimensions][i] = strval(address[i+5]);
     }
 
     DestroyQuery(loadquery);
@@ -991,7 +1045,7 @@ stock __SaveBooleanVariable(const name[])
 {
     for(new i; i < MAX_BOOLEAN_VARS; i++)
     {
-        if(!strcmp(g_BoolCache[i][BoolName], name, false))
+        if(!strcmp(DET_g_BoolCache[i][BoolName], name, false))
         {
             new 
                 savequeryfile[32], 
@@ -1004,15 +1058,15 @@ stock __SaveBooleanVariable(const name[])
 
             CreateQuery(savequery, QUERY_TYPE_SAVE, "d_vars_cache", savequeryfile);
             format(query, sizeof query, "SAVE * %i,%i,%i,%s,%i", 
-                g_BoolCache[i][Valid],
-                g_BoolCache[i][Multi],
-                g_BoolCache[i][Const],
-                g_BoolCache[i][BoolName],
-                g_BoolCache[i][ReturnVal]);
+                DET_g_BoolCache[i][Valid],
+                DET_g_BoolCache[i][Multi],
+                DET_g_BoolCache[i][Const],
+                DET_g_BoolCache[i][BoolName],
+                DET_g_BoolCache[i][ReturnVal]);
 
             for(new x; x < MAX_VAR_DIMENSIONS; x++)
             {
-                format(dquery, sizeof dquery, ",%i", g_BoolCache[i][Dimensions][x]);
+                format(dquery, sizeof dquery, ",%i", DET_g_BoolCache[i][Dimensions][x]);
                 strcat(query, dquery);
             }
 
@@ -1080,14 +1134,14 @@ stock __LoadBooleanVariable(const name[])
     DET_gV_DeclareBoolean(name, false, false, 0);
     new id = __GetBooleanVarId(name);
 
-    g_BoolCache[id][Valid] = strval(address[0]);
-    g_BoolCache[id][Multi] = strval(address[1]);
-    g_BoolCache[id][Const] = strval(address[2]);
+    DET_g_BoolCache[id][Valid] = strval(address[0]);
+    DET_g_BoolCache[id][Multi] = strval(address[1]);
+    DET_g_BoolCache[id][Const] = strval(address[2]);
     // We skip 3 since it is name.
-    g_BoolCache[id][ReturnVal] = strval(address[4]);
+    DET_g_BoolCache[id][ReturnVal] = strval(address[4]);
     for(new i; i < MAX_VAR_DIMENSIONS; i++)
     {
-        g_BoolCache[id][Dimensions][i] = strval(address[i+5]);
+        DET_g_BoolCache[id][Dimensions][i] = strval(address[i+5]);
     }
 
     DestroyQuery(loadquery);
@@ -1113,7 +1167,7 @@ stock __SaveFloatVariable(const name[])
 {
     for(new i; i < MAX_FLOAT_VARS; i++)
     {
-        if(!strcmp(g_FloatCache[i][FloatName], name, false))
+        if(!strcmp(DET_g_FloatCache[i][FloatName], name, false))
         {
             new 
                 savequeryfile[32], 
@@ -1126,15 +1180,15 @@ stock __SaveFloatVariable(const name[])
 
             CreateQuery(savequery, QUERY_TYPE_SAVE, "d_vars_cache", savequeryfile);
             format(query, sizeof query, "SAVE * %i,%i,%i,%s,%f", 
-                g_FloatCache[i][Valid],
-                g_FloatCache[i][Multi],
-                g_FloatCache[i][Const],
-                g_FloatCache[i][FloatName],
-                g_FloatCache[i][ReturnVal]);
+                DET_g_FloatCache[i][Valid],
+                DET_g_FloatCache[i][Multi],
+                DET_g_FloatCache[i][Const],
+                DET_g_FloatCache[i][FloatName],
+                DET_g_FloatCache[i][ReturnVal]);
 
             for(new x; x < MAX_VAR_DIMENSIONS; x++)
             {
-                format(dquery, sizeof dquery, ",%f", g_FloatCache[i][Dimensions][x]);
+                format(dquery, sizeof dquery, ",%f", DET_g_FloatCache[i][Dimensions][x]);
                 strcat(query, dquery);
             }
 
@@ -1202,14 +1256,14 @@ stock __LoadFloatVariable(const name[])
     DET_gV_DeclareFloat(name, false, false, 0);
     new id = __GetFloatVarId(name);
 
-    g_BoolCache[id][Valid] = strval(address[0]);
-    g_BoolCache[id][Multi] = strval(address[1]);
-    g_BoolCache[id][Const] = strval(address[2]);
+    DET_g_BoolCache[id][Valid] = strval(address[0]);
+    DET_g_BoolCache[id][Multi] = strval(address[1]);
+    DET_g_BoolCache[id][Const] = strval(address[2]);
     // We skip 3 since it is name.
-    g_BoolCache[id][ReturnVal] = floatstr(address[4]);
+    DET_g_BoolCache[id][ReturnVal] = floatstr(address[4]);
     for(new i; i < MAX_VAR_DIMENSIONS; i++)
     {
-        g_BoolCache[id][Dimensions][i] = floatstr(address[i+5]);
+        DET_g_BoolCache[id][Dimensions][i] = floatstr(address[i+5]);
     }
 
     DestroyQuery(loadquery);
@@ -1235,7 +1289,7 @@ stock __SaveStringVariable(const name[])
 {
     for(new i; i < MAX_STRING_VARS; i++)
     {
-        if(!strcmp(g_StringCache[i][StringName], name, false))
+        if(!strcmp(DET_g_StringCache[i][StringName], name, false))
         {
             new 
                 savequeryfile[32], 
@@ -1248,10 +1302,10 @@ stock __SaveStringVariable(const name[])
 
             CreateQuery(savequery, QUERY_TYPE_SAVE, "d_vars_cache", savequeryfile);
             format(query, sizeof query, "SAVE * %i,%i,%s,%s", 
-                g_StringCache[i][Valid],
-                g_StringCache[i][Const],
-                g_StringCache[i][StringName],
-                g_StringCache[i][ReturnVal]);
+                DET_g_StringCache[i][Valid],
+                DET_g_StringCache[i][Const],
+                DET_g_StringCache[i][StringName],
+                DET_g_StringCache[i][ReturnVal]);
 
             FormatQuery(savequery, query);
             SendQuery(savequery);
@@ -1317,10 +1371,10 @@ stock __LoadStringVariable(const name[])
     DET_gV_DeclareString(name, false, "_");
     new id = __GetStringVarId(name);
 
-    g_StringCache[id][Valid] = strval(address[0]);
-    g_StringCache[id][Const] = strval(address[1]);
+    DET_g_StringCache[id][Valid] = strval(address[0]);
+    DET_g_StringCache[id][Const] = strval(address[1]);
     // We skip 2 since it is name.
-    strmid(g_StringCache[id][ReturnVal], address[3], 0, strlen(address[3]));
+    strmid(DET_g_StringCache[id][ReturnVal], address[3], 0, strlen(address[3]));
 
     DestroyQuery(loadquery);
 
