@@ -65,6 +65,7 @@ public OnRaceStart(racename[])
 
 public OnRaceFinish(racename[])
 {
+    DestroyRace(racename);
     fmargs_SendClientMessageToAll(-1, "Race %s finished", racename);
     return 1;
 }

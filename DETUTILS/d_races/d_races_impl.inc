@@ -39,6 +39,7 @@ new
 
 forward OnRaceCreate(racename[], maxplayers, Float:startX, Float:startY, Float:startZ,
     Float:finishX, Float:finishY, Float:finishZ, Float:checkpoint_size);
+forward OnRaceDestroy(racename[]);
 
 forward OnPlayerJoinRace(playerid, racename[]);
 forward OnPlayerLeaveRace(playerid, racename[]);
@@ -62,6 +63,8 @@ forward OnRaceFinish(racename[]);
                                                                                       
 
 */
+
+// Initializers:
 
 stock CreateRace(const name[], maxplayers, Float:startX, Float:startY, Float:startZ,
     Float:finishX, Float:finishY, Float:finishZ, Float:checkpoint_size = 5.0)
@@ -104,8 +107,62 @@ stock CreateRace(const name[], maxplayers, Float:startX, Float:startY, Float:sta
     return 0;
 }
 
+stock DestroyRace(const name[])
+{
+    for(new i; i < MAX_RACES; i++)
+    {
+        if(!strcmp(DET_g_RaceData[i][Name], name))
+        {
+            DET_g_RaceData[i][Valid] = 0;
+            strmid(DET_g_RaceData[i][Name], "__INVALID_RACE", 0, 32);
+            DET_g_RaceData[i][MaxPlayers] = 0;
+
+            DET_g_RaceData[i][Players] = 0;
+            DET_g_RaceData[i][FinishedPlayers] = 0;
+
+            DET_g_RaceData[i][StartPos][0] = 0.0000;
+            DET_g_RaceData[i][StartPos][1] = 0.0000;
+            DET_g_RaceData[i][StartPos][2] = 0.0000;
+
+            DET_g_RaceData[i][FinishPos][0] = 0.0000;
+            DET_g_RaceData[i][FinishPos][1] = 0.0000;
+            DET_g_RaceData[i][FinishPos][2] = 0.0000;
+
+            DET_g_RaceData[i][FinishCPSize] = 0.0000;
+
+            DET_g_RaceData[i][Started] = false;
+            DET_g_RaceData[i][Ended] = false;
+
+            for(new playerid; playerid < MAX_PLAYERS; playerid++)
+            {
+                DET_g_RaceData[i][Place][playerid] = 0;
+                if(DET_g_PlayerRaceId[playerid] == i)
+                {
+                    SpawnPlayer(playerid);
+                    DisablePlayerRaceCheckpoint(playerid);
+                    DET_g_PlayerRaceId[playerid] = -1;
+                    TogglePlayerControllable(playerid, true);
+                }
+            }
+
+            DET_g_RaceData[i][WinnerId] = -1;
+
+            // After clearing all the data,
+            // call the callback.
+
+            CallLocalFunction("OnRaceDestroy", "s", name);
+
+            return 1;
+        }
+    }
+    return 0;
+}
+
+// Modifiers:
+
 stock AddPlayerToRace(playerid, const name[])
 {
+    if(DET_g_PlayerRaceId[playerid] != -1) return 0;
     for(new i; i < MAX_RACES; i++)
     {
         if(!strcmp(name, DET_g_RaceData[i][Name]) && DET_g_RaceData[i][Valid] == 1)
@@ -130,6 +187,26 @@ stock AddPlayerToRace(playerid, const name[])
             {
                 return 0;
             }
+        }
+    }
+    return 0;
+}
+
+stock RemovePlayerFromRace(playerid, const name[])
+{
+    if(DET_g_PlayerRaceId[playerid] == -1) return 0;
+    for(new i; i < MAX_RACES; i++)
+    {
+        if(!strcmp(name, DET_g_RaceData[i][Name]) && DET_g_RaceData[i][Valid] == 1)
+        {
+            DET_g_RaceData[i][Players]--;
+            DET_g_PlayerRaceId[playerid] = -1;
+
+            TogglePlayerControllable(playerid, true);
+            SpawnPlayer(playerid);
+
+            CallLocalFunction("OnPlayerLeaveRace", "is", playerid, name);
+            return 1;
         }
     }
     return 0;
@@ -179,6 +256,10 @@ public OnPlayerEnterRaceCheckpoint(playerid)
         DET_g_RaceData[raceid][FinishedPlayers]++;
         DET_g_PlayerRaceId[playerid] = -1;
         DET_g_RaceData[raceid][Place][playerid] = DET_g_RaceData[raceid][FinishedPlayers];
+        if(DET_g_RaceData[raceid][Place][playerid] == 1)
+        {
+            DET_g_RaceData[raceid][WinnerId] = playerid;
+        }
         SpawnPlayer(playerid);
         DisablePlayerRaceCheckpoint(playerid);
         CallLocalFunction("OnPlayerFinishRace", "isi", playerid, DET_g_RaceData[raceid][Name],
@@ -208,3 +289,101 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 #define OnPlayerEnterRaceCheckpoint( d_races_operc(
 
 forward d_races_operc(playerid);
+
+// Value returners:
+
+stock GetRaceRemainingPlayers(const name[])
+{
+    for(new i; i < MAX_RACES; i++)
+    {
+        if(!strcmp(name, DET_g_RaceData[i][Name]))
+        {
+            return DET_g_RaceData[i][Players];
+        }
+    }
+    return 0;
+}
+
+stock GetRaceWinnerID(const name[])
+{
+    for(new i; i < MAX_RACES; i++)
+    {
+        if(!strcmp(name, DET_g_RaceData[i][Name]))
+        {
+            return DET_g_RaceData[i][WinnerId];
+        }
+    }
+    return -1;
+}
+
+stock GetRaceMaxPlayers(const name[])
+{
+    for(new i; i < MAX_RACES; i++)
+    {
+        if(!strcmp(name, DET_g_RaceData[i][Name]))
+        {
+            return DET_g_RaceData[i][MaxPlayers];
+        }
+    }
+    return -1;
+}
+
+stock GetRaceFinishedPlayers(const name[])
+{
+    for(new i; i < MAX_RACES; i++)
+    {
+        if(!strcmp(name, DET_g_RaceData[i][Name]))
+        {
+            return DET_g_RaceData[i][FinishedPlayers];
+        }
+    }
+    return -1;
+}
+
+stock GetPlayerRace(playerid)
+{
+    return DET_g_PlayerRaceId[playerid];
+}
+
+stock bool:IsValidRace(id)
+{
+    return bool:(DET_g_RaceData[id][Valid]);
+}
+
+stock bool:IsValidRaceName(const name[])
+{
+    for(new i; i < MAX_RACES; i++)
+    {
+        if(!strcmp(name, DET_g_RaceData[i][Name]))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+stock GetRaceNameByID(id, dest[], size = sizeof dest)
+{
+    if(IsValidRace(id) == false) return 0;
+    strmid(dest, DET_g_RaceData[id][Name], 0, size);
+    return 1;
+}
+
+// Booleans:
+
+stock bool:IsPlayerInRace(playerid, const name[])
+{
+    for(new i; i < MAX_RACES; i++)
+    {
+        if(DET_g_PlayerRaceId[playerid] == i)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+stock bool:IsPlayerInAnyRace(playerid)
+{
+    return DET_g_PlayerRaceId[playerid] != -1;
+}

@@ -50,6 +50,11 @@ public OnDETUtilsInit()
     {
         DET_g_PlayerRaceId[i] = -1;
     }
+    for(new r; r < MAX_RACES; r++)
+    {
+        strmid(DET_g_RaceData[r][Name], "__INVALID_RACE", 0, 32);
+        DET_g_RaceData[r][WinnerId] = -1;
+    }
     LoadDETUtilsScript(DETUTILS_SCRIPT_RACES);
     if(funcidx("d_races_detutilsinit") != -1)
     {
