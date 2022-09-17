@@ -3,6 +3,69 @@ SA:MP Races - Create races, add and remove players from them, start them and end
 
 [Go back to the home page...](../README.md)
 
-## How to start to use?
+## API (functions)
 
-- Coming soon.
+### `CreateRace`
+```pawn
+native CreateRace(const name[], maxplayers, Float:startX, Float:startY, Float:startZ, Float:finishX, Float:finishY, Float:finishZ, Float:checkpoint_size = 5.0);
+```
+
+### `AddPlayerToRace`
+```pawn
+native AddPlayerToRace(playerid, const name[]);
+```
+
+### `StartRace`
+```pawn
+native StartRace(const name[]);
+```
+
+## API (public callbacks)
+
+### `OnRaceCreate`
+```pawn
+public OnRaceCreate(racename[], maxplayers, Float:startX, Float:startY, Float:startZ, Float:finishX, Float:finishY, Float:finishZ, Float:checkpoint_size)
+{
+  return 1;
+}
+```
+
+### `OnPlayerJoinRace`
+```pawn
+public OnPlayerJoinRace(playerid, racename[])
+{
+  return 1;
+}
+```
+
+### `OnPlayerLeaveRace`
+```pawn
+public OnPlayerLeaveRace(playerid, racename[])
+{
+  return 1;
+}
+```
+
+### `OnPlayerFinishRace`
+```pawn
+public OnPlayerFinishRace(playerid, racename[], place)
+{
+  return 1;
+}
+```
+
+### `OnRaceStart`
+```pawn
+public OnRaceStart(racename[])
+{
+  return 1;
+}
+```
+
+### `OnRaceFinish`
+```pawn
+public OnRaceFinish(racename[])
+{
+  return 1;
+}
+```
