@@ -117,6 +117,16 @@ native bool:IsPlayerInRace(playerid, const name[]);
 native bool:IsPlayerInAnyRace(playerid);
 ```
 
+### `GetRaceMaxPlayers`
+```pawn
+native GetRaceMaxPlayers(const name[]);
+```
+
+### `GetRaceFinishedPlayers`
+```pawn
+native GetRaceFinishedPlayers(const name[]);
+```
+
 ## API (public callbacks)
 
 ### `OnRaceCreate`
