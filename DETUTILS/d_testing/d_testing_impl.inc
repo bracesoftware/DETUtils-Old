@@ -41,6 +41,7 @@ stock DETUtilsAssert(assertion, const success[], const fail[])
         printf("*** [DETUtils]: (testing) - assert :: Assertion failed : %s", fail);
         return 0;
     }
+    return 0;
 }
 
 #define @d_tst%0\32; @d_tst

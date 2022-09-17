@@ -728,6 +728,37 @@ Includes
 
 #endif
 /* =============================================================== */
+#if !defined DETUTILS_NO_RACES
+
+ 	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
+	#include "d_races"
+
+	// Vercheck
+
+	#if !defined DETUTILS_LIBVER_RACES
+		
+		#error [DETUtils]: (version) - Version not specified.
+	
+	#elseif defined DETUTILS_LIBVER_RACES
+
+		#if DETUTILS_LIBVER_RACES != 1
+
+			#error [DETUtils]: (version) - 'd_races.inc' is outdated.
+
+		#endif
+
+	#endif
+
+#else
+
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [DETUtils]: (includes) - Library 'd_races' is disabled (not the DETUTILS_TESTING_MODE).
+
+ 	#endif
+
+#endif
+/* =============================================================== */
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
  && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_FACTIONS && defined DETUTILS_NO_SERVER \
