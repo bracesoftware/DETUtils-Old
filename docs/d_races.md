@@ -127,6 +127,11 @@ native GetRaceMaxPlayers(const name[]);
 native GetRaceFinishedPlayers(const name[]);
 ```
 
+### `RemovePlayerFromRace`
+```pawn
+native RemovePlayerFromRace(playerid);
+```
+
 ## API (public callbacks)
 
 ### `OnRaceCreate`
