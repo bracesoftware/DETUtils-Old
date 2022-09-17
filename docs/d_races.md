@@ -77,6 +77,46 @@ native AddPlayerToRace(playerid, const name[]);
 native StartRace(const name[]);
 ```
 
+### `GetRaceRemainingPlayers`
+```pawn
+native GetRaceRemainingPlayers(const name[]);
+```
+
+### `GetRaceWinnerID`
+```pawn
+native GetRaceWinnerID(const name[]);
+```
+
+### `GetPlayerRace`
+```pawn
+native GetPlayerRace(playerid);
+```
+
+### `IsValidRace`
+```pawn
+native bool:IsValidRace(id);
+```
+
+### `IsValidRaceName`
+```pawn
+native bool:IsValidRaceName(const name[]);
+```
+
+### `GetRaceNameByID`
+```pawn
+native GetRaceNameByID(id, dest[], size = sizeof dest);
+```
+
+### `IsPlayerInRace`
+```pawn
+native bool:IsPlayerInRace(playerid, const name[]);
+```
+
+### `IsPlayerInAnyRace`
+```pawn
+native bool:IsPlayerInAnyRace(playerid);
+```
+
 ## API (public callbacks)
 
 ### `OnRaceCreate`
