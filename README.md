@@ -52,6 +52,7 @@ Libraries whose contain the new SA:MP functions and features.
 | [d_factions.inc](docs/d_factions.md) | Player factions (groups of players) made easy. |
 | [d_dialog.inc](docs/d_dialog.md) | Better dialogs, faster and easier. |
 | [d_server.inc](docs/d_server.md) | Generally server-related functions. |
+| [d_races.inc](docs/d_races.md) | Racing system. |
 
 ### Discord API Libraries
 Libraries whose contain the new functions for Discord bot development - these are extensions to Discord Connector plugin and they require the plugin to work.
