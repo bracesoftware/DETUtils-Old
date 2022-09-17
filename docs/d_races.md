@@ -62,6 +62,11 @@ public OnRaceFinish(racename[])
 native CreateRace(const name[], maxplayers, Float:startX, Float:startY, Float:startZ, Float:finishX, Float:finishY, Float:finishZ, Float:checkpoint_size = 5.0);
 ```
 
+### `DestroyRace`
+```pawn
+native DestroyRace(const name[]);
+```
+
 ### `AddPlayerToRace`
 ```pawn
 native AddPlayerToRace(playerid, const name[]);
@@ -78,15 +83,22 @@ native StartRace(const name[]);
 ```pawn
 public OnRaceCreate(racename[], maxplayers, Float:startX, Float:startY, Float:startZ, Float:finishX, Float:finishY, Float:finishZ, Float:checkpoint_size)
 {
-  return 1;
+    return 1;
 }
 ```
+
+### `OnRaceDestroy`
+```pawn
+public OnRaceDestroy(racename[])
+{
+    return 1;
+}
 
 ### `OnPlayerJoinRace`
 ```pawn
 public OnPlayerJoinRace(playerid, racename[])
 {
-  return 1;
+    return 1;
 }
 ```
 
@@ -94,7 +106,7 @@ public OnPlayerJoinRace(playerid, racename[])
 ```pawn
 public OnPlayerLeaveRace(playerid, racename[])
 {
-  return 1;
+    return 1;
 }
 ```
 
@@ -102,7 +114,7 @@ public OnPlayerLeaveRace(playerid, racename[])
 ```pawn
 public OnPlayerFinishRace(playerid, racename[], place)
 {
-  return 1;
+    return 1;
 }
 ```
 
@@ -110,7 +122,7 @@ public OnPlayerFinishRace(playerid, racename[], place)
 ```pawn
 public OnRaceStart(racename[])
 {
-  return 1;
+    return 1;
 }
 ```
 
