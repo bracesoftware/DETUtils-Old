@@ -18,7 +18,7 @@ These are currently available permissions:
 | `PLAYER_PERMISSION_USECOMMANDS` | Toggles the player's ability to use all of the server commands! |
 | `PLAYER_PERMISSION_USEDIALOGS` | Toggles the player's ability to respond to dialogs. |
 | `PLAYER_PERMISSION_USEVEHICLES` | Toggles the player's ability to enter vehicles. |
-| `PLAYER_PERMISSION_BUNNYHOP` | Toggles the player's ability to enter vehicles. |
+| `PLAYER_PERMISSION_BUNNYHOP` | Toggles the player's ability to press `KEY_JUMP` and `KEY_SPRINT` at the same time. |
 
 ## API
 ### `SetPlayerPermissionInteger`
