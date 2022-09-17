@@ -62,7 +62,7 @@ enum enum_PlayerFactionData
     Faction[32]
 }
 
-new DET_DET_g_PlayerFactionCache[MAX_PLAYERS][enum_PlayerFactionData];
+new DET_g_PlayerFactionCache[MAX_PLAYERS][enum_PlayerFactionData];
 
 #endif
 
