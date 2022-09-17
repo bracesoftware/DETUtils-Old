@@ -93,6 +93,7 @@ public OnRaceDestroy(racename[])
 {
     return 1;
 }
+```
 
 ### `OnPlayerJoinRace`
 ```pawn
