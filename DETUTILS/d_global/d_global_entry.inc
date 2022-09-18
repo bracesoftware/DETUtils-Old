@@ -26,6 +26,7 @@
 #define __DETUTILS_INTERNAL_GLOBAL_INC
 #define @DETUTILSGLOBAL_RET__FUNC:%0; {%0;return 1;}
 #define @DETUTILSGLOBAL_AMXFUNC__:%0; @glbc_%0();@glbc_%0()
+#define MAX_PROCEDURES 10000
 
 /*
                                                                                       
@@ -40,6 +41,13 @@
                                                                                       
                                                                                       
 */
+
+#if defined AMX_HEADER_INC
+
+    new DET_g_ProcedureFail[MAX_PROCEDURES];
+    #include "d_global_parse"
+
+#endif
 
 #include "d_global_impl"
 

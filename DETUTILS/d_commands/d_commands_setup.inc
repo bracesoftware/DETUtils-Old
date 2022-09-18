@@ -57,11 +57,11 @@ new DET_g_CaseSensivity;
 #define DET_PARSE_CACHE
 #endif
 
-#define @DETUTILSCMD_RET_PRINT__@%5@ return printf("*** [DETUtils]: (cmd parse) - Met an unexpected or unknown argument in \n\
-                                                       the command header while parsing.\n\
-                                                       Command: '"#%5"'\n\
-                                                       Make sure that your command header looks like this:\n\
-                                                       @command(...) CMD_NAME__(playerid, params[]) {...}\n\n\n");
+#define @DETUTILSCMD_RET_PRINT__@%5@ \
+return printf("*** [DETUtils]: (cmd parse) - Met an unexpected or unknown argument in the command header while parsing. \n\
+                   Command: '"#%5"'\n\
+                   Make sure that your command header looks like this: \n\
+                   @command(...) CMD_NAME__(playerid, params[]) {...}\n\n\n");
 
 #define @DETUTILSCMD_PR_CACHE__@%5@%0@%1@%2@%3@%4@ \
     {                                               \

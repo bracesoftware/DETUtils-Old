@@ -38,8 +38,7 @@
 */
 
 #define @DETUTILSEVENTS_PARSEFAIL@%5@ \
-    return printf("*** [DETUtils]: (event parse) - Met an unexpected or unknown argument in \n\
-       the dialog event header while parsing.\n\
+    return printf("*** [DETUtils]: (event parse) - Met an unexpected or unknown argument in the dialog event header while parsing.\n\
        Dialog event: '"#%5"'\n\
        Make sure that your event header looks like this:\n\
        @event(.type = DIALOG_EVENT) EVENT_NAME__(playerid, response, listitem inputtext[]) {...}\n\n\n")

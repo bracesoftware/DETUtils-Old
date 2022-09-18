@@ -45,10 +45,10 @@ stock LoadDETUtilsGlobalCode()
         amx_assembly = 1;
 
     #endif
-    new globalfunc[32];
+    new globalfunc[32], parsefunc[32];
     if(amx_assembly == 0) 
     {
-        for(new i; i < 1000; i++)
+        for(new i; i < MAX_PROCEDURES - 9000; i++)
         {
             format(globalfunc, sizeof globalfunc, "@%i@glb", i);
             if(funcidx(globalfunc) != -1)
@@ -59,7 +59,7 @@ stock LoadDETUtilsGlobalCode()
     }
     if(amx_assembly == 1)
     {
-        for(new i; i < 10000; i++)
+        for(new i; i < MAX_PROCEDURES; i++)
         {
             // Get public name from the code header.
             GetPublicNameFromIndex(i, globalfunc);
@@ -70,8 +70,18 @@ stock LoadDETUtilsGlobalCode()
                 globalfunc[4] == 'c' &&
                 globalfunc[5] == '_') // Check if the function is global code.
             {
-                // Call the code.
-                CallLocalFunction(globalfunc, "");
+                strmid(parsefunc, globalfunc, 0, 32 + 1);
+                parsefunc[4] = 'p';
+
+                if(funcidx(parsefunc) != -1)
+                {
+                    CallLocalFunction(parsefunc, "i", i);
+                }
+
+                if(DET_g_ProcedureFail[i] != 0)
+                {
+                    CallLocalFunction(globalfunc, "");
+                }
             }
         }
     }
@@ -86,12 +96,23 @@ stock LoadDETUtilsGlobalCode()
 #elseif defined AMX_HEADER_INC
 
 #define global%0(%2)%1; \
-    @DETUTILSGLOBAL_AMXFUNC__:%0; @DETUTILSGLOBAL_RET__FUNC:%1;
+    @DETUTILSGLOBAL_PROCEDURE__P:%0(%2); @DETUTILSGLOBAL_AMXFUNC__:%0; @DETUTILSGLOBAL_RET__FUNC:%1;
 
 stock CallGlobalProcedure(const procedure[])
 {
-    new globalfunc[32];
+    new parsefunc[32], globalfunc[32];
     format(globalfunc, sizeof globalfunc, "@glbc_%s", procedure);
+    format(parsefunc, sizeof parsefunc, "@glbp_%s", procedure);
+
+    if(funcidx(parsefunc) != -1)
+    {
+        CallLocalFunction(parsefunc, "i", funcidx(globalfunc));
+    }
+
+    if(DET_g_ProcedureFail[funcidx(globalfunc)] == 0)
+    {
+        return 0;
+    }
 
     if(funcidx(globalfunc) != -1)
     {
