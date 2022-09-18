@@ -45,10 +45,13 @@ forward OnPlayerInsufficientPermissions(playerid, missingpermission);
 
 stock SetPlayerPermissionInteger(playerid, permissions)
 {
-    CallLocalFunction("OnPlayerPermissionIntegerChange", "iii", 
-        playerid,
-        DET_g_PlayerPermissions[playerid],
-        permissions);
+    if(DET_g_PlayerPermissions[playerid] != permissions)
+    {
+        CallLocalFunction("OnPlayerPermissionIntegerChange", "iii", 
+            playerid,
+            DET_g_PlayerPermissions[playerid],
+            permissions);
+    }
     DET_g_PlayerPermissions[playerid] = permissions;
     return 1;
 }
