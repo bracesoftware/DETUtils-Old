@@ -2,6 +2,7 @@
 Below, you can find all of the information related to the update; version, installation process, changes included within the update and more!
 - Version: `2.0.7`
 - Release: `3`
+
 ***NOTE***: This is a pre-release which means that this product version doesn't represent the final quality of the product - it may contain bugs and problems that aren't yet discovered.
 
 - Last stable version and release: `2.0.7-R2`
