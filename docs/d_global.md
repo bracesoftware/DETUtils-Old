@@ -44,3 +44,25 @@ global omg() format(test_str, sizeof test_str, "Hmm nice test");
 new test_str2[32];
 global lol() format(test_str2, sizeof test_str2, "Hmm nice test2");
 ```
+
+## API
+
+### `CallGlobalProcedure` *
+
+- This function can be used only if you've installed AMX assembly into your includes folder. Basically, you just use it to recall the global procedure you've made before.
+
+```pawn
+new test_str[32];
+global Test() format(test_str, sizeof test_str, "Hmm nice test");
+
+public OnGameModeInit()
+{
+	// Modify test_str.
+	format(test_str, sizeof test_str, "OnGameModeInit called!");
+	print(test_str);
+
+	// Reset test_str back to default.
+	CallGlobalProcedure("Test");
+	return 1;
+}
+```

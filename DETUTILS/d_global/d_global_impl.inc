@@ -88,4 +88,17 @@ stock LoadDETUtilsGlobalCode()
 #define global%0()%1; \
     @DETUTILSGLOBAL_AMXFUNC__:%0; @DETUTILSGLOBAL_RET__FUNC:%1;
 
+stock CallGlobalProcedure(const procedure[])
+{
+    new globalfunc[32];
+    format(globalfunc, sizeof globalfunc, "@glbc_%s", procedure);
+
+    if(funcidx(globalfunc) != -1)
+    {
+        CallLocalFunction(globalfunc, "");
+        return 1;
+    }
+    return 0;
+}
+
 #endif 
