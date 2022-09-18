@@ -104,6 +104,7 @@ stock void:SaveDETUtilsLog(const message[])
 #define DETUTILS_SCRIPT_YAML 20
 #define DETUTILS_SCRIPT_TESTING 21
 #define DETUTILS_SCRIPT_RACES 22
+#define DETUTILS_SCRIPT_GLOBAL 23
 
 stock void:LoadDETUtilsScript(scriptid)
 {
@@ -221,6 +222,11 @@ stock void:LoadDETUtilsScript(scriptid)
     {
         print("*** [DETUtils]: (module) - Loaded: d_races.inc");
         SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_races.inc");
+    }
+    if(scriptid == DETUTILS_SCRIPT_GLOBAL)
+    {
+        print("*** [DETUtils]: (module) - Loaded: d_global.inc");
+        SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_global.inc");
     }
 }
 
@@ -340,6 +346,11 @@ stock void:UnloadDETUtilsScript(scriptid)
     {
         print("*** [DETUtils]: (module) - Unloaded: d_races.inc");
         SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_races.inc");
+    }
+    if(scriptid == DETUTILS_SCRIPT_GLOBAL)
+    {
+        print("*** [DETUtils]: (module) - Unloaded: d_global.inc");
+        SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_global.inc");
     }
 }
 

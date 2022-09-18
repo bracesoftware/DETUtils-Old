@@ -20,3 +20,11 @@
 #endif
 
 #endif
+
+#tryinclude <amx_header>
+
+#if !defined AMX_HEADER_INC
+
+    #warning [DETUtils]: (warning) - Missing AMX assembly libraries for Pawn AMX header reading.
+ 
+#endif
