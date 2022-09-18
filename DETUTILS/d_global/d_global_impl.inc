@@ -85,7 +85,7 @@ stock LoadDETUtilsGlobalCode()
 
 #elseif defined AMX_HEADER_INC
 
-#define global%0()%1; \
+#define global%0(%2)%1; \
     @DETUTILSGLOBAL_AMXFUNC__:%0; @DETUTILSGLOBAL_RET__FUNC:%1;
 
 stock CallGlobalProcedure(const procedure[])
