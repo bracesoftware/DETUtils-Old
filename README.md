@@ -38,6 +38,7 @@ Libraries whose contain the new language features.
 | [d_fmargs.inc](docs/d_fmargs.md) | A rewrite of `y_va` and Pawn `sscanf` implementation. |
 | [d_testing.inc](docs/d_testing.md) | Provides fast and easy way of testing. |
 | [d_global.inc](docs/d_global.md) | A library providing an execution of independent code. |
+| [d_ascii.inc](docs/d_ascii.md) | ASCII character predefines. |
 
 ### SA:MP Libraries
 Libraries whose contain the new SA:MP functions and features.

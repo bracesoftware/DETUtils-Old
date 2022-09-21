@@ -105,6 +105,7 @@ stock void:SaveDETUtilsLog(const message[])
 #define DETUTILS_SCRIPT_TESTING 21
 #define DETUTILS_SCRIPT_RACES 22
 #define DETUTILS_SCRIPT_GLOBAL 23
+#define DETUTILS_SCRIPT_ASCII 24
 
 stock void:LoadDETUtilsScript(scriptid)
 {
@@ -227,6 +228,11 @@ stock void:LoadDETUtilsScript(scriptid)
     {
         print("*** [DETUtils]: (module) - Loaded: d_global.inc");
         SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_global.inc");
+    }
+    if(scriptid == DETUTILS_SCRIPT_ASCII)
+    {
+        print("*** [DETUtils]: (module) - Loaded: d_ascii.inc");
+        SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_ascii.inc");
     }
 }
 
@@ -351,6 +357,11 @@ stock void:UnloadDETUtilsScript(scriptid)
     {
         print("*** [DETUtils]: (module) - Unloaded: d_global.inc");
         SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_global.inc");
+    }
+    if(scriptid == DETUTILS_SCRIPT_ASCII)
+    {
+        print("*** [DETUtils]: (module) - Unloaded: d_ascii.inc");
+        SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_ascii.inc");
     }
 }
 

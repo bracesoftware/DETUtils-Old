@@ -753,7 +753,7 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [DETUtils]: (includes) - Library 'd_races' is disabled (not the DETUTILS_TESTING_MODE).
+ 		#warning [DETUtils]: (includes) - Library 'd_races' is disabled.
 
  	#endif
 
@@ -784,7 +784,38 @@ Includes
 
  	#if !defined DETUTILS_NO_MODULE_WARNINGS
 
- 		#warning [DETUtils]: (includes) - Library 'd_global' is disabled (not the DETUTILS_TESTING_MODE).
+ 		#warning [DETUtils]: (includes) - Library 'd_global' is disabled.
+
+ 	#endif
+
+#endif
+/* =============================================================== */
+#if !defined DETUTILS_NO_ASCII
+
+ 	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
+	#include "d_ascii"
+
+	// Vercheck
+
+	#if !defined DETUTILS_LIBVER_ASCII
+		
+		#error [DETUtils]: (version) - Version not specified.
+	
+	#elseif defined DETUTILS_LIBVER_ASCII
+
+		#if DETUTILS_LIBVER_ASCII != 1
+
+			#error [DETUtils]: (version) - 'd_ascii.inc' is outdated.
+
+		#endif
+
+	#endif
+
+#else
+
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [DETUtils]: (includes) - Library 'd_ascii' is disabled.
 
  	#endif
 
@@ -797,7 +828,7 @@ Includes
  && defined DETUTILS_NO_FOREACH && defined DETUTILS_NO_TABLES && defined DETUTILS_NO_TOML \
  && defined DETUTILS_NO_PROFILE && defined DETUTILS_NO_TIMERS && defined DETUTILS_NO_DISCORDAPI \
  && defined DETUTILS_NO_PERMISSIONS && defined DETUTILS_NO_EVENTS && defined DETUTILS_NO_YAML \
- && defined DETUTILS_NO_GLOBAL
+ && defined DETUTILS_NO_GLOBAL && defined DETUTILS_NO_ASCII
 
 	#warning [DETUtils]: (warning) - All library modules are disabled.
 
