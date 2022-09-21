@@ -1,5 +1,5 @@
 # d_ascii.inc
-Pawn ASCII - ASCII character prefefines.
+Pawn ASCII - ASCII character predefines.
 
 [Go back to home page...](README.md)
 ## How to start to use?
