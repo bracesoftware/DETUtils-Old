@@ -34,9 +34,6 @@
 #define QUERY_TYPE_SAVE 0
 #define QUERY_TYPE_LOAD 1
 
-new DET_g_LastQueryType = INVALID_QUERY_TYPE;
-new DET_g_QueryDelimiter = ',';
-
 // Really GENERIC entry since this is a function used to read data.
 
 stock ParseQueryContent(const source[], dest[][])
@@ -46,7 +43,7 @@ stock ParseQueryContent(const source[], dest[][])
     new len;
     while(i <= strlen(source))
     {
-        if(source[i] == DET_g_QueryDelimiter || i == strlen(source))
+        if(source[i] == DET_g_EntryMemory[e_FQUERY_DELIMITER] || i == strlen(source))
         {
             len = strmid(dest[aNum], source, li, i, 128);
             dest[aNum][len] = 0;
@@ -208,7 +205,7 @@ stock SendQuery(const name[])
                         QUERY_TYPE_SAVE);
                 }
 
-                DET_g_LastQueryType = QUERY_TYPE_SAVE;
+                @detmemory DET_o_LastFQueryType, QUERY_TYPE_SAVE
 
                 new File:SaveFile = fopen(dirbose, io_write);
 
@@ -263,6 +260,9 @@ stock SendQuery(const name[])
                         g_QueryCache[i][QueryContent], 
                         QUERY_TYPE_LOAD);
                 }
+
+                @detmemory DET_o_LastFQueryType, QUERY_TYPE_SAVE
+
                 return 1;
             }
         }
@@ -301,7 +301,7 @@ stock GetLoadedQueryContent(const name[], dests[])
 
 stock GetLastQueryType()
 {
-    return DET_g_LastQueryType;
+    return DET_g_EntryMemory[e_LAST_FQUERY_TYPE];
 }
 
 // Set delimiter which will be used to PARSE
@@ -309,7 +309,9 @@ stock GetLastQueryType()
 
 stock SetQueryDelimiter(delimiter)
 {
-    DET_g_QueryDelimiter = delimiter;
+    // Just update the memory address/operand.
+    @detmemory DET_o_FQueryDelimiter, delimiter
+
     if(delimiter == '.')
     {
         printf("[DETUtils]: (warning) - delimiter :: Delimiter '.' is successfully set; \n\

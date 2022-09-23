@@ -427,12 +427,12 @@ stock CreateFactionPropertyEntrance(
                 #endif
 
                 DET_g_PropertyData[g_PropertyID][ValidProp] = 1;
-                DET_g_CreatedProperties ++;
+                @detmemory DET_o_CreatedProps, DET_g_EntryMemory[e_CREATED_PROPS]++
                 break;
             }
             else
             {
-                if(DET_g_CreatedProperties == MAX_PROPERTIES)
+                if(DET_g_EntryMemory[e_CREATED_PROPS] == MAX_PROPERTIES)
                 {
                     #if defined DETUTILS_DEBUG_MODE
                     for(new i = 0; i < MAX_PLAYERS; i++)

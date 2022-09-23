@@ -70,9 +70,12 @@ new g_PlayerProperty[MAX_PLAYERS];
 
 new DET_g_PropertyData[MAX_PROPERTIES][enum_PropertyData];
 
-new DET_g_CreatedProperties;
+//new DET_g_CreatedProperties;
 
 new _EntranceTitleShown[MAX_PLAYERS];
+
+//e_CREATED_PROPS
+//@detmemory DET_o_CreatedProps, DET_g_EntryMemory[e_CREATED_PROPS]
 
 // Interior IDs:
 
@@ -791,12 +794,12 @@ stock CreatePropertyEntrance(
                 #endif
 
                 DET_g_PropertyData[g_PropertyID][ValidProp] = 1;
-                DET_g_CreatedProperties ++;
+                @detmemory DET_o_CreatedProps, DET_g_EntryMemory[e_CREATED_PROPS]++
                 break;
             }
             else
             {
-                if(DET_g_CreatedProperties == MAX_PROPERTIES)
+                if(DET_g_EntryMemory[e_CREATED_PROPS] == MAX_PROPERTIES)
                 {
                     #if defined DETUTILS_DEBUG_MODE
                     for(new i = 0; i < MAX_PLAYERS; i++)
@@ -822,14 +825,18 @@ stock DestroyPropertyEntrance(const name[])
         {
             CallLocalFunction("OnPropertyDestroy", "i", i);
             DET_g_PropertyData[i][ValidProp] = 0;
-            DET_g_CreatedProperties --;
+
+            @detmemory DET_o_CreatedProps, DET_g_EntryMemory[e_CREATED_PROPS]--
+
             Delete3DTextLabel(DET_g_PropertyData[i][p_PropertyLabelID]);
             Delete3DTextLabel(DET_g_PropertyData[i][p_PropertyLabel]);
             DestroyPickup(DET_g_PropertyData[i][p_PropertyPickupID]);
             DestroyPickup(DET_g_PropertyData[i][p_PropertyPickup]);
+
             DET_g_PropertyData[i][p_PropertyExit_X] = 0;
             DET_g_PropertyData[i][p_PropertyExit_Y] = 0;
             DET_g_PropertyData[i][p_PropertyExit_Z] = 0;
+            
             DET_g_PropertyData[i][p_PropertyEntrance_X] = 0;
             DET_g_PropertyData[i][p_PropertyEntrance_Y] = 0;
             DET_g_PropertyData[i][p_PropertyEntrance_Z] = 0;
@@ -1012,7 +1019,7 @@ stock GetPropertyCount()
     #if defined DETUTILS_DEBUG_MODE
     printf("[DETUtils]: (debug) - GetPropertyCount successfully called.");
     #endif
-    return DET_g_CreatedProperties;
+    return DET_g_EntryMemory[e_CREATED_PROPS];
 }
 
 stock SetPropertyEntranceAngles(
