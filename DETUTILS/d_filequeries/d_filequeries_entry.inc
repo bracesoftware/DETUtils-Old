@@ -261,7 +261,7 @@ stock SendQuery(const name[])
                         QUERY_TYPE_LOAD);
                 }
 
-                @detmemory DET_o_LastFQueryType, QUERY_TYPE_SAVE
+                @detmemory DET_o_LastFQueryType, QUERY_TYPE_LOAD
 
                 return 1;
             }

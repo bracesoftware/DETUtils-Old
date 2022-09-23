@@ -2,10 +2,10 @@
 DETUtils Memory - An internal library used to modify and announce the modification of DETUtils memory itself.
 
 ```pawn
-@detmemory <operation> <value>
+@detmemory <operation>, <value>
 ```
 
 ## Usage
 ```pawn
-@detmemory UNUSED_RACE_INDEX 0
+@detmemory UNUSED_RACE_INDEX, 0
 ```
