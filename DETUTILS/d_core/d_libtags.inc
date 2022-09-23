@@ -13,6 +13,7 @@
  */
 
 #include "d_rem"
+#include "d_memory"
 
 // The rest of shit
 

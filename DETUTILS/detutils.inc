@@ -821,6 +821,7 @@ Includes
 
 #endif
 /* =============================================================== */
+
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
  && defined DETUTILS_NO_MAPEDITOR && defined DETUTILS_NO_FACTIONS && defined DETUTILS_NO_SERVER \
@@ -832,11 +833,11 @@ Includes
 
 	#warning [DETUtils]: (warning) - All library modules are disabled.
 
- 	#tryinclude "d_extra\d_libtags.inc"
+ 	/*#tryinclude "d_extra\d_libtags.inc"
 
 	#if !defined d_extra_included
 	    #error [DETUtils]: (error) - You are missing "d_extra\d_libtags.inc" in your "include\DETUTILS" folder.
-	#endif
+	#endif*/
 
 #endif
 
@@ -921,3 +922,22 @@ Includes
  	#endif
 
 #endif
+
+main()
+{
+	// Tell the script that initialization has been finished.
+	@detmemory DET_o_SysInit, 0
+	detutils_main();
+}
+
+#if defined _ALS_main
+
+	#undef main
+
+#elseif !defined _ALS_main
+
+	#define _ALS_main
+
+#endif
+
+#define main( detutils_main(

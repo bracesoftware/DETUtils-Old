@@ -562,6 +562,7 @@ public OnDETUtilsInit()
     SetGameModeText("SA:MP | DET-Utils");
     #endif
     LoadDETUtils();
+    @detmemory DET_o_SysInit, 1
     if(funcidx("a_init_OnDETUtilsInit") != -1)
     {
         CallLocalFunction("a_init_OnDETUtilsInit", "");

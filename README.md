@@ -88,6 +88,7 @@ Libraries whose provide storing (saving), loading and managing persistent data o
 | d_thirdpartyinclude.inc | Using DETUtils requires some extra libraries, this include is here to manage that! |
 | d_version.inc | Little include used to change library's version, including major release, minor release, patch and `R` marked release (re-release of the same version). There are also built-in constant values named `__DETUtils` which is a hex version number, and `__DETUtilsRelease` which is hex release number. |
 | [d_rem.inc](docs/d_rem.md) | Provides the `@rem` decorator and rem levels: `IMPORTANT`, `NOTE`, `HACK` and `BUG`. |
+| [d_memory.inc](docs/d_memory.md) | This is strictly an internal DETUtils library, which is used to modify the internal memory values to manipulate the includes. For example: `@detmemory UNUSED_RACE_INDEX 0` the last unused race index will be set to `0` which may cause lot of problems if you do it yourself. |
 
 --------------------------------------
 
