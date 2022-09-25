@@ -6,6 +6,8 @@ Pawn Global - A library providing an execution of independent code - or in bette
 ## How to start to use?
 
 ```pawn
+#include <DETUTILS\detutils>
+
 new str[32];
 global format(str, sizeof str, "str formatted.");
 ```
@@ -14,6 +16,15 @@ global format(str, sizeof str, "str formatted.");
 
 ```pawn
 global SendClientMessageToAll(-1, "Hi"); // pointless, but it'll work.
+```
+
+- Another example:
+
+```pawn
+#include <DETUTILS\detutils>
+
+new var;
+global var = 1;
 ```
 
 ## Notes
