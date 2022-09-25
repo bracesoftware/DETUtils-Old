@@ -195,7 +195,7 @@ public OnDETUtilsInit() // This should be the last hook.
 
     CallVariableHandler("HandlerName");
     CallVariableHandler("HandlerName1");
-    
+
     malloc("HandlerName2");
     malloc("HandlerName3");
 
@@ -1017,7 +1017,7 @@ admin command ac (playerid,params[])
 command untiltest(playerid, params[])
 {
     new i;
-    until(i = 50)
+    while(i != 50)
     {
         i++;
         printf("%i", i);

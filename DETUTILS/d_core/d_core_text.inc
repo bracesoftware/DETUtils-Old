@@ -32,11 +32,11 @@
 
 #define DETUTILS_TEXT_MAX_GUN_REACH "Maximum number of dropped gun objects exceeded."
 #define DETUTILS_TEXT_CMD_TIMER "The player tried to use the command but the timer was not over yet."
-#define DETUTILS_TEXT_CANNOT_OPERATE ""COLOUR_GREY"Operation can't be completed at the moment."
-#define DETUTILS_TEXT_THROW_GUN ""COLOUR_GREY"You threw away {ffffff}%s"COLOUR_GREY"."
-#define DETUTILS_TEXT_NOGUN_NEARBY ""COLOUR_GREY"No guns nearby."
-#define DETUTILS_TEXT_GUN_DESTROY ""COLOUR_GREY"You destroyed {ffffff}%s"COLOUR_GREY"."
-#define DETUTILS_TEXT_GUN_PICK ""COLOUR_GREY"You picked up {ffffff}%s"COLOUR_GREY"."
+#define DETUTILS_TEXT_CANNOT_OPERATE ""D_COLOUR_GREY"Operation can't be completed at the moment."
+#define DETUTILS_TEXT_THROW_GUN ""D_COLOUR_GREY"You threw away {ffffff}%s"D_COLOUR_GREY"."
+#define DETUTILS_TEXT_NOGUN_NEARBY ""D_COLOUR_GREY"No guns nearby."
+#define DETUTILS_TEXT_GUN_DESTROY ""D_COLOUR_GREY"You destroyed {ffffff}%s"D_COLOUR_GREY"."
+#define DETUTILS_TEXT_GUN_PICK ""D_COLOUR_GREY"You picked up {ffffff}%s"D_COLOUR_GREY"."
 
 // d_anticheat
 

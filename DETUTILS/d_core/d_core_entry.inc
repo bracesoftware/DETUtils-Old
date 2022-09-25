@@ -35,6 +35,14 @@
                                                                                       
 */
 
+#if defined DETUTILS_COMPAT
+
+#define @newk_%0\32; @newk_
+
+#define DETUTILS @newk_
+
+#endif
+
 // Include the these first
 // becase they contain important
 // information and functions

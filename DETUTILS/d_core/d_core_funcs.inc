@@ -15,17 +15,6 @@
 #define @DETUTILSCORE_KWORD__@%0\32; @DETUTILSCORE_KWORD__@
 #define det @DETUTILSCORE_KWORD__@
 
-#define DET_g_%0\32; DET_g_
-#define __DETUTILS_ARRAY..%0,%1,%2; new DET_g_%0[%1][%2];
-
-//#define @DETUTILSCORE_KWORD__@global%0; DET_g_%0;
-
-#if defined A_INTS_COMPATIBILITY_MODE || defined A_CMDS_COMPATIBILITY_MODE
-
-    #define DETUTILS_COMPATIBILITY_MODE
-
-#endif
-
 #if defined DETUTILS_COMPATIBILITY_MODE || defined detutils_complete_error_boom
 
     #error [DETUtils]: (fatal error) - crl :: Stop messing with the core libraries!
@@ -62,83 +51,14 @@
                                                 
 */
 
-#define COLOUR_GREY "{B9C9BF}"
+#define D_COLOUR_GREY "{B9C9BF}"
 
 stock d_SendWarningMessage(playerid, const string[])
 {
     new message[300];
-    format(message, 300, ""COLOUR_GREY"Warning: [DETUtils]: (debug) - %s", string);
+    format(message, 300, ""D_COLOUR_GREY"Warning: [DETUtils]: (debug) - %s", string);
     return SendClientMessage(playerid, -1, message);
 }
-
-#define detutils_visual_TRUE
-
-#define until(%0)%8\10;%9 while( !( %0 ))%8
-
-stock _RemID;
-
-#define rem:<%0>; _RemID++; printf("[DETUtils]: (rem) - Rem called. ID: %i", _RemID);
-
-#define MAX_INTERIORS 300
-
-#define MAX_FUNC_NAME (32)
-
-////////////////////////////////////////////////////////////////////
-
-#define @new_%0\32; @new_
-
-#define DETUTILS_DECL__ @new_
-
-#define @new_func:%0(%1) DETUTILS@%0(%1); public DETUTILS@%0(%1)
-#define @new_var:%0<%1> stock %1DETUTILS@%0
-
-#if defined DETUTILS_COMPAT
-
-#define @newk_%0\32; @newk_
-
-#define DETUTILS @newk_
-
-#endif
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-
-new PlayerText:g_AnnouncementString[MAX_PLAYERS];
-new Text:g_AnnouncementUsebox;
-
-stock _CallFunction(const func[], const spec[], id)
-{
-    new funcname[100];
-    format(funcname, 100, "DETUTILS@%s", func);
-    return CallLocalFunction(funcname, spec, id);
-}
-
-stock _SetTimer(const func[], delay, bool:a, const spec[], id)
-{
-    new funcname[100];
-    format(funcname, 100, "DETUTILS@%s", func);
-    return SetTimerEx(funcname, delay, a, spec, id);
-}
-
-#if !defined OnPlayerCommandReceived
-
-    forward OnPlayerCommandReceived(playerid, cmdtext[]);
-
-#endif
-
-#if !defined OnPlayerCommandPerformed
-
-    forward OnPlayerCommandPerformed(playerid, cmdtext[], success);
-
-#endif
-
-stock _Functionid;
-
-stock _GlobalFileName[MAX_PLAYERS][MAX_PLAYER_NAME];
-
-#define _FormatPlayerDatabaseFileName(%0) \
-    format(_GlobalFileName[%0],MAX_PLAYER_NAME,"%s.ini",ReturnPlayerName(%0))
-
-new const _g_Script = 0;
 
 /*
                                                                       

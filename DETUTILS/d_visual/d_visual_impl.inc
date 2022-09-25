@@ -11,6 +11,9 @@
  *
  *
  */
+ 
+// Backwards compat.
+const DET_g_VisualScriptStatic = 0;
 
 /*
 
@@ -808,7 +811,7 @@ stock d_v_SetPlayerSpecialAction(playerid, actionid)
         new p_WeapAmmo = GetPlayerAmmo( playerid );
         if( p_WeapID > 0 && p_WeapAmmo != 0 )
         {
-            if( _g_Script == 0 )
+            if( DET_g_VisualScriptStatic == 0 )
             {
                 new p_WeapIdx = -1;
                 for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
@@ -965,7 +968,7 @@ public OnPlayerDeath(playerid, killerid, reason)
         new p_WeapAmmo = GetPlayerAmmo( playerid );
         if( p_WeapID > 0 && p_WeapAmmo != 0 )
         {
-            if( _g_Script == 0 )
+            if( DET_g_VisualScriptStatic == 0 )
             {
                 new p_WeapIdx = -1;
                 for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
@@ -976,7 +979,7 @@ public OnPlayerDeath(playerid, killerid, reason)
                         break;
                     }
                 }
-                if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"Operation can't be completed at the moment." );
+                if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""D_COLOUR_GREY"Operation can't be completed at the moment." );
                 //#if defined RemovePlayerWeapon
                 RemovePlayerWeapon( playerid, p_WeapID );
                 //#endif
@@ -990,7 +993,7 @@ public OnPlayerDeath(playerid, killerid, reason)
                     DET_g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ], 
                     DET_g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ]-1, 93.7, 120.0, 120.0 );
                 __WeaponTimer_var[ playerid ] = 30;
-                fmargs_SendClientMessage( playerid, -1, ""COLOUR_GREY"You threw away {ffffff}%s"COLOUR_GREY".", g_WeaponInformation[ DET_g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
+                fmargs_SendClientMessage( playerid, -1, ""D_COLOUR_GREY"You threw away {ffffff}%s"D_COLOUR_GREY".", g_WeaponInformation[ DET_g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
                 //if(funcidx("OnPlayerDropWeapon") != -1) CallLocalFunction("OnPlayerDropWeapon", "i", playerid);
                 // We don't want to call OnPlayerDropWeapon at player's death since it would get called max 13 times!!
             }
@@ -1064,7 +1067,7 @@ command throwgun( playerid, params[] )
     new p_WeapAmmo = GetPlayerAmmo( playerid );
     if( p_WeapID > 0 && p_WeapAmmo != 0 )
     {
-        if( _g_Script == 0 )
+        if( DET_g_VisualScriptStatic == 0 )
         {
             new p_WeapIdx = -1;
             for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
@@ -1167,7 +1170,7 @@ COMMAND__ throwgun( playerid, params[] )
     new p_WeapAmmo = GetPlayerAmmo( playerid );
     if( p_WeapID > 0 && p_WeapAmmo != 0 )
     {
-        if( _g_Script == 0 )
+        if( DET_g_VisualScriptStatic == 0 )
         {
             new p_WeapIdx = -1;
             for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
@@ -1178,7 +1181,7 @@ COMMAND__ throwgun( playerid, params[] )
                     break;
                 }
             }
-            if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"Operation can't be completed at the moment." );
+            if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""D_COLOUR_GREY"Operation can't be completed at the moment." );
             //#if defined RemovePlayerWeapon
             RemovePlayerWeapon( playerid, p_WeapID );
             //#endif
@@ -1191,7 +1194,7 @@ COMMAND__ throwgun( playerid, params[] )
                 DET_g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ], DET_g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ], 
                 DET_g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ]-1, 93.7, 120.0, 120.0 );
             __WeaponTimer_var[ playerid ] = 30;
-            SendClientMessage( playerid, -1, ""COLOUR_GREY"You threw away {ffffff}%s"COLOUR_GREY".", g_WeaponInformation[ DET_g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
+            SendClientMessage( playerid, -1, ""D_COLOUR_GREY"You threw away {ffffff}%s"D_COLOUR_GREY".", g_WeaponInformation[ DET_g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
             if(funcidx("OnPlayerDropWeapon") != -1) CallLocalFunction("OnPlayerDropWeapon", "i", playerid);
         }
     }
@@ -1212,9 +1215,9 @@ COMMAND__ destroygun( playerid, params[] )
             break;
         }
     }
-    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"No guns nearby." );
+    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""D_COLOUR_GREY"No guns nearby." );
     DestroyObject( DET_g_WeaponData[ p_WeapIdx ][ w_ObjectId ] );
-    SendClientMessage( playerid, -1, ""COLOUR_GREY"You destroyed {ffffff}%s"COLOUR_GREY".", g_WeaponInformation[ DET_g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
+    SendClientMessage( playerid, -1, ""D_COLOUR_GREY"You destroyed {ffffff}%s"D_COLOUR_GREY".", g_WeaponInformation[ DET_g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
     DET_g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ] = 0.0;
     DET_g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 1 ] = 0.0;
     DET_g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 2 ] = 0.0;
@@ -1240,9 +1243,9 @@ COMMAND__ pickgun( playerid, params[] )
             break;
         }
     }
-    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""COLOUR_GREY"No guns nearby." );
+    if( p_WeapIdx == -1 ) return SendClientMessage(playerid, -1, ""D_COLOUR_GREY"No guns nearby." );
     DestroyObject( DET_g_WeaponData[ p_WeapIdx ][ w_ObjectId ] );
-    SendClientMessage( playerid, -1, ""COLOUR_GREY"You picked up {ffffff}%s"COLOUR_GREY".", g_WeaponInformation[ DET_g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
+    SendClientMessage( playerid, -1, ""D_COLOUR_GREY"You picked up {ffffff}%s"D_COLOUR_GREY".", g_WeaponInformation[ DET_g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ] ][ wName ] );
     GivePlayerWeapon( playerid, DET_g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 0 ], 
         DET_g_WeaponData[ p_WeapIdx ][ w_WeaponData ][ 1 ] );
     DET_g_WeaponData[ p_WeapIdx ][ w_ObjectPos ][ 0 ] = 0.0;

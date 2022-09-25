@@ -11,6 +11,8 @@
  *
  */
 
+// Backwards compat.
+new DET_g_FuncId;
 #define DETUTILS_FMARGS_MAX_STRING 1024
 
 // MAX_PLAYERS will be used to avoid collisions on bigger servers...
@@ -61,8 +63,8 @@ stock fmargs_GameTextForPlayer(playerid,const unformatted_text[],duration,style,
         SetTimerEx("OnPlayerScreenUpdate", time, false, "ii", playerid, 5);
     }
     #if defined DETUTILS_DEBUG_MODE
-    _Functionid = 3;
-    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    DET_g_FuncId = 3;
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", DET_g_FuncId);
     #endif
     __DETUTILS_STATIC new
         args,
@@ -95,8 +97,8 @@ stock fmargs_GameTextForPlayer(playerid,const unformatted_text[],duration,style,
         #emit RETN
     }
     #if defined DETUTILS_DEBUG_MODE
-    _Functionid = 3;
-    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    DET_g_FuncId = 3;
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", DET_g_FuncId);
     #endif
     return GameTextForPlayer(playerid,unformatted_text,duration,style);
 }
@@ -113,8 +115,8 @@ stock fmargs_GameTextForAll(const unformatted_text[], duration,style,@DETUTILSFM
         }
     }
     #if defined DETUTILS_DEBUG_MODE
-    _Functionid = 4;
-    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    DET_g_FuncId = 4;
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", DET_g_FuncId);
     #endif
     __DETUTILS_STATIC new
         args,
@@ -149,8 +151,8 @@ stock fmargs_GameTextForAll(const unformatted_text[], duration,style,@DETUTILSFM
         #emit RETN
     }
     #if defined DETUTILS_DEBUG_MODE
-    _Functionid = 4;
-    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    DET_g_FuncId = 4;
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", DET_g_FuncId);
     #endif
     return GameTextForAll(unformatted_text,duration,style);
 }
@@ -160,8 +162,8 @@ stock Text:fmargs_TextDrawCreate(Float:x,Float:y,const _StringArgs[],@DETUTILSFM
     new Text:textid;
 
     #if defined DETUTILS_DEBUG_MODE
-    _Functionid = 5;
-    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    DET_g_FuncId = 5;
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", DET_g_FuncId);
     #endif
     __DETUTILS_STATIC new
         args,
@@ -216,8 +218,8 @@ stock Text:fmargs_TextDrawCreate(Float:x,Float:y,const _StringArgs[],@DETUTILSFM
         #emit RETN
     }
     #if defined DETUTILS_DEBUG_MODE
-    _Functionid = 5;
-    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    DET_g_FuncId = 5;
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", DET_g_FuncId);
     #endif
     
     textid = TextDrawCreate(x,y,_StringArgs);
@@ -245,8 +247,8 @@ stock PlayerText:fmargs_CreatePlayerTextDraw(i,Float:x,Float:y,const _StringArgs
 {
     new PlayerText:textid;
     #if defined DETUTILS_DEBUG_MODE
-    _Functionid = 6;
-    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", _Functionid);
+    DET_g_FuncId = 6;
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully called.", DET_g_FuncId);
     #endif
     __DETUTILS_STATIC new
         args,
@@ -294,8 +296,8 @@ stock PlayerText:fmargs_CreatePlayerTextDraw(i,Float:x,Float:y,const _StringArgs
         #emit RETN
     }
     #if defined DETUTILS_DEBUG_MODE
-    _Functionid = 6;
-    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", _Functionid);
+    DET_g_FuncId = 6;
+    printf("[DETUtils]: (debug) - fmargs :: Function id : %i successfully performed.", DET_g_FuncId);
     #endif
     
     textid = CreatePlayerTextDraw

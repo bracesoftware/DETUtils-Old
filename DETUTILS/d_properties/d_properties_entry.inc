@@ -66,13 +66,16 @@ forward OnPropertyDestroy(propertyid);
 forward OnPlayerEnterProperty(playerid);
 forward OnPlayerExitProperty(playerid);
 
-new g_PlayerProperty[MAX_PLAYERS];
+new PlayerText:DET_g_AnnouncementString[MAX_PLAYERS];
+new Text:DET_g_AnnouncementUsebox;
+
+new DET_g_pPlayerProperty[MAX_PLAYERS];
 
 new DET_g_PropertyData[MAX_PROPERTIES][enum_PropertyData];
 
 //new DET_g_CreatedProperties;
 
-new _EntranceTitleShown[MAX_PLAYERS];
+new DET_g_EntranceTitleShown[MAX_PLAYERS];
 
 //e_CREATED_PROPS
 //@detmemory DET_o_CreatedProps, DET_g_EntryMemory[e_CREATED_PROPS]
@@ -121,65 +124,66 @@ __DETUTILS_STATIC void:_PropertyLoadingTime(const playerid)
     SetTimerEx("_ToggleControllable", 1000, false, "i", playerid);
 }
 
-__DETUTILS_STATIC new g_HideAnnouncement[MAX_PLAYERS];
+__DETUTILS_STATIC new DET_g_sHideAnnouncement[MAX_PLAYERS];
 
-__DETUTILS_STATIC stock _Announcement(playerid, const _Message[])
+__DETUTILS_STATIC stock DET_g_Announcement(playerid, const _Message[])
 {
     new c_Message[300];
 
-    KillTimer(g_HideAnnouncement[playerid]);
+    KillTimer(DET_g_sHideAnnouncement[playerid]);
 
     format(c_Message,300,"%s",_Message);
 
-    TextDrawShowForPlayer(playerid, g_AnnouncementUsebox);
+    TextDrawShowForPlayer(playerid, DET_g_AnnouncementUsebox);
 
-    PlayerTextDrawSetString( playerid, g_AnnouncementString[ playerid ], c_Message );
+    PlayerTextDrawSetString( playerid, DET_g_AnnouncementString[ playerid ], c_Message );
 
-    PlayerTextDrawShow(playerid,g_AnnouncementString[ playerid ]);
+    PlayerTextDrawShow(playerid,DET_g_AnnouncementString[ playerid ]);
 
-    g_HideAnnouncement[playerid] = _SetTimer("hideannc", 4000, false, "i", playerid);
+    DET_g_sHideAnnouncement[playerid] = SetTimerEx("DET_g__HideAnnc", 4000, false, "i", playerid);
     return 1;
 }
 
-DETUTILS_DECL__ func:hideannc(playerid)
+forward DET_g__HideAnnc(playerid);
+public DET_g__HideAnnc(playerid)
 {
-    TextDrawHideForPlayer(playerid, g_AnnouncementUsebox);
-    PlayerTextDrawHide(playerid, g_AnnouncementString[playerid]);
-    KillTimer(g_HideAnnouncement[playerid]);
+    TextDrawHideForPlayer(playerid, DET_g_AnnouncementUsebox);
+    PlayerTextDrawHide(playerid, DET_g_AnnouncementString[playerid]);
+    KillTimer(DET_g_sHideAnnouncement[playerid]);
     return 1;
 }
 
-static _CreateAnncTextDraws()
+__DETUTILS_STATIC DET_g_CreateAnncTextDraws()
 {
-    g_AnnouncementUsebox = TextDrawCreate(366.444427, 363.882232, "usebox");
-    TextDrawLetterSize(g_AnnouncementUsebox, 0.000000, 1.840366);
-    TextDrawTextSize(g_AnnouncementUsebox, 267.333312, 0.000000);
-    TextDrawAlignment(g_AnnouncementUsebox, 1);
-    TextDrawColor(g_AnnouncementUsebox, 0);
-    TextDrawUseBox(g_AnnouncementUsebox, true);
+    DET_g_AnnouncementUsebox = TextDrawCreate(366.444427, 363.882232, "usebox");
+    TextDrawLetterSize(DET_g_AnnouncementUsebox, 0.000000, 1.840366);
+    TextDrawTextSize(DET_g_AnnouncementUsebox, 267.333312, 0.000000);
+    TextDrawAlignment(DET_g_AnnouncementUsebox, 1);
+    TextDrawColor(DET_g_AnnouncementUsebox, 0);
+    TextDrawUseBox(DET_g_AnnouncementUsebox, true);
 
-    TextDrawBoxColor(g_AnnouncementUsebox, 102);
-    TextDrawSetShadow(g_AnnouncementUsebox, 0);
-    TextDrawSetOutline(g_AnnouncementUsebox, 0);
-    TextDrawFont(g_AnnouncementUsebox, 0);
+    TextDrawBoxColor(DET_g_AnnouncementUsebox, 102);
+    TextDrawSetShadow(DET_g_AnnouncementUsebox, 0);
+    TextDrawSetOutline(DET_g_AnnouncementUsebox, 0);
+    TextDrawFont(DET_g_AnnouncementUsebox, 0);
     return 1;
 }
 
 //#define STRING "string" // for some reasons this exists
 
-static _CreatePlayerTextDraws(playerid)
+__DETUTILS_STATIC DET_g_CreatePlayerTextDraws(playerid)
 {
-    g_AnnouncementString[playerid] = CreatePlayerTextDraw(playerid, 315.111145, 364.373321, "string");
-    PlayerTextDrawLetterSize(playerid, g_AnnouncementString[playerid], 0.201111, 1.346133);
+    DET_g_AnnouncementString[playerid] = CreatePlayerTextDraw(playerid, 315.111145, 364.373321, "string");
+    PlayerTextDrawLetterSize(playerid, DET_g_AnnouncementString[playerid], 0.201111, 1.346133);
 
-    PlayerTextDrawAlignment(playerid, g_AnnouncementString[playerid], 2);
-    PlayerTextDrawColor(playerid, g_AnnouncementString[playerid], -1);
-    PlayerTextDrawSetShadow(playerid, g_AnnouncementString[playerid], 0);
+    PlayerTextDrawAlignment(playerid, DET_g_AnnouncementString[playerid], 2);
+    PlayerTextDrawColor(playerid, DET_g_AnnouncementString[playerid], -1);
+    PlayerTextDrawSetShadow(playerid, DET_g_AnnouncementString[playerid], 0);
 
-    PlayerTextDrawSetOutline(playerid, g_AnnouncementString[playerid], 1);
-    PlayerTextDrawBackgroundColor(playerid, g_AnnouncementString[playerid], 51);
-    PlayerTextDrawFont(playerid, g_AnnouncementString[playerid], 2);
-    PlayerTextDrawSetProportional(playerid, g_AnnouncementString[playerid], 1);
+    PlayerTextDrawSetOutline(playerid, DET_g_AnnouncementString[playerid], 1);
+    PlayerTextDrawBackgroundColor(playerid, DET_g_AnnouncementString[playerid], 51);
+    PlayerTextDrawFont(playerid, DET_g_AnnouncementString[playerid], 2);
+    PlayerTextDrawSetProportional(playerid, DET_g_AnnouncementString[playerid], 1);
     return 1;
 }
 
@@ -199,7 +203,7 @@ public _ToggleControllable(i)
 /*
 public OnGameModeInit()
 {
-    _CreateAnncTextDraws();
+    DET_g_CreateAnncTextDraws();
     
     if(funcidx("a_props_OnGameModeInit") != -1)
     {
@@ -222,7 +226,7 @@ forward a_props_OnGameModeInit();
 
 public OnPlayerConnect(playerid)
 {
-    _CreatePlayerTextDraws(playerid);
+    DET_g_CreatePlayerTextDraws(playerid);
     if(funcidx("a_props_OnPlayerConnect") != -1)
     {
         CallLocalFunction("a_props_OnPlayerConnect", "i", playerid);
@@ -242,8 +246,8 @@ forward a_props_OnPlayerConnect(playerid);
 
 public OnPlayerSpawn(playerid)
 {
-    TextDrawHideForPlayer(playerid, g_AnnouncementUsebox);
-    PlayerTextDrawHide(playerid, g_AnnouncementString[playerid]);
+    TextDrawHideForPlayer(playerid, DET_g_AnnouncementUsebox);
+    PlayerTextDrawHide(playerid, DET_g_AnnouncementString[playerid]);
     if(funcidx("a_props_OnplayerSpawn") != -1)
     {
         CallLocalFunction("a_props_OnplayerSpawn", "i", playerid);
@@ -261,7 +265,7 @@ public OnPlayerSpawn(playerid)
 
 forward a_props_OnplayerSpawn(playerid);
 
-_OnPlayerNearEntrance(playerid);
+DET_g__OnPlayerNearEntrance(playerid);
 
 #if !defined DETUTILS_NO_FACTIONS
 
@@ -285,7 +289,7 @@ new DET_g_PlayerFactionCache[MAX_PLAYERS][enum_PlayerFactionData];
 
 #endif
 
-public _OnPlayerNearEntrance(playerid)
+public DET_g__OnPlayerNearEntrance(playerid)
 {
     new 
         PropertyActionID, 
@@ -345,7 +349,7 @@ public _OnPlayerNearEntrance(playerid)
             SetPlayerTime( playerid, 12, 0 );
             _PropertyLoadingTime(playerid);
             
-            g_PlayerProperty[ playerid ] = i;
+            DET_g_pPlayerProperty[ playerid ] = i;
             
             if(funcidx("OnPlayerEnterProperty") != -1)
                 CallLocalFunction("OnPlayerEnterProperty", "i", playerid);
@@ -414,7 +418,7 @@ public _OnPlayerNearEntrance(playerid)
 
             if(funcidx("OnPropertyActionPerformed") != -1) CallLocalFunction("OnPropertyActionPerformed","iii",playerid,i,PropertyActionID);
 
-            g_PlayerProperty[ playerid ] = -1;
+            DET_g_pPlayerProperty[ playerid ] = -1;
             
             if(funcidx("OnPlayerExitProperty") != -1)
                 CallLocalFunction("OnPlayerExitProperty", "i", playerid);
@@ -468,7 +472,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
     {
         if(GetPlayerState(playerid) == 1)
         {
-            _OnPlayerNearEntrance(playerid);
+            DET_g__OnPlayerNearEntrance(playerid);
             #if defined DETUTILS_DEBUG_MODE
             printf("[DETUtils]: (debug) - keystate :: OnPlayerNearEntrance called successfully.");
             #endif
@@ -497,13 +501,14 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
 forward aint_ALS_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 
-DETUTILS_DECL__ func:ResetUpdateBool(playerid)
+forward DET_g__ResetUpdateBool(playerid);
+public DET_g__ResetUpdateBool(playerid)
 {
     #if defined DETUTILS_DEBUG_MODE
-    printf("[DETUtils]: (debug) - keystate :: util function 'ResetUpdateBool' called successfully.");
+    printf("[DETUtils]: (debug) - keystate :: util function 'DET_g__ResetUpdateBool' called successfully.");
     #endif
 
-    _EntranceTitleShown[playerid] = 0;
+    DET_g_EntranceTitleShown[playerid] = 0;
     return 1;
 }
 
@@ -514,17 +519,17 @@ public OnPlayerUpdate(playerid)
         if( IsPlayerInRangeOfPoint( playerid, 1.5, DET_g_PropertyData[ i ][p_PropertyEntrance_X], \
         DET_g_PropertyData[ i ][p_PropertyEntrance_Y], DET_g_PropertyData[ i ][p_PropertyEntrance_Z]) \
         && GetPlayerVirtualWorld( playerid ) == DET_g_PropertyData[ i ][p_PropertyVwid_OUT] \
-        && !IsPlayerInAnyVehicle( playerid ) && _EntranceTitleShown[playerid] != 1)
+        && !IsPlayerInAnyVehicle( playerid ) && DET_g_EntranceTitleShown[playerid] != 1)
         {
             new PropertyName[100];
             format(PropertyName,sizeof(PropertyName),DETUTILS_TEXT_PROPERTY_NAME,DET_g_PropertyData[ i ][ p_PropertyName ]);
             
-            _Announcement(playerid, PropertyName);
+            DET_g_Announcement(playerid, PropertyName);
             #if defined DETUTILS_DEBUG_MODE
             printf("[DETUtils]: (debug) - playerupdate :: Gametext shown.");
             #endif
-            _EntranceTitleShown[playerid] = 1;
-            _SetTimer("ResetUpdateBool", 10000, false, "i", playerid);
+            DET_g_EntranceTitleShown[playerid] = 1;
+            SetTimerEx("DET_g__ResetUpdateBool", 10000, false, "i", playerid);
         }
     }
     if(funcidx("a_props_playerupdate") != -1)
@@ -998,7 +1003,7 @@ stock GetNearPropertyEntrance(playerid)
 
 stock bool:IsPlayerInProperty(playerid)
 {
-    if(g_PlayerProperty[playerid] == -1) return false;
+    if(DET_g_pPlayerProperty[playerid] == -1) return false;
     else return true;
 }
 
@@ -1007,7 +1012,7 @@ stock ClearPlayerPropertyData(playerid)
     #if defined DETUTILS_DEBUG_MODE
     printf("[DETUtils]: (debug) - ClearPlayerPropertyData called successfully.");
     #endif
-    g_PlayerProperty[playerid] = -1;
+    DET_g_pPlayerProperty[playerid] = -1;
     #if defined DETUTILS_DEBUG_MODE
     printf("[DETUtils]: (debug) - ClearPlayerPropertyData action successfully performed.");
     #endif
@@ -1114,7 +1119,7 @@ stock SetPlayerProperty(_p_Playerid, pg_PropertyID)
     printf("[DETUtils]: (debug) - Successfully set player's (id : %i) property id to %i.", _p_Playerid, pg_PropertyID);
     #endif
 
-    g_PlayerProperty[_p_Playerid] = pg_PropertyID;
+    DET_g_pPlayerProperty[_p_Playerid] = pg_PropertyID;
     return 1;
 }
 
@@ -1122,7 +1127,7 @@ stock SetPlayerProperty(_p_Playerid, pg_PropertyID)
 
 public OnDETUtilsInit()
 {
-    _CreateAnncTextDraws();
+    DET_g_CreateAnncTextDraws();
     #if defined DETUTILS_DEBUG_MODE
     SaveLogIntoFile("detutils_properties.log", "[DETUtils]: (debug) - Loading...");
     SaveLogIntoFile("detutils_properties.log", "[DETUtils]: (debug) - Loaded.");

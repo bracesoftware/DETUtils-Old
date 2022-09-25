@@ -104,6 +104,21 @@ new g_PlayerCmdData[MAX_PLAYERS][enum_PlayerCmdData];
                                                                                       
 */
 
+// Very useful.
+const DET_g_cmdScriptStatic = 0;
+
+#if !defined OnPlayerCommandReceived
+
+    forward OnPlayerCommandReceived(playerid, cmdtext[]);
+
+#endif
+
+#if !defined OnPlayerCommandPerformed
+
+    forward OnPlayerCommandPerformed(playerid, cmdtext[], success);
+
+#endif
+
 stock GetSlashCommandType(const cmdtext[])
 {
     new cmdname[MAX_FUNC_NAME];
@@ -667,7 +682,7 @@ public OnPlayerText(playerid, text[])
 public OnPlayerText(playerid, text[])
 {
     //#if defined DETUTILS_FIX_COMMANDS
-    if(_g_Script == 1)
+    if(DET_g_cmdScriptStatic == 1)
     {
         #if defined a_cmds_opthook
 
@@ -805,7 +820,7 @@ public OnPlayerText(playerid, text[])
         printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared variables!");
         #endif
 
-        if(_g_Script == 1)
+        if(DET_g_cmdScriptStatic == 1)
         {
 
             while (text[++_pos] > ' ')
@@ -832,7 +847,7 @@ public OnPlayerText(playerid, text[])
         printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) string formattion finished.");
         #endif
 
-        if(_g_Script == 1)
+        if(DET_g_cmdScriptStatic == 1)
         {
             while(text[_pos] == ' ')
             {
@@ -952,7 +967,7 @@ public OnPlayerText(playerid, text[])
 public OnPlayerText(playerid, text[])
 {
     #if defined DETUTILS_FIX_COMMANDS
-    if(_g_Script == 1)
+    if(DET_g_cmdScriptStatic == 1)
     {
         #if defined a_cmds_opthook
 
@@ -1090,7 +1105,7 @@ public OnPlayerText(playerid, text[])
         printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) declared variables!");
         #endif
 
-        if(_g_Script == 1)
+        if(DET_g_cmdScriptStatic == 1)
         {
 
             while (text[++_pos] > ' ')
@@ -1117,7 +1132,7 @@ public OnPlayerText(playerid, text[])
         printf("[DETUtils]: (debug) - opt :: OnPlayerText(playerid, text[]) string formattion finished.");
         #endif
 
-        if(_g_Script == 1)
+        if(DET_g_cmdScriptStatic == 1)
         {
             while(text[_pos] == ' ')
             {
