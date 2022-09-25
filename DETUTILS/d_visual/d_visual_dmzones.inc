@@ -48,7 +48,7 @@ enum enum_DMZoneData
     Float:RandomSpawn3[3]
 }
 
-new g_DMZoneCache[MAX_DM_ZONES][enum_DMZoneData];
+new DET_g_DMZoneCache[MAX_DM_ZONES][enum_DMZoneData];
 
 forward OnDeathMatchZoneCreate(zoneid, zonename[]);
 forward OnDeathMatchZoneDestroy(zoneid, zonename[]);
@@ -59,26 +59,26 @@ stock CreateDeathMatchZone(const name[], Float:x, Float:y, Float:z, Float:x2, Fl
         i < MAX_DM_ZONES;
         i++)
     {
-        if(g_DMZoneCache[i][ValidZone] == 0)
+        if(DET_g_DMZoneCache[i][ValidZone] == 0)
         {
             // Save the name:
-            strmid(g_DMZoneCache[i][ZoneName], name, 0, 32);
+            strmid(DET_g_DMZoneCache[i][ZoneName], name, 0, 32);
 
             //Save positions:
-            g_DMZoneCache[i][RandomSpawn1][0] = x;
-            g_DMZoneCache[i][RandomSpawn1][1] = y;
-            g_DMZoneCache[i][RandomSpawn1][2] = z;
+            DET_g_DMZoneCache[i][RandomSpawn1][0] = x;
+            DET_g_DMZoneCache[i][RandomSpawn1][1] = y;
+            DET_g_DMZoneCache[i][RandomSpawn1][2] = z;
             
-            g_DMZoneCache[i][RandomSpawn2][0] = x2;
-            g_DMZoneCache[i][RandomSpawn2][1] = y2;
-            g_DMZoneCache[i][RandomSpawn2][2] = z2;
+            DET_g_DMZoneCache[i][RandomSpawn2][0] = x2;
+            DET_g_DMZoneCache[i][RandomSpawn2][1] = y2;
+            DET_g_DMZoneCache[i][RandomSpawn2][2] = z2;
 
-            g_DMZoneCache[i][RandomSpawn3][0] = x3;
-            g_DMZoneCache[i][RandomSpawn3][1] = y3;
-            g_DMZoneCache[i][RandomSpawn3][2] = z3;
+            DET_g_DMZoneCache[i][RandomSpawn3][0] = x3;
+            DET_g_DMZoneCache[i][RandomSpawn3][1] = y3;
+            DET_g_DMZoneCache[i][RandomSpawn3][2] = z3;
 
             // Validate the id `i`
-            g_DMZoneCache[i][ValidZone] = 1;
+            DET_g_DMZoneCache[i][ValidZone] = 1;
 
             CallLocalFunction("OnDeathMatchZoneCreate", "is", i, name);
             break;  
@@ -93,27 +93,27 @@ stock DestroyDeathMatchZone(const name[])
         i < MAX_DM_ZONES;
         i ++)
     {// check
-        if(!strcmp(g_DMZoneCache[i][ZoneName], name, false))
+        if(!strcmp(DET_g_DMZoneCache[i][ZoneName], name, false))
         {
             CallLocalFunction("OnDeathMatchZoneDestroy", "is", i, name);
             // Erase the name:
-            strmid(g_DMZoneCache[i][ZoneName], "_INVALID_DMZ_NAME_", 0, 32);
+            strmid(DET_g_DMZoneCache[i][ZoneName], "_INVALID_DMZ_NAME_", 0, 32);
 
             //Save positions:
-            g_DMZoneCache[i][RandomSpawn1][0] = 0;
-            g_DMZoneCache[i][RandomSpawn1][1] = 0;
-            g_DMZoneCache[i][RandomSpawn1][2] = 0;
+            DET_g_DMZoneCache[i][RandomSpawn1][0] = 0;
+            DET_g_DMZoneCache[i][RandomSpawn1][1] = 0;
+            DET_g_DMZoneCache[i][RandomSpawn1][2] = 0;
             
-            g_DMZoneCache[i][RandomSpawn2][0] = 0;
-            g_DMZoneCache[i][RandomSpawn2][1] = 0;
-            g_DMZoneCache[i][RandomSpawn2][2] = 0;
+            DET_g_DMZoneCache[i][RandomSpawn2][0] = 0;
+            DET_g_DMZoneCache[i][RandomSpawn2][1] = 0;
+            DET_g_DMZoneCache[i][RandomSpawn2][2] = 0;
 
-            g_DMZoneCache[i][RandomSpawn3][0] = 0;
-            g_DMZoneCache[i][RandomSpawn3][1] = 0;
-            g_DMZoneCache[i][RandomSpawn3][2] = 0;
+            DET_g_DMZoneCache[i][RandomSpawn3][0] = 0;
+            DET_g_DMZoneCache[i][RandomSpawn3][1] = 0;
+            DET_g_DMZoneCache[i][RandomSpawn3][2] = 0;
 
             // Unvalidate the id `i`
-            g_DMZoneCache[i][ValidZone] = 0;
+            DET_g_DMZoneCache[i][ValidZone] = 0;
         }
     }
     return 0;
@@ -121,7 +121,7 @@ stock DestroyDeathMatchZone(const name[])
 
 stock IsValidDeathMatchZone(id)
 {
-    return g_DMZoneCache[id][ValidZone];
+    return DET_g_DMZoneCache[id][ValidZone];
 }
 
 stock GetDeathMatchZoneIDByName(const name[])
@@ -130,7 +130,7 @@ stock GetDeathMatchZoneIDByName(const name[])
         i < MAX_DM_ZONES;
         i++)
     {
-        if(!strcmp(g_DMZoneCache[i][ZoneName], name, false))
+        if(!strcmp(DET_g_DMZoneCache[i][ZoneName], name, false))
         {
             return i;
         }
@@ -142,7 +142,7 @@ stock GetDeathMatchZoneName(id)
 {
     new name[256];
 
-    strcat(name, g_DMZoneCache[id][ZoneName]);
+    strcat(name, DET_g_DMZoneCache[id][ZoneName]);
 
     return name;
 }
@@ -235,33 +235,33 @@ stock AddPlayerToDeathMatchZone(playerid, const name[], spawnid, kitlevel)
         i < MAX_DM_ZONES;
         i++)
     {
-        if(!strcmp(g_DMZoneCache[i][ZoneName], name, false))
+        if(!strcmp(DET_g_DMZoneCache[i][ZoneName], name, false))
         {
             ResetPlayerWeapons(playerid);
             if(spawnid == 1)
             {
                 SetPlayerPos(playerid,
-                    g_DMZoneCache[i][RandomSpawn1][0],
-                    g_DMZoneCache[i][RandomSpawn1][1],
-                    g_DMZoneCache[i][RandomSpawn1][2]);
+                    DET_g_DMZoneCache[i][RandomSpawn1][0],
+                    DET_g_DMZoneCache[i][RandomSpawn1][1],
+                    DET_g_DMZoneCache[i][RandomSpawn1][2]);
                 DET_g_PlayerDMCache[playerid][InDM] = 1;
                 DET_sGivePlayerWeapons(playerid, kitlevel);
             }
             else if(spawnid == 2)
             {
                 SetPlayerPos(playerid,
-                    g_DMZoneCache[i][RandomSpawn2][0],
-                    g_DMZoneCache[i][RandomSpawn2][1],
-                    g_DMZoneCache[i][RandomSpawn2][2]);
+                    DET_g_DMZoneCache[i][RandomSpawn2][0],
+                    DET_g_DMZoneCache[i][RandomSpawn2][1],
+                    DET_g_DMZoneCache[i][RandomSpawn2][2]);
                 DET_g_PlayerDMCache[playerid][InDM] = 1;
                 DET_sGivePlayerWeapons(playerid, kitlevel);
             }
             else if(spawnid == 3)
             {
                 SetPlayerPos(playerid,
-                    g_DMZoneCache[i][RandomSpawn3][0],
-                    g_DMZoneCache[i][RandomSpawn3][1],
-                    g_DMZoneCache[i][RandomSpawn3][2]);
+                    DET_g_DMZoneCache[i][RandomSpawn3][0],
+                    DET_g_DMZoneCache[i][RandomSpawn3][1],
+                    DET_g_DMZoneCache[i][RandomSpawn3][2]);
                 DET_g_PlayerDMCache[playerid][InDM] = 1;
                 DET_sGivePlayerWeapons(playerid, kitlevel);
             }
