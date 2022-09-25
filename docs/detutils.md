@@ -110,3 +110,7 @@ DETUtils Entry Point - The main file which is included in order to use the DETUt
 ```pawn
 #pragma option -l
 ```
+
+### `DETUTILS_NO_REM`
+
+- Disables the internal `d_rem.inc` library.

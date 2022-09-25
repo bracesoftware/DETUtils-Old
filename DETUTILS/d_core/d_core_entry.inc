@@ -56,7 +56,12 @@
 #include "d_core_errors"
 #include "d_core_funcs"
 #include "d_core_init"
+
+#if !defined DETUTILS_NO_REM
+
 #include "d_core_rem"
+
+#endif
 
 /*
                                                                       
