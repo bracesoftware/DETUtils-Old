@@ -17,5 +17,3 @@
 #include "DETUTILS\detutils"
 
 main(){}
-
-#endif
