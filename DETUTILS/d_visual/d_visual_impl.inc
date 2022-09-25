@@ -11,9 +11,9 @@
  *
  *
  */
- 
+
 // Backwards compat.
-const DET_g_VisualScriptStatic = 0;
+new DET_g_VisualScriptStatic;
 
 /*
 
@@ -811,7 +811,7 @@ stock d_v_SetPlayerSpecialAction(playerid, actionid)
         new p_WeapAmmo = GetPlayerAmmo( playerid );
         if( p_WeapID > 0 && p_WeapAmmo != 0 )
         {
-            if( DET_g_VisualScriptStatic == 0 )
+            if(DET_g_VisualScriptStatic == 0)
             {
                 new p_WeapIdx = -1;
                 for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
@@ -968,7 +968,7 @@ public OnPlayerDeath(playerid, killerid, reason)
         new p_WeapAmmo = GetPlayerAmmo( playerid );
         if( p_WeapID > 0 && p_WeapAmmo != 0 )
         {
-            if( DET_g_VisualScriptStatic == 0 )
+            if(DET_g_VisualScriptStatic == 0)
             {
                 new p_WeapIdx = -1;
                 for( new p_WeapIndex = 0; p_WeapIndex < MAX_DROPPED_GUNS; p_WeapIndex++ )
