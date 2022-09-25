@@ -47,7 +47,7 @@ format(DET_g_RconCommand,DETUTILS_FMARGS_MAX_STRING,%0)&&DET_n_Func5(DET_g_RconC
 
 #define fmargs_Update3DTextLabelText(%1,%2,%3) \
 format(DET_g_3DLabelText,DETUTILS_FMARGS_MAX_STRING,%3)&&DET_n_Func6(%1,%2,DET_g_3DLabelText)
-#define fmargs_UpdatePlayer3DTextLabelText(%0,%1,%2,%3) \
+#define fmargs_UpdateP3DTextLabelText(%0,%1,%2,%3) \
 format(DET_g_p3DLabelText[%0],DETUTILS_FMARGS_MAX_STRING,%3)&&DET_n_Func7(%1,%2,DET_g_p3DLabelText[%0])
 
 // Function versions:
@@ -410,12 +410,12 @@ stock PlayerText:fmargs_CreatePlayerTextDraw(i,Float:x,Float:y,const _StringArgs
 
 #define Update3DTextLabelText fmargs_Update3DTextLabelText
 
-#if defined _ALS_UpdatePlayer3DTextLabelText
+#if defined _ALS_UpdatePlayer3DTextLabelTxt
     #undef UpdatePlayer3DTextLabelText
 #else
-    #define _ALS_UpdatePlayer3DTextLabelText
+    #define _ALS_UpdatePlayer3DTextLabelTxt
 #endif
 
-#define UpdatePlayer3DTextLabelText fmargs_UpdatePlayer3DTextLabelText
+#define UpdatePlayer3DTextLabelText fmargs_UpdateP3DTextLabelText
 
 #endif

@@ -37,10 +37,6 @@
 
 #endif
 
-#include "d_version"
-#include "d_text"
-#include "d_errors"
-
 //DETUTILS_STATIC_MODE
 
 #define __DETUTILS_STATIC

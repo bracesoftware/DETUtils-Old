@@ -27,17 +27,17 @@
 
 #endif
 
-#tryinclude "d_core\d_mainfix"
+#tryinclude "d_core\d_core_mainfix"
 
 // FIX "SYMBOL NEVER USED WARNINGS"
 #pragma warning disable 203
 
 // Core libraries
 
-#tryinclude "d_core\d_libtags"
+#tryinclude "d_core\d_core_entry"
 
-#if !defined d_extra_included
-	#error [DETUtils]: (error) - You are missing "d_core\d_libtags.inc" in your "include\DETUTILS" folder.
+#if !defined d_core_included
+	#error [DETUtils]: (error) - You are missing "d_core\d_core_entry.inc" in your "include\DETUTILS" folder.
 #endif
 
 /*

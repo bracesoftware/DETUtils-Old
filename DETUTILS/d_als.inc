@@ -11,9 +11,9 @@
  *
  */
 
-#include "d_core\d_funcgen"
+#include "d_core\d_core_entry"
 
-// After funcgen is included,
+// After funcgen (core entry) is included,
 // we include the entry point.
 
 #if defined __DETUTILS_INTERNAL_ALS_INC

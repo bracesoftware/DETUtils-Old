@@ -12,11 +12,6 @@
  *
  */
 
-#include "d_rem"
-#include "d_memory"
-
-// The rest of shit
-
 #define @DETUTILSCORE_KWORD__@%0\32; @DETUTILSCORE_KWORD__@
 #define det @DETUTILSCORE_KWORD__@
 
@@ -42,26 +37,11 @@
 #undef DETUTILS_COMPATIBILITY_MODE
 #endif
 
-#if !defined DETUTILS_NO_COMPILEFIX
-
-    #include "d_compilefix" // Add compile options
-
-#endif//#include "d_funcgen"
-#include "d_thirdpartyinclude" //_INC_code_parse_inc
-
 #if !defined __PawnBuild
 
     #error [DETUtils]: (fatal error) - DETUtils require community Pawn compiler. Get it from: github.com/pawn-lang/compiler
 
 #endif
-
-#if defined d_extra_included
-    #endinput
-#endif
-
-#define d_extra_included
-
-#include "d_init.inc"
 
 #if defined DETUTILS_DEBUG_MODE
 
