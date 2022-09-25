@@ -195,8 +195,9 @@ public OnDETUtilsInit() // This should be the last hook.
 
     CallVariableHandler("HandlerName");
     CallVariableHandler("HandlerName1");
-    CallVariableHandler("HandlerName2");
-    CallVariableHandler("HandlerName3");
+    
+    malloc("HandlerName2");
+    malloc("HandlerName3");
 
     set Integer("Variable", 1243);
     set Boolean("Variable1", false, 3);

@@ -44,6 +44,16 @@
                                                                                       
 */
 
+// malloc("HandlerName");
+#if !defined malloc
+
+    stock malloc(const handler[])
+    {
+        return CallVariableHandler(handler);
+    }
+
+#endif
+
 //varfunc DeclareInteger(const name[], multi, constant, constvalue = 0)
 //varfunc DeclareBoolean(const name[], multi, constant, constvalue = false)
 //varfunc DeclareFloat(const name[], multi, constant, Float:constvalue = 0.0000)

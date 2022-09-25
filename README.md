@@ -28,7 +28,7 @@ Libraries whose contain the new language features.
 
 | Library      | Description                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------ |
-| [d_vars.inc](docs/d_vars.md) | A completely new variable system. |
+| [d_vars.inc](docs/d_vars.md) | Reserves up space for new variables you can dynamically allocate during run-time, really similar to `malloc`. |
 | [d_als.inc](docs/d_als.md) | New ALS hooking system. |
 | [d_foreach.inc](docs/d_foreach.md) | New `foreach` implementation. |
 | [d_tables.inc](docs/d_tables.md) | Excel-like table management system. |

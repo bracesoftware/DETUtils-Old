@@ -1,5 +1,5 @@
 # d_vars.inc
-Pawn Variables - A completely new type of a variable system.
+Pawn Variables - Reserves up space for new variables you can dynamically allocate during run-time, really similar to `malloc`.
 
 [Go back to home page...](README.md)
 ## `d_vars.inc` variable scheme
@@ -96,6 +96,16 @@ public OnGameModeInit()
       return 1;
 }
 ```
+
+**TIP**: If you want to be cool, you can use `malloc` instead of `CallVariableHandler`.
+
+```pawn
+malloc("HandlerName");
+malloc("HandlerName1");
+malloc("HandlerName2");
+malloc("HandlerName3");
+```
+
 ### Example 3
 - Save the variable into `scriptfiles` folder instead of just deleting it.
 
