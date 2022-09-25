@@ -83,7 +83,7 @@ iterator add(MyIterator, 2437);
 - Let's explain what `iterator add` does, it just adds the provided number to an index of `returnvalues` in `IteratorData`, that index is already mentioned `IteratorIndex` which is updated itself after the each iterator update. Removing the value is simple - almost the same process, just reversed.
 ## Facts
 ### Same value multiple times
-- This one is completely possible and valid, but to remove the twice-applied value, you'll need logically think - just remove the value twice. So if you did this:
+- This one is completely possible and valid, but to remove the twice-applied value, you'll need to logically think - just remove the value twice. So if you did this:
 
 ```pawn
 iterator add(MyIterator, 1);
