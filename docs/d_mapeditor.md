@@ -1,6 +1,8 @@
 # d_mapeditor.inc
 
-SA:MP Map Editor - edit San Andreas yourself in the game
+SA:MP Map Editor - Edit San Andreas yourself in the game.
+
+[Go back to the home page...](../README.md)
 
 ## How to start to use?
 

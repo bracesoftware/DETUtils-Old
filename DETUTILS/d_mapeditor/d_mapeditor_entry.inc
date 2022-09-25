@@ -30,10 +30,15 @@
 
 #define DETUTILS_PATH_OBJECTS "detutils_objects/%i.ini"
 
-enum {DETUTILS_DIALOG_MAPEDITOR,DETUTILS_DIALOG_MAPEDIT_CREATE,
-      DETUTILS_DIALOG_MAPEDIT_DSTRY,DETUTILS_DIALOG_MAPEDIT_EDIT};
+enum 
+{
+    DETUTILS_DIALOG_MAPEDITOR,
+    DETUTILS_DIALOG_MAPEDIT_CREATE,
+    DETUTILS_DIALOG_MAPEDIT_DSTRY,
+    DETUTILS_DIALOG_MAPEDIT_EDIT
+};
 
-enum enum_ObjectData
+enum DET_e_ObjData
 {
     Float:Pos[3],
     Float:RotPos[3],
@@ -42,13 +47,13 @@ enum enum_ObjectData
     GtaObjID
 }
 
-enum enum_MapEditorPlayerData
+enum DET_e_MapEditorPlayerData
 {
     ObjectEditing
 }
 
-new g_ObjectData[MAX_OBJECTS][enum_ObjectData];
-new g_MapEditorPlayerData[MAX_PLAYERS][enum_MapEditorPlayerData];
+new DET_g_ObjectData[MAX_OBJECTS][DET_e_ObjData];
+new DET_g_MapEditorPlayerData[MAX_PLAYERS][DET_e_MapEditorPlayerData];
 
 stock ShowMapEditorMenuToPlayer(playerid)
 {
@@ -62,7 +67,10 @@ __DETUTILS_STATIC stock d_me_GetNearestObject(playerid)
 {
     for(new i; i < MAX_OBJECTS; i++)
     {
-        if(IsPlayerInRangeOfPoint(playerid, 3.0, g_ObjectData[i][Pos][0],g_ObjectData[i][Pos][1],g_ObjectData[i][Pos][2]))
+        if(IsPlayerInRangeOfPoint(playerid, 3.0, 
+            DET_g_ObjectData[i][Pos][0],
+            DET_g_ObjectData[i][Pos][1],
+            DET_g_ObjectData[i][Pos][2]))
         {
             return i;
         }
@@ -72,7 +80,7 @@ __DETUTILS_STATIC stock d_me_GetNearestObject(playerid)
 
 public OnPlayerConnect(playerid)
 {
-    g_MapEditorPlayerData[playerid][ObjectEditing] = -1;
+    DET_g_MapEditorPlayerData[playerid][ObjectEditing] = -1;
     if(funcidx("d_me_playerconnect") != -1)
     {
         CallLocalFunction("d_me_playerconnect", "i", playerid);
@@ -148,25 +156,25 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
                         GetPlayerPos( playerid, x, y, z); 
                         GetPlayerFacingAngle( playerid, angle);
                         
-                        g_ObjectData[i][Pos][ 0 ] = x;
-                        g_ObjectData[i][Pos][ 1 ] = y;
-                        g_ObjectData[i][Pos][ 2 ] = z;
-                        g_ObjectData[i][RotPos][ 0 ] = 0;
-                        g_ObjectData[i][RotPos][ 1 ] = 0;
-                        g_ObjectData[i][RotPos][ 2 ] = 0;
-                        g_ObjectData[i][GtaObjID] = objid;
-                        g_ObjectData[i][ObjectID] = CreateObject(g_ObjectData[i][GtaObjID], x+2, y, z+0.6, 0.0, 0.0, angle);
+                        DET_g_ObjectData[i][Pos][ 0 ] = x;
+                        DET_g_ObjectData[i][Pos][ 1 ] = y;
+                        DET_g_ObjectData[i][Pos][ 2 ] = z;
+                        DET_g_ObjectData[i][RotPos][ 0 ] = 0;
+                        DET_g_ObjectData[i][RotPos][ 1 ] = 0;
+                        DET_g_ObjectData[i][RotPos][ 2 ] = 0;
+                        DET_g_ObjectData[i][GtaObjID] = objid;
+                        DET_g_ObjectData[i][ObjectID] = CreateObject(DET_g_ObjectData[i][GtaObjID], x+2, y, z+0.6, 0.0, 0.0, angle);
 
                         format(label_string, sizeof label_string,
                             "[DETUtils]: (map editor)\n\nScript object ID: %i\nPosition: %f, %f, %f\nRotation: %f, %f, %f", 
-                            i, g_ObjectData[i][Pos][ 0 ], g_ObjectData[i][Pos][ 1 ], g_ObjectData[i][Pos][ 2 ],
-                            g_ObjectData[i][RotPos][ 0 ], g_ObjectData[i][RotPos][ 1 ], g_ObjectData[i][RotPos][ 2 ]);
+                            i, DET_g_ObjectData[i][Pos][ 0 ], DET_g_ObjectData[i][Pos][ 1 ], DET_g_ObjectData[i][Pos][ 2 ],
+                            DET_g_ObjectData[i][RotPos][ 0 ], DET_g_ObjectData[i][RotPos][ 1 ], DET_g_ObjectData[i][RotPos][ 2 ]);
 
-                        g_ObjectData[i][Label] = Create3DTextLabel(label_string, -1, x+2,y+0.6,z, 30.0, GetPlayerVirtualWorld(playerid));
+                        DET_g_ObjectData[i][Label] = Create3DTextLabel(label_string, -1, x+2,y+0.6,z, 30.0, GetPlayerVirtualWorld(playerid));
 
-                        g_MapEditorPlayerData[playerid][ObjectEditing] = i;
+                        DET_g_MapEditorPlayerData[playerid][ObjectEditing] = i;
                         
-                        EditObject(playerid, g_ObjectData[i][ObjectID]);
+                        EditObject(playerid, DET_g_ObjectData[i][ObjectID]);
                         d_me_SaveObject(i);
                         break;
                     }
@@ -189,19 +197,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
                 objid = strval(parameters);
 
-                if(IsValidObject(g_ObjectData[objid][ObjectID]))
+                if(IsValidObject(DET_g_ObjectData[objid][ObjectID]))
                 {
-                    DestroyObject(g_ObjectData[objid][ObjectID]);
+                    DestroyObject(DET_g_ObjectData[objid][ObjectID]);
                 }
 
-                Delete3DTextLabel(g_ObjectData[objid][Label]);
+                Delete3DTextLabel(DET_g_ObjectData[objid][Label]);
 
-                g_ObjectData[ objid ][ Pos ][ 0 ] = 0;
-                g_ObjectData[ objid ][ Pos ][ 1 ] = 0;
-                g_ObjectData[ objid ][ Pos ][ 2 ] = 0;
-                g_ObjectData[ objid ][ RotPos ][ 0 ] = 0;
-                g_ObjectData[ objid ][ RotPos ][ 1 ] = 0;
-                g_ObjectData[ objid ][ RotPos ][ 2 ] = 0;
+                DET_g_ObjectData[ objid ][ Pos ][ 0 ] = 0;
+                DET_g_ObjectData[ objid ][ Pos ][ 1 ] = 0;
+                DET_g_ObjectData[ objid ][ Pos ][ 2 ] = 0;
+                DET_g_ObjectData[ objid ][ RotPos ][ 0 ] = 0;
+                DET_g_ObjectData[ objid ][ RotPos ][ 1 ] = 0;
+                DET_g_ObjectData[ objid ][ RotPos ][ 2 ] = 0;
 
                 new fstring[ 64 ];
                 format( fstring, sizeof( fstring ), DETUTILS_PATH_OBJECTS, objid );
@@ -224,7 +232,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
                 objid = strval(parameters);
 
-                EditObject(playerid, g_ObjectData[objid][ObjectID]);
+                EditObject(playerid, DET_g_ObjectData[objid][ObjectID]);
             }
         }
     }
@@ -251,31 +259,31 @@ forward d_me_dialogresponse(playerid, dialogid, response, listitem, inputtext[])
 public OnPlayerEditObject(playerid, playerobject, objectid, response, 
     Float:fX, Float:fY, Float:fZ, Float:fRotX, Float:fRotY, Float:fRotZ)
 {
-    if(g_MapEditorPlayerData[playerid][ObjectEditing] != -1)
+    if(DET_g_MapEditorPlayerData[playerid][ObjectEditing] != -1)
     {
-        new objid = g_MapEditorPlayerData[playerid][ObjectEditing];
+        new objid = DET_g_MapEditorPlayerData[playerid][ObjectEditing];
 
-        g_ObjectData[objid][Pos][ 0 ] = fX;
-        g_ObjectData[objid][Pos][ 1 ] = fY;
-        g_ObjectData[objid][Pos][ 2 ] = fZ;
-        g_ObjectData[objid][RotPos][ 0 ] = fRotX;
-        g_ObjectData[objid][RotPos][ 1 ] = fRotY;
-        g_ObjectData[objid][RotPos][ 2 ] = fRotZ;
+        DET_g_ObjectData[objid][Pos][ 0 ] = fX;
+        DET_g_ObjectData[objid][Pos][ 1 ] = fY;
+        DET_g_ObjectData[objid][Pos][ 2 ] = fZ;
+        DET_g_ObjectData[objid][RotPos][ 0 ] = fRotX;
+        DET_g_ObjectData[objid][RotPos][ 1 ] = fRotY;
+        DET_g_ObjectData[objid][RotPos][ 2 ] = fRotZ;
 
-        Delete3DTextLabel(g_ObjectData[objid][Label]);
+        Delete3DTextLabel(DET_g_ObjectData[objid][Label]);
 
         new label_string[256];
 
         format(label_string, sizeof label_string,
             "[DETUtils]: (map editor)\n\nScript object ID: %i\nPosition: %f, %f, %f\nRotation: %f, %f, %f", 
-            objid, g_ObjectData[objid][Pos][ 0 ], g_ObjectData[objid][Pos][ 1 ], g_ObjectData[objid][Pos][ 2 ],
-            g_ObjectData[objid][RotPos][ 0 ], g_ObjectData[objid][RotPos][ 1 ], g_ObjectData[objid][RotPos][ 2 ]);
+            objid, DET_g_ObjectData[objid][Pos][ 0 ], DET_g_ObjectData[objid][Pos][ 1 ], DET_g_ObjectData[objid][Pos][ 2 ],
+            DET_g_ObjectData[objid][RotPos][ 0 ], DET_g_ObjectData[objid][RotPos][ 1 ], DET_g_ObjectData[objid][RotPos][ 2 ]);
 
-        g_ObjectData[objid][Label] = Create3DTextLabel(label_string, -1, 
-            g_ObjectData[objid][Pos][ 0 ],g_ObjectData[objid][Pos][ 1 ],
-            g_ObjectData[objid][Pos][ 2 ], 30.0, GetPlayerVirtualWorld(playerid));
+        DET_g_ObjectData[objid][Label] = Create3DTextLabel(label_string, -1, 
+            DET_g_ObjectData[objid][Pos][ 0 ],DET_g_ObjectData[objid][Pos][ 1 ],
+            DET_g_ObjectData[objid][Pos][ 2 ], 30.0, GetPlayerVirtualWorld(playerid));
 
-        g_MapEditorPlayerData[playerid][ObjectEditing] = -1;
+        DET_g_MapEditorPlayerData[playerid][ObjectEditing] = -1;
         d_me_SaveObject(objid);
     }
 
@@ -356,17 +364,17 @@ __DETUTILS_STATIC d_me_LoadObjects(id)
     {
         fread(file, strFromFile2);
         d_me_SplitString(strFromFile2, d_ArrayCoordinates, ',');
-        g_ObjectData[id][Pos][0] = floatstr(d_ArrayCoordinates[0]);
-        g_ObjectData[id][Pos][1] = floatstr(d_ArrayCoordinates[1]);
-        g_ObjectData[id][Pos][2] = floatstr(d_ArrayCoordinates[2]);
-        g_ObjectData[id][RotPos][0] = floatstr(d_ArrayCoordinates[3]);
-        g_ObjectData[id][RotPos][0] = floatstr(d_ArrayCoordinates[4]);
-        g_ObjectData[id][RotPos][0] = floatstr(d_ArrayCoordinates[5]);
-        g_ObjectData[id][GtaObjID] = strval(d_ArrayCoordinates[6]);
+        DET_g_ObjectData[id][Pos][0] = floatstr(d_ArrayCoordinates[0]);
+        DET_g_ObjectData[id][Pos][1] = floatstr(d_ArrayCoordinates[1]);
+        DET_g_ObjectData[id][Pos][2] = floatstr(d_ArrayCoordinates[2]);
+        DET_g_ObjectData[id][RotPos][0] = floatstr(d_ArrayCoordinates[3]);
+        DET_g_ObjectData[id][RotPos][0] = floatstr(d_ArrayCoordinates[4]);
+        DET_g_ObjectData[id][RotPos][0] = floatstr(d_ArrayCoordinates[5]);
+        DET_g_ObjectData[id][GtaObjID] = strval(d_ArrayCoordinates[6]);
         
         fclose(file);
     }
-    g_ObjectData[id][ObjectID] = CreateObject(g_ObjectData[id][GtaObjID], g_ObjectData[id][Pos][0], g_ObjectData[id][Pos][1], g_ObjectData[id][Pos][2],g_ObjectData[id][RotPos][0], g_ObjectData[id][RotPos][1], g_ObjectData[id][RotPos][2]);
+    DET_g_ObjectData[id][ObjectID] = CreateObject(DET_g_ObjectData[id][GtaObjID], DET_g_ObjectData[id][Pos][0], DET_g_ObjectData[id][Pos][1], DET_g_ObjectData[id][Pos][2],DET_g_ObjectData[id][RotPos][0], DET_g_ObjectData[id][RotPos][1], DET_g_ObjectData[id][RotPos][2]);
     return 1;
 }
 
@@ -377,10 +385,10 @@ stock ShowObjectInfoLabels(worldid)
     {
         format(label_string, sizeof label_string,
         "[DETUtils]: (map editor)\n\nScript object ID: %i\nPosition: %f, %f, %f\nRotation: %f, %f, %f", 
-        id, g_ObjectData[id][Pos][ 0 ], g_ObjectData[id][Pos][ 1 ], g_ObjectData[id][Pos][ 2 ],
-        g_ObjectData[id][RotPos][ 0 ], g_ObjectData[id][RotPos][ 1 ], g_ObjectData[id][RotPos][ 2 ]);
+        id, DET_g_ObjectData[id][Pos][ 0 ], DET_g_ObjectData[id][Pos][ 1 ], DET_g_ObjectData[id][Pos][ 2 ],
+        DET_g_ObjectData[id][RotPos][ 0 ], DET_g_ObjectData[id][RotPos][ 1 ], DET_g_ObjectData[id][RotPos][ 2 ]);
 
-        g_ObjectData[id][Label] = Create3DTextLabel(label_string, -1, g_ObjectData[id][Pos][0], g_ObjectData[id][Pos][1], g_ObjectData[id][Pos][2], 30.0, worldid);
+        DET_g_ObjectData[id][Label] = Create3DTextLabel(label_string, -1, DET_g_ObjectData[id][Pos][0], DET_g_ObjectData[id][Pos][1], DET_g_ObjectData[id][Pos][2], 30.0, worldid);
     }
     return 1;
 }
@@ -389,7 +397,7 @@ stock HideObjectInfoLabels()
 {
     for(new id; id < MAX_OBJECTS; id++)
     {
-        Delete3DTextLabel(g_ObjectData[id][Label]);
+        Delete3DTextLabel(DET_g_ObjectData[id][Label]);
     }
     return 1;
 }
@@ -403,9 +411,9 @@ public d_me_SaveObject(loopid)
     new id = loopid;
     format(string, sizeof(string), 
         "%f,%f,%f,%f,%f,%f,%i",
-        g_ObjectData[id][Pos][0], g_ObjectData[id][Pos][1], g_ObjectData[id][Pos][2],
-        g_ObjectData[id][RotPos][0], g_ObjectData[id][RotPos][1], g_ObjectData[id][RotPos][2],
-        g_ObjectData[id][GtaObjID]);
+        DET_g_ObjectData[id][Pos][0], DET_g_ObjectData[id][Pos][1], DET_g_ObjectData[id][Pos][2],
+        DET_g_ObjectData[id][RotPos][0], DET_g_ObjectData[id][RotPos][1], DET_g_ObjectData[id][RotPos][2],
+        DET_g_ObjectData[id][GtaObjID]);
     new File: file2 = fopen(file_name, io_write);
     fwrite(file2, string);
     fclose(file2);

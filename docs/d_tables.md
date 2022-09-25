@@ -1,7 +1,7 @@
 # d_tables.inc
 Pawn Tables - Excel-like column, row and cell management system.
 
-[Go back to home page...](README.md)
+[Go back to the home page...](../README.md)
 
 ## How to start to use?
 

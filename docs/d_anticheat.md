@@ -1,7 +1,8 @@
 # d_anticheat.inc
 SA:MP AntiCheat - basic anti-cheating system used to fight off the most famous hacks used by cheaters on various servers.
 
-[Go back to home page...](README.md)
+[Go back to the home page...](../README.md)
+
 ## How to start to use?
 
 - You do not need to worry about anything right now, just by including **d_samp.inc**, your anti-cheat system is ready to use after you start the script.

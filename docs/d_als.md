@@ -1,7 +1,7 @@
 # d_als.inc
 Pawn ALS Hooks - Provides `@als()` decorator used to create and interact with ALS hooked functons.
 
-[Go back to home page...](README.md)
+[Go back to the home page...](../README.md)
 
 ## How to start to use?
 - After including `detutils.inc`, as other libraries, `d_als` will automatically get included. Though, in order to ALS-rehook the same callback, you'll need to reinclude `d_als` ONLY (same concept as `y_hooks` though, only "difference" is that this is not automatic!).

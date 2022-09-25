@@ -3,6 +3,8 @@
 
 - My mix of these is named `ser-ver` (because calling it server would be ridiculous) or serial versioning. So this ser-ver consists of 4 numbers named: major update, minor update, version patch and general release of the version.
 
+Not interested? [Go back to the home page...](../README.md)
+
 ## Updating the version number
 - Updating is easier than you think, so, let's say you've made some nice SA:MP library that you want to publish. If you want to use this **serial versioning** (I will stop calling it ser-ver because it started to sound ridiculous as well), you'd start, or you should start, with **0.0.1-R1** which means your project has zero major updates, zero minor updates, one patch and it is on its first version release.
 

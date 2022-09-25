@@ -1,6 +1,8 @@
 # d_discordapi.inc
 Discord API - A DETUtils package module containing a set of libraries whose extend the possibilities of the Discord Connector plugin for SA:MP.
 
+[Go back to the home page...](../README.md)
+
 ## How to start to use?
 Read documentation for the each `d_discordapi` library.
 

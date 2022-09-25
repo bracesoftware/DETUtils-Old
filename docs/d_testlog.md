@@ -6,6 +6,8 @@
 
 **WARNING:** I started test logging program on **13 Jan 2022**.
 
+[Go back to the home page...](../README.md)
+
 # Library test log
 ----------------------------------------
 ## Test no. 1 - 13 Jan 2022

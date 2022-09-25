@@ -1,7 +1,8 @@
 # d_vars.inc
 Pawn Variables - Reserves up space for new variables you can dynamically allocate during run-time, really similar to `malloc`.
 
-[Go back to home page...](README.md)
+[Go back to the home page...](../README.md)
+
 ## `d_vars.inc` variable scheme
 - Each variable ID contains certain information about each variable, below that is schemed:
 ### Integers, booleans and floats

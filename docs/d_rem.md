@@ -1,6 +1,8 @@
 # d_rem.inc
 Pawn REM - Comments.
 
+[Go back to the home page...](../README.md)
+
 ## How to use?
 ```pawn
 stock Func(args, ...)

@@ -1,7 +1,7 @@
 # d_visual.inc
 SA:MP Visual - Library or libraries whose contain functions whose provide in-game visible effects such as weapon features and deathmatch zones!
 
-[Go back to home page...](README.md)
+[Go back to the home page...](../README.md)
 
 ## Usage
 
