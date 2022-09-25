@@ -10,11 +10,12 @@ Below, you can find all of the information related to the update; version, insta
 ## What's new
 
 **`d_global.inc`** - A brand new PAWN-related library included within the DETUtils package!
+
 **`d_ascii.inc`** - A brand new PAWN-related library included within the DETUtils package!
 
 ## What's changed
 
-
+**`malloc`** - Now you can use `malloc` instead of `CallVariableHandler`.
 
 ## Fixed issues
 
