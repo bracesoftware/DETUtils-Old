@@ -32,12 +32,12 @@ Libraries whose contain the new language features.
 | [d_als.inc](docs/d_als.md) | New ALS hooking system. |
 | [d_foreach.inc](docs/d_foreach.md) | New `foreach` implementation. |
 | [d_tables.inc](docs/d_tables.md) | Excel-like table management system. |
-| [d_profile.inc](docs/d_profile.md) | Profile chunks of code. |
-| [d_timers.inc](docs/d_timers.md) | Automatic and manual timers. |
+| [d_profile.inc](docs/d_profile.md) | Profile chunks of code and see how much does it take to execute it. |
+| [d_timers.inc](docs/d_timers.md) | A replacement for `SetTimer(Ex)` which now adds both automatic and manual timers (automatic timers defer themself on the script initialization). |
 | [d_events.inc](docs/d_events.md) | A replacement for `Call<Local/Remote>Function` and `forward`/`public` which gives you more possibilities and automations, such as local and global functions (on file level), command events, property events and dialog events (extensions of DETUtils API itself). |
 | [d_fmargs.inc](docs/d_fmargs.md) | A rewrite of `y_va` and Pawn `sscanf` implementation. |
 | [d_testing.inc](docs/d_testing.md) | Provides fast and easy way of testing. |
-| [d_global.inc](docs/d_global.md) | A library providing an execution of independent code. |
+| [d_global.inc](docs/d_global.md) | A library which makes expressions possible on the global level - or in simple terms, code outside other functions. |
 | [d_ascii.inc](docs/d_ascii.md) | ASCII character predefines. |
 
 ### SA:MP Libraries
@@ -52,7 +52,7 @@ Libraries whose contain the new SA:MP functions and features.
 | [d_anticheat.inc](docs/d_anticheat.md) | Anti cheat system. |
 | [d_mapeditor.inc](docs/d_mapeditor.md) | In-game map editor. |
 | [d_factions.inc](docs/d_factions.md) | Player factions (groups of players) made easy. |
-| [d_dialog.inc](docs/d_dialog.md) | Better dialogs, faster and easier. |
+| [d_dialog.inc](docs/d_dialog.md) | A replacement `ShowPlayerDialog` and `OnDialogResponse` containing even more callbacks and functions to manipulate dialogs. |
 | [d_server.inc](docs/d_server.md) | Generally server-related functions. |
 | [d_races.inc](docs/d_races.md) | A racing system with many features. |
 

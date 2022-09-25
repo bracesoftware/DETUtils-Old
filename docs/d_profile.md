@@ -1,5 +1,5 @@
 # d_profile.inc
-Pawn Profiling - A library which is which is providing the code profiling macros.
+Pawn Profiling - A library which is which is providing the code profiling macros. Profile chunks of code and see how much does it take to execute it.
 
 [Go back to the home page...](../README.md)
 

@@ -1,5 +1,5 @@
 # d_dialog.inc
-SA:MP Dialogs - Create dialogs using `@dialog` decorator and show them to players.
+SA:MP Dialogs - Create dialogs using `@dialog` decorator and show them to players. A replacement `ShowPlayerDialog` and `OnDialogResponse` containing even more callbacks and functions to manipulate dialogs.
 
 [Go back to the home page...](../README.md)
 

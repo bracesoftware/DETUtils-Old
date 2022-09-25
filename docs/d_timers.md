@@ -1,5 +1,5 @@
 # d_timers.inc
-Pawn Timers - A library which provides automatic and manual repeatable timers or **tasks** in this case.
+Pawn Timers - A library which provides automatic and manual repeatable timers or **tasks** in this case. In other words, a replacement for `SetTimer(Ex)`.
 
 [Go back to the home page...](../README.md)
 

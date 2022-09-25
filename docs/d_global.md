@@ -1,5 +1,5 @@
 # d_global.inc
-Pawn Global - A library providing an execution of independent code - or in better words, code outside the functions.
+Pawn Global - A library which makes expressions possible on the global level - or in simple terms, code outside other functions.
 
 [Go back to the home page...](../README.md)
 
