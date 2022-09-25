@@ -1,5 +1,5 @@
 # d_events.inc
-Pawn Events - Provides the new `@event` callback which is now a replacement for `forward` and `public`.
+Pawn Events - A replacement for `Call<Local/Remote>Function` and `forward`/`public` which gives you more possibilities and automations, such as local and global functions (on file level), command events, property events and dialog events (extensions of DETUtils API itself).
 
 [Go back to the home page](../README.md)
 

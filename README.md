@@ -34,7 +34,7 @@ Libraries whose contain the new language features.
 | [d_tables.inc](docs/d_tables.md) | Excel-like table management system. |
 | [d_profile.inc](docs/d_profile.md) | Profile chunks of code. |
 | [d_timers.inc](docs/d_timers.md) | Automatic and manual timers. |
-| [d_events.inc](docs/d_events.md) | A new callback system. |
+| [d_events.inc](docs/d_events.md) | A replacement for `Call<Local/Remote>Function` and `forward`/`public` which gives you more possibilities and automations, such as local and global functions (on file level), command events, property events and dialog events (extensions of DETUtils API itself). |
 | [d_fmargs.inc](docs/d_fmargs.md) | A rewrite of `y_va` and Pawn `sscanf` implementation. |
 | [d_testing.inc](docs/d_testing.md) | Provides fast and easy way of testing. |
 | [d_global.inc](docs/d_global.md) | A library providing an execution of independent code. |
