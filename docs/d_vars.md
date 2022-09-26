@@ -195,6 +195,51 @@ public OnVariableDelete(varname[], vartype)
 - `load` - used to load the variable previously saved using `save`
 - `rename` - used to rename a variable.
 
+### Circular arrays
+
+```pawn
+@variable(.datatype = CIRCULAR_INTEGER, .args = {"CircularArray", 4}) CircArrayTest();
+
+public OnGameModeInit()
+{
+    malloc("CircArrayTest");
+
+    printf("[DETUtils]: (circarr) - Values: %i, %i, %i, %i", 
+        get CircularInteger("CircularArray", 0),
+        get CircularInteger("CircularArray", 1),
+        get CircularInteger("CircularArray", 2),
+        get CircularInteger("CircularArray", 3));
+
+    add CircularInteger("CircularArray", 236);
+    add CircularInteger("CircularArray", 72);
+
+    printf("[DETUtils]: (circarr) - Values x2: %i, %i, %i, %i", 
+        get CircularInteger("CircularArray", 0),
+        get CircularInteger("CircularArray", 1),
+        get CircularInteger("CircularArray", 2),
+        get CircularInteger("CircularArray", 3));
+
+    add CircularInteger("CircularArray", 34);
+    add CircularInteger("CircularArray", 9);
+
+    printf("[DETUtils]: (circarr) - Values x3: %i, %i, %i, %i", 
+        get CircularInteger("CircularArray", 0),
+        get CircularInteger("CircularArray", 1),
+        get CircularInteger("CircularArray", 2),
+        get CircularInteger("CircularArray", 3));
+
+    add CircularInteger("CircularArray", 23);
+    add CircularInteger("CircularArray", 6);
+
+    printf("[DETUtils]: (circarr) - Values x3: %i, %i, %i, %i", 
+        get CircularInteger("CircularArray", 0),
+        get CircularInteger("CircularArray", 1),
+        get CircularInteger("CircularArray", 2),
+        get CircularInteger("CircularArray", 3));
+    return 1;
+}
+```
+
 ## Messages from creator
 ### Notes
 - No notes yet.
