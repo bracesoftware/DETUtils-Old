@@ -12,8 +12,10 @@
  */
 
 #if defined _INC_code_parse_inc
+#if defined detutils_complete_error_boom
 #define SLASH_COMMAND)%0\10; SLASH_COMMAND)
 #define @DETUTILSCMD_BRACKET__$%0$ D%0)
+#endif
 #define main_%0\32; main_
 // For parsing.
 #define prs_%0\32; prs_
@@ -38,6 +40,16 @@
 
 // Case sensivity.
 new DET_g_CaseSensivity;
+
+#define SLASH_COMMAND%0)%1\10; SLASH_COMMAND%0)
+#define delay%0=%2)%1\10; delay%0=%2)
+#define ALIAS_COMMAND%0)%1\10; ALIAS_COMMAND%0)
+#define ADMIN_COMMAND%0)%1\10; ADMIN_COMMAND%0)
+#define flag%0=%2)%1\10; flag%0=%2)
+#define prefix%0=%2)%1\10; prefix%0=%2)
+#define __INTERNAL_CMD%0)%1\10; __INTERNAL_CMD%0)
+#define dependencies%0=%2(%3)%4)%1\10; dependencies%0=%2(%3)%4)
+
 
 // All for parsing!
 
