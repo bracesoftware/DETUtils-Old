@@ -11,7 +11,7 @@
  *
  */
 
-#pragma dynamic 215750000
+//#pragma dynamic 215750000000000
 
 @command(.type = SLASH_COMMAND) cs(playerid, params[])
 {
@@ -186,6 +186,8 @@ enum Enums
 
 @variable( .datatype = INTEGER, .args = {"Variable4", false, false, 0} ) HandlerName4();
 
+@variable(.datatype = CIRCULAR_INTEGER, .args = {"CircularArray", 4}) CircArrayTest();
+
 public OnDETUtilsInit() // This should be the last hook.
 {
     /*
@@ -248,6 +250,41 @@ public OnDETUtilsInit() // This should be the last hook.
     print("                                         ");
 
     CallProfiler("LOL", "");
+
+    /*malloc("CircArrayTest");
+
+    printf("[DETUtils]: (circarr) - Values: %i, %i, %i, %i", 
+        get CircularInteger("CircularArray", 0),
+        get CircularInteger("CircularArray", 1),
+        get CircularInteger("CircularArray", 2),
+        get CircularInteger("CircularArray", 3));
+
+    add CircularInteger("CircularArray", 236);
+    add CircularInteger("CircularArray", 72);
+
+    printf("[DETUtils]: (circarr) - Values x2: %i, %i, %i, %i", 
+        get CircularInteger("CircularArray", 0),
+        get CircularInteger("CircularArray", 1),
+        get CircularInteger("CircularArray", 2),
+        get CircularInteger("CircularArray", 3));
+
+    add CircularInteger("CircularArray", 34);
+    add CircularInteger("CircularArray", 9);
+
+    printf("[DETUtils]: (circarr) - Values x3: %i, %i, %i, %i", 
+        get CircularInteger("CircularArray", 0),
+        get CircularInteger("CircularArray", 1),
+        get CircularInteger("CircularArray", 2),
+        get CircularInteger("CircularArray", 3));
+
+    add CircularInteger("CircularArray", 23);
+    add CircularInteger("CircularArray", 6);
+
+    printf("[DETUtils]: (circarr) - Values x3: %i, %i, %i, %i", 
+        get CircularInteger("CircularArray", 0),
+        get CircularInteger("CircularArray", 1),
+        get CircularInteger("CircularArray", 2),
+        get CircularInteger("CircularArray", 3));*/
     return 1;
 }
 
