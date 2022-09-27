@@ -13,8 +13,6 @@
  *
  */
 
-#include "d_vars_standard"
-
 /*
                                                                                       
 88b           d88              88                         db         88888888ba   88  
@@ -29,7 +27,9 @@
                                                                                       
 */
 
+#include "d_vars_standard"
 #include "d_vars_circular"
+#include "d_vars_stack"
 
 /*
                                                                       
