@@ -15,7 +15,9 @@ Hello scripter! Welcome to *DEntisT's Utilities* (or **DETUtils** for short) "re
 ## Examples
 Honestly, this package of libraries exists for show-off reasons, I made it for my own satisfication since I have a really big desire to code. You can still contribute and use it though. Example code:
 - [View code](https://github.com/DEntis-T/SA-MP-DETUtils/blob/2.x/DETUTILS/d_testing/d_testing_entry.inc)
+
 --------------------------------------
+
 ## Installation
 - Installation is simple, quick and easy - learn more [here](docs/d_installation.md)...
 ## Documentation

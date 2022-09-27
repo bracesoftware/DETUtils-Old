@@ -113,3 +113,22 @@
 - Previously mentioned crashes are fixed.
 
 ----------------------------------------
+## Test no. 1 - 27 Sep 2022
+
+- Tested by: DEntisT
+- Version: 2.0.7-R3
+
+## Anti-cheat issues
+
+- Health and armour anti-cheat is not working correctly.
+
+
+## `d_vars.inc` problems
+
+- Recently, using `d_vars.inc` are spewing out stack-underflow and heap-underflow run-time errors. It resulted in increasing the limits so the memory can be allocated correctly, but no success. 
+
+### Fixes
+
+- Fixes are currently being worked on.
+
+----------------------------------------
