@@ -125,7 +125,7 @@
 
 ## `d_vars.inc` problems
 
-- Recently, using `d_vars.inc` are spewing out stack-underflow and heap-underflow run-time errors. It resulted in increasing the limits so the memory can be allocated correctly, but no success. 
+- The server is spewing out stack-underflow, invalid memory access and heap-underflow run-time errors. It resulted in increasing the limits so the memory can be allocated correctly, but I, sadly, could not fix the issue. 
 
 ### Fixes
 
