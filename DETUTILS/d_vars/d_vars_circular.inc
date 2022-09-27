@@ -39,11 +39,11 @@
 // General definitions:
 
 // CallLocalFunction("OnCircularArrayCreate", "si", name, CIRCULAR_ARRAY_TYPE_);
-forward OnCircularArrayCreate(varname[], vartype);
+forward OnCircularArrayCreate(arrayname[], arraytype);
 // CallLocalFunction("OnCircularArrayUpdate", "siii", name, CIRCULAR_ARRAY_TYPE_, value, dimension);
-forward OnCircularArrayUpdate(varname[], vartype, value, dimension);
+forward OnCircularArrayUpdate(arrayname[], arraytype, value, index);
 // CallLocalFunction("OnCircularArrayDelete", "si", name, CIRCULAR_ARRAY_TYPE_);
-forward OnCircularArrayDelete(varname[], vartype);
+forward OnCircularArrayDelete(arrayname[], arraytype);
 
 #define CIRCULAR_ARRAY_TYPE_INTEGER 0
 #define CIRCULAR_ARRAY_TYPE_BOOLEAN 1

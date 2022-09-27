@@ -197,49 +197,6 @@ public OnDETUtilsInit() // This should be the last hook.
     table Preview("accounts");
     */
 
-    CallVariableHandler("HandlerName");
-    CallVariableHandler("HandlerName1");
-
-    malloc("HandlerName2");
-    malloc("HandlerName3");
-
-    set Integer("Variable", 1243);
-    set Boolean("Variable1", false, 3);
-    set Float("Variable2", 213.21);
-
-    printf("[DETUtils]: (var info) - Testing variables x1: %i, %i, %f, %s",
-        get Integer("Variable"),
-        get Boolean("Variable1", 3),
-        get Float("Variable2"),
-        get String("Variable3"));
-
-    CallVariableHandler("HandlerName4");
-    set Integer("Variable4", 172364);
-    save Integer("Variable4");
-    load Integer("Variable4");
-
-    rename Integer("Variable", "Integer");
-    rename Boolean("Variable1", "Boolean");
-    rename Float("Variable2", "Float");
-    rename String("Variable3", "String");
-
-    printf("[DETUtils]: (var info) - Testing variables x2: %i, %i, %f, %s",
-        get Integer("Variable"),
-        get Boolean("Variable1", 3),
-        get Float("Variable2"),
-        get String("Variable3"));
-
-    printf("[DETUtils]: (var info) - Testing variables x3: %i, %i, %f, %s",
-        get Integer("Integer"),
-        get Boolean("Boolean", 3),
-        get Float("Float"),
-        get String("String"));
-
-    delete Integer("Variable");
-    delete Boolean("Variable1");
-    delete Float("Variable2");
-    delete String("Variable3");
-
     print("                                         ");
     print("                                         ");
     print("|=======================================|");
@@ -250,99 +207,157 @@ public OnDETUtilsInit() // This should be the last hook.
     print("|=======================================|");
     print("                                         ");
     print("                                         ");
+    return 1;
+}
 
-    CallProfiler("LOL", "");
+stock TestVars(test = 0)
+{
+    if(test == 0)
+    {
+        CallVariableHandler("HandlerName");
+        CallVariableHandler("HandlerName1");
 
-    malloc("CircArrayTest");
+        malloc("HandlerName2");
+        malloc("HandlerName3");
 
-    printf("[DETUtils]: (circarr) - Values: %i, %i, %i, %i", 
-        get CircularInteger("CircularArray", 0),
-        get CircularInteger("CircularArray", 1),
-        get CircularInteger("CircularArray", 2),
-        get CircularInteger("CircularArray", 3));
+        set Integer("Variable", 1243);
+        set Boolean("Variable1", false, 3);
+        set Float("Variable2", 213.21);
 
-    add CircularInteger("CircularArray", 236);
-    add CircularInteger("CircularArray", 72);
+        printf("[DETUtils]: (var info) - Testing variables x1: %i, %i, %f, %s",
+            get Integer("Variable"),
+            get Boolean("Variable1", 3),
+            get Float("Variable2"),
+            get String("Variable3"));
 
-    printf("[DETUtils]: (circarr) - Values x2: %i, %i, %i, %i", 
-        get CircularInteger("CircularArray", 0),
-        get CircularInteger("CircularArray", 1),
-        get CircularInteger("CircularArray", 2),
-        get CircularInteger("CircularArray", 3));
+        CallVariableHandler("HandlerName4");
+        set Integer("Variable4", 172364);
+        save Integer("Variable4");
+        load Integer("Variable4");
 
-    add CircularInteger("CircularArray", 34);
-    add CircularInteger("CircularArray", 9);
+        rename Integer("Variable", "Integer");
+        rename Boolean("Variable1", "Boolean");
+        rename Float("Variable2", "Float");
+        rename String("Variable3", "String");
 
-    printf("[DETUtils]: (circarr) - Values x3: %i, %i, %i, %i", 
-        get CircularInteger("CircularArray", 0),
-        get CircularInteger("CircularArray", 1),
-        get CircularInteger("CircularArray", 2),
-        get CircularInteger("CircularArray", 3));
+        printf("[DETUtils]: (var info) - Testing variables x2: %i, %i, %f, %s",
+            get Integer("Variable"),
+            get Boolean("Variable1", 3),
+            get Float("Variable2"),
+            get String("Variable3"));
 
-    add CircularInteger("CircularArray", 23);
-    add CircularInteger("CircularArray", 6);
+        printf("[DETUtils]: (var info) - Testing variables x3: %i, %i, %f, %s",
+            get Integer("Integer"),
+            get Boolean("Boolean", 3),
+            get Float("Float"),
+            get String("String"));
 
-    printf("[DETUtils]: (circarr) - Values x3: %i, %i, %i, %i", 
-        get CircularInteger("CircularArray", 0),
-        get CircularInteger("CircularArray", 1),
-        get CircularInteger("CircularArray", 2),
-        get CircularInteger("CircularArray", 3));
+        delete Integer("Variable");
+        delete Boolean("Variable1");
+        delete Float("Variable2");
+        delete String("Variable3");
 
-    malloc("StackTest");
+        CallProfiler("LOL", "");
+    }
+    else if(test == 1)
+    {
+        malloc("CircArrayTest");
 
-    printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
-        get StackInteger("Stack", 0),
-        get StackInteger("Stack", 1),
-        get StackInteger("Stack", 2),
-        get StackInteger("Stack", 3));
+        printf("[DETUtils]: (circarr) - Values: %i, %i, %i, %i", 
+            get CircularInteger("CircularArray", 0),
+            get CircularInteger("CircularArray", 1),
+            get CircularInteger("CircularArray", 2),
+            get CircularInteger("CircularArray", 3));
 
-    push StackInteger("Stack", 236);
-    push StackInteger("Stack", 72);
+        add CircularInteger("CircularArray", 236);
+        add CircularInteger("CircularArray", 72);
 
-    printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
-        get StackInteger("Stack", 0),
-        get StackInteger("Stack", 1),
-        get StackInteger("Stack", 2),
-        get StackInteger("Stack", 3));
+        printf("[DETUtils]: (circarr) - Values x2: %i, %i, %i, %i", 
+            get CircularInteger("CircularArray", 0),
+            get CircularInteger("CircularArray", 1),
+            get CircularInteger("CircularArray", 2),
+            get CircularInteger("CircularArray", 3));
 
-    push StackInteger("Stack", 13);
-    push StackInteger("Stack", 877);
+        add CircularInteger("CircularArray", 34);
+        add CircularInteger("CircularArray", 9);
 
-    printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
-        get StackInteger("Stack", 0),
-        get StackInteger("Stack", 1),
-        get StackInteger("Stack", 2),
-        get StackInteger("Stack", 3));
+        printf("[DETUtils]: (circarr) - Values x3: %i, %i, %i, %i", 
+            get CircularInteger("CircularArray", 0),
+            get CircularInteger("CircularArray", 1),
+            get CircularInteger("CircularArray", 2),
+            get CircularInteger("CircularArray", 3));
 
-    // There is no more stack space left.
-    push StackInteger("Stack", 243);
-    push StackInteger("Stack", 7212);
+        add CircularInteger("CircularArray", 23);
+        add CircularInteger("CircularArray", 6);
 
-    printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
-        get StackInteger("Stack", 0),
-        get StackInteger("Stack", 1),
-        get StackInteger("Stack", 2),
-        get StackInteger("Stack", 3));
+        printf("[DETUtils]: (circarr) - Values x3: %i, %i, %i, %i", 
+            get CircularInteger("CircularArray", 0),
+            get CircularInteger("CircularArray", 1),
+            get CircularInteger("CircularArray", 2),
+            get CircularInteger("CircularArray", 3));
 
-    // Pop the last two values:
-    new var1, var2;
+        delete CircularInteger("CircularArray");
+    }
+    else if(test = 2)
+    {
+        malloc("StackTest");
 
-    pop StackInteger("Stack", var1);
-    pop StackInteger("Stack", var2);
+        printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
+            get StackInteger("Stack", 0),
+            get StackInteger("Stack", 1),
+            get StackInteger("Stack", 2),
+            get StackInteger("Stack", 3));
 
-    printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
-        get StackInteger("Stack", 0),
-        get StackInteger("Stack", 1),
-        get StackInteger("Stack", 2),
-        get StackInteger("Stack", 3));
+        push StackInteger("Stack", 236);
+        push StackInteger("Stack", 72);
 
-    push StackInteger("Stack", 787);
+        printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
+            get StackInteger("Stack", 0),
+            get StackInteger("Stack", 1),
+            get StackInteger("Stack", 2),
+            get StackInteger("Stack", 3));
 
-    printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
-        get StackInteger("Stack", 0),
-        get StackInteger("Stack", 1),
-        get StackInteger("Stack", 2),
-        get StackInteger("Stack", 3));
+        push StackInteger("Stack", 13);
+        push StackInteger("Stack", 877);
+
+        printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
+            get StackInteger("Stack", 0),
+            get StackInteger("Stack", 1),
+            get StackInteger("Stack", 2),
+            get StackInteger("Stack", 3));
+
+        // There is no more stack space left.
+        push StackInteger("Stack", 243);
+        push StackInteger("Stack", 7212);
+
+        printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
+            get StackInteger("Stack", 0),
+            get StackInteger("Stack", 1),
+            get StackInteger("Stack", 2),
+            get StackInteger("Stack", 3));
+
+        // Pop the last two values:
+        new var1, var2;
+
+        pop StackInteger("Stack", var1);
+        pop StackInteger("Stack", var2);
+
+        printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
+            get StackInteger("Stack", 0),
+            get StackInteger("Stack", 1),
+            get StackInteger("Stack", 2),
+            get StackInteger("Stack", 3));
+
+        push StackInteger("Stack", 787);
+
+        printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
+            get StackInteger("Stack", 0),
+            get StackInteger("Stack", 1),
+            get StackInteger("Stack", 2),
+            get StackInteger("Stack", 3));
+
+        delete StackInteger("Stack");
+    }
     return 1;
 }
 
