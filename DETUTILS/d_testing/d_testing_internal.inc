@@ -188,6 +188,8 @@ enum Enums
 
 @variable(.datatype = CIRCULAR_INTEGER, .args = {"CircularArray", 4}) CircArrayTest();
 
+@variable(.datatype = STACK_INTEGER, .args = {"Stack", 4}) StackTest();
+
 public OnDETUtilsInit() // This should be the last hook.
 {
     /*
@@ -251,7 +253,7 @@ public OnDETUtilsInit() // This should be the last hook.
 
     CallProfiler("LOL", "");
 
-    /*malloc("CircArrayTest");
+    malloc("CircArrayTest");
 
     printf("[DETUtils]: (circarr) - Values: %i, %i, %i, %i", 
         get CircularInteger("CircularArray", 0),
@@ -284,7 +286,63 @@ public OnDETUtilsInit() // This should be the last hook.
         get CircularInteger("CircularArray", 0),
         get CircularInteger("CircularArray", 1),
         get CircularInteger("CircularArray", 2),
-        get CircularInteger("CircularArray", 3));*/
+        get CircularInteger("CircularArray", 3));
+
+    malloc("StackTest");
+
+    printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
+        get StackInteger("Stack", 0),
+        get StackInteger("Stack", 1),
+        get StackInteger("Stack", 2),
+        get StackInteger("Stack", 3));
+
+    push StackInteger("Stack", 236);
+    push StackInteger("Stack", 72);
+
+    printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
+        get StackInteger("Stack", 0),
+        get StackInteger("Stack", 1),
+        get StackInteger("Stack", 2),
+        get StackInteger("Stack", 3));
+
+    push StackInteger("Stack", 13);
+    push StackInteger("Stack", 877);
+
+    printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
+        get StackInteger("Stack", 0),
+        get StackInteger("Stack", 1),
+        get StackInteger("Stack", 2),
+        get StackInteger("Stack", 3));
+
+    // There is no more stack space left.
+    push StackInteger("Stack", 243);
+    push StackInteger("Stack", 7212);
+
+    printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
+        get StackInteger("Stack", 0),
+        get StackInteger("Stack", 1),
+        get StackInteger("Stack", 2),
+        get StackInteger("Stack", 3));
+
+    // Pop the last two values:
+    new var1, var2;
+
+    pop StackInteger("Stack", var1);
+    pop StackInteger("Stack", var2);
+
+    printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
+        get StackInteger("Stack", 0),
+        get StackInteger("Stack", 1),
+        get StackInteger("Stack", 2),
+        get StackInteger("Stack", 3));
+
+    push StackInteger("Stack", 787);
+
+    printf("[DETUtils]: (stack) - Values: %i, %i, %i, %i", 
+        get StackInteger("Stack", 0),
+        get StackInteger("Stack", 1),
+        get StackInteger("Stack", 2),
+        get StackInteger("Stack", 3));
     return 1;
 }
 

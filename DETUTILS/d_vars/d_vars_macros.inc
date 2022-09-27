@@ -35,6 +35,14 @@
 #define @DETUTILSVARS_ADD__@%0\32; @DETUTILSVARS_ADD__@
 #define add @DETUTILSVARS_ADD__@
 
+// stack:
+
+#define @DETUTILSVARS_PUSH__@%0\32; @DETUTILSVARS_PUSH__@
+#define push @DETUTILSVARS_PUSH__@
+
+#define @DETUTILSVARS_POP__@%0\32; @DETUTILSVARS_POP__@
+#define pop @DETUTILSVARS_POP__@
+
 /*
                                                                                       
 88b           d88              88                         db         88888888ba   88  
@@ -150,3 +158,23 @@
 
 // rename CircularInteger("Variable", "Int");
 #define @DETUTILSVARS_RENAME__@CircularInteger __RenameIntegerCircularArray
+
+// stack:
+
+#define @DETUTILSVARS_DECORT__@STACK_INTEGER%1,%2.args%3=%4{%5}%6)%0(%7); \
+    @DETVAR_%0();@DETVAR_%0() {return DET_gV_DeclareIntegerStack(%5);}
+
+// get StackInteger("Variable");
+#define @DETUTILSVARS_GET__@StackInteger __GetIntegerStackValue
+
+// push StackInteger("Variable");
+#define @DETUTILSVARS_PUSH__@StackInteger __PushIntegerStackValue
+
+// pop StackInteger("Variable");
+#define @DETUTILSVARS_POP__@StackInteger __PopIntegerStackValue
+
+// delete StackInteger("Variable");
+#define @DETUTILSVARS_DEL__@StackInteger __DeleteIntegerStack
+
+// rename StackInteger("Variable", "Int");
+#define @DETUTILSVARS_RENAME__@StackInteger __RenameIntegerStack
