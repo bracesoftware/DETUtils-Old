@@ -13,15 +13,6 @@
  *
  */
 
-// Defining up there for 'strret' thing.
-#define MAX_STRING_CELLS 1024
-
-#if !defined DETUTILS_NO_STRVARRET
-
-    #include "d_vars_strret"
-
-#endif
-
 /*
                                                                                       
 88b           d88              88                         db         88888888ba   88  
@@ -45,15 +36,7 @@ forward OnStackUpdate(stackname[], stacktype, value, index);
 // CallLocalFunction("OnStackDelete", "si", name, STACK_TYPE_);
 forward OnStackDelete(stackname[], stacktype);
 
-#define STACK_TYPE_INTEGER 0
-#define STACK_TYPE_BOOLEAN 1
-#define STACK_TYPE_STRING 2
-#define STACK_TYPE_FLOAT 3
-#define MAX_STACK_SIZE 1000
-
 // Integers:
-
-#define MAX_INTEGER_STACKS 1000
 
 enum enum_IntStackData
 {

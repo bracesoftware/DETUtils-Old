@@ -32,6 +32,9 @@
 // FIX "SYMBOL NEVER USED WARNINGS"
 #pragma warning disable 203
 
+// Dynamic:
+#pragma dynamic 123456789
+
 // Core libraries
 
 #tryinclude "d_core\d_core_entry"

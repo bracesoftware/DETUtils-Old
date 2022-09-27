@@ -57,16 +57,6 @@
                                                                                       
 */
 
-// malloc("HandlerName");
-#if !defined malloc
-
-    stock malloc(const handler[])
-    {
-        return CallVariableHandler(handler);
-    }
-
-#endif
-
 //varfunc DeclareInteger(const name[], multi, constant, constvalue = 0)
 //varfunc DeclareBoolean(const name[], multi, constant, constvalue = false)
 //varfunc DeclareFloat(const name[], multi, constant, Float:constvalue = 0.0000)
@@ -85,60 +75,60 @@
     @DETVAR_%0();@DETVAR_%0() {return DET_gV_DeclareString(%5);}
 
 // get Integer("Variable");
-#define @DETUTILSVARS_GET__@Integer%0(%1) __GetIntegerValue%0(%1)
+#define @DETUTILSVARS_GET__@Integer __GetIntegerValue
 // get Boolean("Variable");
-#define @DETUTILSVARS_GET__@Boolean%0(%1) __GetBooleanValue%0(%1)
+#define @DETUTILSVARS_GET__@Boolean __GetBooleanValue
 // get Float("Variable");
-#define @DETUTILSVARS_GET__@Float%0(%1) __GetFloatValue%0(%1)
+#define @DETUTILSVARS_GET__@Float __GetFloatValue
 // get String("Variable");
-#define @DETUTILSVARS_GET__@String%0(%1) __GetStringValue%0(%1)
+#define @DETUTILSVARS_GET__@String __GetStringValue
 
 // set Integer("Variable");
-#define @DETUTILSVARS_SET__@Integer%0(%1) __SetIntegerValue%0(%1)
+#define @DETUTILSVARS_SET__@Integer __SetIntegerValue
 // set Boolean("Variable");
-#define @DETUTILSVARS_SET__@Boolean%0(%1) __SetBooleanValue%0(%1)
+#define @DETUTILSVARS_SET__@Boolean __SetBooleanValue
 // set Float("Variable");
-#define @DETUTILSVARS_SET__@Float%0(%1) __SetFloatValue%0(%1)
+#define @DETUTILSVARS_SET__@Float __SetFloatValue
 // set String("Variable");
-#define @DETUTILSVARS_SET__@String%0(%1) __SetStringValue%0(%1)
+#define @DETUTILSVARS_SET__@String __SetStringValue
 
 // delete Integer("Variable");
-#define @DETUTILSVARS_DEL__@Integer%0(%1) __DeleteIntegerVariable%0(%1)
+#define @DETUTILSVARS_DEL__@Integer __DeleteIntegerVariable
 // delete Boolean("Variable");
-#define @DETUTILSVARS_DEL__@Boolean%0(%1) __DeleteBooleanVariable%0(%1)
+#define @DETUTILSVARS_DEL__@Boolean __DeleteBooleanVariable
 // delete Float("Variable");
-#define @DETUTILSVARS_DEL__@Float%0(%1) __DeleteFloatVariable%0(%1)
+#define @DETUTILSVARS_DEL__@Float __DeleteFloatVariable
 // delete String("Variable");
-#define @DETUTILSVARS_DEL__@String%0(%1) __DeleteStringVariable%0(%1)
+#define @DETUTILSVARS_DEL__@String __DeleteStringVariable
 
 // rename Integer("Variable", "Int");
-#define @DETUTILSVARS_RENAME__@Integer%0(%1) __RenameIntegerVariable%0(%1)
+#define @DETUTILSVARS_RENAME__@Integer __RenameIntegerVariable
 // rename Boolean("Variable", "Bool");
-#define @DETUTILSVARS_RENAME__@Boolean%0(%1) __RenameBooleanVariable%0(%1)
+#define @DETUTILSVARS_RENAME__@Boolean __RenameBooleanVariable
 // rename Float("Variable", "Float");
-#define @DETUTILSVARS_RENAME__@Float%0(%1) __RenameFloatVariable%0(%1)
+#define @DETUTILSVARS_RENAME__@Float __RenameFloatVariable
 // rename String("Variable", "String");
-#define @DETUTILSVARS_RENAME__@String%0(%1) __RenameStringVariable%0(%1)
+#define @DETUTILSVARS_RENAME__@String __RenameStringVariable
 
 #if !defined DETUTILS_NO_FILEQUERIES
 
 // save Integer("Variable");
-#define @DETUTILSVARS_SAVE__@Integer%0(%1) __SaveIntegerVariable%0(%1)
+#define @DETUTILSVARS_SAVE__@Integer __SaveIntegerVariable
 // save Boolean("Variable");
-#define @DETUTILSVARS_SAVE__@Boolean%0(%1) __SaveBooleanVariable%0(%1)
+#define @DETUTILSVARS_SAVE__@Boolean __SaveBooleanVariable
 // save Float("Variable");
-#define @DETUTILSVARS_SAVE__@Float%0(%1) __SaveFloatVariable%0(%1)
+#define @DETUTILSVARS_SAVE__@Float __SaveFloatVariable
 // save String("Variable");
-#define @DETUTILSVARS_SAVE__@String%0(%1) __SaveStringVariable%0(%1)
+#define @DETUTILSVARS_SAVE__@String __SaveStringVariable
 
 // load Integer("Variable");
-#define @DETUTILSVARS_LOAD__@Integer%0(%1) __LoadIntegerVariable%0(%1)
+#define @DETUTILSVARS_LOAD__@Integer __LoadIntegerVariable
 // load Boolean("Variable");
-#define @DETUTILSVARS_LOAD__@Boolean%0(%1) __LoadBooleanVariable%0(%1)
+#define @DETUTILSVARS_LOAD__@Boolean __LoadBooleanVariable
 // load Float("Variable");
-#define @DETUTILSVARS_LOAD__@Float%0(%1) __LoadFloatVariable%0(%1)
+#define @DETUTILSVARS_LOAD__@Float __LoadFloatVariable
 // load String("Variable");
-#define @DETUTILSVARS_LOAD__@String%0(%1) __LoadStringVariable%0(%1)
+#define @DETUTILSVARS_LOAD__@String __LoadStringVariable
 
 #endif
 
@@ -148,16 +138,16 @@
     @DETVAR_%0();@DETVAR_%0() {return DET_gV_DeclareIntegerCircArray(%5);}
 
 // get CircularInteger("Variable");
-#define @DETUTILSVARS_GET__@CircularInteger%0(%1) __GetIntegerCircularArrayValue%0(%1)
+#define @DETUTILSVARS_GET__@CircularInteger __GetIntegerCircularArrayValue
 
 // set CircularInteger("Variable");
-#define @DETUTILSVARS_ADD__@CircularInteger%0(%1) __AddIntegerCircularArrayValue%0(%1)
+#define @DETUTILSVARS_ADD__@CircularInteger __AddIntegerCircularArrayValue
 
 // delete CircularInteger("Variable");
-#define @DETUTILSVARS_DEL__@CircularInteger%0(%1) __DeleteIntegerCircularArray%0(%1)
+#define @DETUTILSVARS_DEL__@CircularInteger __DeleteIntegerCircularArray
 
 // rename CircularInteger("Variable", "Int");
-#define @DETUTILSVARS_RENAME__@CircularInteger%0(%1) __RenameIntegerCircularArray%0(%1)
+#define @DETUTILSVARS_RENAME__@CircularInteger __RenameIntegerCircularArray
 
 // stack:
 
@@ -165,16 +155,16 @@
     @DETVAR_%0();@DETVAR_%0() {return DET_gV_DeclareIntegerStack(%5);}
 
 // get StackInteger("Variable");
-#define @DETUTILSVARS_GET__@StackInteger%0(%1) __GetIntegerStackValue%0(%1)
+#define @DETUTILSVARS_GET__@StackInteger __GetIntegerStackValue
 
 // push StackInteger("Variable");
-#define @DETUTILSVARS_PUSH__@StackInteger%0(%1) __PushIntegerStackValue%0(%1)
+#define @DETUTILSVARS_PUSH__@StackInteger __PushIntegerStackValue
 
 // pop StackInteger("Variable");
-#define @DETUTILSVARS_POP__@StackInteger%0(%1) __PopIntegerStackValue%0(%1)
+#define @DETUTILSVARS_POP__@StackInteger __PopIntegerStackValue
 
 // delete StackInteger("Variable");
-#define @DETUTILSVARS_DEL__@StackInteger%0(%1) __DeleteIntegerStack%0(%1)
+#define @DETUTILSVARS_DEL__@StackInteger __DeleteIntegerStack
 
 // rename StackInteger("Variable", "Int");
-#define @DETUTILSVARS_RENAME__@StackInteger%0(%1) __RenameIntegerStack%0(%1)
+#define @DETUTILSVARS_RENAME__@StackInteger __RenameIntegerStack

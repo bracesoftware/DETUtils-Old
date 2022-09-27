@@ -13,15 +13,6 @@
  *
  */
 
-// Defining up there for 'strret' thing.
-#define MAX_STRING_CELLS 1024
-
-#if !defined DETUTILS_NO_STRVARRET
-
-    #include "d_vars_strret"
-
-#endif
-
 /*
                                                                                       
 88b           d88              88                         db         88888888ba   88  
@@ -45,15 +36,7 @@ forward OnCircularArrayUpdate(arrayname[], arraytype, value, index);
 // CallLocalFunction("OnCircularArrayDelete", "si", name, CIRCULAR_ARRAY_TYPE_);
 forward OnCircularArrayDelete(arrayname[], arraytype);
 
-#define CIRCULAR_ARRAY_TYPE_INTEGER 0
-#define CIRCULAR_ARRAY_TYPE_BOOLEAN 1
-#define CIRCULAR_ARRAY_TYPE_STRING 2
-#define CIRCULAR_ARRAY_TYPE_FLOAT 3
-#define MAX_CIRCULAR_ARRAY_SIZE 1000
-
 // Integers:
-
-#define MAX_INTEGER_CIRCULAR_ARRAYS 1000
 
 enum enum_IntCircArrayData
 {

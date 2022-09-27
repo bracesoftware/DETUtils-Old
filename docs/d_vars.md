@@ -1,5 +1,5 @@
 # d_vars.inc
-Pawn Variables - A library which reserves up space for new variables you can dynamically allocate during run-time, which is really similar to `malloc` but can handle up to thousands variables and arrays of different types.
+Pawn Variables - A library which reserves up space for new variables you can dynamically allocate during run-time, which is really similar to `malloc` but can handle up to hundreds of variables, stacks and arrays of different types.
 
 [Go back to the home page...](../README.md)
 

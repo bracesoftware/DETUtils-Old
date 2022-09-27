@@ -60,6 +60,7 @@
                                                                                
 */
 
+#if defined detutils_complete_error_boom
 #define DET_MAX_CMD 10000
 
 // For parsing.
@@ -73,6 +74,7 @@ enum enum_CommandData
 }
 
 new g_CommandCache[DET_MAX_CMD][enum_CommandData];
+#endif
 
 #if !defined MAX_PREFIX_LENGTH
 

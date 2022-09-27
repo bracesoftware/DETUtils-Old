@@ -210,9 +210,9 @@ public OnDETUtilsInit() // This should be the last hook.
     return 1;
 }
 
-stock TestVars(test = 0)
+stock TestVars(testtype)
 {
-    if(test == 0)
+    if(testtype == 0)
     {
         CallVariableHandler("HandlerName");
         CallVariableHandler("HandlerName1");
@@ -259,7 +259,7 @@ stock TestVars(test = 0)
 
         CallProfiler("LOL", "");
     }
-    else if(test == 1)
+    else if(testtype == 1)
     {
         malloc("CircArrayTest");
 
@@ -298,7 +298,7 @@ stock TestVars(test = 0)
 
         delete CircularInteger("CircularArray");
     }
-    else if(test = 2)
+    else if(testtype = 2)
     {
         malloc("StackTest");
 

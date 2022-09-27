@@ -13,15 +13,6 @@
  *
  */
 
-// Defining up there for 'strret' thing.
-#define MAX_STRING_CELLS 1024
-
-#if !defined DETUTILS_NO_STRVARRET
-
-    #include "d_vars_strret"
-
-#endif
-
 /*
                                                                                       
 88b           d88              88                         db         88888888ba   88  
@@ -45,19 +36,7 @@ forward OnVariableUpdate(varname[], vartype, value, dimension);
 // CallLocalFunction("OnVariableDelete", "si", name, VARIABLE_TYPE_);
 forward OnVariableDelete(varname[], vartype);
 
-#define VARIABLE_TYPE_INTEGER 0
-#define VARIABLE_TYPE_BOOLEAN 1
-#define VARIABLE_TYPE_STRING 2
-#define VARIABLE_TYPE_FLOAT 3
-#define MAX_VAR_DIMENSIONS 256
-
-// Data types:
-
-#include "d_vars_macros"
-
 // Integers:
-
-#define MAX_INTEGER_VARS 1000
 
 enum enum_IntVarData
 {
@@ -66,14 +45,12 @@ enum enum_IntVarData
     Const,
     IntName[32],
     ReturnVal,
-    Dimensions[MAX_VAR_DIMENSIONS]
+    Dimensions[MAX_VAR_RETURN_SLOTS]
 }
 
 new DET_g_IntegerCache[MAX_INTEGER_VARS][enum_IntVarData];
 
 // Booleans:
-
-#define MAX_BOOLEAN_VARS 1000
 
 enum enum_BoolVarData
 {
@@ -82,15 +59,12 @@ enum enum_BoolVarData
     Const,
     BoolName[32],
     bool:ReturnVal,
-    Dimensions[MAX_VAR_DIMENSIONS]
+    Dimensions[MAX_VAR_RETURN_SLOTS]
 }
 
 new DET_g_BoolCache[MAX_BOOLEAN_VARS][enum_BoolVarData];
 
 // Strings:
-
-#define MAX_STRINGS 1000
-#define MAX_STRING_VARS MAX_STRINGS
 
 enum enum_StringData
 {
@@ -100,11 +74,9 @@ enum enum_StringData
     ReturnVal[MAX_STRING_CELLS]
 }
 
-new DET_g_StringCache[MAX_STRINGS][enum_StringData];
+new DET_g_StringCache[MAX_STRING_VARS][enum_StringData];
 
 // Floats:
-
-#define MAX_FLOAT_VARS 1000
 
 enum enum_FloatData
 {
@@ -113,17 +85,10 @@ enum enum_FloatData
     Const,
     FloatName[32],
     Float:ReturnVal,
-    Float:Dimensions[MAX_VAR_DIMENSIONS]
+    Float:Dimensions[MAX_VAR_RETURN_SLOTS]
 }
 
 new DET_g_FloatCache[MAX_FLOAT_VARS][enum_FloatData];
-
-stock CallVariableHandler(const name[])
-{
-    new funcname[32];
-    format(funcname, sizeof funcname, "@DETVAR_%s", name);
-    return CallLocalFunction(funcname, "");
-}
 
 // DELETE FUNCS
 
@@ -140,7 +105,7 @@ stock __DeleteIntegerVariable(const name[])
         {
             strmid(DET_g_IntegerCache[i][IntName], " ", 0, 1);
             DET_g_IntegerCache[i][Valid] = 0;
-            for(new x; x < MAX_VAR_DIMENSIONS; x++)
+            for(new x; x < MAX_VAR_RETURN_SLOTS; x++)
             {
                 DET_g_IntegerCache[i][Dimensions][x] = 0;
             }
@@ -160,7 +125,7 @@ stock __DeleteBooleanVariable(const name[])
         {
             strmid(DET_g_BoolCache[i][BoolName], " ", 0, 1);
             DET_g_BoolCache[i][Valid] = 0;
-            for(new x; x < MAX_VAR_DIMENSIONS; x++)
+            for(new x; x < MAX_VAR_RETURN_SLOTS; x++)
             {
                 DET_g_BoolCache[i][Dimensions][x] = false;
             }
@@ -180,7 +145,7 @@ stock __DeleteFloatVariable(const name[])
         {
             strmid(DET_g_FloatCache[i][FloatName], " ", 0, 1);
             DET_g_FloatCache[i][Valid] = 0;
-            for(new x; x < MAX_VAR_DIMENSIONS; x++)
+            for(new x; x < MAX_VAR_RETURN_SLOTS; x++)
             {
                 DET_g_FloatCache[i][Dimensions][x] = Float:0;
             }
@@ -279,7 +244,7 @@ varfunc DeclareInteger(const name[], multi, constant, constvalue = 0)
             }
             if(multi == 1)
             {
-                for(new x; x < MAX_VAR_DIMENSIONS; x++)
+                for(new x; x < MAX_VAR_RETURN_SLOTS; x++)
                 {
                     DET_g_IntegerCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
                 }
@@ -316,7 +281,7 @@ varfunc DeclareBoolean(const name[], multi, constant, bool:constvalue = false)
             }
             if(multi == 1)
             {
-                for(new x; x < MAX_VAR_DIMENSIONS; x++)
+                for(new x; x < MAX_VAR_RETURN_SLOTS; x++)
                 {
                     DET_g_BoolCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
                 }
@@ -358,7 +323,7 @@ varfunc DeclareFloat(const name[], multi, constant, Float:constvalue = 0.0000)
             }
             if(multi == 1)
             {
-                for(new x; x < MAX_VAR_DIMENSIONS; x++)
+                for(new x; x < MAX_VAR_RETURN_SLOTS; x++)
                 {
                     DET_g_FloatCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
                 }
@@ -382,7 +347,7 @@ varfunc DeclareFloat(const name[], multi, constant, Float:constvalue = 0.0000)
 
 varfunc DeclareString(const name[], constant, const constvalue[])
 {
-    for(new i; i < MAX_STRINGS; i++)
+    for(new i; i < MAX_STRING_VARS; i++)
     {
         if(DET_g_StringCache[i][Valid] == 0)
         {
@@ -649,7 +614,7 @@ stock CreateVariable( // this is deprecated function
                     }
                     if(multi == 1)
                     {
-                        for(new x; x < MAX_VAR_DIMENSIONS; x++)
+                        for(new x; x < MAX_VAR_RETURN_SLOTS; x++)
                         {
                             DET_g_IntegerCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
                         }
@@ -684,7 +649,7 @@ stock CreateVariable( // this is deprecated function
                     }
                     if(multi == 1)
                     {
-                        for(new x; x < MAX_VAR_DIMENSIONS; x++)
+                        for(new x; x < MAX_VAR_RETURN_SLOTS; x++)
                         {
                             DET_g_BoolCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
                         }
@@ -711,7 +676,7 @@ stock CreateVariable( // this is deprecated function
         case VARIABLE_TYPE_STRING:
         {
             // Strings.
-            for(new i; i < MAX_STRINGS; i++)
+            for(new i; i < MAX_STRING_VARS; i++)
             {
                 if(DET_g_StringCache[i][Valid] == 0)
                 {
@@ -754,7 +719,7 @@ stock CreateVariable( // this is deprecated function
                     }
                     if(multi == 1)
                     {
-                        for(new x; x < MAX_VAR_DIMENSIONS; x++)
+                        for(new x; x < MAX_VAR_RETURN_SLOTS; x++)
                         {
                             DET_g_FloatCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
                         }
@@ -891,7 +856,7 @@ enum enum_IntVarData
     Const,
     IntName[32],
     ReturnVal,
-    Dimensions[MAX_VAR_DIMENSIONS]
+    Dimensions[MAX_VAR_RETURN_SLOTS]
 }
 */
 
@@ -918,7 +883,7 @@ stock __SaveIntegerVariable(const name[])
                 DET_g_IntegerCache[i][IntName],
                 DET_g_IntegerCache[i][ReturnVal]);
 
-            for(new x; x < MAX_VAR_DIMENSIONS; x++)
+            for(new x; x < MAX_VAR_RETURN_SLOTS; x++)
             {
                 format(dquery, sizeof dquery, ",%i", DET_g_IntegerCache[i][Dimensions][x]);
                 strcat(query, dquery);
@@ -955,7 +920,7 @@ enum enum_IntVarData
     Const,
     IntName[32],
     ReturnVal,
-    Dimensions[MAX_VAR_DIMENSIONS]
+    Dimensions[MAX_VAR_RETURN_SLOTS]
 }
 */
 
@@ -993,7 +958,7 @@ stock __LoadIntegerVariable(const name[])
     DET_g_IntegerCache[id][Const] = strval(address[2]);
     // We skip 3 since it is name.
     DET_g_IntegerCache[id][ReturnVal] = strval(address[4]);
-    for(new i; i < MAX_VAR_DIMENSIONS; i++)
+    for(new i; i < MAX_VAR_RETURN_SLOTS; i++)
     {
         DET_g_IntegerCache[id][Dimensions][i] = strval(address[i+5]);
     }
@@ -1013,7 +978,7 @@ enum enum_IntVarData
     Const,
     IntName[32],
     ReturnVal,
-    Dimensions[MAX_VAR_DIMENSIONS]
+    Dimensions[MAX_VAR_RETURN_SLOTS]
 }
 */
 
@@ -1040,7 +1005,7 @@ stock __SaveBooleanVariable(const name[])
                 DET_g_BoolCache[i][BoolName],
                 DET_g_BoolCache[i][ReturnVal]);
 
-            for(new x; x < MAX_VAR_DIMENSIONS; x++)
+            for(new x; x < MAX_VAR_RETURN_SLOTS; x++)
             {
                 format(dquery, sizeof dquery, ",%i", DET_g_BoolCache[i][Dimensions][x]);
                 strcat(query, dquery);
@@ -1077,7 +1042,7 @@ enum enum_IntVarData
     Const,
     IntName[32],
     ReturnVal,
-    Dimensions[MAX_VAR_DIMENSIONS]
+    Dimensions[MAX_VAR_RETURN_SLOTS]
 }
 */
 
@@ -1115,7 +1080,7 @@ stock __LoadBooleanVariable(const name[])
     DET_g_BoolCache[id][Const] = strval(address[2]);
     // We skip 3 since it is name.
     DET_g_BoolCache[id][ReturnVal] = strval(address[4]);
-    for(new i; i < MAX_VAR_DIMENSIONS; i++)
+    for(new i; i < MAX_VAR_RETURN_SLOTS; i++)
     {
         DET_g_BoolCache[id][Dimensions][i] = strval(address[i+5]);
     }
@@ -1135,7 +1100,7 @@ enum enum_IntVarData
     Const,
     IntName[32],
     ReturnVal,
-    Dimensions[MAX_VAR_DIMENSIONS]
+    Dimensions[MAX_VAR_RETURN_SLOTS]
 }
 */
 
@@ -1162,7 +1127,7 @@ stock __SaveFloatVariable(const name[])
                 DET_g_FloatCache[i][FloatName],
                 DET_g_FloatCache[i][ReturnVal]);
 
-            for(new x; x < MAX_VAR_DIMENSIONS; x++)
+            for(new x; x < MAX_VAR_RETURN_SLOTS; x++)
             {
                 format(dquery, sizeof dquery, ",%f", DET_g_FloatCache[i][Dimensions][x]);
                 strcat(query, dquery);
@@ -1199,7 +1164,7 @@ enum enum_IntVarData
     Const,
     IntName[32],
     ReturnVal,
-    Dimensions[MAX_VAR_DIMENSIONS]
+    Dimensions[MAX_VAR_RETURN_SLOTS]
 }
 */
 
@@ -1237,7 +1202,7 @@ stock __LoadFloatVariable(const name[])
     DET_g_BoolCache[id][Const] = strval(address[2]);
     // We skip 3 since it is name.
     DET_g_BoolCache[id][ReturnVal] = floatstr(address[4]);
-    for(new i; i < MAX_VAR_DIMENSIONS; i++)
+    for(new i; i < MAX_VAR_RETURN_SLOTS; i++)
     {
         DET_g_BoolCache[id][Dimensions][i] = floatstr(address[i+5]);
     }
@@ -1257,7 +1222,7 @@ enum enum_IntVarData
     Const,
     IntName[32],
     ReturnVal,
-    Dimensions[MAX_VAR_DIMENSIONS]
+    Dimensions[MAX_VAR_RETURN_SLOTS]
 }
 */
 
@@ -1314,7 +1279,7 @@ enum enum_IntVarData
     Const,
     IntName[32],
     ReturnVal,
-    Dimensions[MAX_VAR_DIMENSIONS]
+    Dimensions[MAX_VAR_RETURN_SLOTS]
 }
 */
 

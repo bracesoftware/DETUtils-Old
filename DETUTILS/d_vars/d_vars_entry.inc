@@ -13,6 +13,60 @@
  *
  */
 
+// Types:
+
+#include "d_vars_macros"
+
+#define VARIABLE_TYPE_INTEGER 0
+#define VARIABLE_TYPE_BOOLEAN 1
+#define VARIABLE_TYPE_STRING 2
+#define VARIABLE_TYPE_FLOAT 3
+
+#define CIRCULAR_ARRAY_TYPE_INTEGER 0
+#define CIRCULAR_ARRAY_TYPE_BOOLEAN 1
+#define CIRCULAR_ARRAY_TYPE_STRING 2
+#define CIRCULAR_ARRAY_TYPE_FLOAT 3
+
+#define STACK_TYPE_INTEGER 0
+#define STACK_TYPE_BOOLEAN 1
+#define STACK_TYPE_STRING 2
+#define STACK_TYPE_FLOAT 3
+
+// Sizes:
+
+#define MAX_VAR_RETURN_SLOTS 256
+
+#define MAX_CIRCULAR_ARRAY_SIZE 128
+
+#define MAX_STACK_SIZE 128
+
+// Limits:
+
+#define MAX_INTEGER_VARS 256
+#define MAX_BOOLEAN_VARS 256
+#define MAX_FLOAT_VARS 256
+#define MAX_STRING_VARS 128
+
+#define MAX_INTEGER_CIRCULAR_ARRAYS 64
+#define MAX_BOOLEAN_CIRCULAR_ARRAYS 64
+#define MAX_FLOAT_CIRCULAR_ARRAYS 64
+#define MAX_STRING_CIRCULAR_ARRAYS 32
+
+#define MAX_INTEGER_STACKS 64
+#define MAX_BOOLEAN_STACKS 64
+#define MAX_FLOAT_STACKS 64
+#define MAX_STRING_STACKS 32
+
+// Variable limits:
+
+#define MAX_STRING_CELLS 256
+
+#if !defined DETUTILS_NO_STRVARRET
+
+    #include "d_vars_strret"
+
+#endif
+
 /*
                                                                                       
 88b           d88              88                         db         88888888ba   88  
@@ -30,6 +84,23 @@
 #include "d_vars_standard"
 #include "d_vars_circular"
 #include "d_vars_stack"
+
+stock CallVariableHandler(const name[])
+{
+    new funcname[32];
+    format(funcname, sizeof funcname, "@DETVAR_%s", name);
+    return CallLocalFunction(funcname, "");
+}
+
+// malloc("HandlerName");
+#if !defined malloc
+
+    stock malloc(const handler[])
+    {
+        return CallVariableHandler(handler);
+    }
+
+#endif
 
 /*
                                                                       
