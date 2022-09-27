@@ -1,14 +1,13 @@
-# d_vars.inc
-Pawn Variables - A library which reserves up space for new variables you can modify, rename etc., which is really similar to `malloc` but can handle up to thousands variables and arrays of different types.
+# d_discordapi.inc
+Discord API - A DETUtils package module containing a set of libraries whose extend the possibilities of the Discord Connector plugin for SA:MP.
 
 [Go back to the home page...](../README.md)
 
 ## How to start to use?
-Read documentation for the each `d_vars` library.
+Read documentation for the each `d_discordapi` library.
 
 
 | Library      | Description                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------ |
-| [d_vars_standard.inc](d_vars_standard.md) | Standard variables (integers, booleans, floats and strings) with up to 256 return values reserved. |
-| [d_vars_circular.inc](d_vars_circular.md) | Circular (rotating) arrays. |
-| [d_vars_stack.inc](d_vars_stack.md) | Stack variables and arrays. |
+| [d_discordapi_commands.inc](d_discordapi_commands.md) | Text-based and slash commands made easy. |
+| [d_discordapi_data.inc](d_discordapi_data.md) | Functions whose allow you to save Discord entity data. |
