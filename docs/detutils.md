@@ -83,6 +83,36 @@ DETUtils Entry Point - The main file which is included in order to use the DETUt
 ```pawn
 #define DETUTILS_NO_ALS
 ```
+
+- This will uninclude `d_als.inc`.
+
+### `DETUTILS_NO_<UPPER-CASE LIBRARY NAME>_<UPPER-CASE SUBLIBRARY NAME>`
+
+- Almost every DETUtils library is divided into sublibraries or rather submodules. They're often optional and thus you can disable them for any reason by using:
+
+```pawn
+#define DETUTILS_NO_<UPPER-CASE LIBRARY NAME>_<UPPER-CASE SUBLIBRARY NAME>
+```
+
+- For examble:
+
+```pawn
+// Only disable d_vars_circular.inc submodule.
+#define DETUTILS_NO_VARS_CIRCULAR
+```
+
+- This will uninclude `d_vars_circular.inc`. Please note that not all submodules are optional, so doing this:
+
+```pawn
+#define DETUTILS_NO_COMMANDS_SETUP
+```
+- Won't disable `d_commands_setup` because it's a required library. In this case, you can only do this:
+
+```pawn
+// Disable the whole d_commands.inc module.
+#define DETUTILS_NO_COMMANDS
+```
+
 ### `DETUTILS_NO_SSCANF`
 
 - By default, DETUtils package entry includes its own `sscanf` implementation, you can disable it with:

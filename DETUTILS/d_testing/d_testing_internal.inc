@@ -179,16 +179,21 @@ enum Enums
     return @als() continue;
 }
 
+#if !defined DETUTILS_NO_VARS_STANDARD
 @variable( .datatype = INTEGER, .args = {"Variable", false, false, 0} ) HandlerName();
 @variable( .datatype = BOOLEAN, .args = {"Variable1", true, false, false} ) HandlerName1();
 @variable( .datatype = FLOAT, .args = {"Variable2", false, false, 0.000} ) HandlerName2();
 @variable( .datatype = STRING, .args = {"Variable3", true, "Cool string tho"} ) HandlerName3();
-
 @variable( .datatype = INTEGER, .args = {"Variable4", false, false, 0} ) HandlerName4();
+#endif
 
+#if !defined DETUTILS_NO_VARS_CIRCULAR
 @variable(.datatype = CIRCULAR_INTEGER, .args = {"CircularArray", 4}) CircArrayTest();
+#endif
 
+#if !defined DETUTILS_NO_VARS_STACK
 @variable(.datatype = STACK_INTEGER, .args = {"Stack", 4}) StackTest();
+#endif
 
 public OnDETUtilsInit() // This should be the last hook.
 {
@@ -212,6 +217,7 @@ public OnDETUtilsInit() // This should be the last hook.
 
 stock TestVars(testtype)
 {
+    #if !defined DETUTILS_NO_VARS_STANDARD
     if(testtype == 0)
     {
         CallVariableHandler("HandlerName");
@@ -259,7 +265,9 @@ stock TestVars(testtype)
 
         CallProfiler("LOL", "");
     }
-    else if(testtype == 1)
+    #endif
+    #if !defined DETUTILS_NO_VARS_CIRCULAR
+    if(testtype == 1)
     {
         malloc("CircArrayTest");
 
@@ -298,7 +306,9 @@ stock TestVars(testtype)
 
         delete CircularInteger("CircularArray");
     }
-    else if(testtype = 2)
+    #endif
+    #if !defined DETUTILS_NO_VARS_STACK
+    if(testtype == 2)
     {
         malloc("StackTest");
 
@@ -358,6 +368,7 @@ stock TestVars(testtype)
 
         delete StackInteger("Stack");
     }
+    #endif
     return 1;
 }
 

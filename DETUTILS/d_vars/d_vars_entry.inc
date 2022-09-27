@@ -81,9 +81,47 @@
                                                                                       
 */
 
-#include "d_vars_standard"
-#include "d_vars_circular"
-#include "d_vars_stack"
+#if !defined DETUTILS_NO_VARS_STANDARD
+
+    #include "d_vars_standard"
+
+#else
+
+    #if !defined DETUTILS_NO_MODULE_WARNINGS
+
+        #warning [DETUtils]: (includes) - Sublibrary (submodule) 'd_vars_standard' is disabled.
+
+    #endif
+
+#endif
+
+#if !defined DETUTILS_NO_VARS_CIRCULAR
+
+    #include "d_vars_circular"
+
+#else
+
+    #if !defined DETUTILS_NO_MODULE_WARNINGS
+
+        #warning [DETUtils]: (includes) - Sublibrary (submodule) 'd_vars_circular' is disabled.
+
+    #endif
+
+#endif
+
+#if !defined DETUTILS_NO_VARS_STACK
+
+    #include "d_vars_stack"
+
+#else
+
+    #if !defined DETUTILS_NO_MODULE_WARNINGS
+
+        #warning [DETUtils]: (includes) - Sublibrary (submodule) 'd_vars_stack' is disabled.
+
+    #endif
+
+#endif
 
 stock CallVariableHandler(const name[])
 {
