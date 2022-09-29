@@ -1,7 +1,7 @@
 # d_rem.inc
 Pawn REM - Comments.
 
-[Go back to the home page...](../README.md)
+[Go back to the home page...](d_core.md)
 
 ## How to use?
 ```pawn

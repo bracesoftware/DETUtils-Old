@@ -1,6 +1,8 @@
 # d_core_debug.inc
 DETUtils Debug - Provides advanced debugging with precise information, error and warning location.
 
+[Go back to the home page...](d_core.md)
+
 ```pawn
 __DETUtilsDebug("Debug.",); // Works only with DETUTILS_DEBUG_MODE enabled.
 
