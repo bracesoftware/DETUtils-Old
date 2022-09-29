@@ -86,9 +86,7 @@ stock __yamlget(const filename[], const key[])
             }
         }*/
         __parseyamlline(yamlcontent, parse);
-        #if defined DETUTILS_DEBUG_MODE
-        printf("[DETUtils]: (parse) - yaml :: 0 : %s, 1 : %s", parse[0], parse[1]);
-        #endif
+        __DETUtilsDebug("yaml :: 0 : %s, 1 : %s", parse[0], parse[1]);
         if(!strcmp(parse[0], key))
         {
             format(ret, sizeof ret, "%s", parse[1]);

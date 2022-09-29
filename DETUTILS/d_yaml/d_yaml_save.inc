@@ -98,9 +98,7 @@ stock yamlwritecomment(const filename[], const comment[])
         format(linestr, sizeof linestr, "# %s", comment);
         fwrite(file, linestr);
         fwrite(file, "\r\n");
-        #if defined DETUTILS_DEBUG_MODE
-        printf("[DETUtils]: (comment) - yaml :: Successfully wrote comment : '%s'.", comment);
-        #endif
+        __DETUtilsDebug("yaml :: Successfully wrote comment : '%s'.", comment);
         fclose(file);
         return 1;
     }

@@ -65,7 +65,7 @@ stock __DeleteIntegerCircularArray(const name[])
             DET_g_ArrayIntegerCache[i][Valid] = 0;
             for(new x; x < MAX_CIRCULAR_ARRAY_SIZE; x++)
             {
-                DET_g_ArrayIntegerCache[i][ReturnValues][x] = -1;
+                DET_g_ArrayIntegerCache[i][ReturnValues][x] = INVALID_CIRCULAR_VALUE;
             }
             CallLocalFunction("OnCircularArrayDelete", "si", name, CIRCULAR_ARRAY_TYPE_INTEGER);
             return 1;
@@ -103,7 +103,7 @@ varfunc DeclareIntegerCircArray(const name[], size)
             DET_g_ArrayIntegerCache[i][Valid] = 1;
             for(new x; x < MAX_CIRCULAR_ARRAY_SIZE; x++)
             {
-                DET_g_ArrayIntegerCache[i][ReturnValues][x] = -1;
+                DET_g_ArrayIntegerCache[i][ReturnValues][x] = INVALID_CIRCULAR_VALUE;
             }
             return 1;
         }   
@@ -122,7 +122,7 @@ stock __GetIntegerCircularArrayValue(const name[], index)
             return DET_g_ArrayIntegerCache[i][ReturnValues][index];
         }
     }
-    return -1;
+    return INVALID_CIRCULAR_VALUE;
 }
 
 // SET THE VALUE.
@@ -133,18 +133,18 @@ stock __AddIntegerCircularArrayValue(const name[], value)
     {
         if(!strcmp(DET_g_ArrayIntegerCache[i][Name], name, false))
         {
-            if(DET_g_ArrayIntegerCache[i][ReturnValues][DET_g_ArrayIntegerCache[i][Size]] == -1)
+            if(DET_g_ArrayIntegerCache[i][ReturnValues][DET_g_ArrayIntegerCache[i][Size]] == INVALID_CIRCULAR_VALUE)
             {
                 for(new x; x < DET_g_ArrayIntegerCache[i][Size]; x++)
                 {
-                    if(DET_g_ArrayIntegerCache[i][ReturnValues][x] != -1)
+                    if(DET_g_ArrayIntegerCache[i][ReturnValues][x] != INVALID_CIRCULAR_VALUE)
                     {
                         DET_g_ArrayIntegerCache[i][ReturnValues][x] = value;
                         return value;
                     } 
                 }
             }
-            else if(DET_g_ArrayIntegerCache[i][ReturnValues][DET_g_ArrayIntegerCache[i][Size]] != -1)
+            else if(DET_g_ArrayIntegerCache[i][ReturnValues][DET_g_ArrayIntegerCache[i][Size]] != INVALID_CIRCULAR_VALUE)
             {
                 new x;
                 do
@@ -158,7 +158,7 @@ stock __AddIntegerCircularArrayValue(const name[], value)
             }
         }
     }
-    return -1;
+    return INVALID_CIRCULAR_VALUE;
 }
 
 stock __GetIntegerCircularArrayId(const name[])

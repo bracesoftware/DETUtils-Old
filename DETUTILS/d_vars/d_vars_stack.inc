@@ -65,7 +65,7 @@ stock __DeleteIntegerStack(const name[])
             DET_g_StackCache[i][Valid] = 0;
             for(new x; x < MAX_STACK_SIZE; x++)
             {
-                DET_g_StackCache[i][ReturnValues][x] = -1;
+                DET_g_StackCache[i][ReturnValues][x] = INVALID_STACK_VALUE;
             }
             CallLocalFunction("OnStackDelete", "si", name, STACK_TYPE_INTEGER);
             return 1;
@@ -103,7 +103,7 @@ varfunc DeclareIntegerStack(const name[], size)
             DET_g_StackCache[i][Valid] = 1;
             for(new x; x < MAX_STACK_SIZE; x++)
             {
-                DET_g_StackCache[i][ReturnValues][x] = -1;
+                DET_g_StackCache[i][ReturnValues][x] = INVALID_STACK_VALUE;
             }
             return 1;
         }   
@@ -122,7 +122,7 @@ stock __GetIntegerStackValue(const name[], index)
             return DET_g_StackCache[i][ReturnValues][index];
         }
     }
-    return -1;
+    return INVALID_STACK_VALUE;
 }
 
 // PUSH THE VALUE.
@@ -135,7 +135,8 @@ stock __PushIntegerStackValue(const name[], value)
         {
             for(new x; x < DET_g_StackCache[i][Size]; x++)
             {
-                if(DET_g_StackCache[i][ReturnValues][x] != -1)
+                __DETUtilsDebug("`__PopIntegerStackValue` called; x: %i", x);
+                if(DET_g_StackCache[i][ReturnValues][x] != INVALID_STACK_VALUE)
                 {
                     CallLocalFunction("OnStackUpdate", "siii", name, STACK_TYPE_INTEGER, value, x);
                     DET_g_StackCache[i][ReturnValues][x] = value;
@@ -144,7 +145,7 @@ stock __PushIntegerStackValue(const name[], value)
             }
         }
     }
-    return -1;
+    return INVALID_STACK_VALUE;
 }
 
 // POP THE VALUE:
@@ -157,11 +158,12 @@ stock __PopIntegerStackValue(const name[], dest)
         {
             for(new x = DET_g_StackCache[i][Size]; x > -1; x--)
             {
-                if(DET_g_StackCache[i][ReturnValues][x] != -1)
+                __DETUtilsDebug("`__PopIntegerStackValue` called; x: %i", x);
+                if(DET_g_StackCache[i][ReturnValues][x] != INVALID_STACK_VALUE)
                 {
-                    CallLocalFunction("OnStackUpdate", "siii", name, STACK_TYPE_INTEGER, -1, x);
+                    CallLocalFunction("OnStackUpdate", "siii", name, STACK_TYPE_INTEGER, INVALID_STACK_VALUE, x);
                     dest = DET_g_StackCache[i][ReturnValues][x];
-                    DET_g_StackCache[i][ReturnValues][x] = -1;
+                    DET_g_StackCache[i][ReturnValues][x] = INVALID_STACK_VALUE;
                     return 1;
                 } 
             }

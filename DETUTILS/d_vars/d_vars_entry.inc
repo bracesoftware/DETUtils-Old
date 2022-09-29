@@ -67,6 +67,11 @@
 
 #endif
 
+// Constants:
+
+#define INVALID_CIRCULAR_VALUE 65536
+#define INVALID_STACK_VALUE 65536
+
 /*
                                                                                       
 88b           d88              88                         db         88888888ba   88  

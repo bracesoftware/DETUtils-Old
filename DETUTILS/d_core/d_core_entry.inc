@@ -71,6 +71,9 @@
 
 #endif
 
+// Debugging is really important.
+#include "d_core_debug"
+
 /*
                                                                       
 88888888888                                                           

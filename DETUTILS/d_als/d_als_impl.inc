@@ -34,7 +34,7 @@
 #if defined DETUTILS_ALS_CALL_DEBUG
 
     #define @b_detals$%0$ format(funcname,32,"@%i@%s",hookindex,%0); \
-    printf("[DETUtils]: (ALS call debug) - Attempted to call: %s", funcname); \
+    __DETUtilsDebug("Attempted to call: %s", funcname); \
     if(funcidx(funcname)!= -1){
 
 #endif

@@ -93,6 +93,7 @@ stock _ReturnPlayerName(id)
 
 stock SaveLogIntoFile(const filename[], const message[]) 
 {
+    // For internal backwards compatibility I'm lazy to remove.
     return 1;
 }
 
