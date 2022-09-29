@@ -95,6 +95,11 @@ varfunc DeclareIntegerStack(const name[], size)
 {
     for(new i; i < MAX_INTEGER_STACKS; i++)
     {
+        if(size < 1)
+        {
+            __DETUtilsError(DETUTILS_ERROR_5,);
+            return 0;
+        }
         if(DET_g_StackCache[i][Valid] == 0)
         {
             strmid(DET_g_StackCache[i][Name], name, 0, 32);

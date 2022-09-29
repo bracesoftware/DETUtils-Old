@@ -246,7 +246,7 @@ varfunc DeclareInteger(const name[], multi, constant, constvalue = 0)
             {
                 for(new x; x < MAX_VAR_RETURN_SLOTS; x++)
                 {
-                    DET_g_IntegerCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
+                    DET_g_IntegerCache[i][Dimensions][x] = 0; // Initialize the "dimension" sizes.
                 }
             }
             else if(multi == 0)
@@ -283,7 +283,7 @@ varfunc DeclareBoolean(const name[], multi, constant, bool:constvalue = false)
             {
                 for(new x; x < MAX_VAR_RETURN_SLOTS; x++)
                 {
-                    DET_g_BoolCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
+                    DET_g_BoolCache[i][Dimensions][x] = 0; // Initialize the "dimension" sizes.
                 }
             }
             else if(multi == 0)
@@ -325,7 +325,7 @@ varfunc DeclareFloat(const name[], multi, constant, Float:constvalue = 0.0000)
             {
                 for(new x; x < MAX_VAR_RETURN_SLOTS; x++)
                 {
-                    DET_g_FloatCache[i][Dimensions][x] = 0;// Initialize the "dimension" sizes.
+                    DET_g_FloatCache[i][Dimensions][x] = 0; // Initialize the "dimension" sizes.
                 }
             }
             else if(multi == 0)
@@ -372,7 +372,7 @@ varfunc DeclareString(const name[], constant, const constvalue[])
 
 // GET... FUNCS
 
-stock __GetIntegerValue(const name[], dimension = -1)
+stock __GetIntegerValue(const name[], dimension = 0)
 {
     for(new i; i < MAX_INTEGER_VARS; i++)
     {
@@ -382,7 +382,7 @@ stock __GetIntegerValue(const name[], dimension = -1)
             {
                 if(dimension == -1)
                 {
-                    printf("[DETUtils]: (var error) - Invalid dimension.");
+                    __DETUtilsError(DETUTILS_ERROR_4,);
                     return 0;
                 }
                 return DET_g_IntegerCache[i][Dimensions][dimension];
@@ -396,7 +396,7 @@ stock __GetIntegerValue(const name[], dimension = -1)
     return 0;
 }
 
-stock __GetBooleanValue(const name[], dimension = -1)
+stock __GetBooleanValue(const name[], dimension = 0)
 {
     for(new i; i < MAX_BOOLEAN_VARS; i++)
     {
@@ -406,7 +406,7 @@ stock __GetBooleanValue(const name[], dimension = -1)
             {
                 if(dimension == -1)
                 {
-                    printf("[DETUtils]: (var error) - Invalid dimension.");
+                    __DETUtilsError(DETUTILS_ERROR_4,);
                     return 0;
                 }
                 return DET_g_BoolCache[i][Dimensions][dimension];
@@ -420,7 +420,7 @@ stock __GetBooleanValue(const name[], dimension = -1)
     return 0;
 }
 
-stock Float:__GetFloatValue(const name[], dimension = -1)
+stock Float:__GetFloatValue(const name[], dimension = 0)
 {
     for(new i; i < MAX_FLOAT_VARS; i++)
     {
@@ -430,7 +430,7 @@ stock Float:__GetFloatValue(const name[], dimension = -1)
             {
                 if(dimension == -1)
                 {
-                    printf("[DETUtils]: (var error) - Invalid dimension.");
+                    __DETUtilsError(DETUTILS_ERROR_4,);
                     return Float:0;
                 }
                 return DET_g_FloatCache[i][Dimensions][dimension];
@@ -462,7 +462,7 @@ stock __GetStringValue(const name[])
 
 // SET THE VALUE.
 
-stock __SetIntegerValue(const name[], value, dimension = -1)
+stock __SetIntegerValue(const name[], value, dimension = 0)
 {
     for(new i; i < MAX_INTEGER_VARS; i++)
     {
@@ -477,7 +477,7 @@ stock __SetIntegerValue(const name[], value, dimension = -1)
             {
                 if(dimension == -1)
                 {
-                    printf("[DETUtils]: (var error) - Invalid dimension.");
+                    __DETUtilsError(DETUTILS_ERROR_4,);
                     return 0;
                 }
                 CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_INTEGER, value, dimension);
@@ -495,7 +495,7 @@ stock __SetIntegerValue(const name[], value, dimension = -1)
     return 0;
 }
 
-stock __SetBooleanValue(const name[], bool:value, dimension = -1)
+stock __SetBooleanValue(const name[], bool:value, dimension = 0)
 {
     for(new i; i < MAX_BOOLEAN_VARS; i++)
     {
@@ -515,7 +515,7 @@ stock __SetBooleanValue(const name[], bool:value, dimension = -1)
             {
                 if(dimension == -1)
                 {
-                    printf("[DETUtils]: (var error) - Invalid dimension.");
+                    __DETUtilsError(DETUTILS_ERROR_4,);
                     return 0;
                 }
                 CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_BOOLEAN, value, dimension);
@@ -533,7 +533,7 @@ stock __SetBooleanValue(const name[], bool:value, dimension = -1)
     return 0;
 }
 
-stock __SetFloatValue(const name[], Float:value, dimension = -1)
+stock __SetFloatValue(const name[], Float:value, dimension = 0)
 {
     for(new i; i < MAX_FLOAT_VARS; i++)
     {
@@ -548,7 +548,7 @@ stock __SetFloatValue(const name[], Float:value, dimension = -1)
             {
                 if(dimension == -1)
                 {
-                    printf("[DETUtils]: (var error) - Invalid dimension.");
+                    __DETUtilsError(DETUTILS_ERROR_4,);
                     return 0;
                 }
                 CallLocalFunction("OnVariableUpdate", "siii", name, VARIABLE_TYPE_FLOAT, value, dimension);

@@ -95,6 +95,11 @@ varfunc DeclareIntegerCircArray(const name[], size)
 {
     for(new i; i < MAX_INTEGER_CIRCULAR_ARRAYS; i++)
     {
+        if(size < 1)
+        {
+            __DETUtilsError(DETUTILS_ERROR_5,);
+            return 0;
+        }
         if(DET_g_ArrayIntegerCache[i][Valid] == 0)
         {
             strmid(DET_g_ArrayIntegerCache[i][Name], name, 0, 32);

@@ -217,6 +217,16 @@ public OnDETUtilsInit() // This should be the last hook.
 
 stock TestVars(testtype)
 {
+    print("                                         ");
+    print("                                         ");
+    print("|=======================================|");
+    print("                                         ");
+    print("                DETUtils                 ");
+    print("       - Var testing func loaded. -      ");
+    print("                                         ");
+    print("|=======================================|");
+    print("                                         ");
+    print("                                         ");
     #if !defined DETUTILS_NO_VARS_STANDARD
     if(testtype == 0)
     {
@@ -369,6 +379,16 @@ stock TestVars(testtype)
         delete StackInteger("Stack");
     }
     #endif
+    print("                                         ");
+    print("                                         ");
+    print("|=======================================|");
+    print("                                         ");
+    print("                DETUtils                 ");
+    print("     - Var testing func unloaded. -      ");
+    print("                                         ");
+    print("|=======================================|");
+    print("                                         ");
+    print("                                         ");
     return 1;
 }
 

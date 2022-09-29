@@ -183,7 +183,7 @@ __DETUTILS_STATIC DET_g_CreatePlayerTextDraws(playerid)
     PlayerTextDrawSetOutline(playerid, DET_g_AnnouncementString[playerid], 1);
     PlayerTextDrawBackgroundColor(playerid, DET_g_AnnouncementString[playerid], 51);
     PlayerTextDrawFont(playerid, DET_g_AnnouncementString[playerid], 2);
-    PlayerTextDrawSetProportional(playerid, DET_g_AnnouncementString[playerid], 1);
+    PlayerTextDrawSetProportional(playerid, DET_g_AnnouncementString[playerid], bool:1);
     return 1;
 }
 
@@ -1060,7 +1060,7 @@ stock SetPropertyEntranceAngles(
 
 public OnPlayerSpawn(playerid)
 {
-    TogglePlayerControllable(playerid, 1);
+    TogglePlayerControllable(playerid, bool:1);
     if(funcidx("a_props_playerspawn") != -1)
     {
         CallLocalFunction("a_props_playerspawn", "i", playerid);
