@@ -1,5 +1,5 @@
 # d_vars_circular.inc
-Pawn Circular Variables - Reserves up space for new circular variables you can dynamically allocate during run-time, really similar to `malloc`.
+Pawn Circular Variables - Reserves up space for new circular arrays - an array you can keep adding data to the end of, and once it reaches its capacity the earliest data added will be removed - which you can dynamically allocate during run-time.
 
 [Go back to the home page...](d_vars.md)
 

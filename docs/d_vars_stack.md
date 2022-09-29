@@ -1,5 +1,5 @@
 # d_vars_stack.inc
-Pawn Stack - Reserves up space for new stacks you can dynamically allocate during run-time, really similar to `malloc`.
+Pawn Stack - Reserves up space for new stacks - conceptual structure consisting of a set of homogeneous elements and is based on the principle of last in first out (LIFO) which is a commonly used abstract data type with two major operations, namely push and pop - which you can dynamically allocate during run-time. 
 
 [Go back to the home page...](d_vars.md)
 
