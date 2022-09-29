@@ -75,40 +75,40 @@
     @DETVAR_%0();@DETVAR_%0() {return DET_gV_DeclareString(%5);}
 
 // get Integer("Variable");
-#define @DETUTILSVARS_GET__@Integer __GetIntegerValue
+#define @DETUTILSVARS_GET__@Integer _D_VARS_giv__
 // get Boolean("Variable");
-#define @DETUTILSVARS_GET__@Boolean __GetBooleanValue
+#define @DETUTILSVARS_GET__@Boolean _D_VARS_gbv__
 // get Float("Variable");
-#define @DETUTILSVARS_GET__@Float __GetFloatValue
+#define @DETUTILSVARS_GET__@Float _D_VARS_gfv__
 // get String("Variable");
-#define @DETUTILSVARS_GET__@String __GetStringValue
+#define @DETUTILSVARS_GET__@String _D_VARS_gsv__
 
 // set Integer("Variable");
-#define @DETUTILSVARS_SET__@Integer __SetIntegerValue
+#define @DETUTILSVARS_SET__@Integer _D_VARS_siv__
 // set Boolean("Variable");
-#define @DETUTILSVARS_SET__@Boolean __SetBooleanValue
+#define @DETUTILSVARS_SET__@Boolean _D_VARS_sbv__
 // set Float("Variable");
-#define @DETUTILSVARS_SET__@Float __SetFloatValue
+#define @DETUTILSVARS_SET__@Float _D_VARS_sfv__
 // set String("Variable");
-#define @DETUTILSVARS_SET__@String __SetStringValue
+#define @DETUTILSVARS_SET__@String _D_VARS_ssv__
 
 // delete Integer("Variable");
-#define @DETUTILSVARS_DEL__@Integer __DeleteIntegerVariable
+#define @DETUTILSVARS_DEL__@Integer _D_VARS_div__
 // delete Boolean("Variable");
-#define @DETUTILSVARS_DEL__@Boolean __DeleteBooleanVariable
+#define @DETUTILSVARS_DEL__@Boolean _D_VARS_dbv__
 // delete Float("Variable");
-#define @DETUTILSVARS_DEL__@Float __DeleteFloatVariable
+#define @DETUTILSVARS_DEL__@Float _D_VARS_dfv__
 // delete String("Variable");
-#define @DETUTILSVARS_DEL__@String __DeleteStringVariable
+#define @DETUTILSVARS_DEL__@String _D_VARS_dsv__
 
 // rename Integer("Variable", "Int");
-#define @DETUTILSVARS_RENAME__@Integer __RenameIntegerVariable
+#define @DETUTILSVARS_RENAME__@Integer _D_VARS_riv__
 // rename Boolean("Variable", "Bool");
-#define @DETUTILSVARS_RENAME__@Boolean __RenameBooleanVariable
+#define @DETUTILSVARS_RENAME__@Boolean _D_VARS_rbv__
 // rename Float("Variable", "Float");
-#define @DETUTILSVARS_RENAME__@Float __RenameFloatVariable
+#define @DETUTILSVARS_RENAME__@Float _D_VARS_rfv__
 // rename String("Variable", "String");
-#define @DETUTILSVARS_RENAME__@String __RenameStringVariable
+#define @DETUTILSVARS_RENAME__@String _D_VARS_rsv__
 
 #if !defined DETUTILS_NO_FILEQUERIES
 
@@ -138,16 +138,16 @@
     @DETVAR_%0();@DETVAR_%0() {return DET_gV_DeclareIntegerCircArray(%5);}
 
 // get CircularInteger("Variable");
-#define @DETUTILSVARS_GET__@CircularInteger __GetIntegerCircularArrayValue
+#define @DETUTILSVARS_GET__@CircularInteger _D_VARS_gicav__
 
 // set CircularInteger("Variable");
-#define @DETUTILSVARS_ADD__@CircularInteger __AddIntegerCircularArrayValue
+#define @DETUTILSVARS_ADD__@CircularInteger _D_VARS_aicav__
 
 // delete CircularInteger("Variable");
-#define @DETUTILSVARS_DEL__@CircularInteger __DeleteIntegerCircularArray
+#define @DETUTILSVARS_DEL__@CircularInteger _D_VARS_dica__
 
 // rename CircularInteger("Variable", "Int");
-#define @DETUTILSVARS_RENAME__@CircularInteger __RenameIntegerCircularArray
+#define @DETUTILSVARS_RENAME__@CircularInteger _D_VARS_rica__
 
 // stack:
 
@@ -155,16 +155,16 @@
     @DETVAR_%0();@DETVAR_%0() {return DET_gV_DeclareIntegerStack(%5);}
 
 // get StackInteger("Variable");
-#define @DETUTILSVARS_GET__@StackInteger __GetIntegerStackValue
+#define @DETUTILSVARS_GET__@StackInteger _D_VARS_gisv__
 
 // push StackInteger("Variable");
-#define @DETUTILSVARS_PUSH__@StackInteger __PushIntegerStackValue
+#define @DETUTILSVARS_PUSH__@StackInteger _D_VARS_pisv__
 
 // pop StackInteger("Variable");
-#define @DETUTILSVARS_POP__@StackInteger __PopIntegerStackValue
+#define @DETUTILSVARS_POP__@StackInteger _D_VARS_pisv__2
 
 // delete StackInteger("Variable");
-#define @DETUTILSVARS_DEL__@StackInteger __DeleteIntegerStack
+#define @DETUTILSVARS_DEL__@StackInteger _D_VARS_dis__
 
 // rename StackInteger("Variable", "Int");
-#define @DETUTILSVARS_RENAME__@StackInteger __RenameIntegerStack
+#define @DETUTILSVARS_RENAME__@StackInteger _D_VARS_ris__

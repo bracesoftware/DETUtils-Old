@@ -55,7 +55,7 @@ new DET_g_StackCache[MAX_INTEGER_STACKS][enum_IntStackData];
 // if you don't, you'll eventually run out of space required for variables to create 
 // and create functions will fail.
 
-stock __DeleteIntegerStack(const name[])
+stock _D_VARS_dis__(const name[])
 {
     for(new i; i < MAX_INTEGER_STACKS; i++)
     {
@@ -76,7 +76,7 @@ stock __DeleteIntegerStack(const name[])
 
 // RENAME FUNCS:
 
-stock __RenameIntegerStack(const oldname[], const newname[])
+stock _D_VARS_ris__(const oldname[], const newname[])
 {
     for(new i; i < MAX_INTEGER_STACKS; i++)
     {
@@ -118,7 +118,7 @@ varfunc DeclareIntegerStack(const name[], size)
 
 // GET... FUNCS
 
-stock __GetIntegerStackValue(const name[], index)
+stock _D_VARS_gisv__(const name[], index)
 {
     for(new i; i < MAX_INTEGER_STACKS; i++)
     {
@@ -132,7 +132,7 @@ stock __GetIntegerStackValue(const name[], index)
 
 // PUSH THE VALUE.
 
-stock __PushIntegerStackValue(const name[], value)
+stock _D_VARS_pisv__(const name[], value)
 {
     for(new i; i < MAX_INTEGER_STACKS; i++)
     {
@@ -155,7 +155,7 @@ stock __PushIntegerStackValue(const name[], value)
 
 // POP THE VALUE:
 
-stock __PopIntegerStackValue(const name[], dest)
+stock _D_VARS_pisv__2(const name[], dest)
 {
     for(new i; i < MAX_INTEGER_STACKS; i++)
     {

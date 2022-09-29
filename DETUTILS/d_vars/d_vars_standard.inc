@@ -97,7 +97,7 @@ new DET_g_FloatCache[MAX_FLOAT_VARS][enum_FloatData];
 // if you don't, you'll eventually run out of space required for variables to create 
 // and create functions will fail.
 
-stock __DeleteIntegerVariable(const name[])
+stock _D_VARS_div__(const name[])
 {
     for(new i; i < MAX_INTEGER_VARS; i++)
     {
@@ -117,7 +117,7 @@ stock __DeleteIntegerVariable(const name[])
     return 0;
 }
 
-stock __DeleteBooleanVariable(const name[])
+stock _D_VARS_dbv__(const name[])
 {
     for(new i; i < MAX_BOOLEAN_VARS; i++)
     {
@@ -137,7 +137,7 @@ stock __DeleteBooleanVariable(const name[])
     return 0;
 }
 
-stock __DeleteFloatVariable(const name[])
+stock _D_VARS_dfv__(const name[])
 {
     for(new i; i < MAX_FLOAT_VARS; i++)
     {
@@ -157,7 +157,7 @@ stock __DeleteFloatVariable(const name[])
     return 0;
 }
 
-stock __DeleteStringVariable(const name[])
+stock _D_VARS_dsv__(const name[])
 {
     for(new i; i < MAX_STRING_VARS; i++)
     {
@@ -175,7 +175,7 @@ stock __DeleteStringVariable(const name[])
 
 // RENAME FUNCS:
 
-stock __RenameIntegerVariable(const oldname[], const newname[])
+stock _D_VARS_riv__(const oldname[], const newname[])
 {
     for(new i; i < MAX_INTEGER_VARS; i++)
     {
@@ -188,7 +188,7 @@ stock __RenameIntegerVariable(const oldname[], const newname[])
     return 0;
 }
 
-stock __RenameBooleanVariable(const oldname[], const newname[])
+stock _D_VARS_rbv__(const oldname[], const newname[])
 {
     for(new i; i < MAX_BOOLEAN_VARS; i++)
     {
@@ -201,7 +201,7 @@ stock __RenameBooleanVariable(const oldname[], const newname[])
     return 0;
 }
 
-stock __RenameFloatVariable(const oldname[], const newname[])
+stock _D_VARS_rfv__(const oldname[], const newname[])
 {
     for(new i; i < MAX_FLOAT_VARS; i++)
     {
@@ -214,7 +214,7 @@ stock __RenameFloatVariable(const oldname[], const newname[])
     return 0;
 }
 
-stock __RenameStringVariable(const oldname[], const newname[])
+stock _D_VARS_rsv__(const oldname[], const newname[])
 {
     for(new i; i < MAX_STRING_VARS; i++)
     {
@@ -372,7 +372,7 @@ varfunc DeclareString(const name[], constant, const constvalue[])
 
 // GET... FUNCS
 
-stock __GetIntegerValue(const name[], dimension = 0)
+stock _D_VARS_giv__(const name[], dimension = 0)
 {
     for(new i; i < MAX_INTEGER_VARS; i++)
     {
@@ -396,7 +396,7 @@ stock __GetIntegerValue(const name[], dimension = 0)
     return 0;
 }
 
-stock __GetBooleanValue(const name[], dimension = 0)
+stock _D_VARS_gbv__(const name[], dimension = 0)
 {
     for(new i; i < MAX_BOOLEAN_VARS; i++)
     {
@@ -420,7 +420,7 @@ stock __GetBooleanValue(const name[], dimension = 0)
     return 0;
 }
 
-stock Float:__GetFloatValue(const name[], dimension = 0)
+stock Float:_D_VARS_gfv__(const name[], dimension = 0)
 {
     for(new i; i < MAX_FLOAT_VARS; i++)
     {
@@ -444,7 +444,7 @@ stock Float:__GetFloatValue(const name[], dimension = 0)
     return Float:0;
 }
 
-stock __GetStringValue(const name[])
+stock _D_VARS_gsv__(const name[])
 {
     new ret[1024];
     format(ret, 4, "NULL");
@@ -462,7 +462,7 @@ stock __GetStringValue(const name[])
 
 // SET THE VALUE.
 
-stock __SetIntegerValue(const name[], value, dimension = 0)
+stock _D_VARS_siv__(const name[], value, dimension = 0)
 {
     for(new i; i < MAX_INTEGER_VARS; i++)
     {
@@ -495,7 +495,7 @@ stock __SetIntegerValue(const name[], value, dimension = 0)
     return 0;
 }
 
-stock __SetBooleanValue(const name[], bool:value, dimension = 0)
+stock _D_VARS_sbv__(const name[], bool:value, dimension = 0)
 {
     for(new i; i < MAX_BOOLEAN_VARS; i++)
     {
@@ -533,7 +533,7 @@ stock __SetBooleanValue(const name[], bool:value, dimension = 0)
     return 0;
 }
 
-stock __SetFloatValue(const name[], Float:value, dimension = 0)
+stock _D_VARS_sfv__(const name[], Float:value, dimension = 0)
 {
     for(new i; i < MAX_FLOAT_VARS; i++)
     {
@@ -566,7 +566,7 @@ stock __SetFloatValue(const name[], Float:value, dimension = 0)
     return 0;
 }
 
-stock __SetStringValue(const name[], const value[])
+stock _D_VARS_ssv__(const name[], const value[])
 {           
     for(new i; i < MAX_STRING_VARS; i++)
     {

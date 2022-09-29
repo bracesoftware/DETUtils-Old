@@ -55,7 +55,7 @@ new DET_g_ArrayIntegerCache[MAX_INTEGER_CIRCULAR_ARRAYS][enum_IntCircArrayData];
 // if you don't, you'll eventually run out of space required for variables to create 
 // and create functions will fail.
 
-stock __DeleteIntegerCircularArray(const name[])
+stock _D_VARS_dica__(const name[])
 {
     for(new i; i < MAX_INTEGER_CIRCULAR_ARRAYS; i++)
     {
@@ -76,7 +76,7 @@ stock __DeleteIntegerCircularArray(const name[])
 
 // RENAME FUNCS:
 
-stock __RenameIntegerCircularArray(const oldname[], const newname[])
+stock _D_VARS_rica__(const oldname[], const newname[])
 {
     for(new i; i < MAX_INTEGER_CIRCULAR_ARRAYS; i++)
     {
@@ -118,7 +118,7 @@ varfunc DeclareIntegerCircArray(const name[], size)
 
 // GET... FUNCS
 
-stock __GetIntegerCircularArrayValue(const name[], index)
+stock _D_VARS_gicav__(const name[], index)
 {
     for(new i; i < MAX_INTEGER_CIRCULAR_ARRAYS; i++)
     {
@@ -132,7 +132,7 @@ stock __GetIntegerCircularArrayValue(const name[], index)
 
 // SET THE VALUE.
 
-stock __AddIntegerCircularArrayValue(const name[], value)
+stock _D_VARS_aicav__(const name[], value)
 {
     for(new i; i < MAX_INTEGER_CIRCULAR_ARRAYS; i++)
     {
