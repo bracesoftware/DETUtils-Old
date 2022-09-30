@@ -11,8 +11,6 @@
  *
  */
 
-#include "d_commands_setup"
-
 #define DETUTILS_CMD_MACROS
 
 #define cmd_%0\32; cmd_
