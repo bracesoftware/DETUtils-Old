@@ -14,18 +14,21 @@ Hello scripter! Welcome to *DEntisT's Utilities* (or **DETUtils** for short) "re
 
 ## Examples
 Honestly, this package of libraries exists for show-off reasons, I made it for my own satisfication since I have a really big desire to code. You can still contribute and use it though. Example code:
-- [View code](https://github.com/DEntis-T/SA-MP-DETUtils/blob/2.x/DETUTILS/d_testing/d_testing_entry.inc)
+- [View code](https://github.com/DEntis-T/SA-MP-DETUtils/blob/master/DETUTILS/d_testing/d_testing_internal.inc)
 
 --------------------------------------
 
 ## Installation
 - Installation is simple, quick and easy - learn more [here](docs/d_installation.md)...
+
 ## Documentation
 Below is a list of all the libraries provided by the DETUtils package. They're all optional unless they're used internally, in that case you'll get a warning.
 
-- Entry point from which everything is included - [detutils.inc](docs/detutils.md)
+| Library      | Description                                                                                |
+| -------------------- | ------------------------------------------------------------------------------------------ |
+| [detutils.inc](docs/detutils.md) | Entry point from which everything is included. |
 
-### Pawn Libraries (`12`)
+### Pawn/Coding Libraries (`12`)
 Libraries whose contain the new language features.
 
 | Library      | Description                                                                                |
