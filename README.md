@@ -25,7 +25,7 @@ Below is a list of all the libraries provided by the DETUtils package. They're a
 
 - Entry point from which everything is included - [detutils.inc](docs/detutils.md)
 
-### Pawn Libraries
+### Pawn Libraries (`12`)
 Libraries whose contain the new language features.
 
 | Library      | Description                                                                                |
@@ -43,7 +43,7 @@ Libraries whose contain the new language features.
 | [d_ascii.inc](docs/d_ascii.md) | ASCII character predefines. |
 | [d_core.inc](docs/d_core.md) | The folder containing all the libraries used by the DETUtils system itself. |
 
-### SA:MP Libraries
+### SA:MP Libraries (`10`)
 Libraries whose contain the new SA:MP functions and features.
 
 | Library      | Description                                                                                |
@@ -59,14 +59,14 @@ Libraries whose contain the new SA:MP functions and features.
 | [d_server.inc](docs/d_server.md) | Generally server-related functions. |
 | [d_races.inc](docs/d_races.md) | A racing system with many features. |
 
-### Discord API Libraries
+### Discord API Libraries (`1`)
 Libraries whose contain the new functions for Discord bot development - these are extensions to Discord Connector plugin and they require the plugin to work.
 
 | Library      | Description                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------ |
 | [d_discordapi.inc](docs/d_discordapi.md) | Addition to the Discord Connector plugin. |
 
-### Storage Libraries
+### Storage Libraries (`3`)
 Libraries whose provide storing (saving), loading and managing persistent data on your server.
 
 | Library      | Description                                                                                |

@@ -157,7 +157,7 @@ stock _D_VARS_aicav__(const name[], value)
                     DET_g_ArrayIntegerCache[i][ReturnValues][x] = DET_g_ArrayIntegerCache[i][ReturnValues][x+1];
                     x++;
                 }
-                while(x < DET_g_ArrayIntegerCache[i][Size]);
+                while(x < DET_g_ArrayIntegerCache[i][Size] - 1);
                 DET_g_ArrayIntegerCache[i][ReturnValues][DET_g_ArrayIntegerCache[i][Size]] = value;
                 return value;
             }
