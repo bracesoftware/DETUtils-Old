@@ -11,6 +11,28 @@
  *
  */
 
+#if defined DETUTILS_DEV_MODE
+
+    #if defined DETUTILS_NO_MODULE_WARNINGS
+
+        #undef DETUTILS_NO_MODULE_WARNINGS
+
+    #endif
+    
+    #if !defined DETUTILS_TESTING_MODE
+    
+        #define DETUTILS_TESTING_MODE
+
+    #endif
+
+    #if !defined DETUTILS_DEBUG_MODE
+    
+        #define DETUTILS_DEBUG_MODE
+
+    #endif
+
+#endif
+
 #include "d_core_funcgen"
 
 #if defined d_core_included
@@ -40,6 +62,12 @@
 #define @newk_%0\32; @newk_
 
 #define DETUTILS @newk_
+
+#endif
+
+#if defined DETUTILS_DEV_MODE
+
+    #warning [DETUtils]: (system) - dev :: Developer mode has been enabled.
 
 #endif
 

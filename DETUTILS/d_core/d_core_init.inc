@@ -417,6 +417,9 @@ __DETUTILS_STATIC void:LoadDETUtils()
     print("|======================================|");
     print("                                        ");
     print("                                        ");
+    #if defined DETUTILS_DEBUG_MODE
+    print(">> SYSTEM | DETUtils - Debug mode is OFF.");
+    #endif
     #if defined DETUTILS_FILTERSCRIPT_MODE
     print(">> SYSTEM | DETUtils - Filterscript mode is ON.");
     #endif
@@ -426,6 +429,11 @@ __DETUTILS_STATIC void:LoadDETUtils()
     print("                                        ");
     #if __DETUtilsBeta == 1
     print("*** [DETUtils]: (beta) - Note that this version is a beta release, which means that this release doesn't represent the final quality of the version.");
+    #endif
+    print("                                        ");
+    print("                                        ");
+    #if defined DETUTILS_DEV_MODE
+    print("\t>> SYSTEM | DETUtils - System is loaded in developer mode.");
     #endif
     print("                                        ");
     print("                                        ");
@@ -444,6 +452,9 @@ __DETUTILS_STATIC void:UnloadDETUtils()
     print("|======================================|");
     print("                                        ");
     print("                                        ");
+    #if defined DETUTILS_DEBUG_MODE
+    print(">> SYSTEM | DETUtils - Debug mode is OFF.");
+    #endif
     #if defined DETUTILS_FILTERSCRIPT_MODE
     print(">> SYSTEM | DETUtils - Filterscript mode is OFF.");
     #endif
@@ -453,6 +464,11 @@ __DETUTILS_STATIC void:UnloadDETUtils()
     print("                                        ");
     #if __DETUtilsBeta == 1
     print("*** [DETUtils]: (beta) - Note that this version is a beta release, which means that this release doesn't represent the final quality of the version.");
+    #endif
+    print("                                        ");
+    print("                                        ");
+    #if defined DETUTILS_DEV_MODE
+    print("\t>> SYSTEM | DETUtils - System is unloaded in developer mode.");
     #endif
     print("                                        ");
     print("                                        ");

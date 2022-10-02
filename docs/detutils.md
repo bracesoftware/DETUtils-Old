@@ -13,6 +13,13 @@ DETUtils Entry Point - The main file which is included in order to use the DETUt
 - Before including the entry point, you can define some compile-time options in order to configure the DETUtils libraries the way you want to.
 
 ## Compile-time options
+### `DETUTILS_DEV_MODE`
+- This is a special build mode I use while developing the DETUtils code. It basically enables `DETUTILS_DEBUG_MODE`, `DETUTILS_TESTING_MODE` and disables `DETUTILS_NO_MODULE_WARNINGS` if it was enabled.
+
+```pawn
+#define DETUTILS_DEV_MODE
+```
+
 ### `DETUTILS_DEBUG_MODE`
 
 - By default, DETUtils includes rarely print any debug messages in the console. Enabling the `DETUTILS_DEBUG_MODE` flag will turn on the debug mode - this is really important and useful for beta feature testing!
@@ -23,7 +30,7 @@ DETUtils Entry Point - The main file which is included in order to use the DETUt
 
 ### `DETUTILS_TESTING_MODE`
 
-- If you want to test DETUtils but don't know where to start, simply enable the `DETUTILS_TESTING_MODE` flag and the `d_testing_entry.inc` will be included. In the basic terms, `d_testing_entry` is a just random gamemode written using the DETUtils includes.
+- If you want to test DETUtils but don't know where to start, simply enable the `DETUTILS_TESTING_MODE` flag and the `d_testing_internal.inc` will be included. In the basic terms, `d_testing_entry` is a just random gamemode written using the DETUtils includes.
 
 ```pawn
 #define DETUTILS_TESTING_MODE
