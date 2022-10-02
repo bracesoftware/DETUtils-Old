@@ -140,7 +140,7 @@ stock _D_VARS_aicav__(const name[], value)
         {
             if(DET_g_ArrayIntegerCache[i][ReturnValues][DET_g_ArrayIntegerCache[i][Size]] == INVALID_CIRCULAR_VALUE)
             {
-                for(new x; x < DET_g_ArrayIntegerCache[i][Size]; x++)
+                for(new x; x < DET_g_ArrayIntegerCache[i][Size] - 1; x++)
                 {
                     if(DET_g_ArrayIntegerCache[i][ReturnValues][x] != INVALID_CIRCULAR_VALUE)
                     {
