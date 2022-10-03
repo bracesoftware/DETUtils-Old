@@ -102,6 +102,7 @@ stock void:SaveDETUtilsLog(const message[])
 #define DETUTILS_SCRIPT_RACES 22
 #define DETUTILS_SCRIPT_GLOBAL 23
 #define DETUTILS_SCRIPT_ASCII 24
+#define DETUTILS_SCRIPT_LAMBDA 25
 
 stock void:LoadDETUtilsScript(scriptid)
 {
@@ -229,6 +230,11 @@ stock void:LoadDETUtilsScript(scriptid)
     {
         print("*** [DETUtils]: (module) - Loaded: d_ascii.inc");
         SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_ascii.inc");
+    }
+    if(scriptid == DETUTILS_SCRIPT_LAMBDA)
+    {
+        print("*** [DETUtils]: (module) - Loaded: d_lambda.inc");
+        SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_lambda.inc");
     }
 }
 
@@ -358,6 +364,11 @@ stock void:UnloadDETUtilsScript(scriptid)
     {
         print("*** [DETUtils]: (module) - Unloaded: d_ascii.inc");
         SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_ascii.inc");
+    }
+    if(scriptid == DETUTILS_SCRIPT_LAMBDA)
+    {
+        print("*** [DETUtils]: (module) - Unloaded: d_lambda.inc");
+        SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_lambda.inc");
     }
 }
 

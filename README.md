@@ -28,7 +28,7 @@ Below is a list of all the libraries provided by the DETUtils package. They're a
 | -------------------- | ------------------------------------------------------------------------------------------ |
 | [detutils.inc](docs/detutils.md) | Entry point from which everything is included. |
 
-### Pawn/Coding Libraries (`12`)
+### Pawn/Coding Libraries (`13`)
 Libraries whose contain the new language features.
 
 | Library      | Description                                                                                |
@@ -45,6 +45,7 @@ Libraries whose contain the new language features.
 | [d_global.inc](docs/d_global.md) | A library which makes expressions possible on the global level - or in simple terms, code outside other functions. |
 | [d_ascii.inc](docs/d_ascii.md) | ASCII character predefines. |
 | [d_core.inc](docs/d_core.md) | The folder containing all the libraries used by the DETUtils system itself. |
+| [d_lambda.inc](docs/d_lambda.md) | Provides new small lambda functions. |
 
 ### SA:MP Libraries (`10`)
 Libraries whose contain the new SA:MP functions and features.
