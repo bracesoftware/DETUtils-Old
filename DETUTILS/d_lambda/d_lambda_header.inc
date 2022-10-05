@@ -36,6 +36,11 @@ stock _D_LAMBDA_for__(const function[], range)
 	}
 	new func[32];
 	format(func, 32, "@D_LM_%s", function);
+	if(funcidx(func) == -1)
+	{
+		__DETUtilsInfo("'lambda for' returned 'LAMBDA_FAIL'.",);
+		return LAMBDA_FAIL;
+	}
 	for(new _D_LAMBDA_inline_loop; 
 		_D_LAMBDA_inline_loop < range; 
 		_D_LAMBDA_inline_loop++)
@@ -43,5 +48,44 @@ stock _D_LAMBDA_for__(const function[], range)
 		CallLocalFunction(func, "");
 	}
 	__DETUtilsInfo("'lambda for' returned 'LAMBDA_SUCCESS'.",);
+	return LAMBDA_SUCCESS;
+}
+
+stock _D_LAMBDA_while__(const function[], bool:condition)
+{
+	if(condition == false)
+	{
+		__DETUtilsInfo("'lambda while' returned 'LAMBDA_FAIL'.",);
+		return LAMBDA_FAIL;
+	}
+	new func[32];
+	format(func, 32, "@D_LM_%s", function);
+	if(funcidx(func) == -1)
+	{
+		__DETUtilsInfo("'lambda while' returned 'LAMBDA_FAIL'.",);
+		return LAMBDA_FAIL;
+	}
+	do
+	{
+		CallLocalFunction(func, "");
+	}
+	while(
+		condition
+	);
+	__DETUtilsInfo("'lambda while' returned 'LAMBDA_SUCCESS'.",);
+	return LAMBDA_SUCCESS;
+}
+
+stock _D_LAMBDA_using__(const function[])
+{
+	new func[32];
+	format(func, 32, "@D_LM_%s", function);
+	if(funcidx(func) == -1)
+	{
+		__DETUtilsInfo("'lambda using' returned 'LAMBDA_FAIL'.",);
+		return LAMBDA_FAIL;
+	}
+	CallLocalFunction(func, "");
+	__DETUtilsInfo("'lambda using' returned 'LAMBDA_SUCCESS'.",);
 	return LAMBDA_SUCCESS;
 }

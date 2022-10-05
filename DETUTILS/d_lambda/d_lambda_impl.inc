@@ -33,7 +33,10 @@
 #define lambda @DETUTILSLAMBDA_KWORD__@
 
 #define @D_LM_%0\32; @D_LM_
+#define @D_LMV_%0\32; @D_LMV_
 
-#define new%0Lambda:%1= @D_LM_%1();@D_LM_%1()
+#define Lambda:%1= @D_LMV_%1;@D_LM_%1();@D_LM_%1()
 
 #define @DETUTILSLAMBDA_KWORD__@for%0=%1{%2} _D_LAMBDA_for__(%2)
+#define @DETUTILSLAMBDA_KWORD__@while%0=%1{%2} _D_LAMBDA_while__(%2)
+#define @DETUTILSLAMBDA_KWORD__@using%0=%1{%2} _D_LAMBDA_using__(%2)
