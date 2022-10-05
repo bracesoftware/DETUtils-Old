@@ -65,13 +65,14 @@ stock _D_LAMBDA_while__(const function[], bool:condition)
 		__DETUtilsInfo("'lambda while' returned 'LAMBDA_FAIL'.",);
 		return LAMBDA_FAIL;
 	}
-	do
+_D_LAMBDA_call_while__:
 	{
 		CallLocalFunction(func, "");
 	}
-	while(
-		condition
-	);
+	if(condition == true)
+	{
+		#emit JUMP _D_LAMBDA_call_while__
+	}
 	__DETUtilsInfo("'lambda while' returned 'LAMBDA_SUCCESS'.",);
 	return LAMBDA_SUCCESS;
 }
@@ -88,4 +89,17 @@ stock _D_LAMBDA_using__(const function[])
 	CallLocalFunction(func, "");
 	__DETUtilsInfo("'lambda using' returned 'LAMBDA_SUCCESS'.",);
 	return LAMBDA_SUCCESS;
+}
+
+stock _D_LAMBDA_task__(const function[], interval, repeating)
+{
+	new func[32];
+	format(func, 32, "@D_LM_%s", function);
+	if(funcidx(func) == -1)
+	{
+		__DETUtilsInfo("'lambda task' returned 'LAMBDA_FAIL'.",);
+		return LAMBDA_FAIL;
+	}
+	__DETUtilsInfo("'lambda task' returned 'LAMBDA_SUCCESS'.",);
+	return SetTimer(func, interval, repeating);
 }

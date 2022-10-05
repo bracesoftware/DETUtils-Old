@@ -40,3 +40,4 @@
 #define @DETUTILSLAMBDA_KWORD__@for%0=%1{%2} _D_LAMBDA_for__(%2)
 #define @DETUTILSLAMBDA_KWORD__@while%0=%1{%2} _D_LAMBDA_while__(%2)
 #define @DETUTILSLAMBDA_KWORD__@using%0=%1{%2} _D_LAMBDA_using__(%2)
+#define @DETUTILSLAMBDA_KWORD__@task%0=%1{%2} _D_LAMBDA_task__(%2)

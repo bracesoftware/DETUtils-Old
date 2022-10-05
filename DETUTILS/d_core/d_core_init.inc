@@ -429,13 +429,16 @@ __DETUTILS_STATIC void:LoadDETUtils()
     print("                                        ");
     print("                                        ");
     #if defined DETUTILS_DEBUG_MODE
-    print(">> SYSTEM | DETUtils - Debug mode is OFF.");
+    print(">> SYSTEM | DETUtils - Debug mode is: <ON>");
     #endif
     #if defined DETUTILS_FILTERSCRIPT_MODE
-    print(">> SYSTEM | DETUtils - Filterscript mode is ON.");
+    print(">> SYSTEM | DETUtils - Filterscript mode is: <ON>");
     #endif
     #if defined DETUTILS_TESTING_MODE
-    print(">> SYSTEM | DETUtils - Testing mode is ON.");
+    print(">> SYSTEM | DETUtils - Testing mode is: <ON>");
+    #endif
+    #if defined DETUTILS_STATIC_MODE
+    print(">> SYSTEM | DETUtils - Static mode is: <ON>");
     #endif
     print("                                        ");
     #if __DETUtilsBeta == 1
@@ -464,13 +467,16 @@ __DETUTILS_STATIC void:UnloadDETUtils()
     print("                                        ");
     print("                                        ");
     #if defined DETUTILS_DEBUG_MODE
-    print(">> SYSTEM | DETUtils - Debug mode is OFF.");
+    print(">> SYSTEM | DETUtils - Debug mode is: <OFF>");
     #endif
     #if defined DETUTILS_FILTERSCRIPT_MODE
-    print(">> SYSTEM | DETUtils - Filterscript mode is OFF.");
+    print(">> SYSTEM | DETUtils - Filterscript mode is: <OFF>");
     #endif
     #if defined DETUTILS_TESTING_MODE
-    print(">> SYSTEM | DETUtils - Testing mode is OFF.");
+    print(">> SYSTEM | DETUtils - Testing mode is: <OFF>");
+    #endif
+    #if defined DETUTILS_STATIC_MODE
+    print(">> SYSTEM | DETUtils - Static mode is: <OFF>");
     #endif
     print("                                        ");
     #if __DETUtilsBeta == 1

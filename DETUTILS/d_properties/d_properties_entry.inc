@@ -124,7 +124,7 @@ __DETUTILS_STATIC void:_PropertyLoadingTime(const playerid)
     SetTimerEx("_ToggleControllable", 1000, false, "i", playerid);
 }
 
-__DETUTILS_STATIC new DET_g_sHideAnnouncement[MAX_PLAYERS];
+__DETUTILS_STATIC DET_g_sHideAnnouncement[MAX_PLAYERS];
 
 __DETUTILS_STATIC stock DET_g_Announcement(playerid, const _Message[])
 {

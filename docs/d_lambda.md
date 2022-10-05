@@ -80,16 +80,16 @@ Lambda test passed!
 
 ```pawn
 new 
-    bool:condition = true, 
+    bool:MyCondition = true, 
     Lambda:TestLambda2 = {
-        condition = false;
+        MyCondition = false;
         print("TestLambda2 called!");
         return 1;
     }
 
 main()
 {
-    lambda while = {"TestLambda2", condition};
+    lambda while = {"TestLambda2", MyCondition};
 }
 ```
 
@@ -97,4 +97,33 @@ main()
 
 ```
 TestLambda2 called!
+```
+
+### `lambda task`
+
+```pawn
+new
+    Lambda:Timer = {
+        return print("Lambda Timer works.");
+    }
+
+main()
+{
+    lambda task = {"Timer", 1000, true};
+}
+```
+
+- This will create a repeating task (timer) which will get called every 1 second. To kill this timer, use `KillTimer`.
+
+```pawn
+new
+	timer;
+
+main()
+{
+    timer = (lambda task = {"Timer", 1000, true});
+}
+
+// Somewhere in the code:
+KillTimer(timer);
 ```
