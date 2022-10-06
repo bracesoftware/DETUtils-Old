@@ -1306,7 +1306,7 @@ COMMAND__ chatmode(playerid, params[])
     return 0;
 }
 
-__DETUTILS_STATIC stock _ClearChatModeData(playerid)
+__DETUTILS_STATIC _ClearChatModeData(playerid)
 {
     return DET_g_pChatMode[playerid] = 0;
 }

@@ -126,7 +126,7 @@ __DETUTILS_STATIC void:_PropertyLoadingTime(const playerid)
 
 __DETUTILS_STATIC DET_g_sHideAnnouncement[MAX_PLAYERS];
 
-__DETUTILS_STATIC stock DET_g_Announcement(playerid, const _Message[])
+__DETUTILS_STATIC DET_g_Announcement(playerid, const _Message[])
 {
     new c_Message[300];
 

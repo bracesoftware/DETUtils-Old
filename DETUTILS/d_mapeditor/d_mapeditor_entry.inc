@@ -63,7 +63,7 @@ stock ShowMapEditorMenuToPlayer(playerid)
     return 1;
 }
 
-__DETUTILS_STATIC stock d_me_GetNearestObject(playerid)
+__DETUTILS_STATIC d_me_GetNearestObject(playerid)
 {
     for(new i; i < MAX_OBJECTS; i++)
     {

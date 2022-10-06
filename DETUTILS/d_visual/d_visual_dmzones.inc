@@ -147,7 +147,7 @@ stock GetDeathMatchZoneName(id)
     return name;
 }
 
-__DETUTILS_STATIC stock DET_sGivePlayerWeapons(playerid, kitlevel)
+__DETUTILS_STATIC DET_sGivePlayerWeapons(playerid, kitlevel)
 {
     if(kitlevel == 10) 
     {

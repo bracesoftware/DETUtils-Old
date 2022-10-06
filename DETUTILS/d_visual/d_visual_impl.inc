@@ -738,7 +738,7 @@ forward d_v_playerupdate(playerid);
 
 // - Commands - //
 
-__DETUTILS_STATIC stock __WeaponTimer_var[MAX_PLAYERS];
+__DETUTILS_STATIC __WeaponTimer_var[MAX_PLAYERS];
 
 #if !defined MAX_DROPPED_GUNS
 

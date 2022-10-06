@@ -53,7 +53,7 @@ new DET_g_AntiCheatTimer;
 
 // Functions:
 
-__DETUTILS_STATIC stock d_ac_IsPlayerNearSprunk(playerid)
+__DETUTILS_STATIC d_ac_IsPlayerNearSprunk(playerid)
 {
     if(IsPlayerInRangeOfPoint(playerid, 4, -2420.219, 984.578, 44.297)) return 1;
     else if(IsPlayerInRangeOfPoint(playerid, 4, -2420.180, 985.945, 44.297)) return 1;
