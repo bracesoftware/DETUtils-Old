@@ -39,7 +39,7 @@
 
 //DETUTILS_STATIC_MODE
 
-#define __DETUTILS_STATIC
+#define __DETUTILS_STATIC stock
 
 #if defined DETUTILS_STATIC_MODE
 
