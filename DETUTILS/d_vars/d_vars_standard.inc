@@ -93,7 +93,7 @@ new DET_g_FloatCache[MAX_FLOAT_VARS][enum_FloatData];
 // DELETE FUNCS
 
 // Delete functions are REALLY important.
-// Though, I HIGHLY recommend to delete every variable which is not needed because
+// Though, I HIGHLY recommend to DETUTILS_delete  every variable which is not needed because
 // if you don't, you'll eventually run out of space required for variables to create 
 // and create functions will fail.
 
@@ -893,7 +893,7 @@ stock __SaveIntegerVariable(const name[])
             SendQuery(savequery);
             DestroyQuery(savequery);
             
-            delete Integer(name);
+            DETUTILS_delete  Integer(name);
 
             return 1;
         }
@@ -1015,7 +1015,7 @@ stock __SaveBooleanVariable(const name[])
             SendQuery(savequery);
             DestroyQuery(savequery);
             
-            delete Boolean(name);
+            DETUTILS_delete  Boolean(name);
 
             return 1;
         }
@@ -1137,7 +1137,7 @@ stock __SaveFloatVariable(const name[])
             SendQuery(savequery);
             DestroyQuery(savequery);
             
-            delete Float(name);
+            DETUTILS_delete  Float(name);
 
             return 1;
         }
@@ -1252,7 +1252,7 @@ stock __SaveStringVariable(const name[])
             SendQuery(savequery);
             DestroyQuery(savequery);
             
-            delete String(name);
+            DETUTILS_delete  String(name);
 
             return 1;
         }

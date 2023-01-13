@@ -12,9 +12,12 @@
  */
 
 #define @DETUTILSPROFILE_KWORD__@%0\32; @DETUTILSPROFILE_KWORD__@
-#define @profile%0(%1. @DETUTILSPROFILE_KWORD__@
+#define @DETUTILS_profile%0(%1. @DETUTILSPROFILE_KWORD__@
+#if DETUTILS_ANNOTATION__(profile)
+    #define @profile%0(%1. @DETUTILSPROFILE_KWORD__@
+#endif
 #define __d_pfunc%0\32; __d_pfunc
- #define __d_pfunc2%0\32; __d_pfunc2
+#define __d_pfunc2%0\32; __d_pfunc2
 
 /*
                                                                                       

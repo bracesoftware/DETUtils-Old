@@ -19,8 +19,10 @@
 #endif
 
 #define @DETUTILSEVENTS_KWORD__@%0\32; @DETUTILSEVENTS_KWORD__@
-#define @event%0(%1.type%2= @DETUTILSEVENTS_KWORD__@
-
+#define @DETUTILS_event%0(%1.type%2= @DETUTILSEVENTS_KWORD__@
+#if DETUTILS_ANNOTATION__(event)
+    #define @event%0(%1.type%2= @DETUTILSEVENTS_KWORD__@
+#endif
 #define @evnt_%0\32; @evnt_
 #define evnttype_%0\32; evnttype_
 #define evntfile_%0\32; evntfile_

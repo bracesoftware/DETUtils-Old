@@ -33,10 +33,20 @@
 
 // Keywords.
 #define @DETUTILSFOREACH_KWORD__@%0\32; @DETUTILSFOREACH_KWORD__@
-#define foreach @DETUTILSFOREACH_KWORD__@
+#define DETUTILS_foreach @DETUTILSFOREACH_KWORD__@
 #define @DETUTILSFOREACH_KWORD__2@%0\32; @DETUTILSFOREACH_KWORD__2@
-#define iterator @DETUTILSFOREACH_KWORD__2@
-#define iter iterator
+#define DETUTILS_iterator @DETUTILSFOREACH_KWORD__2@
+#define DETUTILS_iter DETUTILS_iterator
+
+#if DETUTILS_KEYWORD__(foreach)
+    #define foreach DETUTILS_foreach
+#endif
+#if DETUTILS_KEYWORD__(iterator)
+    #define iterator DETUTILS_iterator
+#endif
+#if DETUTILS_KEYWORD__(iter)
+    #define iter DETUTILS_iter
+#endif
 
 // Prefixes!
 #define itr_%0\32; itr_

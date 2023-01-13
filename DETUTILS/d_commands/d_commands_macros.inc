@@ -41,7 +41,13 @@
 
 #define @DETUTILS_CMD_DEC__@%0\32; @DETUTILS_CMD_DEC__@
 
-#define @command%0(%1.type%2= @DETUTILS_CMD_DEC__@
+#define @DETUTILS_command%0(%1.type%2= @DETUTILS_CMD_DEC__@
+
+#if DETUTILS_ANNOTATION__(command)
+
+    #define @command%0(%1.type%2= @DETUTILS_CMD_DEC__@
+
+#endif
 
 // @command() macros
 

@@ -103,6 +103,7 @@ stock void:SaveDETUtilsLog(const message[])
 #define DETUTILS_SCRIPT_GLOBAL 23
 #define DETUTILS_SCRIPT_ASCII 24
 #define DETUTILS_SCRIPT_LAMBDA 25
+#define DETUTILS_SCRIPT_EDITOBJECT 26
 
 stock void:LoadDETUtilsScript(scriptid)
 {
@@ -235,6 +236,11 @@ stock void:LoadDETUtilsScript(scriptid)
     {
         print("*** [DETUtils]: (module) - Loaded: d_lambda.inc");
         SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_lambda.inc");
+    }
+    if(scriptid == DETUTILS_SCRIPT_EDITOBJECT)
+    {
+        print("*** [DETUtils]: (module) - Loaded: d_editobject.inc");
+        SaveDETUtilsLog("[DETUtils]: (module) - Loaded: d_editobject.inc");
     }
 }
 
@@ -370,6 +376,11 @@ stock void:UnloadDETUtilsScript(scriptid)
         print("*** [DETUtils]: (module) - Unloaded: d_lambda.inc");
         SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_lambda.inc");
     }
+    if(scriptid == DETUTILS_SCRIPT_EDITOBJECT)
+    {
+        print("*** [DETUtils]: (module) - Unloaded: d_editobject.inc");
+        SaveDETUtilsLog("[DETUtils]: (module) - Unloaded: d_editobject.inc");
+    }
 }
 
 /*
@@ -421,7 +432,7 @@ __DETUTILS_STATIC void:LoadDETUtils()
     print("                DETUtils                ");
     print("        System is now loading...        ");
     print("                                        ");
-    printf("              Version: %s              ", DET_g_Version);
+    printf("          Version: %s              ", DET_g_Version);
     print("                                        ");
     print("               By: DEntisT              ");
     print("                                        ");
@@ -439,6 +450,9 @@ __DETUTILS_STATIC void:LoadDETUtils()
     #endif
     #if defined DETUTILS_STATIC_MODE
     print(">> SYSTEM | DETUtils - Static mode is: <ON>");
+    #endif
+    #if defined DETUTILS_COMPATIBILITY_MODE
+    print(">> SYSTEM | DETUtils - Compatibility mode is: <ON>");
     #endif
     print("                                        ");
     #if __DETUtilsBeta == 1
@@ -477,6 +491,9 @@ __DETUTILS_STATIC void:UnloadDETUtils()
     #endif
     #if defined DETUTILS_STATIC_MODE
     print(">> SYSTEM | DETUtils - Static mode is: <OFF>");
+    #endif
+    #if defined DETUTILS_COMPATIBILITY_MODE
+    print(">> SYSTEM | DETUtils - Compatibility mode is: <OFF>");
     #endif
     print("                                        ");
     #if __DETUtilsBeta == 1

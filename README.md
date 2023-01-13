@@ -62,6 +62,7 @@ Libraries whose contain the new SA:MP functions and features.
 | [d_dialog.inc](docs/d_dialog.md) | A replacement `ShowPlayerDialog` and `OnDialogResponse` containing even more callbacks and functions to manipulate dialogs. |
 | [d_server.inc](docs/d_server.md) | Generally server-related functions. |
 | [d_races.inc](docs/d_races.md) | A racing system with many features. |
+| [d_editobject.inc](docs/d_editobject.md) | New `EditObject()`/`EditPlayerObject` system with many more features. |
 
 ### Discord API Libraries (`1`)
 Libraries whose contain the new functions for Discord bot development - these are extensions to Discord Connector plugin and they require the plugin to work.

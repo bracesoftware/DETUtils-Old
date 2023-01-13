@@ -12,7 +12,11 @@
  */
 
 #define @DETUTILSTIMERS_KWORD__@%0\32; @DETUTILSTIMERS_KWORD__@
-#define @task%0(%1.%2type%3= @DETUTILSTIMERS_KWORD__@
+#define @DETUTILS_task%0(%1.%2type%3= @DETUTILSTIMERS_KWORD__@
+
+#if DETUTILS_ANNOTATION__(task)
+    #define @task%0(%1.%2type%3= @DETUTILSTIMERS_KWORD__@
+#endif
 
 /*
                                                                                       

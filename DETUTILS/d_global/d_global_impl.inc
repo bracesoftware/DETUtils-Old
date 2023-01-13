@@ -19,6 +19,12 @@
 
 #endif
 
+#if DETUTILS_KEYWORD__(global)
+
+    #define global DETUTILS_global
+
+#endif
+
 #define @glb%0\32; @glb
 #define @glbc_%0\32; @glbc_
 
@@ -90,12 +96,12 @@ stock LoadDETUtilsGlobalCode()
 
 #if !defined AMX_HEADER_INC
 
-#define global%0; \
+#define DETUTILS_global%0; \
     @DETUTILSGLOBAL_FUNC__$glb..$; @DETUTILSGLOBAL_FUNC__$glb..$ @DETUTILSGLOBAL_RET__FUNC:%0;
 
 #elseif defined AMX_HEADER_INC
 
-#define global%0(%2)%1; \
+#define DETUTILS_global%0(%2)%1; \
     @DETUTILSGLOBAL_PROCEDURE__P:%0(%2); @DETUTILSGLOBAL_AMXFUNC__:%0; @DETUTILSGLOBAL_RET__FUNC:%1;
 
 stock CallGlobalProcedure(const procedure[])

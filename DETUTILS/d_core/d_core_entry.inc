@@ -57,6 +57,14 @@
                                                                                       
 */
 
+#define DETUTILS_ANNOTATION__(%0) \
+((defined DETUTILS_COMPATIBILITY_MODE && defined DETUTILS_ANNOTATION_%0) || \
+    (!defined DETUTILS_COMPATIBILITY_MODE && !defined DETUTILS_NO_ANNOTATION_%0))
+
+#define DETUTILS_KEYWORD__(%0) \
+((defined DETUTILS_COMPATIBILITY_MODE && defined DETUTILS_KEYWORD_%0) || \
+    (!defined DETUTILS_COMPATIBILITY_MODE && !defined DETUTILS_NO_KEYWORD_%0))
+
 #if defined DETUTILS_COMPAT
 
 #define @newk_%0\32; @newk_
@@ -68,6 +76,16 @@
 #if defined DETUTILS_DEV_MODE
 
     #warning [DETUtils]: (system) - dev :: Developer mode has been enabled.
+
+#endif
+
+#if defined DETUTILS_COMPATIBILITY_MODE
+
+    #if !defined DETUTILS_NO_MODULE_WARNINGS
+    
+        #warning [DETUtils]: (system) - compat :: Compatibility mode has been enabled.
+    
+    #endif
 
 #endif
 

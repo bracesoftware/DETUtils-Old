@@ -14,34 +14,64 @@
 #define @DETUTILSVARS_DECORT__@%0\32; @DETUTILSVARS_DECORT__@
 #define @variable%0(%1.datatype%2= @DETUTILSVARS_DECORT__@
 #define @DETUTILSVARS_DEL__@%0\32; @DETUTILSVARS_DEL__@
-#define delete @DETUTILSVARS_DEL__@
+#define DETUTILS_delete @DETUTILSVARS_DEL__@
 #define @DETUTILSVARS_SET__@%0\32; @DETUTILSVARS_SET__@
-#define set @DETUTILSVARS_SET__@
+#define DETUTILS_set @DETUTILSVARS_SET__@
 #define @DETUTILSVARS_GET__@%0\32; @DETUTILSVARS_GET__@
-#define get @DETUTILSVARS_GET__@
+#define DETUTILS_get @DETUTILSVARS_GET__@
 #define @DETUTILSVARS_RENAME__@%0\32; @DETUTILSVARS_RENAME__@
-#define rename @DETUTILSVARS_RENAME__@
+#define DETUTILS_rename @DETUTILSVARS_RENAME__@
 #define @DETVAR_%0\32; @DETVAR_
 
 #if !defined DETUTILS_NO_FILEQUERIES
 #define @DETUTILSVARS_SAVE__@%0\32; @DETUTILSVARS_SAVE__@
-#define save @DETUTILSVARS_SAVE__@
+#define DETUTILS_save @DETUTILSVARS_SAVE__@
 #define @DETUTILSVARS_LOAD__@%0\32; @DETUTILSVARS_LOAD__@
-#define load @DETUTILSVARS_LOAD__@
+#define DETUTILS_load @DETUTILSVARS_LOAD__@
 #endif
 
 // circular arrays:
 
 #define @DETUTILSVARS_ADD__@%0\32; @DETUTILSVARS_ADD__@
-#define add @DETUTILSVARS_ADD__@
+#define DETUTILS_add @DETUTILSVARS_ADD__@
 
 // stack:
 
 #define @DETUTILSVARS_PUSH__@%0\32; @DETUTILSVARS_PUSH__@
-#define push @DETUTILSVARS_PUSH__@
+#define DETUTILS_push @DETUTILSVARS_PUSH__@
 
 #define @DETUTILSVARS_POP__@%0\32; @DETUTILSVARS_POP__@
-#define pop @DETUTILSVARS_POP__@
+#define DETUTILS_pop @DETUTILSVARS_POP__@
+
+// compatibility mode:
+
+#if DETUTILS_KEYWORD__(delete)
+    #define delete DETUTILS_delete
+#endif
+#if DETUTILS_KEYWORD__(set)
+    #define set DETUTILS_set
+#endif
+#if DETUTILS_KEYWORD__(get)
+    #define get DETUTILS_get
+#endif
+#if DETUTILS_KEYWORD__(rename)
+    #define rename DETUTILS_rename
+#endif
+#if DETUTILS_KEYWORD__(save)
+    #define save DETUTILS_save
+#endif
+#if DETUTILS_KEYWORD__(load)
+    #define load DETUTILS_load
+#endif
+#if DETUTILS_KEYWORD__(add)
+    #define add DETUTILS_add
+#endif
+#if DETUTILS_KEYWORD__(push)
+    #define push DETUTILS_push
+#endif
+#if DETUTILS_KEYWORD__(pop)
+    #define pop DETUTILS_pop
+#endif
 
 /*
                                                                                       

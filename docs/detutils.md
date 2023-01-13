@@ -13,8 +13,64 @@ DETUtils Entry Point - The main file which is included in order to use the DETUt
 - Before including the entry point, you can define some compile-time options in order to configure the DETUtils libraries the way you want to.
 
 ## Compile-time options
+
+### `DETUTILS_COMPATIBILITY_MODE`
+- This is one of the most important build modes, it replaces all of the custom keywords and annotation names with `DETUTILS_`-prefixed names:
+
+```pawn
+@command(...) cmd(...)
+{
+
+}
+```
+
+- With `DETUTILS_COMPATIBILITY_MODE` enabled, you should do it like this:
+
+```pawn
+@DETUTILS_command(...) cmd(...)
+{
+
+}
+```
+
+- Or example with `d_vars`:
+
+```pawn
+get Integer(...);
+```
+
+- With `DETUTILS_COMPATIBILITY_MODE` enabled, you should do it like this:
+
+```pawn
+DETUTILS_get Integer(...);
+```
+
+- If you want all but one keyword or annotation, you can leave the compatibility mode off and just do:
+
+```pawn
+#define DETUTILS_NO_ANNOTATION_command
+```
+
+- or for keywords:
+
+```pawn
+#define DETUTILS_NO_KEYWORD_get
+```
+
+- Or if you want to use one keyword or annotation, but with compatibility mode enabled - you can do:
+
+```pawn
+#define DETUTILS_ANNOTATION_command
+```
+
+- or for keywords:
+
+```pawn
+#define DETUTILS_KEYWORD_get
+```
+
 ### `DETUTILS_DEV_MODE`
-- This is a special build mode I use while developing the DETUtils code. It basically enables `DETUTILS_DEBUG_MODE`, `DETUTILS_TESTING_MODE` and disables `DETUTILS_NO_MODULE_WARNINGS` if it was enabled.
+- This is another special build mode I use while developing the DETUtils code. It basically enables `DETUTILS_DEBUG_MODE`, `DETUTILS_TESTING_MODE` and disables `DETUTILS_NO_MODULE_WARNINGS` if it was enabled.
 
 ```pawn
 #define DETUTILS_DEV_MODE

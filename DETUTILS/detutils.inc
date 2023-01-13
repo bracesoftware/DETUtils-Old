@@ -855,6 +855,37 @@ Includes
 
 #endif
 /* =============================================================== */
+#if !defined DETUTILS_NO_EDITOBJECT
+
+ 	//#warning [DETUtils]: (includes) - Library 'd_properties' is disabled.
+	#include "d_editobject"
+
+	// Vercheck
+
+	#if !defined DETUTILS_LIBVER_EDITOBJECT
+		
+		#error [DETUtils]: (version) - Version not specified.
+	
+	#elseif defined DETUTILS_LIBVER_EDITOBJECT
+
+		#if DETUTILS_LIBVER_EDITOBJECT != 1
+
+			#error [DETUtils]: (version) - 'd_editobject.inc' is outdated.
+
+		#endif
+
+	#endif
+
+#else
+
+ 	#if !defined DETUTILS_NO_MODULE_WARNINGS
+
+ 		#warning [DETUtils]: (includes) - Library 'd_editobject' is disabled.
+
+ 	#endif
+
+#endif
+/* =============================================================== */
 
 #if defined DETUTILS_NO_PROPERTIES && defined DETUTILS_NO_COMMANDS && defined DETUTILS_NO_FMARGS \
  && defined DETUTILS_NO_VISUAL && defined DETUTILS_NO_ANTICHEAT && defined DETUTILS_NO_FILEQUERIES \
@@ -863,7 +894,8 @@ Includes
  && defined DETUTILS_NO_FOREACH && defined DETUTILS_NO_TABLES && defined DETUTILS_NO_TOML \
  && defined DETUTILS_NO_PROFILE && defined DETUTILS_NO_TIMERS && defined DETUTILS_NO_DISCORDAPI \
  && defined DETUTILS_NO_PERMISSIONS && defined DETUTILS_NO_EVENTS && defined DETUTILS_NO_YAML \
- && defined DETUTILS_NO_GLOBAL && defined DETUTILS_NO_ASCII && defined DETUTILS_NO_LAMBDA
+ && defined DETUTILS_NO_GLOBAL && defined DETUTILS_NO_ASCII && defined DETUTILS_NO_LAMBDA \
+ && defined DETUTILS_NO_EDITOBJECT
 
 	#warning [DETUtils]: (warning) - All library modules are disabled.
 
