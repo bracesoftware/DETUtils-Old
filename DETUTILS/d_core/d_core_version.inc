@@ -35,10 +35,10 @@
 */
 
 #define __DETUtils 0x207
-#define __DETUtilsRelease 0x2
+#define __DETUtilsRelease 0x3
 #define __DETUtilsBeta 1
 
 #define DETUTILS_VERSION_MAJOR 2
 #define DETUTILS_VERSION_MINOR 0
 #define DETUTILS_VERSION_PATCH 7
-#define DETUTILS_VERSION_RELEASE 2
+#define DETUTILS_VERSION_RELEASE 3

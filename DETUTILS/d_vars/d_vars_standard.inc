@@ -447,13 +447,13 @@ stock Float:_D_VARS_gfv__(const name[], dimension = 0)
 stock _D_VARS_gsv__(const name[])
 {
     new ret[1024];
-    format(ret, 4, "NULL");
+    format(ret, sizeof ret, "NULL");
             
     for(new i; i < MAX_STRING_VARS; i++)
     {
         if(!strcmp(DET_g_StringCache[i][StringName], name, false))
         {
-            format(ret, 1024, "%s", DET_g_StringCache[i][ReturnVal]);
+            format(ret, sizeof ret, "%s", DET_g_StringCache[i][ReturnVal]);
             return ret;
         }
     }

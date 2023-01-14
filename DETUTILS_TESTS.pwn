@@ -9,11 +9,9 @@
 #define DETUTILS_ALS_CALL_DEBUG
 #define DISCORD_COMMAND_PREFIX '!'
 #define DETUTILS_FMARGS_FUNCREPLACE
+#define DETUTILS_NO_DISCORDAPI
 
 #include <a_samp>
-// Because the standard "discord-connector.inc.in" cannot
-// be included.
-// #include "dependencies\discord-connector.inc"
 
 #include "DETUTILS\detutils"
 

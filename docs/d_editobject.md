@@ -1,5 +1,5 @@
 # d_editobject.inc
-SA:MP Object Edit - New `EditObject()`/`EditPlayerObject` system with many more features.
+SA:MP Object Edit - New `EditObject()`/`EditPlayerObject()` system with many more features.
 
 [Go back to the home page...](../README.md)
 

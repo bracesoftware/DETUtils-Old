@@ -199,9 +199,28 @@ stock DET_g_EndPlayerEditMode(playerid)
     return 1;
 }
 
-///////////PUBLIC/////////
-OnPlayerClickEditingMenu(playerid, Text:textid);
-public OnPlayerClickEditingMenu(playerid, Text:textid)
+public OnPlayerClickTextDraw(playerid, Text:clickedid)
+{
+    CallLocalFunction("DET_OnPlayerClickEditingMenu", "ii", playerid, _:clickedid);
+    if(funcidx("d_editobj_opctd") != -1)
+    {
+        CallLocalFunction("d_editobj_opctd", "ii", playerid, _:clickedid);
+    }
+    return 1;
+}
+
+#if defined _ALS_OnPlayerClickTextDraw
+    #undef OnPlayerClickTextDraw
+#else
+    #define _ALS_OnPlayerClickTextDraw
+#endif
+
+#define OnPlayerClickTextDraw( d_editobj_opctd(
+
+forward d_editobj_opctd(playerid, Text:clickedid);
+
+forward DET_OnPlayerClickEditingMenu(playerid, Text:textid);
+public DET_OnPlayerClickEditingMenu(playerid, Text:textid)
 {
     new EditingMenuString[256];
     //global objects

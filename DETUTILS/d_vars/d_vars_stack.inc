@@ -169,7 +169,7 @@ stock _D_VARS_pisv__2(const name[], dest)
                     CallLocalFunction("OnStackUpdate", "siii", name, STACK_TYPE_INTEGER, INVALID_STACK_VALUE, x);
                     dest = DET_g_StackCache[i][ReturnValues][x];
                     DET_g_StackCache[i][ReturnValues][x] = INVALID_STACK_VALUE;
-                    return 1;
+                    return dest;
                 } 
             }
         }
