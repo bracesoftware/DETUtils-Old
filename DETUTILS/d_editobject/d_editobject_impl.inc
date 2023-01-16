@@ -35,6 +35,10 @@
 #define OBJECT_TYPE_PLAYER (1)
 #define OBJECT_TYPE_ATTACHED (2)
 
+#define EDITING_RESPONSE_CANCEL (0)
+#define EDITING_RESPONSE_FINAL (1)
+#define EDITING_RESPONSE_UPDATE (2)
+
 #define DETUTILS_EDITGLOBALOBJ_CALLBACK "OnPlayerEditGlobalObject"
 #define DETUTILS_EDITPLAYEROBJ_CALLBACK "OnPlayerEditPlayerObject"
 
@@ -47,16 +51,18 @@ forward OnPlayerEditPlayerObject(playerid, objectid, response, Float:x, Float:y,
 
 enum enum_PlayerEditObjInfo
 {
-    EditedObject,
-    EditedAttachedObject,
     ObjectType,
+    EditingMode,
+    Float:UpdateRate,
+    //Global and player objects
+    EditedObject,
     Float:EditedObjectPos[3],
     Float:EditedObjectRot[3],
     Float:StartPos[3],
     Float:StartRot[3],
     bool:Editing,
-    EditingMode,
-    Float:UpdateRate
+    //Attached objects
+    EditedBodyPart
 }
 
 new DET_g_PlayerEditObjInfo[MAX_PLAYERS][enum_PlayerEditObjInfo];
@@ -166,11 +172,17 @@ stock PlayerEditAttachedObject(playerid, objectid)
     return 1;
 }
 
+stock SetPlayerEditUpdateRate(playerid, Float:rate)
+{
+    DET_g_PlayerEditObjInfo[playerid][UpdateRate] = rate;
+    return 1;
+}
+
 stock DET_g_EndPlayerEditMode(playerid)
 {
     DET_g_ShowEditingMenu(playerid, false);
     DET_g_PlayerEditObjInfo[playerid][EditedObject] = -1;
-    DET_g_PlayerEditObjInfo[playerid][EditedAttachedObject] = -1;
+    DET_g_PlayerEditObjInfo[playerid][EditedBodyPart] = -1;
     DET_g_PlayerEditObjInfo[playerid][EditingMode] = EDITING_MODE_POS;
     DET_g_PlayerEditObjInfo[playerid][UpdateRate] = DEFAULT_OBJECT_POS_UPDATE_RATE;
     DET_g_PlayerEditObjInfo[playerid][ObjectType] = OBJECT_TYPE_GLOBAL;
@@ -465,7 +477,7 @@ public DET_OnPlayerClickEditingMenu(playerid, Text:textid)
         if((textid != DET_g_EditObjectTD[18]) && (textid != DET_g_EditObjectTD[19]))
         {
             CallLocalFunction(DETUTILS_EDITGLOBALOBJ_CALLBACK, "iiiffffff", 
-                playerid,DET_g_PlayerEditObjInfo[playerid][EditedObject],EDIT_RESPONSE_UPDATE,
+                playerid,DET_g_PlayerEditObjInfo[playerid][EditedObject],EDITING_RESPONSE_UPDATE,
                 DET_g_PlayerEditObjInfo[playerid][EditedObjectPos][0], 
                 DET_g_PlayerEditObjInfo[playerid][EditedObjectPos][1],
                 DET_g_PlayerEditObjInfo[playerid][EditedObjectPos][2],
@@ -477,7 +489,7 @@ public DET_OnPlayerClickEditingMenu(playerid, Text:textid)
         if(textid == DET_g_EditObjectTD[18])
         {
             CallLocalFunction(DETUTILS_EDITGLOBALOBJ_CALLBACK, "iiiffffff", 
-                playerid,DET_g_PlayerEditObjInfo[playerid][EditedObject],EDIT_RESPONSE_FINAL,
+                playerid,DET_g_PlayerEditObjInfo[playerid][EditedObject],EDITING_RESPONSE_FINAL,
                 DET_g_PlayerEditObjInfo[playerid][EditedObjectPos][0], 
                 DET_g_PlayerEditObjInfo[playerid][EditedObjectPos][1],
                 DET_g_PlayerEditObjInfo[playerid][EditedObjectPos][2],
@@ -502,7 +514,7 @@ public DET_OnPlayerClickEditingMenu(playerid, Text:textid)
                 DET_g_PlayerEditObjInfo[playerid][StartRot][2]);
 
             CallLocalFunction(DETUTILS_EDITGLOBALOBJ_CALLBACK, "iiiffffff", 
-                playerid,DET_g_PlayerEditObjInfo[playerid][EditedObject],EDIT_RESPONSE_CANCEL,
+                playerid,DET_g_PlayerEditObjInfo[playerid][EditedObject],EDITING_RESPONSE_CANCEL,
                 DET_g_PlayerEditObjInfo[playerid][StartPos][0], 
                 DET_g_PlayerEditObjInfo[playerid][StartPos][1],
                 DET_g_PlayerEditObjInfo[playerid][StartPos][2],
@@ -778,7 +790,7 @@ public DET_OnPlayerClickEditingMenu(playerid, Text:textid)
         if((textid != DET_g_EditObjectTD[18]) && (textid != DET_g_EditObjectTD[19]))
         {
             CallLocalFunction(DETUTILS_EDITPLAYEROBJ_CALLBACK, "iiiffffff", 
-                playerid,DET_g_PlayerEditObjInfo[playerid][EditedObject],EDIT_RESPONSE_UPDATE,
+                playerid,DET_g_PlayerEditObjInfo[playerid][EditedObject],EDITING_RESPONSE_UPDATE,
                 DET_g_PlayerEditObjInfo[playerid][EditedObjectPos][0], 
                 DET_g_PlayerEditObjInfo[playerid][EditedObjectPos][1],
                 DET_g_PlayerEditObjInfo[playerid][EditedObjectPos][2],
@@ -790,7 +802,7 @@ public DET_OnPlayerClickEditingMenu(playerid, Text:textid)
         if(textid == DET_g_EditObjectTD[18])
         {
             CallLocalFunction(DETUTILS_EDITPLAYEROBJ_CALLBACK, "iiiffffff", 
-                playerid,DET_g_PlayerEditObjInfo[playerid][EditedObject],EDIT_RESPONSE_FINAL,
+                playerid,DET_g_PlayerEditObjInfo[playerid][EditedObject],EDITING_RESPONSE_FINAL,
                 DET_g_PlayerEditObjInfo[playerid][EditedObjectPos][0], 
                 DET_g_PlayerEditObjInfo[playerid][EditedObjectPos][1],
                 DET_g_PlayerEditObjInfo[playerid][EditedObjectPos][2],
@@ -815,7 +827,7 @@ public DET_OnPlayerClickEditingMenu(playerid, Text:textid)
                 DET_g_PlayerEditObjInfo[playerid][StartRot][2]);
 
             CallLocalFunction(DETUTILS_EDITPLAYEROBJ_CALLBACK, "iiiffffff", 
-                playerid,DET_g_PlayerEditObjInfo[playerid][EditedObject],EDIT_RESPONSE_CANCEL,
+                playerid,DET_g_PlayerEditObjInfo[playerid][EditedObject],EDITING_RESPONSE_CANCEL,
                 DET_g_PlayerEditObjInfo[playerid][StartPos][0], 
                 DET_g_PlayerEditObjInfo[playerid][StartPos][1],
                 DET_g_PlayerEditObjInfo[playerid][StartPos][2],
