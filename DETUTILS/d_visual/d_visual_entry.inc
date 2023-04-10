@@ -32,6 +32,7 @@
 */
 
 #include "d_visual_impl"
+#include "d_visual_tdanims"
 
 /*
                                                                       

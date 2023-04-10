@@ -50,6 +50,7 @@ new DET_g_AntiCheatTimer;
 #define CHEAT_TYPE_SPEEDHACK 6
 #define CHEAT_TYPE_DIALOG 7
 #define CHEAT_TYPE_MENU 8
+#define CHEAT_TYPE_TUNING 9
 
 // Functions:
 
@@ -838,6 +839,37 @@ stock CheckPlayerSpeed(playerid)
     }
     return 0;
 }
+
+public OnVehicleMod(playerid, vehicleid, componentid)
+{
+    if(GetPlayerInterior(playerid) == 0)
+    {
+        if(funcidx("OnPlayerCheatDetected") != -1)
+        {
+            if(funcidx("d_ac_onvehmod") != -1)
+            {
+                CallLocalFunction("d_ac_onvehmod", "iii", playerid, vehicleid, componentid);
+            }
+            CallLocalFunction("OnPlayerCheatDetected", "ii", playerid, CHEAT_TYPE_TUNING);
+            return 0;
+        }
+    }
+    if(funcidx("d_ac_onvehmod") != -1)
+    {
+        CallLocalFunction("d_ac_onvehmod", "iii", playerid, vehicleid, componentid);
+    }
+    return 1;
+}
+
+#if defined _ALS_OnVehicleMod
+    #undef OnVehicleMod
+#else
+    #define _ALS_OnVehicleMod
+#endif
+
+#define OnVehicleMod( d_ac_onvehmod(
+
+forward d_ac_onvehmod(playerid, vehicleid, componentid);
 
 /*
                                                                       
