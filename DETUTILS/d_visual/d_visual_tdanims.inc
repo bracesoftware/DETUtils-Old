@@ -26,7 +26,7 @@ enum DET__TextDrawInfo
 	Float:LetterSize[2]
 }
 
-new DET_g_TextDrawData[MAX_TEXT_DRAWS][DET__TextDrawInfo];
+new DET_g_TextDrawData[_:MAX_TEXT_DRAWS][DET__TextDrawInfo];
 
 enum DET__PlayerTextDrawInfo
 {
@@ -34,7 +34,7 @@ enum DET__PlayerTextDrawInfo
 	Float:LetterSize[2]
 }
 
-new DET_g_PlayerTextDrawData[MAX_PLAYER_TEXT_DRAWS][DET__PlayerTextDrawInfo];
+new DET_g_PlayerTextDrawData[_:MAX_PLAYER_TEXT_DRAWS][DET__PlayerTextDrawInfo];
 
 // Hooks:
 
