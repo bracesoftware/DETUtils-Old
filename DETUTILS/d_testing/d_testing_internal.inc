@@ -1658,7 +1658,7 @@ public OnPlayerConnect(playerid)
         print("TESTING ONPC 6 CALLED");
         ParseQueryContent(content, array); // Parse the content
         print("TESTING ONPC 7 CALLED");
-        strmid(PlayerCache[playerid][password], array[0]); // Get the password 
+        strmid(PlayerCache[playerid][password], array[0],0,64,64); // Get the password 
         PlayerCache[playerid][money] = strval(array[1]); // Get the money
         PlayerCache[playerid][admin] = strval(array[2]); // Get the admin boolean
         print("TESTING ONPC 8 CALLED");

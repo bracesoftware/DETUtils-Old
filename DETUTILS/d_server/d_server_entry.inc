@@ -20,6 +20,17 @@ new
 	DET_g_Client[MAX_PLAYERS],
 	DET_g_PedAnimsUsed = 0;
 
+#define MAX_SERVERCFG_OPTIONS 1000
+
+enum DET__ServerCfgInfo
+{
+	DET_e_Valid,
+	DET_e_Name[64],
+	DET_e_Value[1024]
+}
+
+new DET_g_ConfigCache[MAX_SERVERCFG_OPTIONS][DET__ServerCfgInfo];
+
 /*
                                                                                       
 88b           d88              88                         db         88888888ba   88  
@@ -34,137 +45,19 @@ new
                                                                                       
 */
 
-stock d_server_UsePlayerPedAnims()
-{
-	DET_g_PedAnimsUsed = 1;
-	return UsePlayerPedAnims();
-}
+#include "d_server_impl"
 
-stock ArePlayerPedAnimsUsed()
-{
-	return DET_g_PedAnimsUsed;
-}
+#if !defined DETUTILS_NO_SERVER_CFG
 
-#if defined _ALS_UsePlayerPedAnims
-	#undef UsePlayerPedAnims
+    #include "d_server_cfg"
+
 #else
-	#define _ALS_UsePlayerPedAnims
-#endif
 
-#define UsePlayerPedAnims d_server_UsePlayerPedAnims
+    #if !defined DETUTILS_NO_MODULE_WARNINGS
 
-/* =========================================== */
+        #warning [DETUtils]: (includes) - Sublibrary (submodule) 'd_server_cfg' is disabled.
 
-#if !defined DETUTILS_NO_ANDROID_CHECK
-
-#if !defined SendClientCheck
-
-	native SendClientCheck(playerid, type, memAddr, memOffset, byteCount);
-
-#endif
-
-stock d_svr_SendClientCheck(playerid, type, memAddr, memOffset, byteCount)
-{
-	if(funcidx("OnPlayerClientCheckReceived") != -1)
-	{
-		CallLocalFunction("OnPlayerClientCheckReceived",
-			"iiiii",
-			playerid, type, memAddr, memOffset, byteCount);
-	}
-	return SendClientCheck(playerid, type, memAddr, memOffset, byteCount);
-}
-
-#if defined _ALS_SendClientCheck
-	#undef SendClientCheck
-#else
-	#define _ALS_SendClientCheck
-#endif
-
-#define SendClientCheck d_svr_SendClientCheck
-
-/* =========================================== */
-
-forward OnPlayerClientCheckReceived(playerid, type, memaddr, memoffset, bytecount);
-forward OnPlayerClientCheckPerformed(playerid, actionid, memaddr, retndata);
-
-/* =========================================== */
-
-public OnPlayerConnect(playerid)
-{
-	DET_g_Client[playerid] = PLAYER_CLIENT_UNKNOWN;
-	SendClientCheck(playerid, 0x48, 0, 0, 2);
-	if(funcidx("d_svr_OnPlayerConnect") != -1)
-	{
-		CallLocalFunction("d_svr_OnPlayerConnect", "i", playerid);
-	}
-	return 1;
-}
-
-#if defined _ALS_OnPlayerConnect
-	#undef OnPlayerConnect
-#else
-	#define _ALS_OnPlayerConnect
-#endif
-
-#define OnPlayerConnect d_svr_OnPlayerConnect
-
-forward d_svr_OnPlayerConnect(playerid);
-
-/* =========================================== */
-
-forward OnClientCheckResponse(playerid, actionid, memaddr, retndata);
-public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
-{
-	if(actionid == 0x48)
-	{
-		if(memaddr == 0) 
-		{
-			DET_g_Client[playerid] = PLAYER_CLIENT_ANDROID;
-		}
-		else if(memaddr != 0)
-		{
-			DET_g_Client[playerid] = PLAYER_CLIENT_PC;
-		}
-	}
-	if(funcidx("OnPlayerClientCheckPerformed") != -1)
-	{
-		CallLocalFunction("OnPlayerClientCheckPerformed", "iiii", playerid, actionid, memaddr, retndata);
-	}
-	if(funcidx("d_svr_OnClientCheckResponse") != -1)
-	{
-		CallLocalFunction("d_svr_OnClientCheckResponse", "iiii", playerid, actionid, memaddr, retndata);
-	}
-	return 1;
-}
-
-#if defined _ALS_OnClientCheckResponse
-	#undef OnClientCheckResponse
-#else
-	#define _ALS_OnClientCheckResponse
-#endif
-
-#define OnClientCheckResponse d_svr_OnClientCheckResponse
-
-forward d_svr_OnClientCheckResponse(playerid, actionid, memaddr, retndata);
-
-/* =========================================== */
-
-stock bool:IsPlayerUsingPCClient(playerid)
-{
-	if(DET_g_Client[playerid] == PLAYER_CLIENT_PC) return true;
-	return false;
-}
-
-stock bool:IsPlayerUsingAndroidClient(playerid)
-{
-	if(DET_g_Client[playerid] == PLAYER_CLIENT_ANDROID) return true;
-	return false;
-}
-
-stock GetPlayerClient(playerid)
-{
-	return DET_g_Client[playerid];
-}
+    #endif
 
 #endif
 
