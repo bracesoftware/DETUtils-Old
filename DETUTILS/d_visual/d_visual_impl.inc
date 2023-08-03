@@ -691,6 +691,7 @@ stock RemovePlayerWeapon( playerid, weaponid )
     return 1;
 }
 
+
 stock d_v_ResetPlayerWeapons(playerid)
 {
     ResetPlayerWeapons(playerid);

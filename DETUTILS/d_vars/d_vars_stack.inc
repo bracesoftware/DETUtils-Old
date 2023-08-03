@@ -161,7 +161,7 @@ stock _D_VARS_pisv__2(const name[], dest)
     {
         if(!strcmp(DET_g_StackCache[i][Name], name, false))
         {
-            for(new x = DET_g_StackCache[i][Size]; x > -1; x--)
+            for(new x = DET_g_StackCache[i][Size] - 1; x > -1; x--)
             {
                 __DETUtilsDebug("`__PopIntegerStackValue` called; x: %i", x);
                 if(DET_g_StackCache[i][ReturnValues][x] != INVALID_STACK_VALUE)
